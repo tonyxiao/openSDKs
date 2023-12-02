@@ -1,0 +1,15 @@
+{
+  "name": "@opensdks/sdk-apollo",
+  "version": "0.0.0",
+  "scripts": {
+    "download": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
+    "generate": "openapi-typescript ./apollo.oas.json --output apollo.oas.d.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/core": "workspace:*",
+    "@opensdks/util-zod": "workspace:*",
+    "openapi-typescript": "6.7.1",
+    "prettier": "3.1.0"
+  }
+}

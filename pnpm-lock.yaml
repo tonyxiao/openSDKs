@@ -148,6 +148,21 @@ importers:
         specifier: 2.11.0
         version: 2.11.0(zod@3.21.4)
 
+  sdks/sdk-apollo:
+    devDependencies:
+      '@opensdks/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@opensdks/util-zod':
+        specifier: workspace:*
+        version: link:../../packages/util-zod
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: 3.1.0
+        version: 3.1.0
+
   sdks/sdk-discord:
     devDependencies:
       '@opensdks/core':
