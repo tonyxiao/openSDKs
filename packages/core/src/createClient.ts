@@ -17,6 +17,10 @@ export interface ClientOptions extends _ClientOptions {
   ) => ReturnType<typeof fetch>
 }
 
+export type OpenAPIClient<Paths extends {}> = ReturnType<
+  typeof createClient<Paths>
+>
+
 // Should this be combined with createSDK?
 // and for example do things such as parsing jsonschema
 // to get a list of servers and all that?
@@ -27,15 +31,22 @@ export function createClient<Paths extends {}>({
   postRequest = (res) => Promise.resolve(res),
   ...clientOptions
 }: ClientOptions = {}) {
-  const baseFetch = clientOptions?.fetch ?? globalThis.fetch
-  const customFetch: typeof baseFetch = async (url, init) => {
-    const requestArgs = await preRequest(url as string, init)
-    const res = await baseFetch(...requestArgs)
-    return postRequest(res, requestArgs)
+  const options = {
+    preRequest,
+    postRequest,
+    fetch: clientOptions?.fetch ?? globalThis.fetch,
+  }
+
+  const customFetch: typeof fetch = async (url, init) => {
+    const requestArgs = await options.preRequest(url as string, init)
+    const res = await options.fetch(...requestArgs)
+    return options.postRequest(res, requestArgs)
   }
   const client = _createClient<Paths>({...clientOptions, fetch: customFetch})
 
   return {
+    /** Mutable */
+    options,
     client,
     /** Untyped request */
     request: <T>(

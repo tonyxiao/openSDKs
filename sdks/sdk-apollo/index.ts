@@ -25,6 +25,31 @@ export const apolloSdkDef = {
   options: {
     api_key: '',
   },
-} satisfies SdkDefinition<paths>
+
+  extend: (client, options) => {
+    client.options.preRequest = (input, init) => {
+      if (input && init?.method?.toLowerCase() === 'get') {
+        const url = new URL(input)
+        url.searchParams.set('api_key', options['api_key'] as string)
+        return [url.toString(), init]
+      }
+      try {
+        return [
+          input,
+          {
+            ...init,
+            body: JSON.stringify({
+              api_key: options['api_key'] as string,
+              ...JSON.parse(init?.body as string),
+            }),
+          },
+        ]
+      } catch {
+        return [input, init]
+      }
+    }
+    return {...client} as typeof client & {hello: 'world'}
+  },
+} satisfies SdkDefinition<paths, unknown>
 
 export default apolloSdkDef

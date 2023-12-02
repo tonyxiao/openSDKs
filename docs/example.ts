@@ -40,3 +40,5 @@ void github
 void venice.GET('/core/resource').then((r) => console.log(r.data))
 
 void apollo.GET('/v1/email_accounts').then((r) => console.log(r.data))
+
+apollo.hello
