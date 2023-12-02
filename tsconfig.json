@@ -1,24 +1,4 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
-  "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["DOM", "DOM.Iterable", "ES2021"],
-    "allowJs": true,
-    "checkJs": false,
-    "exactOptionalPropertyTypes": false,
-    "importsNotUsedAsValues": "remove",
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "paths": {
-      "@opensdks/core": ["./packages/core/src"],
-      "@opensdks/core/*": ["./packages/core/src/*"]
-    }
-  },
-  "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "extends": "./tsconfig.base.json",
+  "include": ["**/*.ts", "**/*.tsx"]
 }

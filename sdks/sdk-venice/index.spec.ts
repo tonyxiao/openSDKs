@@ -1,7 +1,7 @@
-import {createClient} from '@opensdks/core'
-import type {paths} from './venice.oas'
+import {initSDK} from '@opensdks/core'
+import {veniceSdkDef} from './'
 
-const venice = createClient<paths>({baseUrl: 'https://app.venice.is/api/v0'})
+const venice = initSDK(veniceSdkDef, {headers: {}})
 
 test('healthcheck', async () => {
   expect(await venice.GET('/health').then((r) => r.data)).toBeTruthy()
