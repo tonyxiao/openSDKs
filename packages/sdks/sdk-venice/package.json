@@ -1,0 +1,14 @@
+{
+  "name": "@opensdks/sdk-venice",
+  "version": "0.0.0",
+  "scripts": {
+    "download": "curl --fail https://app.venice.is/api/v0/openapi.json | prettier --parser json > ./venice.oas.json",
+    "generate": "openapi-typescript ./venice.oas.json --output venice.oas.d.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/core": "workspace:*",
+    "openapi-typescript": "6.7.1",
+    "prettier": "3.1.0"
+  }
+}

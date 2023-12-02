@@ -1,0 +1,2216 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "Venice OpenAPI", "version": "0.0.0"},
+  "servers": [{"url": "https://app.venice.is/api/v0"}],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health",
+        "summary": "Health check",
+        "tags": ["Internal"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {"type": "string"}}}
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debug/raw-schemas": {
+      "get": {
+        "operationId": "getRawSchemas",
+        "description": "Get raw schemas",
+        "tags": ["Internal"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connect/token": {
+      "post": {
+        "operationId": "createConnectToken",
+        "tags": ["Connect"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endUserId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Anything that uniquely identifies the end user that you will be sending the magic link to"
+                  },
+                  "validityInSeconds": {
+                    "type": "number",
+                    "default": 3600,
+                    "description": "How long the magic link will be valid for (in seconds) before it expires"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"token": {"type": "string"}},
+                  "required": ["token"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connect/magic-link": {
+      "post": {
+        "operationId": "createMagicLink",
+        "tags": ["Connect"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endUserId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Anything that uniquely identifies the end user that you will be sending the magic link to"
+                  },
+                  "validityInSeconds": {
+                    "type": "number",
+                    "default": 3600,
+                    "description": "How long the magic link will be valid for (in seconds) before it expires"
+                  },
+                  "displayName": {
+                    "type": ["string", "null"],
+                    "description": "What to call user by"
+                  },
+                  "redirectUrl": {
+                    "type": ["string", "null"],
+                    "description": "Where to send user to after connect / if they press back button"
+                  },
+                  "connectorName": {
+                    "type": ["string", "null"],
+                    "description": "Which provider to use"
+                  },
+                  "connectorConfigId": {
+                    "type": "string",
+                    "description": "Must start with 'ccfg_'"
+                  },
+                  "showExisting": {"type": "boolean", "default": true}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"url": {"type": "string"}},
+                  "required": ["url"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/passthrough": {
+      "post": {
+        "operationId": "passthrough",
+        "tags": ["Internal"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+                  },
+                  "path": {"type": "string"},
+                  "query": {"type": "object", "additionalProperties": {}},
+                  "headers": {"type": "object", "additionalProperties": {}},
+                  "body": {"type": "object", "additionalProperties": {}}
+                },
+                "required": ["method", "path"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/resource/{id}/source_sync": {
+      "post": {
+        "operationId": "sourceSync",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "state": {"type": "object", "additionalProperties": {}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {"type": "object", "additionalProperties": {}}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/resource": {
+      "post": {
+        "operationId": "createResource",
+        "tags": ["Core"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "connectorConfigId": {
+                    "type": "string",
+                    "description": "Must start with 'ccfg_'"
+                  },
+                  "settings": {
+                    "type": ["object", "null"],
+                    "additionalProperties": {}
+                  }
+                },
+                "required": ["connectorConfigId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {"type": "string"}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "listResources",
+        "tags": ["Core"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}},
+          {
+            "in": "query",
+            "name": "endUserId",
+            "schema": {"type": ["string", "null"], "minLength": 1}
+          },
+          {
+            "in": "query",
+            "name": "connectorConfigId",
+            "schema": {
+              "type": ["string", "null"],
+              "description": "Must start with 'ccfg_'"
+            }
+          },
+          {
+            "in": "query",
+            "name": "connectorName",
+            "schema": {"type": ["string", "null"]}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {"$ref": "#/components/schemas/Resource"}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/resource/{id}": {
+      "patch": {
+        "operationId": "updateResource",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "settings": {
+                    "type": ["object", "null"],
+                    "additionalProperties": {}
+                  },
+                  "displayName": {"type": ["string", "null"]},
+                  "metadata": {
+                    "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/Resource"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteResource",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          },
+          {"in": "query", "name": "skipRevoke", "schema": {"type": "boolean"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getResource",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/Resource"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/connector_config": {
+      "get": {
+        "operationId": "adminListConnectorConfigs",
+        "tags": ["Core"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {"$ref": "#/components/schemas/ConnectorConfig"}
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "adminUpsertConnectorConfig",
+        "tags": ["Core"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Must start with 'ccfg_'"
+                  },
+                  "connectorName": {"type": "string"},
+                  "orgId": {
+                    "type": "string",
+                    "description": "Must start with 'org_'"
+                  },
+                  "config": {
+                    "type": ["object", "null"],
+                    "additionalProperties": {}
+                  },
+                  "displayName": {"type": ["string", "null"]},
+                  "defaultPipeOut": {
+                    "type": ["object", "null"],
+                    "properties": {
+                      "streams": {
+                        "type": ["object", "null"],
+                        "additionalProperties": {"type": "boolean"}
+                      },
+                      "links": {
+                        "type": ["array", "null"],
+                        "items": {"$ref": "#/components/schemas/Link"},
+                        "description": "Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization."
+                      },
+                      "destination_id": {
+                        "type": "string",
+                        "description": "Must start with 'reso_'"
+                      }
+                    },
+                    "required": ["destination_id"],
+                    "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
+                  },
+                  "defaultPipeIn": {
+                    "type": ["object", "null"],
+                    "properties": {
+                      "links": {
+                        "type": ["array", "null"],
+                        "items": {"$ref": "#/components/schemas/Link"},
+                        "description": "Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization."
+                      },
+                      "source_id": {
+                        "type": "string",
+                        "description": "Must start with 'reso_'"
+                      }
+                    },
+                    "required": ["source_id"],
+                    "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
+                  }
+                },
+                "required": ["orgId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/ConnectorConfig"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/connector_config/{id}": {
+      "patch": {
+        "operationId": "adminUpdateConnectorConfig",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'ccfg_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+                  },
+                  "displayName": {"type": ["string", "null"]},
+                  "disabled": {"type": "boolean"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/ConnectorConfig"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "adminDeleteConnectorConfig",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'ccfg_'"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "adminGetConnectorConfig",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'ccfg_'"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/ConnectorConfig"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/connector_config_info": {
+      "get": {
+        "operationId": "listConnectorConfigInfos",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": ["string", "null"],
+              "enum": ["source", "destination"]
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": ["string", "null"],
+              "description": "Must start with 'ccfg_'"
+            }
+          },
+          {
+            "in": "query",
+            "name": "connectorName",
+            "schema": {"type": ["string", "null"]}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Must start with 'ccfg_'"
+                      },
+                      "envName": {"type": ["string", "null"]},
+                      "displayName": {"type": ["string", "null"]},
+                      "connectorName": {"type": "string"},
+                      "isSource": {"type": "boolean"},
+                      "isDestination": {"type": "boolean"}
+                    },
+                    "required": [
+                      "id",
+                      "connectorName",
+                      "isSource",
+                      "isDestination"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connector": {
+      "get": {
+        "operationId": "listConnectorMetas",
+        "description": "Get catalog of all available connectors",
+        "tags": ["Connectors"],
+        "parameters": [
+          {"in": "query", "name": "includeOas", "schema": {"type": "boolean"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connector/{name}": {
+      "get": {
+        "operationId": "getConnectorMeta",
+        "tags": ["Connectors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {"type": "string"},
+            "required": true
+          },
+          {"in": "query", "name": "includeOas", "schema": {"type": "boolean"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connector/{name}/oas": {
+      "get": {
+        "operationId": "getConnectorOpenApiSpec",
+        "tags": ["Connectors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {"type": "string"},
+            "required": true
+          },
+          {"in": "query", "name": "original", "schema": {"type": "boolean"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connector/{name}/schemas": {
+      "get": {
+        "operationId": "getConnectorSchemas",
+        "tags": ["Connectors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {"type": "string"},
+            "required": true
+          },
+          {"in": "query", "name": "type", "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/pipeline": {
+      "get": {
+        "operationId": "listPipelines",
+        "tags": ["Core"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}},
+          {
+            "in": "query",
+            "name": "resourceIds",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Must start with 'reso_'"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {"$ref": "#/components/schemas/Pipeline"}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/pipeline/{id}": {
+      "patch": {
+        "operationId": "updatePipeline",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'pipe_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+                  },
+                  "disabled": {"type": "boolean"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/Pipeline"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePipeline",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'pipe_'"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"type": "boolean", "enum": [true]}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/accounting/account": {
+      "get": {
+        "operationId": "verticals-accounting-account_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "number": {"type": ["string", "null"]},
+                          "name": {"type": "string"},
+                          "type": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id", "name", "type"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/accounting/expense": {
+      "get": {
+        "operationId": "verticals-accounting-expense_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "amount": {"type": "number"},
+                          "currency": {"type": "string"},
+                          "payment_account": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": [
+                          "id",
+                          "amount",
+                          "currency",
+                          "payment_account"
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/accounting/vendor": {
+      "get": {
+        "operationId": "verticals-accounting-vendor_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "name": {"type": "string"},
+                          "url": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id", "name", "url"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/pta/account": {
+      "get": {
+        "operationId": "verticals-pta-account_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {"_original": {}}
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/pta/transaction": {
+      "get": {
+        "operationId": "verticals-pta-transaction_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {"_original": {}}
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/pta/commodity": {
+      "get": {
+        "operationId": "verticals-pta-commodity_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {"_original": {}}
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/investment/account": {
+      "get": {
+        "operationId": "verticals-investment-account_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "name": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id", "name"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/investment/transaction": {
+      "get": {
+        "operationId": "verticals-investment-transaction_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/investment/holding": {
+      "get": {
+        "operationId": "verticals-investment-holding_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/investment/security": {
+      "get": {
+        "operationId": "verticals-investment-security_list",
+        "tags": ["Verticals"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "_original": {}
+                        },
+                        "required": ["id"]
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "operationId": "getOpenapiDocument",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apikey": {"type": "apiKey", "name": "x-apikey", "in": "header"}
+    },
+    "schemas": {
+      "error.INTERNAL_SERVER_ERROR": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Internal server error"
+          },
+          "code": {
+            "type": "string",
+            "description": "The error code",
+            "example": "INTERNAL_SERVER_ERROR"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {"message": {"type": "string"}},
+              "required": ["message"]
+            },
+            "description": "An array of issues that were responsible for the error",
+            "example": []
+          }
+        },
+        "required": ["message", "code"],
+        "title": "Error",
+        "description": "The error information",
+        "example": {
+          "code": "INTERNAL_SERVER_ERROR",
+          "message": "Internal server error",
+          "issues": []
+        }
+      },
+      "error.BAD_REQUEST": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Invalid input data"
+          },
+          "code": {
+            "type": "string",
+            "description": "The error code",
+            "example": "BAD_REQUEST"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {"message": {"type": "string"}},
+              "required": ["message"]
+            },
+            "description": "An array of issues that were responsible for the error",
+            "example": []
+          }
+        },
+        "required": ["message", "code"],
+        "title": "Error",
+        "description": "The error information",
+        "example": {
+          "code": "BAD_REQUEST",
+          "message": "Invalid input data",
+          "issues": []
+        }
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "createdAt": {"type": "string"},
+          "updatedAt": {"type": "string"},
+          "id": {"type": "string", "description": "Must start with 'reso_'"},
+          "connectorName": {
+            "type": "string",
+            "description": "Unique name of the connector"
+          },
+          "displayName": {"type": ["string", "null"]},
+          "endUserId": {"type": ["string", "null"], "minLength": 1},
+          "connectorConfigId": {
+            "type": "string",
+            "description": "Must start with 'ccfg_'"
+          },
+          "integrationId": {
+            "type": ["string", "null"],
+            "description": "Must start with 'int_'"
+          },
+          "settings": {"type": ["object", "null"], "additionalProperties": {}},
+          "standard": {
+            "type": ["object", "null"],
+            "properties": {
+              "displayName": {"type": "string"},
+              "status": {
+                "type": ["string", "null"],
+                "enum": ["healthy", "disconnected", "error", "manual"]
+              },
+              "statusMessage": {"type": ["string", "null"]},
+              "labels": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["displayName"]
+          },
+          "disabled": {"type": "boolean"},
+          "metadata": {
+            "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+          }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "id",
+          "connectorName",
+          "connectorConfigId"
+        ]
+      },
+      "error.NOT_FOUND": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Not found"
+          },
+          "code": {
+            "type": "string",
+            "description": "The error code",
+            "example": "NOT_FOUND"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {"message": {"type": "string"}},
+              "required": ["message"]
+            },
+            "description": "An array of issues that were responsible for the error",
+            "example": []
+          }
+        },
+        "required": ["message", "code"],
+        "title": "Error",
+        "description": "The error information",
+        "example": {"code": "NOT_FOUND", "message": "Not found", "issues": []}
+      },
+      "ConnectorConfig": {
+        "type": "object",
+        "properties": {
+          "createdAt": {"type": "string"},
+          "updatedAt": {"type": "string"},
+          "id": {"type": "string", "description": "Must start with 'ccfg_'"},
+          "connectorName": {"type": "string"},
+          "config": {"type": ["object", "null"], "additionalProperties": {}},
+          "orgId": {"type": "string", "description": "Must start with 'org_'"},
+          "displayName": {"type": ["string", "null"]},
+          "disabled": {"type": "boolean"},
+          "defaultPipeOut": {
+            "type": ["object", "null"],
+            "properties": {
+              "streams": {
+                "type": ["object", "null"],
+                "additionalProperties": {"type": "boolean"}
+              },
+              "links": {
+                "type": ["array", "null"],
+                "items": {"$ref": "#/components/schemas/Link"},
+                "description": "Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization."
+              },
+              "destination_id": {
+                "type": "string",
+                "description": "Must start with 'reso_'"
+              }
+            },
+            "required": ["destination_id"],
+            "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
+          },
+          "defaultPipeIn": {
+            "type": ["object", "null"],
+            "properties": {
+              "links": {
+                "type": ["array", "null"],
+                "items": {"$ref": "#/components/schemas/Link"},
+                "description": "Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization."
+              },
+              "source_id": {
+                "type": "string",
+                "description": "Must start with 'reso_'"
+              }
+            },
+            "required": ["source_id"],
+            "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
+          },
+          "envName": {"type": ["string", "null"]},
+          "metadata": {
+            "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+          }
+        },
+        "required": ["createdAt", "updatedAt", "id", "connectorName", "orgId"]
+      },
+      "Link": {"type": "string", "enum": ["banking"]},
+      "Pipeline": {
+        "type": "object",
+        "properties": {
+          "createdAt": {"type": "string"},
+          "updatedAt": {"type": "string"},
+          "id": {"type": "string", "description": "Must start with 'pipe_'"},
+          "sourceId": {
+            "type": "string",
+            "description": "Must start with 'reso_'"
+          },
+          "sourceState": {"type": "object", "additionalProperties": {}},
+          "destinationId": {
+            "type": "string",
+            "description": "Must start with 'reso_'"
+          },
+          "destinationState": {"type": "object", "additionalProperties": {}},
+          "linkOptions": {"type": ["array", "null"], "items": {}},
+          "lastSyncStartedAt": {"type": ["string", "null"]},
+          "lastSyncCompletedAt": {"type": ["string", "null"]},
+          "disabled": {"type": "boolean"},
+          "metadata": {
+            "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
+          }
+        },
+        "required": ["createdAt", "updatedAt", "id"]
+      }
+    }
+  },
+  "security": [{"apikey": []}]
+}

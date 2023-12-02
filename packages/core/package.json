@@ -2,7 +2,6 @@
   "name": "@opensdks/core",
   "version": "0.0.2",
   "private": false,
-  "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -16,9 +15,9 @@
     "openapi-typescript-helpers": "0.0.4"
   },
   "devDependencies": {
-    "undici": "5.27.0"
+    "undici": "^5.28.2"
   },
   "optionalDependencies": {
-    "undici": "5.27.0"
+    "undici": "^5.28.2"
   }
 }

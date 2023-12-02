@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 .turbo
+.envrc
