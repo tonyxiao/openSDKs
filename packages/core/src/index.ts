@@ -15,8 +15,11 @@ export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
 /** Get this from openapi */
 export interface SdkDefinition<Paths extends {}> {
-  _types: {paths: Paths}
+  _types: {
+    paths: Paths
+  }
   oas: OpenAPISpec
+  headers?: Record<string, string>
 }
 
 // This is necessary because we cannot publish inferred type otherwise
@@ -27,13 +30,14 @@ export type SDK<Paths extends {}> = ReturnType<typeof createClient<Paths>> & {
   oas: OpenAPISpec
 }
 
-export function initSDK<Paths extends {}>(
-  // Can we make this optional to avoid needing to deal with json?
-  sdkDef: SdkDefinition<Paths>,
-  options?: ClientOptions,
-): SDK<Paths> {
+// Can we make this optional to avoid needing to deal with json?
+export function initSDK<TDef extends SdkDefinition<{}>>(
+  ...[sdkDef, options]: 'headers' extends keyof TDef
+    ? [TDef, Omit<ClientOptions, 'headers'> & {headers: TDef['headers']}]
+    : [TDef] | [TDef, ClientOptions?]
+): SDK<TDef['_types']['paths']> {
   const {oas} = sdkDef
-  const client = createClient<Paths>({
+  const client = createClient<TDef['_types']['paths']>({
     baseUrl: oas.servers?.[0]?.url,
     ...options,
   })

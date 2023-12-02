@@ -13,9 +13,15 @@ export const github = initSDK(githubSdkDef, {
   },
 })
 
+export const plaid = initSDK(plaidSdkDef, {
+  headers: {
+    'PLAID-CLIENT-ID': '',
+    'PLAID-SECRET': '',
+  },
+}) // Need clientId & secret
+
 export const discord = initSDK(discordSdkDef)
 export const openai = initSDK(openaiSdkDef)
-export const plaid = initSDK(plaidSdkDef) // Need clientId & secret
 export const slack = initSDK(slackSdkDef)
 export const venice = initSDK(veniceSdkDef) // ApiKey or authToken
 
