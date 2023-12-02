@@ -6,9 +6,7 @@
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
     "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts"
   },
-  "dependencies": {
-    "@opensdks/openapi-client": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@opensdks/sdk": "workspace:*",
     "openapi-typescript": "6.7.1"

@@ -6,9 +6,7 @@
     "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
     "generate": "cat openai.oas.yaml | node ./yaml2json.js -o openai.oas && openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts "
   },
-  "dependencies": {
-    "@opensdks/openapi-client": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@opensdks/sdk": "workspace:*",
     "openapi-typescript": "6.7.1",

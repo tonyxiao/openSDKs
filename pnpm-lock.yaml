@@ -87,10 +87,10 @@ importers:
         specifier: 0.17.0
         version: 0.17.0(prettier@3.1.0)
       prettier-plugin-tailwindcss:
-        specifier: 0.5.7
+        specifier: ^0.5.7
         version: 0.5.7(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.1.0)
       tsx:
-        specifier: 4.6.1
+        specifier: ^4.6.1
         version: 4.6.1
       turbo:
         specifier: ^1.10.16
