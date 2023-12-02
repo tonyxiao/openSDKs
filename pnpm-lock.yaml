@@ -118,6 +118,18 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  packages/sdks/sdk-github:
+    devDependencies:
+      '@opensdks/core':
+        specifier: workspace:*
+        version: link:../../core
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: 3.1.0
+        version: 3.1.0
+
   packages/sdks/sdk-openai:
     devDependencies:
       '@opensdks/core':
