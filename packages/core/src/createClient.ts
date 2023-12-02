@@ -21,6 +21,7 @@ export interface ClientOptions extends _ClientOptions {
 // and for example do things such as parsing jsonschema
 // to get a list of servers and all that?
 // Really do feel that they should be generated as well..
+
 export function createClient<Paths extends {}>({
   preRequest = (url, init) => [url, init],
   postRequest = (res) => Promise.resolve(res),
