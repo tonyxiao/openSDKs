@@ -1,0 +1,23 @@
+{
+  "name": "@opensdks/core",
+  "version": "0.0.2",
+  "private": false,
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
+    "pub": "pnpm publish --no-git-checks --access public"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.8.1",
+    "openapi-typescript-helpers": "0.0.4"
+  },
+  "devDependencies": {
+    "undici": "5.27.0"
+  },
+  "optionalDependencies": {
+    "undici": "5.27.0"
+  }
+}
