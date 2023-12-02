@@ -1,0 +1,64 @@
+name: Validate
+
+on: [push, pull_request]
+
+jobs:
+  main:
+    name: Run type checks, lint, and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20 # TODO: Can we get this from "engine" field in package.json?
+
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8 # Ideally we should get this from engine field too...
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # - name: Set up tmate session
+      #   uses: mxschmitt/action-tmate@v2
+
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
+
+      - name: Run type checks
+        run: pnpm run typecheck
+
+      - name: Run lint
+        run: pnpm run lint
+
+      - name: Run tests
+        run: pnpm run test::ci
+
+      - name: Send Slack notification for job status
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLATIFY_SLACK_WEBHOOK_URL }} # required
+        if: ${{ env.SLACK_WEBHOOK_URL != '' && always() }} # Pick up events even if the job fails or is canceled.

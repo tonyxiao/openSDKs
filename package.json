@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "repository": "git@github.com:useVenice/openSDKs.git",
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsc --project ./ --noEmit",
+    "lint": "eslint --ext .js,.ts,.tsx --cache ."
+  },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"

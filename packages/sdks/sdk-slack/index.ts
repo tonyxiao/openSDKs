@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/sdk'
+import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
 import type {
   components,
   external,

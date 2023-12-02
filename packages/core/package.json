@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "openapi-fetch": "0.8.1",
+    "openapi3-ts": "4.1.2",
     "openapi-typescript-helpers": "0.0.4"
   },
   "devDependencies": {
