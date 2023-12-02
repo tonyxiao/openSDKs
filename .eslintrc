@@ -61,7 +61,7 @@
     "unicorn/prefer-string-starts-ends-with": "warn",
     "unicorn/prefer-string-trim-start-end": "warn",
     "unicorn/prefer-switch": "warn",
-    "unicorn/prefer-top-level-await": "warn",
+    "unicorn/prefer-top-level-await": "off",
     "unicorn/prefer-type-error": "warn",
     "unicorn/relative-url-style": "warn",
     "unicorn/require-array-join-separator": "warn",

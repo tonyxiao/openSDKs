@@ -1,0 +1,12 @@
+{
+  "name": "@opensdks/docs",
+  "dependencies": {
+    "@opensdks/core": "workspace:*",
+    "@opensdks/sdk-discord": "workspace*",
+    "@opensdks/sdk-github": "workspace*",
+    "@opensdks/sdk-openai": "workspace*",
+    "@opensdks/sdk-plaid": "workspace*",
+    "@opensdks/sdk-slack": "workspace*",
+    "@opensdks/sdk-venice": "workspace*"
+  }
+}

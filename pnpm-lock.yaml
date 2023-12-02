@@ -93,6 +93,30 @@ importers:
         specifier: ^5.28.2
         version: 5.28.2
 
+  docs:
+    dependencies:
+      '@opensdks/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      '@opensdks/sdk-discord':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-discord
+      '@opensdks/sdk-github':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-github
+      '@opensdks/sdk-openai':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-openai
+      '@opensdks/sdk-plaid':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-plaid
+      '@opensdks/sdk-slack':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-slack
+      '@opensdks/sdk-venice':
+        specifier: workspace*
+        version: link:../packages/sdks/sdk-venice
+
   packages/core:
     dependencies:
       openapi-fetch:
