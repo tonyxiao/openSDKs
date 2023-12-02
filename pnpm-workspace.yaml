@@ -1,9 +1,4 @@
 packages:
-  - 'apps/*'
   - 'packages/*'
-  - 'connectors/*'
-  - 'verticals/*'
-  - 'kits/*'
-  - 'utils/*'
-  - 'opensdks/*'
-  - 'docs/'
+  - 'packages/sdks/*'
+  - 'packages/utils/*'
