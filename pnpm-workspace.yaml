@@ -1,5 +1,4 @@
 packages:
   - 'packages/*'
-  - 'packages/sdks/*'
-  - 'packages/utils/*'
+  - 'sdks/*'
   - 'docs'

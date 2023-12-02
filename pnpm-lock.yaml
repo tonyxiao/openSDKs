@@ -100,22 +100,22 @@ importers:
         version: link:../packages/core
       '@opensdks/sdk-discord':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-discord
+        version: link:../sdks/sdk-discord
       '@opensdks/sdk-github':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-github
+        version: link:../sdks/sdk-github
       '@opensdks/sdk-openai':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-openai
+        version: link:../sdks/sdk-openai
       '@opensdks/sdk-plaid':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-plaid
+        version: link:../sdks/sdk-plaid
       '@opensdks/sdk-slack':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-slack
+        version: link:../sdks/sdk-slack
       '@opensdks/sdk-venice':
         specifier: workspace*
-        version: link:../packages/sdks/sdk-venice
+        version: link:../sdks/sdk-venice
 
   packages/core:
     dependencies:
@@ -133,20 +133,35 @@ importers:
         specifier: ^5.28.2
         version: 5.28.2
 
-  packages/sdks/sdk-discord:
+  packages/util-types:
+    dependencies:
+      type-fest:
+        specifier: 4.8.2
+        version: 4.8.2
+
+  packages/util-zod:
+    dependencies:
+      zod:
+        specifier: 3.21.4
+        version: 3.21.4
+      zod-openapi:
+        specifier: 2.11.0
+        version: 2.11.0(zod@3.21.4)
+
+  sdks/sdk-discord:
     devDependencies:
       '@opensdks/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../packages/core
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
 
-  packages/sdks/sdk-github:
+  sdks/sdk-github:
     devDependencies:
       '@opensdks/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../packages/core
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -154,11 +169,11 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
 
-  packages/sdks/sdk-openai:
+  sdks/sdk-openai:
     devDependencies:
       '@opensdks/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../packages/core
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -166,7 +181,7 @@ importers:
         specifier: 2.3.4
         version: 2.3.4
 
-  packages/sdks/sdk-plaid:
+  sdks/sdk-plaid:
     devDependencies:
       openapi-typescript:
         specifier: 6.7.1
@@ -178,41 +193,26 @@ importers:
         specifier: 0.3.0
         version: 0.3.0
 
-  packages/sdks/sdk-slack:
+  sdks/sdk-slack:
     devDependencies:
       '@opensdks/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../packages/core
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
 
-  packages/sdks/sdk-venice:
+  sdks/sdk-venice:
     devDependencies:
       '@opensdks/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../packages/core
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
       prettier:
         specifier: 3.1.0
         version: 3.1.0
-
-  packages/utils/types:
-    dependencies:
-      type-fest:
-        specifier: 4.8.2
-        version: 4.8.2
-
-  packages/utils/zod:
-    dependencies:
-      zod:
-        specifier: 3.21.4
-        version: 3.21.4
-      zod-openapi:
-        specifier: 2.11.0
-        version: 2.11.0(zod@3.21.4)
 
 packages:
 

@@ -1,5 +1,5 @@
 {
-  "name": "@opensdks/types",
+  "name": "@opensdks/util-types",
   "version": "0.0.0",
   "private": false,
   "sideEffects": false,
