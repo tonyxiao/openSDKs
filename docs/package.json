@@ -1,5 +1,8 @@
 {
   "name": "@opensdks/docs",
+  "scripts": {
+    "dev": "mintlify dev"
+  },
   "dependencies": {
     "@opensdks/core": "workspace:*",
     "@opensdks/sdk-apollo": "workspace:*",
@@ -9,5 +12,8 @@
     "@opensdks/sdk-plaid": "workspace:*",
     "@opensdks/sdk-slack": "workspace:*",
     "@opensdks/sdk-venice": "workspace:*"
+  },
+  "devDependencies": {
+    "mintlify": "^4.0.68"
   }
 }
