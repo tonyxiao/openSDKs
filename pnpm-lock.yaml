@@ -98,23 +98,26 @@ importers:
       '@opensdks/core':
         specifier: workspace:*
         version: link:../packages/core
+      '@opensdks/sdk-apollo':
+        specifier: workspace:*
+        version: link:../sdks/sdk-apollo
       '@opensdks/sdk-discord':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-discord
       '@opensdks/sdk-github':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-github
       '@opensdks/sdk-openai':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-openai
       '@opensdks/sdk-plaid':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-plaid
       '@opensdks/sdk-slack':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-slack
       '@opensdks/sdk-venice':
-        specifier: workspace*
+        specifier: workspace:*
         version: link:../sdks/sdk-venice
 
   packages/core:

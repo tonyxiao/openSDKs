@@ -33,8 +33,11 @@ export type SDK<Paths extends {}> = ReturnType<typeof createClient<Paths>> & {
 // Can we make this optional to avoid needing to deal with json?
 export function initSDK<TDef extends SdkDefinition<{}>>(
   ...[sdkDef, options]: 'options' extends keyof TDef
-    ? [TDef, Omit<ClientOptions, keyof TDef['options']> & TDef['options']]
-    : [TDef] | [TDef, ClientOptions?]
+    ? [
+        sdkDef: TDef,
+        options: Omit<ClientOptions, keyof TDef['options']> & TDef['options'],
+      ]
+    : [sdkDef: TDef] | [sdkDef: TDef, options?: ClientOptions]
 ): SDK<TDef['_types']['paths']> {
   const {oas} = sdkDef
   const client = createClient<TDef['_types']['paths']>({

@@ -1,4 +1,5 @@
 import {initSDK} from '@opensdks/core'
+import {apolloSdkDef} from '@opensdks/sdk-apollo'
 import {discordSdkDef} from '@opensdks/sdk-discord'
 import {githubSdkDef} from '@opensdks/sdk-github'
 import {openaiSdkDef} from '@opensdks/sdk-openai'
@@ -23,6 +24,9 @@ export const plaid = initSDK(plaidSdkDef, {
 export const discord = initSDK(discordSdkDef)
 export const openai = initSDK(openaiSdkDef)
 export const slack = initSDK(slackSdkDef)
+export const apollo = initSDK(apolloSdkDef, {
+  api_key: process.env['APOLLO_API_KEY']!,
+})
 export const venice = initSDK(veniceSdkDef, {
   headers: {'x-apikey': process.env['VENICE_API_KEY']},
 })
@@ -34,3 +38,5 @@ void github
   })
 
 void venice.GET('/core/resource').then((r) => console.log(r.data))
+
+void apollo.GET('/v1/email_accounts').then((r) => console.log(r.data))

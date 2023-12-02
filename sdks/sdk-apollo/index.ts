@@ -23,12 +23,7 @@ export const apolloSdkDef = {
   _types: {} as apolloTypes,
   oas: apolloOas as {} as OpenAPISpec,
   options: {
-    headers: {} as {
-      'x-apikey'?: string
-      'x-resource-id'?: string
-      /** Bearer token */
-      Authorization?: string
-    },
+    api_key: '',
   },
 } satisfies SdkDefinition<paths>
 
