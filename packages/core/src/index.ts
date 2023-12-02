@@ -19,7 +19,7 @@ export interface SdkDefinition<Paths extends {}> {
     paths: Paths
   }
   oas: OpenAPISpec
-  headers?: Record<string, string>
+  options?: Record<string, unknown>
 }
 
 // This is necessary because we cannot publish inferred type otherwise
@@ -32,8 +32,8 @@ export type SDK<Paths extends {}> = ReturnType<typeof createClient<Paths>> & {
 
 // Can we make this optional to avoid needing to deal with json?
 export function initSDK<TDef extends SdkDefinition<{}>>(
-  ...[sdkDef, options]: 'headers' extends keyof TDef
-    ? [TDef, Omit<ClientOptions, 'headers'> & {headers: TDef['headers']}]
+  ...[sdkDef, options]: 'options' extends keyof TDef
+    ? [TDef, Omit<ClientOptions, keyof TDef['options']> & TDef['options']]
     : [TDef] | [TDef, ClientOptions?]
 ): SDK<TDef['_types']['paths']> {
   const {oas} = sdkDef

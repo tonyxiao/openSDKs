@@ -22,6 +22,14 @@ export interface veniceTypes {
 export const veniceSdkDef = {
   _types: {} as veniceTypes,
   oas: veniceOas as {} as OpenAPISpec,
+  options: {
+    headers: {} as {
+      'x-apikey'?: string
+      'x-resource-id'?: string
+      /** Bearer token */
+      Authorization?: string
+    },
+  },
 } satisfies SdkDefinition<paths>
 
 export default veniceSdkDef

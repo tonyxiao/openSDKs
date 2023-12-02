@@ -22,9 +22,11 @@ export interface plaidTypes {
 export const plaidSdkDef = {
   _types: {} as plaidTypes,
   oas: plaidOas as {} as OpenAPISpec,
-  headers: {} as {
-    'PLAID-CLIENT-ID': string
-    'PLAID-SECRET': string
+  options: {
+    headers: {} as {
+      'PLAID-CLIENT-ID': string
+      'PLAID-SECRET': string
+    },
   },
 } satisfies SdkDefinition<paths>
 
