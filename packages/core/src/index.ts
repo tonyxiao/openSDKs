@@ -2,8 +2,8 @@ import type {oas30, oas31} from 'openapi3-ts'
 import type {ClientOptions, OpenAPIClient} from './createClient'
 import {createClient} from './createClient'
 
-export * from 'openapi-typescript-helpers'
-export {createClient} from './createClient'
+// export type * from 'openapi-typescript-helpers'
+// export {createClient} from './createClient'
 export * from './HTTPError'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
