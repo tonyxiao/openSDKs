@@ -1,4 +1,5 @@
 {
+  "parserOptions": {"ecmaVersion": "latest"},
   "root": true,
   "settings": {},
   "plugins": ["codegen", "eslint-comments", "promise", "unicorn"],
@@ -12,18 +13,10 @@
     "prefer-const": "warn",
     "quotes": ["warn", "single", {"avoidEscape": true}],
     "codegen/codegen": "warn",
-    "import/no-unresolved": "error",
     "eslint-comments/disable-enable-pair": "off",
     "eslint-comments/no-unlimited-disable": "off",
     "eslint-comments/no-unused-disable": "warn",
     "promise/always-return": "off",
-    "react/jsx-curly-brace-presence": "warn",
-    "react-hooks/exhaustive-deps": [
-      "warn",
-      {
-        "additionalHooks": "(useUpdateEffect)"
-      }
-    ],
     "unicorn/catch-error-name": ["warn", {"name": "err"}],
     "unicorn/escape-case": "warn",
     "unicorn/no-await-expression-member": "warn",

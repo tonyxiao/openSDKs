@@ -2,7 +2,6 @@
  * @type {import('@jest/types').Config.ProjectConfig}
  */
 module.exports = {
-  setupFiles: ['jest-date-mock'],
   testEnvironment: 'node',
   testPathIgnorePatterns: [
     '/node_modules/',
