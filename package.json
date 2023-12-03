@@ -9,13 +9,17 @@
     "test::ci": "pnpm run test --ci --forceExit --detectOpenHandles --runInBand",
     "test::debug": "node --inspect-brk $(pnpm bin)/jest --runInBand --watch",
     "test::watch": "pnpm run test --watch",
-    "test": "jest"
+    "test": "jest",
+    "commitlint": "commitlint --edit",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@tsconfig/strictest": "^2.0.2",
     "@types/jest": "^29.5.10",
