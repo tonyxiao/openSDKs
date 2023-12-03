@@ -1,8 +1,11 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "OpenSDKs",
-  "//": "Add logos",
-  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/Light.svg",
+    "dark": "/logo/Dark.svg"
+  },
+  "favicon":"/logo/favicon-light.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
