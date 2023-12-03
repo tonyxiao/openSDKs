@@ -1,7 +1,5 @@
-/**
- * @type {import('prettier').Config}
- */
-module.exports = {
+/** @satisfies {import('prettier').Config & Record<string, unknown>} */
+const config = {
   arrowParens: 'always',
   bracketSameLine: true,
   bracketSpacing: false,
@@ -26,3 +24,5 @@ module.exports = {
   trailingComma: 'all',
   useTabs: false,
 }
+module.exports = config
+

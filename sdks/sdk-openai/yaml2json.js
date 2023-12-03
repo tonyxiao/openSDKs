@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const {parseArgs} = require('node:util')
 
-async function readStreamToString(stream /* @type {NodeJS.ReadableStream} */) {
+async function readStreamToString(/** @type {NodeJS.ReadableStream} */ stream) {
   const chunks = []
   for await (const chunk of stream) {
     chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk)

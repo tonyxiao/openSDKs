@@ -18,6 +18,7 @@
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"
   },
   "devDependencies": {
+    "@commitlint/types": "^18.4.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
