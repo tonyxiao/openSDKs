@@ -6,12 +6,8 @@ import {openaiSdkDef} from '@opensdks/sdk-openai'
 
 type Commit = githubTypes['components']['schemas']['commit']
 
-const github = initSDK(githubSdkDef, {
-  headers: {
-    Authorization: `Bearer ${process.env['GITHUB_TOKEN']}`,
-    'X-GitHub-Api-Version': '2022-11-28',
-  },
-})
+// github token is not needed given we are hitting a public API
+const github = initSDK(githubSdkDef, {})
 
 export async function fetchCommits(prLink: string) {
   const prUrl = new URL(prLink)
