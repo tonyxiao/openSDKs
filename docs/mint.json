@@ -19,7 +19,7 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
+    "name": "Github",
     "url": "https://dashboard.mintlify.com"
   },
   "tabs": [

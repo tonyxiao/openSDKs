@@ -4,7 +4,7 @@ const nextConfig = {
   redirects: async () => [
     {
       source: '/:p*',
-      destination: 'https://opensdks.mintlify.app/:p*',
+      destination: 'https://docs.opensdks.org/:p*',
       permanent: false,
     },
   ],
