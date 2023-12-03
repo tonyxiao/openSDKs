@@ -1,16 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  rewrites: async () => ({
-    beforeFiles: [],
-    afterFiles: [
-      {source: '/:p*', destination: 'https://opensdks.mintlify.app/:p*'},
-    ],
-    fallback: [
-      {source: '/:p*', destination: 'https://opensdks.mintlify.app/:p*'},
-    ],
-  }),
+  // Rewrites don't work in production due to _next paths not being redirected... Too hard to setup so just redirect for now.
   redirects: async () => [
-    {source: '/docs', destination: '/introduction', permanent: false},
+    {
+      source: '/:p*',
+      destination: 'https://opensdks.mintlify.app/:p*',
+      permanent: false,
+    },
   ],
 }
 
