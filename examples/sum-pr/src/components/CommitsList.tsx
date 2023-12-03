@@ -1,35 +1,19 @@
 import Link from 'next/link'
+import {type githubTypes} from '@opensdks/sdk-github'
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar'
 import {Badge} from '@/components/ui/badge'
 
-interface Commit {
-  sha: string
-  commit: {
-    author: {
-      name: string
-      email: string
-      date: string
-    }
-    message: string
-  }
-  author?: {
-    login: string
-    avatar_url: string
-  }
-  html_url: string
-}
-
+type Commit = githubTypes['components']['schemas']['commit']
 interface CommitsListProps {
   commits: Commit[]
 }
 
 const CommitsList: React.FC<CommitsListProps> = ({commits}) => (
-  <div className="space-y-4">
+  <div className="space-y-4 max-w-full">
     {commits.map((commit, index) => (
       <div key={index}>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            {/* Avatar and User Info */}
             <Avatar>
               <AvatarImage
                 alt="User Avatar"
@@ -38,7 +22,7 @@ const CommitsList: React.FC<CommitsListProps> = ({commits}) => (
               <AvatarFallback>{commit.author?.login.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
-              <h2 className="text-lg">{commit.commit.author.name}</h2>
+              <h2 className="text-lg">{commit.commit.author?.name}</h2>
               <Badge variant="outline">{commit.sha.slice(0, 7)}</Badge>
             </div>
           </div>
@@ -46,6 +30,7 @@ const CommitsList: React.FC<CommitsListProps> = ({commits}) => (
             View Commit
           </Link>
         </div>
+
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {commit.commit.message}
         </p>
