@@ -34,7 +34,8 @@ export function createClient<Paths extends {}>({
   const options = {
     preRequest,
     postRequest,
-    fetch: clientOptions?.fetch ?? globalThis.fetch,
+    // NOTE: window.fetch is unbounded and would fail with mysterious `TypeError` unless bound https://share.cleanshot.com/DTb7djjK
+    fetch: clientOptions?.fetch ?? globalThis.fetch.bind(globalThis),
   }
 
   const customFetch: typeof fetch = async (url, init) => {
