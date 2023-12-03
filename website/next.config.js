@@ -5,7 +5,9 @@ const nextConfig = {
     afterFiles: [
       {source: '/:p*', destination: 'https://opensdks.mintlify.app/:p*'},
     ],
-    fallback: [],
+    fallback: [
+      {source: '/:p*', destination: 'https://opensdks.mintlify.app/:p*'},
+    ],
   }),
   redirects: async () => [
     {source: '/docs', destination: '/introduction', permanent: false},
