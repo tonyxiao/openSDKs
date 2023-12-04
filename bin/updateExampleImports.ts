@@ -23,13 +23,13 @@ const sdkList = fs
 
 async function updateDocImports() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const pkgJson: {dependencies: {}} = require('../docs/package.json')
+  const pkgJson: {dependencies: {}} = require('../examples/package.json')
   pkgJson.dependencies = {
     ...pkgJson.dependencies,
     ...Object.fromEntries(sdkList.map((s) => [s, 'workspace:*'])),
   }
   fs.writeFileSync(
-    pathJoin(__dirname, '../docs/package.json'),
+    pathJoin(__dirname, '../examples/package.json'),
     await prettier.format(JSON.stringify(pkgJson), {
       ...(require('../prettier.config') as {}),
       parser: 'json',
