@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://opensdks.org">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/logo/logo-light.png">
-      <img src="docs/logo/logo-light.png" height="128">
+      <source media="(prefers-color-scheme: dark)" srcset="website/public/logo-light.png">
+      <img src="website/public/logo-light.png" height="128">
     </picture>
     <h1 align="center">OpenSDKs</h1>
   </a>
@@ -10,7 +10,7 @@
 
 <p align="center">
   <a aria-label="Venice logo" href="https://venice.is">
-    <img src="docs/logo/made-by-venice.svg">
+    <img src="website/public/made-by-venice.svg">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/next">
     <img alt="" src="https://img.shields.io/npm/v/next.svg?style=for-the-badge&labelColor=000000">
@@ -19,7 +19,7 @@
     <img alt="" src="https://img.shields.io/npm/l/next.svg?style=for-the-badge&labelColor=000000">
   </a>
   <a aria-label="Join the community on GitHub" href="https://github.com/orgs/useVenice/projects/2">
-    <img alt="" src="docs/logo/join-the-community.svg">
+    <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
 
@@ -47,6 +47,8 @@ Check out the example "summarize GitHub PR with OpenAI" app under [`examples/sum
 The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/useVenice/projects/2). 
 
 To chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
+
+[Twitter](https://twitter.com/openSDKs)
 
 ## Contributing
 
