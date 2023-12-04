@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",
-    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts"
+    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts",
+    "build": "tsc -p ./tsconfig.json && run-s build:json build:dts",
+    "build:dts": "cp ./github.oas.d.ts ./dist/github.oas.d.ts",
+    "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/github.oas.json",
+    "clean": "rm -rf ./dist",
+    "pub": "pnpm publish --no-git-checks --access public"
   },
   "dependencies": {},
   "devDependencies": {

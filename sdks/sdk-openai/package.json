@@ -4,7 +4,12 @@
   "module": "./index.ts",
   "scripts": {
     "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
-    "generate": "cat openai.oas.yaml | node ./yaml2json.js -o openai.oas && openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts "
+    "generate": "cat openai.oas.yaml | node ./yaml2json.js -o openai.oas && openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts",
+    "build": "tsc -p ./tsconfig.json && run-s build:json build:dts",
+    "build:dts": "cp ./openai.oas.d.ts ./dist/openai.oas.d.ts",
+    "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/openai.oas.json",
+    "clean": "rm -rf ./dist",
+    "pub": "pnpm publish --no-git-checks --access public"
   },
   "dependencies": {},
   "devDependencies": {
