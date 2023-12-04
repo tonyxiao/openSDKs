@@ -1,0 +1,14 @@
+{
+  "name": "@opensdks/sdk-twilio_api_v2010",
+  "version": "0.0.0",
+  "module": "./index.ts",
+  "scripts": {
+    "download": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_messaging_v1.json -o ./twilio_api_v2010.oas.json",
+    "generate": "openapi-typescript ./twilio_api_v2010.oas.json --output ./twilio_api_v2010.oas.d.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/core": "workspace:*",
+    "openapi-typescript": "6.7.1"
+  }
+}

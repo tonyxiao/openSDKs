@@ -4,6 +4,7 @@
     "dev": "mintlify dev"
   },
   "dependencies": {
+    "@octokit/rest": "^20.0.2",
     "@opensdks/core": "workspace:*",
     "@opensdks/sdk-apollo": "workspace:*",
     "@opensdks/sdk-discord": "workspace:*",
@@ -11,7 +12,9 @@
     "@opensdks/sdk-openai": "workspace:*",
     "@opensdks/sdk-plaid": "workspace:*",
     "@opensdks/sdk-slack": "workspace:*",
-    "@opensdks/sdk-venice": "workspace:*"
+    "@opensdks/sdk-venice": "workspace:*",
+    "@opensdks/sdk-twilio_api_v2010": "workspace:*",
+    "twilio": "^4.19.3"
   },
   "devDependencies": {
     "mintlify": "^4.0.68"

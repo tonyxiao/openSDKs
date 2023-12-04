@@ -131,3 +131,4 @@ dist
 
 .turbo
 .envrc
+.DS_Store
