@@ -12,12 +12,11 @@ const sdkList = fs
     withFileTypes: true,
   })
   .filter((r) => r.isDirectory())
-  .map((d) => {
-    const path = pathJoin(__dirname, '../sdks', d.name)
+  .map((d) => pathJoin(__dirname, '../sdks', d.name, 'package.json'))
+  .filter((p) => fs.existsSync(p))
+  .map((p) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const pkgJson: {name: string} = JSON.parse(
-      fs.readFileSync(pathJoin(path, 'package.json'), 'utf-8'),
-    )
+    const pkgJson: {name: string} = JSON.parse(fs.readFileSync(p, 'utf-8'))
     return pkgJson.name
   })
 
@@ -32,7 +31,7 @@ async function updateDocImports() {
     pathJoin(__dirname, '../examples/package.json'),
     await prettier.format(JSON.stringify(pkgJson), {
       ...(require('../prettier.config') as {}),
-      parser: 'json',
+      filepath: 'package.json', // Sort imports will apply, better than just parser: json
     }),
   )
 }

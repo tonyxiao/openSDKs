@@ -11,6 +11,7 @@
     "@opensdks/sdk-plaid": "workspace:*",
     "@opensdks/sdk-slack": "workspace:*",
     "@opensdks/sdk-twilio_api_v2010": "workspace:*",
+    "@opensdks/sdk-twilio_messaging_v1": "workspace:*",
     "@opensdks/sdk-venice": "workspace:*",
     "twilio": "^4.19.3"
   },

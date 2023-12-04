@@ -109,10 +109,9 @@ Instead of navigating through thousands of lines of code across multiple files, 
 In traditional settings, each API client behaves uniquely, requiring developers to learn the nuances of every specific SDK. However, with OpenSDKs, there's a unifying similarity in how all APIs behave. This consistency significantly reduces the learning curve, making it easier for developers to transition between different APIs without the need to relearn or adjust to a new environment.
 
 
-
 ## Getting Started
 
-Visit <a aria-label="opensdks learn" href="https://docs.opensdks.org/quickstart">https://docs.opensdks.org/quickstart</a> to get started with OpenSDKs. 
+Visit <a aria-label="opensdks learn" href="https://docs.opensdks.org/quickstart">https://docs.opensdks.org/quickstart</a> to get started with OpenSDKs.
 
 ## Documentation
 
@@ -120,26 +119,24 @@ Visit [https://docs.opensdks.org/introduction](https://docs.opensdks.org/introdu
 
 ## Examples
 
-Check out the example "summarize GitHub PR with OpenAI" app under [`examples/sum-pr`](https://github.com/useVenice/openSDKs/tree/main/examples/sum-pr). Demo link is here [https://what-did-we-work-on.vercel.app//](https://what-did-we-work-on.vercel.app//). 
-
-
 https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
 
 https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
 
+For a full app example, check out the [`What did we work on app`](https://github.com/dosu-ai/what-did-we-work-on/). Demo link is here [https://what-did-we-work-on.vercel.app//](https://what-did-we-work-on.vercel.app//).
 
 ## Community
 
-The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/useVenice/projects/2). 
+The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/useVenice/projects/2).
 
 To chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
 
 [Twitter](https://twitter.com/openSDKs)
 
-## Contributing
+## Add a missing SDK
 
-To contribute new SDKs to the OpenSDKs suite, you can follow the [`CONTRIBUTING.md`](https://github.com/useVenice/openSDKs/blob/main/CONTRIBUTING.md). 
+To contribute new SDKs to the OpenSDKs suite, you can follow the [`CONTRIBUTING.md`](https://github.com/useVenice/openSDKs/blob/main/CONTRIBUTING.md).
 
 ## Contributors
 
-<img src="https://contributors-img.web.app/image?repo=usevenice/openSDKs"/>
+<img src="https://contributors-img.web.app/image?repo=useVenice/openSDKs"/>
