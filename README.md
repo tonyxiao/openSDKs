@@ -23,6 +23,13 @@
   </a>
 </p>
 
+## Features
+
+- ✅&nbsp; End-to-end type-safety for all third-party SDKs you consume
+- 🧙‍♂️&nbsp; Easily add any SDKs that you want to use. 
+- 🐎&nbsp; Snappy DX - quick type lookup without leaving the code editor. 
+  ![github-example](docs/images/github-types.png)
+
 ## Getting Started
 
 Visit <a aria-label="opensdks learn" href="https://docs.opensdks.org/quickstart">https://docs.opensdks.org/quickstart</a> to get started with OpenSDKs. 
@@ -43,10 +50,11 @@ To chat with other community members you can join the [OpenSDKs Discord](https:/
 
 ## Contributing
 
-To contribute new SDKs to the OpenSDKs suite, you can follow instructions in the link to see how to follow patterns to create OpenSDK for the API spec that you have. 
+To contribute new SDKs to the OpenSDKs suite, you can follow the [`CONTRIBUTING.md`](https://github.com/useVenice/openSDKs/blob/main/CONTRIBUTING.md). 
 
 ## Authors
 
 - Tony Xiao [@tonyxiao](https://github.com/tonyxiao)
 - Ayan Yenbekbay [@yenbekbay](https://github.com/yenbekbay)
 - Xiangyi Li [@l1xiangyi](https://github.com/l1xiangyi)
+- Alan Dweck

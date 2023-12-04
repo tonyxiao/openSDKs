@@ -6,7 +6,6 @@ import {openaiSdkDef} from '@opensdks/sdk-openai'
 
 type Commit = githubTypes['components']['schemas']['commit']
 
-// github token is not needed given we are hitting a public API
 const github = initSDK(githubSdkDef, {})
 
 export async function fetchCommits(prLink: string) {
@@ -23,7 +22,8 @@ export async function fetchCommits(prLink: string) {
 }
 
 const apiKey = process.env['OPENAI_API_KEY']
-
+//    ^?
+// TODO: throw type error if apiKey is not provided for ones that need. (hint for headers)
 const openai = initSDK(openaiSdkDef, {
   headers: {
     'Content-Type': 'application/json',
