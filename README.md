@@ -40,7 +40,13 @@ Visit [https://docs.opensdks.org/introduction](https://docs.opensdks.org/introdu
 
 ## Examples
 
-Check out the example "summarize GitHub PR with OpenAI" app under [`examples/sum-pr`](https://github.com/useVenice/openSDKs/tree/main/examples/sum-pr). Demo link is here [https://opensdks-example-summarize-pr.vercel.app/](https://opensdks-example-summarize-pr.vercel.app/). 
+Check out the example "summarize GitHub PR with OpenAI" app under [`examples/sum-pr`](https://github.com/useVenice/openSDKs/tree/main/examples/sum-pr). Demo link is here [https://what-did-we-work-on.vercel.app//](https://what-did-we-work-on.vercel.app//). 
+
+
+https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
+
+https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
+
 
 ## Community
 
