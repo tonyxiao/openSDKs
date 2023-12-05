@@ -3,11 +3,12 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="website/public/logo-dark.png">
       <source media="(prefers-color-scheme: light)" srcset="website/public/logo-light.png">
-      <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="https://avatars.githubusercontent.com/u/51786539?v=4">
+      <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="website/public/logo-light.png">
     </picture>
     <h1 align="center">OpenSDKs</h1>
   </a>
 </p>
+
 
 <p align="center">
   <a aria-label="Venice logo" href="https://venice.is">
@@ -45,7 +46,7 @@ void github
 ```
 Example 2: Use `sdks/sdk-slack`
 
-```typescript
+```ts
 import {initSDK} from '@opensdks/runtime'
 import {slackSdkDef} from '@opensdks/sdk-slack'
 
@@ -59,6 +60,7 @@ void slack
     console.log(r.data)
   })
 ```
+
 
 
 ## Features
@@ -83,6 +85,7 @@ void github
 ### Powerful middleware when you need them
 In the future we will implement features like tRPC links for extensibility for all SDKs. tRPC links can
 be found here: [https://trpc.io/docs/client/links](https://trpc.io/docs/client/links)
+
 ```ts
 
 const discord = createSdk(discordSdkDef, {
@@ -90,7 +93,11 @@ const discord = createSdk(discordSdkDef, {
     rateLimitLink({storage: AsyncStorage}),
     retryLink(),
     authorizationLink({storage: AsyncStorage}),
+    oauth1RefreshLink({onChange: () => {}}),
     logLink({verbose: true}),
+    errorHandlingMiddleware(),
+    axios(),
+    fetchMiddleware(),
   ]
 })
 ```
