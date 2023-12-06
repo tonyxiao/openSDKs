@@ -1,0 +1,15 @@
+{
+  "name": "@opensdks/sdk-qbo",
+  "version": "0.0.0",
+  "scripts": {
+    "download": "npx tsx ./qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",
+    "generate": "openapi-typescript ./qbo.oas.json --output qbo.oas.d.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/core": "workspace:*",
+    "@opensdks/util-zod": "workspace:*",
+    "openapi-typescript": "6.7.1",
+    "prettier": "3.1.0"
+  }
+}

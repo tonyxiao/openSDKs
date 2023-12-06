@@ -193,6 +193,21 @@ importers:
         specifier: 0.3.0
         version: 0.3.0
 
+  sdks/sdk-qbo:
+    devDependencies:
+      '@opensdks/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@opensdks/util-zod':
+        specifier: workspace:*
+        version: link:../../packages/util-zod
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: 3.1.0
+        version: 3.1.0
+
   sdks/sdk-slack:
     devDependencies:
       '@opensdks/core':
