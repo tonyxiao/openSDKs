@@ -5,46 +5,46 @@
 
 
 export interface paths {
-  "/Account/{id}": {
+  "/account/{id}": {
     get: operations["getAccount"];
   };
-  "/Purchase/{id}": {
+  "/purchase/{id}": {
     get: operations["getPurchase"];
   };
-  "/JournalEntry/{id}": {
+  "/journalentry/{id}": {
     get: operations["getJournalEntry"];
   };
-  "/Invoice/{id}": {
+  "/invoice/{id}": {
     get: operations["getInvoice"];
   };
-  "/Payment/{id}": {
+  "/payment/{id}": {
     get: operations["getPayment"];
   };
-  "/Bill/{id}": {
+  "/bill/{id}": {
     get: operations["getBill"];
   };
-  "/BillPayment/{id}": {
+  "/billpayment/{id}": {
     get: operations["getBillPayment"];
   };
-  "/CreditMemo/{id}": {
+  "/creditmemo/{id}": {
     get: operations["getCreditMemo"];
   };
-  "/Deposit/{id}": {
+  "/deposit/{id}": {
     get: operations["getDeposit"];
   };
-  "/Transfer/{id}": {
+  "/transfer/{id}": {
     get: operations["getTransfer"];
   };
-  "/Vendor/{id}": {
+  "/vendor/{id}": {
     get: operations["getVendor"];
   };
-  "/Customer/{id}": {
+  "/customer/{id}": {
     get: operations["getCustomer"];
   };
-  "/Item/{id}": {
+  "/item/{id}": {
     get: operations["getItem"];
   };
-  "/CompanyInfo/{id}": {
+  "/companyinfo/{id}": {
     get: operations["getCompanyInfo"];
   };
   "/query": {

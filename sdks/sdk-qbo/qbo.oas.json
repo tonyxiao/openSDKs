@@ -30,7 +30,7 @@
     }
   ],
   "paths": {
-    "/Account/{id}": {
+    "/account/{id}": {
       "get": {
         "operationId": "getAccount",
         "parameters": [
@@ -61,7 +61,7 @@
         }
       }
     },
-    "/Purchase/{id}": {
+    "/purchase/{id}": {
       "get": {
         "operationId": "getPurchase",
         "parameters": [
@@ -92,7 +92,7 @@
         }
       }
     },
-    "/JournalEntry/{id}": {
+    "/journalentry/{id}": {
       "get": {
         "operationId": "getJournalEntry",
         "parameters": [
@@ -123,7 +123,7 @@
         }
       }
     },
-    "/Invoice/{id}": {
+    "/invoice/{id}": {
       "get": {
         "operationId": "getInvoice",
         "parameters": [
@@ -154,7 +154,7 @@
         }
       }
     },
-    "/Payment/{id}": {
+    "/payment/{id}": {
       "get": {
         "operationId": "getPayment",
         "parameters": [
@@ -185,7 +185,7 @@
         }
       }
     },
-    "/Bill/{id}": {
+    "/bill/{id}": {
       "get": {
         "operationId": "getBill",
         "parameters": [
@@ -214,7 +214,7 @@
         }
       }
     },
-    "/BillPayment/{id}": {
+    "/billpayment/{id}": {
       "get": {
         "operationId": "getBillPayment",
         "parameters": [
@@ -243,7 +243,7 @@
         }
       }
     },
-    "/CreditMemo/{id}": {
+    "/creditmemo/{id}": {
       "get": {
         "operationId": "getCreditMemo",
         "parameters": [
@@ -272,7 +272,7 @@
         }
       }
     },
-    "/Deposit/{id}": {
+    "/deposit/{id}": {
       "get": {
         "operationId": "getDeposit",
         "parameters": [
@@ -303,7 +303,7 @@
         }
       }
     },
-    "/Transfer/{id}": {
+    "/transfer/{id}": {
       "get": {
         "operationId": "getTransfer",
         "parameters": [
@@ -332,7 +332,7 @@
         }
       }
     },
-    "/Vendor/{id}": {
+    "/vendor/{id}": {
       "get": {
         "operationId": "getVendor",
         "parameters": [
@@ -363,7 +363,7 @@
         }
       }
     },
-    "/Customer/{id}": {
+    "/customer/{id}": {
       "get": {
         "operationId": "getCustomer",
         "parameters": [
@@ -392,7 +392,7 @@
         }
       }
     },
-    "/Item/{id}": {
+    "/item/{id}": {
       "get": {
         "operationId": "getItem",
         "parameters": [
@@ -421,7 +421,7 @@
         }
       }
     },
-    "/CompanyInfo/{id}": {
+    "/companyinfo/{id}": {
       "get": {
         "operationId": "getCompanyInfo",
         "parameters": [

@@ -531,7 +531,7 @@ export function outputOpenApi() {
     paths: {
       ...Object.fromEntries(
         entityNameSchema.options.map((o) => [
-          `/${o}/{id}`,
+          `/${o.toLowerCase()}/{id}`,
           {
             get: jsonOperation(`get${o}`, {
               path: z.object({id: z.string()}),
