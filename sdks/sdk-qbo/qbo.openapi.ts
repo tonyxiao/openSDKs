@@ -4,22 +4,24 @@ import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
  * TODO: Finish populating me
  * https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/entities-and-operations-supported
  */
-export const entityNameSchema = z.enum([
-  'Account',
-  'Purchase',
-  'JournalEntry',
-  'Invoice',
-  'Payment',
-  'Bill',
-  'BillPayment',
-  'CreditMemo',
-  'Deposit',
-  'Transfer',
-  'Vendor',
-  'Customer',
-  'Item',
-  'CompanyInfo',
-])
+export const entityNameSchema = z
+  .enum([
+    'Account',
+    'Purchase',
+    'JournalEntry',
+    'Invoice',
+    'Payment',
+    'Bill',
+    'BillPayment',
+    'CreditMemo',
+    'Deposit',
+    'Transfer',
+    'Vendor',
+    'Customer',
+    'Item',
+    'CompanyInfo',
+  ])
+  .openapi({ref: 'EntityName'})
 export type EntityName = z.infer<typeof entityNameSchema>
 
 export const webhookPayloadSchema = z.object({
@@ -522,6 +524,9 @@ export function outputOpenApi() {
       securitySchemes: {
         oauth2: {type: 'oauth2', name: 'authorization', in: 'header'},
       },
+      schemas: {
+        entityNameSchema,
+      },
     },
     paths: {
       ...Object.fromEntries(
@@ -536,7 +541,7 @@ export function outputOpenApi() {
         ]),
       ),
       '/query': {
-        post: jsonOperation('query', {
+        get: jsonOperation('query', {
           query: z.object({query: z.string()}),
           response: queryPayloadSchema,
         }),

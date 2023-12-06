@@ -48,7 +48,7 @@ export interface paths {
     get: operations["getCompanyInfo"];
   };
   "/query": {
-    post: operations["query"];
+    get: operations["query"];
   };
   "/preferences": {
     get: operations["getPreferences"];
@@ -65,6 +65,8 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    /** @enum {string} */
+    EntityName: "Account" | "Purchase" | "JournalEntry" | "Invoice" | "Payment" | "Bill" | "BillPayment" | "CreditMemo" | "Deposit" | "Transfer" | "Vendor" | "Customer" | "Item" | "CompanyInfo";
     Account: {
       Id: string;
       domain: string;

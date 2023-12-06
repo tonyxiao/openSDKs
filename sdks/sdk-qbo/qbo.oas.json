@@ -453,7 +453,7 @@
       }
     },
     "/query": {
-      "post": {
+      "get": {
         "operationId": "query",
         "parameters": [
           {
@@ -582,6 +582,25 @@
       }
     },
     "schemas": {
+      "EntityName": {
+        "type": "string",
+        "enum": [
+          "Account",
+          "Purchase",
+          "JournalEntry",
+          "Invoice",
+          "Payment",
+          "Bill",
+          "BillPayment",
+          "CreditMemo",
+          "Deposit",
+          "Transfer",
+          "Vendor",
+          "Customer",
+          "Item",
+          "CompanyInfo"
+        ]
+      },
       "Account": {
         "type": "object",
         "properties": {

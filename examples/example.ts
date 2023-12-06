@@ -10,14 +10,6 @@ import {slackSdkDef} from '@opensdks/sdk-slack'
 import {twilio_api_v2010SdkDef} from '@opensdks/sdk-twilio_api_v2010'
 import {veniceSdkDef} from '@opensdks/sdk-venice'
 
-// Helper function for type guard
-function ensureString(value: unknown): string {
-  if (typeof value !== 'string') {
-    throw new TypeError('Expected a string')
-  }
-  return value
-}
-
 // Comparison between GitHub vanilla octokit client and openSDKs client
 const github = initSDK(githubSdkDef, {
   headers: {
@@ -52,8 +44,8 @@ void octokit.rest.repos
 // Comparison between Twilio vanilla API and openSDKs client
 // highlighting type safety
 
-const accountSid = ensureString(process.env['TWILIO_ACCOUNT_SID'])
-const authToken = ensureString(process.env['TWILIO_AUTH_TOKEN'])
+const accountSid = process.env['TWILIO_ACCOUNT_SID']!
+const authToken = process.env['TWILIO_AUTH_TOKEN']!
 
 const twilio = initSDK(twilio_api_v2010SdkDef, {
   headers: {
@@ -124,5 +116,3 @@ void github
 void venice.GET('/core/resource').then((r) => console.log(r.data))
 
 void apollo.GET('/v1/email_accounts').then((r) => console.log(r.data))
-
-apollo.hello
