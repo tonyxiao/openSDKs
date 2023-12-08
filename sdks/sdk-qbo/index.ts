@@ -16,16 +16,21 @@ export interface qboOasTypes {
 
 export type QBOSDKTypes = SDKTypes<
   qboOasTypes,
-  ClientOptions & {realmId: string}
+  ClientOptions & {realmId: string; accessToken: string}
 >
 
 export const qboSdkDef = {
   types: {} as QBOSDKTypes,
   oas: qboOas as OpenAPISpec,
-  createClient: (ctx, {realmId, ...options}) => {
+  createClient: (ctx, {realmId, accessToken, ...options}) => {
     const client = ctx.createClient({
       ...options,
       baseUrl: options.baseUrl?.replace('{realmId}', realmId),
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+        accept: 'application/json',
+        ...options.headers,
+      },
     })
     function query(query: string) {
       return client
