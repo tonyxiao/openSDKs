@@ -1,7 +1,12 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "./dist",
+    // Allow us to support top level await without compiler error
+    // Though the actual code does not run due to esm / cjs + typescript issues
+    // that are too difficult to figure out...
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
-  "include": ["./*.ts"]
+  "include": ["./*.ts", "./*.mts"]
 }
