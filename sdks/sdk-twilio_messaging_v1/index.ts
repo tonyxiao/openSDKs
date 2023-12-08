@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
 import type {
   components,
   external,
@@ -19,10 +19,12 @@ export interface Twilio_messaging_v1OasTypes {
   webhooks: webhooks
 }
 
+export type TwilioSDKTypes = SDKTypes<Twilio_messaging_v1OasTypes>
+
 export const twilio_messaging_v1SdkDef = {
-  _types: {} as Twilio_messaging_v1OasTypes,
+  types: {} as TwilioSDKTypes,
   oas: twilio_messaging_v1Oas as {} as OpenAPISpec,
-} satisfies SdkDefinition<paths>
+} satisfies SdkDefinition<TwilioSDKTypes>
 
 export default twilio_messaging_v1SdkDef
 

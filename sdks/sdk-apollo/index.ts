@@ -1,4 +1,5 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
   external,
@@ -19,37 +20,39 @@ export interface apolloTypes {
   webhooks: webhooks
 }
 
-export const apolloSdkDef = {
-  _types: {} as apolloTypes,
-  oas: apolloOas as {} as OpenAPISpec,
-  options: {
-    api_key: '',
-  },
+export type ApolloSDKTypes = SDKTypes<
+  apolloTypes,
+  ClientOptions & {api_key: string}
+>
 
-  extend: (client, options) => {
-    client.options.preRequest = (input, init) => {
-      if (input && init?.method?.toLowerCase() === 'get') {
-        const url = new URL(input)
-        url.searchParams.set('api_key', options['api_key'] as string)
-        return [url.toString(), init]
-      }
-      try {
-        return [
-          input,
-          {
-            ...init,
-            body: JSON.stringify({
-              api_key: options['api_key'] as string,
-              ...JSON.parse(init?.body as string),
-            }),
-          },
-        ]
-      } catch {
-        return [input, init]
-      }
-    }
-    return {...client} as typeof client & {hello: 'world'}
-  },
-} satisfies SdkDefinition<paths, unknown>
+export const apolloSdkDef = {
+  types: {} as ApolloSDKTypes,
+  oas: apolloOas as {} as OpenAPISpec,
+  createClient: (ctx, {api_key, ...options}) =>
+    ctx.createClient({
+      ...options,
+      preRequest: (input, init) => {
+        if (input && init?.method?.toLowerCase() === 'get') {
+          const url = new URL(input)
+          url.searchParams.set('api_key', api_key)
+          return [url.toString(), init]
+        }
+        try {
+          return [
+            input,
+            {
+              ...init,
+              body: JSON.stringify({
+                api_key,
+                ...JSON.parse(init?.body as string),
+              }),
+            },
+          ]
+        } catch {
+          return [input, init]
+        }
+      },
+    }),
+} satisfies SdkDefinition<ApolloSDKTypes>
 
 export default apolloSdkDef

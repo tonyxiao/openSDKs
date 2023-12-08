@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
 import type {
   components,
   external,
@@ -19,10 +19,12 @@ export interface OpenAiTypes {
   webhooks: webhooks
 }
 
+export type OpenAISDKTypes = SDKTypes<OpenAiTypes>
+
 export const openaiSdkDef = {
-  _types: {} as OpenAiTypes,
+  types: {} as OpenAISDKTypes,
   oas: openaiOas as {} as OpenAPISpec,
-} satisfies SdkDefinition<paths>
+} satisfies SdkDefinition<OpenAISDKTypes>
 
 export default openaiSdkDef
 

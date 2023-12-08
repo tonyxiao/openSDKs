@@ -3,11 +3,10 @@ import type {ClientOptions, OpenAPIClient} from './createClient'
 import {createClient} from './createClient'
 
 // export type * from 'openapi-typescript-helpers'
-// export {createClient} from './createClient'
 export * from './HTTPError'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
-export type {createClient}
+// MARK: - defineSdk
 
 export interface OpenAPITypes {
   components: {}
@@ -17,51 +16,57 @@ export interface OpenAPITypes {
   webhooks: {}
 }
 
-/** Get this from openapi */
-export interface SdkDefinition<
-  TTypes extends OpenAPITypes = OpenAPITypes,
+export interface SDKTypes<T extends OpenAPITypes, TOptions = ClientOptions> {
+  oas: T
+  options: TOptions
+}
+
+export type SdkDefinition<
+  T extends SDKTypes<OpenAPITypes, ClientOptions>,
   TClient = unknown,
-  TOptions = Record<string, unknown>,
-> {
-  _types?: TTypes
-  oas: OpenAPISpec
-  options?: TOptions
-  extend?: (
-    client: OpenAPIClient<TTypes['paths']>,
-    options: TOptions,
+> = RequireAtLeastOne<{
+  oas?: OpenAPISpec
+  defaultOptions?: ClientOptions
+}> & {
+  types: T
+  createClient?: (
+    ctx: {
+      createClient: (opts: ClientOptions) => OpenAPIClient<T['oas']['paths']>
+    },
+    options: T['options'],
   ) => TClient
 }
 
-// This is necessary because we cannot publish inferred type otherwise
-// @see https://share.cleanshot.com/06NvskP0
-export type SDK<TTypes extends OpenAPITypes, T> = OpenAPIClient<
-  TTypes['paths']
-> & {
-  // This should be made optional to keep the bundle size small
-  // company should be able to opt-in for things like validation
-  oas: OpenAPISpec
-} & T
+// MARK: - initSDK
 
 // Can we make this optional to avoid needing to deal with json?
-export function initSDK<TDef extends SdkDefinition>(
-  ...[sdkDef, options]: 'options' extends keyof TDef
-    ? [
-        sdkDef: TDef,
-        options: Omit<ClientOptions, keyof TDef['options']> & TDef['options'],
-      ]
+export function initSDK<
+  TDef extends SdkDefinition<SDKTypes<OpenAPITypes, any>>,
+>(
+  ...[sdkDef, options]: 'createClient' extends keyof TDef
+    ? [sdkDef: TDef, options: TDef['types']['options']]
     : [sdkDef: TDef] | [sdkDef: TDef, options?: ClientOptions]
-): SDK<
-  NonNullable<TDef['_types']>,
-  'extend' extends keyof TDef ? ReturnType<NonNullable<TDef['extend']>> : {}
-> {
-  const {oas} = sdkDef
-  const client = createClient<NonNullable<TDef['_types']>['paths']>({
-    baseUrl: oas.servers?.[0]?.url,
+): ('createClient' extends keyof TDef
+  ? ReturnType<NonNullable<TDef['createClient']>>
+  : OpenAPIClient<TDef['types']['oas']['paths']>) & {def: TDef} {
+  const {oas, defaultOptions} = sdkDef
+  const clientOptions = {
+    baseUrl: oas?.servers?.[0]?.url,
+    ...defaultOptions,
     ...options,
-  })
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-  const ret = sdkDef.extend?.(client as any, options as any) ?? client
+  }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
-  return {...ret, oas} as any
+  /* eslint-disable @typescript-eslint/no-unsafe-return */
+  const client =
+    sdkDef.createClient?.({createClient}, clientOptions) ??
+    createClient(clientOptions)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return {...client, def: sdkDef} as any
 }
+
+// MARK: -
+
+type RequireAtLeastOne<T> = {
+  [K in keyof T]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<keyof T, K>>>
+}[keyof T]

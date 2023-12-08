@@ -1,11 +1,12 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/createClient'
 import type {components, external, operations, paths, webhooks} from './qbo.oas'
 import {default as qboOas} from './qbo.oas.json'
 
 // Does this work with tree-shaking?
-export {qboOas as qboOas}
+export {qboOas}
 
-export interface qboTypes {
+export interface qboOasTypes {
   components: components
   external: external
   operations: operations
@@ -13,9 +14,19 @@ export interface qboTypes {
   webhooks: webhooks
 }
 
+export type QBOSDKTypes = SDKTypes<
+  qboOasTypes,
+  ClientOptions & {realmId: string}
+>
+
 export const qboSdkDef = {
+  types: {} as QBOSDKTypes,
   oas: qboOas as OpenAPISpec,
-  extend: (client, _options) => {
+  createClient: (ctx, {realmId, ...options}) => {
+    const client = ctx.createClient({
+      ...options,
+      baseUrl: options.baseUrl?.replace('{realmId}', realmId),
+    })
     function query(query: string) {
       return client
         .GET('/query', {params: {query: {query}}})
@@ -63,6 +74,6 @@ export const qboSdkDef = {
     }
     return {...client, ...extension} as typeof client & typeof extension
   },
-} satisfies SdkDefinition<qboTypes, unknown, {realmId: string}>
+} satisfies SdkDefinition<QBOSDKTypes>
 
 export default qboSdkDef

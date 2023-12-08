@@ -1,4 +1,5 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
   external,
@@ -19,16 +20,20 @@ export interface plaidTypes {
   webhooks: webhooks
 }
 
-export const plaidSdkDef = {
-  _types: {} as plaidTypes,
-  oas: plaidOas as {} as OpenAPISpec,
-  options: {
-    headers: {} as {
+export type PlaidSDKTypes = SDKTypes<
+  plaidTypes,
+  ClientOptions & {
+    headers: {
       'PLAID-CLIENT-ID': string
       'PLAID-SECRET': string
-    },
-  },
-} satisfies SdkDefinition<paths>
+    }
+  }
+>
+
+export const plaidSdkDef = {
+  types: {} as PlaidSDKTypes,
+  oas: plaidOas as {} as OpenAPISpec,
+} satisfies SdkDefinition<PlaidSDKTypes>
 
 export default plaidSdkDef
 
