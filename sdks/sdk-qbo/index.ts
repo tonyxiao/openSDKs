@@ -14,12 +14,7 @@ export interface qboTypes {
 }
 
 export const qboSdkDef = {
-  _types: {} as qboTypes,
-  oas: qboOas as {} as OpenAPISpec,
-  options: {
-    reamId: '',
-  },
-
+  oas: qboOas as OpenAPISpec,
   extend: (client, _options) => {
     function query(query: string) {
       return client
@@ -68,6 +63,6 @@ export const qboSdkDef = {
     }
     return {...client, ...extension} as typeof client & typeof extension
   },
-} satisfies SdkDefinition<paths, unknown>
+} satisfies SdkDefinition<qboTypes, unknown, {realmId: string}>
 
 export default qboSdkDef

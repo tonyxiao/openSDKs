@@ -7,38 +7,43 @@ import {createClient} from './createClient'
 export * from './HTTPError'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
-// export interface SdkTypes {
-//   components: unknown
-//   external: unknown
-//   operations: unknown
-//   paths: unknown
-//   webhooks: unknown
-// }
+export type {createClient}
+
+export interface OpenAPITypes {
+  components: {}
+  external: {}
+  operations: {}
+  paths: {}
+  webhooks: {}
+}
 
 /** Get this from openapi */
 export interface SdkDefinition<
-  Paths extends {},
-  T = unknown,
+  TTypes extends OpenAPITypes = OpenAPITypes,
+  TClient = unknown,
   TOptions = Record<string, unknown>,
 > {
-  _types: {
-    paths: Paths
-  }
+  _types?: TTypes
   oas: OpenAPISpec
   options?: TOptions
-  extend?: (client: OpenAPIClient<Paths>, options: TOptions) => T
+  extend?: (
+    client: OpenAPIClient<TTypes['paths']>,
+    options: TOptions,
+  ) => TClient
 }
 
 // This is necessary because we cannot publish inferred type otherwise
 // @see https://share.cleanshot.com/06NvskP0
-export type SDK<Paths extends {}, T> = OpenAPIClient<Paths> & {
+export type SDK<TTypes extends OpenAPITypes, T> = OpenAPIClient<
+  TTypes['paths']
+> & {
   // This should be made optional to keep the bundle size small
   // company should be able to opt-in for things like validation
   oas: OpenAPISpec
 } & T
 
 // Can we make this optional to avoid needing to deal with json?
-export function initSDK<TDef extends SdkDefinition<{}>>(
+export function initSDK<TDef extends SdkDefinition>(
   ...[sdkDef, options]: 'options' extends keyof TDef
     ? [
         sdkDef: TDef,
@@ -46,11 +51,11 @@ export function initSDK<TDef extends SdkDefinition<{}>>(
       ]
     : [sdkDef: TDef] | [sdkDef: TDef, options?: ClientOptions]
 ): SDK<
-  TDef['_types']['paths'],
+  NonNullable<TDef['_types']>,
   'extend' extends keyof TDef ? ReturnType<NonNullable<TDef['extend']>> : {}
 > {
   const {oas} = sdkDef
-  const client = createClient<TDef['_types']['paths']>({
+  const client = createClient<NonNullable<TDef['_types']>['paths']>({
     baseUrl: oas.servers?.[0]?.url,
     ...options,
   })
