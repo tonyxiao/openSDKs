@@ -16,16 +16,25 @@ export interface qboOasTypes {
 
 export type QBOSDKTypes = SDKTypes<
   qboOasTypes,
-  ClientOptions & {realmId: string; accessToken: string}
+  ClientOptions & {
+    realmId: string
+    accessToken: string
+    envName: 'sandbox' | 'production'
+  }
 >
+
+const servers = {
+  sandbox: qboOas.servers?.find((s) => s.url.includes('sandbox'))?.url,
+  production: qboOas.servers?.find((s) => s.url.includes('production'))?.url,
+}
 
 export const qboSdkDef = {
   types: {} as QBOSDKTypes,
   oas: qboOas as OpenAPISpec,
-  createClient: (ctx, {realmId, accessToken, ...options}) => {
+  createClient: (ctx, {realmId, accessToken, envName, ...options}) => {
     const client = ctx.createClient({
       ...options,
-      baseUrl: options.baseUrl?.replace('{realmId}', realmId),
+      baseUrl: servers[envName]?.replace('{realmId}', realmId),
       headers: {
         authorization: `Bearer ${accessToken}`,
         accept: 'application/json',
@@ -64,7 +73,6 @@ export const qboSdkDef = {
 
           const entities = res[entityName] ?? []
           yield {
-            // Hack needed for some reason
             entities: entities as Exclude<typeof entities, never[]>,
             startPosition,
             maxResults,

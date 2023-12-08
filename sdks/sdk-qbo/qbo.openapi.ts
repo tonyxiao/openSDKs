@@ -510,11 +510,11 @@ export function outputOpenApi() {
     servers: [
       {
         url: 'https://quickbooks.api.intuit.com/v3/company/{realmId}',
-        description: 'Production',
+        description: 'production',
         variables: {realmId: {default: ''}},
       },
       {
-        description: 'Sandbox',
+        description: 'sandbox',
         url: 'https://sandbox-quickbooks.api.intuit.com/v3/company/{realmId}',
         variables: {realmId: {default: ''}},
       },

@@ -4,7 +4,8 @@ import {qboSdkDef} from './index'
 const realmId = process.env['QBO_REALM_ID']!
 
 const qbo = initSDK(qboSdkDef, {
-  realmId: '12345',
+  realmId,
+  envName: 'sandbox',
   accessToken: process.env['QBO_ACCESS_TOKEN']!,
 })
 
