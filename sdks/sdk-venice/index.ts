@@ -1,4 +1,5 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
   external,
@@ -19,18 +20,22 @@ export interface veniceTypes {
   webhooks: webhooks
 }
 
-export const veniceSdkDef = {
-  _types: {} as veniceTypes,
-  oas: veniceOas as {} as OpenAPISpec,
-  options: {
-    headers: {} as {
+export type VeniceSDKTypes = SDKTypes<
+  veniceTypes,
+  ClientOptions & {
+    headers: {
       'x-apikey'?: string
       'x-resource-id'?: string
       /** Bearer token */
       Authorization?: string
-    },
-  },
-} satisfies SdkDefinition<paths>
+    }
+  }
+>
+
+export const veniceSdkDef = {
+  types: {} as VeniceSDKTypes,
+  oas: veniceOas as {} as OpenAPISpec,
+} satisfies SdkDefinition<VeniceSDKTypes>
 
 export default veniceSdkDef
 

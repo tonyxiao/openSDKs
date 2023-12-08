@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
 import type {
   components,
   external,
@@ -19,10 +19,12 @@ export interface SlackTypes {
   webhooks: webhooks
 }
 
+export type SlackSDKTypes = SDKTypes<SlackTypes>
+
 export const slackSdkDef = {
-  _types: {} as SlackTypes,
+  types: {} as SlackSDKTypes,
   oas: slackOas as {} as OpenAPISpec,
-} satisfies SdkDefinition<paths>
+} satisfies SdkDefinition<SlackSDKTypes>
 
 export default slackSdkDef
 

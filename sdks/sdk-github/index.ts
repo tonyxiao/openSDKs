@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
 import type {
   components,
   external,
@@ -19,10 +19,12 @@ export interface githubTypes {
   webhooks: webhooks
 }
 
+export type GithubSDKTypes = SDKTypes<githubTypes>
+
 export const githubSdkDef = {
-  _types: {} as githubTypes,
+  types: {} as GithubSDKTypes,
   oas: githubOas as {} as OpenAPISpec,
-} satisfies SdkDefinition<paths>
+} satisfies SdkDefinition<GithubSDKTypes>
 
 export default githubSdkDef
 

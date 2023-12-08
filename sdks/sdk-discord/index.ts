@@ -1,4 +1,4 @@
-import type {OpenAPISpec, SdkDefinition} from '@opensdks/core'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
 import type {
   components,
   external,
@@ -19,12 +19,14 @@ export interface DiscordTypes {
   webhooks: webhooks
 }
 
+export type DiscordSDKTypes = SDKTypes<DiscordTypes>
+
 export const discordSdkDef = {
-  _types: {} as DiscordTypes,
+  types: {} as DiscordSDKTypes,
   // Consider using the import * as y syntax so clicking on .oas takes you to the JSON object itself!
   // @see https://share.cleanshot.com/rsKvGsBs
   oas: discordOas as {} as OpenAPISpec,
-} satisfies SdkDefinition<paths>
+} satisfies SdkDefinition<DiscordSDKTypes>
 
 export default discordSdkDef
 

@@ -1,6 +1,5 @@
 packages:
   - 'packages/*'
   - 'sdks/*'
-  - 'docs'
   - 'website'
-  - 'examples/*'
+  - 'examples'
