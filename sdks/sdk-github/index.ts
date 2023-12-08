@@ -1,4 +1,5 @@
 import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/src/createClient'
 import type {
   components,
   external,
@@ -19,7 +20,16 @@ export interface githubTypes {
   webhooks: webhooks
 }
 
-export type GithubSDKTypes = SDKTypes<githubTypes>
+export type GithubSDKTypes = SDKTypes<
+  githubTypes,
+  Omit<ClientOptions, 'headers'> & {
+    headers: {
+      authorization: `Bearer ${string}`
+      'x-github-api-version'?: '2022-11-28'
+      [k: string]: string | undefined
+    }
+  }
+>
 
 export const githubSdkDef = {
   types: {} as GithubSDKTypes,

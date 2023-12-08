@@ -1,4 +1,5 @@
 import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
   external,
@@ -19,7 +20,15 @@ export interface DiscordTypes {
   webhooks: webhooks
 }
 
-export type DiscordSDKTypes = SDKTypes<DiscordTypes>
+export type DiscordSDKTypes = SDKTypes<
+  DiscordTypes,
+  Omit<ClientOptions, 'headers'> & {
+    headers: {
+      authorization: `Bearer ${string}`
+      [k: string]: string
+    }
+  }
+>
 
 export const discordSdkDef = {
   types: {} as DiscordSDKTypes,

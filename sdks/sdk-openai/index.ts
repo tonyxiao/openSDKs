@@ -1,4 +1,5 @@
 import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import type {ClientOptions} from '@opensdks/core/src/createClient'
 import type {
   components,
   external,
@@ -19,7 +20,12 @@ export interface OpenAiTypes {
   webhooks: webhooks
 }
 
-export type OpenAISDKTypes = SDKTypes<OpenAiTypes>
+export type OpenAISDKTypes = SDKTypes<
+  OpenAiTypes,
+  Omit<ClientOptions, 'headers'> & {
+    headers: {authorization: `Bearer ${string}`; [k: string]: string}
+  }
+>
 
 export const openaiSdkDef = {
   types: {} as OpenAISDKTypes,

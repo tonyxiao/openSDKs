@@ -43,9 +43,9 @@ export type SdkDefinition<
 export function initSDK<
   TDef extends SdkDefinition<SDKTypes<OpenAPITypes, any>>,
 >(
-  ...[sdkDef, options]: 'createClient' extends keyof TDef
-    ? [sdkDef: TDef, options: TDef['types']['options']]
-    : [sdkDef: TDef] | [sdkDef: TDef, options?: ClientOptions]
+  ...[sdkDef, options]: ClientOptions extends TDef['types']['options']
+    ? [sdkDef: TDef] | [sdkDef: TDef, options?: ClientOptions]
+    : [sdkDef: TDef, options: TDef['types']['options']]
 ): ('createClient' extends keyof TDef
   ? ReturnType<NonNullable<TDef['createClient']>>
   : OpenAPIClient<TDef['types']['oas']['paths']>) & {def: TDef} {

@@ -14,7 +14,7 @@ import {veniceSdkDef} from '@opensdks/sdk-venice'
 const github = initSDK(githubSdkDef, {
   headers: {
     authorization: `Bearer ${process.env['GITHUB_TOKEN']}`,
-    'X-GitHub-Api-Version': '2022-11-28',
+    'x-github-api-version': '2022-11-28',
   },
 })
 
@@ -28,7 +28,7 @@ void github
     })
   })
 
-const octokit = new Octokit() as Octokit
+const octokit = new Octokit()
 
 void octokit.rest.repos
   .listCommits({
@@ -48,10 +48,7 @@ const accountSid = process.env['TWILIO_ACCOUNT_SID']!
 const authToken = process.env['TWILIO_AUTH_TOKEN']!
 
 const twilio = initSDK(twilio_api_v2010SdkDef, {
-  headers: {
-    accountSid,
-    authToken,
-  },
+  headers: {accountSid, authToken},
 })
 
 void twilio
@@ -91,17 +88,16 @@ export const plaid = initSDK(plaidSdkDef, {
   },
 }) // Need clientId & secret
 
-export const discord = initSDK(discordSdkDef)
-export const openai = initSDK(openaiSdkDef)
+export const discord = initSDK(discordSdkDef, {
+  headers: {authorization: `Bearer ${process.env['DISCORD_API_KEY']}`},
+})
+export const openai = initSDK(openaiSdkDef, {
+  headers: {authorization: `Bearer ${process.env['OPENAI_API_KEY']}`},
+})
 export const slack = initSDK(slackSdkDef)
 
-const apolloKey = process.env['APOLLO_API_KEY']
-if (typeof apolloKey !== 'string') {
-  throw new TypeError('APOLLO_API_KEY is not set')
-}
-
 export const apollo = initSDK(apolloSdkDef, {
-  api_key: apolloKey,
+  api_key: process.env['APOLLO_API_KEY']!,
 })
 export const venice = initSDK(veniceSdkDef, {
   headers: {'x-apikey': process.env['VENICE_API_KEY']},
@@ -116,3 +112,5 @@ void github
 void venice.GET('/core/resource').then((r) => console.log(r.data))
 
 void apollo.GET('/v1/email_accounts').then((r) => console.log(r.data))
+
+void slack.POST('/chat.postMessage', {params: {header: {token: ''}}})

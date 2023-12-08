@@ -22,12 +22,15 @@ export interface veniceTypes {
 
 export type VeniceSDKTypes = SDKTypes<
   veniceTypes,
-  ClientOptions & {
+  Omit<ClientOptions, 'headers'> & {
     headers: {
+      /** organization auth */
       'x-apikey'?: string
+      /** For passthrough and resource specific api */
       'x-resource-id'?: string
-      /** Bearer token */
-      Authorization?: string
+      /** Bearer token, for end user auth */
+      authorization?: `Bearer ${string}`
+      [k: string]: string | undefined
     }
   }
 >
