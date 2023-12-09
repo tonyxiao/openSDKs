@@ -143,6 +143,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@opensdks/links':
+        specifier: workspace:*
+        version: link:../links
       openapi-fetch:
         specifier: 0.8.1
         version: 0.8.1
@@ -156,6 +159,8 @@ importers:
       undici:
         specifier: ^5.28.2
         version: 5.28.2
+
+  packages/links:
     devDependencies:
       axios:
         specifier: ^1.6.2

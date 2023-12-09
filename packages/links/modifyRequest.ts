@@ -1,4 +1,4 @@
-import type {HTTPMethod} from './links'
+import type {HTTPMethod} from './link'
 
 export function modifyRequest(
   req: Request,

@@ -1,0 +1,16 @@
+{
+  "name": "@opensdks/links",
+  "version": "0.0.1",
+  "private": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
+    "pub": "pnpm publish --no-git-checks --access public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "axios": "^1.6.2"
+  }
+}

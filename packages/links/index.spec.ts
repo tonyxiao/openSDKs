@@ -1,13 +1,7 @@
 import axios from 'axios'
-import type {HTTPMethod} from './links'
-import {
-  applyLinks,
-  axiosLink,
-  fetchLink,
-  logLink,
-  retryLink,
-  throwLink,
-} from './links'
+import type {HTTPMethod} from './link'
+import {applyLinks, fetchLink, logLink, retryLink, throwLink} from './link'
+import {axiosLink} from './links/axiosLink'
 import {modifyRequest} from './modifyRequest'
 
 const req = new Request('https://httpbin.org/anything', {method: 'GET'})

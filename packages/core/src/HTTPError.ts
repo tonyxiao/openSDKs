@@ -1,5 +1,5 @@
 import type {FetchResponse} from 'openapi-fetch'
-import type {HTTPMethod} from './links'
+import type {HTTPMethod} from '@opensdks/links'
 
 export class HTTPError<T> extends Error {
   override name = 'HTTPError'

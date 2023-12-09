@@ -1,8 +1,13 @@
 import type {BodySerializer, FetchOptions, FetchResponse} from 'openapi-fetch'
 import _createClient from 'openapi-fetch'
 import type {PathsWithMethod} from 'openapi-typescript-helpers'
+import {
+  applyLinks,
+  fetchLink,
+  type HTTPMethod,
+  type Link,
+} from '@opensdks/links'
 import {HTTPError} from './HTTPError'
-import {applyLinks, fetchLink, type HTTPMethod, type Link} from './links'
 
 type _ClientOptions = NonNullable<Parameters<typeof _createClient>[0]>
 
