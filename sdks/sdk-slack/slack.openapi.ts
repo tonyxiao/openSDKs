@@ -3,6 +3,7 @@ import _oas from './slack.orig.oas.json'
 
 const oas = _oas as unknown as oas30.OpenAPIObject
 
+// TODO: we should add token auth to the modified openapi spec
 for (const pathItem of Object.values(oas.paths ?? {})) {
   for (const op of Object.values(pathItem)) {
     if (!isOperationWithParam(op)) {
