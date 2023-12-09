@@ -5,6 +5,7 @@ import {createClient} from './createClient'
 // export type * from 'openapi-typescript-helpers'
 export * from './HTTPError'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
+export {oas30, oas31}
 
 // MARK: - defineSdk
 

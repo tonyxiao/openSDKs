@@ -255,6 +255,9 @@ importers:
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
 
   sdks/sdk-twilio:
     devDependencies:

@@ -90,7 +90,9 @@ export const discord = initSDK(discordSdkDef, {
 export const openai = initSDK(openaiSdkDef, {
   headers: {authorization: `Bearer ${process.env['OPENAI_API_KEY']}`},
 })
-export const slack = initSDK(slackSdkDef)
+export const slack = initSDK(slackSdkDef, {
+  headers: {token: process.env['SLACK_TOKEN']!},
+})
 
 export const apollo = initSDK(apolloSdkDef, {
   api_key: process.env['APOLLO_API_KEY']!,
@@ -109,4 +111,6 @@ void venice.GET('/core/resource').then((r) => console.log(r.data))
 
 void apollo.GET('/v1/email_accounts').then((r) => console.log(r.data))
 
-void slack.POST('/chat.postMessage', {params: {header: {token: ''}}})
+void slack.POST('/chat.postMessage', {
+  body: {channel: 'C01U6P7LZ9M', text: 'Hello world!'},
+})

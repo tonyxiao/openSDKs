@@ -5,63 +5,63 @@
 
 export interface paths {
   '/admin.apps.approve': {
-    /** @description Approve an app for installation on a workspace. */
+    /** @description Approve an app for installation on a workspace. Requires scope: `admin.apps:write` */
     post: operations['admin_apps_approve']
   }
   '/admin.apps.approved.list': {
-    /** @description List approved apps for an org or workspace. */
+    /** @description List approved apps for an org or workspace. Requires scope: `admin.apps:read` */
     get: operations['admin_apps_approved_list']
   }
   '/admin.apps.requests.list': {
-    /** @description List app requests for a team/workspace. */
+    /** @description List app requests for a team/workspace. Requires scope: `admin.apps:read` */
     get: operations['admin_apps_requests_list']
   }
   '/admin.apps.restrict': {
-    /** @description Restrict an app for installation on a workspace. */
+    /** @description Restrict an app for installation on a workspace. Requires scope: `admin.apps:write` */
     post: operations['admin_apps_restrict']
   }
   '/admin.apps.restricted.list': {
-    /** @description List restricted apps for an org or workspace. */
+    /** @description List restricted apps for an org or workspace. Requires scope: `admin.apps:read` */
     get: operations['admin_apps_restricted_list']
   }
   '/admin.conversations.archive': {
-    /** @description Archive a public or private channel. */
+    /** @description Archive a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_archive']
   }
   '/admin.conversations.convertToPrivate': {
-    /** @description Convert a public channel to a private channel. */
+    /** @description Convert a public channel to a private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_convertToPrivate']
   }
   '/admin.conversations.create': {
-    /** @description Create a public or private channel-based conversation. */
+    /** @description Create a public or private channel-based conversation. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_create']
   }
   '/admin.conversations.delete': {
-    /** @description Delete a public or private channel. */
+    /** @description Delete a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_delete']
   }
   '/admin.conversations.disconnectShared': {
-    /** @description Disconnect a connected channel from one or more workspaces. */
+    /** @description Disconnect a connected channel from one or more workspaces. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_disconnectShared']
   }
   '/admin.conversations.ekm.listOriginalConnectedChannelInfo': {
-    /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. */
+    /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. Requires scope: `admin.conversations:read` */
     get: operations['admin_conversations_ekm_listOriginalConnectedChannelInfo']
   }
   '/admin.conversations.getConversationPrefs': {
-    /** @description Get conversation preferences for a public or private channel. */
+    /** @description Get conversation preferences for a public or private channel. Requires scope: `admin.conversations:read` */
     get: operations['admin_conversations_getConversationPrefs']
   }
   '/admin.conversations.getTeams': {
-    /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. */
+    /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. Requires scope: `admin.conversations:read` */
     get: operations['admin_conversations_getTeams']
   }
   '/admin.conversations.invite': {
-    /** @description Invite a user to a public or private channel. */
+    /** @description Invite a user to a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_invite']
   }
   '/admin.conversations.rename': {
-    /** @description Rename a public or private channel. */
+    /** @description Rename a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_rename']
   }
   '/admin.conversations.restrictAccess.addGroup': {
@@ -69,7 +69,7 @@ export interface paths {
     post: operations['admin_conversations_restrictAccess_addGroup']
   }
   '/admin.conversations.restrictAccess.listGroups': {
-    /** @description List all IDP Groups linked to a channel */
+    /** @description List all IDP Groups linked to a channel Requires scope: `admin.conversations:read` */
     get: operations['admin_conversations_restrictAccess_listGroups']
   }
   '/admin.conversations.restrictAccess.removeGroup': {
@@ -77,19 +77,19 @@ export interface paths {
     post: operations['admin_conversations_restrictAccess_removeGroup']
   }
   '/admin.conversations.search': {
-    /** @description Search for public or private channels in an Enterprise organization. */
+    /** @description Search for public or private channels in an Enterprise organization. Requires scope: `admin.conversations:read` */
     get: operations['admin_conversations_search']
   }
   '/admin.conversations.setConversationPrefs': {
-    /** @description Set the posting permissions for a public or private channel. */
+    /** @description Set the posting permissions for a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_setConversationPrefs']
   }
   '/admin.conversations.setTeams': {
-    /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. */
+    /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_setTeams']
   }
   '/admin.conversations.unarchive': {
-    /** @description Unarchive a public or private channel. */
+    /** @description Unarchive a public or private channel. Requires scope: `admin.conversations:write` */
     post: operations['admin_conversations_unarchive']
   }
   '/admin.emoji.add': {
@@ -101,7 +101,7 @@ export interface paths {
     post: operations['admin_emoji_addAlias']
   }
   '/admin.emoji.list': {
-    /** @description List emoji for an Enterprise Grid organization. */
+    /** @description List emoji for an Enterprise Grid organization. Requires scope: `admin.teams:read` */
     get: operations['admin_emoji_list']
   }
   '/admin.emoji.remove': {
@@ -113,43 +113,43 @@ export interface paths {
     post: operations['admin_emoji_rename']
   }
   '/admin.inviteRequests.approve': {
-    /** @description Approve a workspace invite request. */
+    /** @description Approve a workspace invite request. Requires scope: `admin.invites:write` */
     post: operations['admin_inviteRequests_approve']
   }
   '/admin.inviteRequests.approved.list': {
-    /** @description List all approved workspace invite requests. */
+    /** @description List all approved workspace invite requests. Requires scope: `admin.invites:read` */
     get: operations['admin_inviteRequests_approved_list']
   }
   '/admin.inviteRequests.denied.list': {
-    /** @description List all denied workspace invite requests. */
+    /** @description List all denied workspace invite requests. Requires scope: `admin.invites:read` */
     get: operations['admin_inviteRequests_denied_list']
   }
   '/admin.inviteRequests.deny': {
-    /** @description Deny a workspace invite request. */
+    /** @description Deny a workspace invite request. Requires scope: `admin.invites:write` */
     post: operations['admin_inviteRequests_deny']
   }
   '/admin.inviteRequests.list': {
-    /** @description List all pending workspace invite requests. */
+    /** @description List all pending workspace invite requests. Requires scope: `admin.invites:read` */
     get: operations['admin_inviteRequests_list']
   }
   '/admin.teams.admins.list': {
-    /** @description List all of the admins on a given workspace. */
+    /** @description List all of the admins on a given workspace. Requires scope: `admin.teams:read` */
     get: operations['admin_teams_admins_list']
   }
   '/admin.teams.create': {
-    /** @description Create an Enterprise team. */
+    /** @description Create an Enterprise team. Requires scope: `admin.teams:write` */
     post: operations['admin_teams_create']
   }
   '/admin.teams.list': {
-    /** @description List all teams on an Enterprise organization */
+    /** @description List all teams on an Enterprise organization Requires scope: `admin.teams:read` */
     get: operations['admin_teams_list']
   }
   '/admin.teams.owners.list': {
-    /** @description List all of the owners on a given workspace. */
+    /** @description List all of the owners on a given workspace. Requires scope: `admin.teams:read` */
     get: operations['admin_teams_owners_list']
   }
   '/admin.teams.settings.info': {
-    /** @description Fetch information about settings in a workspace */
+    /** @description Fetch information about settings in a workspace Requires scope: `admin.teams:read` */
     get: operations['admin_teams_settings_info']
   }
   '/admin.teams.settings.setDefaultChannels': {
@@ -157,11 +157,11 @@ export interface paths {
     post: operations['admin_teams_settings_setDefaultChannels']
   }
   '/admin.teams.settings.setDescription': {
-    /** @description Set the description of a given workspace. */
+    /** @description Set the description of a given workspace. Requires scope: `admin.teams:write` */
     post: operations['admin_teams_settings_setDescription']
   }
   '/admin.teams.settings.setDiscoverability': {
-    /** @description An API method that allows admins to set the discoverability of a given workspace */
+    /** @description An API method that allows admins to set the discoverability of a given workspace Requires scope: `admin.teams:write` */
     post: operations['admin_teams_settings_setDiscoverability']
   }
   '/admin.teams.settings.setIcon': {
@@ -169,63 +169,63 @@ export interface paths {
     post: operations['admin_teams_settings_setIcon']
   }
   '/admin.teams.settings.setName': {
-    /** @description Set the name of a given workspace. */
+    /** @description Set the name of a given workspace. Requires scope: `admin.teams:write` */
     post: operations['admin_teams_settings_setName']
   }
   '/admin.usergroups.addChannels': {
-    /** @description Add one or more default channels to an IDP group. */
+    /** @description Add one or more default channels to an IDP group. Requires scope: `admin.usergroups:write` */
     post: operations['admin_usergroups_addChannels']
   }
   '/admin.usergroups.addTeams': {
-    /** @description Associate one or more default workspaces with an organization-wide IDP group. */
+    /** @description Associate one or more default workspaces with an organization-wide IDP group. Requires scope: `admin.teams:write` */
     post: operations['admin_usergroups_addTeams']
   }
   '/admin.usergroups.listChannels': {
-    /** @description List the channels linked to an org-level IDP group (user group). */
+    /** @description List the channels linked to an org-level IDP group (user group). Requires scope: `admin.usergroups:read` */
     get: operations['admin_usergroups_listChannels']
   }
   '/admin.usergroups.removeChannels': {
-    /** @description Remove one or more default channels from an org-level IDP group (user group). */
+    /** @description Remove one or more default channels from an org-level IDP group (user group). Requires scope: `admin.usergroups:write` */
     post: operations['admin_usergroups_removeChannels']
   }
   '/admin.users.assign': {
-    /** @description Add an Enterprise user to a workspace. */
+    /** @description Add an Enterprise user to a workspace. Requires scope: `admin.users:write` */
     post: operations['admin_users_assign']
   }
   '/admin.users.invite': {
-    /** @description Invite a user to a workspace. */
+    /** @description Invite a user to a workspace. Requires scope: `admin.users:write` */
     post: operations['admin_users_invite']
   }
   '/admin.users.list': {
-    /** @description List users on a workspace */
+    /** @description List users on a workspace Requires scope: `admin.users:read` */
     get: operations['admin_users_list']
   }
   '/admin.users.remove': {
-    /** @description Remove a user from a workspace. */
+    /** @description Remove a user from a workspace. Requires scope: `admin.users:write` */
     post: operations['admin_users_remove']
   }
   '/admin.users.session.invalidate': {
-    /** @description Invalidate a single session for a user by session_id */
+    /** @description Invalidate a single session for a user by session_id Requires scope: `admin.users:write` */
     post: operations['admin_users_session_invalidate']
   }
   '/admin.users.session.reset': {
-    /** @description Wipes all valid sessions on all devices for a given user */
+    /** @description Wipes all valid sessions on all devices for a given user Requires scope: `admin.users:write` */
     post: operations['admin_users_session_reset']
   }
   '/admin.users.setAdmin': {
-    /** @description Set an existing guest, regular user, or owner to be an admin user. */
+    /** @description Set an existing guest, regular user, or owner to be an admin user. Requires scope: `admin.users:write` */
     post: operations['admin_users_setAdmin']
   }
   '/admin.users.setExpiration': {
-    /** @description Set an expiration for a guest user */
+    /** @description Set an expiration for a guest user Requires scope: `admin.users:write` */
     post: operations['admin_users_setExpiration']
   }
   '/admin.users.setOwner': {
-    /** @description Set an existing guest, regular user, or admin user to be a workspace owner. */
+    /** @description Set an existing guest, regular user, or admin user to be a workspace owner. Requires scope: `admin.users:write` */
     post: operations['admin_users_setOwner']
   }
   '/admin.users.setRegular': {
-    /** @description Set an existing guest user, admin user, or owner to be a regular user. */
+    /** @description Set an existing guest user, admin user, or owner to be a regular user. Requires scope: `admin.users:write` */
     post: operations['admin_users_setRegular']
   }
   '/api.test': {
@@ -233,199 +233,199 @@ export interface paths {
     get: operations['api_test']
   }
   '/apps.event.authorizations.list': {
-    /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. */
+    /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Requires scope: `authorizations:read` */
     get: operations['apps_event_authorizations_list']
   }
   '/apps.permissions.info': {
-    /** @description Returns list of permissions this app has on a team. */
+    /** @description Returns list of permissions this app has on a team. Requires scope: `none` */
     get: operations['apps_permissions_info']
   }
   '/apps.permissions.request': {
-    /** @description Allows an app to request additional scopes */
+    /** @description Allows an app to request additional scopes Requires scope: `none` */
     get: operations['apps_permissions_request']
   }
   '/apps.permissions.resources.list': {
-    /** @description Returns list of resource grants this app has on a team. */
+    /** @description Returns list of resource grants this app has on a team. Requires scope: `none` */
     get: operations['apps_permissions_resources_list']
   }
   '/apps.permissions.scopes.list': {
-    /** @description Returns list of scopes this app has on a team. */
+    /** @description Returns list of scopes this app has on a team. Requires scope: `none` */
     get: operations['apps_permissions_scopes_list']
   }
   '/apps.permissions.users.list': {
-    /** @description Returns list of user grants and corresponding scopes this app has on a team. */
+    /** @description Returns list of user grants and corresponding scopes this app has on a team. Requires scope: `none` */
     get: operations['apps_permissions_users_list']
   }
   '/apps.permissions.users.request': {
-    /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. */
+    /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. Requires scope: `none` */
     get: operations['apps_permissions_users_request']
   }
   '/apps.uninstall': {
-    /** @description Uninstalls your app from a workspace. */
+    /** @description Uninstalls your app from a workspace. Requires scope: `none` */
     get: operations['apps_uninstall']
   }
   '/auth.revoke': {
-    /** @description Revokes a token. */
+    /** @description Revokes a token. Requires scope: `none` */
     get: operations['auth_revoke']
   }
   '/auth.test': {
-    /** @description Checks authentication & identity. */
+    /** @description Checks authentication & identity. Requires scope: `none` */
     get: operations['auth_test']
   }
   '/bots.info': {
-    /** @description Gets information about a bot user. */
+    /** @description Gets information about a bot user. Requires scope: `users:read` */
     get: operations['bots_info']
   }
   '/calls.add': {
-    /** @description Registers a new Call. */
+    /** @description Registers a new Call. Requires scope: `calls:write` */
     post: operations['calls_add']
   }
   '/calls.end': {
-    /** @description Ends a Call. */
+    /** @description Ends a Call. Requires scope: `calls:write` */
     post: operations['calls_end']
   }
   '/calls.info': {
-    /** @description Returns information about a Call. */
+    /** @description Returns information about a Call. Requires scope: `calls:read` */
     get: operations['calls_info']
   }
   '/calls.participants.add': {
-    /** @description Registers new participants added to a Call. */
+    /** @description Registers new participants added to a Call. Requires scope: `calls:write` */
     post: operations['calls_participants_add']
   }
   '/calls.participants.remove': {
-    /** @description Registers participants removed from a Call. */
+    /** @description Registers participants removed from a Call. Requires scope: `calls:write` */
     post: operations['calls_participants_remove']
   }
   '/calls.update': {
-    /** @description Updates information about a Call. */
+    /** @description Updates information about a Call. Requires scope: `calls:write` */
     post: operations['calls_update']
   }
   '/chat.delete': {
-    /** @description Deletes a message. */
+    /** @description Deletes a message. Requires scope: `chat:write` */
     post: operations['chat_delete']
   }
   '/chat.deleteScheduledMessage': {
-    /** @description Deletes a pending scheduled message from the queue. */
+    /** @description Deletes a pending scheduled message from the queue. Requires scope: `chat:write` */
     post: operations['chat_deleteScheduledMessage']
   }
   '/chat.getPermalink': {
-    /** @description Retrieve a permalink URL for a specific extant message */
+    /** @description Retrieve a permalink URL for a specific extant message Requires scope: `none` */
     get: operations['chat_getPermalink']
   }
   '/chat.meMessage': {
-    /** @description Share a me message into a channel. */
+    /** @description Share a me message into a channel. Requires scope: `chat:write` */
     post: operations['chat_meMessage']
   }
   '/chat.postEphemeral': {
-    /** @description Sends an ephemeral message to a user in a channel. */
+    /** @description Sends an ephemeral message to a user in a channel. Requires scope: `chat:write` */
     post: operations['chat_postEphemeral']
   }
   '/chat.postMessage': {
-    /** @description Sends a message to a channel. */
+    /** @description Sends a message to a channel. Requires scope: `chat:write` */
     post: operations['chat_postMessage']
   }
   '/chat.scheduleMessage': {
-    /** @description Schedules a message to be sent to a channel. */
+    /** @description Schedules a message to be sent to a channel. Requires scope: `chat:write` */
     post: operations['chat_scheduleMessage']
   }
   '/chat.scheduledMessages.list': {
-    /** @description Returns a list of scheduled messages. */
+    /** @description Returns a list of scheduled messages. Requires scope: `none` */
     get: operations['chat_scheduledMessages_list']
   }
   '/chat.unfurl': {
-    /** @description Provide custom unfurl behavior for user-posted URLs */
+    /** @description Provide custom unfurl behavior for user-posted URLs Requires scope: `links:write` */
     post: operations['chat_unfurl']
   }
   '/chat.update': {
-    /** @description Updates a message. */
+    /** @description Updates a message. Requires scope: `chat:write` */
     post: operations['chat_update']
   }
   '/conversations.archive': {
-    /** @description Archives a conversation. */
+    /** @description Archives a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_archive']
   }
   '/conversations.close': {
-    /** @description Closes a direct message or multi-person direct message. */
+    /** @description Closes a direct message or multi-person direct message. Requires scope: `conversations:write` */
     post: operations['conversations_close']
   }
   '/conversations.create': {
-    /** @description Initiates a public or private channel-based conversation */
+    /** @description Initiates a public or private channel-based conversation Requires scope: `conversations:write` */
     post: operations['conversations_create']
   }
   '/conversations.history': {
-    /** @description Fetches a conversation's history of messages and events. */
+    /** @description Fetches a conversation's history of messages and events. Requires scope: `conversations:history` */
     get: operations['conversations_history']
   }
   '/conversations.info': {
-    /** @description Retrieve information about a conversation. */
+    /** @description Retrieve information about a conversation. Requires scope: `conversations:read` */
     get: operations['conversations_info']
   }
   '/conversations.invite': {
-    /** @description Invites users to a channel. */
+    /** @description Invites users to a channel. Requires scope: `conversations:write` */
     post: operations['conversations_invite']
   }
   '/conversations.join': {
-    /** @description Joins an existing conversation. */
+    /** @description Joins an existing conversation. Requires scope: `channels:write` */
     post: operations['conversations_join']
   }
   '/conversations.kick': {
-    /** @description Removes a user from a conversation. */
+    /** @description Removes a user from a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_kick']
   }
   '/conversations.leave': {
-    /** @description Leaves a conversation. */
+    /** @description Leaves a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_leave']
   }
   '/conversations.list': {
-    /** @description Lists all channels in a Slack team. */
+    /** @description Lists all channels in a Slack team. Requires scope: `conversations:read` */
     get: operations['conversations_list']
   }
   '/conversations.mark': {
-    /** @description Sets the read cursor in a channel. */
+    /** @description Sets the read cursor in a channel. Requires scope: `conversations:write` */
     post: operations['conversations_mark']
   }
   '/conversations.members': {
-    /** @description Retrieve members of a conversation. */
+    /** @description Retrieve members of a conversation. Requires scope: `conversations:read` */
     get: operations['conversations_members']
   }
   '/conversations.open': {
-    /** @description Opens or resumes a direct message or multi-person direct message. */
+    /** @description Opens or resumes a direct message or multi-person direct message. Requires scope: `conversations:write` */
     post: operations['conversations_open']
   }
   '/conversations.rename': {
-    /** @description Renames a conversation. */
+    /** @description Renames a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_rename']
   }
   '/conversations.replies': {
-    /** @description Retrieve a thread of messages posted to a conversation */
+    /** @description Retrieve a thread of messages posted to a conversation Requires scope: `conversations:history` */
     get: operations['conversations_replies']
   }
   '/conversations.setPurpose': {
-    /** @description Sets the purpose for a conversation. */
+    /** @description Sets the purpose for a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_setPurpose']
   }
   '/conversations.setTopic': {
-    /** @description Sets the topic for a conversation. */
+    /** @description Sets the topic for a conversation. Requires scope: `conversations:write` */
     post: operations['conversations_setTopic']
   }
   '/conversations.unarchive': {
-    /** @description Reverses conversation archival. */
+    /** @description Reverses conversation archival. Requires scope: `conversations:write` */
     post: operations['conversations_unarchive']
   }
   '/dialog.open': {
-    /** @description Open a dialog with a user */
+    /** @description Open a dialog with a user Requires scope: `none` */
     get: operations['dialog_open']
   }
   '/dnd.endDnd': {
-    /** @description Ends the current user's Do Not Disturb session immediately. */
+    /** @description Ends the current user's Do Not Disturb session immediately. Requires scope: `dnd:write` */
     post: operations['dnd_endDnd']
   }
   '/dnd.endSnooze': {
-    /** @description Ends the current user's snooze mode immediately. */
+    /** @description Ends the current user's snooze mode immediately. Requires scope: `dnd:write` */
     post: operations['dnd_endSnooze']
   }
   '/dnd.info': {
-    /** @description Retrieves a user's current Do Not Disturb status. */
+    /** @description Retrieves a user's current Do Not Disturb status. Requires scope: `dnd:read` */
     get: operations['dnd_info']
   }
   '/dnd.setSnooze': {
@@ -433,27 +433,27 @@ export interface paths {
     post: operations['dnd_setSnooze']
   }
   '/dnd.teamInfo': {
-    /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. */
+    /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. Requires scope: `dnd:read` */
     get: operations['dnd_teamInfo']
   }
   '/emoji.list': {
-    /** @description Lists custom emoji for a team. */
+    /** @description Lists custom emoji for a team. Requires scope: `emoji:read` */
     get: operations['emoji_list']
   }
   '/files.comments.delete': {
-    /** @description Deletes an existing comment on a file. */
+    /** @description Deletes an existing comment on a file. Requires scope: `files:write:user` */
     post: operations['files_comments_delete']
   }
   '/files.delete': {
-    /** @description Deletes a file. */
+    /** @description Deletes a file. Requires scope: `files:write:user` */
     post: operations['files_delete']
   }
   '/files.info': {
-    /** @description Gets information about a file. */
+    /** @description Gets information about a file. Requires scope: `files:read` */
     get: operations['files_info']
   }
   '/files.list': {
-    /** @description List for a team, in a channel, or from a user with applied filters. */
+    /** @description List for a team, in a channel, or from a user with applied filters. Requires scope: `files:read` */
     get: operations['files_list']
   }
   '/files.remote.add': {
@@ -461,11 +461,11 @@ export interface paths {
     post: operations['files_remote_add']
   }
   '/files.remote.info': {
-    /** @description Retrieve information about a remote file added to Slack */
+    /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
     get: operations['files_remote_info']
   }
   '/files.remote.list': {
-    /** @description Retrieve information about a remote file added to Slack */
+    /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
     get: operations['files_remote_list']
   }
   '/files.remote.remove': {
@@ -473,7 +473,7 @@ export interface paths {
     post: operations['files_remote_remove']
   }
   '/files.remote.share': {
-    /** @description Share a remote file into a channel. */
+    /** @description Share a remote file into a channel. Requires scope: `remote_files:share` */
     get: operations['files_remote_share']
   }
   '/files.remote.update': {
@@ -481,11 +481,11 @@ export interface paths {
     post: operations['files_remote_update']
   }
   '/files.revokePublicURL': {
-    /** @description Revokes public/external sharing access for a file */
+    /** @description Revokes public/external sharing access for a file Requires scope: `files:write:user` */
     post: operations['files_revokePublicURL']
   }
   '/files.sharedPublicURL': {
-    /** @description Enables a file for public/external sharing. */
+    /** @description Enables a file for public/external sharing. Requires scope: `files:write:user` */
     post: operations['files_sharedPublicURL']
   }
   '/files.upload': {
@@ -493,7 +493,7 @@ export interface paths {
     post: operations['files_upload']
   }
   '/migration.exchange': {
-    /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs */
+    /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs Requires scope: `tokens.basic` */
     get: operations['migration_exchange']
   }
   '/oauth.access': {
@@ -509,123 +509,123 @@ export interface paths {
     get: operations['oauth_v2_access']
   }
   '/pins.add': {
-    /** @description Pins an item to a channel. */
+    /** @description Pins an item to a channel. Requires scope: `pins:write` */
     post: operations['pins_add']
   }
   '/pins.list': {
-    /** @description Lists items pinned to a channel. */
+    /** @description Lists items pinned to a channel. Requires scope: `pins:read` */
     get: operations['pins_list']
   }
   '/pins.remove': {
-    /** @description Un-pins an item from a channel. */
+    /** @description Un-pins an item from a channel. Requires scope: `pins:write` */
     post: operations['pins_remove']
   }
   '/reactions.add': {
-    /** @description Adds a reaction to an item. */
+    /** @description Adds a reaction to an item. Requires scope: `reactions:write` */
     post: operations['reactions_add']
   }
   '/reactions.get': {
-    /** @description Gets reactions for an item. */
+    /** @description Gets reactions for an item. Requires scope: `reactions:read` */
     get: operations['reactions_get']
   }
   '/reactions.list': {
-    /** @description Lists reactions made by a user. */
+    /** @description Lists reactions made by a user. Requires scope: `reactions:read` */
     get: operations['reactions_list']
   }
   '/reactions.remove': {
-    /** @description Removes a reaction from an item. */
+    /** @description Removes a reaction from an item. Requires scope: `reactions:write` */
     post: operations['reactions_remove']
   }
   '/reminders.add': {
-    /** @description Creates a reminder. */
+    /** @description Creates a reminder. Requires scope: `reminders:write` */
     post: operations['reminders_add']
   }
   '/reminders.complete': {
-    /** @description Marks a reminder as complete. */
+    /** @description Marks a reminder as complete. Requires scope: `reminders:write` */
     post: operations['reminders_complete']
   }
   '/reminders.delete': {
-    /** @description Deletes a reminder. */
+    /** @description Deletes a reminder. Requires scope: `reminders:write` */
     post: operations['reminders_delete']
   }
   '/reminders.info': {
-    /** @description Gets information about a reminder. */
+    /** @description Gets information about a reminder. Requires scope: `reminders:read` */
     get: operations['reminders_info']
   }
   '/reminders.list': {
-    /** @description Lists all reminders created by or for a given user. */
+    /** @description Lists all reminders created by or for a given user. Requires scope: `reminders:read` */
     get: operations['reminders_list']
   }
   '/rtm.connect': {
-    /** @description Starts a Real Time Messaging session. */
+    /** @description Starts a Real Time Messaging session. Requires scope: `rtm:stream` */
     get: operations['rtm_connect']
   }
   '/search.messages': {
-    /** @description Searches for messages matching a query. */
+    /** @description Searches for messages matching a query. Requires scope: `search:read` */
     get: operations['search_messages']
   }
   '/stars.add': {
-    /** @description Adds a star to an item. */
+    /** @description Adds a star to an item. Requires scope: `stars:write` */
     post: operations['stars_add']
   }
   '/stars.list': {
-    /** @description Lists stars for a user. */
+    /** @description Lists stars for a user. Requires scope: `stars:read` */
     get: operations['stars_list']
   }
   '/stars.remove': {
-    /** @description Removes a star from an item. */
+    /** @description Removes a star from an item. Requires scope: `stars:write` */
     post: operations['stars_remove']
   }
   '/team.accessLogs': {
-    /** @description Gets the access logs for the current team. */
+    /** @description Gets the access logs for the current team. Requires scope: `admin` */
     get: operations['team_accessLogs']
   }
   '/team.billableInfo': {
-    /** @description Gets billable users information for the current team. */
+    /** @description Gets billable users information for the current team. Requires scope: `admin` */
     get: operations['team_billableInfo']
   }
   '/team.info': {
-    /** @description Gets information about the current team. */
+    /** @description Gets information about the current team. Requires scope: `team:read` */
     get: operations['team_info']
   }
   '/team.integrationLogs': {
-    /** @description Gets the integration logs for the current team. */
+    /** @description Gets the integration logs for the current team. Requires scope: `admin` */
     get: operations['team_integrationLogs']
   }
   '/team.profile.get': {
-    /** @description Retrieve a team's profile. */
+    /** @description Retrieve a team's profile. Requires scope: `users.profile:read` */
     get: operations['team_profile_get']
   }
   '/usergroups.create': {
-    /** @description Create a User Group */
+    /** @description Create a User Group Requires scope: `usergroups:write` */
     post: operations['usergroups_create']
   }
   '/usergroups.disable': {
-    /** @description Disable an existing User Group */
+    /** @description Disable an existing User Group Requires scope: `usergroups:write` */
     post: operations['usergroups_disable']
   }
   '/usergroups.enable': {
-    /** @description Enable a User Group */
+    /** @description Enable a User Group Requires scope: `usergroups:write` */
     post: operations['usergroups_enable']
   }
   '/usergroups.list': {
-    /** @description List all User Groups for a team */
+    /** @description List all User Groups for a team Requires scope: `usergroups:read` */
     get: operations['usergroups_list']
   }
   '/usergroups.update': {
-    /** @description Update an existing User Group */
+    /** @description Update an existing User Group Requires scope: `usergroups:write` */
     post: operations['usergroups_update']
   }
   '/usergroups.users.list': {
-    /** @description List all users in a User Group */
+    /** @description List all users in a User Group Requires scope: `usergroups:read` */
     get: operations['usergroups_users_list']
   }
   '/usergroups.users.update': {
-    /** @description Update the list of users for a User Group */
+    /** @description Update the list of users for a User Group Requires scope: `usergroups:write` */
     post: operations['usergroups_users_update']
   }
   '/users.conversations': {
-    /** @description List conversations the calling user may access. */
+    /** @description List conversations the calling user may access. Requires scope: `conversations:read` */
     get: operations['users_conversations']
   }
   '/users.deletePhoto': {
@@ -633,35 +633,35 @@ export interface paths {
     post: operations['users_deletePhoto']
   }
   '/users.getPresence': {
-    /** @description Gets user presence information. */
+    /** @description Gets user presence information. Requires scope: `users:read` */
     get: operations['users_getPresence']
   }
   '/users.identity': {
-    /** @description Get a user's identity. */
+    /** @description Get a user's identity. Requires scope: `identity.basic` */
     get: operations['users_identity']
   }
   '/users.info': {
-    /** @description Gets information about a user. */
+    /** @description Gets information about a user. Requires scope: `users:read` */
     get: operations['users_info']
   }
   '/users.list': {
-    /** @description Lists all users in a Slack team. */
+    /** @description Lists all users in a Slack team. Requires scope: `users:read` */
     get: operations['users_list']
   }
   '/users.lookupByEmail': {
-    /** @description Find a user with an email address. */
+    /** @description Find a user with an email address. Requires scope: `users:read.email` */
     get: operations['users_lookupByEmail']
   }
   '/users.profile.get': {
-    /** @description Retrieves a user's profile information. */
+    /** @description Retrieves a user's profile information. Requires scope: `users.profile:read` */
     get: operations['users_profile_get']
   }
   '/users.profile.set': {
-    /** @description Set the profile information for a user. */
+    /** @description Set the profile information for a user. Requires scope: `users.profile:write` */
     post: operations['users_profile_set']
   }
   '/users.setActive': {
-    /** @description Marked a user as active. Deprecated and non-functional. */
+    /** @description Marked a user as active. Deprecated and non-functional. Requires scope: `users:write` */
     post: operations['users_setActive']
   }
   '/users.setPhoto': {
@@ -669,35 +669,35 @@ export interface paths {
     post: operations['users_setPhoto']
   }
   '/users.setPresence': {
-    /** @description Manually sets user presence. */
+    /** @description Manually sets user presence. Requires scope: `users:write` */
     post: operations['users_setPresence']
   }
   '/views.open': {
-    /** @description Open a view for a user. */
+    /** @description Open a view for a user. Requires scope: `none` */
     get: operations['views_open']
   }
   '/views.publish': {
-    /** @description Publish a static view for a User. */
+    /** @description Publish a static view for a User. Requires scope: `none` */
     get: operations['views_publish']
   }
   '/views.push': {
-    /** @description Push a view onto the stack of a root view. */
+    /** @description Push a view onto the stack of a root view. Requires scope: `none` */
     get: operations['views_push']
   }
   '/views.update': {
-    /** @description Update an existing view. */
+    /** @description Update an existing view. Requires scope: `none` */
     get: operations['views_update']
   }
   '/workflows.stepCompleted': {
-    /** @description Indicate that an app's step in a workflow completed execution. */
+    /** @description Indicate that an app's step in a workflow completed execution. Requires scope: `workflow.steps:execute` */
     get: operations['workflows_stepCompleted']
   }
   '/workflows.stepFailed': {
-    /** @description Indicate that an app's step in a workflow failed to execute. */
+    /** @description Indicate that an app's step in a workflow failed to execute. Requires scope: `workflow.steps:execute` */
     get: operations['workflows_stepFailed']
   }
   '/workflows.updateStep': {
-    /** @description Update the configuration for a workflow extension step. */
+    /** @description Update the configuration for a workflow extension step. Requires scope: `workflow.steps:execute` */
     get: operations['workflows_updateStep']
   }
 }
@@ -1231,14 +1231,8 @@ export type $defs = Record<string, never>
 export type external = Record<string, never>
 
 export interface operations {
-  /** @description Approve an app for installation on a workspace. */
+  /** @description Approve an app for installation on a workspace. Requires scope: `admin.apps:write` */
   admin_apps_approve: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.apps:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1271,12 +1265,10 @@ export interface operations {
       }
     }
   }
-  /** @description List approved apps for an org or workspace. */
+  /** @description List approved apps for an org or workspace. Requires scope: `admin.apps:read` */
   admin_apps_approved_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin.apps:read` */
-        token: string
+      query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
         limit?: number
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
@@ -1306,12 +1298,10 @@ export interface operations {
       }
     }
   }
-  /** @description List app requests for a team/workspace. */
+  /** @description List app requests for a team/workspace. Requires scope: `admin.apps:read` */
   admin_apps_requests_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin.apps:read` */
-        token: string
+      query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
         limit?: number
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
@@ -1340,14 +1330,8 @@ export interface operations {
       }
     }
   }
-  /** @description Restrict an app for installation on a workspace. */
+  /** @description Restrict an app for installation on a workspace. Requires scope: `admin.apps:write` */
   admin_apps_restrict: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.apps:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1380,12 +1364,10 @@ export interface operations {
       }
     }
   }
-  /** @description List restricted apps for an org or workspace. */
+  /** @description List restricted apps for an org or workspace. Requires scope: `admin.apps:read` */
   admin_apps_restricted_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin.apps:read` */
-        token: string
+      query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
         limit?: number
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
@@ -1415,14 +1397,8 @@ export interface operations {
       }
     }
   }
-  /** @description Archive a public or private channel. */
+  /** @description Archive a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_archive: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1460,14 +1436,8 @@ export interface operations {
       }
     }
   }
-  /** @description Convert a public channel to a private channel. */
+  /** @description Convert a public channel to a private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_convertToPrivate: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1506,14 +1476,8 @@ export interface operations {
       }
     }
   }
-  /** @description Create a public or private channel-based conversation. */
+  /** @description Create a public or private channel-based conversation. Requires scope: `admin.conversations:write` */
   admin_conversations_create: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1560,14 +1524,8 @@ export interface operations {
       }
     }
   }
-  /** @description Delete a public or private channel. */
+  /** @description Delete a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_delete: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1605,14 +1563,8 @@ export interface operations {
       }
     }
   }
-  /** @description Disconnect a connected channel from one or more workspaces. */
+  /** @description Disconnect a connected channel from one or more workspaces. Requires scope: `admin.conversations:write` */
   admin_conversations_disconnectShared: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1657,12 +1609,10 @@ export interface operations {
       }
     }
   }
-  /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. */
+  /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. Requires scope: `admin.conversations:read` */
   admin_conversations_ekm_listOriginalConnectedChannelInfo: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin.conversations:read` */
-        token: string
+      query?: {
         /** @description A comma-separated list of channels to filter to. */
         channel_ids?: string
         /** @description A comma-separated list of the workspaces to which the channels you would like returned belong. */
@@ -1694,16 +1644,12 @@ export interface operations {
       }
     }
   }
-  /** @description Get conversation preferences for a public or private channel. */
+  /** @description Get conversation preferences for a public or private channel. Requires scope: `admin.conversations:read` */
   admin_conversations_getConversationPrefs: {
     parameters: {
       query: {
         /** @description The channel to get preferences for. */
         channel_id: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:read` */
-        token: string
       }
     }
     responses: {
@@ -1745,7 +1691,7 @@ export interface operations {
       }
     }
   }
-  /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. */
+  /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. Requires scope: `admin.conversations:read` */
   admin_conversations_getTeams: {
     parameters: {
       query: {
@@ -1755,10 +1701,6 @@ export interface operations {
         cursor?: string
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
         limit?: number
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:read` */
-        token: string
       }
     }
     responses: {
@@ -1794,14 +1736,8 @@ export interface operations {
       }
     }
   }
-  /** @description Invite a user to a public or private channel. */
+  /** @description Invite a user to a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_invite: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1841,14 +1777,8 @@ export interface operations {
       }
     }
   }
-  /** @description Rename a public or private channel. */
+  /** @description Rename a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_rename: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -1923,12 +1853,10 @@ export interface operations {
       }
     }
   }
-  /** @description List all IDP Groups linked to a channel */
+  /** @description List all IDP Groups linked to a channel Requires scope: `admin.conversations:read` */
   admin_conversations_restrictAccess_listGroups: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `admin.conversations:read` */
-        token: string
         channel_id: string
         /** @description The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization. */
         team_id?: string
@@ -1992,7 +1920,7 @@ export interface operations {
       }
     }
   }
-  /** @description Search for public or private channels in an Enterprise organization. */
+  /** @description Search for public or private channels in an Enterprise organization. Requires scope: `admin.conversations:read` */
   admin_conversations_search: {
     parameters: {
       query?: {
@@ -2010,10 +1938,6 @@ export interface operations {
         sort?: string
         /** @description Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c), and `desc` for descending order like (3, 2, 1) or (c, b, a) */
         sort_dir?: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:read` */
-        token: string
       }
     }
     responses: {
@@ -2048,14 +1972,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set the posting permissions for a public or private channel. */
+  /** @description Set the posting permissions for a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_setConversationPrefs: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2095,14 +2013,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. */
+  /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_setTeams: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2138,14 +2050,8 @@ export interface operations {
       }
     }
   }
-  /** @description Unarchive a public or private channel. */
+  /** @description Unarchive a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_unarchive: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.conversations:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2253,12 +2159,10 @@ export interface operations {
       }
     }
   }
-  /** @description List emoji for an Enterprise Grid organization. */
+  /** @description List emoji for an Enterprise Grid organization. Requires scope: `admin.teams:read` */
   admin_emoji_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin.teams:read` */
-        token: string
+      query?: {
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
         cursor?: string
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
@@ -2354,14 +2258,8 @@ export interface operations {
       }
     }
   }
-  /** @description Approve a workspace invite request. */
+  /** @description Approve a workspace invite request. Requires scope: `admin.invites:write` */
   admin_inviteRequests_approve: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.invites:write` */
-        token: string
-      }
-    }
     requestBody: components['requestBodies']['admin_inviteRequests_approve']
     responses: {
       /** @description Typical success response */
@@ -2384,7 +2282,7 @@ export interface operations {
       }
     }
   }
-  /** @description List all approved workspace invite requests. */
+  /** @description List all approved workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_approved_list: {
     parameters: {
       query?: {
@@ -2395,10 +2293,6 @@ export interface operations {
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000, both inclusive */
         limit?: number
       }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.invites:read` */
-        token: string
-      }
     }
     responses: {
       /** @description Typical success response */
@@ -2421,7 +2315,7 @@ export interface operations {
       }
     }
   }
-  /** @description List all denied workspace invite requests. */
+  /** @description List all denied workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_denied_list: {
     parameters: {
       query?: {
@@ -2432,10 +2326,6 @@ export interface operations {
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000 both inclusive */
         limit?: number
       }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.invites:read` */
-        token: string
-      }
     }
     responses: {
       /** @description Typical success response */
@@ -2458,14 +2348,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deny a workspace invite request. */
+  /** @description Deny a workspace invite request. Requires scope: `admin.invites:write` */
   admin_inviteRequests_deny: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.invites:write` */
-        token: string
-      }
-    }
     requestBody: components['requestBodies']['admin_inviteRequests_approve']
     responses: {
       /** @description Typical success response */
@@ -2488,7 +2372,7 @@ export interface operations {
       }
     }
   }
-  /** @description List all pending workspace invite requests. */
+  /** @description List all pending workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_list: {
     parameters: {
       query?: {
@@ -2498,10 +2382,6 @@ export interface operations {
         cursor?: string
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000, both inclusive */
         limit?: number
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.invites:read` */
-        token: string
       }
     }
     responses: {
@@ -2525,12 +2405,10 @@ export interface operations {
       }
     }
   }
-  /** @description List all of the admins on a given workspace. */
+  /** @description List all of the admins on a given workspace. Requires scope: `admin.teams:read` */
   admin_teams_admins_list: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `admin.teams:read` */
-        token: string
         /** @description The maximum number of items to return. */
         limit?: number
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
@@ -2559,14 +2437,8 @@ export interface operations {
       }
     }
   }
-  /** @description Create an Enterprise team. */
+  /** @description Create an Enterprise team. Requires scope: `admin.teams:write` */
   admin_teams_create: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2602,7 +2474,7 @@ export interface operations {
       }
     }
   }
-  /** @description List all teams on an Enterprise organization */
+  /** @description List all teams on an Enterprise organization Requires scope: `admin.teams:read` */
   admin_teams_list: {
     parameters: {
       query?: {
@@ -2610,10 +2482,6 @@ export interface operations {
         limit?: number
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
         cursor?: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:read` */
-        token: string
       }
     }
     responses: {
@@ -2637,12 +2505,10 @@ export interface operations {
       }
     }
   }
-  /** @description List all of the owners on a given workspace. */
+  /** @description List all of the owners on a given workspace. Requires scope: `admin.teams:read` */
   admin_teams_owners_list: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `admin.teams:read` */
-        token: string
         team_id: string
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
         limit?: number
@@ -2671,15 +2537,11 @@ export interface operations {
       }
     }
   }
-  /** @description Fetch information about settings in a workspace */
+  /** @description Fetch information about settings in a workspace Requires scope: `admin.teams:read` */
   admin_teams_settings_info: {
     parameters: {
       query: {
         team_id: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:read` */
-        token: string
       }
     }
     responses: {
@@ -2738,14 +2600,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set the description of a given workspace. */
+  /** @description Set the description of a given workspace. Requires scope: `admin.teams:write` */
   admin_teams_settings_setDescription: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2777,14 +2633,8 @@ export interface operations {
       }
     }
   }
-  /** @description An API method that allows admins to set the discoverability of a given workspace */
+  /** @description An API method that allows admins to set the discoverability of a given workspace Requires scope: `admin.teams:write` */
   admin_teams_settings_setDiscoverability: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2851,14 +2701,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set the name of a given workspace. */
+  /** @description Set the name of a given workspace. Requires scope: `admin.teams:write` */
   admin_teams_settings_setName: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2890,14 +2734,8 @@ export interface operations {
       }
     }
   }
-  /** @description Add one or more default channels to an IDP group. */
+  /** @description Add one or more default channels to an IDP group. Requires scope: `admin.usergroups:write` */
   admin_usergroups_addChannels: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.usergroups:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2931,14 +2769,8 @@ export interface operations {
       }
     }
   }
-  /** @description Associate one or more default workspaces with an organization-wide IDP group. */
+  /** @description Associate one or more default workspaces with an organization-wide IDP group. Requires scope: `admin.teams:write` */
   admin_usergroups_addTeams: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.teams:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -2972,7 +2804,7 @@ export interface operations {
       }
     }
   }
-  /** @description List the channels linked to an org-level IDP group (user group). */
+  /** @description List the channels linked to an org-level IDP group (user group). Requires scope: `admin.usergroups:read` */
   admin_usergroups_listChannels: {
     parameters: {
       query: {
@@ -2982,10 +2814,6 @@ export interface operations {
         team_id?: string
         /** @description Flag to include or exclude the count of members per channel. */
         include_num_members?: boolean
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.usergroups:read` */
-        token: string
       }
     }
     responses: {
@@ -3009,14 +2837,8 @@ export interface operations {
       }
     }
   }
-  /** @description Remove one or more default channels from an org-level IDP group (user group). */
+  /** @description Remove one or more default channels from an org-level IDP group (user group). Requires scope: `admin.usergroups:write` */
   admin_usergroups_removeChannels: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.usergroups:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3048,14 +2870,8 @@ export interface operations {
       }
     }
   }
-  /** @description Add an Enterprise user to a workspace. */
+  /** @description Add an Enterprise user to a workspace. Requires scope: `admin.users:write` */
   admin_users_assign: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3093,14 +2909,8 @@ export interface operations {
       }
     }
   }
-  /** @description Invite a user to a workspace. */
+  /** @description Invite a user to a workspace. Requires scope: `admin.users:write` */
   admin_users_invite: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3146,7 +2956,7 @@ export interface operations {
       }
     }
   }
-  /** @description List users on a workspace */
+  /** @description List users on a workspace Requires scope: `admin.users:read` */
   admin_users_list: {
     parameters: {
       query: {
@@ -3156,10 +2966,6 @@ export interface operations {
         cursor?: string
         /** @description Limit for how many users to be retrieved per page */
         limit?: number
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:read` */
-        token: string
       }
     }
     responses: {
@@ -3183,14 +2989,8 @@ export interface operations {
       }
     }
   }
-  /** @description Remove a user from a workspace. */
+  /** @description Remove a user from a workspace. Requires scope: `admin.users:write` */
   admin_users_remove: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3222,14 +3022,8 @@ export interface operations {
       }
     }
   }
-  /** @description Invalidate a single session for a user by session_id */
+  /** @description Invalidate a single session for a user by session_id Requires scope: `admin.users:write` */
   admin_users_session_invalidate: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3260,14 +3054,8 @@ export interface operations {
       }
     }
   }
-  /** @description Wipes all valid sessions on all devices for a given user */
+  /** @description Wipes all valid sessions on all devices for a given user Requires scope: `admin.users:write` */
   admin_users_session_reset: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3301,14 +3089,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set an existing guest, regular user, or owner to be an admin user. */
+  /** @description Set an existing guest, regular user, or owner to be an admin user. Requires scope: `admin.users:write` */
   admin_users_setAdmin: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3340,14 +3122,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set an expiration for a guest user */
+  /** @description Set an expiration for a guest user Requires scope: `admin.users:write` */
   admin_users_setExpiration: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3381,14 +3157,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set an existing guest, regular user, or admin user to be a workspace owner. */
+  /** @description Set an existing guest, regular user, or admin user to be a workspace owner. Requires scope: `admin.users:write` */
   admin_users_setOwner: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3420,14 +3190,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set an existing guest user, admin user, or owner to be a regular user. */
+  /** @description Set an existing guest user, admin user, or owner to be a regular user. Requires scope: `admin.users:write` */
   admin_users_setRegular: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `admin.users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -3491,17 +3255,13 @@ export interface operations {
       }
     }
   }
-  /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. */
+  /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Requires scope: `authorizations:read` */
   apps_event_authorizations_list: {
     parameters: {
       query: {
         event_context: string
         cursor?: string
         limit?: number
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `authorizations:read` */
-        token: string
       }
     }
     responses: {
@@ -3525,14 +3285,8 @@ export interface operations {
       }
     }
   }
-  /** @description Returns list of permissions this app has on a team. */
+  /** @description Returns list of permissions this app has on a team. Requires scope: `none` */
   apps_permissions_info: {
-    parameters: {
-      query?: {
-        /** @description Authentication token. Requires scope: `none` */
-        token?: string
-      }
-    }
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
@@ -3601,12 +3355,10 @@ export interface operations {
       }
     }
   }
-  /** @description Allows an app to request additional scopes */
+  /** @description Allows an app to request additional scopes Requires scope: `none` */
   apps_permissions_request: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
         /** @description A comma separated list of scopes to request for */
         scopes: string
         /** @description Token used to trigger the permissions API */
@@ -3659,12 +3411,10 @@ export interface operations {
       }
     }
   }
-  /** @description Returns list of resource grants this app has on a team. */
+  /** @description Returns list of resource grants this app has on a team. Requires scope: `none` */
   apps_permissions_resources_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
+      query?: {
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
         cursor?: string
         /** @description The maximum number of items to return. */
@@ -3724,14 +3474,8 @@ export interface operations {
       }
     }
   }
-  /** @description Returns list of scopes this app has on a team. */
+  /** @description Returns list of scopes this app has on a team. Requires scope: `none` */
   apps_permissions_scopes_list: {
-    parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
-      }
-    }
     responses: {
       /** @description Typical successful paginated response */
       200: {
@@ -3785,12 +3529,10 @@ export interface operations {
       }
     }
   }
-  /** @description Returns list of user grants and corresponding scopes this app has on a team. */
+  /** @description Returns list of user grants and corresponding scopes this app has on a team. Requires scope: `none` */
   apps_permissions_users_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
+      query?: {
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
         cursor?: string
         /** @description The maximum number of items to return. */
@@ -3818,12 +3560,10 @@ export interface operations {
       }
     }
   }
-  /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. */
+  /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. Requires scope: `none` */
   apps_permissions_users_request: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
         /** @description A comma separated list of user scopes to request for */
         scopes: string
         /** @description Token used to trigger the request */
@@ -3853,12 +3593,10 @@ export interface operations {
       }
     }
   }
-  /** @description Uninstalls your app from a workspace. */
+  /** @description Uninstalls your app from a workspace. Requires scope: `none` */
   apps_uninstall: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `none` */
-        token?: string
         /** @description Issued when you created your application. */
         client_id?: string
         /** @description Issued when you created your application. */
@@ -3910,12 +3648,10 @@ export interface operations {
       }
     }
   }
-  /** @description Revokes a token. */
+  /** @description Revokes a token. Requires scope: `none` */
   auth_revoke: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
+      query?: {
         /** @description Setting this parameter to `1` triggers a _testing mode_ where the specified token will not actually be revoked. */
         test?: boolean
       }
@@ -3962,14 +3698,8 @@ export interface operations {
       }
     }
   }
-  /** @description Checks authentication & identity. */
+  /** @description Checks authentication & identity. Requires scope: `none` */
   auth_test: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
-      }
-    }
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
@@ -4014,12 +3744,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets information about a bot user. */
+  /** @description Gets information about a bot user. Requires scope: `users:read` */
   bots_info: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `users:read` */
-        token: string
+      query?: {
         /** @description Bot user to get info on */
         bot?: string
       }
@@ -4082,14 +3810,8 @@ export interface operations {
       }
     }
   }
-  /** @description Registers a new Call. */
+  /** @description Registers a new Call. Requires scope: `calls:write` */
   calls_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `calls:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4133,14 +3855,8 @@ export interface operations {
       }
     }
   }
-  /** @description Ends a Call. */
+  /** @description Ends a Call. Requires scope: `calls:write` */
   calls_end: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `calls:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4172,16 +3888,12 @@ export interface operations {
       }
     }
   }
-  /** @description Returns information about a Call. */
+  /** @description Returns information about a Call. Requires scope: `calls:read` */
   calls_info: {
     parameters: {
       query: {
         /** @description `id` of the Call returned by the [`calls.add`](/methods/calls.add) method. */
         id: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `calls:read` */
-        token: string
       }
     }
     responses: {
@@ -4205,14 +3917,8 @@ export interface operations {
       }
     }
   }
-  /** @description Registers new participants added to a Call. */
+  /** @description Registers new participants added to a Call. Requires scope: `calls:write` */
   calls_participants_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `calls:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4244,14 +3950,8 @@ export interface operations {
       }
     }
   }
-  /** @description Registers participants removed from a Call. */
+  /** @description Registers participants removed from a Call. Requires scope: `calls:write` */
   calls_participants_remove: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `calls:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4283,14 +3983,8 @@ export interface operations {
       }
     }
   }
-  /** @description Updates information about a Call. */
+  /** @description Updates information about a Call. Requires scope: `calls:write` */
   calls_update: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `calls:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4326,14 +4020,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deletes a message. */
+  /** @description Deletes a message. Requires scope: `chat:write` */
   chat_delete: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4392,14 +4080,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deletes a pending scheduled message from the queue. */
+  /** @description Deletes a pending scheduled message from the queue. Requires scope: `chat:write` */
   chat_deleteScheduledMessage: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4458,12 +4140,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve a permalink URL for a specific extant message */
+  /** @description Retrieve a permalink URL for a specific extant message Requires scope: `none` */
   chat_getPermalink: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
         /** @description The ID of the conversation or channel containing the message */
         channel: string
         /** @description A message's `ts` value, uniquely identifying it within a channel */
@@ -4516,14 +4196,8 @@ export interface operations {
       }
     }
   }
-  /** @description Share a me message into a channel. */
+  /** @description Share a me message into a channel. Requires scope: `chat:write` */
   chat_meMessage: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4583,14 +4257,8 @@ export interface operations {
       }
     }
   }
-  /** @description Sends an ephemeral message to a user in a channel. */
+  /** @description Sends an ephemeral message to a user in a channel. Requires scope: `chat:write` */
   chat_postEphemeral: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4670,14 +4338,8 @@ export interface operations {
       }
     }
   }
-  /** @description Sends a message to a channel. */
+  /** @description Sends a message to a channel. Requires scope: `chat:write` */
   chat_postMessage: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4756,14 +4418,8 @@ export interface operations {
       }
     }
   }
-  /** @description Schedules a message to be sent to a channel. */
+  /** @description Schedules a message to be sent to a channel. Requires scope: `chat:write` */
   chat_scheduleMessage: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -4864,7 +4520,7 @@ export interface operations {
       }
     }
   }
-  /** @description Returns a list of scheduled messages. */
+  /** @description Returns a list of scheduled messages. Requires scope: `none` */
   chat_scheduledMessages_list: {
     parameters: {
       query?: {
@@ -4878,10 +4534,6 @@ export interface operations {
         limit?: number
         /** @description For pagination purposes, this is the `cursor` value returned from a previous call to `chat.scheduledmessages.list` indicating where you want to start this call from. */
         cursor?: string
-      }
-      header?: {
-        /** @description Authentication token. Requires scope: `none` */
-        token?: string
       }
     }
     responses: {
@@ -4938,14 +4590,8 @@ export interface operations {
       }
     }
   }
-  /** @description Provide custom unfurl behavior for user-posted URLs */
+  /** @description Provide custom unfurl behavior for user-posted URLs Requires scope: `links:write` */
   chat_unfurl: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `links:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5010,14 +4656,8 @@ export interface operations {
       }
     }
   }
-  /** @description Updates a message. */
+  /** @description Updates a message. Requires scope: `chat:write` */
   chat_update: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `chat:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5097,14 +4737,8 @@ export interface operations {
       }
     }
   }
-  /** @description Archives a conversation. */
+  /** @description Archives a conversation. Requires scope: `conversations:write` */
   conversations_archive: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5164,14 +4798,8 @@ export interface operations {
       }
     }
   }
-  /** @description Closes a direct message or multi-person direct message. */
+  /** @description Closes a direct message or multi-person direct message. Requires scope: `conversations:write` */
   conversations_close: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5225,14 +4853,8 @@ export interface operations {
       }
     }
   }
-  /** @description Initiates a public or private channel-based conversation */
+  /** @description Initiates a public or private channel-based conversation Requires scope: `conversations:write` */
   conversations_create: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5296,12 +4918,10 @@ export interface operations {
       }
     }
   }
-  /** @description Fetches a conversation's history of messages and events. */
+  /** @description Fetches a conversation's history of messages and events. Requires scope: `conversations:history` */
   conversations_history: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:history` */
-        token?: string
         /** @description Conversation ID to fetch history for. */
         channel?: string
         /** @description End of time range of messages to include in results. */
@@ -5363,12 +4983,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve information about a conversation. */
+  /** @description Retrieve information about a conversation. Requires scope: `conversations:read` */
   conversations_info: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:read` */
-        token?: string
         /** @description Conversation ID to learn more about */
         channel?: string
         /** @description Set this to `true` to receive the locale for this conversation. Defaults to `false` */
@@ -5419,14 +5037,8 @@ export interface operations {
       }
     }
   }
-  /** @description Invites users to a channel. */
+  /** @description Invites users to a channel. Requires scope: `conversations:write` */
   conversations_invite: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5532,14 +5144,8 @@ export interface operations {
       }
     }
   }
-  /** @description Joins an existing conversation. */
+  /** @description Joins an existing conversation. Requires scope: `channels:write` */
   conversations_join: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `channels:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5602,14 +5208,8 @@ export interface operations {
       }
     }
   }
-  /** @description Removes a user from a conversation. */
+  /** @description Removes a user from a conversation. Requires scope: `conversations:write` */
   conversations_kick: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5668,14 +5268,8 @@ export interface operations {
       }
     }
   }
-  /** @description Leaves a conversation. */
+  /** @description Leaves a conversation. Requires scope: `conversations:write` */
   conversations_leave: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5736,12 +5330,10 @@ export interface operations {
       }
     }
   }
-  /** @description Lists all channels in a Slack team. */
+  /** @description Lists all channels in a Slack team. Requires scope: `conversations:read` */
   conversations_list: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:read` */
-        token?: string
         /** @description Set to `true` to exclude archived channels from the list */
         exclude_archived?: boolean
         /** @description Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
@@ -5795,14 +5387,8 @@ export interface operations {
       }
     }
   }
-  /** @description Sets the read cursor in a channel. */
+  /** @description Sets the read cursor in a channel. Requires scope: `conversations:write` */
   conversations_mark: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5857,12 +5443,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve members of a conversation. */
+  /** @description Retrieve members of a conversation. Requires scope: `conversations:read` */
   conversations_members: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:read` */
-        token?: string
         /** @description ID of the conversation to retrieve members for */
         channel?: string
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. */
@@ -5916,14 +5500,8 @@ export interface operations {
       }
     }
   }
-  /** @description Opens or resumes a direct message or multi-person direct message. */
+  /** @description Opens or resumes a direct message or multi-person direct message. Requires scope: `conversations:write` */
   conversations_open: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -5985,14 +5563,8 @@ export interface operations {
       }
     }
   }
-  /** @description Renames a conversation. */
+  /** @description Renames a conversation. Requires scope: `conversations:write` */
   conversations_rename: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6054,12 +5626,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve a thread of messages posted to a conversation */
+  /** @description Retrieve a thread of messages posted to a conversation Requires scope: `conversations:history` */
   conversations_replies: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:history` */
-        token?: string
         /** @description Conversation ID to fetch thread from. */
         channel?: string
         /** @description Unique identifier of a thread's parent message. `ts` must be the timestamp of an existing message with 0 or more replies. If there are no replies then just the single message referenced by `ts` will return - it is just an ordinary, unthreaded message. */
@@ -6120,14 +5690,8 @@ export interface operations {
       }
     }
   }
-  /** @description Sets the purpose for a conversation. */
+  /** @description Sets the purpose for a conversation. Requires scope: `conversations:write` */
   conversations_setPurpose: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6185,14 +5749,8 @@ export interface operations {
       }
     }
   }
-  /** @description Sets the topic for a conversation. */
+  /** @description Sets the topic for a conversation. Requires scope: `conversations:write` */
   conversations_setTopic: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6250,14 +5808,8 @@ export interface operations {
       }
     }
   }
-  /** @description Reverses conversation archival. */
+  /** @description Reverses conversation archival. Requires scope: `conversations:write` */
   conversations_unarchive: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `conversations:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6314,7 +5866,7 @@ export interface operations {
       }
     }
   }
-  /** @description Open a dialog with a user */
+  /** @description Open a dialog with a user Requires scope: `none` */
   dialog_open: {
     parameters: {
       query: {
@@ -6322,10 +5874,6 @@ export interface operations {
         dialog: string
         /** @description Exchange a trigger to post to the user. */
         trigger_id: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
       }
     }
     responses: {
@@ -6378,14 +5926,8 @@ export interface operations {
       }
     }
   }
-  /** @description Ends the current user's Do Not Disturb session immediately. */
+  /** @description Ends the current user's Do Not Disturb session immediately. Requires scope: `dnd:write` */
   dnd_endDnd: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `dnd:write` */
-        token: string
-      }
-    }
     responses: {
       /** @description Typical success response */
       200: {
@@ -6429,14 +5971,8 @@ export interface operations {
       }
     }
   }
-  /** @description Ends the current user's snooze mode immediately. */
+  /** @description Ends the current user's snooze mode immediately. Requires scope: `dnd:write` */
   dnd_endSnooze: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `dnd:write` */
-        token: string
-      }
-    }
     responses: {
       /** @description Typical success response */
       200: {
@@ -6485,12 +6021,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieves a user's current Do Not Disturb status. */
+  /** @description Retrieves a user's current Do Not Disturb status. Requires scope: `dnd:read` */
   dnd_info: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `dnd:read` */
-        token?: string
         /** @description User to fetch status for (defaults to current user) */
         user?: string
       }
@@ -6603,12 +6137,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. */
+  /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. Requires scope: `dnd:read` */
   dnd_teamInfo: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `dnd:read` */
-        token?: string
         /** @description Comma-separated list of users to fetch Do Not Disturb status for */
         users?: string
       }
@@ -6634,14 +6166,8 @@ export interface operations {
       }
     }
   }
-  /** @description Lists custom emoji for a team. */
+  /** @description Lists custom emoji for a team. Requires scope: `emoji:read` */
   emoji_list: {
-    parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `emoji:read` */
-        token: string
-      }
-    }
     responses: {
       /** @description Typical success response */
       200: {
@@ -6663,14 +6189,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deletes an existing comment on a file. */
+  /** @description Deletes an existing comment on a file. Requires scope: `files:write:user` */
   files_comments_delete: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `files:write:user` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6720,14 +6240,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deletes a file. */
+  /** @description Deletes a file. Requires scope: `files:write:user` */
   files_delete: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `files:write:user` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -6777,12 +6291,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets information about a file. */
+  /** @description Gets information about a file. Requires scope: `files:read` */
   files_info: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `files:read` */
-        token?: string
         /** @description Specify a file by providing its ID. */
         file?: string
         count?: string
@@ -6840,12 +6352,10 @@ export interface operations {
       }
     }
   }
-  /** @description List for a team, in a channel, or from a user with applied filters. */
+  /** @description List for a team, in a channel, or from a user with applied filters. Requires scope: `files:read` */
   files_list: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `files:read` */
-        token?: string
         /** @description Filter files created by a single user. */
         user?: string
         /** @description Filter files appearing in a specific channel, indicated by its ID. */
@@ -6948,12 +6458,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve information about a remote file added to Slack */
+  /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
   files_remote_info: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `remote_files:read` */
-        token?: string
         /** @description Specify a file by providing its ID. */
         file?: string
         /** @description Creator defined GUID for the file. */
@@ -6981,12 +6489,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve information about a remote file added to Slack */
+  /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
   files_remote_list: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `remote_files:read` */
-        token?: string
         /** @description Filter files appearing in a specific channel, indicated by its ID. */
         channel?: string
         /** @description Filter files created after this timestamp (inclusive). */
@@ -7055,12 +6561,10 @@ export interface operations {
       }
     }
   }
-  /** @description Share a remote file into a channel. */
+  /** @description Share a remote file into a channel. Requires scope: `remote_files:share` */
   files_remote_share: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `remote_files:share` */
-        token?: string
         /** @description Specify a file registered with Slack by providing its ID. Either this field or `external_id` or both are required. */
         file?: string
         /** @description The globally unique identifier (GUID) for the file, as set by the app registering the file with Slack.  Either this field or `file` or both are required. */
@@ -7135,14 +6639,8 @@ export interface operations {
       }
     }
   }
-  /** @description Revokes public/external sharing access for a file */
+  /** @description Revokes public/external sharing access for a file Requires scope: `files:write:user` */
   files_revokePublicURL: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `files:write:user` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7196,14 +6694,8 @@ export interface operations {
       }
     }
   }
-  /** @description Enables a file for public/external sharing. */
+  /** @description Enables a file for public/external sharing. Requires scope: `files:write:user` */
   files_sharedPublicURL: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `files:write:user` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7328,12 +6820,10 @@ export interface operations {
       }
     }
   }
-  /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs */
+  /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs Requires scope: `tokens.basic` */
   migration_exchange: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `tokens.basic` */
-        token: string
         /** @description A comma-separated list of user ids, up to 400 per request */
         users: string
         /** @description Specify team_id starts with `T` in case of Org Token */
@@ -7504,14 +6994,8 @@ export interface operations {
       }
     }
   }
-  /** @description Pins an item to a channel. */
+  /** @description Pins an item to a channel. Requires scope: `pins:write` */
   pins_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `pins:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7568,12 +7052,10 @@ export interface operations {
       }
     }
   }
-  /** @description Lists items pinned to a channel. */
+  /** @description Lists items pinned to a channel. Requires scope: `pins:read` */
   pins_list: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `pins:read` */
-        token: string
         /** @description Channel to get pinned items for. */
         channel: string
       }
@@ -7615,14 +7097,8 @@ export interface operations {
       }
     }
   }
-  /** @description Un-pins an item from a channel. */
+  /** @description Un-pins an item from a channel. Requires scope: `pins:write` */
   pins_remove: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `pins:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7678,14 +7154,8 @@ export interface operations {
       }
     }
   }
-  /** @description Adds a reaction to an item. */
+  /** @description Adds a reaction to an item. Requires scope: `reactions:write` */
   reactions_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `reactions:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7743,12 +7213,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets reactions for an item. */
+  /** @description Gets reactions for an item. Requires scope: `reactions:read` */
   reactions_get: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `reactions:read` */
-        token: string
+      query?: {
         /** @description Channel where the message to get reactions for was posted. */
         channel?: string
         /** @description File to get reactions for. */
@@ -7801,12 +7269,10 @@ export interface operations {
       }
     }
   }
-  /** @description Lists reactions made by a user. */
+  /** @description Lists reactions made by a user. Requires scope: `reactions:read` */
   reactions_list: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `reactions:read` */
-        token: string
+      query?: {
         /** @description Show reactions made by this user. Defaults to the authed user. */
         user?: string
         /** @description If true always return the complete reaction list. */
@@ -7862,14 +7328,8 @@ export interface operations {
       }
     }
   }
-  /** @description Removes a reaction from an item. */
+  /** @description Removes a reaction from an item. Requires scope: `reactions:write` */
   reactions_remove: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `reactions:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -7932,14 +7392,8 @@ export interface operations {
       }
     }
   }
-  /** @description Creates a reminder. */
+  /** @description Creates a reminder. Requires scope: `reminders:write` */
   reminders_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `reminders:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8001,14 +7455,8 @@ export interface operations {
       }
     }
   }
-  /** @description Marks a reminder as complete. */
+  /** @description Marks a reminder as complete. Requires scope: `reminders:write` */
   reminders_complete: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `reminders:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8062,14 +7510,8 @@ export interface operations {
       }
     }
   }
-  /** @description Deletes a reminder. */
+  /** @description Deletes a reminder. Requires scope: `reminders:write` */
   reminders_delete: {
-    parameters: {
-      header?: {
-        /** @description Authentication token. Requires scope: `reminders:write` */
-        token?: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8121,12 +7563,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets information about a reminder. */
+  /** @description Gets information about a reminder. Requires scope: `reminders:read` */
   reminders_info: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `reminders:read` */
-        token?: string
         /** @description The ID of the reminder */
         reminder?: string
       }
@@ -8175,14 +7615,8 @@ export interface operations {
       }
     }
   }
-  /** @description Lists all reminders created by or for a given user. */
+  /** @description Lists all reminders created by or for a given user. Requires scope: `reminders:read` */
   reminders_list: {
-    parameters: {
-      query?: {
-        /** @description Authentication token. Requires scope: `reminders:read` */
-        token?: string
-      }
-    }
     responses: {
       /** @description Typical success response */
       200: {
@@ -8226,12 +7660,10 @@ export interface operations {
       }
     }
   }
-  /** @description Starts a Real Time Messaging session. */
+  /** @description Starts a Real Time Messaging session. Requires scope: `rtm:stream` */
   rtm_connect: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `rtm:stream` */
-        token: string
+      query?: {
         /** @description Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/docs/presence-and-status#batching). */
         batch_presence_aware?: boolean
         /** @description Only deliver presence events when requested by subscription. See [presence subscriptions](/docs/presence-and-status#subscriptions). */
@@ -8289,12 +7721,10 @@ export interface operations {
       }
     }
   }
-  /** @description Searches for messages matching a query. */
+  /** @description Searches for messages matching a query. Requires scope: `search:read` */
   search_messages: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `search:read` */
-        token: string
         /** @description Pass the number of results you want per "page". Maximum of `100`. */
         count?: number
         /** @description Pass a value of `true` to enable query highlight markers (see below). */
@@ -8329,14 +7759,8 @@ export interface operations {
       }
     }
   }
-  /** @description Adds a star to an item. */
+  /** @description Adds a star to an item. Requires scope: `stars:write` */
   stars_add: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `stars:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8399,12 +7823,10 @@ export interface operations {
       }
     }
   }
-  /** @description Lists stars for a user. */
+  /** @description Lists stars for a user. Requires scope: `stars:read` */
   stars_list: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `stars:read` */
-        token?: string
         count?: string
         page?: string
         /** @description Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See [pagination](/docs/pagination) for more details. */
@@ -8457,14 +7879,8 @@ export interface operations {
       }
     }
   }
-  /** @description Removes a star from an item. */
+  /** @description Removes a star from an item. Requires scope: `stars:write` */
   stars_remove: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `stars:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8527,12 +7943,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets the access logs for the current team. */
+  /** @description Gets the access logs for the current team. Requires scope: `admin` */
   team_accessLogs: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin` */
-        token: string
+      query?: {
         /** @description End of time range of logs to include in results (inclusive). */
         before?: string
         count?: string
@@ -8596,12 +8010,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets billable users information for the current team. */
+  /** @description Gets billable users information for the current team. Requires scope: `admin` */
   team_billableInfo: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin` */
-        token: string
+      query?: {
         /** @description A user to retrieve the billable information for. Defaults to all users. */
         user?: string
       }
@@ -8627,12 +8039,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets information about the current team. */
+  /** @description Gets information about the current team. Requires scope: `team:read` */
   team_info: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `team:read` */
-        token: string
+      query?: {
         /** @description Team to get info on, if omitted, will return information about the current team. Will only return team that the authenticated token is allowed to see through external shared channels */
         team?: string
       }
@@ -8678,12 +8088,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets the integration logs for the current team. */
+  /** @description Gets the integration logs for the current team. Requires scope: `admin` */
   team_integrationLogs: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `admin` */
-        token: string
+      query?: {
         /** @description Filter logs to this Slack app. Defaults to all logs. */
         app_id?: string
         /** @description Filter logs with this change type. Defaults to all logs. */
@@ -8752,12 +8160,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieve a team's profile. */
+  /** @description Retrieve a team's profile. Requires scope: `users.profile:read` */
   team_profile_get: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `users.profile:read` */
-        token: string
+      query?: {
         /** @description Filter by visibility. */
         visibility?: string
       }
@@ -8804,14 +8210,8 @@ export interface operations {
       }
     }
   }
-  /** @description Create a User Group */
+  /** @description Create a User Group Requires scope: `usergroups:write` */
   usergroups_create: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `usergroups:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8873,14 +8273,8 @@ export interface operations {
       }
     }
   }
-  /** @description Disable an existing User Group */
+  /** @description Disable an existing User Group Requires scope: `usergroups:write` */
   usergroups_disable: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `usergroups:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -8936,14 +8330,8 @@ export interface operations {
       }
     }
   }
-  /** @description Enable a User Group */
+  /** @description Enable a User Group Requires scope: `usergroups:write` */
   usergroups_enable: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `usergroups:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -9000,14 +8388,12 @@ export interface operations {
       }
     }
   }
-  /** @description List all User Groups for a team */
+  /** @description List all User Groups for a team Requires scope: `usergroups:read` */
   usergroups_list: {
     parameters: {
-      query: {
+      query?: {
         /** @description Include the list of users for each User Group. */
         include_users?: boolean
-        /** @description Authentication token. Requires scope: `usergroups:read` */
-        token: string
         /** @description Include the number of users in each User Group. */
         include_count?: boolean
         /** @description Include disabled User Groups. */
@@ -9060,14 +8446,8 @@ export interface operations {
       }
     }
   }
-  /** @description Update an existing User Group */
+  /** @description Update an existing User Group Requires scope: `usergroups:write` */
   usergroups_update: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `usergroups:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -9133,12 +8513,10 @@ export interface operations {
       }
     }
   }
-  /** @description List all users in a User Group */
+  /** @description List all users in a User Group Requires scope: `usergroups:read` */
   usergroups_users_list: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `usergroups:read` */
-        token: string
         /** @description Allow results that involve disabled User Groups. */
         include_disabled?: boolean
         /** @description The encoded ID of the User Group to update. */
@@ -9191,14 +8569,8 @@ export interface operations {
       }
     }
   }
-  /** @description Update the list of users for a User Group */
+  /** @description Update the list of users for a User Group Requires scope: `usergroups:write` */
   usergroups_users_update: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `usergroups:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -9258,12 +8630,10 @@ export interface operations {
       }
     }
   }
-  /** @description List conversations the calling user may access. */
+  /** @description List conversations the calling user may access. Requires scope: `conversations:read` */
   users_conversations: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `conversations:read` */
-        token?: string
         /** @description Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership. */
         user?: string
         /** @description Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
@@ -9378,12 +8748,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets user presence information. */
+  /** @description Gets user presence information. Requires scope: `users:read` */
   users_getPresence: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `users:read` */
-        token: string
+      query?: {
         /** @description User to get presence info on. Defaults to the authed user. */
         user?: string
       }
@@ -9416,14 +8784,8 @@ export interface operations {
       }
     }
   }
-  /** @description Get a user's identity. */
+  /** @description Get a user's identity. Requires scope: `identity.basic` */
   users_identity: {
-    parameters: {
-      query?: {
-        /** @description Authentication token. Requires scope: `identity.basic` */
-        token?: string
-      }
-    }
     responses: {
       /** @description You will receive at a minimum the following information: */
       200: {
@@ -9464,12 +8826,10 @@ export interface operations {
       }
     }
   }
-  /** @description Gets information about a user. */
+  /** @description Gets information about a user. Requires scope: `users:read` */
   users_info: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `users:read` */
-        token: string
+      query?: {
         /** @description Set this to `true` to receive the locale for this user. Defaults to `false` */
         include_locale?: boolean
         /** @description User to get info on */
@@ -9516,12 +8876,10 @@ export interface operations {
       }
     }
   }
-  /** @description Lists all users in a Slack team. */
+  /** @description Lists all users in a Slack team. Requires scope: `users:read` */
   users_list: {
     parameters: {
       query?: {
-        /** @description Authentication token. Requires scope: `users:read` */
-        token?: string
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. Providing no `limit` value will result in Slack attempting to deliver you the entire result set. If the collection is too large you may experience `limit_required` or HTTP 500 errors. */
         limit?: number
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
@@ -9574,12 +8932,10 @@ export interface operations {
       }
     }
   }
-  /** @description Find a user with an email address. */
+  /** @description Find a user with an email address. Requires scope: `users:read.email` */
   users_lookupByEmail: {
     parameters: {
       query: {
-        /** @description Authentication token. Requires scope: `users:read.email` */
-        token: string
         /** @description An email address belonging to a user in the workspace */
         email: string
       }
@@ -9627,12 +8983,10 @@ export interface operations {
       }
     }
   }
-  /** @description Retrieves a user's profile information. */
+  /** @description Retrieves a user's profile information. Requires scope: `users.profile:read` */
   users_profile_get: {
     parameters: {
-      query: {
-        /** @description Authentication token. Requires scope: `users.profile:read` */
-        token: string
+      query?: {
         /** @description Include labels for each ID in custom profile fields */
         include_labels?: boolean
         /** @description User to retrieve profile info for */
@@ -9683,14 +9037,8 @@ export interface operations {
       }
     }
   }
-  /** @description Set the profile information for a user. */
+  /** @description Set the profile information for a user. Requires scope: `users.profile:write` */
   users_profile_set: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `users.profile:write` */
-        token: string
-      }
-    }
     requestBody?: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -9757,14 +9105,8 @@ export interface operations {
       }
     }
   }
-  /** @description Marked a user as active. Deprecated and non-functional. */
+  /** @description Marked a user as active. Deprecated and non-functional. Requires scope: `users:write` */
   users_setActive: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `users:write` */
-        token: string
-      }
-    }
     responses: {
       /** @description Typical success response */
       200: {
@@ -9895,14 +9237,8 @@ export interface operations {
       }
     }
   }
-  /** @description Manually sets user presence. */
+  /** @description Manually sets user presence. Requires scope: `users:write` */
   users_setPresence: {
-    parameters: {
-      header: {
-        /** @description Authentication token. Requires scope: `users:write` */
-        token: string
-      }
-    }
     requestBody: {
       content: {
         'application/x-www-form-urlencoded': {
@@ -9953,7 +9289,7 @@ export interface operations {
       }
     }
   }
-  /** @description Open a view for a user. */
+  /** @description Open a view for a user. Requires scope: `none` */
   views_open: {
     parameters: {
       query: {
@@ -9961,10 +9297,6 @@ export interface operations {
         trigger_id: string
         /** @description A [view payload](/reference/surfaces/views). This must be a JSON-encoded string. */
         view: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
       }
     }
     responses: {
@@ -9988,7 +9320,7 @@ export interface operations {
       }
     }
   }
-  /** @description Publish a static view for a User. */
+  /** @description Publish a static view for a User. Requires scope: `none` */
   views_publish: {
     parameters: {
       query: {
@@ -9998,10 +9330,6 @@ export interface operations {
         view: string
         /** @description A string that represents view state to protect against possible race conditions. */
         hash?: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
       }
     }
     responses: {
@@ -10025,7 +9353,7 @@ export interface operations {
       }
     }
   }
-  /** @description Push a view onto the stack of a root view. */
+  /** @description Push a view onto the stack of a root view. Requires scope: `none` */
   views_push: {
     parameters: {
       query: {
@@ -10033,10 +9361,6 @@ export interface operations {
         trigger_id: string
         /** @description A [view payload](/reference/surfaces/views). This must be a JSON-encoded string. */
         view: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
       }
     }
     responses: {
@@ -10060,7 +9384,7 @@ export interface operations {
       }
     }
   }
-  /** @description Update an existing view. */
+  /** @description Update an existing view. Requires scope: `none` */
   views_update: {
     parameters: {
       query?: {
@@ -10072,10 +9396,6 @@ export interface operations {
         view?: string
         /** @description A string that represents view state to protect against possible race conditions. */
         hash?: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `none` */
-        token: string
       }
     }
     responses: {
@@ -10099,7 +9419,7 @@ export interface operations {
       }
     }
   }
-  /** @description Indicate that an app's step in a workflow completed execution. */
+  /** @description Indicate that an app's step in a workflow completed execution. Requires scope: `workflow.steps:execute` */
   workflows_stepCompleted: {
     parameters: {
       query: {
@@ -10108,10 +9428,6 @@ export interface operations {
         /** @description Key-value object of outputs from your step. Keys of this object reflect the configured `key` properties of your [`outputs`](/reference/workflows/workflow_step#output) array from your `workflow_step` object. */
         outputs?: string
       }
-      header: {
-        /** @description Authentication token. Requires scope: `workflow.steps:execute` */
-        token: string
-      }
     }
     responses: {
       /** @description Typical success response */
@@ -10134,7 +9450,7 @@ export interface operations {
       }
     }
   }
-  /** @description Indicate that an app's step in a workflow failed to execute. */
+  /** @description Indicate that an app's step in a workflow failed to execute. Requires scope: `workflow.steps:execute` */
   workflows_stepFailed: {
     parameters: {
       query: {
@@ -10143,10 +9459,6 @@ export interface operations {
         /** @description A JSON-based object with a `message` property that should contain a human readable error message. */
         error: string
       }
-      header: {
-        /** @description Authentication token. Requires scope: `workflow.steps:execute` */
-        token: string
-      }
     }
     responses: {
       /** @description Typical success response */
@@ -10169,7 +9481,7 @@ export interface operations {
       }
     }
   }
-  /** @description Update the configuration for a workflow extension step. */
+  /** @description Update the configuration for a workflow extension step. Requires scope: `workflow.steps:execute` */
   workflows_updateStep: {
     parameters: {
       query: {
@@ -10183,10 +9495,6 @@ export interface operations {
         step_name?: string
         /** @description An optional field that can be used to override app image that is shown in the Workflow Builder. */
         step_image_url?: string
-      }
-      header: {
-        /** @description Authentication token. Requires scope: `workflow.steps:execute` */
-        token: string
       }
     }
     responses: {

@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "module": "./index.ts",
   "scripts": {
-    "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.oas.json",
+    "download": "run-s download:orig download:process",
+    "download:orig": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
+    "download:process": "npx tsx slack.openapi.ts | prettier --parser json > ./slack.oas.json",
     "generate": "openapi-typescript ./slack.oas.json --output ./slack.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {
     "@opensdks/core": "workspace:*",
-    "openapi-typescript": "6.7.1"
+    "openapi-typescript": "6.7.1",
+    "prettier": "^3.1.0"
   }
 }

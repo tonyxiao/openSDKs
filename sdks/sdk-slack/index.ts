@@ -1,4 +1,5 @@
 import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
   external,
@@ -19,7 +20,12 @@ export interface SlackTypes {
   webhooks: webhooks
 }
 
-export type SlackSDKTypes = SDKTypes<SlackTypes>
+export type SlackSDKTypes = SDKTypes<
+  SlackTypes,
+  Omit<ClientOptions, 'headers'> & {
+    headers: {token: string; [k: string]: string}
+  }
+>
 
 export const slackSdkDef = {
   types: {} as SlackSDKTypes,
@@ -27,7 +33,3 @@ export const slackSdkDef = {
 } satisfies SdkDefinition<SlackSDKTypes>
 
 export default slackSdkDef
-
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
-
-// codegen:end
