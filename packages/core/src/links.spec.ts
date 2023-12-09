@@ -1,5 +1,13 @@
+import axios from 'axios'
 import type {Operation} from './links'
-import {applyLinks, fetchLink, logLink, retryLink, throwLink} from './links'
+import {
+  applyLinks,
+  axiosLink,
+  fetchLink,
+  logLink,
+  retryLink,
+  throwLink,
+} from './links'
 
 const op: Operation = {
   url: new URL('https://httpbin.org/anything'),
@@ -63,12 +71,15 @@ describe('retryLink', () => {
   })
 })
 
-describe('fetchLink', () => {
+describe.each([
+  ['fetch', fetchLink()],
+  ['axios', axiosLink({axios})],
+])('%s links', (_, link) => {
   /* eslint-disable @typescript-eslint/no-unsafe-member-access */
   /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
   test('GET anything', async () => {
-    const res = await applyLinks(op, [fetchLink()])
+    const res = await applyLinks(op, [link])
     expect(res.status).toEqual(200)
     const data = await res.json()
     expect(data).toMatchObject({url: op.url.href})
@@ -78,20 +89,25 @@ describe('fetchLink', () => {
   test('POST json body', async () => {
     const res = await applyLinks(
       {...op, method: 'POST', body: {hello: 'world'}},
-      [fetchLink()],
+      [link],
     )
     const data = await res.json()
     expect(data.json).toEqual({hello: 'world'})
-    expect(data.headers['Content-Type']).toEqual('application/json')
+    expect(data.headers['Content-Type']).toContain('application/json')
   })
 
   test('POST text body', async () => {
-    const res = await applyLinks({...op, method: 'POST', body: 'hello world'}, [
-      fetchLink(),
-    ])
+    const res = await applyLinks(
+      {
+        ...op,
+        method: 'POST',
+        body: 'hello world',
+      },
+      [link],
+    )
     const data = await res.json()
     expect(data.data).toEqual('hello world')
-    expect(data.headers['Content-Type']).toEqual('text/plain;charset=UTF-8')
+    expect(data.headers['Content-Type']).toContain('text/plain')
   })
 
   /* eslint-enable @typescript-eslint/no-unsafe-member-access */

@@ -31,25 +31,54 @@ export function applyLinks(op: Operation, links: Link[]): Promise<Response> {
 
 // MARK: Built-in links
 
+function getHeadersAndBody(
+  op: Operation,
+): [{'content-type'?: string}, RequestInit['body']] {
+  if (op.body && typeof op.body === 'object') {
+    return [{'content-type': 'application/json'}, JSON.stringify(op.body)]
+  }
+  if (typeof op.body === 'string') {
+    return [{'content-type': 'text/plain'}, op.body]
+  }
+  return [{}, op.body as RequestInit['body']]
+}
+
 export function fetchLink({
   fetch = globalThis.fetch.bind(globalThis),
 }: {
   fetch?: typeof globalThis.fetch
 } = {}): Link {
   return async (op) => {
-    const [headers, body] = (() => {
-      if (op.body && typeof op.body === 'object') {
-        return [{'Content-Type': 'application/json'}, JSON.stringify(op.body)]
-      }
-      return [undefined, op.body as RequestInit['body']]
-    })()
-
+    const [headers, body] = getHeadersAndBody(op)
     const res = await fetch(op.url, {
       method: op.method,
       headers: {...headers, ...op.headers},
       body,
     })
     return res
+  }
+}
+
+export function axiosLink({
+  axios,
+}: {
+  axios: typeof import('axios').default
+}): Link {
+  return async (op) => {
+    const [headers, body] = getHeadersAndBody(op)
+    const res = await axios.request({
+      url: op.url.href,
+      method: op.method,
+      headers: {...headers, ...op.headers},
+      data: body,
+      responseType: 'stream',
+    })
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    return new Response(res.data, {
+      headers: res.headers as HeadersInit,
+      status: res.status,
+      statusText: res.statusText,
+    })
   }
 }
 
@@ -65,6 +94,8 @@ export function logLink({
     return res
   }
 }
+
+// Retry count & throw count should be done on a per-operation basis
 
 export function throwLink({maxCount = 1}: {maxCount?: number} = {}): Link {
   let throwCount = 0
