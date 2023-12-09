@@ -535,7 +535,10 @@ export function outputOpenApi() {
           {
             get: jsonOperation(`get${o}`, {
               path: z.object({id: z.string()}),
-              response: entitySchemaByName[o],
+              response: z.object({
+                [o]: entitySchemaByName[o],
+                time: z.string().datetime(),
+              }),
             }),
           },
         ]),

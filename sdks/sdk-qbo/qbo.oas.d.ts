@@ -502,7 +502,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Account"];
+          "application/json": {
+            Account: components["schemas"]["Account"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -521,7 +525,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Purchase"];
+          "application/json": {
+            Purchase: components["schemas"]["Purchase"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -540,7 +548,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["JournalEntry"];
+          "application/json": {
+            JournalEntry: components["schemas"]["JournalEntry"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -559,7 +571,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Invoice"];
+          "application/json": {
+            Invoice: components["schemas"]["Invoice"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -578,7 +594,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Payment"];
+          "application/json": {
+            Payment: components["schemas"]["Payment"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -597,7 +617,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            Bill?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -616,7 +640,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            BillPayment?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -635,7 +663,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            CreditMemo?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -654,7 +686,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Deposit"];
+          "application/json": {
+            Deposit: components["schemas"]["Deposit"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -673,7 +709,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            Transfer?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -692,7 +732,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["Vendor"];
+          "application/json": {
+            Vendor: components["schemas"]["Vendor"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -711,7 +755,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            Customer?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -730,7 +778,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": unknown;
+          "application/json": {
+            Item?: unknown;
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };
@@ -749,7 +801,11 @@ export interface operations {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["CompanyInfo"];
+          "application/json": {
+            CompanyInfo: components["schemas"]["CompanyInfo"];
+            /** Format: date-time */
+            time: string;
+          };
         };
       };
     };

@@ -53,7 +53,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Account"
+                  "type": "object",
+                  "properties": {
+                    "Account": {
+                      "$ref": "#/components/schemas/Account"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Account", "time"]
                 }
               }
             }
@@ -84,7 +94,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Purchase"
+                  "type": "object",
+                  "properties": {
+                    "Purchase": {
+                      "$ref": "#/components/schemas/Purchase"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Purchase", "time"]
                 }
               }
             }
@@ -115,7 +135,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JournalEntry"
+                  "type": "object",
+                  "properties": {
+                    "JournalEntry": {
+                      "$ref": "#/components/schemas/JournalEntry"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["JournalEntry", "time"]
                 }
               }
             }
@@ -146,7 +176,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Invoice"
+                  "type": "object",
+                  "properties": {
+                    "Invoice": {
+                      "$ref": "#/components/schemas/Invoice"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Invoice", "time"]
                 }
               }
             }
@@ -177,7 +217,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "type": "object",
+                  "properties": {
+                    "Payment": {
+                      "$ref": "#/components/schemas/Payment"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Payment", "time"]
                 }
               }
             }
@@ -207,7 +257,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Bill": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -236,7 +296,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BillPayment": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -265,7 +335,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CreditMemo": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -295,7 +375,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Deposit"
+                  "type": "object",
+                  "properties": {
+                    "Deposit": {
+                      "$ref": "#/components/schemas/Deposit"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Deposit", "time"]
                 }
               }
             }
@@ -325,7 +415,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Transfer": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -355,7 +455,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vendor"
+                  "type": "object",
+                  "properties": {
+                    "Vendor": {
+                      "$ref": "#/components/schemas/Vendor"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["Vendor", "time"]
                 }
               }
             }
@@ -385,7 +495,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Customer": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -414,7 +534,17 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Item": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
               }
             }
           }
@@ -444,7 +574,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompanyInfo"
+                  "type": "object",
+                  "properties": {
+                    "CompanyInfo": {
+                      "$ref": "#/components/schemas/CompanyInfo"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["CompanyInfo", "time"]
                 }
               }
             }
