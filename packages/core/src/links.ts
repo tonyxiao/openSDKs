@@ -31,6 +31,50 @@ export function applyLinks(op: Operation, links: Link[]): Promise<Response> {
 
 // MARK: Built-in links
 
+export function logLink({
+  log = console.log,
+}: {log?: typeof console.log} = {}): Link {
+  let count = 0
+  return async (op, next) => {
+    const i = ++count
+    log(`[#${i} Request]`, op.method, op.url.href)
+    const res = await next(op)
+    log(`[#${i} Response]`, res.statusText, res.status)
+    return res
+  }
+}
+
+// Retry count & throw count should be done on a per-operation basis
+
+export function throwLink({maxCount = 1}: {maxCount?: number} = {}): Link {
+  let throwCount = 0
+  return async (op, next) => {
+    if (throwCount < maxCount) {
+      throwCount++
+      throw new Error(`Throwing #${throwCount} for ${op.method} ${op.url}`)
+    }
+    return next(op)
+  }
+}
+
+export function retryLink({maxCount = 1}: {maxCount?: number} = {}): Link {
+  let retryCount = 0
+  return async (op, next) => {
+    while (true) {
+      try {
+        return await next(op)
+      } catch (err) {
+        if (retryCount >= maxCount) {
+          throw err
+        }
+        retryCount++
+      }
+    }
+  }
+}
+
+// MARK: Request links
+
 function getHeadersAndBody(
   op: Pick<Operation, 'body'>,
 ): [{'content-type'?: string}, RequestInit['body']] {
@@ -82,44 +126,38 @@ export function axiosLink({
   }
 }
 
-export function logLink({
-  log = console.log,
-}: {log?: typeof console.log} = {}): Link {
-  let count = 0
-  return async (op, next) => {
-    const i = ++count
-    log(`[#${i} Request]`, op.method, op.url.href)
-    const res = await next(op)
-    log(`[#${i} Response]`, res.statusText, res.status)
-    return res
-  }
+// MARK: Oauth links
+
+export interface OauthTokens {
+  accessToken: string
+  refreshToken?: string
+  /** ISO string */
+  expiresAt: string | null
 }
 
-// Retry count & throw count should be done on a per-operation basis
-
-export function throwLink({maxCount = 1}: {maxCount?: number} = {}): Link {
-  let throwCount = 0
+// TODO: Test me out
+export function oauthLink({
+  tokens,
+  refreshThresholdMs = 5 * 60 * 1000, // 5 minutes
+  onTokenRefreshed,
+  refreshTokens,
+}: {
+  tokens: OauthTokens
+  refreshThresholdMs?: number
+  refreshTokens?: (token: OauthTokens) => Promise<OauthTokens>
+  onTokenRefreshed?: (tokens: OauthTokens) => void
+}): Link {
   return async (op, next) => {
-    if (throwCount < maxCount) {
-      throwCount++
-      throw new Error(`Throwing #${throwCount} for ${op.method} ${op.url}`)
+    if (
+      refreshTokens &&
+      (!tokens.expiresAt ||
+        Date.parse(tokens.expiresAt) < Date.now() + refreshThresholdMs)
+    ) {
+      tokens = await refreshTokens(tokens)
+      onTokenRefreshed?.(tokens)
     }
+    op.headers['Authorization'] = `Bearer ${tokens.accessToken}`
+    // Also can add support for re-active checking
     return next(op)
-  }
-}
-
-export function retryLink({maxCount = 1}: {maxCount?: number} = {}): Link {
-  let retryCount = 0
-  return async (op, next) => {
-    while (true) {
-      try {
-        return await next(op)
-      } catch (err) {
-        if (retryCount >= maxCount) {
-          throw err
-        }
-        retryCount++
-      }
-    }
   }
 }
