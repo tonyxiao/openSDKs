@@ -22,10 +22,11 @@ export interface plaidTypes {
 
 export type PlaidSDKTypes = SDKTypes<
   plaidTypes,
-  ClientOptions & {
+  Omit<ClientOptions, 'headers'> & {
     headers: {
       'PLAID-CLIENT-ID': string
       'PLAID-SECRET': string
+      [k: string]: string
     }
   }
 >

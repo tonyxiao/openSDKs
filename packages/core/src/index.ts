@@ -31,7 +31,9 @@ export type SdkDefinition<
   types: T
   createClient?: (
     ctx: {
-      createClient: (opts: ClientOptions) => OpenAPIClient<T['oas']['paths']>
+      createClient: <TPaths extends {} = T['oas']['paths']>(
+        opts: ClientOptions,
+      ) => OpenAPIClient<TPaths>
     },
     options: T['options'],
   ) => TClient

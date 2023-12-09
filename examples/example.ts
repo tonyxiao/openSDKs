@@ -7,7 +7,7 @@ import {githubSdkDef} from '@opensdks/sdk-github'
 import {openaiSdkDef} from '@opensdks/sdk-openai'
 import {plaidSdkDef} from '@opensdks/sdk-plaid'
 import {slackSdkDef} from '@opensdks/sdk-slack'
-import {twilio_api_v2010SdkDef} from '@opensdks/sdk-twilio_api_v2010'
+import {twilioSdkDef} from '@opensdks/sdk-twilio'
 import {veniceSdkDef} from '@opensdks/sdk-venice'
 
 // Comparison between GitHub vanilla octokit client and openSDKs client
@@ -41,23 +41,19 @@ void octokit.rest.repos
     })
   })
 
+// MARK: - Twilio example
+
 // Comparison between Twilio vanilla API and openSDKs client
 // highlighting type safety
 
 const accountSid = process.env['TWILIO_ACCOUNT_SID']!
 const authToken = process.env['TWILIO_AUTH_TOKEN']!
 
-const twilio = initSDK(twilio_api_v2010SdkDef, {
-  headers: {accountSid, authToken},
-})
+const twilio = initSDK(twilioSdkDef, {accountSid, authToken})
 
-void twilio
+void twilio.api_v2010
   .POST('/2010-04-01/Accounts/{AccountSid}/Messages.json', {
-    params: {
-      path: {
-        AccountSid: accountSid,
-      },
-    },
+    params: {path: {AccountSid: accountSid}},
     body: {
       Body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
       From: '+15017122661',
@@ -83,10 +79,10 @@ client.messages
 // Other examples
 export const plaid = initSDK(plaidSdkDef, {
   headers: {
-    'PLAID-CLIENT-ID': '',
-    'PLAID-SECRET': '',
+    'PLAID-CLIENT-ID': process.env['PLAID_CLIENT_ID']!,
+    'PLAID-SECRET': process.env['PLAID_SECRET']!,
   },
-}) // Need clientId & secret
+})
 
 export const discord = initSDK(discordSdkDef, {
   headers: {authorization: `Bearer ${process.env['DISCORD_API_KEY']}`},
