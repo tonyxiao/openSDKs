@@ -31,27 +31,17 @@ export const apolloSdkDef = {
   createClient: (ctx, {api_key, ...options}) =>
     ctx.createClient({
       ...options,
-      preRequest: (input, init) => {
-        if (input && init?.method?.toLowerCase() === 'get') {
-          const url = new URL(input)
-          url.searchParams.set('api_key', api_key)
-          return [url.toString(), init]
-        }
-        try {
-          return [
-            input,
-            {
-              ...init,
-              body: JSON.stringify({
-                api_key,
-                ...JSON.parse(init?.body as string),
-              }),
-            },
-          ]
-        } catch {
-          return [input, init]
-        }
-      },
+      links: (defaultLinks) => [
+        (op, next) => {
+          if (op.method === 'GET') {
+            op.url.searchParams.set('api_key', api_key)
+          } else {
+            op.body = {api_key, ...(op.body as Record<string, unknown>)}
+          }
+          return next(op)
+        },
+        ...defaultLinks,
+      ],
     }),
 } satisfies SdkDefinition<ApolloSDKTypes>
 
