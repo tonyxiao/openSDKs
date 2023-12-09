@@ -12,10 +12,7 @@ import {veniceSdkDef} from '@opensdks/sdk-venice'
 
 // Comparison between GitHub vanilla octokit client and openSDKs client
 const github = initSDK(githubSdkDef, {
-  headers: {
-    authorization: `Bearer ${process.env['GITHUB_TOKEN']}`,
-    'x-github-api-version': '2022-11-28',
-  },
+  headers: {authorization: `Bearer ${process.env['GITHUB_TOKEN']}`},
 })
 
 void github

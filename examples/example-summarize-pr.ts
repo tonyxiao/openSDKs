@@ -5,9 +5,13 @@ import {initSDK} from '@opensdks/core'
 import {githubSdkDef, type githubTypes} from '@opensdks/sdk-github'
 import {openaiSdkDef} from '@opensdks/sdk-openai'
 
-type Commit = githubTypes['components']['schemas']['commit']
+const github = initSDK(githubSdkDef, {
+  headers: {authorization: `Bearer ${process.env['GITHUB_TOKEN']}`},
+})
 
-const github = initSDK(githubSdkDef, {})
+const openai = initSDK(openaiSdkDef, {
+  headers: {authorization: `Bearer ${process.env['OPENAI_API_KEY']}`},
+})
 
 export async function fetchCommits(prLink: string) {
   const prUrl = new URL(prLink)
@@ -22,14 +26,7 @@ export async function fetchCommits(prLink: string) {
     .then((r) => r.data)
 }
 
-const apiKey = process.env['OPENAI_API_KEY']
-//    ^?
-const openai = initSDK(openaiSdkDef, {
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${apiKey}`,
-  },
-})
+type Commit = githubTypes['components']['schemas']['commit']
 
 export const summarizeCommits = async (commits: Commit[]) => {
   const messages = commits.map((commit) => commit.commit.message).join('\n')
