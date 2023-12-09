@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type {Operation} from './links'
+import type {HTTPMethod} from './links'
 import {
   applyLinks,
   axiosLink,
@@ -8,20 +8,17 @@ import {
   retryLink,
   throwLink,
 } from './links'
+import {modifyRequest} from './modifyRequest'
 
-const op: Operation = {
-  url: new URL('https://httpbin.org/anything'),
-  method: 'GET',
-  headers: {},
-}
+const req = new Request('https://httpbin.org/anything', {method: 'GET'})
 
 describe('applyLinks', () => {
   test('Throw if no links provided', () => {
-    expect(() => applyLinks(op, [])).toThrow('Terminating link missing')
+    expect(() => applyLinks(req, [])).toThrow('Terminating link missing')
   })
 
   test('Throw if missing terminating link', () => {
-    expect(() => applyLinks(op, [(op, next) => next(op)])).toThrow(
+    expect(() => applyLinks(req, [(req, next) => next(req)])).toThrow(
       'Terminating link missing',
     )
   })
@@ -29,7 +26,7 @@ describe('applyLinks', () => {
 
 test('logLink', async () => {
   const lines: unknown[] = []
-  const res = await applyLinks(op, [
+  const res = await applyLinks(req, [
     logLink({log: (...args) => lines.push(args)}),
     () => Promise.resolve(new Response(null, {status: 404})),
   ])
@@ -42,7 +39,7 @@ test('logLink', async () => {
 
 test('throwLink', async () => {
   await expect(
-    applyLinks(op, [
+    applyLinks(req, [
       throwLink({maxCount: 1}),
       () => Promise.resolve(new Response(null, {status: 200})),
     ]),
@@ -52,7 +49,7 @@ test('throwLink', async () => {
 describe('retryLink', () => {
   test('success', async () => {
     await expect(
-      applyLinks(op, [
+      applyLinks(req, [
         retryLink({maxCount: 1}),
         throwLink({maxCount: 1}),
         () => Promise.resolve(new Response(null, {status: 200})),
@@ -62,7 +59,7 @@ describe('retryLink', () => {
 
   test('exhausted max tries', async () => {
     await expect(
-      applyLinks(op, [
+      applyLinks(req, [
         retryLink({maxCount: 2}),
         throwLink({maxCount: 3}),
         () => Promise.resolve(new Response(null, {status: 200})),
@@ -71,47 +68,63 @@ describe('retryLink', () => {
   })
 })
 
+test('modify header link', async () => {
+  const randomStr = Math.random().toString(36)
+  const res = await applyLinks(req, [
+    (req, next) => {
+      req.headers.set('x-modified-header', randomStr)
+      return next(req)
+    },
+    fetchLink(),
+  ])
+  const data = await res.json<HTTPBinResponse>()
+  expect(data.headers['X-Modified-Header']).toEqual(randomStr)
+})
+
+interface HTTPBinResponse {
+  headers: Record<string, string>
+  json: unknown
+  data: string | null
+  method: HTTPMethod
+}
+
 describe.each([
   ['fetch', fetchLink()],
   ['axios', axiosLink({axios})],
 ])('%s links', (_, link) => {
-  /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-  /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
   test('GET anything', async () => {
-    const res = await applyLinks(op, [link])
+    const res = await applyLinks(req, [link])
     expect(res.status).toEqual(200)
-    const data = await res.json()
-    expect(data).toMatchObject({url: op.url.href})
+    const data = await res.json<HTTPBinResponse>()
+    expect(data).toMatchObject({url: req.url})
     expect(data.headers['Content-Type']).toBeUndefined()
   })
 
   test('POST json body', async () => {
     const res = await applyLinks(
-      {...op, method: 'POST', body: {hello: 'world'}},
+      modifyRequest(req, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({hello: 'world'}),
+      }),
       [link],
     )
-    const data = await res.json()
+    const data = await res.json<HTTPBinResponse>()
+    expect(data.method).toEqual('POST')
     expect(data.json).toEqual({hello: 'world'})
     expect(data.headers['Content-Type']).toContain('application/json')
   })
 
   test('POST text body', async () => {
     const res = await applyLinks(
-      {
-        ...op,
-        method: 'POST',
-        body: 'hello world',
-      },
+      modifyRequest(req, {method: 'POST', body: 'hello world'}),
       [link],
     )
-    const data = await res.json()
+    const data = await res.json<HTTPBinResponse>()
+    expect(data.method).toEqual('POST')
     expect(data.data).toEqual('hello world')
     expect(data.headers['Content-Type']).toContain('text/plain')
   })
 
   // TODO: Test error handling for both 4xx and 5xx errors
-
-  /* eslint-enable @typescript-eslint/no-unsafe-member-access */
-  /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 })

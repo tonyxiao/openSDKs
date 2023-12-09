@@ -1,4 +1,9 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
+import {
+  modifyRequest,
+  type OpenAPISpec,
+  type SdkDefinition,
+  type SDKTypes,
+} from '@opensdks/core'
 import type {ClientOptions} from '@opensdks/core/createClient'
 import type {
   components,
@@ -32,13 +37,18 @@ export const apolloSdkDef = {
     ctx.createClient({
       ...options,
       links: (defaultLinks) => [
-        (op, next) => {
-          if (op.method === 'GET') {
-            op.url.searchParams.set('api_key', api_key)
+        async (req, next) => {
+          if (req.method === 'GET') {
+            const url = new URL(req.url)
+            url.searchParams.set('api_key', api_key)
+            return next(modifyRequest(req, {url: url.toString()}))
           } else {
-            op.body = {api_key, ...(op.body as Record<string, unknown>)}
+            return next(
+              modifyRequest(req, {
+                body: JSON.stringify({api_key, ...(await req.json())}),
+              }),
+            )
           }
-          return next(op)
         },
         ...defaultLinks,
       ],

@@ -8,25 +8,40 @@ export type HTTPMethod =
   | 'PATCH'
   | 'TRACE'
 
-export interface Operation {
-  url: URL
-  method: HTTPMethod
-  headers: {[k: string]: string}
-  body?: unknown
+/**
+ * The BetterRequest object is an extension of the native [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
+ * interface, with better typing and extended functionality such as mutable properties
+ * though maybe we should allow for immutable requests?
+ */
+export type BetterRequest<TJson = unknown> = Omit<Request, 'method'> & {
+  readonly method: HTTPMethod
+  json: <T = TJson>() => Promise<T>
+}
+
+/**
+ * The BetterResponse object is an extension of the native [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+ * interface, with better typing and extended functionality.
+ */
+export type BetterResponse<TJson = unknown> = Omit<Response, 'json'> & {
+  json: <T = TJson>() => Promise<T>
 }
 
 /** Heavily inspired by trpc and Apollo GraphQL */
 export type Link = (
-  op: Operation,
-  next: (op: Operation) => Promise<Response>,
-) => Promise<Response>
+  req: BetterRequest,
+  next: (req: BetterRequest | Request) => Promise<Response>,
+) => Promise<BetterResponse>
 
-export function applyLinks(op: Operation, links: Link[]): Promise<Response> {
+export function applyLinks(
+  req: BetterRequest | Request,
+  links: Link[],
+): Promise<BetterResponse> {
   const [link, ...rest] = links
   if (!link) {
     throw new Error('Terminating link missing in links chain')
   }
-  return link(op, (op) => applyLinks(op, rest))
+  // Every request is actually a BetterRequest :)
+  return link(req as BetterRequest, (op) => applyLinks(op, rest))
 }
 
 // MARK: Built-in links
@@ -35,10 +50,10 @@ export function logLink({
   log = console.log,
 }: {log?: typeof console.log} = {}): Link {
   let count = 0
-  return async (op, next) => {
+  return async (req, next) => {
     const i = ++count
-    log(`[#${i} Request]`, op.method, op.url.href)
-    const res = await next(op)
+    log(`[#${i} Request]`, req.method, req.url)
+    const res = await next(req)
     log(`[#${i} Response]`, res.statusText, res.status)
     return res
   }
@@ -48,21 +63,21 @@ export function logLink({
 
 export function throwLink({maxCount = 1}: {maxCount?: number} = {}): Link {
   let throwCount = 0
-  return async (op, next) => {
+  return async (req, next) => {
     if (throwCount < maxCount) {
       throwCount++
-      throw new Error(`Throwing #${throwCount} for ${op.method} ${op.url}`)
+      throw new Error(`Throwing #${throwCount} for ${req.method} ${req.url}`)
     }
-    return next(op)
+    return next(req)
   }
 }
 
 export function retryLink({maxCount = 1}: {maxCount?: number} = {}): Link {
   let retryCount = 0
-  return async (op, next) => {
+  return async (req, next) => {
     while (true) {
       try {
-        return await next(op)
+        return await next(req)
       } catch (err) {
         if (retryCount >= maxCount) {
           throw err
@@ -75,32 +90,12 @@ export function retryLink({maxCount = 1}: {maxCount?: number} = {}): Link {
 
 // MARK: Request links
 
-function getHeadersAndBody(
-  op: Pick<Operation, 'body'>,
-): [{'content-type'?: string}, RequestInit['body']] {
-  if (op.body && typeof op.body === 'object') {
-    return [{'content-type': 'application/json'}, JSON.stringify(op.body)]
-  }
-  if (typeof op.body === 'string') {
-    return [{'content-type': 'text/plain'}, op.body]
-  }
-  return [{}, op.body as RequestInit['body']]
-}
-
 export function fetchLink({
   fetch = globalThis.fetch.bind(globalThis),
 }: {
   fetch?: typeof globalThis.fetch
 } = {}): Link {
-  return async ({url, ...init}) => {
-    const [headers, body] = getHeadersAndBody(init)
-    const res = await fetch(url, {
-      ...init,
-      headers: {...headers, ...init.headers},
-      body,
-    })
-    return res
-  }
+  return (req) => fetch(req as Request)
 }
 
 export function axiosLink({
@@ -108,14 +103,14 @@ export function axiosLink({
 }: {
   axios: typeof import('axios').default
 }): Link {
-  return async ({url, ...opts}) => {
-    const [headers, body] = getHeadersAndBody(opts)
+  return async (req) => {
     const res = await axios.request({
-      url: url.href,
+      method: req.method,
+      url: req.url,
+      data: await req.blob(), // Support Readable stream body would be great!
+      headers: Object.fromEntries(req.headers.entries()),
       responseType: 'stream',
-      ...opts,
-      data: body,
-      headers: {...headers, ...opts.headers},
+      // ...req, // Support passing other axios options
     })
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return new Response(res.data, {
@@ -147,7 +142,7 @@ export function oauthLink({
   refreshTokens?: (token: OauthTokens) => Promise<OauthTokens>
   onTokenRefreshed?: (tokens: OauthTokens) => void
 }): Link {
-  return async (op, next) => {
+  return async (req, next) => {
     if (
       refreshTokens &&
       (!tokens.expiresAt ||
@@ -156,8 +151,9 @@ export function oauthLink({
       tokens = await refreshTokens(tokens)
       onTokenRefreshed?.(tokens)
     }
-    op.headers['Authorization'] = `Bearer ${tokens.accessToken}`
+    // Does this work? Or will it break because of the readonly nature of the headers?
+    req.headers.set('authorization', `Bearer ${tokens.accessToken}`)
     // Also can add support for re-active checking
-    return next(op)
+    return next(req)
   }
 }

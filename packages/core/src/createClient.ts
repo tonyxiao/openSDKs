@@ -2,7 +2,6 @@ import type {BodySerializer, FetchOptions, FetchResponse} from 'openapi-fetch'
 import _createClient from 'openapi-fetch'
 import type {PathsWithMethod} from 'openapi-typescript-helpers'
 import {HTTPError} from './HTTPError'
-import type {Operation} from './links'
 import {applyLinks, fetchLink, type HTTPMethod, type Link} from './links'
 
 type _ClientOptions = NonNullable<Parameters<typeof _createClient>[0]>
@@ -28,17 +27,8 @@ export function createClient<Paths extends {}>({
 }: ClientOptions = {}) {
   const links = typeof _links === 'function' ? _links(defaultLinks) : _links
 
-  const customFetch: typeof fetch = async (url, init) => {
-    // TODO: Do some validation here...
-    const operation: Operation = {
-      url: new URL(url as string),
-      method: init?.method?.toUpperCase() as HTTPMethod,
-      // TODO: Ensure headers is always an object, otherwise this will break
-      headers: (init?.headers ?? {}) as any,
-      body: init?.body,
-    }
-    return applyLinks(operation, links)
-  }
+  const customFetch: typeof fetch = (url, init) =>
+    applyLinks(new Request(url, init), links)
   const client = _createClient<Paths>({...clientOptions, fetch: customFetch})
 
   return {

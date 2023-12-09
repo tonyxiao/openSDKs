@@ -7,6 +7,7 @@ export * from './HTTPError'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 export {oas30, oas31}
 export * from './links'
+export * from './modifyRequest'
 
 // MARK: - defineSdk
 

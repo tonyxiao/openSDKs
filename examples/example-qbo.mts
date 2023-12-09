@@ -5,11 +5,6 @@ const realmId = process.env['QBO_REALM_ID']!
 
 const qbo = initSDK(qboSdkDef, {
   realmId: process.env['QBO_REALM_ID']!,
-  headers: {
-    authorization: `Bearer ${process.env['QBO_ACCESS_TOKEN']}`,
-    accept: 'application/json',
-  },
-  baseUrl: `https://sandbox-quickbooks.api.intuit.com/v3/company/${realmId}`,
   envName: 'sandbox',
   accessToken: '',
 })
