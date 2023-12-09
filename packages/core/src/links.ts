@@ -32,7 +32,7 @@ export function applyLinks(op: Operation, links: Link[]): Promise<Response> {
 // MARK: Built-in links
 
 function getHeadersAndBody(
-  op: Operation,
+  op: Pick<Operation, 'body'>,
 ): [{'content-type'?: string}, RequestInit['body']] {
   if (op.body && typeof op.body === 'object') {
     return [{'content-type': 'application/json'}, JSON.stringify(op.body)]
@@ -48,11 +48,11 @@ export function fetchLink({
 }: {
   fetch?: typeof globalThis.fetch
 } = {}): Link {
-  return async (op) => {
-    const [headers, body] = getHeadersAndBody(op)
-    const res = await fetch(op.url, {
-      method: op.method,
-      headers: {...headers, ...op.headers},
+  return async ({url, ...init}) => {
+    const [headers, body] = getHeadersAndBody(init)
+    const res = await fetch(url, {
+      ...init,
+      headers: {...headers, ...init.headers},
       body,
     })
     return res
@@ -64,14 +64,14 @@ export function axiosLink({
 }: {
   axios: typeof import('axios').default
 }): Link {
-  return async (op) => {
-    const [headers, body] = getHeadersAndBody(op)
+  return async ({url, ...opts}) => {
+    const [headers, body] = getHeadersAndBody(opts)
     const res = await axios.request({
-      url: op.url.href,
-      method: op.method,
-      headers: {...headers, ...op.headers},
-      data: body,
+      url: url.href,
       responseType: 'stream',
+      ...opts,
+      data: body,
+      headers: {...headers, ...opts.headers},
     })
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return new Response(res.data, {

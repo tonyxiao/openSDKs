@@ -110,6 +110,8 @@ describe.each([
     expect(data.headers['Content-Type']).toContain('text/plain')
   })
 
+  // TODO: Test error handling for both 4xx and 5xx errors
+
   /* eslint-enable @typescript-eslint/no-unsafe-member-access */
   /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 })
