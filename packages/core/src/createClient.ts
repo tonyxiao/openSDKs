@@ -1,20 +1,14 @@
 import type {BodySerializer, FetchOptions, FetchResponse} from 'openapi-fetch'
 import _createClient from 'openapi-fetch'
 import type {PathsWithMethod} from 'openapi-typescript-helpers'
-import type {HTTPMethod} from './HTTPError'
 import {HTTPError} from './HTTPError'
+import type {Operation} from './links'
+import {applyLinks, fetchLink, type HTTPMethod, type Link} from './links'
 
-type MaybePromise<T> = T | Promise<T>
-type FetchParams = [string, Parameters<typeof fetch>[1]]
 type _ClientOptions = NonNullable<Parameters<typeof _createClient>[0]>
 
 export interface ClientOptions extends _ClientOptions {
-  // Workaround for https://github.com/drwpow/openapi-typescript/issues/1122
-  preRequest?: (...args: FetchParams) => MaybePromise<FetchParams>
-  postRequest?: (
-    res: Awaited<ReturnType<typeof fetch>>,
-    requestArgs: FetchParams,
-  ) => ReturnType<typeof fetch>
+  links?: Link[] | ((defaultLinks: Link[]) => Link[])
 }
 
 export type OpenAPIClient<Paths extends {}> = ReturnType<
@@ -26,28 +20,29 @@ export type OpenAPIClient<Paths extends {}> = ReturnType<
 // to get a list of servers and all that?
 // Really do feel that they should be generated as well..
 
+export const defaultLinks = [fetchLink()]
+
 export function createClient<Paths extends {}>({
-  preRequest = (url, init) => [url, init],
-  postRequest = (res) => Promise.resolve(res),
+  links: _links = defaultLinks,
   ...clientOptions
 }: ClientOptions = {}) {
-  const options = {
-    preRequest,
-    postRequest,
-    // NOTE: window.fetch is unbounded and would fail with mysterious `TypeError` unless bound https://share.cleanshot.com/DTb7djjK
-    fetch: clientOptions?.fetch ?? globalThis.fetch.bind(globalThis),
-  }
+  const links = typeof _links === 'function' ? _links(defaultLinks) : _links
 
   const customFetch: typeof fetch = async (url, init) => {
-    const requestArgs = await options.preRequest(url as string, init)
-    const res = await options.fetch(...requestArgs)
-    return options.postRequest(res, requestArgs)
+    // TODO: Do some validation here...
+    const operation: Operation = {
+      url: new URL(url as string),
+      method: init?.method?.toUpperCase() as HTTPMethod,
+      // TODO: Ensure headers is always an object, otherwise this will break
+      headers: (init?.headers ?? {}) as any,
+      body: init?.body,
+    }
+    return applyLinks(operation, links)
   }
   const client = _createClient<Paths>({...clientOptions, fetch: customFetch})
 
   return {
-    /** Mutable */
-    options,
+    links,
     client,
     /** Untyped request */
     request: <T>(

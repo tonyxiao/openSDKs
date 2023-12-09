@@ -28,6 +28,10 @@ const servers = {
   production: qboOas.servers?.find((s) => s.url.includes('production'))?.url,
 }
 
+/**
+ * Quickbooks Online SDK.
+ * TODO: handle oauth token refresh and working with links to do so.
+ */
 export const qboSdkDef = {
   types: {} as QBOSDKTypes,
   oas: qboOas as OpenAPISpec,
