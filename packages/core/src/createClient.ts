@@ -1,7 +1,7 @@
 import type {BodySerializer, FetchOptions, FetchResponse} from 'openapi-fetch'
 import _createClient from 'openapi-fetch'
 import type {PathsWithMethod} from 'openapi-typescript-helpers'
-import type {HTTPMethod} from './HTTPError'
+import type {HTTPMethod} from './links'
 import {HTTPError} from './HTTPError'
 
 type MaybePromise<T> = T | Promise<T>
