@@ -15,6 +15,9 @@
       "dependsOn": ["clean"],
       "outputs": ["dist"]
     },
-    "debug": {"cache": false}
+    "debug": {"cache": false},
+    "//#typecheck": {},
+    "//#lint": {},
+    "//#test": {}
   }
 }

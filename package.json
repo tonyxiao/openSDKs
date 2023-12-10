@@ -11,7 +11,8 @@
     "test::watch": "pnpm run test --watch",
     "test": "jest",
     "commitlint": "commitlint --edit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
