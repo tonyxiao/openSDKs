@@ -1,4 +1,4 @@
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {veniceSdkDef} from './'
 
 const venice = initSDK(veniceSdkDef, {headers: {}})

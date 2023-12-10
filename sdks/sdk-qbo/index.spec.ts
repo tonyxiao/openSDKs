@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-standalone-expect */
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {qboSdkDef} from './index'
 
 const realmId = process.env['QBO_REALM_ID']!

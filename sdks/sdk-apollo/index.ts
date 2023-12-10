@@ -3,8 +3,8 @@ import {
   type OpenAPISpec,
   type SdkDefinition,
   type SDKTypes,
-} from '@opensdks/core'
-import type {ClientOptions} from '@opensdks/core/createClient'
+} from '@opensdks/runtime'
+import type {ClientOptions} from '@opensdks/runtime'
 import type {
   components,
   external,

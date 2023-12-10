@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 // For the full app, see https://what-did-we-work-on.vercel.app/
 
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {githubSdkDef, type githubTypes} from '@opensdks/sdk-github'
 import {openaiSdkDef} from '@opensdks/sdk-openai'
 

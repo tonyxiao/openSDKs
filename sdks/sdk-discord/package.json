@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@opensdks/core": "workspace:*",
+    "@opensdks/runtime": "workspace:*",
     "openapi-typescript": "6.7.1"
   }
 }

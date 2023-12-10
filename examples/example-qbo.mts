@@ -1,4 +1,4 @@
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {qboSdkDef} from '@opensdks/sdk-qbo'
 
 const realmId = process.env['QBO_REALM_ID']!

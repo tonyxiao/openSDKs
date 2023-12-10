@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@octokit/rest": "^20.0.2",
-    "@opensdks/core": "workspace:*",
+    "@opensdks/runtime": "workspace:*",
     "@opensdks/sdk-apollo": "workspace:*",
     "@opensdks/sdk-discord": "workspace:*",
     "@opensdks/sdk-github": "workspace:*",

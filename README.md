@@ -14,7 +14,7 @@
   <a aria-label="Venice logo" href="https://venice.is">
     <img src="website/public/made-by-venice.svg">
   </a>
-  <a aria-label="NPM version" href="https://www.npmjs.com/package/@opensdks/core">
+  <a aria-label="NPM version" href="https://www.npmjs.com/package/@opensdks/runtime">
     <img alt="" src="https://img.shields.io/npm/v/next.svg?style=for-the-badge&labelColor=000000">
   </a>
   <a aria-label="License" href="https://github.com/vercel/next.js/blob/canary/license.md">

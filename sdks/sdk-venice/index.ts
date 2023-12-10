@@ -1,5 +1,5 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/core'
-import type {ClientOptions} from '@opensdks/core/createClient'
+import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type {ClientOptions} from '@opensdks/runtime'
 import type {
   components,
   external,

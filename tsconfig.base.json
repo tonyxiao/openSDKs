@@ -24,8 +24,8 @@
     // @see https://github.com/egoist/tsup/issues/885
     "declarationMap": true,
     "paths": {
-      "@opensdks/core": ["./packages/core/src"],
-      "@opensdks/core/*": ["./packages/core/src/*"]
+      "@opensdks/runtime": ["./packages/runtime/src"],
+      "@opensdks/runtime/*": ["./packages/runtime/src/*"]
     }
   },
   "exclude": ["node_modules"]

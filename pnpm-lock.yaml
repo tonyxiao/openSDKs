@@ -107,9 +107,9 @@ importers:
       '@octokit/rest':
         specifier: ^20.0.2
         version: 20.0.2
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../packages/core
+        version: link:../packages/runtime
       '@opensdks/sdk-apollo':
         specifier: workspace:*
         version: link:../sdks/sdk-apollo
@@ -141,7 +141,13 @@ importers:
         specifier: ^4.19.3
         version: 4.19.3
 
-  packages/core:
+  packages/links:
+    devDependencies:
+      axios:
+        specifier: ^1.6.2
+        version: 1.6.2
+
+  packages/runtime:
     dependencies:
       '@opensdks/links':
         specifier: workspace:*
@@ -160,12 +166,6 @@ importers:
         specifier: ^5.28.2
         version: 5.28.2
 
-  packages/links:
-    devDependencies:
-      axios:
-        specifier: ^1.6.2
-        version: 1.6.2
-
   packages/util-types:
     dependencies:
       type-fest:
@@ -183,9 +183,9 @@ importers:
 
   sdks/sdk-apollo:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       '@opensdks/util-zod':
         specifier: workspace:*
         version: link:../../packages/util-zod
@@ -198,18 +198,18 @@ importers:
 
   sdks/sdk-discord:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
 
   sdks/sdk-github:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -219,9 +219,9 @@ importers:
 
   sdks/sdk-openai:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -231,6 +231,9 @@ importers:
 
   sdks/sdk-plaid:
     devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -243,9 +246,9 @@ importers:
 
   sdks/sdk-qbo:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       '@opensdks/util-zod':
         specifier: workspace:*
         version: link:../../packages/util-zod
@@ -258,9 +261,9 @@ importers:
 
   sdks/sdk-slack:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -270,9 +273,9 @@ importers:
 
   sdks/sdk-twilio:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -282,9 +285,9 @@ importers:
 
   sdks/sdk-venice:
     devDependencies:
-      '@opensdks/core':
+      '@opensdks/runtime':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/runtime
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1

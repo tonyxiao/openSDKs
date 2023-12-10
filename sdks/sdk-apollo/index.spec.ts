@@ -1,6 +1,6 @@
 /* eslint-disable jest/no-standalone-expect */
 
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {apolloSdkDef} from './index'
 
 const apiKey = process.env['APOLLO_API_KEY']!

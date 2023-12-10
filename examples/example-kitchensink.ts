@@ -1,6 +1,6 @@
 import {Octokit} from '@octokit/rest'
 import Twilio from 'twilio'
-import {initSDK} from '@opensdks/core'
+import {initSDK} from '@opensdks/runtime'
 import {apolloSdkDef} from '@opensdks/sdk-apollo'
 import {discordSdkDef} from '@opensdks/sdk-discord'
 import {githubSdkDef} from '@opensdks/sdk-github'

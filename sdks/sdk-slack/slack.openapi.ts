@@ -1,4 +1,4 @@
-import type {oas30} from '@opensdks/core'
+import type {oas30} from '@opensdks/runtime'
 import _oas from './slack.orig.oas.json'
 
 const oas = _oas as unknown as oas30.OpenAPIObject

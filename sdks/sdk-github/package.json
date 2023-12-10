@@ -12,7 +12,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@opensdks/core": "workspace:*",
+    "@opensdks/runtime": "workspace:*",
     "openapi-typescript": "6.7.1",
     "prettier": "3.1.0"
   }

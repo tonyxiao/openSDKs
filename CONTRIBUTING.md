@@ -1,6 +1,6 @@
 # Contributing new SDKs
 
-Welcome to `opensdks` - a comprehensive suite of type-safe SDKs built on a unified runtime (`@opensdks/core`). Our goal is to provide a simple, extensible, and delightful development experience.
+Welcome to `opensdks` - a comprehensive suite of type-safe SDKs built on a unified runtime (`@opensdks/runtime`). Our goal is to provide a simple, extensible, and delightful development experience.
 
 ## Quick Start
 
@@ -24,7 +24,7 @@ Creating a new SDK adapter in `opensdks` follows a standardized process, leverag
    ```
 
 2. **Prepare `package.json`**:
-   Copy `package.json` from an existing SDK and adjust it for your SDK. Key modifications include the package name and scripts for downloading and generating the OpenAPI spec. Remember to include dependencies like `@opensdks/core` and `openapi-typescript`.
+   Copy `package.json` from an existing SDK and adjust it for your SDK. Key modifications include the package name and scripts for downloading and generating the OpenAPI spec. Remember to include dependencies like `@opensdks/runtime` and `openapi-typescript`.
 
 3. **Install Dependencies**:
    Run:
