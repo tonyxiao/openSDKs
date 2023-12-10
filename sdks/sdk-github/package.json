@@ -16,8 +16,7 @@
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",
-    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts",
-    "pub": "pnpm publish --no-git-checks --access public"
+    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {

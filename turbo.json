@@ -15,7 +15,6 @@
       "dependsOn": ["clean"],
       "outputs": ["dist"]
     },
-    "pub": {"cache": false, "dependsOn": ["build"]},
     "debug": {"cache": false}
   }
 }

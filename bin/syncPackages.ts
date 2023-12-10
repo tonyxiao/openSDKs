@@ -51,9 +51,12 @@ const packageJsonTemplate: PackageJson = {
     'dist',
     // For declarationMap to work, we include our actual source files
     '**/*.ts',
+    // Already present in dist, but if we exclude can cause issues with declration map though
+    // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
-    // json files cannot be required and it is thus pointless
+    // json files cannot be required by most systems so we instead
+    // chose to publish transformed js files
     '!**/*.json',
   ],
   scripts: {
