@@ -1,14 +1,21 @@
 {
   "name": "@opensdks/util-types",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "sideEffects": false,
-  "module": "./index.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "!**/*.spec.ts"
+  ],
   "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf dist"
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist"
   },
   "dependencies": {
     "type-fest": "^4.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }

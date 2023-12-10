@@ -1,15 +1,22 @@
 {
   "name": "@opensdks/util-zod",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "sideEffects": false,
-  "module": "./index.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "!**/*.spec.ts"
+  ],
   "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf dist"
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist"
   },
   "dependencies": {
     "zod": "3.21.4",
     "zod-openapi": "2.11.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }

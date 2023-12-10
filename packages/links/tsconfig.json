@@ -1,8 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "baseUrl": "./"
-  },
-  "include": ["./*", "links/oauthLink.ts", "links/axiosLink.ts"]
+  "compilerOptions": {"outDir": "./dist", "baseUrl": "./"},
+  "include": ["*.ts"],
+  "exclude": ["*.spec.ts"]
 }

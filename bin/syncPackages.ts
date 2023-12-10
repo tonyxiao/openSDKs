@@ -46,8 +46,8 @@ export const listPackages = () =>
 
 if (require.main === module) {
   listSdks().forEach((p) => {
-    console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
-
+    // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
+    p.packageJson.version = '0.0.1'
     p.packageJson.scripts = {
       ...p.packageJson.scripts,
       clean: 'rm -rf ./dist',
@@ -65,6 +65,7 @@ if (require.main === module) {
     p.packageJson.publishConfig = {
       access: 'public',
     }
+    p.packageJson.files = ['dist', '**/*.ts', '!**/*.spec.ts']
 
     void prettyWrite({
       path: p.packageJsonPath,
@@ -82,6 +83,41 @@ if (require.main === module) {
           baseUrl: './',
         },
         include: ['./index.ts'],
+      },
+    })
+  })
+
+  listPackages().forEach((p) => {
+    // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
+    p.packageJson.version = '0.0.1'
+    p.packageJson.scripts = {
+      ...p.packageJson.scripts,
+      clean: 'rm -rf ./dist',
+      build: 'tsc -p ./tsconfig.json',
+    }
+    p.packageJson.module = undefined
+    p.packageJson.publishConfig = {
+      access: 'public',
+    }
+    p.packageJson.files = ['dist', '**/*.ts', '!**/*.spec.ts']
+
+    void prettyWrite({
+      path: p.packageJsonPath,
+      format: 'package.json',
+      data: p.packageJson,
+    })
+
+    void prettyWrite({
+      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      format: 'tsconfig.json',
+      data: {
+        extends: '../../tsconfig.base.json',
+        compilerOptions: {
+          outDir: './dist',
+          baseUrl: './',
+        },
+        include: ['*.ts'],
+        exclude: ['*.spec.ts'],
       },
     })
   })

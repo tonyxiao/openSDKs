@@ -1,8 +1,13 @@
 {
   "name": "@opensdks/sdk-venice",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "!**/*.spec.ts"
+  ],
   "scripts": {
-    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build": "concurrently npm:build:*",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://app.venice.is/api/v0/openapi.json | prettier --parser json > ./venice.oas.json",

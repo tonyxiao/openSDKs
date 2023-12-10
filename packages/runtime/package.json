@@ -1,8 +1,13 @@
 {
   "name": "@opensdks/runtime",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "!**/*.spec.ts"
+  ],
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",

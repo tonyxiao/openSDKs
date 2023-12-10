@@ -1,8 +1,13 @@
 {
   "name": "@opensdks/sdk-github",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "!**/*.spec.ts"
+  ],
   "scripts": {
-    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build": "concurrently npm:build:*",
     "build:dts": "cp ./github.oas.d.ts ./dist/github.oas.d.ts",
     "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/github.oas.json",
     "build:ts": "tsc -p ./tsconfig.json",
