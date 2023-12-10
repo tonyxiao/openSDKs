@@ -42,30 +42,53 @@ export const listSdks = () => listPackagesInDir(pathJoin(__dirname, '../sdks'))
 export const listPackages = () =>
   listPackagesInDir(pathJoin(__dirname, '../packages'))
 
+// Templates
+const packageJsonTemplate: PackageJson = {
+  version: '0.0.1',
+  main: 'dist/index.js',
+  types: 'dist/index.d.ts',
+  files: ['dist', '**/*.ts', '!**/*.spec.ts'],
+  scripts: {
+    clean: 'rm -rf ./dist',
+    build: 'tsc -p ./tsconfig.json',
+  },
+  publishConfig: {
+    access: 'public',
+  },
+}
+
+const tsConfigTemplate: TsConfigJson = {
+  extends: '../../tsconfig.base.json',
+  compilerOptions: {
+    outDir: './dist',
+    baseUrl: './',
+  },
+  include: ['*.ts'],
+  exclude: ['*.spec.ts'],
+}
+
 // MARK: - Main
 
 if (require.main === module) {
   listSdks().forEach((p) => {
     // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
-    p.packageJson.version = '0.0.1'
-    p.packageJson.scripts = {
-      ...p.packageJson.scripts,
-      clean: 'rm -rf ./dist',
-      build: 'concurrently npm:build:*',
-      'build:ts': 'tsc -p ./tsconfig.json',
-      // 'build:dts': 'cp ./openai.oas.d.ts ./dist/openai.oas.d.ts',
-      // 'build:json': 'npx tsx ../../bin/jsonToJs.ts ./dist/openai.oas.json',
+    p.packageJson = {
+      ...(p.packageJson as {}),
+      ...(packageJsonTemplate as {}),
+      scripts: {
+        ...p.packageJson.scripts,
+        ...packageJsonTemplate.scripts,
+        clean: 'rm -rf ./dist',
+        build: 'concurrently npm:build:*',
+        'build:ts': 'tsc -p ./tsconfig.json',
+      },
+      devDependencies: {
+        ...p.packageJson.devDependencies,
+        '@opensdks/runtime': 'workspace:*',
+        concurrently: '^8.2.2',
+        'openapi-typescript': '6.7.1',
+      },
     }
-    p.packageJson.devDependencies = {
-      ...p.packageJson.devDependencies,
-      '@opensdks/runtime': 'workspace:*',
-      concurrently: '^8.2.2',
-      'openapi-typescript': '6.7.1',
-    }
-    p.packageJson.publishConfig = {
-      access: 'public',
-    }
-    p.packageJson.files = ['dist', '**/*.ts', '!**/*.spec.ts']
 
     void prettyWrite({
       path: p.packageJsonPath,
@@ -76,31 +99,21 @@ if (require.main === module) {
     void prettyWrite({
       path: pathJoin(p.dirPath, 'tsconfig.json'),
       format: 'tsconfig.json',
-      data: {
-        extends: '../../tsconfig.base.json',
-        compilerOptions: {
-          outDir: './dist',
-          baseUrl: './',
-        },
-        include: ['./index.ts'],
-      },
+      data: tsConfigTemplate,
     })
   })
 
   listPackages().forEach((p) => {
-    // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
-    p.packageJson.version = '0.0.1'
-    p.packageJson.scripts = {
-      ...p.packageJson.scripts,
-      clean: 'rm -rf ./dist',
-      build: 'tsc -p ./tsconfig.json',
+    p.packageJson = {
+      ...(p.packageJson as {}),
+      ...(packageJsonTemplate as {}),
+      scripts: {
+        ...p.packageJson.scripts,
+        ...packageJsonTemplate.scripts,
+        clean: 'rm -rf ./dist',
+        build: 'tsc -p ./tsconfig.json',
+      },
     }
-    p.packageJson.module = undefined
-    p.packageJson.publishConfig = {
-      access: 'public',
-    }
-    p.packageJson.files = ['dist', '**/*.ts', '!**/*.spec.ts']
-
     void prettyWrite({
       path: p.packageJsonPath,
       format: 'package.json',
@@ -110,15 +123,7 @@ if (require.main === module) {
     void prettyWrite({
       path: pathJoin(p.dirPath, 'tsconfig.json'),
       format: 'tsconfig.json',
-      data: {
-        extends: '../../tsconfig.base.json',
-        compilerOptions: {
-          outDir: './dist',
-          baseUrl: './',
-        },
-        include: ['*.ts'],
-        exclude: ['*.spec.ts'],
-      },
+      data: tsConfigTemplate,
     })
   })
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
