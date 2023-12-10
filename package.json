@@ -18,9 +18,9 @@
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"
   },
   "devDependencies": {
-    "@commitlint/types": "^18.4.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/types": "^18.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@tsconfig/strictest": "^2.0.2",
     "@types/jest": "^29.5.10",
@@ -48,6 +48,6 @@
     "tsx": "^4.6.1",
     "turbo": "^1.10.16",
     "typescript": "^5.3.2",
-    "undici": "^5.28.2"
+    "yaml": "^2.3.4"
   }
 }

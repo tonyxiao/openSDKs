@@ -98,9 +98,9 @@ importers:
       typescript:
         specifier: ^5.3.2
         version: 5.3.2
-      undici:
-        specifier: ^5.28.2
-        version: 5.28.2
+      yaml:
+        specifier: ^2.3.4
+        version: 2.3.4
 
   examples:
     dependencies:
@@ -161,10 +161,6 @@ importers:
       openapi3-ts:
         specifier: 4.1.2
         version: 4.1.2
-    optionalDependencies:
-      undici:
-        specifier: ^5.28.2
-        version: 5.28.2
 
   packages/util-types:
     dependencies:
@@ -1299,6 +1295,7 @@ packages:
     resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
     engines: {node: '>=14'}
     requiresBuild: true
+    dev: true
 
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
@@ -8186,6 +8183,7 @@ packages:
     engines: {node: '>=14.0'}
     dependencies:
       '@fastify/busboy': 2.1.0
+    dev: true
 
   /union-value@1.0.1:
     resolution: {integrity: sha512-tJfXmxMeWYnczCVs7XAEvIV7ieppALdyepWMkHkwciRpZraG/xwT+s2JN8+pr1+8jCRf80FFzvr+MpQeeoF4Xg==}
