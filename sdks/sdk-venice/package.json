@@ -13,7 +13,7 @@
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://app.venice.is/api/v0/openapi.json | prettier --parser json > ./venice.oas.json",
-    "generate": "openapi-typescript ./venice.oas.json --output venice.oas.ts"
+    "generate": "openapi-typescript ./venice.oas.json --output venice.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {

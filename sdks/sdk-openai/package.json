@@ -11,11 +11,12 @@
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:dts": "cp ./openai.oas.d.ts ./dist/openai.oas.d.ts",
     "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/openai.oas.json",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
-    "generate": "cat openai.oas.yaml | node ../../bin/yaml2json.js -o openai.oas && openapi-typescript ./openai.oas.json --output ./openai.oas.ts",
+    "generate": "cat openai.oas.yaml | node ../../bin/yaml2json.js -o openai.oas && openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts",
     "pub": "pnpm publish --no-git-checks --access public"
   },
   "dependencies": {},

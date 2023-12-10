@@ -7,7 +7,7 @@
     "generate": {
       "dependsOn": ["download"],
       "cache": false,
-      "outputs": ["*.oas.ts"]
+      "outputs": ["*.oas.d.ts"]
     },
     "clean": {},
     "build": {

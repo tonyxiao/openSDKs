@@ -14,7 +14,7 @@
     "clean": "rm -rf ./dist",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
-    "generate:types": "openapi-typescript ./apollo.oas.json --output apollo.oas.ts"
+    "generate:types": "openapi-typescript ./apollo.oas.json --output apollo.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {

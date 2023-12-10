@@ -14,7 +14,7 @@
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
-    "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.ts"
+    "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {
