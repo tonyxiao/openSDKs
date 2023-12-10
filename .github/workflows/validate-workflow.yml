@@ -54,6 +54,9 @@ jobs:
       - name: Run tests
         run: pnpm run test::ci
 
+      - name: Run builds
+        run: pnpm turbo build --filter !website
+
       - name: Send Slack notification for job status
         uses: 8398a7/action-slack@v3
         with:

@@ -4,7 +4,7 @@ import {createDocument, extendZodWithOpenApi} from 'zod-openapi'
 
 extendZodWithOpenApi(z)
 
-export * from './defineSdk'
+export * from './zod-openapi-helpers'
 export {z}
 export {extendZodWithOpenApi, createDocument}
 
