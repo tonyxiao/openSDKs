@@ -11,7 +11,6 @@
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "cp ./openai.oas.ts ./dist/openai.oas.ts",
     "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/openai.oas.json",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
