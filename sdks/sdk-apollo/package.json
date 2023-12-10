@@ -12,8 +12,9 @@
     "build": "concurrently npm:build:*",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
-    "download": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
-    "generate": "openapi-typescript ./apollo.oas.json --output apollo.oas.ts"
+    "generate": "run-s generate:*",
+    "generate:json": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
+    "generate:types": "openapi-typescript ./apollo.oas.json --output apollo.oas.ts"
   },
   "dependencies": {},
   "devDependencies": {

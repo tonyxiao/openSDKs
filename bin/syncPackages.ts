@@ -47,7 +47,7 @@ const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
-  files: ['dist', '**/*.ts', '!**/*.spec.ts'],
+  files: ['dist', '**/*.ts', '!**/*.spec.ts', '!**/*.orig.oas.json'],
   scripts: {
     clean: 'rm -rf ./dist',
     build: 'tsc -p ./tsconfig.json',
