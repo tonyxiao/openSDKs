@@ -1,7 +1,6 @@
 {
   "name": "@opensdks/runtime",
   "version": "0.0.2",
-  "private": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -15,5 +14,8 @@
     "openapi-typescript-helpers": "0.0.4",
     "openapi3-ts": "4.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }

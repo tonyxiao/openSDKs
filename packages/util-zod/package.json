@@ -1,7 +1,6 @@
 {
   "name": "@opensdks/util-zod",
   "version": "0.0.0",
-  "private": false,
   "sideEffects": false,
   "module": "./index.ts",
   "scripts": {
