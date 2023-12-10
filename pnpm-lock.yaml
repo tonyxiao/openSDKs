@@ -236,9 +236,6 @@ importers:
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
-      yaml:
-        specifier: 2.3.4
-        version: 2.3.4
 
   sdks/sdk-plaid:
     devDependencies:
@@ -254,9 +251,6 @@ importers:
       prettier:
         specifier: 3.1.0
         version: 3.1.0
-      yamljs:
-        specifier: 0.3.0
-        version: 0.3.0
 
   sdks/sdk-qbo:
     devDependencies:
@@ -8436,14 +8430,6 @@ packages:
   /yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
-
-  /yamljs@0.3.0:
-    resolution: {integrity: sha512-C/FsVVhht4iPQYXOInoxUM/1ELSf9EsgKH34FofQOp6hwCPrW4vG4w5++TED3xRUo8gD7l0P1J1dLlDYzODsTQ==}
-    hasBin: true
-    dependencies:
-      argparse: 1.0.10
-      glob: 7.2.3
-    dev: true
 
   /yargs-parser@20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}

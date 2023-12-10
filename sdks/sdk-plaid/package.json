@@ -16,8 +16,8 @@
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
-    "generate": "pnpm generate:oas && pnpm generate:types",
-    "generate:oas": "yaml2json ./plaid.oas.yaml | prettier --parser json > ./plaid.oas.json",
+    "generate": "run-s generate:*",
+    "generate:json": "cat plaid.oas.yaml | node ../../bin/yaml2json.js -o plaid.oas",
     "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.d.ts"
   },
   "dependencies": {},
@@ -25,8 +25,7 @@
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
-    "prettier": "3.1.0",
-    "yamljs": "0.3.0"
+    "prettier": "3.1.0"
   },
   "publishConfig": {
     "access": "public"

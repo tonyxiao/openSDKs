@@ -2,7 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "download": {
-      "outputs": ["*.oas.json"]
+      "outputs": ["*.oas.json", "*.oas.yaml"]
     },
     "generate": {
       "dependsOn": ["download"],

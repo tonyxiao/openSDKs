@@ -28323,7 +28323,7 @@
           "XMR": {"type": "string", "description": "Monero"},
           "XRP": {"type": "string", "description": "Ripple"},
           "ZEC": {"type": "string", "description": "Zcash"},
-          "ZRX": {"type": "string", "description": null}
+          "ZRX": {"type": "string", "description": "0x"}
         },
         "required": [
           "ADA",

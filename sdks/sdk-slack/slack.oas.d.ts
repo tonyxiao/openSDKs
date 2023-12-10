@@ -3,706 +3,707 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
-  '/admin.apps.approve': {
+  "/admin.apps.approve": {
     /** @description Approve an app for installation on a workspace. Requires scope: `admin.apps:write` */
-    post: operations['admin_apps_approve']
-  }
-  '/admin.apps.approved.list': {
+    post: operations["admin_apps_approve"];
+  };
+  "/admin.apps.approved.list": {
     /** @description List approved apps for an org or workspace. Requires scope: `admin.apps:read` */
-    get: operations['admin_apps_approved_list']
-  }
-  '/admin.apps.requests.list': {
+    get: operations["admin_apps_approved_list"];
+  };
+  "/admin.apps.requests.list": {
     /** @description List app requests for a team/workspace. Requires scope: `admin.apps:read` */
-    get: operations['admin_apps_requests_list']
-  }
-  '/admin.apps.restrict': {
+    get: operations["admin_apps_requests_list"];
+  };
+  "/admin.apps.restrict": {
     /** @description Restrict an app for installation on a workspace. Requires scope: `admin.apps:write` */
-    post: operations['admin_apps_restrict']
-  }
-  '/admin.apps.restricted.list': {
+    post: operations["admin_apps_restrict"];
+  };
+  "/admin.apps.restricted.list": {
     /** @description List restricted apps for an org or workspace. Requires scope: `admin.apps:read` */
-    get: operations['admin_apps_restricted_list']
-  }
-  '/admin.conversations.archive': {
+    get: operations["admin_apps_restricted_list"];
+  };
+  "/admin.conversations.archive": {
     /** @description Archive a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_archive']
-  }
-  '/admin.conversations.convertToPrivate': {
+    post: operations["admin_conversations_archive"];
+  };
+  "/admin.conversations.convertToPrivate": {
     /** @description Convert a public channel to a private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_convertToPrivate']
-  }
-  '/admin.conversations.create': {
+    post: operations["admin_conversations_convertToPrivate"];
+  };
+  "/admin.conversations.create": {
     /** @description Create a public or private channel-based conversation. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_create']
-  }
-  '/admin.conversations.delete': {
+    post: operations["admin_conversations_create"];
+  };
+  "/admin.conversations.delete": {
     /** @description Delete a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_delete']
-  }
-  '/admin.conversations.disconnectShared': {
+    post: operations["admin_conversations_delete"];
+  };
+  "/admin.conversations.disconnectShared": {
     /** @description Disconnect a connected channel from one or more workspaces. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_disconnectShared']
-  }
-  '/admin.conversations.ekm.listOriginalConnectedChannelInfo': {
+    post: operations["admin_conversations_disconnectShared"];
+  };
+  "/admin.conversations.ekm.listOriginalConnectedChannelInfo": {
     /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. Requires scope: `admin.conversations:read` */
-    get: operations['admin_conversations_ekm_listOriginalConnectedChannelInfo']
-  }
-  '/admin.conversations.getConversationPrefs': {
+    get: operations["admin_conversations_ekm_listOriginalConnectedChannelInfo"];
+  };
+  "/admin.conversations.getConversationPrefs": {
     /** @description Get conversation preferences for a public or private channel. Requires scope: `admin.conversations:read` */
-    get: operations['admin_conversations_getConversationPrefs']
-  }
-  '/admin.conversations.getTeams': {
+    get: operations["admin_conversations_getConversationPrefs"];
+  };
+  "/admin.conversations.getTeams": {
     /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. Requires scope: `admin.conversations:read` */
-    get: operations['admin_conversations_getTeams']
-  }
-  '/admin.conversations.invite': {
+    get: operations["admin_conversations_getTeams"];
+  };
+  "/admin.conversations.invite": {
     /** @description Invite a user to a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_invite']
-  }
-  '/admin.conversations.rename': {
+    post: operations["admin_conversations_invite"];
+  };
+  "/admin.conversations.rename": {
     /** @description Rename a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_rename']
-  }
-  '/admin.conversations.restrictAccess.addGroup': {
+    post: operations["admin_conversations_rename"];
+  };
+  "/admin.conversations.restrictAccess.addGroup": {
     /** @description Add an allowlist of IDP groups for accessing a channel */
-    post: operations['admin_conversations_restrictAccess_addGroup']
-  }
-  '/admin.conversations.restrictAccess.listGroups': {
+    post: operations["admin_conversations_restrictAccess_addGroup"];
+  };
+  "/admin.conversations.restrictAccess.listGroups": {
     /** @description List all IDP Groups linked to a channel Requires scope: `admin.conversations:read` */
-    get: operations['admin_conversations_restrictAccess_listGroups']
-  }
-  '/admin.conversations.restrictAccess.removeGroup': {
+    get: operations["admin_conversations_restrictAccess_listGroups"];
+  };
+  "/admin.conversations.restrictAccess.removeGroup": {
     /** @description Remove a linked IDP group linked from a private channel */
-    post: operations['admin_conversations_restrictAccess_removeGroup']
-  }
-  '/admin.conversations.search': {
+    post: operations["admin_conversations_restrictAccess_removeGroup"];
+  };
+  "/admin.conversations.search": {
     /** @description Search for public or private channels in an Enterprise organization. Requires scope: `admin.conversations:read` */
-    get: operations['admin_conversations_search']
-  }
-  '/admin.conversations.setConversationPrefs': {
+    get: operations["admin_conversations_search"];
+  };
+  "/admin.conversations.setConversationPrefs": {
     /** @description Set the posting permissions for a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_setConversationPrefs']
-  }
-  '/admin.conversations.setTeams': {
+    post: operations["admin_conversations_setConversationPrefs"];
+  };
+  "/admin.conversations.setTeams": {
     /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_setTeams']
-  }
-  '/admin.conversations.unarchive': {
+    post: operations["admin_conversations_setTeams"];
+  };
+  "/admin.conversations.unarchive": {
     /** @description Unarchive a public or private channel. Requires scope: `admin.conversations:write` */
-    post: operations['admin_conversations_unarchive']
-  }
-  '/admin.emoji.add': {
+    post: operations["admin_conversations_unarchive"];
+  };
+  "/admin.emoji.add": {
     /** @description Add an emoji. */
-    post: operations['admin_emoji_add']
-  }
-  '/admin.emoji.addAlias': {
+    post: operations["admin_emoji_add"];
+  };
+  "/admin.emoji.addAlias": {
     /** @description Add an emoji alias. */
-    post: operations['admin_emoji_addAlias']
-  }
-  '/admin.emoji.list': {
+    post: operations["admin_emoji_addAlias"];
+  };
+  "/admin.emoji.list": {
     /** @description List emoji for an Enterprise Grid organization. Requires scope: `admin.teams:read` */
-    get: operations['admin_emoji_list']
-  }
-  '/admin.emoji.remove': {
+    get: operations["admin_emoji_list"];
+  };
+  "/admin.emoji.remove": {
     /** @description Remove an emoji across an Enterprise Grid organization */
-    post: operations['admin_emoji_remove']
-  }
-  '/admin.emoji.rename': {
+    post: operations["admin_emoji_remove"];
+  };
+  "/admin.emoji.rename": {
     /** @description Rename an emoji. */
-    post: operations['admin_emoji_rename']
-  }
-  '/admin.inviteRequests.approve': {
+    post: operations["admin_emoji_rename"];
+  };
+  "/admin.inviteRequests.approve": {
     /** @description Approve a workspace invite request. Requires scope: `admin.invites:write` */
-    post: operations['admin_inviteRequests_approve']
-  }
-  '/admin.inviteRequests.approved.list': {
+    post: operations["admin_inviteRequests_approve"];
+  };
+  "/admin.inviteRequests.approved.list": {
     /** @description List all approved workspace invite requests. Requires scope: `admin.invites:read` */
-    get: operations['admin_inviteRequests_approved_list']
-  }
-  '/admin.inviteRequests.denied.list': {
+    get: operations["admin_inviteRequests_approved_list"];
+  };
+  "/admin.inviteRequests.denied.list": {
     /** @description List all denied workspace invite requests. Requires scope: `admin.invites:read` */
-    get: operations['admin_inviteRequests_denied_list']
-  }
-  '/admin.inviteRequests.deny': {
+    get: operations["admin_inviteRequests_denied_list"];
+  };
+  "/admin.inviteRequests.deny": {
     /** @description Deny a workspace invite request. Requires scope: `admin.invites:write` */
-    post: operations['admin_inviteRequests_deny']
-  }
-  '/admin.inviteRequests.list': {
+    post: operations["admin_inviteRequests_deny"];
+  };
+  "/admin.inviteRequests.list": {
     /** @description List all pending workspace invite requests. Requires scope: `admin.invites:read` */
-    get: operations['admin_inviteRequests_list']
-  }
-  '/admin.teams.admins.list': {
+    get: operations["admin_inviteRequests_list"];
+  };
+  "/admin.teams.admins.list": {
     /** @description List all of the admins on a given workspace. Requires scope: `admin.teams:read` */
-    get: operations['admin_teams_admins_list']
-  }
-  '/admin.teams.create': {
+    get: operations["admin_teams_admins_list"];
+  };
+  "/admin.teams.create": {
     /** @description Create an Enterprise team. Requires scope: `admin.teams:write` */
-    post: operations['admin_teams_create']
-  }
-  '/admin.teams.list': {
+    post: operations["admin_teams_create"];
+  };
+  "/admin.teams.list": {
     /** @description List all teams on an Enterprise organization Requires scope: `admin.teams:read` */
-    get: operations['admin_teams_list']
-  }
-  '/admin.teams.owners.list': {
+    get: operations["admin_teams_list"];
+  };
+  "/admin.teams.owners.list": {
     /** @description List all of the owners on a given workspace. Requires scope: `admin.teams:read` */
-    get: operations['admin_teams_owners_list']
-  }
-  '/admin.teams.settings.info': {
+    get: operations["admin_teams_owners_list"];
+  };
+  "/admin.teams.settings.info": {
     /** @description Fetch information about settings in a workspace Requires scope: `admin.teams:read` */
-    get: operations['admin_teams_settings_info']
-  }
-  '/admin.teams.settings.setDefaultChannels': {
+    get: operations["admin_teams_settings_info"];
+  };
+  "/admin.teams.settings.setDefaultChannels": {
     /** @description Set the default channels of a workspace. */
-    post: operations['admin_teams_settings_setDefaultChannels']
-  }
-  '/admin.teams.settings.setDescription': {
+    post: operations["admin_teams_settings_setDefaultChannels"];
+  };
+  "/admin.teams.settings.setDescription": {
     /** @description Set the description of a given workspace. Requires scope: `admin.teams:write` */
-    post: operations['admin_teams_settings_setDescription']
-  }
-  '/admin.teams.settings.setDiscoverability': {
+    post: operations["admin_teams_settings_setDescription"];
+  };
+  "/admin.teams.settings.setDiscoverability": {
     /** @description An API method that allows admins to set the discoverability of a given workspace Requires scope: `admin.teams:write` */
-    post: operations['admin_teams_settings_setDiscoverability']
-  }
-  '/admin.teams.settings.setIcon': {
+    post: operations["admin_teams_settings_setDiscoverability"];
+  };
+  "/admin.teams.settings.setIcon": {
     /** @description Sets the icon of a workspace. */
-    post: operations['admin_teams_settings_setIcon']
-  }
-  '/admin.teams.settings.setName': {
+    post: operations["admin_teams_settings_setIcon"];
+  };
+  "/admin.teams.settings.setName": {
     /** @description Set the name of a given workspace. Requires scope: `admin.teams:write` */
-    post: operations['admin_teams_settings_setName']
-  }
-  '/admin.usergroups.addChannels': {
+    post: operations["admin_teams_settings_setName"];
+  };
+  "/admin.usergroups.addChannels": {
     /** @description Add one or more default channels to an IDP group. Requires scope: `admin.usergroups:write` */
-    post: operations['admin_usergroups_addChannels']
-  }
-  '/admin.usergroups.addTeams': {
+    post: operations["admin_usergroups_addChannels"];
+  };
+  "/admin.usergroups.addTeams": {
     /** @description Associate one or more default workspaces with an organization-wide IDP group. Requires scope: `admin.teams:write` */
-    post: operations['admin_usergroups_addTeams']
-  }
-  '/admin.usergroups.listChannels': {
+    post: operations["admin_usergroups_addTeams"];
+  };
+  "/admin.usergroups.listChannels": {
     /** @description List the channels linked to an org-level IDP group (user group). Requires scope: `admin.usergroups:read` */
-    get: operations['admin_usergroups_listChannels']
-  }
-  '/admin.usergroups.removeChannels': {
+    get: operations["admin_usergroups_listChannels"];
+  };
+  "/admin.usergroups.removeChannels": {
     /** @description Remove one or more default channels from an org-level IDP group (user group). Requires scope: `admin.usergroups:write` */
-    post: operations['admin_usergroups_removeChannels']
-  }
-  '/admin.users.assign': {
+    post: operations["admin_usergroups_removeChannels"];
+  };
+  "/admin.users.assign": {
     /** @description Add an Enterprise user to a workspace. Requires scope: `admin.users:write` */
-    post: operations['admin_users_assign']
-  }
-  '/admin.users.invite': {
+    post: operations["admin_users_assign"];
+  };
+  "/admin.users.invite": {
     /** @description Invite a user to a workspace. Requires scope: `admin.users:write` */
-    post: operations['admin_users_invite']
-  }
-  '/admin.users.list': {
+    post: operations["admin_users_invite"];
+  };
+  "/admin.users.list": {
     /** @description List users on a workspace Requires scope: `admin.users:read` */
-    get: operations['admin_users_list']
-  }
-  '/admin.users.remove': {
+    get: operations["admin_users_list"];
+  };
+  "/admin.users.remove": {
     /** @description Remove a user from a workspace. Requires scope: `admin.users:write` */
-    post: operations['admin_users_remove']
-  }
-  '/admin.users.session.invalidate': {
+    post: operations["admin_users_remove"];
+  };
+  "/admin.users.session.invalidate": {
     /** @description Invalidate a single session for a user by session_id Requires scope: `admin.users:write` */
-    post: operations['admin_users_session_invalidate']
-  }
-  '/admin.users.session.reset': {
+    post: operations["admin_users_session_invalidate"];
+  };
+  "/admin.users.session.reset": {
     /** @description Wipes all valid sessions on all devices for a given user Requires scope: `admin.users:write` */
-    post: operations['admin_users_session_reset']
-  }
-  '/admin.users.setAdmin': {
+    post: operations["admin_users_session_reset"];
+  };
+  "/admin.users.setAdmin": {
     /** @description Set an existing guest, regular user, or owner to be an admin user. Requires scope: `admin.users:write` */
-    post: operations['admin_users_setAdmin']
-  }
-  '/admin.users.setExpiration': {
+    post: operations["admin_users_setAdmin"];
+  };
+  "/admin.users.setExpiration": {
     /** @description Set an expiration for a guest user Requires scope: `admin.users:write` */
-    post: operations['admin_users_setExpiration']
-  }
-  '/admin.users.setOwner': {
+    post: operations["admin_users_setExpiration"];
+  };
+  "/admin.users.setOwner": {
     /** @description Set an existing guest, regular user, or admin user to be a workspace owner. Requires scope: `admin.users:write` */
-    post: operations['admin_users_setOwner']
-  }
-  '/admin.users.setRegular': {
+    post: operations["admin_users_setOwner"];
+  };
+  "/admin.users.setRegular": {
     /** @description Set an existing guest user, admin user, or owner to be a regular user. Requires scope: `admin.users:write` */
-    post: operations['admin_users_setRegular']
-  }
-  '/api.test': {
+    post: operations["admin_users_setRegular"];
+  };
+  "/api.test": {
     /** @description Checks API calling code. */
-    get: operations['api_test']
-  }
-  '/apps.event.authorizations.list': {
+    get: operations["api_test"];
+  };
+  "/apps.event.authorizations.list": {
     /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Requires scope: `authorizations:read` */
-    get: operations['apps_event_authorizations_list']
-  }
-  '/apps.permissions.info': {
+    get: operations["apps_event_authorizations_list"];
+  };
+  "/apps.permissions.info": {
     /** @description Returns list of permissions this app has on a team. Requires scope: `none` */
-    get: operations['apps_permissions_info']
-  }
-  '/apps.permissions.request': {
+    get: operations["apps_permissions_info"];
+  };
+  "/apps.permissions.request": {
     /** @description Allows an app to request additional scopes Requires scope: `none` */
-    get: operations['apps_permissions_request']
-  }
-  '/apps.permissions.resources.list': {
+    get: operations["apps_permissions_request"];
+  };
+  "/apps.permissions.resources.list": {
     /** @description Returns list of resource grants this app has on a team. Requires scope: `none` */
-    get: operations['apps_permissions_resources_list']
-  }
-  '/apps.permissions.scopes.list': {
+    get: operations["apps_permissions_resources_list"];
+  };
+  "/apps.permissions.scopes.list": {
     /** @description Returns list of scopes this app has on a team. Requires scope: `none` */
-    get: operations['apps_permissions_scopes_list']
-  }
-  '/apps.permissions.users.list': {
+    get: operations["apps_permissions_scopes_list"];
+  };
+  "/apps.permissions.users.list": {
     /** @description Returns list of user grants and corresponding scopes this app has on a team. Requires scope: `none` */
-    get: operations['apps_permissions_users_list']
-  }
-  '/apps.permissions.users.request': {
+    get: operations["apps_permissions_users_list"];
+  };
+  "/apps.permissions.users.request": {
     /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. Requires scope: `none` */
-    get: operations['apps_permissions_users_request']
-  }
-  '/apps.uninstall': {
+    get: operations["apps_permissions_users_request"];
+  };
+  "/apps.uninstall": {
     /** @description Uninstalls your app from a workspace. Requires scope: `none` */
-    get: operations['apps_uninstall']
-  }
-  '/auth.revoke': {
+    get: operations["apps_uninstall"];
+  };
+  "/auth.revoke": {
     /** @description Revokes a token. Requires scope: `none` */
-    get: operations['auth_revoke']
-  }
-  '/auth.test': {
+    get: operations["auth_revoke"];
+  };
+  "/auth.test": {
     /** @description Checks authentication & identity. Requires scope: `none` */
-    get: operations['auth_test']
-  }
-  '/bots.info': {
+    get: operations["auth_test"];
+  };
+  "/bots.info": {
     /** @description Gets information about a bot user. Requires scope: `users:read` */
-    get: operations['bots_info']
-  }
-  '/calls.add': {
+    get: operations["bots_info"];
+  };
+  "/calls.add": {
     /** @description Registers a new Call. Requires scope: `calls:write` */
-    post: operations['calls_add']
-  }
-  '/calls.end': {
+    post: operations["calls_add"];
+  };
+  "/calls.end": {
     /** @description Ends a Call. Requires scope: `calls:write` */
-    post: operations['calls_end']
-  }
-  '/calls.info': {
+    post: operations["calls_end"];
+  };
+  "/calls.info": {
     /** @description Returns information about a Call. Requires scope: `calls:read` */
-    get: operations['calls_info']
-  }
-  '/calls.participants.add': {
+    get: operations["calls_info"];
+  };
+  "/calls.participants.add": {
     /** @description Registers new participants added to a Call. Requires scope: `calls:write` */
-    post: operations['calls_participants_add']
-  }
-  '/calls.participants.remove': {
+    post: operations["calls_participants_add"];
+  };
+  "/calls.participants.remove": {
     /** @description Registers participants removed from a Call. Requires scope: `calls:write` */
-    post: operations['calls_participants_remove']
-  }
-  '/calls.update': {
+    post: operations["calls_participants_remove"];
+  };
+  "/calls.update": {
     /** @description Updates information about a Call. Requires scope: `calls:write` */
-    post: operations['calls_update']
-  }
-  '/chat.delete': {
+    post: operations["calls_update"];
+  };
+  "/chat.delete": {
     /** @description Deletes a message. Requires scope: `chat:write` */
-    post: operations['chat_delete']
-  }
-  '/chat.deleteScheduledMessage': {
+    post: operations["chat_delete"];
+  };
+  "/chat.deleteScheduledMessage": {
     /** @description Deletes a pending scheduled message from the queue. Requires scope: `chat:write` */
-    post: operations['chat_deleteScheduledMessage']
-  }
-  '/chat.getPermalink': {
+    post: operations["chat_deleteScheduledMessage"];
+  };
+  "/chat.getPermalink": {
     /** @description Retrieve a permalink URL for a specific extant message Requires scope: `none` */
-    get: operations['chat_getPermalink']
-  }
-  '/chat.meMessage': {
+    get: operations["chat_getPermalink"];
+  };
+  "/chat.meMessage": {
     /** @description Share a me message into a channel. Requires scope: `chat:write` */
-    post: operations['chat_meMessage']
-  }
-  '/chat.postEphemeral': {
+    post: operations["chat_meMessage"];
+  };
+  "/chat.postEphemeral": {
     /** @description Sends an ephemeral message to a user in a channel. Requires scope: `chat:write` */
-    post: operations['chat_postEphemeral']
-  }
-  '/chat.postMessage': {
+    post: operations["chat_postEphemeral"];
+  };
+  "/chat.postMessage": {
     /** @description Sends a message to a channel. Requires scope: `chat:write` */
-    post: operations['chat_postMessage']
-  }
-  '/chat.scheduleMessage': {
+    post: operations["chat_postMessage"];
+  };
+  "/chat.scheduleMessage": {
     /** @description Schedules a message to be sent to a channel. Requires scope: `chat:write` */
-    post: operations['chat_scheduleMessage']
-  }
-  '/chat.scheduledMessages.list': {
+    post: operations["chat_scheduleMessage"];
+  };
+  "/chat.scheduledMessages.list": {
     /** @description Returns a list of scheduled messages. Requires scope: `none` */
-    get: operations['chat_scheduledMessages_list']
-  }
-  '/chat.unfurl': {
+    get: operations["chat_scheduledMessages_list"];
+  };
+  "/chat.unfurl": {
     /** @description Provide custom unfurl behavior for user-posted URLs Requires scope: `links:write` */
-    post: operations['chat_unfurl']
-  }
-  '/chat.update': {
+    post: operations["chat_unfurl"];
+  };
+  "/chat.update": {
     /** @description Updates a message. Requires scope: `chat:write` */
-    post: operations['chat_update']
-  }
-  '/conversations.archive': {
+    post: operations["chat_update"];
+  };
+  "/conversations.archive": {
     /** @description Archives a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_archive']
-  }
-  '/conversations.close': {
+    post: operations["conversations_archive"];
+  };
+  "/conversations.close": {
     /** @description Closes a direct message or multi-person direct message. Requires scope: `conversations:write` */
-    post: operations['conversations_close']
-  }
-  '/conversations.create': {
+    post: operations["conversations_close"];
+  };
+  "/conversations.create": {
     /** @description Initiates a public or private channel-based conversation Requires scope: `conversations:write` */
-    post: operations['conversations_create']
-  }
-  '/conversations.history': {
+    post: operations["conversations_create"];
+  };
+  "/conversations.history": {
     /** @description Fetches a conversation's history of messages and events. Requires scope: `conversations:history` */
-    get: operations['conversations_history']
-  }
-  '/conversations.info': {
+    get: operations["conversations_history"];
+  };
+  "/conversations.info": {
     /** @description Retrieve information about a conversation. Requires scope: `conversations:read` */
-    get: operations['conversations_info']
-  }
-  '/conversations.invite': {
+    get: operations["conversations_info"];
+  };
+  "/conversations.invite": {
     /** @description Invites users to a channel. Requires scope: `conversations:write` */
-    post: operations['conversations_invite']
-  }
-  '/conversations.join': {
+    post: operations["conversations_invite"];
+  };
+  "/conversations.join": {
     /** @description Joins an existing conversation. Requires scope: `channels:write` */
-    post: operations['conversations_join']
-  }
-  '/conversations.kick': {
+    post: operations["conversations_join"];
+  };
+  "/conversations.kick": {
     /** @description Removes a user from a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_kick']
-  }
-  '/conversations.leave': {
+    post: operations["conversations_kick"];
+  };
+  "/conversations.leave": {
     /** @description Leaves a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_leave']
-  }
-  '/conversations.list': {
+    post: operations["conversations_leave"];
+  };
+  "/conversations.list": {
     /** @description Lists all channels in a Slack team. Requires scope: `conversations:read` */
-    get: operations['conversations_list']
-  }
-  '/conversations.mark': {
+    get: operations["conversations_list"];
+  };
+  "/conversations.mark": {
     /** @description Sets the read cursor in a channel. Requires scope: `conversations:write` */
-    post: operations['conversations_mark']
-  }
-  '/conversations.members': {
+    post: operations["conversations_mark"];
+  };
+  "/conversations.members": {
     /** @description Retrieve members of a conversation. Requires scope: `conversations:read` */
-    get: operations['conversations_members']
-  }
-  '/conversations.open': {
+    get: operations["conversations_members"];
+  };
+  "/conversations.open": {
     /** @description Opens or resumes a direct message or multi-person direct message. Requires scope: `conversations:write` */
-    post: operations['conversations_open']
-  }
-  '/conversations.rename': {
+    post: operations["conversations_open"];
+  };
+  "/conversations.rename": {
     /** @description Renames a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_rename']
-  }
-  '/conversations.replies': {
+    post: operations["conversations_rename"];
+  };
+  "/conversations.replies": {
     /** @description Retrieve a thread of messages posted to a conversation Requires scope: `conversations:history` */
-    get: operations['conversations_replies']
-  }
-  '/conversations.setPurpose': {
+    get: operations["conversations_replies"];
+  };
+  "/conversations.setPurpose": {
     /** @description Sets the purpose for a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_setPurpose']
-  }
-  '/conversations.setTopic': {
+    post: operations["conversations_setPurpose"];
+  };
+  "/conversations.setTopic": {
     /** @description Sets the topic for a conversation. Requires scope: `conversations:write` */
-    post: operations['conversations_setTopic']
-  }
-  '/conversations.unarchive': {
+    post: operations["conversations_setTopic"];
+  };
+  "/conversations.unarchive": {
     /** @description Reverses conversation archival. Requires scope: `conversations:write` */
-    post: operations['conversations_unarchive']
-  }
-  '/dialog.open': {
+    post: operations["conversations_unarchive"];
+  };
+  "/dialog.open": {
     /** @description Open a dialog with a user Requires scope: `none` */
-    get: operations['dialog_open']
-  }
-  '/dnd.endDnd': {
+    get: operations["dialog_open"];
+  };
+  "/dnd.endDnd": {
     /** @description Ends the current user's Do Not Disturb session immediately. Requires scope: `dnd:write` */
-    post: operations['dnd_endDnd']
-  }
-  '/dnd.endSnooze': {
+    post: operations["dnd_endDnd"];
+  };
+  "/dnd.endSnooze": {
     /** @description Ends the current user's snooze mode immediately. Requires scope: `dnd:write` */
-    post: operations['dnd_endSnooze']
-  }
-  '/dnd.info': {
+    post: operations["dnd_endSnooze"];
+  };
+  "/dnd.info": {
     /** @description Retrieves a user's current Do Not Disturb status. Requires scope: `dnd:read` */
-    get: operations['dnd_info']
-  }
-  '/dnd.setSnooze': {
+    get: operations["dnd_info"];
+  };
+  "/dnd.setSnooze": {
     /** @description Turns on Do Not Disturb mode for the current user, or changes its duration. */
-    post: operations['dnd_setSnooze']
-  }
-  '/dnd.teamInfo': {
+    post: operations["dnd_setSnooze"];
+  };
+  "/dnd.teamInfo": {
     /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. Requires scope: `dnd:read` */
-    get: operations['dnd_teamInfo']
-  }
-  '/emoji.list': {
+    get: operations["dnd_teamInfo"];
+  };
+  "/emoji.list": {
     /** @description Lists custom emoji for a team. Requires scope: `emoji:read` */
-    get: operations['emoji_list']
-  }
-  '/files.comments.delete': {
+    get: operations["emoji_list"];
+  };
+  "/files.comments.delete": {
     /** @description Deletes an existing comment on a file. Requires scope: `files:write:user` */
-    post: operations['files_comments_delete']
-  }
-  '/files.delete': {
+    post: operations["files_comments_delete"];
+  };
+  "/files.delete": {
     /** @description Deletes a file. Requires scope: `files:write:user` */
-    post: operations['files_delete']
-  }
-  '/files.info': {
+    post: operations["files_delete"];
+  };
+  "/files.info": {
     /** @description Gets information about a file. Requires scope: `files:read` */
-    get: operations['files_info']
-  }
-  '/files.list': {
+    get: operations["files_info"];
+  };
+  "/files.list": {
     /** @description List for a team, in a channel, or from a user with applied filters. Requires scope: `files:read` */
-    get: operations['files_list']
-  }
-  '/files.remote.add': {
+    get: operations["files_list"];
+  };
+  "/files.remote.add": {
     /** @description Adds a file from a remote service */
-    post: operations['files_remote_add']
-  }
-  '/files.remote.info': {
+    post: operations["files_remote_add"];
+  };
+  "/files.remote.info": {
     /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
-    get: operations['files_remote_info']
-  }
-  '/files.remote.list': {
+    get: operations["files_remote_info"];
+  };
+  "/files.remote.list": {
     /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
-    get: operations['files_remote_list']
-  }
-  '/files.remote.remove': {
+    get: operations["files_remote_list"];
+  };
+  "/files.remote.remove": {
     /** @description Remove a remote file. */
-    post: operations['files_remote_remove']
-  }
-  '/files.remote.share': {
+    post: operations["files_remote_remove"];
+  };
+  "/files.remote.share": {
     /** @description Share a remote file into a channel. Requires scope: `remote_files:share` */
-    get: operations['files_remote_share']
-  }
-  '/files.remote.update': {
+    get: operations["files_remote_share"];
+  };
+  "/files.remote.update": {
     /** @description Updates an existing remote file. */
-    post: operations['files_remote_update']
-  }
-  '/files.revokePublicURL': {
+    post: operations["files_remote_update"];
+  };
+  "/files.revokePublicURL": {
     /** @description Revokes public/external sharing access for a file Requires scope: `files:write:user` */
-    post: operations['files_revokePublicURL']
-  }
-  '/files.sharedPublicURL': {
+    post: operations["files_revokePublicURL"];
+  };
+  "/files.sharedPublicURL": {
     /** @description Enables a file for public/external sharing. Requires scope: `files:write:user` */
-    post: operations['files_sharedPublicURL']
-  }
-  '/files.upload': {
+    post: operations["files_sharedPublicURL"];
+  };
+  "/files.upload": {
     /** @description Uploads or creates a file. */
-    post: operations['files_upload']
-  }
-  '/migration.exchange': {
+    post: operations["files_upload"];
+  };
+  "/migration.exchange": {
     /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs Requires scope: `tokens.basic` */
-    get: operations['migration_exchange']
-  }
-  '/oauth.access': {
+    get: operations["migration_exchange"];
+  };
+  "/oauth.access": {
     /** @description Exchanges a temporary OAuth verifier code for an access token. */
-    get: operations['oauth_access']
-  }
-  '/oauth.token': {
+    get: operations["oauth_access"];
+  };
+  "/oauth.token": {
     /** @description Exchanges a temporary OAuth verifier code for a workspace token. */
-    get: operations['oauth_token']
-  }
-  '/oauth.v2.access': {
+    get: operations["oauth_token"];
+  };
+  "/oauth.v2.access": {
     /** @description Exchanges a temporary OAuth verifier code for an access token. */
-    get: operations['oauth_v2_access']
-  }
-  '/pins.add': {
+    get: operations["oauth_v2_access"];
+  };
+  "/pins.add": {
     /** @description Pins an item to a channel. Requires scope: `pins:write` */
-    post: operations['pins_add']
-  }
-  '/pins.list': {
+    post: operations["pins_add"];
+  };
+  "/pins.list": {
     /** @description Lists items pinned to a channel. Requires scope: `pins:read` */
-    get: operations['pins_list']
-  }
-  '/pins.remove': {
+    get: operations["pins_list"];
+  };
+  "/pins.remove": {
     /** @description Un-pins an item from a channel. Requires scope: `pins:write` */
-    post: operations['pins_remove']
-  }
-  '/reactions.add': {
+    post: operations["pins_remove"];
+  };
+  "/reactions.add": {
     /** @description Adds a reaction to an item. Requires scope: `reactions:write` */
-    post: operations['reactions_add']
-  }
-  '/reactions.get': {
+    post: operations["reactions_add"];
+  };
+  "/reactions.get": {
     /** @description Gets reactions for an item. Requires scope: `reactions:read` */
-    get: operations['reactions_get']
-  }
-  '/reactions.list': {
+    get: operations["reactions_get"];
+  };
+  "/reactions.list": {
     /** @description Lists reactions made by a user. Requires scope: `reactions:read` */
-    get: operations['reactions_list']
-  }
-  '/reactions.remove': {
+    get: operations["reactions_list"];
+  };
+  "/reactions.remove": {
     /** @description Removes a reaction from an item. Requires scope: `reactions:write` */
-    post: operations['reactions_remove']
-  }
-  '/reminders.add': {
+    post: operations["reactions_remove"];
+  };
+  "/reminders.add": {
     /** @description Creates a reminder. Requires scope: `reminders:write` */
-    post: operations['reminders_add']
-  }
-  '/reminders.complete': {
+    post: operations["reminders_add"];
+  };
+  "/reminders.complete": {
     /** @description Marks a reminder as complete. Requires scope: `reminders:write` */
-    post: operations['reminders_complete']
-  }
-  '/reminders.delete': {
+    post: operations["reminders_complete"];
+  };
+  "/reminders.delete": {
     /** @description Deletes a reminder. Requires scope: `reminders:write` */
-    post: operations['reminders_delete']
-  }
-  '/reminders.info': {
+    post: operations["reminders_delete"];
+  };
+  "/reminders.info": {
     /** @description Gets information about a reminder. Requires scope: `reminders:read` */
-    get: operations['reminders_info']
-  }
-  '/reminders.list': {
+    get: operations["reminders_info"];
+  };
+  "/reminders.list": {
     /** @description Lists all reminders created by or for a given user. Requires scope: `reminders:read` */
-    get: operations['reminders_list']
-  }
-  '/rtm.connect': {
+    get: operations["reminders_list"];
+  };
+  "/rtm.connect": {
     /** @description Starts a Real Time Messaging session. Requires scope: `rtm:stream` */
-    get: operations['rtm_connect']
-  }
-  '/search.messages': {
+    get: operations["rtm_connect"];
+  };
+  "/search.messages": {
     /** @description Searches for messages matching a query. Requires scope: `search:read` */
-    get: operations['search_messages']
-  }
-  '/stars.add': {
+    get: operations["search_messages"];
+  };
+  "/stars.add": {
     /** @description Adds a star to an item. Requires scope: `stars:write` */
-    post: operations['stars_add']
-  }
-  '/stars.list': {
+    post: operations["stars_add"];
+  };
+  "/stars.list": {
     /** @description Lists stars for a user. Requires scope: `stars:read` */
-    get: operations['stars_list']
-  }
-  '/stars.remove': {
+    get: operations["stars_list"];
+  };
+  "/stars.remove": {
     /** @description Removes a star from an item. Requires scope: `stars:write` */
-    post: operations['stars_remove']
-  }
-  '/team.accessLogs': {
+    post: operations["stars_remove"];
+  };
+  "/team.accessLogs": {
     /** @description Gets the access logs for the current team. Requires scope: `admin` */
-    get: operations['team_accessLogs']
-  }
-  '/team.billableInfo': {
+    get: operations["team_accessLogs"];
+  };
+  "/team.billableInfo": {
     /** @description Gets billable users information for the current team. Requires scope: `admin` */
-    get: operations['team_billableInfo']
-  }
-  '/team.info': {
+    get: operations["team_billableInfo"];
+  };
+  "/team.info": {
     /** @description Gets information about the current team. Requires scope: `team:read` */
-    get: operations['team_info']
-  }
-  '/team.integrationLogs': {
+    get: operations["team_info"];
+  };
+  "/team.integrationLogs": {
     /** @description Gets the integration logs for the current team. Requires scope: `admin` */
-    get: operations['team_integrationLogs']
-  }
-  '/team.profile.get': {
+    get: operations["team_integrationLogs"];
+  };
+  "/team.profile.get": {
     /** @description Retrieve a team's profile. Requires scope: `users.profile:read` */
-    get: operations['team_profile_get']
-  }
-  '/usergroups.create': {
+    get: operations["team_profile_get"];
+  };
+  "/usergroups.create": {
     /** @description Create a User Group Requires scope: `usergroups:write` */
-    post: operations['usergroups_create']
-  }
-  '/usergroups.disable': {
+    post: operations["usergroups_create"];
+  };
+  "/usergroups.disable": {
     /** @description Disable an existing User Group Requires scope: `usergroups:write` */
-    post: operations['usergroups_disable']
-  }
-  '/usergroups.enable': {
+    post: operations["usergroups_disable"];
+  };
+  "/usergroups.enable": {
     /** @description Enable a User Group Requires scope: `usergroups:write` */
-    post: operations['usergroups_enable']
-  }
-  '/usergroups.list': {
+    post: operations["usergroups_enable"];
+  };
+  "/usergroups.list": {
     /** @description List all User Groups for a team Requires scope: `usergroups:read` */
-    get: operations['usergroups_list']
-  }
-  '/usergroups.update': {
+    get: operations["usergroups_list"];
+  };
+  "/usergroups.update": {
     /** @description Update an existing User Group Requires scope: `usergroups:write` */
-    post: operations['usergroups_update']
-  }
-  '/usergroups.users.list': {
+    post: operations["usergroups_update"];
+  };
+  "/usergroups.users.list": {
     /** @description List all users in a User Group Requires scope: `usergroups:read` */
-    get: operations['usergroups_users_list']
-  }
-  '/usergroups.users.update': {
+    get: operations["usergroups_users_list"];
+  };
+  "/usergroups.users.update": {
     /** @description Update the list of users for a User Group Requires scope: `usergroups:write` */
-    post: operations['usergroups_users_update']
-  }
-  '/users.conversations': {
+    post: operations["usergroups_users_update"];
+  };
+  "/users.conversations": {
     /** @description List conversations the calling user may access. Requires scope: `conversations:read` */
-    get: operations['users_conversations']
-  }
-  '/users.deletePhoto': {
+    get: operations["users_conversations"];
+  };
+  "/users.deletePhoto": {
     /** @description Delete the user profile photo */
-    post: operations['users_deletePhoto']
-  }
-  '/users.getPresence': {
+    post: operations["users_deletePhoto"];
+  };
+  "/users.getPresence": {
     /** @description Gets user presence information. Requires scope: `users:read` */
-    get: operations['users_getPresence']
-  }
-  '/users.identity': {
+    get: operations["users_getPresence"];
+  };
+  "/users.identity": {
     /** @description Get a user's identity. Requires scope: `identity.basic` */
-    get: operations['users_identity']
-  }
-  '/users.info': {
+    get: operations["users_identity"];
+  };
+  "/users.info": {
     /** @description Gets information about a user. Requires scope: `users:read` */
-    get: operations['users_info']
-  }
-  '/users.list': {
+    get: operations["users_info"];
+  };
+  "/users.list": {
     /** @description Lists all users in a Slack team. Requires scope: `users:read` */
-    get: operations['users_list']
-  }
-  '/users.lookupByEmail': {
+    get: operations["users_list"];
+  };
+  "/users.lookupByEmail": {
     /** @description Find a user with an email address. Requires scope: `users:read.email` */
-    get: operations['users_lookupByEmail']
-  }
-  '/users.profile.get': {
+    get: operations["users_lookupByEmail"];
+  };
+  "/users.profile.get": {
     /** @description Retrieves a user's profile information. Requires scope: `users.profile:read` */
-    get: operations['users_profile_get']
-  }
-  '/users.profile.set': {
+    get: operations["users_profile_get"];
+  };
+  "/users.profile.set": {
     /** @description Set the profile information for a user. Requires scope: `users.profile:write` */
-    post: operations['users_profile_set']
-  }
-  '/users.setActive': {
+    post: operations["users_profile_set"];
+  };
+  "/users.setActive": {
     /** @description Marked a user as active. Deprecated and non-functional. Requires scope: `users:write` */
-    post: operations['users_setActive']
-  }
-  '/users.setPhoto': {
+    post: operations["users_setActive"];
+  };
+  "/users.setPhoto": {
     /** @description Set the user profile photo */
-    post: operations['users_setPhoto']
-  }
-  '/users.setPresence': {
+    post: operations["users_setPhoto"];
+  };
+  "/users.setPresence": {
     /** @description Manually sets user presence. Requires scope: `users:write` */
-    post: operations['users_setPresence']
-  }
-  '/views.open': {
+    post: operations["users_setPresence"];
+  };
+  "/views.open": {
     /** @description Open a view for a user. Requires scope: `none` */
-    get: operations['views_open']
-  }
-  '/views.publish': {
+    get: operations["views_open"];
+  };
+  "/views.publish": {
     /** @description Publish a static view for a User. Requires scope: `none` */
-    get: operations['views_publish']
-  }
-  '/views.push': {
+    get: operations["views_publish"];
+  };
+  "/views.push": {
     /** @description Push a view onto the stack of a root view. Requires scope: `none` */
-    get: operations['views_push']
-  }
-  '/views.update': {
+    get: operations["views_push"];
+  };
+  "/views.update": {
     /** @description Update an existing view. Requires scope: `none` */
-    get: operations['views_update']
-  }
-  '/workflows.stepCompleted': {
+    get: operations["views_update"];
+  };
+  "/workflows.stepCompleted": {
     /** @description Indicate that an app's step in a workflow completed execution. Requires scope: `workflow.steps:execute` */
-    get: operations['workflows_stepCompleted']
-  }
-  '/workflows.stepFailed': {
+    get: operations["workflows_stepCompleted"];
+  };
+  "/workflows.stepFailed": {
     /** @description Indicate that an app's step in a workflow failed to execute. Requires scope: `workflow.steps:execute` */
-    get: operations['workflows_stepFailed']
-  }
-  '/workflows.updateStep': {
+    get: operations["workflows_stepFailed"];
+  };
+  "/workflows.updateStep": {
     /** @description Update the configuration for a workflow extension step. Requires scope: `workflow.steps:execute` */
-    get: operations['workflows_updateStep']
-  }
+    get: operations["workflows_updateStep"];
+  };
 }
 
-export type webhooks = Record<string, never>
+export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
@@ -711,8811 +712,6867 @@ export interface components {
      * @description This is a very loose definition, in the future, we'll populate this with deeper schema in this definition namespace.
      */
     blocks: {
-      type: string
-      [key: string]: unknown
-    }[]
+        type: string;
+        [key: string]: unknown;
+      }[];
     /** App ID */
-    defs_app_id: string
+    defs_app_id: string;
     /** Bot User ID */
-    defs_bot_id: string
+    defs_bot_id: string;
     /** Channel-like conversation ID */
-    defs_channel: string
+    defs_channel: string;
     /** Channel ID */
-    defs_channel_id: string
+    defs_channel_id: string;
     /** Name of a channel */
-    defs_channel_name: string
+    defs_channel_name: string;
     /** File Comment ID */
-    defs_comment_id: string
+    defs_comment_id: string;
     /** Direct Message Channel ID */
-    defs_dm_id: string
+    defs_dm_id: string;
     /** Enterprise ID */
-    defs_enterprise_id: string
+    defs_enterprise_id: string;
     /** Name of the enterprise org */
-    defs_enterprise_name: string
+    defs_enterprise_name: string;
     /** Enterprise User ID */
-    defs_enterprise_user_id: string
+    defs_enterprise_user_id: string;
     /** File ID */
-    defs_file_id: string
+    defs_file_id: string;
     /** Private Channel ID */
-    defs_group_id: string
+    defs_group_id: string;
     /**
      * default failure response
      * @enum {boolean}
      */
-    defs_ok_false: false
+    defs_ok_false: false;
     /**
      * default success response
      * @enum {boolean}
      */
-    defs_ok_true: true
+    defs_ok_true: true;
     /** App ID or empty string */
-    defs_optional_app_id: string
+    defs_optional_app_id: string;
     /** Info for a pinned item */
-    defs_pinned_info: Record<string, never>
+    defs_pinned_info: Record<string, never>;
     /** Reminder ID */
-    defs_reminder_id: string
+    defs_reminder_id: string;
     /** Subteam ID */
-    defs_subteam_id: string
+    defs_subteam_id: string;
     /** Team ID */
-    defs_team: string
+    defs_team: string;
     /** User ID or empty string, used for topic and purpose creation */
-    defs_topic_purpose_creator: string
+    defs_topic_purpose_creator: string;
     /** Timestamp in format 0123456789.012345 */
-    defs_ts: string
+    defs_ts: string;
     /** User ID */
-    defs_user_id: string
+    defs_user_id: string;
     /** Team or Enterprise ID */
-    defs_workspace_id: string
+    defs_workspace_id: string;
     /** Bot Profile Object */
     objs_bot_profile: {
-      app_id: components['schemas']['defs_app_id']
-      deleted: boolean
+      app_id: components["schemas"]["defs_app_id"];
+      deleted: boolean;
       icons: {
         /** Format: uri */
-        image_36: string
+        image_36: string;
         /** Format: uri */
-        image_48: string
+        image_48: string;
         /** Format: uri */
-        image_72: string
-      }
-      id: components['schemas']['defs_bot_id']
-      name: string
-      team_id: components['schemas']['defs_team']
-      updated: number
-    }
+        image_72: string;
+      };
+      id: components["schemas"]["defs_bot_id"];
+      name: string;
+      team_id: components["schemas"]["defs_team"];
+      updated: number;
+    };
     /** Channel Object */
     objs_channel: {
-      accepted_user?: components['schemas']['defs_user_id']
-      created: number
-      creator: components['schemas']['defs_user_id']
-      id: components['schemas']['defs_channel_id']
-      is_archived?: boolean
-      is_channel: boolean
-      is_frozen?: boolean
-      is_general?: boolean
-      is_member?: boolean
-      is_moved?: number
-      is_mpim: boolean
-      is_non_threadable?: boolean
-      is_org_shared: boolean
-      is_pending_ext_shared?: boolean
-      is_private: boolean
-      is_read_only?: boolean
-      is_shared: boolean
-      is_thread_only?: boolean
-      last_read?: components['schemas']['defs_ts']
-      latest?: unknown
-      members: components['schemas']['defs_user_id'][]
-      name: string
-      name_normalized: string
-      num_members?: number
-      pending_shared?: components['schemas']['defs_team'][]
-      previous_names?: components['schemas']['defs_channel_name'][]
-      priority?: number
+      accepted_user?: components["schemas"]["defs_user_id"];
+      created: number;
+      creator: components["schemas"]["defs_user_id"];
+      id: components["schemas"]["defs_channel_id"];
+      is_archived?: boolean;
+      is_channel: boolean;
+      is_frozen?: boolean;
+      is_general?: boolean;
+      is_member?: boolean;
+      is_moved?: number;
+      is_mpim: boolean;
+      is_non_threadable?: boolean;
+      is_org_shared: boolean;
+      is_pending_ext_shared?: boolean;
+      is_private: boolean;
+      is_read_only?: boolean;
+      is_shared: boolean;
+      is_thread_only?: boolean;
+      last_read?: components["schemas"]["defs_ts"];
+      latest?: unknown;
+      members: components["schemas"]["defs_user_id"][];
+      name: string;
+      name_normalized: string;
+      num_members?: number;
+      pending_shared?: components["schemas"]["defs_team"][];
+      previous_names?: components["schemas"]["defs_channel_name"][];
+      priority?: number;
       purpose: {
-        creator: components['schemas']['defs_topic_purpose_creator']
-        last_set: number
-        value: string
-      }
+        creator: components["schemas"]["defs_topic_purpose_creator"];
+        last_set: number;
+        value: string;
+      };
       topic: {
-        creator: components['schemas']['defs_topic_purpose_creator']
-        last_set: number
-        value: string
-      }
+        creator: components["schemas"]["defs_topic_purpose_creator"];
+        last_set: number;
+        value: string;
+      };
       /** Field to determine whether a channel has ever been shared/disconnected in the past */
-      unlinked?: number
-      unread_count?: number
-      unread_count_display?: number
-    }
+      unlinked?: number;
+      unread_count?: number;
+      unread_count_display?: number;
+    };
     /** File Comment Object */
     objs_comment: {
-      comment: string
-      created: number
-      id: components['schemas']['defs_comment_id']
-      is_intro: boolean
-      is_starred?: boolean
-      num_stars?: number
-      pinned_info?: components['schemas']['defs_pinned_info']
-      pinned_to?: components['schemas']['defs_channel'][]
-      reactions?: components['schemas']['objs_reaction'][]
-      timestamp: number
-      user: components['schemas']['defs_user_id']
-    }
+      comment: string;
+      created: number;
+      id: components["schemas"]["defs_comment_id"];
+      is_intro: boolean;
+      is_starred?: boolean;
+      num_stars?: number;
+      pinned_info?: components["schemas"]["defs_pinned_info"];
+      pinned_to?: components["schemas"]["defs_channel"][];
+      reactions?: components["schemas"]["objs_reaction"][];
+      timestamp: number;
+      user: components["schemas"]["defs_user_id"];
+    };
     /** file comments object */
-    objs_comments: unknown[]
-    objs_conversation: unknown
+    objs_comments: unknown[];
+    objs_conversation: unknown;
     objs_enterprise_user: {
-      enterprise_id: components['schemas']['defs_enterprise_id']
-      enterprise_name: components['schemas']['defs_enterprise_name']
-      id: components['schemas']['defs_enterprise_user_id']
-      is_admin: boolean
-      is_owner: boolean
-      teams: components['schemas']['defs_team'][]
-    }
+      enterprise_id: components["schemas"]["defs_enterprise_id"];
+      enterprise_name: components["schemas"]["defs_enterprise_name"];
+      id: components["schemas"]["defs_enterprise_user_id"];
+      is_admin: boolean;
+      is_owner: boolean;
+      teams: components["schemas"]["defs_team"][];
+    };
     /** External Org Migrations */
     objs_external_org_migrations: {
       current: {
-        date_started: number
-        team_id: string
-      }[]
-      date_updated: number
-    }
+          date_started: number;
+          team_id: string;
+        }[];
+      date_updated: number;
+    };
     /** file object */
     objs_file: {
-      channels?: components['schemas']['defs_channel_id'][]
-      comments_count?: number
-      created?: number
-      date_delete?: number
-      display_as_bot?: boolean
-      editable?: boolean
-      editor?: components['schemas']['defs_user_id']
-      external_id?: string
-      external_type?: string
+      channels?: components["schemas"]["defs_channel_id"][];
+      comments_count?: number;
+      created?: number;
+      date_delete?: number;
+      display_as_bot?: boolean;
+      editable?: boolean;
+      editor?: components["schemas"]["defs_user_id"];
+      external_id?: string;
+      external_type?: string;
       /** Format: uri */
-      external_url?: string
-      filetype?: string
-      groups?: components['schemas']['defs_group_id'][]
-      has_rich_preview?: boolean
-      id?: components['schemas']['defs_file_id']
-      image_exif_rotation?: number
-      ims?: components['schemas']['defs_dm_id'][]
-      is_external?: boolean
-      is_public?: boolean
-      is_starred?: boolean
-      is_tombstoned?: boolean
-      last_editor?: components['schemas']['defs_user_id']
-      mimetype?: string
-      mode?: string
-      name?: string
-      non_owner_editable?: boolean
-      num_stars?: number
-      original_h?: number
-      original_w?: number
+      external_url?: string;
+      filetype?: string;
+      groups?: components["schemas"]["defs_group_id"][];
+      has_rich_preview?: boolean;
+      id?: components["schemas"]["defs_file_id"];
+      image_exif_rotation?: number;
+      ims?: components["schemas"]["defs_dm_id"][];
+      is_external?: boolean;
+      is_public?: boolean;
+      is_starred?: boolean;
+      is_tombstoned?: boolean;
+      last_editor?: components["schemas"]["defs_user_id"];
+      mimetype?: string;
+      mode?: string;
+      name?: string;
+      non_owner_editable?: boolean;
+      num_stars?: number;
+      original_h?: number;
+      original_w?: number;
       /** Format: uri */
-      permalink?: string
+      permalink?: string;
       /** Format: uri */
-      permalink_public?: string
-      pinned_info?: components['schemas']['defs_pinned_info']
-      pinned_to?: components['schemas']['defs_channel'][]
-      pretty_type?: string
-      preview?: string
-      public_url_shared?: boolean
-      reactions?: components['schemas']['objs_reaction'][]
+      permalink_public?: string;
+      pinned_info?: components["schemas"]["defs_pinned_info"];
+      pinned_to?: components["schemas"]["defs_channel"][];
+      pretty_type?: string;
+      preview?: string;
+      public_url_shared?: boolean;
+      reactions?: components["schemas"]["objs_reaction"][];
       shares?: {
-        private?: unknown
-        public?: unknown
-      }
-      size?: number
-      source_team?: components['schemas']['defs_team']
-      state?: string
+        private?: unknown;
+        public?: unknown;
+      };
+      size?: number;
+      source_team?: components["schemas"]["defs_team"];
+      state?: string;
       /** Format: uri */
-      thumb_1024?: string
-      thumb_1024_h?: number
-      thumb_1024_w?: number
+      thumb_1024?: string;
+      thumb_1024_h?: number;
+      thumb_1024_w?: number;
       /** Format: uri */
-      thumb_160?: string
+      thumb_160?: string;
       /** Format: uri */
-      thumb_360?: string
-      thumb_360_h?: number
-      thumb_360_w?: number
+      thumb_360?: string;
+      thumb_360_h?: number;
+      thumb_360_w?: number;
       /** Format: uri */
-      thumb_480?: string
-      thumb_480_h?: number
-      thumb_480_w?: number
+      thumb_480?: string;
+      thumb_480_h?: number;
+      thumb_480_w?: number;
       /** Format: uri */
-      thumb_64?: string
+      thumb_64?: string;
       /** Format: uri */
-      thumb_720?: string
-      thumb_720_h?: number
-      thumb_720_w?: number
+      thumb_720?: string;
+      thumb_720_h?: number;
+      thumb_720_w?: number;
       /** Format: uri */
-      thumb_80?: string
+      thumb_80?: string;
       /** Format: uri */
-      thumb_800?: string
-      thumb_800_h?: number
-      thumb_800_w?: number
+      thumb_800?: string;
+      thumb_800_h?: number;
+      thumb_800_w?: number;
       /** Format: uri */
-      thumb_960?: string
-      thumb_960_h?: number
-      thumb_960_w?: number
-      thumb_tiny?: string
-      timestamp?: number
-      title?: string
-      updated?: number
+      thumb_960?: string;
+      thumb_960_h?: number;
+      thumb_960_w?: number;
+      thumb_tiny?: string;
+      timestamp?: number;
+      title?: string;
+      updated?: number;
       /** Format: uri */
-      url_private?: string
+      url_private?: string;
       /** Format: uri */
-      url_private_download?: string
-      user?: string
-      user_team?: components['schemas']['defs_team']
-      username?: string
-    }
+      url_private_download?: string;
+      user?: string;
+      user_team?: components["schemas"]["defs_team"];
+      username?: string;
+    };
     objs_icon: {
-      image_102?: string
-      image_132?: string
-      image_230?: string
-      image_34?: string
-      image_44?: string
-      image_68?: string
-      image_88?: string
-      image_default?: boolean
-    }
+      image_102?: string;
+      image_132?: string;
+      image_230?: string;
+      image_34?: string;
+      image_44?: string;
+      image_68?: string;
+      image_88?: string;
+      image_default?: boolean;
+    };
     /** Message object */
     objs_message: {
       attachments?: {
-        fallback?: string
-        id: number
-        image_bytes?: number
-        image_height?: number
-        image_url?: string
-        image_width?: number
-      }[]
-      blocks?: components['schemas']['blocks']
-      bot_id?: unknown
-      bot_profile?: components['schemas']['objs_bot_profile']
-      client_msg_id?: string
-      comment?: components['schemas']['objs_comment']
-      display_as_bot?: boolean
-      file?: components['schemas']['objs_file']
-      files?: components['schemas']['objs_file'][]
+          fallback?: string;
+          id: number;
+          image_bytes?: number;
+          image_height?: number;
+          image_url?: string;
+          image_width?: number;
+        }[];
+      blocks?: components["schemas"]["blocks"];
+      bot_id?: unknown;
+      bot_profile?: components["schemas"]["objs_bot_profile"];
+      client_msg_id?: string;
+      comment?: components["schemas"]["objs_comment"];
+      display_as_bot?: boolean;
+      file?: components["schemas"]["objs_file"];
+      files?: components["schemas"]["objs_file"][];
       icons?: {
-        emoji?: string
+        emoji?: string;
         /** Format: uri */
-        image_64?: string
-      }
-      inviter?: components['schemas']['defs_user_id']
-      is_delayed_message?: boolean
-      is_intro?: boolean
-      is_starred?: boolean
-      last_read?: components['schemas']['defs_ts']
-      latest_reply?: components['schemas']['defs_ts']
-      name?: string
-      old_name?: string
-      parent_user_id?: components['schemas']['defs_user_id']
+        image_64?: string;
+      };
+      inviter?: components["schemas"]["defs_user_id"];
+      is_delayed_message?: boolean;
+      is_intro?: boolean;
+      is_starred?: boolean;
+      last_read?: components["schemas"]["defs_ts"];
+      latest_reply?: components["schemas"]["defs_ts"];
+      name?: string;
+      old_name?: string;
+      parent_user_id?: components["schemas"]["defs_user_id"];
       /** Format: uri */
-      permalink?: string
-      pinned_to?: components['schemas']['defs_channel'][]
-      purpose?: string
-      reactions?: components['schemas']['objs_reaction'][]
-      reply_count?: number
-      reply_users?: components['schemas']['defs_user_id'][]
-      reply_users_count?: number
-      source_team?: components['schemas']['defs_workspace_id']
-      subscribed?: boolean
-      subtype?: string
-      team?: components['schemas']['defs_workspace_id']
-      text: string
-      thread_ts?: components['schemas']['defs_ts']
-      topic?: string
-      ts: components['schemas']['defs_ts']
-      type: string
-      unread_count?: number
-      upload?: boolean
-      user?: components['schemas']['defs_user_id']
-      user_profile?: components['schemas']['objs_user_profile_short']
-      user_team?: components['schemas']['defs_workspace_id']
-      username?: string
-    }
+      permalink?: string;
+      pinned_to?: components["schemas"]["defs_channel"][];
+      purpose?: string;
+      reactions?: components["schemas"]["objs_reaction"][];
+      reply_count?: number;
+      reply_users?: components["schemas"]["defs_user_id"][];
+      reply_users_count?: number;
+      source_team?: components["schemas"]["defs_workspace_id"];
+      subscribed?: boolean;
+      subtype?: string;
+      team?: components["schemas"]["defs_workspace_id"];
+      text: string;
+      thread_ts?: components["schemas"]["defs_ts"];
+      topic?: string;
+      ts: components["schemas"]["defs_ts"];
+      type: string;
+      unread_count?: number;
+      upload?: boolean;
+      user?: components["schemas"]["defs_user_id"];
+      user_profile?: components["schemas"]["objs_user_profile_short"];
+      user_team?: components["schemas"]["defs_workspace_id"];
+      username?: string;
+    };
     /** paging object */
     objs_paging: {
-      count?: number
-      page: number
-      pages?: number
-      per_page?: number
-      spill?: number
-      total: number
-    }
+      count?: number;
+      page: number;
+      pages?: number;
+      per_page?: number;
+      spill?: number;
+      total: number;
+    };
     objs_primary_owner: {
-      email: string
-      id: string
-    }
+      email: string;
+      id: string;
+    };
     /** Reaction object */
     objs_reaction: {
-      count: number
-      name: string
-      users: components['schemas']['defs_user_id'][]
-      [key: string]: unknown
-    }
+      count: number;
+      name: string;
+      users: components["schemas"]["defs_user_id"][];
+      [key: string]: unknown;
+    };
     objs_reminder: {
-      complete_ts?: number
-      creator: components['schemas']['defs_user_id']
-      id: components['schemas']['defs_reminder_id']
-      recurring: boolean
-      text: string
-      time?: number
-      user: components['schemas']['defs_user_id']
-    }
+      complete_ts?: number;
+      creator: components["schemas"]["defs_user_id"];
+      id: components["schemas"]["defs_reminder_id"];
+      recurring: boolean;
+      text: string;
+      time?: number;
+      user: components["schemas"]["defs_user_id"];
+    };
     /** resources in info from apps.permissions.info */
     objs_resources: {
-      excluded_ids?: unknown[]
-      ids: unknown[]
-      wildcard?: boolean
-    }
-    objs_response_metadata: unknown
-    objs_scopes: string[]
+      excluded_ids?: unknown[];
+      ids: unknown[];
+      wildcard?: boolean;
+    };
+    objs_response_metadata: unknown;
+    objs_scopes: string[];
     /** Subteam/Usergroup Object */
     objs_subteam: {
-      auto_provision: boolean
-      auto_type: unknown
-      channel_count?: number
-      created_by: components['schemas']['defs_user_id']
-      date_create: number
-      date_delete: number
-      date_update: number
-      deleted_by: unknown
-      description: string
-      enterprise_subteam_id: string
-      handle: string
-      id: components['schemas']['defs_subteam_id']
-      is_external: boolean
-      is_subteam: boolean
-      is_usergroup: boolean
-      name: string
+      auto_provision: boolean;
+      auto_type: unknown;
+      channel_count?: number;
+      created_by: components["schemas"]["defs_user_id"];
+      date_create: number;
+      date_delete: number;
+      date_update: number;
+      deleted_by: unknown;
+      description: string;
+      enterprise_subteam_id: string;
+      handle: string;
+      id: components["schemas"]["defs_subteam_id"];
+      is_external: boolean;
+      is_subteam: boolean;
+      is_usergroup: boolean;
+      name: string;
       prefs: {
-        channels: components['schemas']['defs_channel_id'][]
-        groups: components['schemas']['defs_group_id'][]
-      }
-      team_id: components['schemas']['defs_team']
-      updated_by: components['schemas']['defs_user_id']
-      user_count?: number
-      users?: components['schemas']['defs_user_id'][]
-    }
+        channels: components["schemas"]["defs_channel_id"][];
+        groups: components["schemas"]["defs_group_id"][];
+      };
+      team_id: components["schemas"]["defs_team"];
+      updated_by: components["schemas"]["defs_user_id"];
+      user_count?: number;
+      users?: components["schemas"]["defs_user_id"][];
+    };
     /** Team Object */
     objs_team: {
-      archived?: boolean
+      archived?: boolean;
       /** Format: uri */
-      avatar_base_url?: string
-      created?: number
-      date_create?: number
-      deleted?: boolean
-      description?: string | null
-      discoverable?: unknown
-      domain: string
-      email_domain: string
-      enterprise_id?: components['schemas']['defs_enterprise_id']
-      enterprise_name?: components['schemas']['defs_enterprise_name']
-      external_org_migrations?: components['schemas']['objs_external_org_migrations']
-      has_compliance_export?: boolean
-      icon: components['schemas']['objs_icon']
-      id: components['schemas']['defs_workspace_id']
-      is_assigned?: boolean
-      is_enterprise?: number
-      is_over_storage_limit?: boolean
-      limit_ts?: number
-      locale?: string
-      messages_count?: number
-      msg_edit_window_mins?: number
-      name: string
-      over_integrations_limit?: boolean
-      over_storage_limit?: boolean
-      pay_prod_cur?: string
+      avatar_base_url?: string;
+      created?: number;
+      date_create?: number;
+      deleted?: boolean;
+      description?: string | null;
+      discoverable?: unknown;
+      domain: string;
+      email_domain: string;
+      enterprise_id?: components["schemas"]["defs_enterprise_id"];
+      enterprise_name?: components["schemas"]["defs_enterprise_name"];
+      external_org_migrations?: components["schemas"]["objs_external_org_migrations"];
+      has_compliance_export?: boolean;
+      icon: components["schemas"]["objs_icon"];
+      id: components["schemas"]["defs_workspace_id"];
+      is_assigned?: boolean;
+      is_enterprise?: number;
+      is_over_storage_limit?: boolean;
+      limit_ts?: number;
+      locale?: string;
+      messages_count?: number;
+      msg_edit_window_mins?: number;
+      name: string;
+      over_integrations_limit?: boolean;
+      over_storage_limit?: boolean;
+      pay_prod_cur?: string;
       /** @enum {string} */
-      plan?: '' | 'std' | 'plus' | 'compliance' | 'enterprise'
-      primary_owner?: components['schemas']['objs_primary_owner']
+      plan?: "" | "std" | "plus" | "compliance" | "enterprise";
+      primary_owner?: components["schemas"]["objs_primary_owner"];
       sso_provider?: {
-        label?: string
-        name?: string
-        type?: string
-      }
-    }
+        label?: string;
+        name?: string;
+        type?: string;
+      };
+    };
     objs_team_profile_field: {
-      field_name?: string | null
-      hint: string
-      id: string
-      is_hidden?: boolean
-      label: string
-      options?: unknown
-      ordering: number
-      possible_values?: string[] | null
+      field_name?: string | null;
+      hint: string;
+      id: string;
+      is_hidden?: boolean;
+      label: string;
+      options?: unknown;
+      ordering: number;
+      possible_values?: string[] | null;
       /** @enum {string} */
-      type: 'text' | 'date' | 'link' | 'mailto' | 'options_list' | 'user'
-    }
+      type: "text" | "date" | "link" | "mailto" | "options_list" | "user";
+    };
     objs_team_profile_field_option: {
-      is_custom?: boolean | null
-      is_multiple_entry?: boolean | null
-      is_protected?: boolean | null
-      is_scim?: boolean | null
-    }
-    objs_user: unknown
+      is_custom?: boolean | null;
+      is_multiple_entry?: boolean | null;
+      is_protected?: boolean | null;
+      is_scim?: boolean | null;
+    };
+    objs_user: unknown;
     /** User profile object */
     objs_user_profile: {
-      always_active?: boolean
-      api_app_id?: components['schemas']['defs_optional_app_id']
-      avatar_hash: string
-      bot_id?: components['schemas']['defs_bot_id']
-      display_name: string
-      display_name_normalized: string
+      always_active?: boolean;
+      api_app_id?: components["schemas"]["defs_optional_app_id"];
+      avatar_hash: string;
+      bot_id?: components["schemas"]["defs_bot_id"];
+      display_name: string;
+      display_name_normalized: string;
       /** Format: email */
-      email?: string | null
-      fields: Record<string, never> | unknown[] | null
-      first_name?: string | null
-      guest_expiration_ts?: number | null
-      guest_invited_by?: string | null
+      email?: string | null;
+      fields: Record<string, never> | unknown[] | null;
+      first_name?: string | null;
+      guest_expiration_ts?: number | null;
+      guest_invited_by?: string | null;
       /** Format: uri */
-      image_1024?: string | null
+      image_1024?: string | null;
       /** Format: uri */
-      image_192?: string | null
+      image_192?: string | null;
       /** Format: uri */
-      image_24?: string | null
+      image_24?: string | null;
       /** Format: uri */
-      image_32?: string | null
+      image_32?: string | null;
       /** Format: uri */
-      image_48?: string | null
+      image_48?: string | null;
       /** Format: uri */
-      image_512?: string | null
+      image_512?: string | null;
       /** Format: uri */
-      image_72?: string | null
+      image_72?: string | null;
       /** Format: uri */
-      image_original?: string | null
-      is_app_user?: boolean
-      is_custom_image?: boolean
-      is_restricted?: boolean | null
-      is_ultra_restricted?: boolean | null
-      last_avatar_image_hash?: string
-      last_name?: string | null
-      memberships_count?: number
-      name?: string | null
-      phone: string
-      pronouns?: string
-      real_name: string
-      real_name_normalized: string
-      skype: string
-      status_default_emoji?: string
-      status_default_text?: string
-      status_default_text_canonical?: string | null
-      status_emoji: string
-      status_expiration?: number
-      status_text: string
-      status_text_canonical?: string | null
-      team?: components['schemas']['defs_workspace_id']
-      title: string
-      updated?: number
-      user_id?: string
-      username?: string | null
-    }
+      image_original?: string | null;
+      is_app_user?: boolean;
+      is_custom_image?: boolean;
+      is_restricted?: boolean | null;
+      is_ultra_restricted?: boolean | null;
+      last_avatar_image_hash?: string;
+      last_name?: string | null;
+      memberships_count?: number;
+      name?: string | null;
+      phone: string;
+      pronouns?: string;
+      real_name: string;
+      real_name_normalized: string;
+      skype: string;
+      status_default_emoji?: string;
+      status_default_text?: string;
+      status_default_text_canonical?: string | null;
+      status_emoji: string;
+      status_expiration?: number;
+      status_text: string;
+      status_text_canonical?: string | null;
+      team?: components["schemas"]["defs_workspace_id"];
+      title: string;
+      updated?: number;
+      user_id?: string;
+      username?: string | null;
+    };
     objs_user_profile_short: {
-      avatar_hash: string
-      display_name: string
-      display_name_normalized?: string
-      first_name: string | null
+      avatar_hash: string;
+      display_name: string;
+      display_name_normalized?: string;
+      first_name: string | null;
       /** Format: uri */
-      image_72: string
-      is_restricted: boolean
-      is_ultra_restricted: boolean
-      name: string
-      real_name: string
-      real_name_normalized?: string
-      team: components['schemas']['defs_workspace_id']
-    }
-  }
-  responses: never
-  parameters: never
+      image_72: string;
+      is_restricted: boolean;
+      is_ultra_restricted: boolean;
+      name: string;
+      real_name: string;
+      real_name_normalized?: string;
+      team: components["schemas"]["defs_workspace_id"];
+    };
+  };
+  responses: never;
+  parameters: never;
   requestBodies: {
     admin_inviteRequests_approve?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of the request to invite. */
-          invite_request_id: string
+          invite_request_id: string;
           /** @description ID for the workspace where the invite request was made. */
-          team_id?: string
-        }
-      }
-    }
-  }
-  headers: never
-  pathItems: never
+          team_id?: string;
+        };
+      };
+    };
+  };
+  headers: never;
+  pathItems: never;
 }
 
-export type $defs = Record<string, never>
+export type $defs = Record<string, never>;
 
-export type external = Record<string, never>
+export type external = Record<string, never>;
 
 export interface operations {
+
   /** @description Approve an app for installation on a workspace. Requires scope: `admin.apps:write` */
   admin_apps_approve: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The id of the app to approve. */
-          app_id?: string
+          app_id?: string;
           /** @description The id of the request to approve. */
-          request_id?: string
-          team_id?: string
-        }
-      }
-    }
+          request_id?: string;
+          team_id?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List approved apps for an org or workspace. Requires scope: `admin.apps:read` */
   admin_apps_approved_list: {
     parameters: {
       query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
-        cursor?: string
-        team_id?: string
-        enterprise_id?: string
-      }
-    }
+        cursor?: string;
+        team_id?: string;
+        enterprise_id?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List app requests for a team/workspace. Requires scope: `admin.apps:read` */
   admin_apps_requests_list: {
     parameters: {
       query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
-        cursor?: string
-        team_id?: string
-      }
-    }
+        cursor?: string;
+        team_id?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Restrict an app for installation on a workspace. Requires scope: `admin.apps:write` */
   admin_apps_restrict: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The id of the app to restrict. */
-          app_id?: string
+          app_id?: string;
           /** @description The id of the request to restrict. */
-          request_id?: string
-          team_id?: string
-        }
-      }
-    }
+          request_id?: string;
+          team_id?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List restricted apps for an org or workspace. Requires scope: `admin.apps:read` */
   admin_apps_restricted_list: {
     parameters: {
       query?: {
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
-        cursor?: string
-        team_id?: string
-        enterprise_id?: string
-      }
-    }
+        cursor?: string;
+        team_id?: string;
+        enterprise_id?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Archive a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_archive: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to archive. */
-          channel_id: string
-        }
-      }
-    }
+          channel_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'default_org_wide_channel'
-              | 'already_archived'
-              | 'cant_archive_general'
-              | 'restricted_action'
-              | 'could_not_archive_channel'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "channel_not_found" | "channel_type_not_supported" | "default_org_wide_channel" | "already_archived" | "cant_archive_general" | "restricted_action" | "could_not_archive_channel";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Convert a public channel to a private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_convertToPrivate: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to convert to private. */
-          channel_id: string
-        }
-      }
-    }
+          channel_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'restricted_action'
-              | 'name_taken'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'default_org_wide_channel'
-              | 'method_not_supported_for_channel_type'
-              | 'could_not_convert_channel'
-              | 'external_channel_migrating'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "restricted_action" | "name_taken" | "channel_not_found" | "channel_type_not_supported" | "default_org_wide_channel" | "method_not_supported_for_channel_type" | "could_not_convert_channel" | "external_channel_migrating";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Create a public or private channel-based conversation. Requires scope: `admin.conversations:write` */
   admin_conversations_create: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Description of the public or private channel to create. */
-          description?: string
+          description?: string;
           /** @description When `true`, creates a private channel instead of a public channel */
-          is_private: boolean
+          is_private: boolean;
           /** @description Name of the public or private channel to create. */
-          name: string
+          name: string;
           /** @description When `true`, the channel will be available org-wide. Note: if the channel is not `org_wide=true`, you must specify a `team_id` for this channel */
-          org_wide?: boolean
+          org_wide?: boolean;
           /** @description The workspace to create the channel in. Note: this argument is required unless you set `org_wide=true`. */
-          team_id?: string
-        }
-      }
-    }
+          team_id?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel_id?: components['schemas']['defs_channel_id']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel_id?: components["schemas"]["defs_channel_id"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'name_taken'
-              | 'restricted_action'
-              | 'team_not_found'
-              | 'invalid_team'
-              | 'invalid_name'
-              | 'could_not_create_channel'
-              | 'team_id_or_org_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "name_taken" | "restricted_action" | "team_not_found" | "invalid_team" | "invalid_name" | "could_not_create_channel" | "team_id_or_org_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Delete a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_delete: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to delete. */
-          channel_id: string
-        }
-      }
-    }
+          channel_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'not_an_admin'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'default_org_wide_channel'
-              | 'restricted_action'
-              | 'could_not_delete_channel'
-              | 'missing_scope'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "not_an_admin" | "channel_not_found" | "channel_type_not_supported" | "default_org_wide_channel" | "restricted_action" | "could_not_delete_channel" | "missing_scope";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Disconnect a connected channel from one or more workspaces. Requires scope: `admin.conversations:write` */
   admin_conversations_disconnectShared: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to be disconnected from some workspaces. */
-          channel_id: string
+          channel_id: string;
           /** @description The team to be removed from the channel. Currently only a single team id can be specified. */
-          leaving_team_ids?: string
-        }
-      }
-    }
+          leaving_team_ids?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'not_an_admin'
-              | 'not_an_enterprise'
-              | 'channel_not_found'
-              | 'not_supported'
-              | 'team_not_found'
-              | 'restricted_action'
-              | 'missing_scope'
-              | 'leaving_team_not_in_channel'
-              | 'no_teams_to_disconnect'
-              | 'leaving_team_required'
-              | 'cannot_kick_team'
-              | 'cannot_kick_home_team'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "not_an_admin" | "not_an_enterprise" | "channel_not_found" | "not_supported" | "team_not_found" | "restricted_action" | "missing_scope" | "leaving_team_not_in_channel" | "no_teams_to_disconnect" | "leaving_team_required" | "cannot_kick_team" | "cannot_kick_home_team";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. Requires scope: `admin.conversations:read` */
   admin_conversations_ekm_listOriginalConnectedChannelInfo: {
     parameters: {
       query?: {
         /** @description A comma-separated list of channels to filter to. */
-        channel_ids?: string
+        channel_ids?: string;
         /** @description A comma-separated list of the workspaces to which the channels you would like returned belong. */
-        team_ids?: string
+        team_ids?: string;
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Get conversation preferences for a public or private channel. Requires scope: `admin.conversations:read` */
   admin_conversations_getConversationPrefs: {
     parameters: {
       query: {
         /** @description The channel to get preferences for. */
-        channel_id: string
-      }
-    }
+        channel_id: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             prefs?: {
               can_thread?: {
-                type?: string[]
-                user?: string[]
-              }
+                type?: string[];
+                user?: string[];
+              };
               who_can_post?: {
-                type?: string[]
-                user?: string[]
-              }
-            }
-          }
-        }
-      }
+                type?: string[];
+                user?: string[];
+              };
+            };
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'not_an_admin'
-              | 'not_an_enterprise'
-              | 'restricted_action'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'could_not_get_conversation_prefs'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "not_an_admin" | "not_an_enterprise" | "restricted_action" | "missing_scope" | "channel_not_found" | "channel_type_not_supported" | "could_not_get_conversation_prefs";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Get all the workspaces a given public or private channel is connected to within this Enterprise org. Requires scope: `admin.conversations:read` */
   admin_conversations_getTeams: {
     parameters: {
       query: {
         /** @description The channel to determine connected workspaces within the organization for. */
-        channel_id: string
+        channel_id: string;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             response_metadata?: {
-              next_cursor: string
-            }
-            team_ids: components['schemas']['defs_team'][]
-          }
-        }
-      }
+              next_cursor: string;
+            };
+            team_ids: components["schemas"]["defs_team"][];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'unsupported_team_type'
-              | 'restricted_action'
-              | 'could_not_get_teams'
-              | 'invalid_cursor'
-              | 'invalid_limit'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "channel_not_found" | "channel_type_not_supported" | "unsupported_team_type" | "restricted_action" | "could_not_get_teams" | "invalid_cursor" | "invalid_limit";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Invite a user to a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_invite: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel that the users will be invited to. */
-          channel_id: string
+          channel_id: string;
           /** @description The users to invite. */
-          user_ids: string
-        }
-      }
-    }
+          user_ids: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'default_org_wide_channel'
-              | 'restricted_action'
-              | 'user_must_be_admin'
-              | 'failed_for_some_users'
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "channel_not_found" | "channel_type_not_supported" | "default_org_wide_channel" | "restricted_action" | "user_must_be_admin" | "failed_for_some_users";
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Rename a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_rename: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to rename. */
-          channel_id: string
-          name: string
-        }
-      }
-    }
+          channel_id: string;
+          name: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'restricted_action'
-              | 'could_not_rename_channel'
-              | 'default_org_wide_channel'
-              | 'name_taken'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "channel_not_found" | "channel_type_not_supported" | "restricted_action" | "could_not_rename_channel" | "default_org_wide_channel" | "name_taken";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Add an allowlist of IDP groups for accessing a channel */
   admin_conversations_restrictAccess_addGroup: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to link this group to. */
-          channel_id: string
+          channel_id: string;
           /** @description The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org) ID to be an allowlist for the private channel. */
-          group_id: string
+          group_id: string;
           /** @description The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization. */
-          team_id?: string
+          team_id?: string;
           /** @description Authentication token. Requires scope: `admin.conversations:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all IDP Groups linked to a channel Requires scope: `admin.conversations:read` */
   admin_conversations_restrictAccess_listGroups: {
     parameters: {
       query: {
-        channel_id: string
+        channel_id: string;
         /** @description The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization. */
-        team_id?: string
-      }
-    }
+        team_id?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Remove a linked IDP group linked from a private channel */
   admin_conversations_restrictAccess_removeGroup: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to remove the linked group from. */
-          channel_id: string
+          channel_id: string;
           /** @description The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org) ID to remove from the private channel. */
-          group_id: string
+          group_id: string;
           /** @description The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization. */
-          team_id: string
+          team_id: string;
           /** @description Authentication token. Requires scope: `admin.conversations:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Search for public or private channels in an Enterprise organization. Requires scope: `admin.conversations:read` */
   admin_conversations_search: {
     parameters: {
       query?: {
         /** @description Comma separated string of team IDs, signifying the workspaces to search through. */
-        team_ids?: string
+        team_ids?: string;
         /** @description Name of the the channel to query by. */
-        query?: string
+        query?: string;
         /** @description Maximum number of items to be returned. Must be between 1 - 20 both inclusive. Default is 10. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
+        cursor?: string;
         /** @description The type of channel to include or exclude in the search. For example `private` will search private channels, while `private_exclude` will exclude them. For a full list of types, check the [Types section](#types). */
-        search_channel_types?: string
+        search_channel_types?: string;
         /** @description Possible values are `relevant` (search ranking based on what we think is closest), `name` (alphabetical), `member_count` (number of users in the channel), and `created` (date channel was created). You can optionally pair this with the `sort_dir` arg to change how it is sorted */
-        sort?: string
+        sort?: string;
         /** @description Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c), and `desc` for descending order like (3, 2, 1) or (c, b, a) */
-        sort_dir?: string
-      }
-    }
+        sort_dir?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channels: components['schemas']['objs_channel'][]
-            next_cursor: string
-          }
-        }
-      }
+          "application/json": {
+            channels: components["schemas"]["objs_channel"][];
+            next_cursor: string;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'not_an_admin'
-              | 'not_an_enterprise'
-              | 'team_not_found'
-              | 'not_allowed'
-              | 'invalid_auth'
-              | 'invalid_cursor'
-              | 'invalid_search_channel_type'
-              | 'invalid_sort'
-              | 'invalid_sort_dir'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "not_an_admin" | "not_an_enterprise" | "team_not_found" | "not_allowed" | "invalid_auth" | "invalid_cursor" | "invalid_search_channel_type" | "invalid_sort" | "invalid_sort_dir";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Set the posting permissions for a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_setConversationPrefs: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to set the prefs for */
-          channel_id: string
+          channel_id: string;
           /** @description The prefs for this channel in a stringified JSON format. */
-          prefs: string
-        }
-      }
-    }
+          prefs: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'not_an_admin'
-              | 'channel_not_found'
-              | 'channel_type_not_supported'
-              | 'restricted_action'
-              | 'missing_scope'
-              | 'could_not_set_channel_pref'
-              | 'default_org_wide_channel'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "not_an_admin" | "channel_not_found" | "channel_type_not_supported" | "restricted_action" | "missing_scope" | "could_not_set_channel_pref" | "default_org_wide_channel";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Set the workspaces in an Enterprise grid org that connect to a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_setTeams: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The encoded `channel_id` to add or remove to workspaces. */
-          channel_id: string
+          channel_id: string;
           /** @description True if channel has to be converted to an org channel */
-          org_channel?: boolean
+          org_channel?: boolean;
           /** @description A comma-separated list of workspaces to which the channel should be shared. Not required if the channel is being shared org-wide. */
-          target_team_ids?: string
+          target_team_ids?: string;
           /** @description The workspace to which the channel belongs. Omit this argument if the channel is a cross-workspace shared channel. */
-          team_id?: string
-        }
-      }
-    }
+          team_id?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Unarchive a public or private channel. Requires scope: `admin.conversations:write` */
   admin_conversations_unarchive: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The channel to unarchive. */
-          channel_id: string
-        }
-      }
-    }
+          channel_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {string} */
-            error:
-              | 'feature_not_enabled'
-              | 'channel_not_found'
-              | 'channel_not_archived'
-              | 'channel_type_not_supported'
-              | 'restricted_action'
-              | 'could_not_unarchive_channel'
-              | 'default_org_wide_channel'
-              | 'missing_scope'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "feature_not_enabled" | "channel_not_found" | "channel_not_archived" | "channel_type_not_supported" | "restricted_action" | "could_not_unarchive_channel" | "default_org_wide_channel" | "missing_scope";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Add an emoji. */
   admin_emoji_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required, although they may be included. */
-          name: string
+          name: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
+          token: string;
           /** @description The URL of a file to use as an image for the emoji. Square images under 128KB and with transparent backgrounds work best. */
-          url: string
-        }
-      }
-    }
+          url: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Add an emoji alias. */
   admin_emoji_addAlias: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The alias of the emoji. */
-          alias_for: string
+          alias_for: string;
           /** @description The name of the emoji to be aliased. Colons (`:myemoji:`) around the value are not required, although they may be included. */
-          name: string
+          name: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List emoji for an Enterprise Grid organization. Requires scope: `admin.teams:read` */
   admin_emoji_list: {
     parameters: {
       query?: {
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Remove an emoji across an Enterprise Grid organization */
   admin_emoji_remove: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required, although they may be included. */
-          name: string
+          name: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Rename an emoji. */
   admin_emoji_rename: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The name of the emoji to be renamed. Colons (`:myemoji:`) around the value are not required, although they may be included. */
-          name: string
+          name: string;
           /** @description The new name of the emoji. */
-          new_name: string
+          new_name: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Approve a workspace invite request. Requires scope: `admin.invites:write` */
   admin_inviteRequests_approve: {
-    requestBody: components['requestBodies']['admin_inviteRequests_approve']
+    requestBody: components["requestBodies"]["admin_inviteRequests_approve"];
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all approved workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_approved_list: {
     parameters: {
       query?: {
         /** @description ID for the workspace where the invite requests were made. */
-        team_id?: string
+        team_id?: string;
         /** @description Value of the `next_cursor` field sent as part of the previous API response */
-        cursor?: string
+        cursor?: string;
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000, both inclusive */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all denied workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_denied_list: {
     parameters: {
       query?: {
         /** @description ID for the workspace where the invite requests were made. */
-        team_id?: string
+        team_id?: string;
         /** @description Value of the `next_cursor` field sent as part of the previous api response */
-        cursor?: string
+        cursor?: string;
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000 both inclusive */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Deny a workspace invite request. Requires scope: `admin.invites:write` */
   admin_inviteRequests_deny: {
-    requestBody: components['requestBodies']['admin_inviteRequests_approve']
+    requestBody: components["requestBodies"]["admin_inviteRequests_approve"];
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all pending workspace invite requests. Requires scope: `admin.invites:read` */
   admin_inviteRequests_list: {
     parameters: {
       query?: {
         /** @description ID for the workspace where the invite requests were made. */
-        team_id?: string
+        team_id?: string;
         /** @description Value of the `next_cursor` field sent as part of the previous API response */
-        cursor?: string
+        cursor?: string;
         /** @description The number of results that will be returned by the API on each invocation. Must be between 1 - 1000, both inclusive */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all of the admins on a given workspace. Requires scope: `admin.teams:read` */
   admin_teams_admins_list: {
     parameters: {
       query: {
         /** @description The maximum number of items to return. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
-        team_id: string
-      }
-    }
+        cursor?: string;
+        team_id: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Create an Enterprise team. Requires scope: `admin.teams:write` */
   admin_teams_create: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Description for the team. */
-          team_description?: string
+          team_description?: string;
           /** @description Who can join the team. A team's discoverability can be `open`, `closed`, `invite_only`, or `unlisted`. */
-          team_discoverability?: string
+          team_discoverability?: string;
           /** @description Team domain (for example, slacksoftballteam). */
-          team_domain: string
+          team_domain: string;
           /** @description Team name (for example, Slack Softball Team). */
-          team_name: string
-        }
-      }
-    }
+          team_name: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all teams on an Enterprise organization Requires scope: `admin.teams:read` */
   admin_teams_list: {
     parameters: {
       query?: {
         /** @description The maximum number of items to return. Must be between 1 - 100 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List all of the owners on a given workspace. Requires scope: `admin.teams:read` */
   admin_teams_owners_list: {
     parameters: {
       query: {
-        team_id: string
+        team_id: string;
         /** @description The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
-        limit?: number
+        limit?: number;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Fetch information about settings in a workspace Requires scope: `admin.teams:read` */
   admin_teams_settings_info: {
     parameters: {
       query: {
-        team_id: string
-      }
-    }
+        team_id: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set the default channels of a workspace. */
   admin_teams_settings_setDefaultChannels: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description An array of channel IDs. */
-          channel_ids: string
+          channel_ids: string;
           /** @description ID for the workspace to set the default channel for. */
-          team_id: string
+          team_id: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set the description of a given workspace. Requires scope: `admin.teams:write` */
   admin_teams_settings_setDescription: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The new description for the workspace. */
-          description: string
+          description: string;
           /** @description ID for the workspace to set the description for. */
-          team_id: string
-        }
-      }
-    }
+          team_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description An API method that allows admins to set the discoverability of a given workspace Requires scope: `admin.teams:write` */
   admin_teams_settings_setDiscoverability: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description This workspace's discovery setting. It must be set to one of `open`, `invite_only`, `closed`, or `unlisted`. */
-          discoverability: string
+          discoverability: string;
           /** @description The ID of the workspace to set discoverability on. */
-          team_id: string
-        }
-      }
-    }
+          team_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Sets the icon of a workspace. */
   admin_teams_settings_setIcon: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Image URL for the icon */
-          image_url: string
+          image_url: string;
           /** @description ID for the workspace to set the icon for. */
-          team_id: string
+          team_id: string;
           /** @description Authentication token. Requires scope: `admin.teams:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set the name of a given workspace. Requires scope: `admin.teams:write` */
   admin_teams_settings_setName: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The new name of the workspace. */
-          name: string
+          name: string;
           /** @description ID for the workspace to set the name for. */
-          team_id: string
-        }
-      }
-    }
+          team_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Add one or more default channels to an IDP group. Requires scope: `admin.usergroups:write` */
   admin_usergroups_addChannels: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Comma separated string of channel IDs. */
-          channel_ids: string
+          channel_ids: string;
           /** @description The workspace to add default channels in. */
-          team_id?: string
+          team_id?: string;
           /** @description ID of the IDP group to add default channels for. */
-          usergroup_id: string
-        }
-      }
-    }
+          usergroup_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response if the token provided is not associated with an Org Admin or Owner */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Associate one or more default workspaces with an organization-wide IDP group. Requires scope: `admin.teams:write` */
   admin_usergroups_addTeams: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description When `true`, this method automatically creates new workspace accounts for the IDP group members. */
-          auto_provision?: boolean
+          auto_provision?: boolean;
           /** @description A comma separated list of encoded team (workspace) IDs. Each workspace *MUST* belong to the organization associated with the token. */
-          team_ids: string
+          team_ids: string;
           /** @description An encoded usergroup (IDP Group) ID. */
-          usergroup_id: string
-        }
-      }
-    }
+          usergroup_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List the channels linked to an org-level IDP group (user group). Requires scope: `admin.usergroups:read` */
   admin_usergroups_listChannels: {
     parameters: {
       query: {
         /** @description ID of the IDP group to list default channels for. */
-        usergroup_id: string
+        usergroup_id: string;
         /** @description ID of the the workspace. */
-        team_id?: string
+        team_id?: string;
         /** @description Flag to include or exclude the count of members per channel. */
-        include_num_members?: boolean
-      }
-    }
+        include_num_members?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response if the token provided is not associated with an Org Admin or Owner */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Remove one or more default channels from an org-level IDP group (user group). Requires scope: `admin.usergroups:write` */
   admin_usergroups_removeChannels: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Comma-separated string of channel IDs */
-          channel_ids: string
+          channel_ids: string;
           /** @description ID of the IDP Group */
-          usergroup_id: string
-        }
-      }
-    }
+          usergroup_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response if the token provided is not associated with an Org Admin or Owner */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Add an Enterprise user to a workspace. Requires scope: `admin.users:write` */
   admin_users_assign: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Comma separated values of channel IDs to add user in the new workspace. */
-          channel_ids?: string
+          channel_ids?: string;
           /** @description True if user should be added to the workspace as a guest. */
-          is_restricted?: boolean
+          is_restricted?: boolean;
           /** @description True if user should be added to the workspace as a single-channel guest. */
-          is_ultra_restricted?: boolean
+          is_ultra_restricted?: boolean;
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description The ID of the user to add to the workspace. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Invite a user to a workspace. Requires scope: `admin.users:write` */
   admin_users_invite: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description A comma-separated list of `channel_id`s for this user to join. At least one channel is required. */
-          channel_ids: string
+          channel_ids: string;
           /** @description An optional message to send to the user in the invite email. */
-          custom_message?: string
+          custom_message?: string;
           /** @description The email address of the person to invite. */
-          email: string
+          email: string;
           /** @description Timestamp when guest account should be disabled. Only include this timestamp if you are inviting a guest user and you want their account to expire on a certain date. */
-          guest_expiration_ts?: string
+          guest_expiration_ts?: string;
           /** @description Is this user a multi-channel guest user? (default: false) */
-          is_restricted?: boolean
+          is_restricted?: boolean;
           /** @description Is this user a single channel guest user? (default: false) */
-          is_ultra_restricted?: boolean
+          is_ultra_restricted?: boolean;
           /** @description Full name of the user. */
-          real_name?: string
+          real_name?: string;
           /** @description Allow this invite to be resent in the future if a user has not signed up yet. (default: false) */
-          resend?: boolean
+          resend?: boolean;
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
-        }
-      }
-    }
+          team_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description List users on a workspace Requires scope: `admin.users:read` */
   admin_users_list: {
     parameters: {
       query: {
         /** @description The ID (`T1234`) of the workspace. */
-        team_id: string
+        team_id: string;
         /** @description Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
-        cursor?: string
+        cursor?: string;
         /** @description Limit for how many users to be retrieved per page */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Remove a user from a workspace. Requires scope: `admin.users:write` */
   admin_users_remove: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description The ID of the user to remove. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Invalidate a single session for a user by session_id Requires scope: `admin.users:write` */
   admin_users_session_invalidate: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
-          session_id: number
+        "application/x-www-form-urlencoded": {
+          session_id: number;
           /** @description ID of the team that the session belongs to */
-          team_id: string
-        }
-      }
-    }
+          team_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Wipes all valid sessions on all devices for a given user Requires scope: `admin.users:write` */
   admin_users_session_reset: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Only expire mobile sessions (default: false) */
-          mobile_only?: boolean
+          mobile_only?: boolean;
           /** @description The ID of the user to wipe sessions for */
-          user_id: string
+          user_id: string;
           /** @description Only expire web sessions (default: false) */
-          web_only?: boolean
-        }
-      }
-    }
+          web_only?: boolean;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set an existing guest, regular user, or owner to be an admin user. Requires scope: `admin.users:write` */
   admin_users_setAdmin: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description The ID of the user to designate as an admin. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set an expiration for a guest user Requires scope: `admin.users:write` */
   admin_users_setExpiration: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Timestamp when guest account should be disabled. */
-          expiration_ts: number
+          expiration_ts: number;
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description The ID of the user to set an expiration for. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set an existing guest, regular user, or admin user to be a workspace owner. Requires scope: `admin.users:write` */
   admin_users_setOwner: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description Id of the user to promote to owner. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Set an existing guest user, admin user, or owner to be a regular user. Requires scope: `admin.users:write` */
   admin_users_setRegular: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID (`T1234`) of the workspace. */
-          team_id: string
+          team_id: string;
           /** @description The ID of the user to designate as a regular user. */
-          user_id: string
-        }
-      }
-    }
+          user_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Checks API calling code. */
   api_test: {
     parameters: {
       query?: {
         /** @description Error response to return */
-        error?: string
+        error?: string;
         /** @description example property to return */
-        foo?: string
-      }
-    }
+        foo?: string;
+      };
+    };
     responses: {
       /** @description Standard success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: Record<string, never>
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: Record<string, never>;
+          };
+        };
+      };
       /** @description Artificial error response */
       default: {
         content: {
-          'application/json': {
-            error: string
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: Record<string, never>
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            error: string;
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: Record<string, never>;
+          };
+        };
+      };
+    };
+  };
   /** @description Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Requires scope: `authorizations:read` */
   apps_event_authorizations_list: {
     parameters: {
       query: {
-        event_context: string
-        cursor?: string
-        limit?: number
-      }
-    }
+        event_context: string;
+        cursor?: string;
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Returns list of permissions this app has on a team. Requires scope: `none` */
   apps_permissions_info: {
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             info: {
               app_home: {
-                resources?: components['schemas']['objs_resources']
-                scopes?: components['schemas']['objs_scopes']
-              }
+                resources?: components["schemas"]["objs_resources"];
+                scopes?: components["schemas"]["objs_scopes"];
+              };
               channel: {
-                resources?: components['schemas']['objs_resources']
-                scopes?: components['schemas']['objs_scopes']
-              }
+                resources?: components["schemas"]["objs_resources"];
+                scopes?: components["schemas"]["objs_scopes"];
+              };
               group: {
-                resources?: components['schemas']['objs_resources']
-                scopes?: components['schemas']['objs_scopes']
-              }
+                resources?: components["schemas"]["objs_resources"];
+                scopes?: components["schemas"]["objs_scopes"];
+              };
               im: {
-                resources?: components['schemas']['objs_resources']
-                scopes?: components['schemas']['objs_scopes']
-              }
+                resources?: components["schemas"]["objs_resources"];
+                scopes?: components["schemas"]["objs_scopes"];
+              };
               mpim: {
-                resources?: components['schemas']['objs_resources']
-                scopes?: components['schemas']['objs_scopes']
-              }
+                resources?: components["schemas"]["objs_resources"];
+                scopes?: components["schemas"]["objs_scopes"];
+              };
               team: {
-                resources: components['schemas']['objs_resources']
-                scopes: components['schemas']['objs_scopes']
-              }
-            }
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+                resources: components["schemas"]["objs_resources"];
+                scopes: components["schemas"]["objs_scopes"];
+              };
+            };
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Standard failure response when used with an invalid token */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Allows an app to request additional scopes Requires scope: `none` */
   apps_permissions_request: {
     parameters: {
       query: {
         /** @description A comma separated list of scopes to request for */
-        scopes: string
+        scopes: string;
         /** @description Token used to trigger the permissions API */
-        trigger_id: string
-      }
-    }
+        trigger_id: string;
+      };
+    };
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Standard failure response when trigger_id is invalid */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_trigger'
-              | 'trigger_exchanged'
-              | 'invalid_scope'
-              | 'invalid_user'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_trigger" | "trigger_exchanged" | "invalid_scope" | "invalid_user" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Returns list of resource grants this app has on a team. Requires scope: `none` */
   apps_permissions_resources_list: {
     parameters: {
       query?: {
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical successful paginated response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             resources: {
-              /** An ID for a resource */
-              id?: string
-              /** The type of resource the `id` corresponds to */
-              type?: string
-            }[]
+                /** An ID for a resource */
+                id?: string;
+                /** The type of resource the `id` corresponds to */
+                type?: string;
+              }[];
             response_metadata?: {
-              next_cursor: string
-            }
-            [key: string]: unknown
-          }
-        }
-      }
+              next_cursor: string;
+            };
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_cursor'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_cursor" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Returns list of scopes this app has on a team. Requires scope: `none` */
   apps_permissions_scopes_list: {
     responses: {
       /** @description Typical successful paginated response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             scopes: {
-              app_home?: components['schemas']['objs_scopes']
-              channel?: components['schemas']['objs_scopes']
-              group?: components['schemas']['objs_scopes']
-              im?: components['schemas']['objs_scopes']
-              mpim?: components['schemas']['objs_scopes']
-              team?: components['schemas']['objs_scopes']
-              user?: components['schemas']['objs_scopes']
-              [key: string]: unknown
-            }
-            [key: string]: unknown
-          }
-        }
-      }
+              app_home?: components["schemas"]["objs_scopes"];
+              channel?: components["schemas"]["objs_scopes"];
+              group?: components["schemas"]["objs_scopes"];
+              im?: components["schemas"]["objs_scopes"];
+              mpim?: components["schemas"]["objs_scopes"];
+              team?: components["schemas"]["objs_scopes"];
+              user?: components["schemas"]["objs_scopes"];
+              [key: string]: unknown;
+            };
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Returns list of user grants and corresponding scopes this app has on a team. Requires scope: `none` */
   apps_permissions_users_list: {
     parameters: {
       query?: {
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical successful paginated response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Enables an app to trigger a permissions modal to grant an app access to a user access scope. Requires scope: `none` */
   apps_permissions_users_request: {
     parameters: {
       query: {
         /** @description A comma separated list of user scopes to request for */
-        scopes: string
+        scopes: string;
         /** @description Token used to trigger the request */
-        trigger_id: string
+        trigger_id: string;
         /** @description The user this scope is being requested for */
-        user: string
-      }
-    }
+        user: string;
+      };
+    };
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Standard failure response when trigger_id is invalid */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Uninstalls your app from a workspace. Requires scope: `none` */
   apps_uninstall: {
     parameters: {
       query?: {
         /** @description Issued when you created your application. */
-        client_id?: string
+        client_id?: string;
         /** @description Issued when you created your application. */
-        client_secret?: string
-      }
-    }
+        client_secret?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_client_id'
-              | 'bad_client_secret'
-              | 'client_id_token_mismatch'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_client_id" | "bad_client_secret" | "client_id_token_mismatch" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Revokes a token. Requires scope: `none` */
   auth_revoke: {
     parameters: {
       query?: {
         /** @description Setting this parameter to `1` triggers a _testing mode_ where the specified token will not actually be revoked. */
-        test?: boolean
-      }
-    }
+        test?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            revoked: boolean
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            revoked: boolean;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Checks authentication & identity. Requires scope: `none` */
   auth_test: {
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
         content: {
-          'application/json': {
-            bot_id?: components['schemas']['defs_bot_id']
-            is_enterprise_install?: boolean
-            ok: components['schemas']['defs_ok_true']
-            team: string
-            team_id: components['schemas']['defs_team']
-            url: string
-            user: string
-            user_id: components['schemas']['defs_user_id']
-          }
-        }
-      }
+          "application/json": {
+            bot_id?: components["schemas"]["defs_bot_id"];
+            is_enterprise_install?: boolean;
+            ok: components["schemas"]["defs_ok_true"];
+            team: string;
+            team_id: components["schemas"]["defs_team"];
+            url: string;
+            user: string;
+            user_id: components["schemas"]["defs_user_id"];
+          };
+        };
+      };
       /** @description Standard failure response when used with an invalid token */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'token_revoked'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "token_revoked" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets information about a bot user. Requires scope: `users:read` */
   bots_info: {
     parameters: {
       query?: {
         /** @description Bot user to get info on */
-        bot?: string
-      }
-    }
+        bot?: string;
+      };
+    };
     responses: {
       /** @description When successful, returns bot info by bot ID. */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             bot: {
-              app_id: components['schemas']['defs_app_id']
-              deleted: boolean
+              app_id: components["schemas"]["defs_app_id"];
+              deleted: boolean;
               icons: {
                 /** Format: uri */
-                image_36: string
+                image_36: string;
                 /** Format: uri */
-                image_48: string
+                image_48: string;
                 /** Format: uri */
-                image_72: string
-              }
-              id: components['schemas']['defs_bot_id']
-              name: string
-              updated: number
-              user_id?: components['schemas']['defs_user_id']
-            }
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+                image_72: string;
+              };
+              id: components["schemas"]["defs_bot_id"];
+              name: string;
+              updated: number;
+              user_id?: components["schemas"]["defs_user_id"];
+            };
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description When no bot can be found, it returns an error. */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bot_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bot_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Registers a new Call. Requires scope: `calls:write` */
   calls_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The valid Slack user ID of the user who created this Call. When this method is called with a user token, the `created_by` field is optional and defaults to the authed user of the token. Otherwise, the field is required. */
-          created_by?: string
+          created_by?: string;
           /** @description Call start time in UTC UNIX timestamp format */
-          date_start?: number
+          date_start?: number;
           /** @description When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL. */
-          desktop_app_join_url?: string
+          desktop_app_join_url?: string;
           /** @description An optional, human-readable ID supplied by the 3rd-party Call provider. If supplied, this ID will be displayed in the Call object. */
-          external_display_id?: string
+          external_display_id?: string;
           /** @description An ID supplied by the 3rd-party Call provider. It must be unique across all Calls from that service. */
-          external_unique_id: string
+          external_unique_id: string;
           /** @description The URL required for a client to join the Call. */
-          join_url: string
+          join_url: string;
           /** @description The name of the Call. */
-          title?: string
+          title?: string;
           /** @description The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/calls#users). */
-          users?: string
-        }
-      }
-    }
+          users?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Ends a Call. Requires scope: `calls:write` */
   calls_end: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Call duration in seconds */
-          duration?: number
+          duration?: number;
           /** @description `id` returned when registering the call using the [`calls.add`](/methods/calls.add) method. */
-          id: string
-        }
-      }
-    }
+          id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Returns information about a Call. Requires scope: `calls:read` */
   calls_info: {
     parameters: {
       query: {
         /** @description `id` of the Call returned by the [`calls.add`](/methods/calls.add) method. */
-        id: string
-      }
-    }
+        id: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Registers new participants added to a Call. Requires scope: `calls:write` */
   calls_participants_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description `id` returned by the [`calls.add`](/methods/calls.add) method. */
-          id: string
+          id: string;
           /** @description The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/calls#users). */
-          users: string
-        }
-      }
-    }
+          users: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Registers participants removed from a Call. Requires scope: `calls:write` */
   calls_participants_remove: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description `id` returned by the [`calls.add`](/methods/calls.add) method. */
-          id: string
+          id: string;
           /** @description The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/calls#users). */
-          users: string
-        }
-      }
-    }
+          users: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Updates information about a Call. Requires scope: `calls:write` */
   calls_update: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL. */
-          desktop_app_join_url?: string
+          desktop_app_join_url?: string;
           /** @description `id` returned by the [`calls.add`](/methods/calls.add) method. */
-          id: string
+          id: string;
           /** @description The URL required for a client to join the Call. */
-          join_url?: string
+          join_url?: string;
           /** @description The name of the Call. */
-          title?: string
-        }
-      }
-    }
+          title?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Deletes a message. Requires scope: `chat:write` */
   chat_delete: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to delete the message as the authed user with `chat:write:user` scope. [Bot users](/bot-users) in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope. */
-          as_user?: boolean
+          as_user?: boolean;
           /** @description Channel containing the message to be deleted. */
-          channel?: string
+          channel?: string;
           /** @description Timestamp of the message to be deleted. */
-          ts?: number
-        }
-      }
-    }
+          ts?: number;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['defs_channel']
-            ok: components['schemas']['defs_ok_true']
-            ts: components['schemas']['defs_ts']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["defs_channel"];
+            ok: components["schemas"]["defs_ok_true"];
+            ts: components["schemas"]["defs_ts"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'message_not_found'
-              | 'channel_not_found'
-              | 'cant_delete_message'
-              | 'compliance_exports_prevent_deletion'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "message_not_found" | "channel_not_found" | "cant_delete_message" | "compliance_exports_prevent_deletion" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Deletes a pending scheduled message from the queue. Requires scope: `chat:write` */
   chat_deleteScheduledMessage: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to delete the message as the authed user with `chat:write:user` scope. [Bot users](/bot-users) in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope. */
-          as_user?: boolean
+          as_user?: boolean;
           /** @description The channel the scheduled_message is posting to */
-          channel: string
+          channel: string;
           /** @description `scheduled_message_id` returned from call to chat.scheduleMessage */
-          scheduled_message_id: string
-        }
-      }
-    }
+          scheduled_message_id: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response if no message is found */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_scheduled_message_id'
-              | 'channel_not_found'
-              | 'bad_token'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'ekm_access_denied'
-              | 'missing_scope'
-              | 'invalid_arguments'
-              | 'invalid_arg_name'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_scheduled_message_id" | "channel_not_found" | "bad_token" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "ekm_access_denied" | "missing_scope" | "invalid_arguments" | "invalid_arg_name" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve a permalink URL for a specific extant message Requires scope: `none` */
   chat_getPermalink: {
     parameters: {
       query: {
         /** @description The ID of the conversation or channel containing the message */
-        channel: string
+        channel: string;
         /** @description A message's `ts` value, uniquely identifying it within a channel */
-        message_ts: string
-      }
-    }
+        message_ts: string;
+      };
+    };
     responses: {
       /** @description Standard success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['defs_channel']
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            channel: components["schemas"]["defs_channel"];
+            ok: components["schemas"]["defs_ok_true"];
             /** Format: uri */
-            permalink: string
-          }
-        }
-      }
+            permalink: string;
+          };
+        };
+      };
       /** @description Error response when channel cannot be found */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'message_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "message_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Share a me message into a channel. Requires scope: `chat:write` */
   chat_meMessage: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name. */
-          channel?: string
+          channel?: string;
           /** @description Text of the message to send. */
-          text?: string
-        }
-      }
-    }
+          text?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel?: components['schemas']['defs_channel']
-            ok: components['schemas']['defs_ok_true']
-            ts?: components['schemas']['defs_ts']
-          }
-        }
-      }
+          "application/json": {
+            channel?: components["schemas"]["defs_channel"];
+            ok: components["schemas"]["defs_ok_true"];
+            ts?: components["schemas"]["defs_ts"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'is_archived'
-              | 'msg_too_long'
-              | 'no_text'
-              | 'rate_limited'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "not_in_channel" | "is_archived" | "msg_too_long" | "no_text" | "rate_limited" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Sends an ephemeral message to a user in a channel. Requires scope: `chat:write` */
   chat_postEphemeral: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to post the message as the authed user. Defaults to true if the chat:write:bot scope is not included. Otherwise, defaults to false. */
-          as_user?: boolean
+          as_user?: boolean;
           /** @description A JSON-based array of structured attachments, presented as a URL-encoded string. */
-          attachments?: string
+          attachments?: string;
           /** @description A JSON-based array of structured blocks, presented as a URL-encoded string. */
-          blocks?: string
+          blocks?: string;
           /** @description Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. */
-          channel: string
+          channel: string;
           /** @description Emoji to use as the icon for this message. Overrides `icon_url`. Must be used in conjunction with `as_user` set to `false`, otherwise ignored. See [authorship](#authorship) below. */
-          icon_emoji?: string
+          icon_emoji?: string;
           /** @description URL to an image to use as the icon for this message. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below. */
-          icon_url?: string
+          icon_url?: string;
           /** @description Find and link channel names and usernames. */
-          link_names?: boolean
+          link_names?: boolean;
           /** @description Change how messages are treated. Defaults to `none`. See [below](#formatting). */
-          parse?: string
+          parse?: string;
           /** @description How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail. */
-          text?: string
+          text?: string;
           /** @description Provide another message's `ts` value to post this message in a thread. Avoid using a reply's `ts` value; use its parent's value instead. Ephemeral messages in threads are only shown if there is already an active thread. */
-          thread_ts?: string
+          thread_ts?: string;
           /** @description `id` of the user who will receive the ephemeral message. The user should be in the channel specified by the `channel` argument. */
-          user: string
+          user: string;
           /** @description Set your bot's user name. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below. */
-          username?: string
-        }
-      }
-    }
+          username?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            message_ts: components['schemas']['defs_ts']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            message_ts: components["schemas"]["defs_ts"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'is_archived'
-              | 'msg_too_long'
-              | 'no_text'
-              | 'restricted_action'
-              | 'too_many_attachments'
-              | 'user_not_in_channel'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "is_archived" | "msg_too_long" | "no_text" | "restricted_action" | "too_many_attachments" | "user_not_in_channel" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Sends a message to a channel. Requires scope: `chat:write` */
   chat_postMessage: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See [authorship](#authorship) below. */
-          as_user?: string
+          as_user?: string;
           /** @description A JSON-based array of structured attachments, presented as a URL-encoded string. */
-          attachments?: string
+          attachments?: string;
           /** @description A JSON-based array of structured blocks, presented as a URL-encoded string. */
-          blocks?: string
+          blocks?: string;
           /** @description Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details. */
-          channel: string
+          channel: string;
           /** @description Emoji to use as the icon for this message. Overrides `icon_url`. Must be used in conjunction with `as_user` set to `false`, otherwise ignored. See [authorship](#authorship) below. */
-          icon_emoji?: string
+          icon_emoji?: string;
           /** @description URL to an image to use as the icon for this message. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below. */
-          icon_url?: string
+          icon_url?: string;
           /** @description Find and link channel names and usernames. */
-          link_names?: boolean
+          link_names?: boolean;
           /** @description Disable Slack markup parsing by setting to `false`. Enabled by default. */
-          mrkdwn?: boolean
+          mrkdwn?: boolean;
           /** @description Change how messages are treated. Defaults to `none`. See [below](#formatting). */
-          parse?: string
+          parse?: string;
           /** @description Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`. */
-          reply_broadcast?: boolean
+          reply_broadcast?: boolean;
           /** @description How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail. */
-          text?: string
+          text?: string;
           /** @description Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead. */
-          thread_ts?: string
+          thread_ts?: string;
           /** @description Pass true to enable unfurling of primarily text-based content. */
-          unfurl_links?: boolean
+          unfurl_links?: boolean;
           /** @description Pass false to disable unfurling of media content. */
-          unfurl_media?: boolean
+          unfurl_media?: boolean;
           /** @description Set your bot's user name. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below. */
-          username?: string
-        }
-      }
-    }
+          username?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['defs_channel']
-            message: components['schemas']['objs_message']
-            ok: components['schemas']['defs_ok_true']
-            ts: components['schemas']['defs_ts']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["defs_channel"];
+            message: components["schemas"]["objs_message"];
+            ok: components["schemas"]["defs_ok_true"];
+            ts: components["schemas"]["defs_ts"];
+          };
+        };
+      };
       /** @description Typical error response if too many attachments are included */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'is_archived'
-              | 'msg_too_long'
-              | 'no_text'
-              | 'too_many_attachments'
-              | 'rate_limited'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "not_in_channel" | "is_archived" | "msg_too_long" | "no_text" | "too_many_attachments" | "rate_limited" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Schedules a message to be sent to a channel. Requires scope: `chat:write` */
   chat_scheduleMessage: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See [chat.postMessage](chat.postMessage#authorship). */
-          as_user?: boolean
+          as_user?: boolean;
           /** @description A JSON-based array of structured attachments, presented as a URL-encoded string. */
-          attachments?: string
+          attachments?: string;
           /** @description A JSON-based array of structured blocks, presented as a URL-encoded string. */
-          blocks?: string
+          blocks?: string;
           /** @description Channel, private group, or DM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details. */
-          channel?: string
+          channel?: string;
           /** @description Find and link channel names and usernames. */
-          link_names?: boolean
+          link_names?: boolean;
           /** @description Change how messages are treated. Defaults to `none`. See [chat.postMessage](chat.postMessage#formatting). */
-          parse?: string
+          parse?: string;
           /** @description Unix EPOCH timestamp of time in future to send the message. */
-          post_at?: string
+          post_at?: string;
           /** @description Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`. */
-          reply_broadcast?: boolean
+          reply_broadcast?: boolean;
           /** @description How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail. */
-          text?: string
+          text?: string;
           /** @description Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead. */
-          thread_ts?: number
+          thread_ts?: number;
           /** @description Pass true to enable unfurling of primarily text-based content. */
-          unfurl_links?: boolean
+          unfurl_links?: boolean;
           /** @description Pass false to disable unfurling of media content. */
-          unfurl_media?: boolean
-        }
-      }
-    }
+          unfurl_media?: boolean;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['defs_channel']
+          "application/json": {
+            channel: components["schemas"]["defs_channel"];
             message: {
-              bot_id: components['schemas']['defs_bot_id']
-              bot_profile?: components['schemas']['objs_bot_profile']
-              team: components['schemas']['defs_team']
-              text: string
-              type: string
-              user: components['schemas']['defs_user_id']
-              username?: string
-            }
-            ok: components['schemas']['defs_ok_true']
-            post_at: number
+              bot_id: components["schemas"]["defs_bot_id"];
+              bot_profile?: components["schemas"]["objs_bot_profile"];
+              team: components["schemas"]["defs_team"];
+              text: string;
+              type: string;
+              user: components["schemas"]["defs_user_id"];
+              username?: string;
+            };
+            ok: components["schemas"]["defs_ok_true"];
+            post_at: number;
             /** Scheduled Message ID */
-            scheduled_message_id: string
-          }
-        }
-      }
+            scheduled_message_id: string;
+          };
+        };
+      };
       /** @description Typical error response if the `post_at` is invalid (ex. in the past or too far into the future) */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_time'
-              | 'time_in_past'
-              | 'time_too_far'
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'is_archived'
-              | 'msg_too_long'
-              | 'no_text'
-              | 'restricted_action'
-              | 'restricted_action_read_only_channel'
-              | 'restricted_action_thread_only_channel'
-              | 'restricted_action_non_threadable_channel'
-              | 'too_many_attachments'
-              | 'rate_limited'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'ekm_access_denied'
-              | 'missing_scope'
-              | 'invalid_arguments'
-              | 'invalid_arg_name'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_time" | "time_in_past" | "time_too_far" | "channel_not_found" | "not_in_channel" | "is_archived" | "msg_too_long" | "no_text" | "restricted_action" | "restricted_action_read_only_channel" | "restricted_action_thread_only_channel" | "restricted_action_non_threadable_channel" | "too_many_attachments" | "rate_limited" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "ekm_access_denied" | "missing_scope" | "invalid_arguments" | "invalid_arg_name" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Returns a list of scheduled messages. Requires scope: `none` */
   chat_scheduledMessages_list: {
     parameters: {
       query?: {
         /** @description The channel of the scheduled messages */
-        channel?: string
+        channel?: string;
         /** @description A UNIX timestamp of the latest value in the time range */
-        latest?: number
+        latest?: number;
         /** @description A UNIX timestamp of the oldest value in the time range */
-        oldest?: number
+        oldest?: number;
         /** @description Maximum number of original entries to return. */
-        limit?: number
+        limit?: number;
         /** @description For pagination purposes, this is the `cursor` value returned from a previous call to `chat.scheduledmessages.list` indicating where you want to start this call from. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             response_metadata: {
-              next_cursor: string
-            }
+              next_cursor: string;
+            };
             scheduled_messages: {
-              channel_id: components['schemas']['defs_channel_id']
-              date_created: number
-              id: string
-              post_at: number
-              text?: string
-            }[]
-          }
-        }
-      }
+                channel_id: components["schemas"]["defs_channel_id"];
+                date_created: number;
+                id: string;
+                post_at: number;
+                text?: string;
+              }[];
+          };
+        };
+      };
       /** @description Typical error response if the channel passed is invalid */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_channel'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'ekm_access_denied'
-              | 'missing_scope'
-              | 'invalid_arguments'
-              | 'invalid_arg_name'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_channel" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "ekm_access_denied" | "missing_scope" | "invalid_arguments" | "invalid_arg_name" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Provide custom unfurl behavior for user-posted URLs Requires scope: `links:write` */
   chat_unfurl: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel ID of the message */
-          channel: string
+          channel: string;
           /** @description Timestamp of the message to add unfurl behavior to. */
-          ts: string
+          ts: string;
           /** @description URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl blocks or message attachments. */
-          unfurls?: string
+          unfurls?: string;
           /** @description Provide a simply-formatted string to send as an ephemeral message to the user as invitation to authenticate further and enable full unfurling behavior */
-          user_auth_message?: string
+          user_auth_message?: string;
           /** @description Set to `true` or `1` to indicate the user must install your Slack app to trigger unfurls for this domain */
-          user_auth_required?: boolean
+          user_auth_required?: boolean;
           /** @description Send users to this custom URL where they will complete authentication in your app to fully trigger unfurling. Value should be properly URL-encoded. */
-          user_auth_url?: string
-        }
-      }
-    }
+          user_auth_url?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical, minimal success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'cannot_unfurl_url'
-              | 'cannot_find_service'
-              | 'missing_unfurls'
-              | 'cannot_prompt'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "cannot_unfurl_url" | "cannot_find_service" | "missing_unfurls" | "cannot_prompt" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Updates a message. Requires scope: `chat:write` */
   chat_update: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Pass true to update the message as the authed user. [Bot users](/bot-users) in this context are considered authed users. */
-          as_user?: string
+          as_user?: string;
           /** @description A JSON-based array of structured attachments, presented as a URL-encoded string. This field is required when not presenting `text`. If you don't include this field, the message's previous `attachments` will be retained. To remove previous `attachments`, include an empty array for this field. */
-          attachments?: string
+          attachments?: string;
           /** @description A JSON-based array of [structured blocks](/block-kit/building), presented as a URL-encoded string. If you don't include this field, the message's previous `blocks` will be retained. To remove previous `blocks`, include an empty array for this field. */
-          blocks?: string
+          blocks?: string;
           /** @description Channel containing the message to be updated. */
-          channel: string
+          channel: string;
           /** @description Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`. */
-          link_names?: string
+          link_names?: string;
           /** @description Change how messages are treated. Defaults to `client`, unlike `chat.postMessage`. Accepts either `none` or `full`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `client`. */
-          parse?: string
+          parse?: string;
           /** @description New text for the message, using the [default formatting rules](/reference/surfaces/formatting). It's not required when presenting `blocks` or `attachments`. */
-          text?: string
+          text?: string;
           /** @description Timestamp of the message to be updated. */
-          ts: string
-        }
-      }
-    }
+          ts: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: string
+          "application/json": {
+            channel: string;
             /** Message object */
             message: {
-              attachments?: Record<string, never>[]
-              blocks?: Record<string, never>
-              text: string
-            }
-            ok: components['schemas']['defs_ok_true']
-            text: string
-            ts: string
-          }
-        }
-      }
+              attachments?: Record<string, never>[];
+              blocks?: Record<string, never>;
+              text: string;
+            };
+            ok: components["schemas"]["defs_ok_true"];
+            text: string;
+            ts: string;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'message_not_found'
-              | 'cant_update_message'
-              | 'channel_not_found'
-              | 'edit_window_closed'
-              | 'msg_too_long'
-              | 'too_many_attachments'
-              | 'rate_limited'
-              | 'no_text'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'request_timeout'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'upgrade_required'
-              | 'fatal_error'
-              | 'is_inactive'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "message_not_found" | "cant_update_message" | "channel_not_found" | "edit_window_closed" | "msg_too_long" | "too_many_attachments" | "rate_limited" | "no_text" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "request_timeout" | "invalid_json" | "json_not_object" | "upgrade_required" | "fatal_error" | "is_inactive";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Archives a conversation. Requires scope: `conversations:write` */
   conversations_archive: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of conversation to archive */
-          channel?: string
-        }
-      }
-    }
+          channel?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'not_supported'
-              | 'channel_not_found'
-              | 'already_archived'
-              | 'cant_archive_general'
-              | 'restricted_action'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'user_is_ultra_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'team_added_to_org'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "not_supported" | "channel_not_found" | "already_archived" | "cant_archive_general" | "restricted_action" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Closes a direct message or multi-person direct message. Requires scope: `conversations:write` */
   conversations_close: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Conversation to close. */
-          channel?: string
-        }
-      }
-    }
+          channel?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            already_closed?: boolean
-            no_op?: boolean
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            already_closed?: boolean;
+            no_op?: boolean;
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'channel_not_found'
-              | 'user_does_not_own_channel'
-              | 'missing_scope'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "channel_not_found" | "user_does_not_own_channel" | "missing_scope" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Initiates a public or private channel-based conversation Requires scope: `conversations:write` */
   conversations_create: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Create a private channel instead of a public one */
-          is_private?: boolean
+          is_private?: boolean;
           /** @description Name of the public or private channel to create */
-          name?: string
-        }
-      }
-    }
+          name?: string;
+        };
+      };
+    };
     responses: {
       /** @description If successful, the command returns a rather stark [conversation object](/types/conversation) */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when name already in use */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
-            detail?: string
+            callstack?: string;
+            detail?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'name_taken'
-              | 'restricted_action'
-              | 'no_channel'
-              | 'invalid_name_required'
-              | 'invalid_name_punctuation'
-              | 'invalid_name_maxlength'
-              | 'invalid_name_specials'
-              | 'invalid_name'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "name_taken" | "restricted_action" | "no_channel" | "invalid_name_required" | "invalid_name_punctuation" | "invalid_name_maxlength" | "invalid_name_specials" | "invalid_name" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Fetches a conversation's history of messages and events. Requires scope: `conversations:history` */
   conversations_history: {
     parameters: {
       query?: {
         /** @description Conversation ID to fetch history for. */
-        channel?: string
+        channel?: string;
         /** @description End of time range of messages to include in results. */
-        latest?: number
+        latest?: number;
         /** @description Start of time range of messages to include in results. */
-        oldest?: number
+        oldest?: number;
         /** @description Include messages with latest or oldest timestamp in results only when either timestamp is specified. */
-        inclusive?: boolean
+        inclusive?: boolean;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response containing a channel's messages */
       200: {
         content: {
-          'application/json': {
-            channel_actions_count: number
-            channel_actions_ts: unknown
-            has_more: boolean
-            messages: components['schemas']['objs_message'][]
-            ok: components['schemas']['defs_ok_true']
-            pin_count: number
-          }
-        }
-      }
+          "application/json": {
+            channel_actions_count: number;
+            channel_actions_ts: unknown;
+            has_more: boolean;
+            messages: components["schemas"]["objs_message"][];
+            ok: components["schemas"]["defs_ok_true"];
+            pin_count: number;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'invalid_ts_latest'
-              | 'invalid_ts_oldest'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "missing_scope" | "channel_not_found" | "invalid_ts_latest" | "invalid_ts_oldest" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve information about a conversation. Requires scope: `conversations:read` */
   conversations_info: {
     parameters: {
       query?: {
         /** @description Conversation ID to learn more about */
-        channel?: string
+        channel?: string;
         /** @description Set this to `true` to receive the locale for this conversation. Defaults to `false` */
-        include_locale?: boolean
+        include_locale?: boolean;
         /** @description Set to `true` to include the member count for the specified conversation. Defaults to `false` */
-        include_num_members?: boolean
-      }
-    }
+        include_num_members?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response for a public channel. (Also, a response from a private channel and a multi-party IM is very similar to this example.) */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when a channel cannot be found */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'team_added_to_org'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "missing_scope" | "channel_not_found" | "team_added_to_org" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Invites users to a channel. Requires scope: `conversations:write` */
   conversations_invite: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID of the public or private channel to invite user(s) to. */
-          channel?: string
+          channel?: string;
           /** @description A comma separated list of user IDs. Up to 1000 users may be listed. */
-          users?: string
-        }
-      }
-    }
+          users?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response when an invitation is extended */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when an invite is attempted on a conversation type that does not support it */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error?:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'user_not_found'
-              | 'no_user'
-              | 'cant_invite_self'
-              | 'not_in_channel'
-              | 'already_in_channel'
-              | 'is_archived'
-              | 'cant_invite'
-              | 'too_many_users'
-              | 'ura_max_channels'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'user_is_ultra_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'team_added_to_org'
-              | 'missing_charset'
-              | 'superfluous_charset'
+            error?: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "user_not_found" | "no_user" | "cant_invite_self" | "not_in_channel" | "already_in_channel" | "is_archived" | "cant_invite" | "too_many_users" | "ura_max_channels" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
             /** errors is returned when an error associates an user */
-            errors?: {
-              /** @enum {string} */
-              error:
-                | 'method_not_supported_for_channel_type'
-                | 'missing_scope'
-                | 'channel_not_found'
-                | 'user_not_found'
-                | 'no_user'
-                | 'cant_invite_self'
-                | 'not_in_channel'
-                | 'already_in_channel'
-                | 'is_archived'
-                | 'cant_invite'
-                | 'too_many_users'
-                | 'ura_max_channels'
-                | 'not_authed'
-                | 'invalid_auth'
-                | 'account_inactive'
-                | 'user_is_bot'
-                | 'user_is_restricted'
-                | 'user_is_ultra_restricted'
-                | 'invalid_arg_name'
-                | 'invalid_array_arg'
-                | 'invalid_charset'
-                | 'invalid_form_data'
-                | 'invalid_post_type'
-                | 'missing_post_type'
-                | 'invalid_json'
-                | 'json_not_object'
-                | 'request_timeout'
-                | 'upgrade_required'
-                | 'team_added_to_org'
-                | 'missing_charset'
-                | 'superfluous_charset'
-              ok: components['schemas']['defs_ok_false']
-              user?: components['schemas']['defs_user_id']
-            }[]
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            errors?: ({
+                /** @enum {string} */
+                error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "user_not_found" | "no_user" | "cant_invite_self" | "not_in_channel" | "already_in_channel" | "is_archived" | "cant_invite" | "too_many_users" | "ura_max_channels" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
+                ok: components["schemas"]["defs_ok_false"];
+                user?: components["schemas"]["defs_user_id"];
+              })[];
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Joins an existing conversation. Requires scope: `channels:write` */
   conversations_join: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of conversation to join */
-          channel?: string
-        }
-      }
-    }
+          channel?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
             /** Response metadata */
             response_metadata?: {
-              warnings?: string[]
-            }
-            warning?: string
-          }
-        }
-      }
+              warnings?: string[];
+            };
+            warning?: string;
+          };
+        };
+      };
       /** @description Typical error response if the conversation is archived and cannot be joined */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'is_archived'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'user_is_ultra_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'team_added_to_org'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "is_archived" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Removes a user from a conversation. Requires scope: `conversations:write` */
   conversations_kick: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of conversation to remove user from. */
-          channel?: string
+          channel?: string;
           /** @description User ID to be removed. */
-          user?: string
-        }
-      }
-    }
+          user?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when you attempt to kick yourself from a channel */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'user_not_found'
-              | 'cant_kick_self'
-              | 'not_in_channel'
-              | 'cant_kick_from_general'
-              | 'restricted_action'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "user_not_found" | "cant_kick_self" | "not_in_channel" | "cant_kick_from_general" | "restricted_action" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Leaves a conversation. Requires scope: `conversations:write` */
   conversations_leave: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Conversation to leave */
-          channel?: string
-        }
-      }
-    }
+          channel?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @enum {boolean} */
-            not_in_channel?: true
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+            not_in_channel?: true;
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when attempting to leave a workspace's "general" channel */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'last_member'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'is_archived'
-              | 'cant_leave_general'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'user_is_ultra_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'team_added_to_org'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "last_member" | "missing_scope" | "channel_not_found" | "is_archived" | "cant_leave_general" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Lists all channels in a Slack team. Requires scope: `conversations:read` */
   conversations_list: {
     parameters: {
       query?: {
         /** @description Set to `true` to exclude archived channels from the list */
-        exclude_archived?: boolean
+        exclude_archived?: boolean;
         /** @description Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
-        types?: string
+        types?: string;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer no larger than 1000. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response with only public channels */
       200: {
         content: {
-          'application/json': {
-            channels: components['schemas']['objs_conversation'][]
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            channels: components["schemas"]["objs_conversation"][];
+            ok: components["schemas"]["defs_ok_true"];
             response_metadata?: {
-              next_cursor: string
-            }
-          }
-        }
-      }
+              next_cursor: string;
+            };
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'missing_scope'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "missing_scope" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Sets the read cursor in a channel. Requires scope: `conversations:write` */
   conversations_mark: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel or conversation to set the read cursor for. */
-          channel?: string
+          channel?: string;
           /** @description Unique identifier of message you want marked as most recently seen in this conversation. */
-          ts?: number
-        }
-      }
-    }
+          ts?: number;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'invalid_timestamp'
-              | 'not_in_channel'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'not_allowed_token_type'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "invalid_timestamp" | "not_in_channel" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "not_allowed_token_type";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve members of a conversation. Requires scope: `conversations:read` */
   conversations_members: {
     parameters: {
       query?: {
         /** @description ID of the conversation to retrieve members for */
-        channel?: string
+        channel?: string;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical paginated success response */
       200: {
         content: {
-          'application/json': {
-            members: components['schemas']['defs_user_id'][]
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            members: components["schemas"]["defs_user_id"][];
+            ok: components["schemas"]["defs_ok_true"];
             response_metadata: {
-              next_cursor: string
-            }
-          }
-        }
-      }
+              next_cursor: string;
+            };
+          };
+        };
+      };
       /** @description Typical error response when an invalid cursor is provided */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'invalid_limit'
-              | 'invalid_cursor'
-              | 'fetch_members_failed'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "invalid_limit" | "invalid_cursor" | "fetch_members_failed" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Opens or resumes a direct message or multi-person direct message. Requires scope: `conversations:write` */
   conversations_open: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Resume a conversation by supplying an `im` or `mpim`'s ID. Or provide the `users` field instead. */
-          channel?: string
+          channel?: string;
           /** @description Boolean, indicates you want the full IM channel definition in the response. */
-          return_im?: boolean
+          return_im?: boolean;
           /** @description Comma separated lists of users. If only one user is included, this creates a 1:1 DM.  The ordering of the users is preserved whenever a multi-person direct message is returned. Supply a `channel` when not supplying `users`. */
-          users?: string
-        }
-      }
-    }
+          users?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            already_open?: boolean
-            channel: unknown
-            no_op?: boolean
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            already_open?: boolean;
+            channel: unknown;
+            no_op?: boolean;
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'user_not_found'
-              | 'user_not_visible'
-              | 'user_disabled'
-              | 'users_list_not_supplied'
-              | 'not_enough_users'
-              | 'too_many_users'
-              | 'invalid_user_combination'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'channel_not_found'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "user_not_found" | "user_not_visible" | "user_disabled" | "users_list_not_supplied" | "not_enough_users" | "too_many_users" | "invalid_user_combination" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "channel_not_found";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Renames a conversation. Requires scope: `conversations:write` */
   conversations_rename: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of conversation to rename */
-          channel?: string
+          channel?: string;
           /** @description New name for conversation. */
-          name?: string
-        }
-      }
-    }
+          name?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response when the calling user is not a member of the conversation */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_is_restricted'
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'not_authorized'
-              | 'invalid_name'
-              | 'name_taken'
-              | 'invalid_name_required'
-              | 'invalid_name_punctuation'
-              | 'invalid_name_maxlength'
-              | 'invalid_name_specials'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "user_is_restricted" | "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "not_in_channel" | "not_authorized" | "invalid_name" | "name_taken" | "invalid_name_required" | "invalid_name_punctuation" | "invalid_name_maxlength" | "invalid_name_specials" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve a thread of messages posted to a conversation Requires scope: `conversations:history` */
   conversations_replies: {
     parameters: {
       query?: {
         /** @description Conversation ID to fetch thread from. */
-        channel?: string
+        channel?: string;
         /** @description Unique identifier of a thread's parent message. `ts` must be the timestamp of an existing message with 0 or more replies. If there are no replies then just the single message referenced by `ts` will return - it is just an ordinary, unthreaded message. */
-        ts?: number
+        ts?: number;
         /** @description End of time range of messages to include in results. */
-        latest?: number
+        latest?: number;
         /** @description Start of time range of messages to include in results. */
-        oldest?: number
+        oldest?: number;
         /** @description Include messages with latest or oldest timestamp in results only when either timestamp is specified. */
-        inclusive?: boolean
+        inclusive?: boolean;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            has_more?: boolean
-            messages: unknown[]
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            has_more?: boolean;
+            messages: unknown[];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'thread_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "missing_scope" | "channel_not_found" | "thread_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Sets the purpose for a conversation. Requires scope: `conversations:write` */
   conversations_setPurpose: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Conversation to set the purpose of */
-          channel?: string
+          channel?: string;
           /** @description A new, specialer purpose */
-          purpose?: string
-        }
-      }
-    }
+          purpose?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'is_archived'
-              | 'too_long'
-              | 'user_is_restricted'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "not_in_channel" | "is_archived" | "too_long" | "user_is_restricted" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Sets the topic for a conversation. Requires scope: `conversations:write` */
   conversations_setTopic: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Conversation to set the topic of */
-          channel?: string
+          channel?: string;
           /** @description The new topic string. Does not support formatting or linkification. */
-          topic?: string
-        }
-      }
-    }
+          topic?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            channel: components['schemas']['objs_conversation']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            channel: components["schemas"]["objs_conversation"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'not_in_channel'
-              | 'is_archived'
-              | 'too_long'
-              | 'user_is_restricted'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "not_in_channel" | "is_archived" | "too_long" | "user_is_restricted" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Reverses conversation archival. Requires scope: `conversations:write` */
   conversations_unarchive: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of conversation to unarchive */
-          channel?: string
-        }
-      }
-    }
+          channel?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'channel_not_found'
-              | 'not_archived'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'user_is_ultra_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'team_added_to_org'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            needed?: string
-            ok: components['schemas']['defs_ok_false']
-            provided?: string
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "channel_not_found" | "not_archived" | "not_authed" | "invalid_auth" | "account_inactive" | "user_is_bot" | "user_is_restricted" | "user_is_ultra_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "team_added_to_org" | "missing_charset" | "superfluous_charset";
+            needed?: string;
+            ok: components["schemas"]["defs_ok_false"];
+            provided?: string;
+          };
+        };
+      };
+    };
+  };
   /** @description Open a dialog with a user Requires scope: `none` */
   dialog_open: {
     parameters: {
       query: {
         /** @description The dialog definition. This must be a JSON-encoded string. */
-        dialog: string
+        dialog: string;
         /** @description Exchange a trigger to post to the user. */
-        trigger_id: string
-      }
-    }
+        trigger_id: string;
+      };
+    };
     responses: {
       /** @description Typical success response is quite minimal. */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response, before getting to any possible validation errors. */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'validation_errors'
-              | 'missing_trigger'
-              | 'missing_dialog'
-              | 'trigger_exchanged'
-              | 'trigger_expired'
-              | 'invalid_trigger'
-              | 'app_missing_action_url'
-              | 'cannot_create_dialog'
-              | 'failed_sending_dialog'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "validation_errors" | "missing_trigger" | "missing_dialog" | "trigger_exchanged" | "trigger_expired" | "invalid_trigger" | "app_missing_action_url" | "cannot_create_dialog" | "failed_sending_dialog" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Ends the current user's Do Not Disturb session immediately. Requires scope: `dnd:write` */
   dnd_endDnd: {
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'unknown_error'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "unknown_error" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Ends the current user's snooze mode immediately. Requires scope: `dnd:write` */
   dnd_endSnooze: {
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            dnd_enabled: boolean
-            next_dnd_end_ts: number
-            next_dnd_start_ts: number
-            ok: components['schemas']['defs_ok_true']
-            snooze_enabled: boolean
-          }
-        }
-      }
+          "application/json": {
+            dnd_enabled: boolean;
+            next_dnd_end_ts: number;
+            next_dnd_start_ts: number;
+            ok: components["schemas"]["defs_ok_true"];
+            snooze_enabled: boolean;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'snooze_not_active'
-              | 'snooze_end_failed'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "snooze_not_active" | "snooze_end_failed" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieves a user's current Do Not Disturb status. Requires scope: `dnd:read` */
   dnd_info: {
     parameters: {
       query?: {
         /** @description User to fetch status for (defaults to current user) */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            dnd_enabled: boolean
-            next_dnd_end_ts: number
-            next_dnd_start_ts: number
-            ok: components['schemas']['defs_ok_true']
-            snooze_enabled?: boolean
-            snooze_endtime?: number
-            snooze_remaining?: number
-          }
-        }
-      }
+          "application/json": {
+            dnd_enabled: boolean;
+            next_dnd_end_ts: number;
+            next_dnd_start_ts: number;
+            ok: components["schemas"]["defs_ok_true"];
+            snooze_enabled?: boolean;
+            snooze_endtime?: number;
+            snooze_remaining?: number;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "user_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Turns on Do Not Disturb mode for the current user, or changes its duration. */
   dnd_setSnooze: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Number of minutes, from now, to snooze until. */
-          num_minutes: string
+          num_minutes: string;
           /** @description Authentication token. Requires scope: `dnd:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            snooze_enabled: boolean
-            snooze_endtime: number
-            snooze_remaining: number
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            snooze_enabled: boolean;
+            snooze_endtime: number;
+            snooze_remaining: number;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'missing_duration'
-              | 'snooze_failed'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'too_long'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "missing_duration" | "snooze_failed" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "too_long" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieves the Do Not Disturb status for up to 50 users on a team. Requires scope: `dnd:read` */
   dnd_teamInfo: {
     parameters: {
       query?: {
         /** @description Comma-separated list of users to fetch Do Not Disturb status for */
-        users?: string
-      }
-    }
+        users?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Lists custom emoji for a team. Requires scope: `emoji:read` */
   emoji_list: {
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Deletes an existing comment on a file. Requires scope: `files:write:user` */
   files_comments_delete: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description File to delete a comment from. */
-          file?: string
+          file?: string;
           /** @description The comment to delete. */
-          id?: string
-        }
-      }
-    }
+          id?: string;
+        };
+      };
+    };
     responses: {
       /** @description Standard success response is very simple */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Standard failure response when used with an invalid token */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'cant_delete'
-              | 'comment_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "cant_delete" | "comment_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Deletes a file. Requires scope: `files:write:user` */
   files_delete: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description ID of file to delete. */
-          file?: string
-        }
-      }
-    }
+          file?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'file_not_found'
-              | 'file_deleted'
-              | 'cant_delete_file'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "file_not_found" | "file_deleted" | "cant_delete_file" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets information about a file. Requires scope: `files:read` */
   files_info: {
     parameters: {
       query?: {
         /** @description Specify a file by providing its ID. */
-        file?: string
-        count?: string
-        page?: string
+        file?: string;
+        count?: string;
+        page?: string;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. */
-        limit?: number
+        limit?: number;
         /** @description Parameter for pagination. File comments are paginated for a single file. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection of comments. See [pagination](/docs/pagination) for more details. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            comments: components['schemas']['objs_comments']
-            content_html?: Record<string, unknown> | null
-            editor?: components['schemas']['defs_user_id']
-            file: components['schemas']['objs_file']
-            ok: components['schemas']['defs_ok_true']
-            paging?: components['schemas']['objs_paging']
-            response_metadata?: components['schemas']['objs_response_metadata']
-          }
-        }
-      }
+          "application/json": {
+            comments: components["schemas"]["objs_comments"];
+            content_html?: Record<string, unknown> | null;
+            editor?: components["schemas"]["defs_user_id"];
+            file: components["schemas"]["objs_file"];
+            ok: components["schemas"]["defs_ok_true"];
+            paging?: components["schemas"]["objs_paging"];
+            response_metadata?: components["schemas"]["objs_response_metadata"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'file_not_found'
-              | 'file_deleted'
-              | 'timezone_count_failed'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "file_not_found" | "file_deleted" | "timezone_count_failed" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description List for a team, in a channel, or from a user with applied filters. Requires scope: `files:read` */
   files_list: {
     parameters: {
       query?: {
         /** @description Filter files created by a single user. */
-        user?: string
+        user?: string;
         /** @description Filter files appearing in a specific channel, indicated by its ID. */
-        channel?: string
+        channel?: string;
         /** @description Filter files created after this timestamp (inclusive). */
-        ts_from?: number
+        ts_from?: number;
         /** @description Filter files created before this timestamp (inclusive). */
-        ts_to?: number
+        ts_to?: number;
         /** @description Filter files by type ([see below](#file_types)). You can pass multiple values in the types argument, like `types=spaces,snippets`.The default value is `all`, which does not filter the list. */
-        types?: string
-        count?: string
-        page?: string
+        types?: string;
+        count?: string;
+        page?: string;
         /** @description Show truncated file info for files hidden due to being too old, and the team who owns the file being over the file limit. */
-        show_files_hidden_by_limit?: boolean
-      }
-    }
+        show_files_hidden_by_limit?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            files: components['schemas']['objs_file'][]
-            ok: components['schemas']['defs_ok_true']
-            paging: components['schemas']['objs_paging']
-          }
-        }
-      }
+          "application/json": {
+            files: components["schemas"]["objs_file"][];
+            ok: components["schemas"]["defs_ok_true"];
+            paging: components["schemas"]["objs_paging"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_not_found'
-              | 'unknown_type'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "user_not_found" | "unknown_type" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Adds a file from a remote service */
   files_remote_add: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Creator defined GUID for the file. */
-          external_id?: string
+          external_id?: string;
           /** @description URL of the remote file. */
-          external_url?: string
+          external_url?: string;
           /** @description type of file */
-          filetype?: string
+          filetype?: string;
           /** @description A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file. */
-          indexable_file_contents?: string
+          indexable_file_contents?: string;
           /** @description Preview of the document via `multipart/form-data`. */
-          preview_image?: string
+          preview_image?: string;
           /** @description Title of the file being shared. */
-          title?: string
+          title?: string;
           /** @description Authentication token. Requires scope: `remote_files:write` */
-          token?: string
-        }
-      }
-    }
+          token?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
   files_remote_info: {
     parameters: {
       query?: {
         /** @description Specify a file by providing its ID. */
-        file?: string
+        file?: string;
         /** @description Creator defined GUID for the file. */
-        external_id?: string
-      }
-    }
+        external_id?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve information about a remote file added to Slack Requires scope: `remote_files:read` */
   files_remote_list: {
     parameters: {
       query?: {
         /** @description Filter files appearing in a specific channel, indicated by its ID. */
-        channel?: string
+        channel?: string;
         /** @description Filter files created after this timestamp (inclusive). */
-        ts_from?: number
+        ts_from?: number;
         /** @description Filter files created before this timestamp (inclusive). */
-        ts_to?: number
+        ts_to?: number;
         /** @description The maximum number of items to return. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Remove a remote file. */
   files_remote_remove: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Creator defined GUID for the file. */
-          external_id?: string
+          external_id?: string;
           /** @description Specify a file by providing its ID. */
-          file?: string
+          file?: string;
           /** @description Authentication token. Requires scope: `remote_files:write` */
-          token?: string
-        }
-      }
-    }
+          token?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Share a remote file into a channel. Requires scope: `remote_files:share` */
   files_remote_share: {
     parameters: {
       query?: {
         /** @description Specify a file registered with Slack by providing its ID. Either this field or `external_id` or both are required. */
-        file?: string
+        file?: string;
         /** @description The globally unique identifier (GUID) for the file, as set by the app registering the file with Slack.  Either this field or `file` or both are required. */
-        external_id?: string
+        external_id?: string;
         /** @description Comma-separated list of channel IDs where the file will be shared. */
-        channels?: string
-      }
-    }
+        channels?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Updates an existing remote file. */
   files_remote_update: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Creator defined GUID for the file. */
-          external_id?: string
+          external_id?: string;
           /** @description URL of the remote file. */
-          external_url?: string
+          external_url?: string;
           /** @description Specify a file by providing its ID. */
-          file?: string
+          file?: string;
           /** @description type of file */
-          filetype?: string
+          filetype?: string;
           /** @description File containing contents that can be used to improve searchability for the remote file. */
-          indexable_file_contents?: string
+          indexable_file_contents?: string;
           /** @description Preview of the document via `multipart/form-data`. */
-          preview_image?: string
+          preview_image?: string;
           /** @description Title of the file being shared. */
-          title?: string
+          title?: string;
           /** @description Authentication token. Requires scope: `remote_files:write` */
-          token?: string
-        }
-      }
-    }
+          token?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Revokes public/external sharing access for a file Requires scope: `files:write:user` */
   files_revokePublicURL: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description File to revoke */
-          file?: string
-        }
-      }
-    }
+          file?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            file: components['schemas']['objs_file']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            file: components["schemas"]["objs_file"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'file_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "file_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Enables a file for public/external sharing. Requires scope: `files:write:user` */
   files_sharedPublicURL: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description File to share */
-          file?: string
-        }
-      }
-    }
+          file?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            file: components['schemas']['objs_file']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            file: components["schemas"]["objs_file"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'file_not_found'
-              | 'not_allowed'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "file_not_found" | "not_allowed" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Uploads or creates a file. */
   files_upload: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Comma-separated list of channel names or IDs where the file will be shared. */
-          channels?: string
+          channels?: string;
           /** @description File contents via a POST variable. If omitting this parameter, you must provide a `file`. */
-          content?: string
+          content?: string;
           /** @description File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`. */
-          file?: string
+          file?: string;
           /** @description Filename of file. */
-          filename?: string
+          filename?: string;
           /** @description A [file type](/types/file#file_types) identifier. */
-          filetype?: string
+          filetype?: string;
           /** @description The message text introducing the file in specified `channels`. */
-          initial_comment?: string
+          initial_comment?: string;
           /** @description Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead. */
-          thread_ts?: number
+          thread_ts?: number;
           /** @description Title of file. */
-          title?: string
+          title?: string;
           /** @description Authentication token. Requires scope: `files:write:user` */
-          token?: string
-        }
-      }
-    }
+          token?: string;
+        };
+      };
+    };
     responses: {
       /** @description Success response after uploading a file to a channel with an initial message */
       200: {
         content: {
-          'application/json': {
-            file: components['schemas']['objs_file']
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            file: components["schemas"]["objs_file"];
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'posting_to_general_channel_denied'
-              | 'invalid_channel'
-              | 'file_uploads_disabled'
-              | 'file_uploads_except_images_disabled'
-              | 'storage_limit_reached'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "posting_to_general_channel_denied" | "invalid_channel" | "file_uploads_disabled" | "file_uploads_except_images_disabled" | "storage_limit_reached" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description For Enterprise Grid workspaces, map local user IDs to global user IDs Requires scope: `tokens.basic` */
   migration_exchange: {
     parameters: {
       query: {
         /** @description A comma-separated list of user ids, up to 400 per request */
-        users: string
+        users: string;
         /** @description Specify team_id starts with `T` in case of Org Token */
-        team_id?: string
+        team_id?: string;
         /** @description Specify `true` to convert `W` global user IDs to workspace-specific `U` IDs. Defaults to `false`. */
-        to_old?: boolean
-      }
-    }
+        to_old?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response when mappings exist for the specified user IDs */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             /** The enterprise grid organization ID containing the workspace/team. */
-            enterprise_id: string
+            enterprise_id: string;
             /** A list of User IDs that cannot be mapped or found */
-            invalid_user_ids?: string[]
-            ok: components['schemas']['defs_ok_true']
-            team_id: components['schemas']['defs_team']
+            invalid_user_ids?: string[];
+            ok: components["schemas"]["defs_ok_true"];
+            team_id: components["schemas"]["defs_team"];
             /** A mapping of provided user IDs with mapped user IDs */
             user_id_map?: {
-              [key: string]: unknown
-            }
-            [key: string]: unknown
-          }
-        }
-      }
+              [key: string]: unknown;
+            };
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response when there are no mappings to provide */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_enterprise_team'
-              | 'too_many_users'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_enterprise_team" | "too_many_users" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Exchanges a temporary OAuth verifier code for an access token. */
   oauth_access: {
     parameters: {
       query?: {
         /** @description Issued when you created your application. */
-        client_id?: string
+        client_id?: string;
         /** @description Issued when you created your application. */
-        client_secret?: string
+        client_secret?: string;
         /** @description The `code` param returned via the OAuth callback. */
-        code?: string
+        code?: string;
         /** @description This must match the originally submitted URI (if one was sent). */
-        redirect_uri?: string
+        redirect_uri?: string;
         /** @description Request the user to add your app only to a single channel. Only valid with a [legacy workspace app](https://api.slack.com/legacy-workspace-apps). */
-        single_channel?: boolean
-      }
-    }
+        single_channel?: boolean;
+      };
+    };
     responses: {
       /** @description Successful user token negotiation for a single scope */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Exchanges a temporary OAuth verifier code for a workspace token. */
   oauth_token: {
     parameters: {
       query?: {
         /** @description Issued when you created your application. */
-        client_id?: string
+        client_id?: string;
         /** @description Issued when you created your application. */
-        client_secret?: string
+        client_secret?: string;
         /** @description The `code` param returned via the OAuth callback. */
-        code?: string
+        code?: string;
         /** @description This must match the originally submitted URI (if one was sent). */
-        redirect_uri?: string
+        redirect_uri?: string;
         /** @description Request the user to add your app only to a single channel. */
-        single_channel?: boolean
-      }
-    }
+        single_channel?: boolean;
+      };
+    };
     responses: {
       /** @description Success example using a workspace app produces a very different kind of response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Exchanges a temporary OAuth verifier code for an access token. */
   oauth_v2_access: {
     parameters: {
       query: {
         /** @description Issued when you created your application. */
-        client_id?: string
+        client_id?: string;
         /** @description Issued when you created your application. */
-        client_secret?: string
+        client_secret?: string;
         /** @description The `code` param returned via the OAuth callback. */
-        code: string
+        code: string;
         /** @description This must match the originally submitted URI (if one was sent). */
-        redirect_uri?: string
-      }
-    }
+        redirect_uri?: string;
+      };
+    };
     responses: {
       /** @description Successful token request with scopes for both a bot user and a user token */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Pins an item to a channel. Requires scope: `pins:write` */
   pins_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel to pin the item in. */
-          channel: string
+          channel: string;
           /** @description Timestamp of the message to pin. */
-          timestamp?: string
-        }
-      }
-    }
+          timestamp?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'message_not_found'
-              | 'channel_not_found'
-              | 'no_item_specified'
-              | 'already_pinned'
-              | 'permission_denied'
-              | 'file_not_shared'
-              | 'not_pinnable'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "message_not_found" | "channel_not_found" | "no_item_specified" | "already_pinned" | "permission_denied" | "file_not_shared" | "not_pinnable" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Lists items pinned to a channel. Requires scope: `pins:read` */
   pins_list: {
     parameters: {
       query: {
         /** @description Channel to get pinned items for. */
-        channel: string
-      }
-    }
+        channel: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': unknown
-        }
-      }
+          "application/json": unknown;
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'channel_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "channel_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Un-pins an item from a channel. Requires scope: `pins:write` */
   pins_remove: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel where the item is pinned to. */
-          channel: string
+          channel: string;
           /** @description Timestamp of the message to un-pin. */
-          timestamp?: string
-        }
-      }
-    }
+          timestamp?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'file_not_found'
-              | 'file_comment_not_found'
-              | 'message_not_found'
-              | 'no_item_specified'
-              | 'not_pinned'
-              | 'permission_denied'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_typ'
-              | 'missing_post_typ'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeou'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "file_not_found" | "file_comment_not_found" | "message_not_found" | "no_item_specified" | "not_pinned" | "permission_denied" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_typ" | "missing_post_typ" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeou" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Adds a reaction to an item. Requires scope: `reactions:write` */
   reactions_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel where the message to add reaction to was posted. */
-          channel: string
+          channel: string;
           /** @description Reaction (emoji) name. */
-          name: string
+          name: string;
           /** @description Timestamp of the message to add reaction to. */
-          timestamp: string
-        }
-      }
-    }
+          timestamp: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'message_not_found'
-              | 'no_item_specified'
-              | 'invalid_name'
-              | 'already_reacted'
-              | 'too_many_emoji'
-              | 'too_many_reactions'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "message_not_found" | "no_item_specified" | "invalid_name" | "already_reacted" | "too_many_emoji" | "too_many_reactions" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets reactions for an item. Requires scope: `reactions:read` */
   reactions_get: {
     parameters: {
       query?: {
         /** @description Channel where the message to get reactions for was posted. */
-        channel?: string
+        channel?: string;
         /** @description File to get reactions for. */
-        file?: string
+        file?: string;
         /** @description File comment to get reactions for. */
-        file_comment?: string
+        file_comment?: string;
         /** @description If true always return the complete reaction list. */
-        full?: boolean
+        full?: boolean;
         /** @description Timestamp of the message to get reactions for. */
-        timestamp?: string
-      }
-    }
+        timestamp?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': Record<string, never>
-        }
-      }
+          "application/json": Record<string, never>;
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'file_not_found'
-              | 'file_comment_not_found'
-              | 'message_not_found'
-              | 'no_item_specified'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "file_not_found" | "file_comment_not_found" | "message_not_found" | "no_item_specified" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Lists reactions made by a user. Requires scope: `reactions:read` */
   reactions_list: {
     parameters: {
       query?: {
         /** @description Show reactions made by this user. Defaults to the authed user. */
-        user?: string
+        user?: string;
         /** @description If true always return the complete reaction list. */
-        full?: boolean
-        count?: number
-        page?: number
+        full?: boolean;
+        count?: number;
+        page?: number;
         /** @description Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See [pagination](/docs/pagination) for more details. */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            items: unknown[]
-            ok: components['schemas']['defs_ok_true']
-            paging?: components['schemas']['objs_paging']
-            response_metadata?: components['schemas']['objs_response_metadata']
-          }
-        }
-      }
+          "application/json": {
+            items: unknown[];
+            ok: components["schemas"]["defs_ok_true"];
+            paging?: components["schemas"]["objs_paging"];
+            response_metadata?: components["schemas"]["objs_response_metadata"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactiv'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "user_not_found" | "not_authed" | "invalid_auth" | "account_inactiv" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Removes a reaction from an item. Requires scope: `reactions:write` */
   reactions_remove: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel where the message to remove reaction from was posted. */
-          channel?: string
+          channel?: string;
           /** @description File to remove reaction from. */
-          file?: string
+          file?: string;
           /** @description File comment to remove reaction from. */
-          file_comment?: string
+          file_comment?: string;
           /** @description Reaction (emoji) name. */
-          name: string
+          name: string;
           /** @description Timestamp of the message to remove reaction from. */
-          timestamp?: string
-        }
-      }
-    }
+          timestamp?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'file_not_found'
-              | 'file_comment_not_found'
-              | 'message_not_found'
-              | 'no_item_specified'
-              | 'invalid_name'
-              | 'no_reaction'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "file_not_found" | "file_comment_not_found" | "message_not_found" | "no_item_specified" | "invalid_name" | "no_reaction" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Creates a reminder. Requires scope: `reminders:write` */
   reminders_add: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The content of the reminder */
-          text: string
+          text: string;
           /** @description When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. "in 15 minutes," or "every Thursday") */
-          time: string
+          time: string;
           /** @description The user who will receive the reminder. If no user is specified, the reminder will go to user who created it. */
-          user?: string
-        }
-      }
-    }
+          user?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            reminder: components['schemas']['objs_reminder']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            reminder: components["schemas"]["objs_reminder"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'cannot_parse'
-              | 'user_not_found'
-              | 'cannot_add_bot'
-              | 'cannot_add_slackbot'
-              | 'cannot_add_others'
-              | 'cannot_add_others_recurring'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "cannot_parse" | "user_not_found" | "cannot_add_bot" | "cannot_add_slackbot" | "cannot_add_others" | "cannot_add_others_recurring" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Marks a reminder as complete. Requires scope: `reminders:write` */
   reminders_complete: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID of the reminder to be marked as complete */
-          reminder?: string
-        }
-      }
-    }
+          reminder?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_found'
-              | 'cannot_complete_recurring'
-              | 'cannot_complete_others'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_found" | "cannot_complete_recurring" | "cannot_complete_others" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Deletes a reminder. Requires scope: `reminders:write` */
   reminders_delete: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description The ID of the reminder */
-          reminder?: string
-        }
-      }
-    }
+          reminder?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets information about a reminder. Requires scope: `reminders:read` */
   reminders_info: {
     parameters: {
       query?: {
         /** @description The ID of the reminder */
-        reminder?: string
-      }
-    }
+        reminder?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            reminder: components['schemas']['objs_reminder']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            reminder: components["schemas"]["objs_reminder"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Lists all reminders created by or for a given user. Requires scope: `reminders:read` */
   reminders_list: {
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            reminders: components['schemas']['objs_reminder'][]
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            reminders: components["schemas"]["objs_reminder"][];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Starts a Real Time Messaging session. Requires scope: `rtm:stream` */
   rtm_connect: {
     parameters: {
       query?: {
         /** @description Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/docs/presence-and-status#batching). */
-        batch_presence_aware?: boolean
+        batch_presence_aware?: boolean;
         /** @description Only deliver presence events when requested by subscription. See [presence subscriptions](/docs/presence-and-status#subscriptions). */
-        presence_sub?: boolean
-      }
-    }
+        presence_sub?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             self: {
-              id: components['schemas']['defs_user_id']
-              name: string
-            }
+              id: components["schemas"]["defs_user_id"];
+              name: string;
+            };
             team: {
-              domain: string
-              id: components['schemas']['defs_team']
-              name: string
-            }
+              domain: string;
+              id: components["schemas"]["defs_team"];
+              name: string;
+            };
             /** Format: uri */
-            url: string
-          }
-        }
-      }
+            url: string;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Searches for messages matching a query. Requires scope: `search:read` */
   search_messages: {
     parameters: {
       query: {
         /** @description Pass the number of results you want per "page". Maximum of `100`. */
-        count?: number
+        count?: number;
         /** @description Pass a value of `true` to enable query highlight markers (see below). */
-        highlight?: boolean
-        page?: number
+        highlight?: boolean;
+        page?: number;
         /** @description Search query. */
-        query: string
+        query: string;
         /** @description Return matches sorted by either `score` or `timestamp`. */
-        sort?: string
+        sort?: string;
         /** @description Change sort direction to ascending (`asc`) or descending (`desc`). */
-        sort_dir?: string
-      }
-    }
+        sort_dir?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Adds a star to an item. Requires scope: `stars:write` */
   stars_add: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel to add star to, or channel where the message to add star to was posted (used with `timestamp`). */
-          channel?: string
+          channel?: string;
           /** @description File to add star to. */
-          file?: string
+          file?: string;
           /** @description File comment to add star to. */
-          file_comment?: string
+          file_comment?: string;
           /** @description Timestamp of the message to add star to. */
-          timestamp?: string
-        }
-      }
-    }
+          timestamp?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'message_not_found'
-              | 'file_not_found'
-              | 'file_comment_not_found'
-              | 'channel_not_found'
-              | 'no_item_specified'
-              | 'already_starred'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "message_not_found" | "file_not_found" | "file_comment_not_found" | "channel_not_found" | "no_item_specified" | "already_starred" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Lists stars for a user. Requires scope: `stars:read` */
   stars_list: {
     parameters: {
       query?: {
-        count?: string
-        page?: string
+        count?: string;
+        page?: string;
         /** @description Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See [pagination](/docs/pagination) for more details. */
-        cursor?: string
+        cursor?: string;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. */
-        limit?: number
-      }
-    }
+        limit?: number;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            items: unknown[]
-            ok: components['schemas']['defs_ok_true']
-            paging?: components['schemas']['objs_paging']
-          }
-        }
-      }
+          "application/json": {
+            items: unknown[];
+            ok: components["schemas"]["defs_ok_true"];
+            paging?: components["schemas"]["objs_paging"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Removes a star from an item. Requires scope: `stars:write` */
   stars_remove: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Channel to remove star from, or channel where the message to remove star from was posted (used with `timestamp`). */
-          channel?: string
+          channel?: string;
           /** @description File to remove star from. */
-          file?: string
+          file?: string;
           /** @description File comment to remove star from. */
-          file_comment?: string
+          file_comment?: string;
           /** @description Timestamp of the message to remove star from. */
-          timestamp?: string
-        }
-      }
-    }
+          timestamp?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'bad_timestamp'
-              | 'message_not_found'
-              | 'file_not_found'
-              | 'file_comment_not_found'
-              | 'channel_not_found'
-              | 'no_item_specified'
-              | 'not_starred'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "bad_timestamp" | "message_not_found" | "file_not_found" | "file_comment_not_found" | "channel_not_found" | "no_item_specified" | "not_starred" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets the access logs for the current team. Requires scope: `admin` */
   team_accessLogs: {
     parameters: {
       query?: {
         /** @description End of time range of logs to include in results (inclusive). */
-        before?: string
-        count?: string
-        page?: string
-      }
-    }
+        before?: string;
+        count?: string;
+        page?: string;
+      };
+    };
     responses: {
       /** @description This response demonstrates pagination and two access log entries. */
       200: {
         content: {
-          'application/json': {
-            logins: {
-              count: number
-              country: string | null
-              date_first: number
-              date_last: number
-              ip: string | null
-              isp: string | null
-              region: string | null
-              user_agent: string
-              user_id: components['schemas']['defs_user_id']
-              username: string
-            }[]
-            ok: components['schemas']['defs_ok_true']
-            paging: components['schemas']['objs_paging']
-          }
-        }
-      }
+          "application/json": {
+            logins: ({
+                count: number;
+                country: string | null;
+                date_first: number;
+                date_last: number;
+                ip: string | null;
+                isp: string | null;
+                region: string | null;
+                user_agent: string;
+                user_id: components["schemas"]["defs_user_id"];
+                username: string;
+              })[];
+            ok: components["schemas"]["defs_ok_true"];
+            paging: components["schemas"]["objs_paging"];
+          };
+        };
+      };
       /** @description A workspace must be on a paid plan to use this method, otherwise the `paid_only` error is thrown: */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'paid_only'
-              | 'over_pagination_limit'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "paid_only" | "over_pagination_limit" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets billable users information for the current team. Requires scope: `admin` */
   team_billableInfo: {
     parameters: {
       query?: {
         /** @description A user to retrieve the billable information for. Defaults to all users. */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Gets information about the current team. Requires scope: `team:read` */
   team_info: {
     parameters: {
       query?: {
         /** @description Team to get info on, if omitted, will return information about the current team. Will only return team that the authenticated token is allowed to see through external shared channels */
-        team?: string
-      }
-    }
+        team?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            team: components['schemas']['objs_team']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            team: components["schemas"]["objs_team"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets the integration logs for the current team. Requires scope: `admin` */
   team_integrationLogs: {
     parameters: {
       query?: {
         /** @description Filter logs to this Slack app. Defaults to all logs. */
-        app_id?: string
+        app_id?: string;
         /** @description Filter logs with this change type. Defaults to all logs. */
-        change_type?: string
-        count?: string
-        page?: string
+        change_type?: string;
+        count?: string;
+        page?: string;
         /** @description Filter logs to this service. Defaults to all logs. */
-        service_id?: string
+        service_id?: string;
         /** @description Filter logs generated by this user’s actions. Defaults to all logs. */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             logs: {
-              admin_app_id?: components['schemas']['defs_app_id']
-              app_id: components['schemas']['defs_app_id']
-              app_type: string
-              change_type: string
-              channel?: components['schemas']['defs_channel']
-              date: string
-              scope: string
-              service_id?: string
-              service_type?: string
-              user_id: components['schemas']['defs_user_id']
-              user_name: string
-            }[]
-            ok: components['schemas']['defs_ok_true']
-            paging: components['schemas']['objs_paging']
-          }
-        }
-      }
+                admin_app_id?: components["schemas"]["defs_app_id"];
+                app_id: components["schemas"]["defs_app_id"];
+                app_type: string;
+                change_type: string;
+                channel?: components["schemas"]["defs_channel"];
+                date: string;
+                scope: string;
+                service_id?: string;
+                service_type?: string;
+                user_id: components["schemas"]["defs_user_id"];
+                user_name: string;
+              }[];
+            ok: components["schemas"]["defs_ok_true"];
+            paging: components["schemas"]["objs_paging"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieve a team's profile. Requires scope: `users.profile:read` */
   team_profile_get: {
     parameters: {
       query?: {
         /** @description Filter by visibility. */
-        visibility?: string
-      }
-    }
+        visibility?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             profile: {
-              fields: components['schemas']['objs_team_profile_field'][]
-            }
-          }
-        }
-      }
+              fields: components["schemas"]["objs_team_profile_field"][];
+            };
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_typ'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeou'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_typ" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeou" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Create a User Group Requires scope: `usergroups:write` */
   usergroups_create: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-          channels?: string
+          channels?: string;
           /** @description A short description of the User Group. */
-          description?: string
+          description?: string;
           /** @description A mention handle. Must be unique among channels, users and User Groups. */
-          handle?: string
+          handle?: string;
           /** @description Include the number of users in each User Group. */
-          include_count?: boolean
+          include_count?: boolean;
           /** @description A name for the User Group. Must be unique among User Groups. */
-          name: string
-        }
-      }
-    }
+          name: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroup: components['schemas']['objs_subteam']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroup: components["schemas"]["objs_subteam"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'permission_denied'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "permission_denied" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Disable an existing User Group Requires scope: `usergroups:write` */
   usergroups_disable: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Include the number of users in the User Group. */
-          include_count?: boolean
+          include_count?: boolean;
           /** @description The encoded ID of the User Group to disable. */
-          usergroup: string
-        }
-      }
-    }
+          usergroup: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroup: components['schemas']['objs_subteam']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroup: components["schemas"]["objs_subteam"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'permission_denied'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "permission_denied" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Enable a User Group Requires scope: `usergroups:write` */
   usergroups_enable: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Include the number of users in the User Group. */
-          include_count?: boolean
+          include_count?: boolean;
           /** @description The encoded ID of the User Group to enable. */
-          usergroup: string
-        }
-      }
-    }
+          usergroup: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroup: components['schemas']['objs_subteam']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroup: components["schemas"]["objs_subteam"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_require'
-              | 'fatal_error'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_require" | "fatal_error" | "missing_charset" | "superfluous_charset";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description List all User Groups for a team Requires scope: `usergroups:read` */
   usergroups_list: {
     parameters: {
       query?: {
         /** @description Include the list of users for each User Group. */
-        include_users?: boolean
+        include_users?: boolean;
         /** @description Include the number of users in each User Group. */
-        include_count?: boolean
+        include_count?: boolean;
         /** @description Include disabled User Groups. */
-        include_disabled?: boolean
-      }
-    }
+        include_disabled?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroups: components['schemas']['objs_subteam'][]
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroups: components["schemas"]["objs_subteam"][];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_require'
-              | 'fatal_error'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_require" | "fatal_error" | "missing_charset" | "superfluous_charset";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Update an existing User Group Requires scope: `usergroups:write` */
   usergroups_update: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-          channels?: string
+          channels?: string;
           /** @description A short description of the User Group. */
-          description?: string
+          description?: string;
           /** @description A mention handle. Must be unique among channels, users and User Groups. */
-          handle?: string
+          handle?: string;
           /** @description Include the number of users in the User Group. */
-          include_count?: boolean
+          include_count?: boolean;
           /** @description A name for the User Group. Must be unique among User Groups. */
-          name?: string
+          name?: string;
           /** @description The encoded ID of the User Group to update. */
-          usergroup: string
-        }
-      }
-    }
+          usergroup: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroup: components['schemas']['objs_subteam']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroup: components["schemas"]["objs_subteam"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'permission_denied'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_require'
-              | 'fatal_error'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "permission_denied" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_require" | "fatal_error" | "missing_charset" | "superfluous_charset";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description List all users in a User Group Requires scope: `usergroups:read` */
   usergroups_users_list: {
     parameters: {
       query: {
         /** @description Allow results that involve disabled User Groups. */
-        include_disabled?: boolean
+        include_disabled?: boolean;
         /** @description The encoded ID of the User Group to update. */
-        usergroup: string
-      }
-    }
+        usergroup: string;
+      };
+    };
     responses: {
       /** @description Standard success response when used with a user token */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            users: components['schemas']['defs_user_id'][]
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            users: components["schemas"]["defs_user_id"][];
+          };
+        };
+      };
       /** @description Standard failure response when used with an invalid token */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_require'
-              | 'fatal_error'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_require" | "fatal_error" | "missing_charset" | "superfluous_charset";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Update the list of users for a User Group Requires scope: `usergroups:write` */
   usergroups_users_update: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Include the number of users in the User Group. */
-          include_count?: boolean
+          include_count?: boolean;
           /** @description The encoded ID of the User Group to update. */
-          usergroup: string
+          usergroup: string;
           /** @description A comma separated string of encoded user IDs that represent the entire list of users for the User Group. */
-          users: string
-        }
-      }
-    }
+          users: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            usergroup: components['schemas']['objs_subteam']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            usergroup: components["schemas"]["objs_subteam"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'permission_denied'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'user_is_restricted'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_require'
-              | 'fatal_error'
-              | 'missing_charset'
-              | 'superfluous_charset'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "permission_denied" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "user_is_restricted" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_require" | "fatal_error" | "missing_charset" | "superfluous_charset";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description List conversations the calling user may access. Requires scope: `conversations:read` */
   users_conversations: {
     parameters: {
       query?: {
         /** @description Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership. */
-        user?: string
+        user?: string;
         /** @description Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
-        types?: string
+        types?: string;
         /** @description Set to `true` to exclude archived channels from the list */
-        exclude_archived?: boolean
+        exclude_archived?: boolean;
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer no larger than 1000. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
-      }
-    }
+        cursor?: string;
+      };
+    };
     responses: {
       /** @description Typical success response with only public channels. Note how `num_members` and `is_member` are not returned like typical `conversations` objects. */
       200: {
         content: {
-          'application/json': {
-            channels: components['schemas']['objs_conversation'][]
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            channels: components["schemas"]["objs_conversation"][];
+            ok: components["schemas"]["defs_ok_true"];
             response_metadata?: {
-              next_cursor: string
-            }
-            [key: string]: unknown
-          }
-        }
-      }
+              next_cursor: string;
+            };
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'method_not_supported_for_channel_type'
-              | 'missing_scope'
-              | 'invalid_types'
-              | 'invalid_cursor'
-              | 'invalid_limit'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "method_not_supported_for_channel_type" | "missing_scope" | "invalid_types" | "invalid_cursor" | "invalid_limit" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Delete the user profile photo */
   users_deletePhoto: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Authentication token. Requires scope: `users.profile:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets user presence information. Requires scope: `users:read` */
   users_getPresence: {
     parameters: {
       query?: {
         /** @description User to get presence info on. Defaults to the authed user. */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description When requesting information for a different user, this method just returns the current presence (either `active` or `away`). */
       200: {
         content: {
-          'application/json': {
-            auto_away?: boolean
-            connection_count?: number
-            last_activity?: number
-            manual_away?: boolean
-            ok: components['schemas']['defs_ok_true']
-            online?: boolean
-            presence: string
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            auto_away?: boolean;
+            connection_count?: number;
+            last_activity?: number;
+            manual_away?: boolean;
+            ok: components["schemas"]["defs_ok_true"];
+            online?: boolean;
+            presence: string;
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            error: string
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: Record<string, never>
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            error: string;
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: Record<string, never>;
+          };
+        };
+      };
+    };
+  };
   /** @description Get a user's identity. Requires scope: `identity.basic` */
   users_identity: {
     responses: {
       /** @description You will receive at a minimum the following information: */
       200: {
         content: {
-          'application/json': unknown
-        }
-      }
+          "application/json": unknown;
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Gets information about a user. Requires scope: `users:read` */
   users_info: {
     parameters: {
       query?: {
         /** @description Set this to `true` to receive the locale for this user. Defaults to `false` */
-        include_locale?: boolean
+        include_locale?: boolean;
         /** @description User to get info on */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            user: components['schemas']['objs_user']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            user: components["schemas"]["objs_user"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            callstack?: string
+          "application/json": {
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_not_found'
-              | 'user_not_visible'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "user_not_found" | "user_not_visible" | "not_authed" | "invalid_auth" | "account_inactive" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Lists all users in a Slack team. Requires scope: `users:read` */
   users_list: {
     parameters: {
       query?: {
         /** @description The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. Providing no `limit` value will result in Slack attempting to deliver you the entire result set. If the collection is too large you may experience `limit_required` or HTTP 500 errors. */
-        limit?: number
+        limit?: number;
         /** @description Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/docs/pagination) for more detail. */
-        cursor?: string
+        cursor?: string;
         /** @description Set this to `true` to receive the locale for users. Defaults to `false` */
-        include_locale?: boolean
-      }
-    }
+        include_locale?: boolean;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            cache_ts: number
-            members: components['schemas']['objs_user'][]
-            ok: components['schemas']['defs_ok_true']
-            response_metadata?: components['schemas']['objs_response_metadata']
-          }
-        }
-      }
+          "application/json": {
+            cache_ts: number;
+            members: components["schemas"]["objs_user"][];
+            ok: components["schemas"]["defs_ok_true"];
+            response_metadata?: components["schemas"]["objs_response_metadata"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'limit_required'
-              | 'invalid_cursor'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "limit_required" | "invalid_cursor" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Find a user with an email address. Requires scope: `users:read.email` */
   users_lookupByEmail: {
     parameters: {
       query: {
         /** @description An email address belonging to a user in the workspace */
-        email: string
-      }
-    }
+        email: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            user: components['schemas']['objs_user']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            user: components["schemas"]["objs_user"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'users_not_found'
-              | 'enterprise_is_restricted'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'no_permission'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "users_not_found" | "enterprise_is_restricted" | "not_authed" | "invalid_auth" | "account_inactive" | "no_permission" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Retrieves a user's profile information. Requires scope: `users.profile:read` */
   users_profile_get: {
     parameters: {
       query?: {
         /** @description Include labels for each ID in custom profile fields */
-        include_labels?: boolean
+        include_labels?: boolean;
         /** @description User to retrieve profile info for */
-        user?: string
-      }
-    }
+        user?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            profile: components['schemas']['objs_user_profile']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            profile: components["schemas"]["objs_user_profile"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'user_not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "user_not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Set the profile information for a user. Requires scope: `users.profile:write` */
   users_profile_set: {
     requestBody?: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Name of a single key to set. Usable only if `profile` is not passed. */
-          name?: string
+          name?: string;
           /** @description Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters. */
-          profile?: string
+          profile?: string;
           /** @description ID of user to change. This argument may only be specified by team admins on paid teams. */
-          user?: string
+          user?: string;
           /** @description Value to set a single key to. Usable only if `profile` is not passed. */
-          value?: string
-        }
-      }
-    }
+          value?: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
+          "application/json": {
             /** Format: email */
-            email_pending?: string
-            ok: components['schemas']['defs_ok_true']
-            profile: components['schemas']['objs_user_profile']
-            username: string
-          }
-        }
-      }
+            email_pending?: string;
+            ok: components["schemas"]["defs_ok_true"];
+            profile: components["schemas"]["objs_user_profile"];
+            username: string;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'reserved_name'
-              | 'invalid_profile'
-              | 'profile_set_failed'
-              | 'not_admin'
-              | 'not_app_admin'
-              | 'cannot_update_admin_user'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "reserved_name" | "invalid_profile" | "profile_set_failed" | "not_admin" | "not_app_admin" | "cannot_update_admin_user" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Marked a user as active. Deprecated and non-functional. Requires scope: `users:write` */
   users_setActive: {
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'ekm_access_denied'
-              | 'missing_scope'
-              | 'invalid_arguments'
-              | 'invalid_arg_name'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'request_timeout'
-              | 'fatal_error'
-              | 'internal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "ekm_access_denied" | "missing_scope" | "invalid_arguments" | "invalid_arg_name" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "request_timeout" | "fatal_error" | "internal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Set the user profile photo */
   users_setPhoto: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Width/height of crop box (always square) */
-          crop_w?: string
+          crop_w?: string;
           /** @description X coordinate of top-left corner of crop box */
-          crop_x?: string
+          crop_x?: string;
           /** @description Y coordinate of top-left corner of crop box */
-          crop_y?: string
+          crop_y?: string;
           /** @description File contents via `multipart/form-data`. */
-          image?: string
+          image?: string;
           /** @description Authentication token. Requires scope: `users.profile:write` */
-          token: string
-        }
-      }
-    }
+          token: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
             profile: {
-              avatar_hash: string
+              avatar_hash: string;
               /** Format: uri */
-              image_1024: string
+              image_1024: string;
               /** Format: uri */
-              image_192: string
+              image_192: string;
               /** Format: uri */
-              image_24: string
+              image_24: string;
               /** Format: uri */
-              image_32: string
+              image_32: string;
               /** Format: uri */
-              image_48: string
+              image_48: string;
               /** Format: uri */
-              image_512: string
+              image_512: string;
               /** Format: uri */
-              image_72: string
+              image_72: string;
               /** Format: uri */
-              image_original: string
-            }
-          }
-        }
-      }
+              image_original: string;
+            };
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @description possibly DEV/QA only */
-            debug_step?: string
+            debug_step?: string;
             /** @description possibly DEV/QA only */
-            dims?: string
+            dims?: string;
             /** @enum {string} */
-            error:
-              | 'bad_image'
-              | 'too_large'
-              | 'too_many_frames'
-              | 'not_found'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'user_is_bot'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
+            error: "bad_image" | "too_large" | "too_many_frames" | "not_found" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "user_is_bot" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
             /** @description possibly DEV/QA only */
-            time_ident?: number
-          }
-        }
-      }
-    }
-  }
+            time_ident?: number;
+          };
+        };
+      };
+    };
+  };
   /** @description Manually sets user presence. Requires scope: `users:write` */
   users_setPresence: {
     requestBody: {
       content: {
-        'application/x-www-form-urlencoded': {
+        "application/x-www-form-urlencoded": {
           /** @description Either `auto` or `away` */
-          presence: string
-        }
-      }
-    }
+          presence: string;
+        };
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
+          "application/json": {
             /** @description Note: PHP callstack is only visible in dev/qa */
-            callstack?: string
+            callstack?: string;
             /** @enum {string} */
-            error:
-              | 'invalid_presence'
-              | 'not_authed'
-              | 'invalid_auth'
-              | 'account_inactive'
-              | 'token_revoked'
-              | 'no_permission'
-              | 'org_login_required'
-              | 'invalid_arg_name'
-              | 'invalid_array_arg'
-              | 'invalid_charset'
-              | 'invalid_form_data'
-              | 'invalid_post_type'
-              | 'missing_post_type'
-              | 'team_added_to_org'
-              | 'invalid_json'
-              | 'json_not_object'
-              | 'request_timeout'
-              | 'upgrade_required'
-              | 'fatal_error'
-            ok: components['schemas']['defs_ok_false']
-          }
-        }
-      }
-    }
-  }
+            error: "invalid_presence" | "not_authed" | "invalid_auth" | "account_inactive" | "token_revoked" | "no_permission" | "org_login_required" | "invalid_arg_name" | "invalid_array_arg" | "invalid_charset" | "invalid_form_data" | "invalid_post_type" | "missing_post_type" | "team_added_to_org" | "invalid_json" | "json_not_object" | "request_timeout" | "upgrade_required" | "fatal_error";
+            ok: components["schemas"]["defs_ok_false"];
+          };
+        };
+      };
+    };
+  };
   /** @description Open a view for a user. Requires scope: `none` */
   views_open: {
     parameters: {
       query: {
         /** @description Exchange a trigger to post to the user. */
-        trigger_id: string
+        trigger_id: string;
         /** @description A [view payload](/reference/surfaces/views). This must be a JSON-encoded string. */
-        view: string
-      }
-    }
+        view: string;
+      };
+    };
     responses: {
       /** @description Typical success response includes the opened view payload. */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response, before getting to any possible validation errors. */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Publish a static view for a User. Requires scope: `none` */
   views_publish: {
     parameters: {
       query: {
         /** @description `id` of the user you want publish a view to. */
-        user_id: string
+        user_id: string;
         /** @description A [view payload](/reference/surfaces/views). This must be a JSON-encoded string. */
-        view: string
+        view: string;
         /** @description A string that represents view state to protect against possible race conditions. */
-        hash?: string
-      }
-    }
+        hash?: string;
+      };
+    };
     responses: {
       /** @description Typical success response includes the published view payload. */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response, before getting to any possible validation errors. */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Push a view onto the stack of a root view. Requires scope: `none` */
   views_push: {
     parameters: {
       query: {
         /** @description Exchange a trigger to post to the user. */
-        trigger_id: string
+        trigger_id: string;
         /** @description A [view payload](/reference/surfaces/views). This must be a JSON-encoded string. */
-        view: string
-      }
-    }
+        view: string;
+      };
+    };
     responses: {
       /** @description Typical success response includes the pushed view payload. */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response. */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Update an existing view. Requires scope: `none` */
   views_update: {
     parameters: {
       query?: {
         /** @description A unique identifier of the view to be updated. Either `view_id` or `external_id` is required. */
-        view_id?: string
+        view_id?: string;
         /** @description A unique identifier of the view set by the developer. Must be unique for all views on a team. Max length of 255 characters. Either `view_id` or `external_id` is required. */
-        external_id?: string
+        external_id?: string;
         /** @description A [view object](/reference/surfaces/views). This must be a JSON-encoded string. */
-        view?: string
+        view?: string;
         /** @description A string that represents view state to protect against possible race conditions. */
-        hash?: string
-      }
-    }
+        hash?: string;
+      };
+    };
     responses: {
       /** @description Typical success response includes the updated view payload. */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response. */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Indicate that an app's step in a workflow completed execution. Requires scope: `workflow.steps:execute` */
   workflows_stepCompleted: {
     parameters: {
       query: {
         /** @description Context identifier that maps to the correct workflow step execution. */
-        workflow_step_execute_id: string
+        workflow_step_execute_id: string;
         /** @description Key-value object of outputs from your step. Keys of this object reflect the configured `key` properties of your [`outputs`](/reference/workflows/workflow_step#output) array from your `workflow_step` object. */
-        outputs?: string
-      }
-    }
+        outputs?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Indicate that an app's step in a workflow failed to execute. Requires scope: `workflow.steps:execute` */
   workflows_stepFailed: {
     parameters: {
       query: {
         /** @description Context identifier that maps to the correct workflow step execution. */
-        workflow_step_execute_id: string
+        workflow_step_execute_id: string;
         /** @description A JSON-based object with a `message` property that should contain a human readable error message. */
-        error: string
-      }
-    }
+        error: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
   /** @description Update the configuration for a workflow extension step. Requires scope: `workflow.steps:execute` */
   workflows_updateStep: {
     parameters: {
       query: {
         /** @description A context identifier provided with `view_submission` payloads used to call back to `workflows.updateStep`. */
-        workflow_step_edit_id: string
+        workflow_step_edit_id: string;
         /** @description A JSON key-value map of inputs required from a user during configuration. This is the data your app expects to receive when the workflow step starts. **Please note**: the embedded variable format is set and replaced by the workflow system. You cannot create custom variables that will be replaced at runtime. [Read more about variables in workflow steps here](/workflows/steps#variables). */
-        inputs?: string
+        inputs?: string;
         /** @description An JSON array of output objects used during step execution. This is the data your app agrees to provide when your workflow step was executed. */
-        outputs?: string
+        outputs?: string;
         /** @description An optional field that can be used to override the step name that is shown in the Workflow Builder. */
-        step_name?: string
+        step_name?: string;
         /** @description An optional field that can be used to override app image that is shown in the Workflow Builder. */
-        step_image_url?: string
-      }
-    }
+        step_image_url?: string;
+      };
+    };
     responses: {
       /** @description Typical success response */
       200: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_true']
-            [key: string]: unknown
-          }
-        }
-      }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_true"];
+            [key: string]: unknown;
+          };
+        };
+      };
       /** @description Typical error response */
       default: {
         content: {
-          'application/json': {
-            ok: components['schemas']['defs_ok_false']
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+          "application/json": {
+            ok: components["schemas"]["defs_ok_false"];
+            [key: string]: unknown;
+          };
+        };
+      };
+    };
+  };
 }

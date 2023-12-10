@@ -5,20 +5,13 @@
     "description": "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
     "version": "2.0.0",
     "termsOfService": "https://openai.com/policies/terms-of-use",
-    "contact": {
-      "name": "OpenAI Support",
-      "url": "https://help.openai.com/"
-    },
+    "contact": {"name": "OpenAI Support", "url": "https://help.openai.com/"},
     "license": {
       "name": "MIT",
       "url": "https://github.com/openai/openai-openapi/blob/master/LICENSE"
     }
   },
-  "servers": [
-    {
-      "url": "https://api.openai.com/v1"
-    }
-  ],
+  "servers": [{"url": "https://api.openai.com/v1"}],
   "tags": [
     {
       "name": "Assistants",
@@ -152,9 +145,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateCompletionRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateCompletionRequest"}
             }
           }
         },
@@ -207,9 +198,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEditRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateEditRequest"}
             }
           }
         },
@@ -218,9 +207,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateEditResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/CreateEditResponse"}
               }
             }
           }
@@ -249,9 +236,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateImageRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateImageRequest"}
             }
           }
         },
@@ -260,9 +245,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImagesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ImagesResponse"}
               }
             }
           }
@@ -290,9 +273,7 @@
           "required": true,
           "content": {
             "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateImageEditRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateImageEditRequest"}
             }
           }
         },
@@ -301,9 +282,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImagesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ImagesResponse"}
               }
             }
           }
@@ -342,9 +321,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImagesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ImagesResponse"}
               }
             }
           }
@@ -372,9 +349,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEmbeddingRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateEmbeddingRequest"}
             }
           }
         },
@@ -413,9 +388,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSpeechRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateSpeechRequest"}
             }
           }
         },
@@ -424,18 +397,13 @@
             "description": "OK",
             "headers": {
               "Transfer-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
+                "schema": {"type": "string"},
                 "description": "chunked"
               }
             },
             "content": {
               "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
+                "schema": {"type": "string", "format": "binary"}
               }
             }
           }
@@ -545,9 +513,7 @@
             "in": "query",
             "name": "purpose",
             "required": false,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "Only return files with the given purpose."
           }
         ],
@@ -556,9 +522,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListFilesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListFilesResponse"}
               }
             }
           }
@@ -584,9 +548,7 @@
           "required": true,
           "content": {
             "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateFileRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateFileRequest"}
             }
           }
         },
@@ -595,9 +557,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAIFile"
-                }
+                "schema": {"$ref": "#/components/schemas/OpenAIFile"}
               }
             }
           }
@@ -626,9 +586,7 @@
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the file to use for this request."
           }
         ],
@@ -637,9 +595,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteFileResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/DeleteFileResponse"}
               }
             }
           }
@@ -666,9 +622,7 @@
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the file to use for this request."
           }
         ],
@@ -677,9 +631,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAIFile"
-                }
+                "schema": {"$ref": "#/components/schemas/OpenAIFile"}
               }
             }
           }
@@ -708,22 +660,14 @@
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the file to use for this request."
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "content": {"application/json": {"schema": {"type": "string"}}}
           }
         },
         "x-oaiMeta": {
@@ -759,9 +703,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTuningJob"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTuningJob"}
               }
             }
           }
@@ -810,19 +752,14 @@
             "in": "query",
             "description": "Identifier for the last job from the previous pagination request.",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "limit",
             "in": "query",
             "description": "Number of fine-tuning jobs to retrieve.",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           }
         ],
         "responses": {
@@ -873,9 +810,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTuningJob"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTuningJob"}
               }
             }
           }
@@ -915,19 +850,14 @@
             "in": "query",
             "description": "Identifier for the last event from the previous pagination request.",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "limit",
             "in": "query",
             "description": "Number of events to retrieve.",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           }
         ],
         "responses": {
@@ -978,9 +908,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTuningJob"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTuningJob"}
               }
             }
           }
@@ -1009,9 +937,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateFineTuneRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateFineTuneRequest"}
             }
           }
         },
@@ -1020,9 +946,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTune"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTune"}
               }
             }
           }
@@ -1050,9 +974,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListFineTunesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListFineTunesResponse"}
               }
             }
           }
@@ -1094,9 +1016,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTune"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTune"}
               }
             }
           }
@@ -1138,9 +1058,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FineTune"
-                }
+                "schema": {"$ref": "#/components/schemas/FineTune"}
               }
             }
           }
@@ -1180,10 +1098,7 @@
             "in": "query",
             "name": "stream",
             "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
+            "schema": {"type": "boolean", "default": false},
             "description": "Whether to stream events for the fine-tune job. If set to true,\nevents will be sent as data-only\n[server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format)\nas they become available. The stream will terminate with a\n`data: [DONE]` message when the job is finished (succeeded, cancelled,\nor failed).\n\nIf set to false, only events generated so far will be returned.\n"
           }
         ],
@@ -1223,9 +1138,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListModelsResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListModelsResponse"}
               }
             }
           }
@@ -1254,10 +1167,7 @@
             "in": "path",
             "name": "model",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "gpt-3.5-turbo"
-            },
+            "schema": {"type": "string", "example": "gpt-3.5-turbo"},
             "description": "The ID of the model to use for this request"
           }
         ],
@@ -1266,9 +1176,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Model"
-                }
+                "schema": {"$ref": "#/components/schemas/Model"}
               }
             }
           }
@@ -1307,9 +1215,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteModelResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/DeleteModelResponse"}
               }
             }
           }
@@ -1337,9 +1243,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateModerationRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateModerationRequest"}
             }
           }
         },
@@ -1380,10 +1284,7 @@
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -1399,17 +1300,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -1446,9 +1343,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAssistantRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateAssistantRequest"}
             }
           }
         },
@@ -1457,9 +1352,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssistantObject"
-                }
+                "schema": {"$ref": "#/components/schemas/AssistantObject"}
               }
             }
           }
@@ -1501,9 +1394,7 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the assistant to retrieve."
           }
         ],
@@ -1512,9 +1403,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssistantObject"
-                }
+                "schema": {"$ref": "#/components/schemas/AssistantObject"}
               }
             }
           }
@@ -1542,9 +1431,7 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the assistant to modify."
           }
         ],
@@ -1552,9 +1439,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyAssistantRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/ModifyAssistantRequest"}
             }
           }
         },
@@ -1563,9 +1448,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssistantObject"
-                }
+                "schema": {"$ref": "#/components/schemas/AssistantObject"}
               }
             }
           }
@@ -1593,9 +1476,7 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the assistant to delete."
           }
         ],
@@ -1634,9 +1515,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateThreadRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateThreadRequest"}
             }
           }
         },
@@ -1645,9 +1524,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThreadObject"
-                }
+                "schema": {"$ref": "#/components/schemas/ThreadObject"}
               }
             }
           }
@@ -1689,9 +1566,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to retrieve."
           }
         ],
@@ -1700,9 +1575,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThreadObject"
-                }
+                "schema": {"$ref": "#/components/schemas/ThreadObject"}
               }
             }
           }
@@ -1730,9 +1603,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to modify. Only the `metadata` can be modified."
           }
         ],
@@ -1740,9 +1611,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyThreadRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/ModifyThreadRequest"}
             }
           }
         },
@@ -1751,9 +1620,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThreadObject"
-                }
+                "schema": {"$ref": "#/components/schemas/ThreadObject"}
               }
             }
           }
@@ -1781,9 +1648,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to delete."
           }
         ],
@@ -1792,9 +1657,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteThreadResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/DeleteThreadResponse"}
               }
             }
           }
@@ -1824,9 +1687,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) the messages belong to."
           },
           {
@@ -1834,10 +1695,7 @@
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -1853,17 +1711,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -1871,9 +1725,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListMessagesResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListMessagesResponse"}
               }
             }
           }
@@ -1901,9 +1753,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) to create a message for."
           }
         ],
@@ -1911,9 +1761,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateMessageRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateMessageRequest"}
             }
           }
         },
@@ -1922,9 +1770,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageObject"
-                }
+                "schema": {"$ref": "#/components/schemas/MessageObject"}
               }
             }
           }
@@ -1954,18 +1800,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) to which this message belongs."
           },
           {
             "in": "path",
             "name": "message_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the message to retrieve."
           }
         ],
@@ -1974,9 +1816,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageObject"
-                }
+                "schema": {"$ref": "#/components/schemas/MessageObject"}
               }
             }
           }
@@ -2004,18 +1844,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to which this message belongs."
           },
           {
             "in": "path",
             "name": "message_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the message to modify."
           }
         ],
@@ -2023,9 +1859,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyMessageRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/ModifyMessageRequest"}
             }
           }
         },
@@ -2034,9 +1868,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageObject"
-                }
+                "schema": {"$ref": "#/components/schemas/MessageObject"}
               }
             }
           }
@@ -2076,9 +1908,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2108,9 +1938,7 @@
             "name": "thread_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread the run belongs to."
           },
           {
@@ -2118,10 +1946,7 @@
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -2137,17 +1962,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2155,9 +1976,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListRunsResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListRunsResponse"}
               }
             }
           }
@@ -2185,9 +2004,7 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to run."
           }
         ],
@@ -2195,9 +2012,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateRunRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/CreateRunRequest"}
             }
           }
         },
@@ -2206,9 +2021,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2238,18 +2051,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) that was run."
           },
           {
             "in": "path",
             "name": "run_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run to retrieve."
           }
         ],
@@ -2258,9 +2067,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2288,18 +2095,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) that was run."
           },
           {
             "in": "path",
             "name": "run_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run to modify."
           }
         ],
@@ -2307,9 +2110,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyRunRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/ModifyRunRequest"}
             }
           }
         },
@@ -2318,9 +2119,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2350,18 +2149,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the [thread](/docs/api-reference/threads) to which this run belongs."
           },
           {
             "in": "path",
             "name": "run_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run that requires the tool output submission."
           }
         ],
@@ -2380,9 +2175,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2412,18 +2205,14 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to which this run belongs."
           },
           {
             "in": "path",
             "name": "run_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run to cancel."
           }
         ],
@@ -2432,9 +2221,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunObject"}
               }
             }
           }
@@ -2464,18 +2251,14 @@
             "name": "thread_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread the run and run steps belong to."
           },
           {
             "name": "run_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run the run steps belong to."
           },
           {
@@ -2483,10 +2266,7 @@
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -2502,17 +2282,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2520,9 +2296,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListRunStepsResponse"
-                }
+                "schema": {"$ref": "#/components/schemas/ListRunStepsResponse"}
               }
             }
           }
@@ -2552,27 +2326,21 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the thread to which the run and run step belongs."
           },
           {
             "in": "path",
             "name": "run_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run to which the run step belongs."
           },
           {
             "in": "path",
             "name": "step_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the run step to retrieve."
           }
         ],
@@ -2581,9 +2349,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RunStepObject"
-                }
+                "schema": {"$ref": "#/components/schemas/RunStepObject"}
               }
             }
           }
@@ -2614,19 +2380,14 @@
             "in": "path",
             "description": "The ID of the assistant the file belongs to.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "limit",
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -2642,17 +2403,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2690,10 +2447,7 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "file-abc123"
-            },
+            "schema": {"type": "string", "example": "file-abc123"},
             "description": "The ID of the assistant for which to create a File.\n"
           }
         ],
@@ -2712,9 +2466,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssistantFileObject"
-                }
+                "schema": {"$ref": "#/components/schemas/AssistantFileObject"}
               }
             }
           }
@@ -2744,18 +2496,14 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the assistant who the file belongs to."
           },
           {
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the file we're getting."
           }
         ],
@@ -2764,9 +2512,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssistantFileObject"
-                }
+                "schema": {"$ref": "#/components/schemas/AssistantFileObject"}
               }
             }
           }
@@ -2794,18 +2540,14 @@
             "in": "path",
             "name": "assistant_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the assistant that the file belongs to."
           },
           {
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": {"type": "string"},
             "description": "The ID of the file to delete."
           }
         ],
@@ -2847,28 +2589,21 @@
             "in": "path",
             "description": "The ID of the thread that the message and files belong to.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "message_id",
             "in": "path",
             "description": "The ID of the message that the files belongs to.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "limit",
             "in": "query",
             "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
+            "schema": {"type": "integer", "default": 20}
           },
           {
             "name": "order",
@@ -2884,17 +2619,13 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           },
           {
             "name": "before",
             "in": "query",
             "description": "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2934,30 +2665,21 @@
             "in": "path",
             "name": "thread_id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "thread_abc123"
-            },
+            "schema": {"type": "string", "example": "thread_abc123"},
             "description": "The ID of the thread to which the message and File belong."
           },
           {
             "in": "path",
             "name": "message_id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "msg_abc123"
-            },
+            "schema": {"type": "string", "example": "msg_abc123"},
             "description": "The ID of the message the file belongs to."
           },
           {
             "in": "path",
             "name": "file_id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "file-abc123"
-            },
+            "schema": {"type": "string", "example": "file-abc123"},
             "description": "The ID of the file being retrieved."
           }
         ],
@@ -2966,9 +2688,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageFileObject"
-                }
+                "schema": {"$ref": "#/components/schemas/MessageFileObject"}
               }
             }
           }
@@ -2990,56 +2710,30 @@
     }
   },
   "components": {
-    "securitySchemes": {
-      "ApiKeyAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    },
+    "securitySchemes": {"ApiKeyAuth": {"type": "http", "scheme": "bearer"}},
     "schemas": {
       "Error": {
         "type": "object",
         "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "nullable": false
-          },
-          "param": {
-            "type": "string",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "nullable": false
-          }
+          "code": {"type": "string", "nullable": true},
+          "message": {"type": "string", "nullable": false},
+          "param": {"type": "string", "nullable": true},
+          "type": {"type": "string", "nullable": false}
         },
         "required": ["type", "message", "param", "code"]
       },
       "ErrorResponse": {
         "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
+        "properties": {"error": {"$ref": "#/components/schemas/Error"}},
         "required": ["error"]
       },
       "ListModelsResponse": {
         "type": "object",
         "properties": {
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          },
+          "object": {"type": "string", "enum": ["list"]},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Model"
-            }
+            "items": {"$ref": "#/components/schemas/Model"}
           }
         },
         "required": ["object", "data"]
@@ -3047,15 +2741,9 @@
       "DeleteModelResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string"
-          }
+          "id": {"type": "string"},
+          "deleted": {"type": "boolean"},
+          "object": {"type": "string"}
         },
         "required": ["id", "object", "deleted"]
       },
@@ -3065,9 +2753,7 @@
           "model": {
             "description": "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.\n",
             "anyOf": [
-              {
-                "type": "string"
-              },
+              {"type": "string"},
               {
                 "type": "string",
                 "enum": [
@@ -3091,11 +2777,7 @@
             "default": "<|endoftext|>",
             "nullable": true,
             "oneOf": [
-              {
-                "type": "string",
-                "default": "",
-                "example": "This is a test."
-              },
+              {"type": "string", "default": "", "example": "This is a test."},
               {
                 "type": "array",
                 "items": {
@@ -3107,9 +2789,7 @@
               {
                 "type": "array",
                 "minItems": 1,
-                "items": {
-                  "type": "integer"
-                },
+                "items": {"type": "integer"},
                 "example": "[1212, 318, 257, 1332, 13]"
               },
               {
@@ -3118,9 +2798,7 @@
                 "items": {
                   "type": "array",
                   "minItems": 1,
-                  "items": {
-                    "type": "integer"
-                  }
+                  "items": {"type": "integer"}
                 },
                 "example": "[[1212, 318, 257, 1332, 13]]"
               }
@@ -3153,9 +2831,7 @@
             "x-oaiTypeLabel": "map",
             "default": null,
             "nullable": true,
-            "additionalProperties": {
-              "type": "integer"
-            },
+            "additionalProperties": {"type": "integer"},
             "description": "Modify the likelihood of specified tokens appearing in the completion.\n\nAccepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) (which works for both GPT-2 and GPT-3) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.\n\nAs an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated.\n"
           },
           "logprobs": {
@@ -3213,10 +2889,7 @@
                 "type": "array",
                 "minItems": 1,
                 "maxItems": 4,
-                "items": {
-                  "type": "string",
-                  "example": "[\"\\n\"]"
-                }
+                "items": {"type": "string", "example": "[\"\\n\"]"}
               }
             ]
           },
@@ -3279,45 +2952,30 @@
                   "description": "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,\n`length` if the maximum number of tokens specified in the request was reached,\nor `content_filter` if content was omitted due to a flag from our content filters.\n",
                   "enum": ["stop", "length", "content_filter"]
                 },
-                "index": {
-                  "type": "integer"
-                },
+                "index": {"type": "integer"},
                 "logprobs": {
                   "type": "object",
                   "nullable": true,
                   "properties": {
                     "text_offset": {
                       "type": "array",
-                      "items": {
-                        "type": "integer"
-                      }
+                      "items": {"type": "integer"}
                     },
                     "token_logprobs": {
                       "type": "array",
-                      "items": {
-                        "type": "number"
-                      }
+                      "items": {"type": "number"}
                     },
-                    "tokens": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
+                    "tokens": {"type": "array", "items": {"type": "string"}},
                     "top_logprobs": {
                       "type": "array",
                       "items": {
                         "type": "object",
-                        "additionalProperties": {
-                          "type": "number"
-                        }
+                        "additionalProperties": {"type": "number"}
                       }
                     }
                   }
                 },
-                "text": {
-                  "type": "string"
-                }
+                "text": {"type": "string"}
               }
             }
           },
@@ -3338,9 +2996,7 @@
             "description": "The object type, which is always \"text_completion\"",
             "enum": ["text_completion"]
           },
-          "usage": {
-            "$ref": "#/components/schemas/CompletionUsage"
-          }
+          "usage": {"$ref": "#/components/schemas/CompletionUsage"}
         },
         "required": ["id", "object", "created", "model", "choices"],
         "x-oaiMeta": {
@@ -3398,30 +3054,19 @@
             "enum": ["text"],
             "description": "The type of the content part."
           },
-          "text": {
-            "type": "string",
-            "description": "The text content."
-          }
+          "text": {"type": "string", "description": "The text content."}
         },
         "required": ["type", "text"]
       },
       "ChatCompletionRequestMessage": {
         "oneOf": [
-          {
-            "$ref": "#/components/schemas/ChatCompletionRequestSystemMessage"
-          },
-          {
-            "$ref": "#/components/schemas/ChatCompletionRequestUserMessage"
-          },
+          {"$ref": "#/components/schemas/ChatCompletionRequestSystemMessage"},
+          {"$ref": "#/components/schemas/ChatCompletionRequestUserMessage"},
           {
             "$ref": "#/components/schemas/ChatCompletionRequestAssistantMessage"
           },
-          {
-            "$ref": "#/components/schemas/ChatCompletionRequestToolMessage"
-          },
-          {
-            "$ref": "#/components/schemas/ChatCompletionRequestFunctionMessage"
-          }
+          {"$ref": "#/components/schemas/ChatCompletionRequestToolMessage"},
+          {"$ref": "#/components/schemas/ChatCompletionRequestFunctionMessage"}
         ],
         "x-oaiExpandable": true
       },
@@ -3582,9 +3227,7 @@
             "type": "string",
             "description": "The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64."
           },
-          "parameters": {
-            "$ref": "#/components/schemas/FunctionParameters"
-          }
+          "parameters": {"$ref": "#/components/schemas/FunctionParameters"}
         },
         "required": ["name", "parameters"]
       },
@@ -3607,9 +3250,7 @@
             "enum": ["function"],
             "description": "The type of the tool. Currently, only `function` is supported."
           },
-          "function": {
-            "$ref": "#/components/schemas/FunctionObject"
-          }
+          "function": {"$ref": "#/components/schemas/FunctionObject"}
         },
         "required": ["type", "function"]
       },
@@ -3624,9 +3265,7 @@
             "type": "string",
             "description": "The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64."
           },
-          "parameters": {
-            "$ref": "#/components/schemas/FunctionParameters"
-          }
+          "parameters": {"$ref": "#/components/schemas/FunctionParameters"}
         },
         "required": ["name", "parameters"]
       },
@@ -3638,9 +3277,7 @@
             "description": "`none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function.\n",
             "enum": ["none", "auto"]
           },
-          {
-            "$ref": "#/components/schemas/ChatCompletionNamedToolChoice"
-          }
+          {"$ref": "#/components/schemas/ChatCompletionNamedToolChoice"}
         ],
         "x-oaiExpandable": true
       },
@@ -3668,17 +3305,12 @@
       "ChatCompletionMessageToolCalls": {
         "type": "array",
         "description": "The tool calls generated by the model, such as function calls.",
-        "items": {
-          "$ref": "#/components/schemas/ChatCompletionMessageToolCall"
-        }
+        "items": {"$ref": "#/components/schemas/ChatCompletionMessageToolCall"}
       },
       "ChatCompletionMessageToolCall": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the tool call."
-          },
+          "id": {"type": "string", "description": "The ID of the tool call."},
           "type": {
             "type": "string",
             "enum": ["function"],
@@ -3705,13 +3337,8 @@
       "ChatCompletionMessageToolCallChunk": {
         "type": "object",
         "properties": {
-          "index": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string",
-            "description": "The ID of the tool call."
-          },
+          "index": {"type": "integer"},
+          "id": {"type": "string", "description": "The ID of the tool call."},
           "type": {
             "type": "string",
             "enum": ["function"],
@@ -3826,9 +3453,7 @@
             "description": "ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.",
             "example": "gpt-3.5-turbo",
             "anyOf": [
-              {
-                "type": "string"
-              },
+              {"type": "string"},
               {
                 "type": "string",
                 "enum": [
@@ -3864,9 +3489,7 @@
             "x-oaiTypeLabel": "map",
             "default": null,
             "nullable": true,
-            "additionalProperties": {
-              "type": "integer"
-            },
+            "additionalProperties": {"type": "integer"},
             "description": "Modify the likelihood of specified tokens appearing in the completion.\n\nAccepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.\n"
           },
           "max_tokens": {
@@ -3911,25 +3534,18 @@
             "maximum": 9223372036854776000,
             "nullable": true,
             "description": "This feature is in Beta. \nIf specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.\nDeterminism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.\n",
-            "x-oaiMeta": {
-              "beta": true
-            }
+            "x-oaiMeta": {"beta": true}
           },
           "stop": {
             "description": "Up to 4 sequences where the API will stop generating further tokens.\n",
             "default": null,
             "oneOf": [
-              {
-                "type": "string",
-                "nullable": true
-              },
+              {"type": "string", "nullable": true},
               {
                 "type": "array",
                 "minItems": 1,
                 "maxItems": 4,
-                "items": {
-                  "type": "string"
-                }
+                "items": {"type": "string"}
               }
             ]
           },
@@ -3960,9 +3576,7 @@
           "tools": {
             "type": "array",
             "description": "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.\n",
-            "items": {
-              "$ref": "#/components/schemas/ChatCompletionTool"
-            }
+            "items": {"$ref": "#/components/schemas/ChatCompletionTool"}
           },
           "tool_choice": {
             "$ref": "#/components/schemas/ChatCompletionToolChoiceOption"
@@ -3981,9 +3595,7 @@
                 "description": "`none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function.\n",
                 "enum": ["none", "auto"]
               },
-              {
-                "$ref": "#/components/schemas/ChatCompletionFunctionCallOption"
-              }
+              {"$ref": "#/components/schemas/ChatCompletionFunctionCallOption"}
             ],
             "x-oaiExpandable": true
           },
@@ -3993,9 +3605,7 @@
             "type": "array",
             "minItems": 1,
             "maxItems": 128,
-            "items": {
-              "$ref": "#/components/schemas/ChatCompletionFunctions"
-            }
+            "items": {"$ref": "#/components/schemas/ChatCompletionFunctions"}
           }
         },
         "required": ["model", "messages"]
@@ -4053,9 +3663,7 @@
             "description": "The object type, which is always `chat.completion`.",
             "enum": ["chat.completion"]
           },
-          "usage": {
-            "$ref": "#/components/schemas/CompletionUsage"
-          }
+          "usage": {"$ref": "#/components/schemas/CompletionUsage"}
         },
         "required": ["choices", "created", "id", "model", "object"],
         "x-oaiMeta": {
@@ -4111,9 +3719,7 @@
             "description": "The object type, which is always `chat.completion`.",
             "enum": ["chat.completion"]
           },
-          "usage": {
-            "$ref": "#/components/schemas/CompletionUsage"
-          }
+          "usage": {"$ref": "#/components/schemas/CompletionUsage"}
         },
         "required": ["choices", "created", "id", "model", "object"],
         "x-oaiMeta": {
@@ -4127,17 +3733,10 @@
         "properties": {
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FineTuningJob"
-            }
+            "items": {"$ref": "#/components/schemas/FineTuningJob"}
           },
-          "has_more": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          }
+          "has_more": {"type": "boolean"},
+          "object": {"type": "string", "enum": ["list"]}
         },
         "required": ["object", "data", "has_more"]
       },
@@ -4224,9 +3823,7 @@
             "description": "ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001` model with this endpoint.",
             "example": "text-davinci-edit-001",
             "anyOf": [
-              {
-                "type": "string"
-              },
+              {"type": "string"},
               {
                 "type": "string",
                 "enum": ["text-davinci-edit-001", "code-davinci-edit-001"]
@@ -4292,10 +3889,7 @@
                   "type": "integer",
                   "description": "The index of the choice in the list of choices."
                 },
-                "text": {
-                  "type": "string",
-                  "description": "The edited result."
-                }
+                "text": {"type": "string", "description": "The edited result."}
               }
             }
           },
@@ -4308,9 +3902,7 @@
             "type": "integer",
             "description": "The Unix timestamp (in seconds) of when the edit was created."
           },
-          "usage": {
-            "$ref": "#/components/schemas/CompletionUsage"
-          }
+          "usage": {"$ref": "#/components/schemas/CompletionUsage"}
         },
         "required": ["object", "created", "choices", "usage"],
         "x-oaiMeta": {
@@ -4328,13 +3920,8 @@
           },
           "model": {
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["dall-e-2", "dall-e-3"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["dall-e-2", "dall-e-3"]}
             ],
             "x-oaiTypeLabel": "string",
             "default": "dall-e-2",
@@ -4398,14 +3985,10 @@
       },
       "ImagesResponse": {
         "properties": {
-          "created": {
-            "type": "integer"
-          },
+          "created": {"type": "integer"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Image"
-            }
+            "items": {"$ref": "#/components/schemas/Image"}
           }
         },
         "required": ["created", "data"]
@@ -4452,13 +4035,8 @@
           },
           "model": {
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["dall-e-2"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["dall-e-2"]}
             ],
             "x-oaiTypeLabel": "string",
             "default": "dall-e-2",
@@ -4509,13 +4087,8 @@
           },
           "model": {
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["dall-e-2"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["dall-e-2"]}
             ],
             "x-oaiTypeLabel": "string",
             "default": "dall-e-2",
@@ -4583,9 +4156,7 @@
             "default": "text-moderation-latest",
             "example": "text-moderation-stable",
             "anyOf": [
-              {
-                "type": "string"
-              },
+              {"type": "string"},
               {
                 "type": "string",
                 "enum": ["text-moderation-latest", "text-moderation-stable"]
@@ -4760,14 +4331,9 @@
         "properties": {
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OpenAIFile"
-            }
+            "items": {"$ref": "#/components/schemas/OpenAIFile"}
           },
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          }
+          "object": {"type": "string", "enum": ["list"]}
         },
         "required": ["object", "data"]
       },
@@ -4791,16 +4357,9 @@
       "DeleteFileResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["file"]
-          },
-          "deleted": {
-            "type": "boolean"
-          }
+          "id": {"type": "string"},
+          "object": {"type": "string", "enum": ["file"]},
+          "deleted": {"type": "boolean"}
         },
         "required": ["id", "object", "deleted"]
       },
@@ -4811,9 +4370,7 @@
             "description": "The name of the model to fine-tune. You can select one of the\n[supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned).\n",
             "example": "gpt-3.5-turbo",
             "anyOf": [
-              {
-                "type": "string"
-              },
+              {"type": "string"},
               {
                 "type": "string",
                 "enum": ["babbage-002", "davinci-002", "gpt-3.5-turbo"]
@@ -4833,45 +4390,24 @@
               "batch_size": {
                 "description": "Number of examples in each batch. A larger batch size means that model parameters\nare updated less frequently, but with lower variance.\n",
                 "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": ["auto"]
-                  },
-                  {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 256
-                  }
+                  {"type": "string", "enum": ["auto"]},
+                  {"type": "integer", "minimum": 1, "maximum": 256}
                 ],
                 "default": "auto"
               },
               "learning_rate_multiplier": {
                 "description": "Scaling factor for the learning rate. A smaller learning rate may be useful to avoid\noverfitting.\n",
                 "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": ["auto"]
-                  },
-                  {
-                    "type": "number",
-                    "minimum": 0,
-                    "exclusiveMinimum": true
-                  }
+                  {"type": "string", "enum": ["auto"]},
+                  {"type": "number", "minimum": 0, "exclusiveMinimum": true}
                 ],
                 "default": "auto"
               },
               "n_epochs": {
                 "description": "The number of epochs to train the model for. An epoch refers to one full cycle \nthrough the training dataset.\n",
                 "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": ["auto"]
-                  },
-                  {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50
-                  }
+                  {"type": "string", "enum": ["auto"]},
+                  {"type": "integer", "minimum": 1, "maximum": 50}
                 ],
                 "default": "auto"
               }
@@ -4899,14 +4435,9 @@
         "properties": {
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FineTuningJobEvent"
-            }
+            "items": {"$ref": "#/components/schemas/FineTuningJobEvent"}
           },
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          }
+          "object": {"type": "string", "enum": ["list"]}
         },
         "required": ["object", "data"]
       },
@@ -4927,9 +4458,7 @@
           "classification_betas": {
             "description": "If this is provided, we calculate F-beta scores at the specified\nbeta values. The F-beta score is a generalization of F-1 score.\nThis is only used for binary classification.\n\nWith a beta of 1 (i.e. the F-1 score), precision and recall are\ngiven the same weight. A larger beta score puts more weight on\nrecall and less on precision. A smaller beta score puts more weight\non precision and less on recall.\n",
             "type": "array",
-            "items": {
-              "type": "number"
-            },
+            "items": {"type": "number"},
             "example": [0.6, 1, 1.5, 2],
             "default": null,
             "nullable": true
@@ -4959,15 +4488,8 @@
               "n_epochs": {
                 "description": "The number of epochs to train the model for. An epoch refers to one\nfull cycle through the training dataset.\n",
                 "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": ["auto"]
-                  },
-                  {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50
-                  }
+                  {"type": "string", "enum": ["auto"]},
+                  {"type": "integer", "minimum": 1, "maximum": 50}
                 ],
                 "default": "auto"
               }
@@ -4985,13 +4507,8 @@
             "example": "curie",
             "nullable": true,
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["ada", "babbage", "curie", "davinci"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["ada", "babbage", "curie", "davinci"]}
             ],
             "x-oaiTypeLabel": "string"
           },
@@ -5023,14 +4540,9 @@
         "properties": {
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FineTune"
-            }
+            "items": {"$ref": "#/components/schemas/FineTune"}
           },
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          }
+          "object": {"type": "string", "enum": ["list"]}
         },
         "required": ["object", "data"]
       },
@@ -5039,14 +4551,9 @@
         "properties": {
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FineTuneEvent"
-            }
+            "items": {"$ref": "#/components/schemas/FineTuneEvent"}
           },
-          "object": {
-            "type": "string",
-            "enum": ["list"]
-          }
+          "object": {"type": "string", "enum": ["list"]}
         },
         "required": ["object", "data"]
       },
@@ -5083,9 +4590,7 @@
                 "description": "The array of integers that will be turned into an embedding.",
                 "minItems": 1,
                 "maxItems": 2048,
-                "items": {
-                  "type": "integer"
-                },
+                "items": {"type": "integer"},
                 "example": "[1212, 318, 257, 1332, 13]"
               },
               {
@@ -5097,9 +4602,7 @@
                 "items": {
                   "type": "array",
                   "minItems": 1,
-                  "items": {
-                    "type": "integer"
-                  }
+                  "items": {"type": "integer"}
                 },
                 "example": "[[1212, 318, 257, 1332, 13]]"
               }
@@ -5110,13 +4613,8 @@
             "description": "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.\n",
             "example": "text-embedding-ada-002",
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["text-embedding-ada-002"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["text-embedding-ada-002"]}
             ],
             "x-oaiTypeLabel": "string"
           },
@@ -5141,9 +4639,7 @@
           "data": {
             "type": "array",
             "description": "The list of embeddings generated by the model.",
-            "items": {
-              "$ref": "#/components/schemas/Embedding"
-            }
+            "items": {"$ref": "#/components/schemas/Embedding"}
           },
           "model": {
             "type": "string",
@@ -5186,13 +4682,8 @@
             "description": "ID of the model to use. Only `whisper-1` is currently available.\n",
             "example": "whisper-1",
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["whisper-1"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["whisper-1"]}
             ],
             "x-oaiTypeLabel": "string"
           },
@@ -5220,11 +4711,7 @@
       },
       "CreateTranscriptionResponse": {
         "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          }
-        },
+        "properties": {"text": {"type": "string"}},
         "required": ["text"]
       },
       "CreateTranslationRequest": {
@@ -5241,13 +4728,8 @@
             "description": "ID of the model to use. Only `whisper-1` is currently available.\n",
             "example": "whisper-1",
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["whisper-1"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["whisper-1"]}
             ],
             "x-oaiTypeLabel": "string"
           },
@@ -5270,11 +4752,7 @@
       },
       "CreateTranslationResponse": {
         "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          }
-        },
+        "properties": {"text": {"type": "string"}},
         "required": ["text"]
       },
       "CreateSpeechRequest": {
@@ -5284,13 +4762,8 @@
           "model": {
             "description": "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd`\n",
             "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["tts-1", "tts-1-hd"]
-              }
+              {"type": "string"},
+              {"type": "string", "enum": ["tts-1", "tts-1-hd"]}
             ],
             "x-oaiTypeLabel": "string"
           },
@@ -5420,9 +4893,7 @@
           "embedding": {
             "type": "array",
             "description": "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings).\n",
-            "items": {
-              "type": "number"
-            }
+            "items": {"type": "number"}
           },
           "object": {
             "type": "string",
@@ -5486,15 +4957,8 @@
             "properties": {
               "n_epochs": {
                 "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": ["auto"]
-                  },
-                  {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50
-                  }
+                  {"type": "string", "enum": ["auto"]},
+                  {"type": "integer", "minimum": 1, "maximum": 50}
                 ],
                 "default": "auto",
                 "description": "The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset.\n\"auto\" decides the optimal number of epochs based on the size of the dataset. If setting the number manually, we support any number between 1 and 50 epochs."
@@ -5518,10 +4982,7 @@
           "result_files": {
             "type": "array",
             "description": "The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).",
-            "items": {
-              "type": "string",
-              "example": "file-abc123"
-            }
+            "items": {"type": "string", "example": "file-abc123"}
           },
           "status": {
             "type": "string",
@@ -5575,23 +5036,11 @@
         "type": "object",
         "description": "Fine-tuning job event object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "integer"
-          },
-          "level": {
-            "type": "string",
-            "enum": ["info", "warn", "error"]
-          },
-          "message": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["fine_tuning.job.event"]
-          }
+          "id": {"type": "string"},
+          "created_at": {"type": "integer"},
+          "level": {"type": "string", "enum": ["info", "warn", "error"]},
+          "message": {"type": "string"},
+          "object": {"type": "string", "enum": ["fine_tuning.job.event"]}
         },
         "required": ["id", "object", "created_at", "level", "message"],
         "x-oaiMeta": {
@@ -5615,9 +5064,7 @@
           "events": {
             "type": "array",
             "description": "The list of events that have been observed in the lifecycle of the FineTune job.",
-            "items": {
-              "$ref": "#/components/schemas/FineTuneEvent"
-            }
+            "items": {"$ref": "#/components/schemas/FineTuneEvent"}
           },
           "fine_tuned_model": {
             "type": "string",
@@ -5680,9 +5127,7 @@
           "result_files": {
             "type": "array",
             "description": "The compiled results files for the fine-tuning job.",
-            "items": {
-              "$ref": "#/components/schemas/OpenAIFile"
-            }
+            "items": {"$ref": "#/components/schemas/OpenAIFile"}
           },
           "status": {
             "type": "string",
@@ -5691,9 +5136,7 @@
           "training_files": {
             "type": "array",
             "description": "The list of files used for training.",
-            "items": {
-              "$ref": "#/components/schemas/OpenAIFile"
-            }
+            "items": {"$ref": "#/components/schemas/OpenAIFile"}
           },
           "updated_at": {
             "type": "integer",
@@ -5702,9 +5145,7 @@
           "validation_files": {
             "type": "array",
             "description": "The list of files used for validation.",
-            "items": {
-              "$ref": "#/components/schemas/OpenAIFile"
-            }
+            "items": {"$ref": "#/components/schemas/OpenAIFile"}
           }
         },
         "required": [
@@ -5731,19 +5172,10 @@
         "deprecated": true,
         "description": "Fine-tune event object",
         "properties": {
-          "created_at": {
-            "type": "integer"
-          },
-          "level": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["fine-tune-event"]
-          }
+          "created_at": {"type": "integer"},
+          "level": {"type": "string"},
+          "message": {"type": "string"},
+          "object": {"type": "string", "enum": ["fine-tune-event"]}
         },
         "required": ["object", "created_at", "level", "message"],
         "x-oaiMeta": {
@@ -5817,15 +5249,9 @@
             "maxItems": 128,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ],
               "x-oaiExpandable": true
             }
@@ -5835,9 +5261,7 @@
             "default": [],
             "type": "array",
             "maxItems": 20,
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -5870,11 +5294,7 @@
         "properties": {
           "model": {
             "description": "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.\n",
-            "anyOf": [
-              {
-                "type": "string"
-              }
-            ]
+            "anyOf": [{"type": "string"}]
           },
           "name": {
             "description": "The name of the assistant. The maximum length is 256 characters.\n",
@@ -5901,15 +5321,9 @@
             "maxItems": 128,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ],
               "x-oaiExpandable": true
             }
@@ -5919,9 +5333,7 @@
             "default": [],
             "maxItems": 20,
             "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -5938,11 +5350,7 @@
         "properties": {
           "model": {
             "description": "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.\n",
-            "anyOf": [
-              {
-                "type": "string"
-              }
-            ]
+            "anyOf": [{"type": "string"}]
           },
           "name": {
             "description": "The name of the assistant. The maximum length is 256 characters.\n",
@@ -5969,15 +5377,9 @@
             "maxItems": 128,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ],
               "x-oaiExpandable": true
             }
@@ -5987,9 +5389,7 @@
             "default": [],
             "type": "array",
             "maxItems": 20,
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -6002,44 +5402,23 @@
       "DeleteAssistantResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["assistant.deleted"]
-          }
+          "id": {"type": "string"},
+          "deleted": {"type": "boolean"},
+          "object": {"type": "string", "enum": ["assistant.deleted"]}
         },
         "required": ["id", "object", "deleted"]
       },
       "ListAssistantsResponse": {
         "type": "object",
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AssistantObject"
-            }
+            "items": {"$ref": "#/components/schemas/AssistantObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "asst_abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "asst_abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "asst_abc123"},
+          "last_id": {"type": "string", "example": "asst_abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": ["object", "data", "first_id", "last_id", "has_more"],
         "x-oaiMeta": {
@@ -6081,9 +5460,7 @@
             "description": "The type of tool being defined: `function`",
             "enum": ["function"]
           },
-          "function": {
-            "$ref": "#/components/schemas/FunctionObject"
-          }
+          "function": {"$ref": "#/components/schemas/FunctionObject"}
         },
         "required": ["type", "function"]
       },
@@ -6144,9 +5521,7 @@
                   "tool_calls": {
                     "type": "array",
                     "description": "A list of the relevant tool calls.",
-                    "items": {
-                      "$ref": "#/components/schemas/RunToolCallObject"
-                    }
+                    "items": {"$ref": "#/components/schemas/RunToolCallObject"}
                   }
                 },
                 "required": ["tool_calls"]
@@ -6210,15 +5585,9 @@
             "maxItems": 20,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ],
               "x-oaiExpandable": true
             }
@@ -6227,9 +5596,7 @@
             "description": "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.",
             "default": [],
             "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -6289,15 +5656,9 @@
             "maxItems": 20,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ],
               "x-oaiExpandable": true
             }
@@ -6314,28 +5675,14 @@
       "ListRunsResponse": {
         "type": "object",
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RunObject"
-            }
+            "items": {"$ref": "#/components/schemas/RunObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "run_abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "run_abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "run_abc123"},
+          "last_id": {"type": "string", "example": "run_abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": ["object", "data", "first_id", "last_id", "has_more"]
       },
@@ -6435,15 +5782,9 @@
             "maxItems": 20,
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AssistantToolsCode"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsRetrieval"
-                },
-                {
-                  "$ref": "#/components/schemas/AssistantToolsFunction"
-                }
+                {"$ref": "#/components/schemas/AssistantToolsCode"},
+                {"$ref": "#/components/schemas/AssistantToolsRetrieval"},
+                {"$ref": "#/components/schemas/AssistantToolsFunction"}
               ]
             }
           },
@@ -6495,9 +5836,7 @@
           "messages": {
             "description": "A list of [messages](/docs/api-reference/messages) to start the thread with.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateMessageRequest"
-            }
+            "items": {"$ref": "#/components/schemas/CreateMessageRequest"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -6522,43 +5861,22 @@
       "DeleteThreadResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["thread.deleted"]
-          }
+          "id": {"type": "string"},
+          "deleted": {"type": "boolean"},
+          "object": {"type": "string", "enum": ["thread.deleted"]}
         },
         "required": ["id", "object", "deleted"]
       },
       "ListThreadsResponse": {
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ThreadObject"
-            }
+            "items": {"$ref": "#/components/schemas/ThreadObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "asst_abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "asst_abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "asst_abc123"},
+          "last_id": {"type": "string", "example": "asst_abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": ["object", "data", "first_id", "last_id", "has_more"]
       },
@@ -6594,12 +5912,8 @@
             "type": "array",
             "items": {
               "oneOf": [
-                {
-                  "$ref": "#/components/schemas/MessageContentImageFileObject"
-                },
-                {
-                  "$ref": "#/components/schemas/MessageContentTextObject"
-                }
+                {"$ref": "#/components/schemas/MessageContentImageFileObject"},
+                {"$ref": "#/components/schemas/MessageContentTextObject"}
               ],
               "x-oaiExpandable": true
             }
@@ -6619,9 +5933,7 @@
             "default": [],
             "maxItems": 10,
             "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -6670,9 +5982,7 @@
             "type": "array",
             "minItems": 1,
             "maxItems": 10,
-            "items": {
-              "type": "string"
-            }
+            "items": {"type": "string"}
           },
           "metadata": {
             "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.\n",
@@ -6697,43 +6007,22 @@
       "DeleteMessageResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["thread.message.deleted"]
-          }
+          "id": {"type": "string"},
+          "deleted": {"type": "boolean"},
+          "object": {"type": "string", "enum": ["thread.message.deleted"]}
         },
         "required": ["id", "object", "deleted"]
       },
       "ListMessagesResponse": {
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MessageObject"
-            }
+            "items": {"$ref": "#/components/schemas/MessageObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "msg_abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "msg_abc123"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "msg_abc123"},
+          "last_id": {"type": "string", "example": "msg_abc123"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": ["object", "data", "first_id", "last_id", "has_more"]
       },
@@ -6825,14 +6114,8 @@
             },
             "required": ["file_id", "quote"]
           },
-          "start_index": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "end_index": {
-            "type": "integer",
-            "minimum": 0
-          }
+          "start_index": {"type": "integer", "minimum": 0},
+          "end_index": {"type": "integer", "minimum": 0}
         },
         "required": [
           "type",
@@ -6866,14 +6149,8 @@
             },
             "required": ["file_id"]
           },
-          "start_index": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "end_index": {
-            "type": "integer",
-            "minimum": 0
-          }
+          "start_index": {"type": "integer", "minimum": 0},
+          "end_index": {"type": "integer", "minimum": 0}
         },
         "required": ["type", "text", "file_path", "start_index", "end_index"]
       },
@@ -6930,9 +6207,7 @@
               {
                 "$ref": "#/components/schemas/RunStepDetailsMessageCreationObject"
               },
-              {
-                "$ref": "#/components/schemas/RunStepDetailsToolCallsObject"
-              }
+              {"$ref": "#/components/schemas/RunStepDetailsToolCallsObject"}
             ],
             "x-oaiExpandable": true
           },
@@ -7005,28 +6280,14 @@
       },
       "ListRunStepsResponse": {
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RunStepObject"
-            }
+            "items": {"$ref": "#/components/schemas/RunStepObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "step_abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "step_abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "step_abc123"},
+          "last_id": {"type": "string", "example": "step_abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": ["object", "data", "first_id", "last_id", "has_more"]
       },
@@ -7090,10 +6351,7 @@
         "type": "object",
         "description": "Details of the Code Interpreter tool call the run step was involved in.",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the tool call."
-          },
+          "id": {"type": "string", "description": "The ID of the tool call."},
           "type": {
             "type": "string",
             "description": "The type of tool call. This is always going to be `code_interpreter` for this type of tool call.",
@@ -7270,43 +6528,22 @@
         "type": "object",
         "description": "Deletes the association between the assistant and the file, but does not delete the [File](/docs/api-reference/files) object itself.",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "object": {
-            "type": "string",
-            "enum": ["assistant.file.deleted"]
-          }
+          "id": {"type": "string"},
+          "deleted": {"type": "boolean"},
+          "object": {"type": "string", "enum": ["assistant.file.deleted"]}
         },
         "required": ["id", "object", "deleted"]
       },
       "ListAssistantFilesResponse": {
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AssistantFileObject"
-            }
+            "items": {"$ref": "#/components/schemas/AssistantFileObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "file-abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "file-abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "file-abc123"},
+          "last_id": {"type": "string", "example": "file-abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": [
           "object",
@@ -7349,28 +6586,14 @@
       },
       "ListMessageFilesResponse": {
         "properties": {
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
+          "object": {"type": "string", "example": "list"},
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MessageFileObject"
-            }
+            "items": {"$ref": "#/components/schemas/MessageFileObject"}
           },
-          "first_id": {
-            "type": "string",
-            "example": "file-abc123"
-          },
-          "last_id": {
-            "type": "string",
-            "example": "file-abc456"
-          },
-          "has_more": {
-            "type": "boolean",
-            "example": false
-          }
+          "first_id": {"type": "string", "example": "file-abc123"},
+          "last_id": {"type": "string", "example": "file-abc456"},
+          "has_more": {"type": "boolean", "example": false}
         },
         "required": [
           "object",
@@ -7383,11 +6606,7 @@
       }
     }
   },
-  "security": [
-    {
-      "ApiKeyAuth": []
-    }
-  ],
+  "security": [{"ApiKeyAuth": []}],
   "x-oaiMeta": {
     "groups": [
       {
@@ -7395,11 +6614,7 @@
         "title": "Audio",
         "description": "Learn how to turn audio into text or text into audio.\n\nRelated guide: [Speech to text](/docs/guides/speech-to-text)\n",
         "sections": [
-          {
-            "type": "endpoint",
-            "key": "createSpeech",
-            "path": "createSpeech"
-          },
+          {"type": "endpoint", "key": "createSpeech", "path": "createSpeech"},
           {
             "type": "endpoint",
             "key": "createTranscription",
@@ -7427,11 +6642,7 @@
             "key": "CreateChatCompletionStreamResponse",
             "path": "streaming"
           },
-          {
-            "type": "endpoint",
-            "key": "createChatCompletion",
-            "path": "create"
-          }
+          {"type": "endpoint", "key": "createChatCompletion", "path": "create"}
         ]
       },
       {
@@ -7439,16 +6650,8 @@
         "title": "Embeddings",
         "description": "Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.\n\nRelated guide: [Embeddings](/docs/guides/embeddings)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "Embedding",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createEmbedding",
-            "path": "create"
-          }
+          {"type": "object", "key": "Embedding", "path": "object"},
+          {"type": "endpoint", "key": "createEmbedding", "path": "create"}
         ]
       },
       {
@@ -7456,16 +6659,8 @@
         "title": "Fine-tuning",
         "description": "Manage fine-tuning jobs to tailor a model to your specific training data.\n\nRelated guide: [Fine-tune models](/docs/guides/fine-tuning)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "FineTuningJob",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createFineTuningJob",
-            "path": "create"
-          },
+          {"type": "object", "key": "FineTuningJob", "path": "object"},
+          {"type": "endpoint", "key": "createFineTuningJob", "path": "create"},
           {
             "type": "endpoint",
             "key": "listPaginatedFineTuningJobs",
@@ -7476,11 +6671,7 @@
             "key": "retrieveFineTuningJob",
             "path": "retrieve"
           },
-          {
-            "type": "endpoint",
-            "key": "cancelFineTuningJob",
-            "path": "cancel"
-          },
+          {"type": "endpoint", "key": "cancelFineTuningJob", "path": "cancel"},
           {
             "type": "object",
             "key": "FineTuningJobEvent",
@@ -7498,31 +6689,11 @@
         "title": "Files",
         "description": "Files are used to upload documents that can be used with features like [Assistants](/docs/api-reference/assistants) and [Fine-tuning](/docs/api-reference/fine-tuning).\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "OpenAIFile",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "listFiles",
-            "path": "list"
-          },
-          {
-            "type": "endpoint",
-            "key": "createFile",
-            "path": "create"
-          },
-          {
-            "type": "endpoint",
-            "key": "deleteFile",
-            "path": "delete"
-          },
-          {
-            "type": "endpoint",
-            "key": "retrieveFile",
-            "path": "retrieve"
-          },
+          {"type": "object", "key": "OpenAIFile", "path": "object"},
+          {"type": "endpoint", "key": "listFiles", "path": "list"},
+          {"type": "endpoint", "key": "createFile", "path": "create"},
+          {"type": "endpoint", "key": "deleteFile", "path": "delete"},
+          {"type": "endpoint", "key": "retrieveFile", "path": "retrieve"},
           {
             "type": "endpoint",
             "key": "downloadFile",
@@ -7535,21 +6706,9 @@
         "title": "Images",
         "description": "Given a prompt and/or an input image, the model will generate a new image.\n\nRelated guide: [Image generation](/docs/guides/images)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "Image",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createImage",
-            "path": "create"
-          },
-          {
-            "type": "endpoint",
-            "key": "createImageEdit",
-            "path": "createEdit"
-          },
+          {"type": "object", "key": "Image", "path": "object"},
+          {"type": "endpoint", "key": "createImage", "path": "create"},
+          {"type": "endpoint", "key": "createImageEdit", "path": "createEdit"},
           {
             "type": "endpoint",
             "key": "createImageVariation",
@@ -7562,26 +6721,10 @@
         "title": "Models",
         "description": "List and describe the various models available in the API. You can refer to the [Models](/docs/models) documentation to understand what models are available and the differences between them.\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "Model",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "listModels",
-            "path": "list"
-          },
-          {
-            "type": "endpoint",
-            "key": "retrieveModel",
-            "path": "retrieve"
-          },
-          {
-            "type": "endpoint",
-            "key": "deleteModel",
-            "path": "delete"
-          }
+          {"type": "object", "key": "Model", "path": "object"},
+          {"type": "endpoint", "key": "listModels", "path": "list"},
+          {"type": "endpoint", "key": "retrieveModel", "path": "retrieve"},
+          {"type": "endpoint", "key": "deleteModel", "path": "delete"}
         ]
       },
       {
@@ -7594,11 +6737,7 @@
             "key": "CreateModerationResponse",
             "path": "object"
           },
-          {
-            "type": "endpoint",
-            "key": "createModeration",
-            "path": "create"
-          }
+          {"type": "endpoint", "key": "createModeration", "path": "create"}
         ]
       },
       {
@@ -7607,21 +6746,13 @@
         "beta": true,
         "description": "Build assistants that can call models and use tools to perform tasks.\n\n[Get started with the Assistants API](/docs/assistants)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "AssistantObject",
-            "path": "object"
-          },
+          {"type": "object", "key": "AssistantObject", "path": "object"},
           {
             "type": "endpoint",
             "key": "createAssistant",
             "path": "createAssistant"
           },
-          {
-            "type": "endpoint",
-            "key": "getAssistant",
-            "path": "getAssistant"
-          },
+          {"type": "endpoint", "key": "getAssistant", "path": "getAssistant"},
           {
             "type": "endpoint",
             "key": "modifyAssistant",
@@ -7670,31 +6801,11 @@
         "beta": true,
         "description": "Create threads that assistants can interact with.\n\nRelated guide: [Assistants](/docs/assistants/overview)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "ThreadObject",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createThread",
-            "path": "createThread"
-          },
-          {
-            "type": "endpoint",
-            "key": "getThread",
-            "path": "getThread"
-          },
-          {
-            "type": "endpoint",
-            "key": "modifyThread",
-            "path": "modifyThread"
-          },
-          {
-            "type": "endpoint",
-            "key": "deleteThread",
-            "path": "deleteThread"
-          }
+          {"type": "object", "key": "ThreadObject", "path": "object"},
+          {"type": "endpoint", "key": "createThread", "path": "createThread"},
+          {"type": "endpoint", "key": "getThread", "path": "getThread"},
+          {"type": "endpoint", "key": "modifyThread", "path": "modifyThread"},
+          {"type": "endpoint", "key": "deleteThread", "path": "deleteThread"}
         ]
       },
       {
@@ -7703,36 +6814,12 @@
         "beta": true,
         "description": "Create messages within threads\n\nRelated guide: [Assistants](/docs/assistants/overview)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "MessageObject",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createMessage",
-            "path": "createMessage"
-          },
-          {
-            "type": "endpoint",
-            "key": "getMessage",
-            "path": "getMessage"
-          },
-          {
-            "type": "endpoint",
-            "key": "modifyMessage",
-            "path": "modifyMessage"
-          },
-          {
-            "type": "endpoint",
-            "key": "listMessages",
-            "path": "listMessages"
-          },
-          {
-            "type": "object",
-            "key": "MessageFileObject",
-            "path": "file-object"
-          },
+          {"type": "object", "key": "MessageObject", "path": "object"},
+          {"type": "endpoint", "key": "createMessage", "path": "createMessage"},
+          {"type": "endpoint", "key": "getMessage", "path": "getMessage"},
+          {"type": "endpoint", "key": "modifyMessage", "path": "modifyMessage"},
+          {"type": "endpoint", "key": "listMessages", "path": "listMessages"},
+          {"type": "object", "key": "MessageFileObject", "path": "file-object"},
           {
             "type": "endpoint",
             "key": "getMessageFile",
@@ -7751,61 +6838,25 @@
         "beta": true,
         "description": "Represents an execution run on a thread.\n\nRelated guide: [Assistants](/docs/assistants/overview)\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "RunObject",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createRun",
-            "path": "createRun"
-          },
-          {
-            "type": "endpoint",
-            "key": "getRun",
-            "path": "getRun"
-          },
-          {
-            "type": "endpoint",
-            "key": "modifyRun",
-            "path": "modifyRun"
-          },
-          {
-            "type": "endpoint",
-            "key": "listRuns",
-            "path": "listRuns"
-          },
+          {"type": "object", "key": "RunObject", "path": "object"},
+          {"type": "endpoint", "key": "createRun", "path": "createRun"},
+          {"type": "endpoint", "key": "getRun", "path": "getRun"},
+          {"type": "endpoint", "key": "modifyRun", "path": "modifyRun"},
+          {"type": "endpoint", "key": "listRuns", "path": "listRuns"},
           {
             "type": "endpoint",
             "key": "submitToolOuputsToRun",
             "path": "submitToolOutputs"
           },
-          {
-            "type": "endpoint",
-            "key": "cancelRun",
-            "path": "cancelRun"
-          },
+          {"type": "endpoint", "key": "cancelRun", "path": "cancelRun"},
           {
             "type": "endpoint",
             "key": "createThreadAndRun",
             "path": "createThreadAndRun"
           },
-          {
-            "type": "object",
-            "key": "RunStepObject",
-            "path": "step-object"
-          },
-          {
-            "type": "endpoint",
-            "key": "getRunStep",
-            "path": "getRunStep"
-          },
-          {
-            "type": "endpoint",
-            "key": "listRunSteps",
-            "path": "listRunSteps"
-          }
+          {"type": "object", "key": "RunStepObject", "path": "step-object"},
+          {"type": "endpoint", "key": "getRunStep", "path": "getRunStep"},
+          {"type": "endpoint", "key": "listRunSteps", "path": "listRunSteps"}
         ]
       },
       {
@@ -7819,11 +6870,7 @@
             "key": "CreateCompletionResponse",
             "path": "object"
           },
-          {
-            "type": "endpoint",
-            "key": "createCompletion",
-            "path": "create"
-          }
+          {"type": "endpoint", "key": "createCompletion", "path": "create"}
         ]
       },
       {
@@ -7832,16 +6879,8 @@
         "deprecated": true,
         "description": "Given a prompt and an instruction, the model will return an edited version of the prompt. The Edits endpoint is deprecated will be [shut off on January 4th, 2024](/docs/deprecations/edit-models-endpoint).\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "CreateEditResponse",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createEdit",
-            "path": "create"
-          }
+          {"type": "object", "key": "CreateEditResponse", "path": "object"},
+          {"type": "endpoint", "key": "createEdit", "path": "create"}
         ]
       },
       {
@@ -7850,36 +6889,12 @@
         "deprecated": true,
         "description": "Manage fine-tuning jobs to tailor a model to your specific training data. The [updated Fine-tuning endpoint](/docs/guides/fine-tuning) offers more capabilites and newer models.\n\nThe Fine-tunes endpoint will be [shut off on January 4th, 2024](/docs/deprecations/2023-08-22-fine-tunes-endpoint).\n",
         "sections": [
-          {
-            "type": "object",
-            "key": "FineTune",
-            "path": "object"
-          },
-          {
-            "type": "endpoint",
-            "key": "createFineTune",
-            "path": "create"
-          },
-          {
-            "type": "endpoint",
-            "key": "listFineTunes",
-            "path": "list"
-          },
-          {
-            "type": "endpoint",
-            "key": "retrieveFineTune",
-            "path": "retrieve"
-          },
-          {
-            "type": "endpoint",
-            "key": "cancelFineTune",
-            "path": "cancel"
-          },
-          {
-            "type": "object",
-            "key": "FineTuneEvent",
-            "path": "event-object"
-          },
+          {"type": "object", "key": "FineTune", "path": "object"},
+          {"type": "endpoint", "key": "createFineTune", "path": "create"},
+          {"type": "endpoint", "key": "listFineTunes", "path": "list"},
+          {"type": "endpoint", "key": "retrieveFineTune", "path": "retrieve"},
+          {"type": "endpoint", "key": "cancelFineTune", "path": "cancel"},
+          {"type": "object", "key": "FineTuneEvent", "path": "event-object"},
           {
             "type": "endpoint",
             "key": "listFineTuneEvents",
