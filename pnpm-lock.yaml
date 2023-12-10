@@ -95,6 +95,9 @@ importers:
       turbo:
         specifier: ^1.10.16
         version: 1.10.16
+      type-fest:
+        specifier: ^4.8.3
+        version: 4.8.3
       typescript:
         specifier: ^5.3.2
         version: 5.3.2
@@ -165,8 +168,8 @@ importers:
   packages/util-types:
     dependencies:
       type-fest:
-        specifier: 4.8.2
-        version: 4.8.2
+        specifier: ^4.8.3
+        version: 4.8.3
 
   packages/util-zod:
     dependencies:
@@ -8110,10 +8113,9 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /type-fest@4.8.2:
-    resolution: {integrity: sha512-mcvrCjixA5166hSrUoJgGb9gBQN4loMYyj9zxuMs/66ibHNEFd5JXMw37YVDx58L4/QID9jIzdTBB4mDwDJ6KQ==}
+  /type-fest@4.8.3:
+    resolution: {integrity: sha512-//BaTm14Q/gHBn09xlnKNqfI8t6bmdzx2DXYfPBNofN0WUybCEUDcbCWcTa0oF09lzLjZgPphXAsvRiMK0V6Bw==}
     engines: {node: '>=16'}
-    dev: false
 
   /typed-array-buffer@1.0.0:
     resolution: {integrity: sha512-Y8KTSIglk9OZEr8zywiIHG/kmQ7KWyjseXs1CbSo8vC42w7hg2HgYTxSWwP0+is7bWDc1H+Fo026CpHFwm8tkw==}
