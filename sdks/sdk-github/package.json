@@ -6,12 +6,13 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "cp ./github.oas.d.ts ./dist/github.oas.d.ts",
-    "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/github.oas.json",
+    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
+    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",

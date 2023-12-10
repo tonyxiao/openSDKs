@@ -6,12 +6,16 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
+    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
+    "debug": "npx tsx ../../bin/jsonToJs.ts dist/",
     "download": "concurrently npm:download:*",
     "download:api_v2010": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json -o ./twilio_api_v2010.oas.json",
     "download:messaging_v1": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_messaging_v1.json -o ./twilio_messaging_v1.oas.json",

@@ -47,7 +47,15 @@ const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
-  files: ['dist', '**/*.ts', '!**/*.spec.ts', '!**/*.orig.oas.json'],
+  files: [
+    'dist',
+    // For declarationMap to work, we include our actual source files
+    '**/*.ts',
+    // We exclude tests, but maybe they can actually serve as examples?
+    '!**/*.spec.ts',
+    // json files cannot be required and it is thus pointless
+    '!**/*.json',
+  ],
   scripts: {
     clean: 'rm -rf ./dist',
     build: 'tsc -p ./tsconfig.json',
@@ -64,7 +72,7 @@ const tsConfigTemplate: TsConfigJson = {
     baseUrl: './',
   },
   include: ['*.ts'],
-  exclude: ['*.spec.ts'],
+  exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking
 }
 
 // MARK: - Main
@@ -78,9 +86,15 @@ if (require.main === module) {
       scripts: {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
-        clean: 'rm -rf ./dist',
         build: 'concurrently npm:build:*',
         'build:ts': 'tsc -p ./tsconfig.json',
+        // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
+        // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
+        // We also cannot use .ts files because not all openapi types compile
+        // @see https://github.com/drwpow/openapi-typescript/issues/1481
+        'build:dts': 'mkdir -p dist && cp *.d.ts ./dist',
+        'build:json':
+          'mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist',
       },
       devDependencies: {
         ...p.packageJson.devDependencies,
@@ -99,7 +113,12 @@ if (require.main === module) {
     void prettyWrite({
       path: pathJoin(p.dirPath, 'tsconfig.json'),
       format: 'tsconfig.json',
-      data: tsConfigTemplate,
+      data: {
+        ...tsConfigTemplate,
+        // For now until we figure out the cannot be named w/o a reference problem
+        // @see https://share.cleanshot.com/V2q3rQBR
+        exclude: [...(tsConfigTemplate.exclude ?? []), '*.openapi.ts'],
+      },
     })
   })
 

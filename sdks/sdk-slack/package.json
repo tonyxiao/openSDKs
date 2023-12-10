@@ -8,10 +8,12 @@
     "dist",
     "**/*.ts",
     "!**/*.spec.ts",
-    "!**/*.orig.oas.json"
+    "!**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
+    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",

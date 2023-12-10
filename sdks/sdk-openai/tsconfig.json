@@ -2,5 +2,5 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {"outDir": "./dist", "baseUrl": "./"},
   "include": ["*.ts"],
-  "exclude": ["*.spec.ts"]
+  "exclude": ["*.spec.ts", "*.openapi.ts"]
 }

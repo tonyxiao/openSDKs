@@ -7,10 +7,13 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
+    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "generate": "run-s generate:*",

@@ -9,11 +9,13 @@
       "cache": false,
       "outputs": ["*.oas.d.ts"]
     },
-    "clean": {},
+    "clean": {"cache": false},
     "build": {
+      "cache": false,
       "dependsOn": ["clean"],
       "outputs": ["dist"]
     },
-    "pub": {"cache": false, "dependsOn": ["build"]}
+    "pub": {"cache": false, "dependsOn": ["build"]},
+    "debug": {"cache": false}
   }
 }
