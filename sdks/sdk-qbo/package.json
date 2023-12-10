@@ -12,7 +12,7 @@
     "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "download": "npx tsx ./qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",
-    "generate": "openapi-typescript ./qbo.oas.json --output qbo.oas.d.ts"
+    "generate": "openapi-typescript ./qbo.oas.json --output qbo.oas.ts"
   },
   "dependencies": {},
   "devDependencies": {

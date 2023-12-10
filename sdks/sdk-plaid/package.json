@@ -13,7 +13,7 @@
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
     "generate": "pnpm generate:oas && pnpm generate:types",
     "generate:oas": "yaml2json ./plaid.oas.yaml | prettier --parser json > ./plaid.oas.json",
-    "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.d.ts"
+    "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.ts"
   },
   "dependencies": {},
   "devDependencies": {

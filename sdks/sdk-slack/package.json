@@ -14,7 +14,7 @@
     "download": "run-s download:orig download:process",
     "download:orig": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "download:process": "npx tsx slack.openapi.ts | prettier --parser json > ./slack.oas.json",
-    "generate": "openapi-typescript ./slack.oas.json --output ./slack.oas.d.ts"
+    "generate": "openapi-typescript ./slack.oas.json --output ./slack.oas.ts"
   },
   "dependencies": {},
   "devDependencies": {

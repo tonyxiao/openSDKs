@@ -14,8 +14,8 @@
     "download:api_v2010": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json -o ./twilio_api_v2010.oas.json",
     "download:messaging_v1": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_messaging_v1.json -o ./twilio_messaging_v1.oas.json",
     "generate": "concurrently npm:generate:*",
-    "generate:api_v2010": "openapi-typescript ./twilio_api_v2010.oas.json --output ./twilio_api_v2010.oas.d.ts",
-    "generate:messaging_v1": "openapi-typescript ./twilio_messaging_v1.oas.json --output ./twilio_messaging_v1.oas.d.ts"
+    "generate:api_v2010": "openapi-typescript ./twilio_api_v2010.oas.json --output ./twilio_api_v2010.oas.ts",
+    "generate:messaging_v1": "openapi-typescript ./twilio_messaging_v1.oas.json --output ./twilio_messaging_v1.oas.ts"
   },
   "dependencies": {},
   "devDependencies": {
