@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "module": "./index.ts",
   "scripts": {
+    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build:ts": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
     "download": "run-s download:orig download:process",
     "download:orig": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "download:process": "npx tsx slack.openapi.ts | prettier --parser json > ./slack.oas.json",
@@ -11,7 +14,11 @@
   "dependencies": {},
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
     "prettier": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -4,7 +4,7 @@
  */
 
 import {join as pathJoin} from 'node:path'
-import {getPackageJson, listSdks, writePackageJson} from './syncPackages'
+import {getPackageJson, listSdks, prettyWrite} from './syncPackages'
 
 const sdkNames = listSdks().map((p) => {
   if (!p.packageJson.name) {
@@ -22,4 +22,4 @@ pkgJson.dependencies = {
   ...Object.fromEntries(sdkNames.map((s) => [s, 'workspace:*'])),
 }
 
-void writePackageJson(path, pkgJson)
+void prettyWrite({path, format: 'package.json', data: pkgJson})

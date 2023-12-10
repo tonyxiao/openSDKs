@@ -188,6 +188,9 @@ importers:
       '@opensdks/util-zod':
         specifier: workspace:*
         version: link:../../packages/util-zod
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -200,6 +203,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -209,6 +215,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -221,6 +230,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -233,6 +245,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -251,6 +266,9 @@ importers:
       '@opensdks/util-zod':
         specifier: workspace:*
         version: link:../../packages/util-zod
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -263,6 +281,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1
@@ -287,6 +308,9 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       openapi-typescript:
         specifier: 6.7.1
         version: 6.7.1

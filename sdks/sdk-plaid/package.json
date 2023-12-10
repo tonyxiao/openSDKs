@@ -2,6 +2,9 @@
   "name": "@opensdks/sdk-plaid",
   "version": "0.0.0",
   "scripts": {
+    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build:ts": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
     "generate": "pnpm generate:oas && pnpm generate:types",
     "generate:oas": "yaml2json ./plaid.oas.yaml | prettier --parser json > ./plaid.oas.json",
@@ -10,8 +13,12 @@
   "dependencies": {},
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
     "prettier": "3.1.0",
     "yamljs": "0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

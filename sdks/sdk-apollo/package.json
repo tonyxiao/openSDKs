@@ -2,6 +2,9 @@
   "name": "@opensdks/sdk-apollo",
   "version": "0.0.0",
   "scripts": {
+    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build:ts": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
     "download": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
     "generate": "openapi-typescript ./apollo.oas.json --output apollo.oas.d.ts"
   },
@@ -9,7 +12,11 @@
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "@opensdks/util-zod": "workspace:*",
+    "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
     "prettier": "3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

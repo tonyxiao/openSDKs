@@ -5,14 +5,14 @@
       "outputs": ["*.oas.json"]
     },
     "generate": {
-      "dependsOn": ["^generate", "download"],
+      "dependsOn": ["download"],
       "cache": false,
       "outputs": ["*.oas.d.ts"]
     },
     "clean": {},
     "build": {
-      "dependsOn": ["^build", "clean"],
-      "cache": false
+      "dependsOn": ["clean"],
+      "outputs": ["dist"]
     },
     "pub": {"cache": false, "dependsOn": ["build"]}
   }

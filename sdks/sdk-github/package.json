@@ -2,18 +2,23 @@
   "name": "@opensdks/sdk-github",
   "version": "0.0.0",
   "scripts": {
-    "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",
-    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts",
-    "build": "tsc -p ./tsconfig.json && run-s build:json build:dts",
+    "build": "mkdir -p ./dist && concurrently npm:build:*",
     "build:dts": "cp ./github.oas.d.ts ./dist/github.oas.d.ts",
     "build:json": "npx tsx ../../bin/jsonToJs.ts ./dist/github.oas.json",
+    "build:ts": "tsc -p ./tsconfig.json",
     "clean": "rm -rf ./dist",
+    "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",
+    "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts",
     "pub": "pnpm publish --no-git-checks --access public"
   },
   "dependencies": {},
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
     "prettier": "3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

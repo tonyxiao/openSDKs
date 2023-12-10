@@ -3,12 +3,19 @@
   "version": "0.0.0",
   "module": "./index.ts",
   "scripts": {
+    "build": "mkdir -p ./dist && concurrently npm:build:*",
+    "build:ts": "tsc -p ./tsconfig.json",
+    "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
     "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts"
   },
   "dependencies": {},
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
