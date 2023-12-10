@@ -19,14 +19,10 @@
     "sourceMap": true,
     "declaration": true,
     // This is what allows vscode etc. to automatically jump to /src files
-    // as user navigate into the library. And this is the reason we cannot use tsup
+    // as user navigate into the library. And this is the reason we don't quite want to use tsup
     // for the foreseeable future
     // @see https://github.com/egoist/tsup/issues/885
-    "declarationMap": true,
-    "paths": {
-      "@opensdks/runtime": ["./packages/runtime/src"],
-      "@opensdks/runtime/*": ["./packages/runtime/src/*"]
-    }
+    "declarationMap": true
   },
   "exclude": ["node_modules"]
 }
