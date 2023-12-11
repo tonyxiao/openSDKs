@@ -76,6 +76,7 @@
     "unicorn/template-indent": "warn",
     "unicorn/throw-new-error": "warn"
   },
+  // TODO: add file overrides for mdx files
   "overrides": [
     {
       "files": ["**/*.{ts,tsx}"],
