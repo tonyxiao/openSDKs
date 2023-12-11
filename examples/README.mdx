@@ -1,53 +1,35 @@
 import * as fs from 'node:fs'
 import {Thing} from './thing'
 
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>25</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <td>Sarah</td>
+      <td>30</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <td>Michael</td>
+      <td>35</td>
+      <td>Male</td>
+    </tr>
+  </tbody>
+</table>
+
 # Hello, <Thing />
 
-<pre>
-  <code className="language-tsx">
-    {fs.readFileSync('./thing.tsx', 'utf8')}
-  </code>
-</pre>
+```tsx file=./thing.tsx
 
-
-```ts file=./example-qbo.mts#L3-L6
-```
-
-```twoslash include main
-const a = 1
-// - 1
-const b = 2
-// - 2
-const c= 3
-```
-
-Let's talk a bit about `a`:
-
-```ts twoslash
-// @include: main-1
-```
-
-`a` can be added to another number
-
-```ts twoslash
-// @include: main-1
-// ---cut---
-const nextA = a + 13
-```
-
-You can see what happens when you add `a + b`
-
-```ts twoslash
-// @include: main-2
-// ---cut---
-const result = a + b
-//    ^?
-```
-
-Finally here is `c`:
-
-```ts twoslash
-// @include: main
-// ---cut---
-c.toString()
 ```
