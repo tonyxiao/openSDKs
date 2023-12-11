@@ -17,6 +17,7 @@
     "@opensdks/sdk-slack": "0.0.1",
     "@opensdks/sdk-twilio": "0.0.1",
     "@opensdks/sdk-venice": "0.0.1",
+    "remark-toc": "^9.0.0",
     "twilio": "^4.19.3"
   },
   "devDependencies": {
