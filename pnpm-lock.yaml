@@ -53,6 +53,9 @@ importers:
       eslint-plugin-eslint-comments:
         specifier: ^3.2.0
         version: 3.2.0(eslint@8.55.0)
+      eslint-plugin-expect-type:
+        specifier: ^0.2.3
+        version: 0.2.3(eslint@8.55.0)(typescript@5.3.2)
       eslint-plugin-jest:
         specifier: ^27.6.0
         version: 27.6.0(@typescript-eslint/eslint-plugin@6.13.1)(eslint@8.55.0)(jest@29.7.0)(typescript@5.3.2)
@@ -3832,6 +3835,21 @@ packages:
       ignore: 5.3.0
     dev: true
 
+  /eslint-plugin-expect-type@0.2.3(eslint@8.55.0)(typescript@5.3.2):
+    resolution: {integrity: sha512-pMmrbePlIU/mlvKMk1OvnASggKWawgX9yaUYhGrGnsyNceAttek8NqYzNdAVUYoD0ygyqVG8mz3mmL2oa0QE5w==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '>=3.7.5'
+    dependencies:
+      '@typescript-eslint/utils': 5.62.0(eslint@8.55.0)(typescript@5.3.2)
+      eslint: 8.55.0
+      fs-extra: 10.1.0
+      typescript: 5.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /eslint-plugin-import@2.29.0(@typescript-eslint/parser@6.13.1)(eslint-import-resolver-typescript@3.6.1)(eslint@8.55.0):
     resolution: {integrity: sha512-QPOO5NO6Odv5lpoTkddtutccQjysJuFxoPS7fAHO+9m9udNHvTCPSAMW9zGAYj8lAIdr40I8yPCdUYrncXtrwg==}
     engines: {node: '>=4'}
@@ -4414,6 +4432,15 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       map-cache: 0.2.2
+    dev: true
+
+  /fs-extra@10.1.0:
+    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.1.0
+      universalify: 2.0.1
     dev: true
 
   /fs-extra@11.2.0:

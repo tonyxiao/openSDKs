@@ -4,5 +4,5 @@
     "checkJs": true
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": ["examples", "**/dist"]
+  "exclude": ["**/dist"]
 }

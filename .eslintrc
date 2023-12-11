@@ -2,10 +2,17 @@
   "parserOptions": {"ecmaVersion": "latest"},
   "root": true,
   "settings": {},
-  "plugins": ["codegen", "eslint-comments", "promise", "unicorn"],
+  "plugins": [
+    "codegen",
+    "eslint-comments",
+    "promise",
+    "unicorn",
+    "eslint-plugin-expect-type"
+  ],
   "extends": [
     "plugin:eslint-comments/recommended",
-    "plugin:promise/recommended"
+    "plugin:promise/recommended",
+    "plugin:expect-type/recommended"
   ],
   "rules": {
     "arrow-body-style": "warn",

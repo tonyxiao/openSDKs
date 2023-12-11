@@ -11,9 +11,8 @@ const qbo = initSDK(qboSdkDef, {
 
 const r = await qbo.GET('/companyinfo/{id}', {params: {path: {id: realmId}}})
 
-console.log(r.data.CompanyInfo)
-//                    ^? CompanyInfo: { CompanyName: string; LegalName: string; CompanyAddr: { Id: string; Line1: string; City: string; Country: string; CountrySubDivisionCode: string; PostalCode: string; }; CustomerCommunicationAddr: { ...; }; ... 13 more ...; MetaData: { ...; }; }
-
+console.log(r.data.CompanyInfo.CompanyName)
+//                               ^? (property) CompanyName: string
 
 await qbo.GET('/account/{id}', {params: {path: {id: '33'}}})
 
