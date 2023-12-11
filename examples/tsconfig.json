@@ -8,5 +8,5 @@
     "moduleResolution": "NodeNext",
     "module": "NodeNext"
   },
-  "include": ["./*.ts", "./*.mts", "*.tsx"]
+  "include": ["**/*.ts", "**/*.mts", "**/*.tsx"]
 }

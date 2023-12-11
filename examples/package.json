@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx tsx --no-warnings --loader=@mdx-js/node-loader README.md.ts"
+    "build": "./bin/mdxToMd.ts ./README.mdx > README.md"
   },
   "dependencies": {
     "@octokit/rest": "^20.0.2",
@@ -25,6 +25,7 @@
     "@types/react-dom": "^18.2.17",
     "node-html-markdown": "^1.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tsx": "^4.6.2"
   }
 }
