@@ -1,0 +1,396 @@
+openapi: 3.0.0
+info:
+  title: Toggl Track Organization API
+  version: 1.0.0
+servers:
+  - url: https://api.track.toggl.com
+paths:
+  /api/v9/organizations:
+    post:
+      summary: Creates a new organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                workspace_name:
+                  type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  workspace_id:
+                    type: integer
+                  workspace_name:
+                    type: string
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /api/v9/organizations/{organization_id}:
+    get:
+      summary: Get Organization data
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  admin:
+                    type: boolean
+                  at:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: integer
+                  is_multi_workspace_enabled:
+                    type: boolean
+                  is_unified:
+                    type: boolean
+                  max_data_retention_days:
+                    type: integer
+                  max_workspaces:
+                    type: integer
+                  name:
+                    type: string
+                  owner:
+                    type: boolean
+                  payment_methods:
+                    type: string
+                  pricing_plan_id:
+                    type: integer
+                  server_deleted_at:
+                    type: string
+                    nullable: true
+                  suspended_at:
+                    type: string
+                  trial_info:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        last_pricing_plan_id:
+                          type: integer
+                          nullable: true
+                        next_payment_date:
+                          type: string
+                          nullable: true
+                        trial:
+                          type: boolean
+                        trial_available:
+                          type: boolean
+                        trial_end_date:
+                          type: string
+                          nullable: true
+                        user_count:
+                          type: integer
+        '404':
+          description: Not Found
+
+    put:
+      summary: Updates an existing organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /api/v9/organizations/{organization_id}/users:
+    get:
+      summary: List of users in organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - name: active_status
+          in: query
+          schema:
+            type: string
+        - name: only_admins
+          in: query
+          schema:
+            type: string
+        - name: groups
+          in: query
+          schema:
+            type: string
+        - name: workspaces
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: sort_dir
+          in: query
+          schema:
+            type: string
+            default: 'asc'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    admin:
+                      type: boolean
+                    avatar_url:
+                      type: string
+                    can_edit_email:
+                      type: boolean
+                    email:
+                      type: string
+                    groups:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          group_id:
+                            type: integer
+                          name:
+                            type: string
+                    id:
+                      type: integer
+                    inactive:
+                      type: boolean
+                    invitation_code:
+                      type: string
+                    joined:
+                      type: boolean
+                    name:
+                      type: string
+                    owner:
+                      type: boolean
+                    user_id:
+                      type: integer
+                    workspaces:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          admin:
+                            type: boolean
+                          inactive:
+                            type: boolean
+                          name:
+                            type: string
+                          role:
+                            type: string
+                          workspace_id:
+                            type: integer
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+    patch:
+      summary: Apply changes in bulk to users in an organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /api/v9/organizations/{organization_id}/users/leave:
+    delete:
+      summary: Leaves organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /api/v9/organizations/{organization_id}/users/{organization_user_id}:
+    put:
+      summary: Changes a single organization-user
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: organization_user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                inactive:
+                  type: boolean
+                name:
+                  type: string
+                organization_admin:
+                  type: boolean
+                workspaces:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      admin:
+                        type: boolean
+                      inactive:
+                        type: boolean
+                      name:
+                        type: string
+                      role:
+                        type: string
+                      workspace_id:
+                        type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+  /api/v9/organizations/{organization_id}/workspaces/statistics:
+    get:
+      summary: Statistics for all workspaces in the organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+  /api/v9/organizations/{organization_id}/workspaces/{workspace_id}/assignments:
+    put:
+      summary: Change assignments of users within a workspace
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: workspace_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  type: integer
+                joined:
+                  type: boolean
+                operation:
+                  type: string
+                user_id:
+                  type: integer
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden

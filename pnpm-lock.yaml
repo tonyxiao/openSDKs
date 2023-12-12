@@ -252,6 +252,12 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
+  sdks/sdk-toggl:
+    dependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+
   sdks/sdk-twilio:
     devDependencies:
       '@opensdks/runtime':
