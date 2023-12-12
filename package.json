@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --project ./ --noEmit",
-    "lint": "eslint --ext .js,.ts,.tsx --cache .",
+    "lint": "eslint --ext .ts,.tsx --cache .",
     "test::ci": "pnpm run test --ci --forceExit --detectOpenHandles --runInBand",
     "test::debug": "node --inspect-brk $(pnpm bin)/jest --runInBand --watch",
     "test::watch": "pnpm run test --watch",
