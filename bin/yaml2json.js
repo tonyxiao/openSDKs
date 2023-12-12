@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const {parseArgs} = require('node:util')
-const prettier = require('prettier')
+import {parseArgs} from 'node:util'
+import prettier from 'prettier'
 
 async function readStreamToString(/** @type {NodeJS.ReadableStream} */ stream) {
   const chunks = []
@@ -18,7 +18,7 @@ async function main() {
   const yaml = await readStreamToString(process.stdin)
   const rawJson = JSON.stringify(require('yaml').parse(yaml))
   const prettyJson = await prettier.format(rawJson, {
-    ...require('../prettier.config'),
+    ...(await import('../prettier.config.js')),
     parser: 'json',
   })
   if (output) {

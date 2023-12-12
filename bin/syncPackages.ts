@@ -1,7 +1,11 @@
 import * as fs from 'node:fs'
-import {join as pathJoin} from 'node:path'
+import {dirname, join as pathJoin} from 'node:path'
+import * as url from 'node:url'
 import prettier from 'prettier'
 import type {PackageJson, TsConfigJson} from 'type-fest'
+
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export function listPackagesInDir(baseDir: string) {
   return fs
@@ -31,7 +35,7 @@ export async function prettyWrite(
   fs.writeFileSync(
     opts.path,
     await prettier.format(JSON.stringify(opts.data), {
-      ...(require('../prettier.config') as {}),
+      ...(await import('../prettier.config.js')),
       filepath: opts.format, // Sort imports will apply, better than just parser: json
     }),
   )
@@ -47,6 +51,7 @@ const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
+  type: 'module',
   files: [
     'dist',
     // For declarationMap to work, we include our actual source files
@@ -79,8 +84,7 @@ const tsConfigTemplate: TsConfigJson = {
 }
 
 // MARK: - Main
-
-if (require.main === module) {
+if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
   listSdks().forEach((p) => {
     // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
     p.packageJson = {

@@ -1,7 +1,6 @@
 import * as fs from 'node:fs'
-import {join as pathJoin} from 'node:path'
-import {dirname} from 'path'
-import {fileURLToPath} from 'url'
+import {dirname, join as pathJoin} from 'node:path'
+import {fileURLToPath} from 'node:url'
 import prettier from 'prettier'
 import type {PackageJson, TsConfigJson} from 'type-fest'
 

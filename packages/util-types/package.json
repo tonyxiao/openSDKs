@@ -20,5 +20,6 @@
   "devDependencies": {},
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "type": "module"
 }

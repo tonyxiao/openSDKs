@@ -1,4 +1,4 @@
-import type {Link} from '../link'
+import type {Link} from '../link.js'
 
 export function axiosLink({
   axios,

@@ -6,7 +6,7 @@ import type {
   operations,
   paths,
   webhooks,
-} from './discord.oas'
+} from './discord.oas.js'
 import {default as discordOas} from './discord.oas.json'
 
 // Does this work with tree-shaking?

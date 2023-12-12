@@ -4,7 +4,7 @@
  */
 
 import {join as pathJoin} from 'node:path'
-import {getPackageJson, listSdks, prettyWrite} from './syncPackages'
+import {getPackageJson, listSdks, prettyWrite} from './syncPackages.js'
 
 const sdkJsons = listSdks().map((p) => {
   if (!p.packageJson.name) {

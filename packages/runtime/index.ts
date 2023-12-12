@@ -1,11 +1,11 @@
 import type {oas30, oas31} from 'openapi3-ts'
-import type {ClientOptions, OpenAPIClient} from './createClient'
-import {createClient} from './createClient'
+import type {ClientOptions, OpenAPIClient} from './createClient.js'
+import {createClient} from './createClient.js'
 
 // export type * from 'openapi-typescript-helpers'
 export * from '@opensdks/links'
-export * from './HTTPError'
-export * from './createClient'
+export * from './HTTPError.js'
+export * from './createClient.js'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 export {oas30, oas31}
 

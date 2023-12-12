@@ -11,7 +11,7 @@ import type {
   operations,
   paths,
   webhooks,
-} from './apollo.oas'
+} from './apollo.oas.js'
 import {default as apolloOas} from './apollo.oas.json'
 
 // Does this work with tree-shaking?

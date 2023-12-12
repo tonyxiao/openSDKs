@@ -1,4 +1,4 @@
-import {z, zodToOas31Schema} from './index'
+import {z, zodToOas31Schema} from './index.js'
 
 /* eslint-disable unicorn/template-indent */ /* eslint-disable jest-formatting/padding-around-test-blocks */
 
