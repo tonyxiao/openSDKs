@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install example dependencies
+        run: cd examples && npm i
+
       # - name: Set up tmate session
       #   uses: mxschmitt/action-tmate@v2
 
