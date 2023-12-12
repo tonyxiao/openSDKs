@@ -6,7 +6,9 @@
     // Though the actual code does not run due to esm / cjs + typescript issues
     // that are too difficult to figure out...
     "moduleResolution": "NodeNext",
-    "module": "NodeNext"
+    "module": "NodeNext",
+    // This makes React implicitly available in mdx files
+    "jsx": "react-jsx"
   },
   "include": ["**/*.ts", "**/*.mts", "**/*.tsx"]
 }

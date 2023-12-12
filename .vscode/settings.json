@@ -7,7 +7,7 @@
   },
   "eslint.validate": [
     "markdown",
-    "mdx",
+    // "mdx", // Enable me once we figure out how to work with this extension
     "javascript",
     "javascriptreact",
     "typescript",
