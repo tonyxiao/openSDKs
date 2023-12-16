@@ -12,7 +12,7 @@
     "!**/*.json"
   ],
   "scripts": {
-    "build": "tsc -p ./tsconfig.json",
+    "build": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist"
   },
   "dependencies": {

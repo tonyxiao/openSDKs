@@ -84,13 +84,16 @@ const tsConfigTemplate: TsConfigJson = {
       // if main is specified
       '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
     },
+    // publish cjs for now and esm later...
+    module: 'CommonJS',
+    moduleResolution: 'Node',
   },
   include: ['*.ts'],
   exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking
 }
 
 // MARK: - Main
-if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
+if (import.meta.url.endsWith(process.argv[1]!)) {
   listSdks().forEach((p) => {
     // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
     p.packageJson = {
@@ -100,7 +103,7 @@ if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
         build: 'concurrently npm:build:*',
-        'build:ts': 'tsc -p ./tsconfig.json',
+        'build:ts': 'tsc -p ./tsconfig.build.json',
         // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
         // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
         // We also cannot use .ts files because not all openapi types compile
@@ -122,9 +125,9 @@ if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
       format: 'package.json',
       data: p.packageJson,
     })
-
+    
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: {
         ...tsConfigTemplate,
@@ -143,7 +146,7 @@ if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
         clean: 'rm -rf ./dist',
-        build: 'tsc -p ./tsconfig.json',
+        build: 'tsc -p ./tsconfig.build.json',
       },
     }
     void prettyWrite({
@@ -152,8 +155,10 @@ if (import.meta.url.includes(process.argv[1]?.split('/').pop() ?? '')) {
       data: p.packageJson,
     })
 
+    // Delete previous
+    // fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: tsConfigTemplate,
     })
