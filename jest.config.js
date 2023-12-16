@@ -1,8 +1,10 @@
 /**
  * @type {import('jest').Config}
  */
-module.exports = {
+export default {
+  extensionsToTreatAsEsm: ['.ts'],
   testEnvironment: 'node',
+  resolver: '<rootDir>/jest.resolver.cjs',
   testPathIgnorePatterns: [
     '/node_modules/',
     '/apps/web/.next/',
@@ -20,8 +22,8 @@ module.exports = {
       'esbuild-jest',
       {
         sourcemap: true,
-        target: 'node14',
-        format: 'cjs',
+        target: 'node20',
+        format: 'esm',
       },
     ],
   },
