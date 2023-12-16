@@ -1,11 +1,21 @@
 {
-  "parserOptions": {"ecmaVersion": "latest"},
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "root": true,
   "settings": {},
-  "plugins": ["codegen", "eslint-comments", "promise", "unicorn"],
+  "plugins": [
+    "codegen",
+    "eslint-comments",
+    "promise",
+    "unicorn",
+    "eslint-plugin-expect-type"
+  ],
   "extends": [
     "plugin:eslint-comments/recommended",
-    "plugin:promise/recommended"
+    "plugin:promise/recommended",
+    "plugin:expect-type/recommended"
   ],
   "rules": {
     "arrow-body-style": "warn",
@@ -69,6 +79,7 @@
     "unicorn/template-indent": "warn",
     "unicorn/throw-new-error": "warn"
   },
+  // TODO: add file overrides for mdx files
   "overrides": [
     {
       "files": ["**/*.{ts,tsx}"],

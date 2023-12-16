@@ -13,8 +13,8 @@ const config = {
   jsxSingleQuote: false,
   plugins: [
     // This plugin breaks on makeSyncEngine.ts... So commenting out for now.
-    require.resolve('@ianvs/prettier-plugin-sort-imports'),
-    require.resolve('prettier-plugin-packagejson'),
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-packagejson',
   ],
   printWidth: 80,
   quoteProps: 'as-needed',
@@ -24,5 +24,4 @@ const config = {
   trailingComma: 'all',
   useTabs: false,
 }
-module.exports = config
-
+export default config

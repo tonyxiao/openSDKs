@@ -574,6 +574,6 @@ export function outputOpenApi() {
   })
 }
 
-if (require.main === module) {
+if (import.meta.url.endsWith(process.argv[1]!)) {
   console.log(JSON.stringify(outputOpenApi(), null, 2))
 }

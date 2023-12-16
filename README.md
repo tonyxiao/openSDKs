@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://opensdks.org">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="website/public/logo-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="website/public/logo-light.png">
+      <source media="(prefers-color-scheme: dark)" srcset="website/public/logo-dark.png" />
+      <source media="(prefers-color-scheme: light)" srcset="website/public/logo-light.png" />
       <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="website/public/logo-light.png">
     </picture>
     <h1 align="center">OpenSDKs</h1>

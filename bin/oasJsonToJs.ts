@@ -12,7 +12,7 @@ import prettier from 'prettier'
 export async function writeJsonForTs(jsonFileName: string, outDir = '') {
   const rawJson = fs.readFileSync(jsonFileName, 'utf8')
   const formattedJson = await prettier.format(rawJson, {
-    ...(require('../prettier.config') as {}),
+    ...(await import('../prettier.config.js')),
     parser: 'json',
   })
 
@@ -21,7 +21,7 @@ export async function writeJsonForTs(jsonFileName: string, outDir = '') {
   fs.writeFileSync(jsFileName, jsContent, 'utf8')
 }
 
-if (require.main === module) {
+if (import.meta.url.endsWith(process.argv[1]!)) {
   const inputDir = process.argv[2]
   const outDir = process.argv[3] ?? ''
 

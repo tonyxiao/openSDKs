@@ -6,7 +6,7 @@ import type {
   operations,
   paths,
   webhooks,
-} from './venice.oas'
+} from './venice.oas.js'
 import {default as veniceOas} from './venice.oas.json'
 
 // Does this work with tree-shaking?

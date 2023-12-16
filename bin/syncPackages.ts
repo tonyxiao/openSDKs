@@ -1,7 +1,11 @@
 import * as fs from 'node:fs'
-import {join as pathJoin} from 'node:path'
+import {dirname, join as pathJoin} from 'node:path'
+import * as url from 'node:url'
 import prettier from 'prettier'
 import type {PackageJson, TsConfigJson} from 'type-fest'
+
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export function listPackagesInDir(baseDir: string) {
   return fs
@@ -31,7 +35,7 @@ export async function prettyWrite(
   fs.writeFileSync(
     opts.path,
     await prettier.format(JSON.stringify(opts.data), {
-      ...(require('../prettier.config') as {}),
+      ...(await import('../prettier.config.js')),
       filepath: opts.format, // Sort imports will apply, better than just parser: json
     }),
   )
@@ -47,6 +51,7 @@ const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
+  type: 'module',
   files: [
     'dist',
     // For declarationMap to work, we include our actual source files
@@ -73,14 +78,22 @@ const tsConfigTemplate: TsConfigJson = {
   compilerOptions: {
     outDir: './dist',
     baseUrl: './',
+    paths: {
+      // This doesn't work when put inside tsconfig.base.json for some reason
+      // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
+      // if main is specified
+      '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
+    },
+    // publish cjs for now and esm later...
+    module: 'CommonJS',
+    moduleResolution: 'Node',
   },
   include: ['*.ts'],
   exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking
 }
 
 // MARK: - Main
-
-if (require.main === module) {
+if (import.meta.url.endsWith(process.argv[1]!)) {
   listSdks().forEach((p) => {
     // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
     p.packageJson = {
@@ -90,7 +103,7 @@ if (require.main === module) {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
         build: 'concurrently npm:build:*',
-        'build:ts': 'tsc -p ./tsconfig.json',
+        'build:ts': 'tsc -p ./tsconfig.build.json',
         // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
         // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
         // We also cannot use .ts files because not all openapi types compile
@@ -112,9 +125,9 @@ if (require.main === module) {
       format: 'package.json',
       data: p.packageJson,
     })
-
+    
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: {
         ...tsConfigTemplate,
@@ -133,7 +146,7 @@ if (require.main === module) {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
         clean: 'rm -rf ./dist',
-        build: 'tsc -p ./tsconfig.json',
+        build: 'tsc -p ./tsconfig.build.json',
       },
     }
     void prettyWrite({
@@ -142,8 +155,10 @@ if (require.main === module) {
       data: p.packageJson,
     })
 
+    // Delete previous
+    // fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: tsConfigTemplate,
     })

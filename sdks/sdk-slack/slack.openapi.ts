@@ -31,6 +31,6 @@ function isOperationWithParam(op: unknown): op is oas30.OperationObject {
   return op != null && typeof op === 'object' && 'parameters' in op
 }
 
-if (require.main === module) {
+if (import.meta.url.endsWith(process.argv[1]!)) {
   console.log(JSON.stringify(oas, null, 2))
 }

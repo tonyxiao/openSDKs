@@ -6,7 +6,7 @@ import type {
   operations,
   paths,
   webhooks,
-} from './openai.oas'
+} from './openai.oas.js'
 import {default as openaiOas} from './openai.oas.json'
 
 // Does this work with tree-shaking?

@@ -1,5 +1,5 @@
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "./**/*.{spec,test,fixture,d}.{ts,tsx}"}
-export * from './PathsOf'
+// codegen:start {extension: {ts: 'js'}, preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
+export * from './PathsOf.js'
 // codegen:end
 
 // TODO: Move these into a proper util package

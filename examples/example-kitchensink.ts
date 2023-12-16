@@ -58,7 +58,18 @@ void twilio.api_v2010
     },
   })
   .then((r) => console.log(r.data))
-  //     ^?
+  //     ^? (parameter) r: {
+  //            data: {
+  //                body?: string | null | undefined;
+  //                num_segments?: string | null | undefined;
+  //                direction?: "inbound" | "outbound-api" | "outbound-call" | "outbound-reply" | undefined;
+  //                from?: string | ... 1 more ... | undefined;
+  //                ... 15 more ...;
+  //                subresource_uris?: Record<...> | ... 1 more ... | undefined;
+  //            };
+  //            error?: undefined;
+  //            response: Response;
+  //        }
   .catch(console.log)
 
 const client = Twilio(accountSid, authToken)
@@ -70,7 +81,7 @@ client.messages
     to: '+15558675310',
   })
   .then((message) => console.log(message.sid))
-  //       ^?
+  //       ^? (parameter) message: MessageInstance
   .catch(console.log)
 
 // Other examples

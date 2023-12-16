@@ -14,7 +14,7 @@
     "build": "concurrently npm:build:*",
     "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
     "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.json",
+    "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
     "generate": "run-s generate:*",
@@ -29,5 +29,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "type": "module"
 }

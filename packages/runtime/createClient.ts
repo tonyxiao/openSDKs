@@ -7,7 +7,7 @@ import {
   type HTTPMethod,
   type Link,
 } from '@opensdks/links'
-import {HTTPError} from './HTTPError'
+import {HTTPError} from './HTTPError.js'
 
 type _ClientOptions = NonNullable<Parameters<typeof _createClient>[0]>
 

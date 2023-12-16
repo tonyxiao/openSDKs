@@ -13,7 +13,7 @@
     "build": "concurrently npm:build:*",
     "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
     "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.json",
+    "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://app.venice.is/api/v0/openapi.json | prettier --parser json > ./venice.oas.json",
     "generate": "openapi-typescript ./venice.oas.json --output venice.oas.d.ts"
@@ -27,5 +27,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "type": "module"
 }
