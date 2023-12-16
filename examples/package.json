@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow npm",
     "build": "./bin/mdxToMd.ts ./README.mdx > README.md"
   },
   "dependencies": {

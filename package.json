@@ -5,6 +5,7 @@
   "repository": "git@github.com:useVenice/openSDKs.git",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "typecheck": "tsc --project ./ --noEmit",
     "lint": "eslint --ext .ts,.tsx --cache .",
     "test::ci": "pnpm run test --ci --forceExit --detectOpenHandles --runInBand",
