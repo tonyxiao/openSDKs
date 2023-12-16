@@ -5,17 +5,11 @@
   },
   "root": true,
   "settings": {},
-  "plugins": [
-    "codegen",
-    "eslint-comments",
-    "promise",
-    "unicorn",
-    "eslint-plugin-expect-type"
-  ],
+  "plugins": ["codegen", "eslint-comments", "promise", "unicorn"],
   "extends": [
     "plugin:eslint-comments/recommended",
     "plugin:promise/recommended",
-    "plugin:expect-type/recommended"
+    "plugin:mdx/recommended"
   ],
   "rules": {
     "arrow-body-style": "warn",
@@ -84,8 +78,11 @@
     {
       "files": ["**/*.{ts,tsx}"],
       "parserOptions": {"project": "tsconfig.json"},
-      "plugins": ["@typescript-eslint"],
-      "extends": ["plugin:@typescript-eslint/strict"],
+      "plugins": ["@typescript-eslint", "eslint-plugin-expect-type"],
+      "extends": [
+        "plugin:@typescript-eslint/strict",
+        "plugin:expect-type/recommended"
+      ],
       "rules": {
         "@typescript-eslint/array-type": ["warn", {"default": "array-simple"}],
         "@typescript-eslint/await-thenable": "warn",

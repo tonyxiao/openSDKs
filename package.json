@@ -7,7 +7,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "typecheck": "tsc --project ./ --noEmit",
-    "lint": "eslint --ext .ts,.tsx --cache .",
+    "lint": "eslint --ext .js,.ts,.tsx,.mdx --cache .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test::ci": "pnpm run test --ci --forceExit --detectOpenHandles --runInBand",
     "test::watch": "pnpm run test --watch",
