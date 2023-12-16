@@ -20,6 +20,9 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.1.1
         version: 4.1.1(prettier@3.1.0)
+      '@jest/globals':
+        specifier: ^29.7.0
+        version: 29.7.0
       '@tsconfig/strictest':
         specifier: ^2.0.2
         version: 2.0.2
