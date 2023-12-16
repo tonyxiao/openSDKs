@@ -78,6 +78,12 @@ const tsConfigTemplate: TsConfigJson = {
   compilerOptions: {
     outDir: './dist',
     baseUrl: './',
+    paths: {
+      // This doesn't work when put inside tsconfig.base.json for some reason
+      // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
+      // if main is specified
+      '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
+    },
   },
   include: ['*.ts'],
   exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking

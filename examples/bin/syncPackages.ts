@@ -35,7 +35,7 @@ export async function prettyWrite(
   fs.writeFileSync(
     opts.path,
     await prettier.format(JSON.stringify(opts.data), {
-      ...(require('../prettier.config') as {}),
+      ...(await import('../../prettier.config.js')),
       filepath: opts.format, // Sort imports will apply, better than just parser: json
     }),
   )
