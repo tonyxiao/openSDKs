@@ -8,6 +8,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./dist/types/*.d.ts",
       "import": "./dist/esm/*.js",
@@ -19,14 +21,11 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/*.json"
+    "**/*.d.ts",
+    "!**/*.spec.ts"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
-    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
     "generate": "run-s generate:*",
@@ -46,5 +45,9 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "imports": {
+    "#module/*": "./*"
+  },
+  "module": "dist/esm/index.js"
 }

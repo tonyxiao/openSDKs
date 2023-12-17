@@ -6,14 +6,11 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/*.json"
+    "**/*.d.ts",
+    "!**/*.spec.ts"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
-    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/api.github.com.json | prettier --parser json > ./github.oas.json",
     "generate": "openapi-typescript ./github.oas.json --output github.oas.d.ts",
@@ -39,10 +36,16 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./dist/types/*.d.ts",
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js"
     }
-  }
+  },
+  "imports": {
+    "#module/*": "./*"
+  },
+  "module": "dist/esm/index.js"
 }

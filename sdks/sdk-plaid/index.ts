@@ -6,8 +6,8 @@ import type {
   operations,
   paths,
   webhooks,
-} from './plaid.oas.js'
-import {default as plaidOas} from './plaid.oas.json'
+} from '#module/plaid.oas.js'
+import {default as plaidOas} from '#module/plaid.oas.json'
 
 // Does this work with tree-shaking?
 export {plaidOas as plaidOas}

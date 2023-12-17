@@ -6,8 +6,8 @@ import type {
   operations,
   paths,
   webhooks,
-} from './discord.oas.js'
-import {default as discordOas} from './discord.oas.json'
+} from '#module/discord.oas.js'
+import {default as discordOas} from '#module/discord.oas.json'
 
 // Does this work with tree-shaking?
 export {discordOas}

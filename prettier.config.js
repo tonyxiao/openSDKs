@@ -6,9 +6,10 @@ const config = {
   importOrder: [
     '^node:(.+)$',
     '<THIRD_PARTY_MODULES>',
-    '^@opensdks/(.+)$',
-    '^@/(.+)$',
-    '^[./]',
+    '^@opensdks/(.+)$', // our organization modules
+    '^@/(.+)$', // internal files (for next.js web package)
+    '^#(.+)$', // internal files
+    '^[./]', // relative files
   ],
   jsxSingleQuote: false,
   plugins: [

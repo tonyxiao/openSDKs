@@ -8,6 +8,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./dist/types/*.d.ts",
       "import": "./dist/esm/*.js",
@@ -19,8 +21,8 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/*.json"
+    "**/*.d.ts",
+    "!**/*.spec.ts"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
@@ -37,5 +39,9 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "imports": {
+    "#module/*": "./*"
+  },
+  "module": "dist/esm/index.js"
 }

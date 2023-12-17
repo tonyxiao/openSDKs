@@ -2,12 +2,17 @@
   "name": "@opensdks/sdk-qbo",
   "version": "0.0.1",
   "type": "module",
+  "imports": {
+    "#module/*": "./*"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./dist/types/*.d.ts",
       "import": "./dist/esm/*.js",
@@ -15,19 +20,16 @@
     }
   },
   "main": "dist/cjs/index.js",
-  "module": "index.ts",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/*.json"
+    "**/*.d.ts",
+    "!**/*.spec.ts"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
-    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",

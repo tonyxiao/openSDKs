@@ -6,8 +6,8 @@ import type {
   operations,
   paths,
   webhooks,
-} from './openai.oas.js'
-import {default as openaiOas} from './openai.oas.json'
+} from '#module/openai.oas.js'
+import {default as openaiOas} from '#module/openai.oas.json'
 
 // Does this work with tree-shaking?
 export {openaiOas as openaiOas}

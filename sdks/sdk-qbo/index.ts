@@ -1,7 +1,17 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {components, external, operations, paths, webhooks} from './qbo.oas.js'
-import {default as qboOas} from './qbo.oas.json'
+import type {
+  ClientOptions,
+  OpenAPISpec,
+  SdkDefinition,
+  SDKTypes,
+} from '@opensdks/runtime'
+import type {
+  components,
+  external,
+  operations,
+  paths,
+  webhooks,
+} from '#module/qbo.oas.js'
+import {default as qboOas} from '#module/qbo.oas.json'
 
 // Does this work with tree-shaking?
 export {qboOas}

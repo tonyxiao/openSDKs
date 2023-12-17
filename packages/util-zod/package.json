@@ -8,8 +8,8 @@
   "files": [
     "dist",
     "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/*.json"
+    "**/*.d.ts",
+    "!**/*.spec.ts"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
@@ -35,10 +35,16 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./dist/types/*.d.ts",
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js"
     }
-  }
+  },
+  "imports": {
+    "#module/*": "./*"
+  },
+  "module": "dist/esm/index.js"
 }

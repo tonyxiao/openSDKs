@@ -49,15 +49,21 @@ export const listPackages = () =>
 // Templates
 const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
-  main: 'dist/cjs/index.js',
-  types: 'dist/types/index.d.ts',
   type: 'module',
+  main: 'dist/cjs/index.js', // backward compat for node 10
+  module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
+  types: 'dist/types/index.d.ts',
+  imports: {
+    '#module/*': './*', // Allowing syntax like '#module/qbo.oas.js'
+  },
   exports: {
     '.': {
       types: './dist/types/index.d.ts',
       import: './dist/esm/index.js',
       require: './dist/cjs/index.js',
     },
+    './*.oas.js': './*.oas.js', // maps to d.ts file
+    './*.oas.json': './*.oas.json', // for those that can read it
     './*': {
       types: './dist/types/*.d.ts',
       import: './dist/esm/*.js',
@@ -68,13 +74,14 @@ const packageJsonTemplate: PackageJson = {
     'dist',
     // For declarationMap to work, we include our actual source files
     '**/*.ts',
+    '**/*.d.ts',
     // Already present in dist, but if we exclude can cause issues with declration map though
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
     // json files cannot be required by most systems so we instead
     // chose to publish transformed js files
-    '!**/*.json',
+    // '!**/*.json',
   ],
   scripts: {
     clean: 'rm -rf ./dist',
@@ -101,7 +108,9 @@ const tsConfigTemplate: TsConfigJson = {
   compilerOptions: {
     outDir: './dist',
     baseUrl: './',
+    rootDir: './', // workaround issue with #module/* path not working when building @see https://share.cleanshot.com/gWWkV8xW
     paths: {
+      '#module/*': ['./*'], // Workaround issue with #module/path not working when building cjs specically https://share.cleanshot.com/250DCSkB
       // This doesn't work when put inside tsconfig.base.json for some reason
       // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
       // if main is specified
@@ -128,15 +137,17 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
       scripts: {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
-        'build:ts': 'tsc -p ./tsconfig.build.json',
+        'build:ts': undefined,
+        // 'tsc -p ./tsconfig.build.json',
         // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
         // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
         // We also cannot use .ts files because not all openapi types compile
         // @see https://github.com/drwpow/openapi-typescript/issues/1481
-        'build:dts': 'mkdir -p dist && cp *.d.ts ./dist',
-        'build:json':
-          'mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist',
-      },
+        'build:dts': undefined,
+        // 'mkdir -p dist && cp *.d.ts ./dist',
+        'build:json': undefined,
+        // 'mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist',
+      } as {},
       devDependencies: {
         ...p.packageJson.devDependencies,
         ...packageJsonTemplate.devDependencies,
