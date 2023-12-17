@@ -49,12 +49,20 @@ export const listPackages = () =>
 // Templates
 const packageJsonTemplate: PackageJson = {
   version: '0.0.1',
-  main: 'dist/index.js',
-  types: 'dist/index.d.ts',
+  main: 'dist/cjs/index.js',
+  types: 'dist/types/index.d.ts',
   type: 'module',
   exports: {
-    '.': './dist/index.js',
-    './*': './dist/*',
+    '.': {
+      types: './dist/types/index.d.ts',
+      import: './dist/esm/index.js',
+      require: './dist/cjs/index.js',
+    },
+    './*': {
+      types: './dist/types/*.d.ts',
+      import: './dist/esm/*.js',
+      require: './dist/cjs/*.js',
+    },
   },
   files: [
     'dist',
@@ -70,10 +78,21 @@ const packageJsonTemplate: PackageJson = {
   ],
   scripts: {
     clean: 'rm -rf ./dist',
-    build: 'tsc -p ./tsconfig.json',
+    build: 'concurrently npm:build:*',
+    'build:cjs':
+      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs',
+    'build:cjs:pkgjson':
+      'mkdir -p ./dist/cjs && echo \'{"type": "commonjs"}\' > ./dist/cjs/package.json',
+    'build:esm':
+      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm',
+    'build:types':
+      'tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types',
   },
   publishConfig: {
     access: 'public',
+  },
+  devDependencies: {
+    concurrently: '^8.2.2',
   },
 }
 
@@ -109,7 +128,6 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
       scripts: {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
-        build: 'concurrently npm:build:*',
         'build:ts': 'tsc -p ./tsconfig.build.json',
         // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
         // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
@@ -121,8 +139,8 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
       },
       devDependencies: {
         ...p.packageJson.devDependencies,
+        ...packageJsonTemplate.devDependencies,
         '@opensdks/runtime': 'workspace:*',
-        concurrently: '^8.2.2',
         'openapi-typescript': '6.7.1',
       },
     }
@@ -153,8 +171,11 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
         clean: 'rm -rf ./dist',
-        build: 'tsc -p ./tsconfig.build.json',
       },
+      devDependencies: {
+        ...p.packageJson.devDependencies,
+        ...packageJsonTemplate.devDependencies,
+      } as {},
     }
     void prettyWrite({
       path: p.packageJsonPath,

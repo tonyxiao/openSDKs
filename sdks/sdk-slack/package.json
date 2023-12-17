@@ -1,9 +1,9 @@
 {
   "name": "@opensdks/sdk-slack",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "./index.ts",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
@@ -19,7 +19,11 @@
     "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx slack.openapi.ts | prettier --parser json > ./slack.oas.json",
-    "generate:types": "openapi-typescript ./slack.oas.json --output ./slack.oas.d.ts"
+    "generate:types": "openapi-typescript ./slack.oas.json --output ./slack.oas.d.ts",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,7 +37,15 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
   }
 }

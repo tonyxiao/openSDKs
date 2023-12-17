@@ -119,6 +119,9 @@ importers:
       axios:
         specifier: ^1.6.2
         version: 1.6.2
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
 
   packages/runtime:
     dependencies:
@@ -134,12 +137,20 @@ importers:
       openapi3-ts:
         specifier: 4.1.2
         version: 4.1.2
+    devDependencies:
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
 
   packages/util-types:
     dependencies:
       type-fest:
         specifier: ^4.8.3
         version: 4.8.3
+    devDependencies:
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
 
   packages/util-zod:
     dependencies:
@@ -149,6 +160,10 @@ importers:
       zod-openapi:
         specifier: 2.11.0
         version: 2.11.0(zod@3.21.4)
+    devDependencies:
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
 
   sdks/sdk-apollo:
     devDependencies:

@@ -3,12 +3,20 @@
   "version": "0.0.1",
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
   },
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "index.ts",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
@@ -23,7 +31,11 @@
     "clean": "rm -rf ./dist",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",
-    "generate:types": "openapi-typescript ./qbo.oas.json --output qbo.oas.d.ts"
+    "generate:types": "openapi-typescript ./qbo.oas.json --output qbo.oas.d.ts",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
   },
   "dependencies": {},
   "devDependencies": {

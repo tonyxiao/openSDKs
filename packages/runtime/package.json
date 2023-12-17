@@ -1,8 +1,8 @@
 {
   "name": "@opensdks/runtime",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
@@ -10,8 +10,12 @@
     "!**/*.json"
   ],
   "scripts": {
-    "build": "tsc -p ./tsconfig.build.json",
-    "clean": "rm -rf ./dist"
+    "build": "concurrently npm:build:*",
+    "clean": "rm -rf ./dist",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
   },
   "dependencies": {
     "@opensdks/links": "workspace:*",
@@ -19,13 +23,23 @@
     "openapi-typescript-helpers": "0.0.4",
     "openapi3-ts": "4.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
   }
 }

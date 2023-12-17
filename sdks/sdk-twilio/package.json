@@ -1,8 +1,8 @@
 {
   "name": "@opensdks/sdk-twilio",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
@@ -21,7 +21,11 @@
     "download:messaging_v1": "curl --fail https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_messaging_v1.json -o ./twilio_messaging_v1.oas.json",
     "generate": "concurrently npm:generate:*",
     "generate:api_v2010": "openapi-typescript ./twilio_api_v2010.oas.json --output ./twilio_api_v2010.oas.d.ts",
-    "generate:messaging_v1": "openapi-typescript ./twilio_messaging_v1.oas.json --output ./twilio_messaging_v1.oas.d.ts"
+    "generate:messaging_v1": "openapi-typescript ./twilio_messaging_v1.oas.json --output ./twilio_messaging_v1.oas.d.ts",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,7 +38,15 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
   }
 }

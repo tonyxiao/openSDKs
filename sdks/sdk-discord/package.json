@@ -1,9 +1,9 @@
 {
   "name": "@opensdks/sdk-discord",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "./index.ts",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "**/*.ts",
@@ -17,7 +17,11 @@
     "build:ts": "tsc -p ./tsconfig.build.json",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
-    "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts"
+    "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
   },
   "dependencies": {},
   "devDependencies": {
@@ -30,7 +34,15 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
   }
 }
