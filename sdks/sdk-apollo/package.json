@@ -48,7 +48,7 @@
     "@opensdks/util-zod": "workspace:*",
     "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
-    "prettier": "3.1.0"
+    "prettier": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"

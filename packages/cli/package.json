@@ -1,5 +1,5 @@
 {
-  "name": "@opensdks/sdk-plaid",
+  "name": "@opensdks/cli",
   "version": "0.0.2-next",
   "type": "module",
   "imports": {
@@ -37,18 +37,17 @@
     "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "clean": "rm -rf ./dist",
-    "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
-    "generate": "run-s generate:*",
-    "generate:json": "cat plaid.oas.yaml | node ../../bin/yaml2json.js -o plaid.oas",
-    "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.d.ts",
     "version": "pnpm version"
   },
-  "dependencies": {},
+  "dependencies": {
+    "openapi-typescript": "^6.7.3",
+    "prettier": "^3.1.0",
+    "remeda": "^1.31.0"
+  },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1",
-    "prettier": "^3.1.0"
+    "tsx": "^4.6.2"
   },
   "publishConfig": {
     "access": "public"
