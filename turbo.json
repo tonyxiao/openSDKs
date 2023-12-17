@@ -12,7 +12,7 @@
     "clean": {"cache": false},
     "build": {
       "cache": false,
-      "dependsOn": ["clean"],
+      "dependsOn": ["clean", "^build"],
       "outputs": ["dist"]
     },
     "debug": {"cache": false},

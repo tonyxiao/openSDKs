@@ -1,6 +1,11 @@
 {
   "name": "@opensdks/sdk-qbo",
   "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
+  },
   "main": "dist/index.js",
   "module": "index.ts",
   "types": "dist/index.d.ts",
@@ -30,6 +35,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "type": "module"
+  }
 }

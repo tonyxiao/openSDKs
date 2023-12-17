@@ -1,12 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "paths": { "@opensdks/util-zod": ["../../packages/util-zod/index.ts"] },
-    "module": "CommonJS",
-    "moduleResolution": "Node"
-  },
+  "compilerOptions": { "outDir": "./dist", "baseUrl": "./", "paths": {} },
   "include": ["*.ts"],
   "exclude": ["*.spec.ts", "*.openapi.ts"]
 }

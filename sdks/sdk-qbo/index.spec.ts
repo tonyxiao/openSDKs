@@ -1,6 +1,6 @@
 /* eslint-disable jest/no-standalone-expect */
 import {initSDK} from '@opensdks/runtime'
-import {qboSdkDef} from './index.js'
+import qboSdkDef from './index.js'
 
 const realmId = process.env['QBO_REALM_ID']!
 const maybeTest = realmId ? test : test.skip

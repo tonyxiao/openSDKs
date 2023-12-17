@@ -52,6 +52,10 @@ const packageJsonTemplate: PackageJson = {
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
   type: 'module',
+  exports: {
+    '.': './dist/index.js',
+    './*': './dist/*',
+  },
   files: [
     'dist',
     // For declarationMap to work, we include our actual source files
@@ -82,11 +86,14 @@ const tsConfigTemplate: TsConfigJson = {
       // This doesn't work when put inside tsconfig.base.json for some reason
       // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
       // if main is specified
-      '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
+      // EDIT: This doesn't work as the build output contains files in `paths` https://share.cleanshot.com/Nlmd0fKt
+      // '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
+      // '@opensdks/links': ['../../packages/links/index.ts'],
+      // '@opensdks/runtime': ['../../packages/runtime/index.ts'],
     },
     // publish cjs for now and esm later...
-    module: 'CommonJS',
-    moduleResolution: 'Node',
+    // module: 'CommonJS',
+    // moduleResolution: 'Node',
   },
   include: ['*.ts'],
   exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking
@@ -125,7 +132,7 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
       format: 'package.json',
       data: p.packageJson,
     })
-    
+
     void prettyWrite({
       path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',

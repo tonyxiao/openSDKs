@@ -22,5 +22,9 @@
   "devDependencies": {},
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
   }
 }
