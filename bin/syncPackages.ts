@@ -48,7 +48,7 @@ export const listPackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.1',
+  // version: '0.0.1',
   type: 'module',
   main: 'dist/cjs/index.js', // backward compat for node 10
   module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
@@ -75,13 +75,13 @@ const packageJsonTemplate: PackageJson = {
     // For declarationMap to work, we include our actual source files
     '**/*.ts',
     '**/*.d.ts',
+    '**/*.oas.json',
     // Already present in dist, but if we exclude can cause issues with declration map though
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
-    // json files cannot be required by most systems so we instead
-    // chose to publish transformed js files
-    // '!**/*.json',
+    // Exclude dist json files copied by tsc as we are using #module/ import from root
+    '!dist/**/*.json',
   ],
   scripts: {
     clean: 'rm -rf ./dist',
