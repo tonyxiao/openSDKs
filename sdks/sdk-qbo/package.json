@@ -30,14 +30,15 @@
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "clean": "rm -rf ./dist",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",
     "generate:types": "openapi-typescript ./qbo.oas.json --output qbo.oas.d.ts",
-    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
+    "version": "pnpm version"
   },
   "dependencies": {},
   "devDependencies": {

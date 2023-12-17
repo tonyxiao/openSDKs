@@ -1,37 +1,10 @@
 {
   "name": "@opensdks/sdk-openai",
   "version": "0.0.1",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "**/*.ts",
-    "**/*.d.ts",
-    "!**/*.spec.ts"
-  ],
-  "scripts": {
-    "build": "concurrently npm:build:*",
-    "clean": "rm -rf ./dist",
-    "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
-    "generate": "run-s generate:*",
-    "generate:json": "cat openai.oas.yaml | node ../../bin/yaml2json.js -o openai.oas",
-    "generate:types": "openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts",
-    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@opensdks/runtime": "workspace:*",
-    "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "type": "module",
+  "imports": {
+    "#module/*": "./*"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -46,7 +19,35 @@
       "require": "./dist/cjs/*.js"
     }
   },
-  "imports": {
-    "#module/*": "./*"
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "**/*.d.ts",
+    "!**/*.spec.ts"
+  ],
+  "scripts": {
+    "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
+    "clean": "rm -rf ./dist",
+    "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
+    "generate": "run-s generate:*",
+    "generate:json": "cat openai.oas.yaml | node ../../bin/yaml2json.js -o openai.oas",
+    "generate:types": "openapi-typescript ./openai.oas.json --output ./openai.oas.d.ts",
+    "version": "pnpm version"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
+    "openapi-typescript": "6.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

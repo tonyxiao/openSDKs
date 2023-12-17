@@ -3,31 +3,8 @@
   "version": "0.0.1",
   "sideEffects": false,
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "**/*.ts",
-    "**/*.d.ts",
-    "!**/*.spec.ts"
-  ],
-  "scripts": {
-    "build": "concurrently npm:build:*",
-    "clean": "rm -rf ./dist",
-    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
-  },
-  "dependencies": {
-    "zod": "3.21.4",
-    "zod-openapi": "2.11.0"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  },
-  "publishConfig": {
-    "access": "public"
+  "imports": {
+    "#module/*": "./*"
   },
   "exports": {
     ".": {
@@ -43,8 +20,32 @@
       "require": "./dist/cjs/*.js"
     }
   },
-  "imports": {
-    "#module/*": "./*"
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "**/*.d.ts",
+    "!**/*.spec.ts"
+  ],
+  "scripts": {
+    "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
+    "clean": "rm -rf ./dist",
+    "version": "pnpm version"
   },
-  "module": "dist/esm/index.js"
+  "dependencies": {
+    "zod": "3.21.4",
+    "zod-openapi": "2.11.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

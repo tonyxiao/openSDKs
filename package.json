@@ -14,7 +14,8 @@
     "test::debug": "NODE_OPTIONS=--experimental-vm-modules node --inspect-brk $(pnpm bin)/jest --runInBand --watch",
     "commitlint": "commitlint --edit",
     "prepare": "husky install",
-    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish"
+    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish",
+    "prettier:pkgjson": "pnpm prettier --write ./sdks/*/package.json ./packages/*/package.json"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",

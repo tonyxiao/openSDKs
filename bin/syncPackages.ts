@@ -88,12 +88,14 @@ const packageJsonTemplate: PackageJson = {
     build: 'concurrently npm:build:*',
     'build:cjs':
       'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs',
-    'build:cjs:pkgjson':
+    'build:cjs-pkgjson':
       'mkdir -p ./dist/cjs && echo \'{"type": "commonjs"}\' > ./dist/cjs/package.json',
     'build:esm':
       'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm',
     'build:types':
       'tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types',
+    // without with `pnpm -r version patch` command won't work...
+    version: 'pnpm version',
   },
   publishConfig: {
     access: 'public',

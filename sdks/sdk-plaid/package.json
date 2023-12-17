@@ -2,6 +2,9 @@
   "name": "@opensdks/sdk-plaid",
   "version": "0.0.1",
   "type": "module",
+  "imports": {
+    "#module/*": "./*"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -17,6 +20,7 @@
     }
   },
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
@@ -26,15 +30,16 @@
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
     "generate": "run-s generate:*",
     "generate:json": "cat plaid.oas.yaml | node ../../bin/yaml2json.js -o plaid.oas",
     "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.d.ts",
-    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
+    "version": "pnpm version"
   },
   "dependencies": {},
   "devDependencies": {
@@ -45,9 +50,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "imports": {
-    "#module/*": "./*"
-  },
-  "module": "dist/esm/index.js"
+  }
 }

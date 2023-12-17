@@ -1,37 +1,10 @@
 {
   "name": "@opensdks/sdk-apollo",
   "version": "0.0.1",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "**/*.ts",
-    "**/*.d.ts",
-    "!**/*.spec.ts"
-  ],
-  "scripts": {
-    "build": "concurrently npm:build:*",
-    "clean": "rm -rf ./dist",
-    "generate": "run-s generate:*",
-    "generate:json": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
-    "generate:types": "openapi-typescript ./apollo.oas.json --output apollo.oas.d.ts",
-    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs:pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@opensdks/runtime": "workspace:*",
-    "@opensdks/util-zod": "workspace:*",
-    "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1",
-    "prettier": "3.1.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "type": "module",
+  "imports": {
+    "#module/*": "./*"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -46,8 +19,36 @@
       "require": "./dist/cjs/*.js"
     }
   },
-  "imports": {
-    "#module/*": "./*"
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "**/*.ts",
+    "**/*.d.ts",
+    "!**/*.spec.ts"
+  ],
+  "scripts": {
+    "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
+    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
+    "clean": "rm -rf ./dist",
+    "generate": "run-s generate:*",
+    "generate:json": "npx tsx ./apollo.openapi.ts | prettier --parser json > ./apollo.oas.json",
+    "generate:types": "openapi-typescript ./apollo.oas.json --output apollo.oas.d.ts",
+    "version": "pnpm version"
   },
-  "module": "dist/esm/index.js"
+  "dependencies": {},
+  "devDependencies": {
+    "@opensdks/runtime": "workspace:*",
+    "@opensdks/util-zod": "workspace:*",
+    "concurrently": "^8.2.2",
+    "openapi-typescript": "6.7.1",
+    "prettier": "3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
