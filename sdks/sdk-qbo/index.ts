@@ -1,28 +1,6 @@
-import type {
-  ClientOptions,
-  OpenAPISpec,
-  SdkDefinition,
-  SDKTypes,
-} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/qbo.oas.js'
-import {default as qboOas} from '#module/qbo.oas.json'
-
-// Does this work with tree-shaking?
-export {qboOas}
-
-export interface qboOasTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type {components, default as qboOasTypes} from '#module/qbo.oas.js'
+import {default as qboOasMeta} from './qbo.oas.meta.js'
 
 export type QBOSDKTypes = SDKTypes<
   qboOasTypes,
@@ -34,8 +12,9 @@ export type QBOSDKTypes = SDKTypes<
 >
 
 const servers = {
-  sandbox: qboOas.servers?.find((s) => s.url.includes('sandbox'))?.url,
-  production: qboOas.servers?.find((s) => s.url.includes('production'))?.url,
+  sandbox: qboOasMeta.servers?.find((s) => s.url.includes('sandbox'))?.url,
+  production: qboOasMeta.servers?.find((s) => s.url.includes('production'))
+    ?.url,
 }
 
 /**
@@ -44,7 +23,7 @@ const servers = {
  */
 export const qboSdkDef = {
   types: {} as QBOSDKTypes,
-  oas: qboOas as OpenAPISpec,
+  oasMeta: qboOasMeta,
   createClient: (ctx, {realmId, accessToken, envName, ...options}) => {
     const client = ctx.createClient({
       ...options,

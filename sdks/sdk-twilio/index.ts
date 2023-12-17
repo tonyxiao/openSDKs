@@ -1,26 +1,16 @@
-import type {OpenAPITypes, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type * as api_v2010 from '#module/twilio_api_v2010.oas.js'
-import {default as oas_api_v2010} from '#module/twilio_api_v2010.oas.json'
-import type * as messaging_v1 from '#module/twilio_messaging_v1.oas.js'
-import {default as oas_messaging_v1} from '#module/twilio_messaging_v1.oas.json'
+import type {
+  ClientOptions,
+  OpenAPITypes,
+  SdkDefinition,
+  SDKTypes,
+} from '@opensdks/runtime'
+import type Oas_api_v2010 from '#module/twilio_api_v2010.oas.js'
+import type Oas_messaging_v1 from '#module/twilio_messaging_v1.oas.js'
+import {default as oas_api_v2010} from './twilio_api_v2010.oas.meta.js'
+import {default as oas_messaging_v1} from './twilio_messaging_v1.oas.meta.js'
 
+// Maybe this should be in a dedicated metadata file?
 export {oas_api_v2010, oas_messaging_v1}
-
-export interface Oas_api_v2010 {
-  components: api_v2010.components
-  external: api_v2010.external
-  operations: api_v2010.operations
-  paths: api_v2010.paths
-  webhooks: api_v2010.webhooks
-}
-export interface Oas_messaging_v1 {
-  components: messaging_v1.components
-  external: messaging_v1.external
-  operations: messaging_v1.operations
-  paths: messaging_v1.paths
-  webhooks: messaging_v1.webhooks
-}
 
 export type TwilioSDKTypes = SDKTypes<
   OpenAPITypes,
@@ -33,7 +23,11 @@ export const twilioSdkDef = {
   createClient(ctx, {accountSid, authToken, ..._options}) {
     const headers = new Headers(_options.headers as HeadersInit)
     headers.set('Authorization', `Basic ${btoa(`${accountSid}:${authToken}`)}`)
-    const options = {..._options, headers}
+    const options: typeof _options = {
+      baseUrl: oas_api_v2010.servers[0].url,
+      ..._options,
+      headers,
+    }
     const api_v2010 = ctx.createClient<Oas_api_v2010['paths']>(options)
     const messaging_v1 = ctx.createClient<Oas_messaging_v1['paths']>(options)
     return {api_v2010, messaging_v1}

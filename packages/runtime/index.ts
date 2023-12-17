@@ -7,6 +7,14 @@ export * from '@opensdks/links'
 export * from './HTTPError.js'
 export * from './createClient.js'
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
+
+type NonEmptyReadonlyArray<T> = readonly [T, ...T[]]
+
+export type OpenAPIMeta = {
+  info: OpenAPISpec['info']
+  servers: NonEmptyReadonlyArray<NonNullable<OpenAPISpec['servers']>[number]>
+}
+
 export {oas30, oas31}
 
 // MARK: - defineSdk
@@ -28,7 +36,7 @@ export type SdkDefinition<
   T extends SDKTypes<OpenAPITypes, ClientOptions>,
   TClient = unknown,
 > = RequireAtLeastOne<{
-  oas?: OpenAPISpec
+  oasMeta?: OpenAPIMeta
   defaultOptions?: ClientOptions
 }> & {
   types: T
@@ -54,7 +62,7 @@ export function initSDK<
 ): ('createClient' extends keyof TDef
   ? ReturnType<NonNullable<TDef['createClient']>>
   : OpenAPIClient<TDef['types']['oas']['paths']>) & {def: TDef} {
-  const {oas, defaultOptions} = sdkDef
+  const {oasMeta: oas, defaultOptions} = sdkDef
   const clientOptions = {
     baseUrl: oas?.servers?.[0]?.url,
     ...defaultOptions,

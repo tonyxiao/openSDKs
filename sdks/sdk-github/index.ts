@@ -1,24 +1,6 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/github.oas.js'
-import {default as githubOas} from '#module/github.oas.json'
-
-// Does this work with tree-shaking?
-export {githubOas as githubOas}
-
-export interface githubTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type githubTypes from '#module/github.oas.js'
+import {default as githubOasMeta} from './github.oas.meta.js'
 
 export type GithubSDKTypes = SDKTypes<
   githubTypes,
@@ -33,11 +15,7 @@ export type GithubSDKTypes = SDKTypes<
 
 export const githubSdkDef = {
   types: {} as GithubSDKTypes,
-  oas: githubOas as {} as OpenAPISpec,
+  oasMeta: githubOasMeta,
 } satisfies SdkDefinition<GithubSDKTypes>
 
 export default githubSdkDef
-
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
-
-// codegen:end

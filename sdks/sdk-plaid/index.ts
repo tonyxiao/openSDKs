@@ -1,24 +1,6 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/plaid.oas.js'
-import {default as plaidOas} from '#module/plaid.oas.json'
-
-// Does this work with tree-shaking?
-export {plaidOas as plaidOas}
-
-export interface plaidTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type plaidTypes from '#module/plaid.oas.js'
+import {default as plaidOasMeta} from './plaid.oas.meta.js'
 
 export type PlaidSDKTypes = SDKTypes<
   plaidTypes,
@@ -33,7 +15,7 @@ export type PlaidSDKTypes = SDKTypes<
 
 export const plaidSdkDef = {
   types: {} as PlaidSDKTypes,
-  oas: plaidOas as {} as OpenAPISpec,
+  oasMeta: plaidOasMeta,
 } satisfies SdkDefinition<PlaidSDKTypes>
 
 export default plaidSdkDef

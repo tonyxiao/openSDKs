@@ -2,6 +2,7 @@
 // #!/usr/bin/env node --import tsx
 
 import * as fs from 'node:fs'
+import * as path from 'node:path'
 import {parseArgs} from 'node:util'
 import type {OpenAPI3} from 'openapi-typescript'
 import openapiTS from 'openapi-typescript'
@@ -34,10 +35,28 @@ export function generateMeta(oas: OpenAPISpec) {
   return content
 }
 
+export async function generateTypes(oas: OpenAPISpec) {
+  const types = await openapiTS(oas as OpenAPI3)
+
+  return `${types}
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes
+`
+}
+
 export async function generateFromOas(oasPath: string) {
   const oas = JSON.parse(fs.readFileSync(oasPath, 'utf8')) as OpenAPISpec
   const meta = await prettyFormat(generateMeta(oas))
-  const types = await prettyFormat(await openapiTS(oas as OpenAPI3))
+
+  const types = await generateTypes(oas)
 
   return {meta, types}
 }
@@ -45,10 +64,10 @@ export async function generateFromOas(oasPath: string) {
 if (import.meta.url.includes(process.argv[1]!)) {
   const {
     positionals: [filename],
-    values: {outName},
+    values: {debug},
   } = parseArgs({
     options: {
-      outName: {type: 'string', short: 'o'},
+      debug: {type: 'boolean', short: 'd'},
     },
     allowPositionals: true,
   })
@@ -57,11 +76,12 @@ if (import.meta.url.includes(process.argv[1]!)) {
   }
   const ret = await generateFromOas(filename)
 
-  if (outName) {
-    fs.writeFileSync(outName + '.meta.ts', ret.meta)
-    fs.writeFileSync(outName + '.d.ts', ret.types)
-  } else {
+  if (debug) {
     console.log(ret.meta)
     console.log(ret.types)
+  } else {
+    const outName = path.basename(filename, path.extname(filename))
+    fs.writeFileSync(outName + '.meta.ts', ret.meta)
+    fs.writeFileSync(outName + '.d.ts', ret.types)
   }
 }

@@ -5265,7 +5265,7 @@ export interface operations {
         content: {
           "application/json": {
             comments: components["schemas"]["objs_comments"];
-            content_html?: Record<string, unknown> | null;
+            content_html?: unknown;
             editor?: components["schemas"]["defs_user_id"];
             file: components["schemas"]["objs_file"];
             ok: components["schemas"]["defs_ok_true"];
@@ -7576,3 +7576,14 @@ export interface operations {
     };
   };
 }
+
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes

@@ -38,7 +38,7 @@
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
-    "generate": "openapi-typescript ./discord.oas.json --output ./discord.oas.d.ts",
+    "generate": "npx tsx ../../packages/cli/generateFromOas.ts ./discord.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},

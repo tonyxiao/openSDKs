@@ -1,29 +1,11 @@
+import type {ClientOptions} from '@opensdks/runtime'
 import {
-  modifyRequest,
-  type OpenAPISpec,
+  modifyRequest, // TODO: this is a dependency, not devDep
   type SdkDefinition,
   type SDKTypes,
 } from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/apollo.oas.js'
-import {default as apolloOas} from '#module/apollo.oas.json'
-
-// Does this work with tree-shaking?
-export {apolloOas as apolloOas}
-
-export interface apolloTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type apolloTypes from '#module/apollo.oas.js'
+import {default as apolloOasMeta} from './apollo.oas.meta.js'
 
 export type ApolloSDKTypes = SDKTypes<
   apolloTypes,
@@ -32,7 +14,7 @@ export type ApolloSDKTypes = SDKTypes<
 
 export const apolloSdkDef = {
   types: {} as ApolloSDKTypes,
-  oas: apolloOas as {} as OpenAPISpec,
+  oasMeta: apolloOasMeta,
   createClient: (ctx, {api_key, ...options}) =>
     ctx.createClient({
       ...options,

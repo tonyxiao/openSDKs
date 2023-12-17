@@ -1,24 +1,6 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/slack.oas.js'
-import {default as slackOas} from '#module/slack.oas.json'
-
-// Does this work with tree-shaking?
-export {slackOas}
-
-export interface SlackTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type SlackTypes from '#module/slack.oas.js'
+import {default as slackOasMeta} from './slack.oas.meta.js'
 
 export type SlackSDKTypes = SDKTypes<
   SlackTypes,
@@ -29,7 +11,7 @@ export type SlackSDKTypes = SDKTypes<
 
 export const slackSdkDef = {
   types: {} as SlackSDKTypes,
-  oas: slackOas as {} as OpenAPISpec,
+  oasMeta: slackOasMeta,
 } satisfies SdkDefinition<SlackSDKTypes>
 
 export default slackSdkDef

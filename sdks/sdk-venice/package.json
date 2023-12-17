@@ -38,7 +38,7 @@
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "clean": "rm -rf ./dist",
     "download": "curl --fail https://app.venice.is/api/v0/openapi.json | prettier --parser json > ./venice.oas.json",
-    "generate": "openapi-typescript ./venice.oas.json --output venice.oas.d.ts",
+    "generate": "npx tsx ../../packages/cli/generateFromOas.ts ./venice.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},

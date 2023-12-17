@@ -21,3 +21,5 @@ export type ExtractKeyOfValueType<T, V> = Extract<
   },
   string
 >
+
+export {} from 'type-fest'

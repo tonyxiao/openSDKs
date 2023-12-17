@@ -1,24 +1,6 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {
-  components,
-  external,
-  operations,
-  paths,
-  webhooks,
-} from '#module/venice.oas.js'
-import {default as veniceOas} from '#module/venice.oas.json'
-
-// Does this work with tree-shaking?
-export {veniceOas as veniceOas}
-
-export interface veniceTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type veniceTypes from '#module/venice.oas.js'
+import {default as veniceOasMeta} from './venice.oas.meta.js'
 
 export type VeniceSDKTypes = SDKTypes<
   veniceTypes,
@@ -37,11 +19,7 @@ export type VeniceSDKTypes = SDKTypes<
 
 export const veniceSdkDef = {
   types: {} as VeniceSDKTypes,
-  oas: veniceOas as {} as OpenAPISpec,
+  oasMeta: veniceOasMeta,
 } satisfies SdkDefinition<VeniceSDKTypes>
 
 export default veniceSdkDef
-
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
-
-// codegen:end
