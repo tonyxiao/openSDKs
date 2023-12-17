@@ -48,7 +48,7 @@ export const listPackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  // version: '0.0.1',
+  version: '0.0.2-next',
   type: 'module',
   main: 'dist/cjs/index.js', // backward compat for node 10
   module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
@@ -95,7 +95,7 @@ const packageJsonTemplate: PackageJson = {
     'build:types':
       'tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types',
     // without with `pnpm -r version patch` command won't work...
-    version: 'pnpm version',
+    version: 'pnpm version', // We might not want to use this and instead use template version
   },
   publishConfig: {
     access: 'public',

@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-github",
-  "version": "0.0.2",
+  "version": "0.0.2-next",
   "type": "module",
   "imports": {
     "#module/*": "./*"

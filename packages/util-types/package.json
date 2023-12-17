@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/util-types",
-  "version": "0.0.2",
+  "version": "0.0.2-next",
   "sideEffects": false,
   "type": "module",
   "imports": {
