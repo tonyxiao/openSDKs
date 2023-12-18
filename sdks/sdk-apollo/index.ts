@@ -4,7 +4,7 @@ import {
   type SdkDefinition,
   type SDKTypes,
 } from '@opensdks/runtime'
-import type apolloTypes from '@opensdks/sdk-apollo/apollo.oas.js'
+import type apolloTypes from '#module/apollo.oas.js'
 import {default as apolloOasMeta} from './apollo.oas.meta.js'
 
 export type ApolloSDKTypes = SDKTypes<

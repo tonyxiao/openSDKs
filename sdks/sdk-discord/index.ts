@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type DiscordTypes from '@opensdks/sdk-discord/discord.oas.js'
+import type DiscordTypes from '#module/discord.oas.js'
 import {default as discordOasMeta} from './discord.oas.meta.js'
 
 export type DiscordSDKTypes = SDKTypes<

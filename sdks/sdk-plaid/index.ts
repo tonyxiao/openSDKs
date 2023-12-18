@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type plaidTypes from '@opensdks/sdk-plaid/plaid.oas.js'
+import type plaidTypes from '#module/plaid.oas.js'
 import {default as plaidOasMeta} from './plaid.oas.meta.js'
 
 export type PlaidSDKTypes = SDKTypes<
@@ -19,3 +19,7 @@ export const plaidSdkDef = {
 } satisfies SdkDefinition<PlaidSDKTypes>
 
 export default plaidSdkDef
+
+// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
+
+// codegen:end

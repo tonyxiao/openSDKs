@@ -53,11 +53,10 @@ const packageJsonTemplate: PackageJson = {
   main: 'dist/cjs/index.js', // backward compat for node 10
   module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
   types: 'dist/types/index.d.ts',
-  // imports: {
-  // unfortunately this doesn't really work in published package
-  //   '#module/*': './*', // Allowing syntax like '#module/qbo.oas.js'
-  // },
-  imports: undefined as any as {},
+  imports: {
+    // types  Won't work in published package unless tsconfig is present
+    '#module/*': './*', // Allowing syntax like '#module/qbo.oas.js'
+  },
   exports: {
     '.': {
       types: './dist/types/index.d.ts',
@@ -115,8 +114,8 @@ const tsConfigTemplate: TsConfigJson = {
     outDir: './dist',
     baseUrl: './',
     rootDir: './', // workaround issue with #module/* path not working when building @see https://share.cleanshot.com/gWWkV8xW
-    // paths: {
-    //   '#module/*': ['./*'], // Workaround issue with #module/path not working when building cjs specically https://share.cleanshot.com/250DCSkB
+    paths: {
+      '#module/*': ['./*'], // Workaround issue with #module/path not working when building cjs specically https://share.cleanshot.com/250DCSkB
     //   // This doesn't work when put inside tsconfig.base.json for some reason
     //   // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
     //   // if main is specified
@@ -124,7 +123,7 @@ const tsConfigTemplate: TsConfigJson = {
     //   // '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
     //   // '@opensdks/links': ['../../packages/links/index.ts'],
     //   // '@opensdks/runtime': ['../../packages/runtime/index.ts'],
-    // },
+    },
     // publish cjs for now and esm later...
     // module: 'CommonJS',
     // moduleResolution: 'Node',

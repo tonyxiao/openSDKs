@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type veniceTypes from '@opensdks/sdk-venice/venice.oas.js'
+import type veniceTypes from '#module/venice.oas.js'
 import {default as veniceOasMeta} from './venice.oas.meta.js'
 
 export type VeniceSDKTypes = SDKTypes<
