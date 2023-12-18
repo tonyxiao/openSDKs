@@ -20,7 +20,3 @@ export const discordSdkDef = {
 } satisfies SdkDefinition<DiscordSDKTypes>
 
 export default discordSdkDef
-
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
-
-// codegen:end

@@ -321,6 +321,36 @@ importers:
 
   website:
     dependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../packages/runtime
+      '@opensdks/sdk-apollo':
+        specifier: workspace:*
+        version: link:../sdks/sdk-apollo
+      '@opensdks/sdk-discord':
+        specifier: workspace:*
+        version: link:../sdks/sdk-discord
+      '@opensdks/sdk-github':
+        specifier: workspace:*
+        version: link:../sdks/sdk-github
+      '@opensdks/sdk-openai':
+        specifier: workspace:*
+        version: link:../sdks/sdk-openai
+      '@opensdks/sdk-plaid':
+        specifier: workspace:*
+        version: link:../sdks/sdk-plaid
+      '@opensdks/sdk-qbo':
+        specifier: workspace:*
+        version: link:../sdks/sdk-qbo
+      '@opensdks/sdk-slack':
+        specifier: workspace:*
+        version: link:../sdks/sdk-slack
+      '@opensdks/sdk-twilio':
+        specifier: workspace:*
+        version: link:../sdks/sdk-twilio
+      '@opensdks/sdk-venice':
+        specifier: workspace:*
+        version: link:../sdks/sdk-venice
       next:
         specifier: 14.0.3
         version: 14.0.3(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)

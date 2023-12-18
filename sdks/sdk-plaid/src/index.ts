@@ -19,7 +19,3 @@ export const plaidSdkDef = {
 } satisfies SdkDefinition<PlaidSDKTypes>
 
 export default plaidSdkDef
-
-// codegen:start {preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
-
-// codegen:end

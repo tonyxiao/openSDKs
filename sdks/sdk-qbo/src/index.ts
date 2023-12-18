@@ -1,6 +1,9 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {components, default as qboOasTypes} from '../qbo.oas.js'
+import type {default as qboOasTypes} from '../qbo.oas.js'
 import {default as qboOasMeta} from './qbo.oas.meta.js'
+
+export {qboOasTypes}
+type components = qboOasTypes['components']
 
 export type QBOSDKTypes = SDKTypes<
   qboOasTypes,
@@ -34,7 +37,9 @@ export const qboSdkDef = {
         ...options.headers,
       },
     })
-    function query(query: string) {
+    function query(
+      query: string,
+    ): Promise<components['schemas']['QueryResponse']> {
       return client
         .GET('/query', {params: {query: {query}}})
         .then((r) => r.data.QueryResponse)

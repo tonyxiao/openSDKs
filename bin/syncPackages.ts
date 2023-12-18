@@ -142,6 +142,34 @@ const tsConfigTemplate: TsConfigJson = {
   ],
 }
 
+async function addSdksAsDeps(pkgJsonPath: string, opts?: {version?: string}) {
+  const sdkJsons = listSdkPackages().map((p) => {
+    if (!p.packageJson.name) {
+      throw new Error(`No name in package.json at ${p.packageJsonPath}`)
+    }
+    if (!p.packageJson.version) {
+      throw new Error(`No version in package.json at ${p.packageJsonPath}`)
+    }
+    return p.packageJson
+  })
+
+  const pkgJson = getPackageJson(pkgJsonPath)
+
+  pkgJson.dependencies = {
+    ...pkgJson.dependencies,
+    ...Object.fromEntries(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      sdkJsons.map((p) => [p.name!, opts?.version ?? p.version!]),
+    ),
+  }
+
+  await prettyWrite({
+    path: pkgJsonPath,
+    format: 'package.json',
+    data: pkgJson,
+  })
+}
+
 // MARK: - Main
 if (import.meta.url.endsWith(process.argv[1]!)) {
   listSdkPackages().forEach((p) => {
@@ -221,29 +249,8 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
 
   // Update examples package.json
-  const sdkJsons = listSdkPackages().map((p) => {
-    if (!p.packageJson.name) {
-      throw new Error(`No name in package.json at ${p.packageJsonPath}`)
-    }
-    if (!p.packageJson.version) {
-      throw new Error(`No version in package.json at ${p.packageJsonPath}`)
-    }
-    return p.packageJson
-  })
-
-  const examplesPkgJsonPath = pathJoin(__dirname, '../examples/package.json')
-
-  const examplesPkgJson = getPackageJson(examplesPkgJsonPath)
-
-  examplesPkgJson.dependencies = {
-    ...examplesPkgJson.dependencies,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    ...Object.fromEntries(sdkJsons.map((p) => [p.name!, p.version!])),
-  }
-
-  await prettyWrite({
-    path: examplesPkgJsonPath,
-    format: 'package.json',
-    data: examplesPkgJson,
+  await addSdksAsDeps(pathJoin(__dirname, '../examples/package.json'))
+  await addSdksAsDeps(pathJoin(__dirname, '../website/package.json'), {
+    version: 'workspace:*',
   })
 }
