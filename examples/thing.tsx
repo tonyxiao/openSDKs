@@ -1,4 +1,4 @@
-import {listSdks} from './bin/syncPackages.js'
+import {listSdkPackages} from '../bin/syncPackages.js'
 
 export function Thing() {
   return <strong>World!</strong>
@@ -11,7 +11,7 @@ export function SdkTable() {
         <th>SDK</th>
         <th>Version</th>
       </tr>
-      {listSdks().map((sdk) => (
+      {listSdkPackages().map((sdk) => (
         <tr key={sdk.dirName}>
           <td>{sdk.packageJson.name}</td>
           <td>{sdk.packageJson.version}</td>

@@ -183,16 +183,6 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
       scripts: {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
-        'build:ts': undefined,
-        // 'tsc -p ./tsconfig.build.json',
-        // because tsc does not copy .d.ts files to build, and therefore we need to do it manully
-        // @see https://stackoverflow.com/questions/56018167/typescript-does-not-copy-d-ts-files-to-build
-        // We also cannot use .ts files because not all openapi types compile
-        // @see https://github.com/drwpow/openapi-typescript/issues/1481
-        'build:dts': undefined,
-        // 'mkdir -p dist && cp *.d.ts ./dist',
-        'build:json': undefined,
-        // 'mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist',
       } as {},
       devDependencies: {
         ...p.packageJson.devDependencies,
