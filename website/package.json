@@ -1,8 +1,8 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build --no-lint",
     "dev": "next dev",

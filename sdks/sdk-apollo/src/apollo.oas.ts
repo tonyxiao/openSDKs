@@ -1,3 +1,4 @@
+import {OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
 /**
@@ -235,110 +236,110 @@ export const apolloEmailerCampaignResponse = z.object({
   emailer_templates: z.array(apolloEmailerTemplate).nullish(),
 })
 
-export function outputOpenApi() {
-  return createDocument({
-    openapi: '3.1.0',
-    info: {title: 'Apollo API', version: '0.0.0'},
-    servers: [{url: 'https://app.apollo.io/api'}],
-    security: [{api_key: []}],
-    components: {
-      securitySchemes: {
-        api_key: {type: 'apiKey', name: 'api_key', in: 'query'},
-      },
+export const oas: OpenAPISpec = createDocument({
+  openapi: '3.1.0',
+  info: {title: 'Apollo API', version: '0.0.0'},
+  servers: [{url: 'https://app.apollo.io/api'}],
+  security: [{api_key: []}],
+  components: {
+    securitySchemes: {
+      api_key: {type: 'apiKey', name: 'api_key', in: 'query'},
     },
-    paths: {
-      '/v1/emailer_campaigns/{id}': {
-        get: jsonOperation('getEmailerCampaign', {
-          path: z.object({id: z.string()}),
-          response: apolloEmailerCampaignResponse,
-        }),
-      },
-      '/v1/emailer_campaigns': {
-        post: jsonOperation('createEmailerCampaign', {
-          body: apolloCreateEmailerCampaign,
-          response: apolloEmailerCampaignResponse,
-        }),
-      },
-      '/v1/emailer_campaigns/{id}/add_contact_ids': {
-        post: jsonOperation('addContactIdsToEmailerCampaign', {
-          path: z.object({id: z.string()}),
-          body: apolloEmailerCampaignAddContactIds,
-          response: apolloEmailerCampaignAddContactIdsResponse,
-        }),
-      },
-      '/v1/emailer_steps': {
-        post: jsonOperation('createEmailerStep', {
-          body: apolloCreateEmailerStep,
-          response: z.object({
-            emailer_step: apolloEmailerStep,
-            // Null for templatable steps (e.g. tasks / calls)
-            emailer_touch: apolloEmailerTouch.nullish(),
-            emailer_template: apolloEmailerTemplate.nullish(),
-          }),
-        }),
-      },
-      '/v1/emailer_steps/{id}': {
-        delete: jsonOperation('deleteEmailerStep', {
-          path: z.object({id: z.string()}),
-          response: z.object({
-            emailer_step: z.object({id: z.string(), deleted: z.boolean()}),
-          }),
-        }),
-      },
-      '/v1/emailer_touches/{id}': {
-        put: jsonOperation('updateEmailerTouch', {
-          path: z.object({id: z.string()}),
-          body: apolloEmailerTouchUpdate,
-          response: z.object({emailer_touch: apolloEmailerTouch}),
-        }),
-      },
-      '/v1/contacts/{id}': {
-        get: jsonOperation('getContact', {
-          path: z.object({id: z.string()}),
-          response: z.object({contact: apolloContact}),
-        }),
-      },
-      '/v1/email_accounts': {
-        get: jsonOperation('listEmailAccounts', {
-          response: z.object({email_accounts: z.array(emailAccount)}),
-        }),
-      },
-      '/v1/emailer_campaigns/check_contacts_deployability': {
-        post: jsonOperation('checkContactsDeployability', {
-          meta: {
-            description:
-              'Check if contacts are deployable to a sequence, primarily used to check if contacts are already in another sequence.',
-          },
-          body: z.object({
-            contact_ids: z.array(z.string()),
-            emailer_campaign_id: z.string().optional(),
-          }),
-          response: z.object({
-            num_active_in_other_campaigns: z.number(),
-            num_finished_in_other_campaigns: z.number(),
-            num_same_company: z.number(),
-            num_no_email: z.number(),
-            num_unverified_email: z.number(),
-            num_without_ownership_permission: z.number(),
-            num_with_job_change_contacts: z.number(),
-            sample_active_in_other_campaigns_contacts: z.array(
-              z.object({id: z.string(), name: z.string()}),
-            ),
-            sample_finished_in_other_campaigns_contacts: z.array(z.unknown()),
-            sample_same_company_contacts: z.array(z.unknown()),
-            sample_no_email_contacts: z.array(z.unknown()),
-            sample_unverified_email_contacts: z.array(z.unknown()),
-            sample_without_ownership_permission: z.array(z.unknown()),
-            sample_with_job_change_contacts: z.array(z.unknown()),
-            show_warning: z.boolean(),
-            num_total_dangerous_contacts: z.number(),
-          }),
-        }),
-      },
+  },
+  paths: {
+    '/v1/emailer_campaigns/{id}': {
+      get: jsonOperation('getEmailerCampaign', {
+        path: z.object({id: z.string()}),
+        response: apolloEmailerCampaignResponse,
+      }),
     },
-  })
-}
+    '/v1/emailer_campaigns': {
+      post: jsonOperation('createEmailerCampaign', {
+        body: apolloCreateEmailerCampaign,
+        response: apolloEmailerCampaignResponse,
+      }),
+    },
+    '/v1/emailer_campaigns/{id}/add_contact_ids': {
+      post: jsonOperation('addContactIdsToEmailerCampaign', {
+        path: z.object({id: z.string()}),
+        body: apolloEmailerCampaignAddContactIds,
+        response: apolloEmailerCampaignAddContactIdsResponse,
+      }),
+    },
+    '/v1/emailer_steps': {
+      post: jsonOperation('createEmailerStep', {
+        body: apolloCreateEmailerStep,
+        response: z.object({
+          emailer_step: apolloEmailerStep,
+          // Null for templatable steps (e.g. tasks / calls)
+          emailer_touch: apolloEmailerTouch.nullish(),
+          emailer_template: apolloEmailerTemplate.nullish(),
+        }),
+      }),
+    },
+    '/v1/emailer_steps/{id}': {
+      delete: jsonOperation('deleteEmailerStep', {
+        path: z.object({id: z.string()}),
+        response: z.object({
+          emailer_step: z.object({id: z.string(), deleted: z.boolean()}),
+        }),
+      }),
+    },
+    '/v1/emailer_touches/{id}': {
+      put: jsonOperation('updateEmailerTouch', {
+        path: z.object({id: z.string()}),
+        body: apolloEmailerTouchUpdate,
+        response: z.object({emailer_touch: apolloEmailerTouch}),
+      }),
+    },
+    '/v1/contacts/{id}': {
+      get: jsonOperation('getContact', {
+        path: z.object({id: z.string()}),
+        response: z.object({contact: apolloContact}),
+      }),
+    },
+    '/v1/email_accounts': {
+      get: jsonOperation('listEmailAccounts', {
+        response: z.object({email_accounts: z.array(emailAccount)}),
+      }),
+    },
+    '/v1/emailer_campaigns/check_contacts_deployability': {
+      post: jsonOperation('checkContactsDeployability', {
+        meta: {
+          description:
+            'Check if contacts are deployable to a sequence, primarily used to check if contacts are already in another sequence.',
+        },
+        body: z.object({
+          contact_ids: z.array(z.string()),
+          emailer_campaign_id: z.string().optional(),
+        }),
+        response: z.object({
+          num_active_in_other_campaigns: z.number(),
+          num_finished_in_other_campaigns: z.number(),
+          num_same_company: z.number(),
+          num_no_email: z.number(),
+          num_unverified_email: z.number(),
+          num_without_ownership_permission: z.number(),
+          num_with_job_change_contacts: z.number(),
+          sample_active_in_other_campaigns_contacts: z.array(
+            z.object({id: z.string(), name: z.string()}),
+          ),
+          sample_finished_in_other_campaigns_contacts: z.array(z.unknown()),
+          sample_same_company_contacts: z.array(z.unknown()),
+          sample_no_email_contacts: z.array(z.unknown()),
+          sample_unverified_email_contacts: z.array(z.unknown()),
+          sample_without_ownership_permission: z.array(z.unknown()),
+          sample_with_job_change_contacts: z.array(z.unknown()),
+          show_warning: z.boolean(),
+          num_total_dangerous_contacts: z.number(),
+        }),
+      }),
+    },
+  },
+})
+
+export default oas
 
 if (import.meta.url.endsWith(process.argv[1]!)) {
-  console.log(JSON.stringify(outputOpenApi(), null, 2))
+  console.log(JSON.stringify(oas, null, 2))
 }

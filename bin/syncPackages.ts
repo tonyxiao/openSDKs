@@ -85,6 +85,8 @@ const packageJsonTemplate: PackageJson = {
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
+    // Exclude unmodified oas from publishing as they only cause issues...
+    '!*.orig.oas.json',
     // No longer necessary to exclude json files as we no longer import them...
     // Exclude dist json files copied by tsc as we are using #module/ import from root
     // Though not strictly necessary as we don't import directly anymore.
@@ -214,7 +216,7 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
         // For now until we figure out the cannot be named w/o a reference problem
         // @see https://share.cleanshot.com/V2q3rQBR
         include: ['./src/**/*.ts'],
-        exclude: [...(tsConfigTemplate.exclude ?? []), '**/*.openapi.ts'],
+        exclude: [...(tsConfigTemplate.exclude ?? []), '**/*.oas.ts'],
       },
     })
     fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})

@@ -27,7 +27,8 @@
     "src",
     "*.d.ts",
     "*.oas.json",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!*.orig.oas.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",

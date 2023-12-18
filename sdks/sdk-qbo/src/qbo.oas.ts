@@ -1,3 +1,4 @@
+import {OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
 /**
@@ -503,77 +504,75 @@ export const queryPayloadSchema = z.object({
   time: z.string(),
 })
 
-export function outputOpenApi() {
-  return createDocument({
-    openapi: '3.1.0',
-    info: {title: 'Quickbooks API', version: '0.0.0'},
-    servers: [
-      {
-        url: 'https://quickbooks.api.intuit.com/v3/company/{realmId}',
-        description: 'production',
-        variables: {realmId: {default: ''}},
-      },
-      {
-        description: 'sandbox',
-        url: 'https://sandbox-quickbooks.api.intuit.com/v3/company/{realmId}',
-        variables: {realmId: {default: ''}},
-      },
-    ],
-    security: [{oauth2: []}],
-    components: {
-      securitySchemes: {
-        oauth2: {type: 'oauth2', name: 'authorization', in: 'header'},
-      },
-      schemas: {
-        entityNameSchema,
-      },
+export const oas: OpenAPISpec = createDocument({
+  openapi: '3.1.0',
+  info: {title: 'Quickbooks API', version: '0.0.0'},
+  servers: [
+    {
+      url: 'https://quickbooks.api.intuit.com/v3/company/{realmId}',
+      description: 'production',
+      variables: {realmId: {default: ''}},
     },
-    paths: {
-      ...Object.fromEntries(
-        entityNameSchema.options.map((o) => [
-          `/${o.toLowerCase()}/{id}`,
-          {
-            get: jsonOperation(`get${o}`, {
-              path: z.object({id: z.string()}),
-              response: z.object({
-                [o]: entitySchemaByName[o],
-                time: z.string().datetime(),
-              }),
+    {
+      description: 'sandbox',
+      url: 'https://sandbox-quickbooks.api.intuit.com/v3/company/{realmId}',
+      variables: {realmId: {default: ''}},
+    },
+  ],
+  security: [{oauth2: []}],
+  components: {
+    securitySchemes: {
+      oauth2: {type: 'oauth2', name: 'authorization', in: 'header'},
+    },
+    schemas: {
+      entityNameSchema,
+    },
+  },
+  paths: {
+    ...Object.fromEntries(
+      entityNameSchema.options.map((o) => [
+        `/${o.toLowerCase()}/{id}`,
+        {
+          get: jsonOperation(`get${o}`, {
+            path: z.object({id: z.string()}),
+            response: z.object({
+              [o]: entitySchemaByName[o],
+              time: z.string().datetime(),
             }),
-          },
-        ]),
-      ),
-      '/query': {
-        get: jsonOperation('query', {
-          query: z.object({query: z.string()}),
-          response: queryPayloadSchema,
-        }),
-      },
-      '/preferences': {
-        get: jsonOperation('getPreferences', {
-          response: z.unknown(),
-        }),
-      },
-      '/reports/TransactionList': {
-        get: jsonOperation('getTransactionList', {
-          response: reportPayloadSchema,
-        }),
-      },
-      '/cdc': {
-        get: jsonOperation('cdc', {
-          query: z.object({
-            changedSince: z.string(),
-            entities: z
-              .string()
-              .describe('Comma separated list of entity names'),
           }),
-          response: cdcPayloadSchema,
-        }),
-      },
+        },
+      ]),
+    ),
+    '/query': {
+      get: jsonOperation('query', {
+        query: z.object({query: z.string()}),
+        response: queryPayloadSchema,
+      }),
     },
-  })
-}
+    '/preferences': {
+      get: jsonOperation('getPreferences', {
+        response: z.unknown(),
+      }),
+    },
+    '/reports/TransactionList': {
+      get: jsonOperation('getTransactionList', {
+        response: reportPayloadSchema,
+      }),
+    },
+    '/cdc': {
+      get: jsonOperation('cdc', {
+        query: z.object({
+          changedSince: z.string(),
+          entities: z.string().describe('Comma separated list of entity names'),
+        }),
+        response: cdcPayloadSchema,
+      }),
+    },
+  },
+})
+
+export default oas
 
 if (import.meta.url.endsWith(process.argv[1]!)) {
-  console.log(JSON.stringify(outputOpenApi(), null, 2))
+  console.log(JSON.stringify(oas, null, 2))
 }

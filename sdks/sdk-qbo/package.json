@@ -26,7 +26,8 @@
     "src",
     "*.d.ts",
     "*.oas.json",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!*.orig.oas.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
@@ -36,7 +37,7 @@
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
     "generate": "run-s generate:*",
-    "generate:json": "npx tsx ./src/qbo.openapi.ts | prettier --parser json > ./qbo.oas.json",
+    "generate:json": "npx tsx ./src/qbo.oas.ts | prettier --parser json > ./qbo.oas.json",
     "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./qbo.oas.json",
     "version": "pnpm version"
   },

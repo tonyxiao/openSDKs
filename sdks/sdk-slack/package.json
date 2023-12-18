@@ -26,7 +26,8 @@
     "src",
     "*.d.ts",
     "*.oas.json",
-    "!**/*.spec.ts"
+    "!**/*.spec.ts",
+    "!*.orig.oas.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
@@ -37,7 +38,7 @@
     "clean": "rm -rf ./esm ./cjs ./types",
     "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "generate": "run-s generate:*",
-    "generate:json": "npx tsx ./src/slack.openapi.ts | prettier --parser json > ./slack.oas.json",
+    "generate:json": "npx tsx ./src/slack.oas.ts | prettier --parser json > ./slack.oas.json",
     "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./slack.oas.json",
     "version": "pnpm version"
   },
