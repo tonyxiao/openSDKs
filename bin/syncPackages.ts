@@ -49,7 +49,7 @@ export const listCorePackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.4',
+  version: '0.0.5',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"
@@ -219,4 +219,31 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     })
   })
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
+
+  // Update examples package.json
+  const sdkJsons = listSdkPackages().map((p) => {
+    if (!p.packageJson.name) {
+      throw new Error(`No name in package.json at ${p.packageJsonPath}`)
+    }
+    if (!p.packageJson.version) {
+      throw new Error(`No version in package.json at ${p.packageJsonPath}`)
+    }
+    return p.packageJson
+  })
+
+  const examplesPkgJsonPath = pathJoin(__dirname, '../examples/package.json')
+
+  const examplesPkgJson = getPackageJson(examplesPkgJsonPath)
+
+  examplesPkgJson.dependencies = {
+    ...examplesPkgJson.dependencies,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    ...Object.fromEntries(sdkJsons.map((p) => [p.name!, p.version!])),
+  }
+
+  await prettyWrite({
+    path: examplesPkgJsonPath,
+    format: 'package.json',
+    data: examplesPkgJson,
+  })
 }
