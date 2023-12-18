@@ -5,12 +5,12 @@
 
 import {dirname, join as pathJoin} from 'node:path'
 import * as url from 'node:url'
-import {getPackageJson, listSdks, prettyWrite} from './syncPackages.js'
+import {getPackageJson, listSdkPackages, prettyWrite} from './syncPackages.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const sdkJsons = listSdks().map((p) => {
+const sdkJsons = listSdkPackages().map((p) => {
   if (!p.packageJson.name) {
     throw new Error(`No name in package.json at ${p.packageJsonPath}`)
   }

@@ -89,7 +89,12 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
+
+# Built artifacts
 dist
+esm
+cjs
+types
 
 # Gatsby files
 .cache/

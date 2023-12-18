@@ -13,7 +13,7 @@
     "build": {
       "cache": false,
       "dependsOn": ["clean", "^build"],
-      "outputs": ["dist"]
+      "outputs": ["cjs", "esm", "types"]
     },
     "debug": {"cache": false},
     "//#typecheck": {},

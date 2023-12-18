@@ -4,8 +4,8 @@ import type {
   SdkDefinition,
   SDKTypes,
 } from '@opensdks/runtime'
-import type Oas_api_v2010 from '#module/twilio_api_v2010.oas.js'
-import type Oas_messaging_v1 from '#module/twilio_messaging_v1.oas.js'
+import type Oas_api_v2010 from '../twilio_api_v2010.oas.js'
+import type Oas_messaging_v1 from '../twilio_messaging_v1.oas.js'
 import {default as oas_api_v2010} from './twilio_api_v2010.oas.meta.js'
 import {default as oas_messaging_v1} from './twilio_messaging_v1.oas.meta.js'
 

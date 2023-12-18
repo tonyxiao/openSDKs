@@ -2,41 +2,41 @@
   "name": "@opensdks/sdk-discord",
   "version": "0.0.4",
   "type": "module",
-  "imports": {
-    "#module/*": "./*"
-  },
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
     },
     "./*.oas.js": "./*.oas.js",
     "./*.oas.json": "./*.oas.json",
     "./*": {
-      "types": "./dist/types/*.d.ts",
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.js"
+      "types": "./types/*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./cjs/*.js"
     }
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
   "files": [
-    "dist",
-    "**/*.ts",
-    "**/*.d.ts",
-    "**/*.json",
+    "types",
+    "esm",
+    "cjs",
+    "src",
+    "*.d.ts",
+    "*.oas.json",
     "!**/*.spec.ts",
-    "!dist/**/*.json"
+    "!cjs/**/*.json",
+    "!esm/**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:cjs": "tsc -p ./tsconfig.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs",
-    "build:cjs-pkgjson": "mkdir -p ./dist/cjs && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.json --declaration false --declarationMap false --outDir ./dist/esm",
-    "build:types": "tsc -p ./tsconfig.json --emitDeclarationOnly --outDir ./dist/types",
-    "clean": "rm -rf ./dist",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs",
+    "build:cjs-pkgjson": "mkdir -p ./cjs && echo '{\"type\": \"commonjs\"}' > ./cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
+    "clean": "rm -rf ./esm ./cjs ./types",
     "download": "curl --fail https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi.json -o ./discord.oas.json",
     "generate": "npx tsx ../../packages/cli/generateFromOas.ts ./discord.oas.json",
     "version": "pnpm version"

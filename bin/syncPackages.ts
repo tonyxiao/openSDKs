@@ -41,60 +41,66 @@ export async function prettyWrite(
   )
 }
 
-export const listSdks = () => listPackagesInDir(pathJoin(__dirname, '../sdks'))
+export const listSdkPackages = () =>
+  listPackagesInDir(pathJoin(__dirname, '../sdks'))
 
-export const listPackages = () =>
+export const listCorePackages = () =>
   listPackagesInDir(pathJoin(__dirname, '../packages'))
 
 // Templates
 const packageJsonTemplate: PackageJson = {
   version: '0.0.4',
   type: 'module',
-  main: 'dist/cjs/index.js', // backward compat for node 10
-  module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
-  types: 'dist/types/index.d.ts',
-  imports: {
-    // types  Won't work in published package unless tsconfig is present
-    '#module/*': './*', // Allowing syntax like '#module/qbo.oas.js'
-  },
+  main: './cjs/index.js', // backward compat for node 10
+  module: './esm/index.js', // backward compat for those that do not support "exports"
+  types: './types/index.d.ts',
+  // imports: {
+  //   // types  Won't work in published package unless tsconfig is present
+  //   '#module/*': './*', // Allowing syntax like '#module/qbo.oas.js'
+  // },
+  imports: undefined as any as {},
   exports: {
     '.': {
-      types: './dist/types/index.d.ts',
-      import: './dist/esm/index.js',
-      require: './dist/cjs/index.js',
+      types: './types/index.d.ts',
+      import: './esm/index.js',
+      require: './cjs/index.js',
     },
     './*.oas.js': './*.oas.js', // maps to d.ts file
     './*.oas.json': './*.oas.json', // for those that can read it
     './*': {
-      types: './dist/types/*.d.ts',
-      import: './dist/esm/*.js',
-      require: './dist/cjs/*.js',
+      types: './types/*.d.ts',
+      import: './esm/*.js',
+      require: './cjs/*.js',
     },
   },
   files: [
-    'dist',
+    'types',
+    'esm',
+    'cjs',
     // For declarationMap to work, we include our actual source files
-    '**/*.ts',
-    '**/*.d.ts',
-    '**/*.json',
+    'src',
+    '*.d.ts',
+    '*.oas.json',
     // Already present in dist, but if we exclude can cause issues with declration map though
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
     // Exclude dist json files copied by tsc as we are using #module/ import from root
-    '!dist/**/*.json',
+    // Though not strictly necessary as we don't import directly anymore.
+    '!cjs/**/*.json',
+    '!esm/**/*.json',
   ],
   scripts: {
-    clean: 'rm -rf ./dist',
+    clean: 'rm -rf ./esm ./cjs ./types',
     build: 'concurrently npm:build:*',
     'build:cjs':
-      'tsc -p ./tsconfig.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs',
+      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs',
     'build:cjs-pkgjson':
-      'mkdir -p ./dist/cjs && echo \'{"type": "commonjs"}\' > ./dist/cjs/package.json',
+      'mkdir -p ./cjs && echo \'{"type": "commonjs"}\' > ./cjs/package.json',
     'build:esm':
-      'tsc -p ./tsconfig.json --declaration false --declarationMap false --outDir ./dist/esm',
+      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm',
     'build:types':
-      'tsc -p ./tsconfig.json --emitDeclarationOnly --outDir ./dist/types',
+      'tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types',
     // without with `pnpm -r version patch` command won't work...
     version: 'pnpm version', // We might not want to use this and instead use template version
   },
@@ -109,21 +115,21 @@ const packageJsonTemplate: PackageJson = {
 const tsConfigTemplate: TsConfigJson = {
   extends: '../../tsconfig.base.json',
   compilerOptions: {
-    module: 'NodeNext',
-    moduleResolution: 'NodeNext',
-    outDir: './dist',
+    // outDir: './dist',
     baseUrl: './',
-    rootDir: './', // workaround issue with #module/* path not working when building @see https://share.cleanshot.com/gWWkV8xW
-    paths: {
-      '#module/*': ['./*'], // Workaround issue with #module/path not working when building cjs specically https://share.cleanshot.com/250DCSkB
-    //   // This doesn't work when put inside tsconfig.base.json for some reason
-    //   // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
-    //   // if main is specified
-    //   // EDIT: This doesn't work as the build output contains files in `paths` https://share.cleanshot.com/Nlmd0fKt
-    //   // '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
-    //   // '@opensdks/links': ['../../packages/links/index.ts'],
-    //   // '@opensdks/runtime': ['../../packages/runtime/index.ts'],
-    },
+    rootDir: undefined,
+    paths: undefined,
+    // rootDir: './', // workaround issue with #module/* path not working when building @see https://share.cleanshot.com/gWWkV8xW
+    // paths: {
+    //   '../*': ['./*'], // Workaround issue with #module/path not working when building cjs specically https://share.cleanshot.com/250DCSkB
+    //   //   // This doesn't work when put inside tsconfig.base.json for some reason
+    //   //   // and tsx unlike tsc / vscode doesn't seem to look for index.ts by default
+    //   //   // if main is specified
+    //   //   // EDIT: This doesn't work as the build output contains files in `paths` https://share.cleanshot.com/Nlmd0fKt
+    //   //   // '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
+    //   //   // '@opensdks/links': ['../../packages/links/index.ts'],
+    //   //   // '@opensdks/runtime': ['../../packages/runtime/index.ts'],
+    // },
     // publish cjs for now and esm later...
     // module: 'CommonJS',
     // moduleResolution: 'Node',
@@ -131,14 +137,14 @@ const tsConfigTemplate: TsConfigJson = {
   include: ['*.ts'],
   // I think this is only for emitting, not for type checking
   exclude: [
-    '*.spec.ts',
+    '**/*.spec.ts',
     'generateFromOas.ts', // Need to exclude this for now because sometimes contain esm specific code...
   ],
 }
 
 // MARK: - Main
 if (import.meta.url.endsWith(process.argv[1]!)) {
-  listSdks().forEach((p) => {
+  listSdkPackages().forEach((p) => {
     // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
     p.packageJson = {
       ...(p.packageJson as {}),
@@ -172,27 +178,27 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     })
 
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: {
         ...tsConfigTemplate,
         // For now until we figure out the cannot be named w/o a reference problem
         // @see https://share.cleanshot.com/V2q3rQBR
-        exclude: [...(tsConfigTemplate.exclude ?? []), '*.openapi.ts'],
+        include: ['./src/**/*.ts'],
+        exclude: [...(tsConfigTemplate.exclude ?? []), '**/*.openapi.ts'],
       },
     })
-    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.build.json'), {force: true})
+    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
   })
 
-  listPackages().forEach((p) => {
+  listCorePackages().forEach((p) => {
     p.packageJson = {
       ...(p.packageJson as {}),
       ...(packageJsonTemplate as {}),
       scripts: {
         ...p.packageJson.scripts,
         ...packageJsonTemplate.scripts,
-        clean: 'rm -rf ./dist',
-      },
+      } as {},
       devDependencies: {
         ...p.packageJson.devDependencies,
         ...packageJsonTemplate.devDependencies,
@@ -205,9 +211,9 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     })
 
     // Delete previous
-    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.build.json'), {force: true})
+    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
       format: 'tsconfig.json',
       data: tsConfigTemplate,
     })

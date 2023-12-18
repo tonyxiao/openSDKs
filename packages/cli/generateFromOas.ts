@@ -26,7 +26,8 @@ if (import.meta.url.includes(process.argv[1]!)) {
     console.log(ret.types)
   } else {
     const outName = path.basename(filename, path.extname(filename))
-    fs.writeFileSync(outName + '.meta.ts', ret.meta)
+    // TODO: Get rid of this hard coding...
+    fs.writeFileSync('src/' + outName + '.meta.ts', ret.meta)
     fs.writeFileSync(outName + '.d.ts', ret.types)
   }
 }
