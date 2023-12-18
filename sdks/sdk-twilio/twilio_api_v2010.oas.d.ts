@@ -629,7 +629,7 @@ export interface components {
        * Format: uri-map
        * @description A Map of various subresources available for the given Account Instance
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The type of this account. Either `Trial` or `Full` if it's been upgraded */
       type?: components["schemas"]["account_enum_type"];
       /** @description The URI for this resource, relative to `https://api.twilio.com` */
@@ -825,7 +825,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related AvailablePhoneNumber resources identified by their URIs relative to `https://api.twilio.com`.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     "api.v2010.account.available_phone_number_country.available_phone_number_local": {
       /**
@@ -1220,7 +1220,7 @@ export interface components {
        * Format: uri-map
        * @description A list of subresources available to this call, identified by their URIs relative to `https://api.twilio.com`.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     /** @enum {string} */
     call_enum_event: "initiated" | "ringing" | "answered" | "completed";
@@ -1230,9 +1230,9 @@ export interface components {
     call_enum_update_status: "canceled" | "completed";
     "api.v2010.account.call.call_event": {
       /** @description Contains a dictionary representing the request of the call. */
-      request?: Record<string, unknown> | null;
+      request?: unknown;
       /** @description Contains a dictionary representing the call response, including a list of the call events. */
-      response?: Record<string, unknown> | null;
+      response?: unknown;
     };
     "api.v2010.account.call.call_feedback": {
       /** @description The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource. */
@@ -1437,7 +1437,7 @@ export interface components {
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description How to decrypt the recording if it was encrypted using [Call Recording Encryption](https://www.twilio.com/docs/voice/tutorials/voice-recording-encryption) feature. */
-      encryption_details?: Record<string, unknown> | null;
+      encryption_details?: unknown;
       /**
        * Format: currency
        * @description The currency used in the `price` property. Example: `USD`.
@@ -1487,7 +1487,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs relative to `https://api.twilio.com`.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The reason why a conference ended. When a conference is in progress, will be `null`. When conference is completed, can be: `conference-ended-via-api`, `participant-with-end-conference-on-exit-left`, `participant-with-end-conference-on-exit-kicked`, `last-participant-kicked`, or `last-participant-left`. */
       reason_conference_ended?: components["schemas"]["conference_enum_reason_conference_ended"];
       /** @description The call SID that caused the conference to end. */
@@ -1543,7 +1543,7 @@ export interface components {
       /** @description The error code that describes why the recording is `absent`. The error code is described in our [Error Dictionary](https://www.twilio.com/docs/api/errors). This value is null if the recording `status` is not `absent`. */
       error_code?: number | null;
       /** @description How to decrypt the recording if it was encrypted using [Call Recording Encryption](https://www.twilio.com/docs/voice/tutorials/voice-recording-encryption) feature. */
-      encryption_details?: Record<string, unknown> | null;
+      encryption_details?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
     };
@@ -1664,7 +1664,7 @@ export interface components {
       /** @description Whether the phone number requires an [Address](https://www.twilio.com/docs/usage/api/address) registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`. */
       address_requirements?: components["schemas"]["dependent_phone_number_enum_address_requirement"];
       /** @description The set of Boolean properties that indicates whether a phone number can receive calls or messages.  Capabilities are  `Voice`, `SMS`, and `MMS` and each capability can be: `true` or `false`. */
-      capabilities?: Record<string, unknown> | null;
+      capabilities?: unknown;
       /**
        * Format: uri
        * @description The URL we call using the `status_callback_method` to send status information to your application.
@@ -1835,7 +1835,7 @@ export interface components {
       /** @description A short description of the functionality that the Add-on provides. */
       description?: string | null;
       /** @description A JSON string that represents the current configuration of this Add-on installation. */
-      configuration?: Record<string, unknown> | null;
+      configuration?: unknown;
       /** @description An application-defined string that uniquely identifies the resource. It can be used in place of the resource's `sid` in the URL to address the resource. */
       unique_name?: string | null;
       /**
@@ -1854,7 +1854,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their relative URIs.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     "api.v2010.account.incoming_phone_number.incoming_phone_number_assigned_add_on.incoming_phone_number_assigned_add_on_extension": {
       /** @description The unique string that that we created to identify the resource. */
@@ -2373,7 +2373,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs relative to `https://api.twilio.com`
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     /** @enum {string} */
     message_enum_status: "queued" | "sending" | "sent" | "failed" | "delivered" | "undelivered" | "receiving" | "received" | "accepted" | "scheduled" | "read" | "partially_delivered" | "canceled";
@@ -2715,12 +2715,12 @@ export interface components {
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description How to decrypt the recording if it was encrypted using [Call Recording Encryption](https://www.twilio.com/docs/voice/tutorials/voice-recording-encryption) feature. */
-      encryption_details?: Record<string, unknown> | null;
+      encryption_details?: unknown;
       /**
        * Format: uri-map
        * @description A list of related resources identified by their relative URIs.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /**
        * Format: uri
        * @description The URL of the media file associated with this recording resource. When stored externally, this is the full URL location of the media file.
@@ -2763,7 +2763,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their relative URIs.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     /** @enum {string} */
     recording_add_on_result_enum_status: "canceled" | "completed" | "deleted" | "failed" | "in-progress" | "init" | "processing" | "queued";
@@ -2798,7 +2798,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their relative URIs.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
     };
     "api.v2010.account.recording.recording_transcription": {
       /** @description The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Transcription resource. */
@@ -2994,7 +2994,7 @@ export interface components {
        * Format: uri-map
        * @description A list of credentials associated with this credential list.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI for this resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
     };
@@ -3082,7 +3082,7 @@ export interface components {
        * Format: uri-map
        * @description A list of mapping resources associated with the SIP Domain resource identified by their relative URIs.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description Whether to allow SIP Endpoints to register with the domain to receive calls. */
       sip_registration?: boolean | null;
       /** @description Whether emergency calling is enabled for the domain. If enabled, allows emergency calls on the domain from phone numbers with validated addresses. */
@@ -3115,7 +3115,7 @@ export interface components {
        * Format: uri-map
        * @description A list of the IpAddress resources associated with this IP access control list resource.
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI for this resource, relative to `https://api.twilio.com` */
       uri?: string | null;
     };
@@ -3320,7 +3320,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3366,7 +3366,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3412,7 +3412,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3458,7 +3458,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3504,7 +3504,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3550,7 +3550,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3596,7 +3596,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3642,7 +3642,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -3688,7 +3688,7 @@ export interface components {
        * Format: uri-map
        * @description A list of related resources identified by their URIs. For more information, see [List Subresources](https://www.twilio.com/docs/usage/api/usage-record#list-subresources).
        */
-      subresource_uris?: Record<string, unknown> | null;
+      subresource_uris?: unknown;
       /** @description The URI of the resource, relative to `https://api.twilio.com`. */
       uri?: string | null;
       /** @description The amount used to bill usage and measured in units described in `usage_unit`. */
@@ -11899,3 +11899,14 @@ export interface operations {
     };
   };
 }
+
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes

@@ -7751,3 +7751,14 @@ export interface operations {
     };
   };
 }
+
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes

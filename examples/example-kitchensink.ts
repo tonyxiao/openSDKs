@@ -65,7 +65,7 @@ void twilio.api_v2010
   //                direction?: "inbound" | "outbound-api" | "outbound-call" | "outbound-reply" | undefined;
   //                from?: string | ... 1 more ... | undefined;
   //                ... 15 more ...;
-  //                subresource_uris?: Record<...> | ... 1 more ... | undefined;
+  //                subresource_uris?: unknown;
   //            };
   //            error?: undefined;
   //            response: Response;

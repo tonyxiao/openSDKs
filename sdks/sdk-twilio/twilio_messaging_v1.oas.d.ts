@@ -199,7 +199,7 @@ export interface components {
       /** @description A boolean that specifies whether brand should be a mock or not. If true, brand will be registered as a mock brand. Defaults to false if no value is provided. */
       mock?: boolean | null;
       /** Format: uri-map */
-      links?: Record<string, unknown> | null;
+      links?: unknown;
     };
     /** @enum {string} */
     brand_registrations_enum_status: "PENDING" | "APPROVED" | "FAILED" | "IN_REVIEW" | "DELETED";
@@ -304,7 +304,7 @@ export interface components {
       /** Format: uri */
       url?: string | null;
       /** @description Optional JSON field describing the status and upload date of a new certificate in the process of validation */
-      cert_in_validation?: Record<string, unknown> | null;
+      cert_in_validation?: unknown;
     };
     "messaging.v1.domain_config": {
       /** @description The unique string that we created to identify the Domain resource. */
@@ -502,7 +502,7 @@ export interface components {
        * Format: uri-map
        * @description The absolute URLs of related resources.
        */
-      links?: Record<string, unknown> | null;
+      links?: unknown;
       /** @description A string that describes the scenario in which the Messaging Service will be used. Possible values are `notifications`, `marketing`, `verification`, `discussion`, `poll`, `undeclared`. */
       usecase?: string | null;
       /** @description Whether US A2P campaign is registered for this Service. */
@@ -626,7 +626,7 @@ export interface components {
       /** @description If a rejected verification is allowed to be edited/resubmitted. Some rejection reasons allow editing and some do not. */
       edit_allowed?: boolean | null;
       /** @description The URLs of the documents associated with the Tollfree Verification resource. */
-      resource_links?: Record<string, unknown> | null;
+      resource_links?: unknown;
       /** @description An optional external reference ID supplied by customer and echoed back on status retrieval. */
       external_reference_id?: string | null;
     };
@@ -660,7 +660,7 @@ export interface components {
       /** @description Indicates whether the campaign was registered externally or not. */
       is_externally_registered?: boolean | null;
       /** @description Rate limit and/or classification set by each carrier, Ex. AT&T or T-Mobile. */
-      rate_limits?: Record<string, unknown> | null;
+      rate_limits?: unknown;
       /** @description Details around how a consumer opts-in to their campaign, therefore giving consent to receive their messages. If multiple opt-in methods can be used for the same campaign, they must all be listed. 40 character minimum. 2048 character maximum. */
       message_flow?: string | null;
       /** @description If end users can text in a keyword to start receiving messages from this campaign, the auto-reply messages sent to the end users must be provided. The opt-in response should include the Brand name, confirmation of opt-in enrollment to a recurring message campaign, how to get help, and clear description of how to opt-out. This field is required if end users can text in a keyword to start receiving messages from this campaign. 20 character minimum. 320 character maximum. */
@@ -2034,3 +2034,14 @@ export interface operations {
     };
   };
 }
+
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes

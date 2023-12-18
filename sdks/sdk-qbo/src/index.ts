@@ -1,18 +1,9 @@
-import type {OpenAPISpec, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {ClientOptions} from '@opensdks/runtime'
-import type {components, external, operations, paths, webhooks} from './qbo.oas.js'
-import {default as qboOas} from './qbo.oas.json'
+import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type {default as qboOasTypes} from '../qbo.oas.js'
+import {default as qboOasMeta} from './qbo.oas.meta.js'
 
-// Does this work with tree-shaking?
-export {qboOas}
-
-export interface qboOasTypes {
-  components: components
-  external: external
-  operations: operations
-  paths: paths
-  webhooks: webhooks
-}
+export {qboOasTypes}
+type components = qboOasTypes['components']
 
 export type QBOSDKTypes = SDKTypes<
   qboOasTypes,
@@ -24,8 +15,9 @@ export type QBOSDKTypes = SDKTypes<
 >
 
 const servers = {
-  sandbox: qboOas.servers?.find((s) => s.url.includes('sandbox'))?.url,
-  production: qboOas.servers?.find((s) => s.url.includes('production'))?.url,
+  sandbox: qboOasMeta.servers?.find((s) => s.url.includes('sandbox'))?.url,
+  production: qboOasMeta.servers?.find((s) => s.url.includes('production'))
+    ?.url,
 }
 
 /**
@@ -34,7 +26,7 @@ const servers = {
  */
 export const qboSdkDef = {
   types: {} as QBOSDKTypes,
-  oas: qboOas as OpenAPISpec,
+  oasMeta: qboOasMeta,
   createClient: (ctx, {realmId, accessToken, envName, ...options}) => {
     const client = ctx.createClient({
       ...options,
@@ -45,7 +37,9 @@ export const qboSdkDef = {
         ...options.headers,
       },
     })
-    function query(query: string) {
+    function query(
+      query: string,
+    ): Promise<components['schemas']['QueryResponse']> {
       return client
         .GET('/query', {params: {query: {query}}})
         .then((r) => r.data.QueryResponse)

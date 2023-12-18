@@ -1,8 +1,11 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "checkJs": true
+    "checkJs": true,
+    "paths": {
+      "@opensdks/*": ["./packages/*/index.ts", "./sdks/*/src/index.ts"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": ["**/dist", "website"]
+  "exclude": ["**/types", "**/esm", "**/cjs", "website"]
 }

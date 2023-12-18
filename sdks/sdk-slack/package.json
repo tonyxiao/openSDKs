@@ -1,25 +1,47 @@
 {
   "name": "@opensdks/sdk-slack",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "module": "./index.ts",
-  "types": "dist/index.d.ts",
+  "version": "0.0.5",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
+    "./*": {
+      "types": "./types/*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./cjs/*.js"
+    }
+  },
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
   "files": [
-    "dist",
-    "**/*.ts",
+    "types",
+    "esm",
+    "cjs",
+    "src",
+    "*.d.ts",
+    "*.oas.json",
     "!**/*.spec.ts",
-    "!**/*.json"
+    "!cjs/**/*.json",
+    "!esm/**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
-    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.build.json",
-    "clean": "rm -rf ./dist",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs",
+    "build:cjs-pkgjson": "mkdir -p ./cjs && echo '{\"type\": \"commonjs\"}' > ./cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
+    "clean": "rm -rf ./esm ./cjs ./types",
     "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "generate": "run-s generate:*",
-    "generate:json": "npx tsx slack.openapi.ts | prettier --parser json > ./slack.oas.json",
-    "generate:types": "openapi-typescript ./slack.oas.json --output ./slack.oas.d.ts"
+    "generate:json": "npx tsx ./src/slack.openapi.ts | prettier --parser json > ./slack.oas.json",
+    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./slack.oas.json",
+    "version": "pnpm version"
   },
   "dependencies": {},
   "devDependencies": {
@@ -30,6 +52,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "type": "module"
+  }
 }

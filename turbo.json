@@ -5,15 +5,15 @@
       "outputs": ["*.oas.json", "*.oas.yaml"]
     },
     "generate": {
-      "dependsOn": ["download"],
+      "//dependsOn": ["download"],
       "cache": false,
       "outputs": ["*.oas.d.ts"]
     },
     "clean": {"cache": false},
     "build": {
       "cache": false,
-      "dependsOn": ["clean"],
-      "outputs": ["dist"]
+      "dependsOn": ["clean", "^build"],
+      "outputs": ["cjs", "esm", "types"]
     },
     "debug": {"cache": false},
     "//#typecheck": {},

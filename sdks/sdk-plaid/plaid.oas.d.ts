@@ -8451,7 +8451,7 @@ export interface components {
      */
     RecurringTransferNullable: {
       [key: string]: unknown;
-    } & components["schemas"]["RecurringTransfer"] & (Record<string, unknown> | null);
+    } & components["schemas"]["RecurringTransfer"];
     /**
      * TransferTestClock
      * @description Defines the test clock for a transfer.
@@ -10156,7 +10156,7 @@ export interface components {
      */
     SimulatedTransferSweep: {
       [key: string]: unknown;
-    } & components["schemas"]["TransferSweep"] & (Record<string, unknown> | null);
+    } & components["schemas"]["TransferSweep"];
     /**
      * BankTransferBalanceGetRequest
      * @description Defines the request schema for `/bank_transfer/balance/get`
@@ -27640,3 +27640,14 @@ export interface operations {
     };
   };
 }
+
+
+export interface oasTypes {
+  components: components
+  external: external
+  operations: operations
+  paths: paths
+  webhooks: webhooks
+}
+
+export default oasTypes

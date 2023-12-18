@@ -19,7 +19,7 @@ async function main() {
   const yaml = await readStreamToString(process.stdin)
   const rawJson = JSON.stringify((await import('yaml')).parse(yaml))
   const prettyJson = await prettier.format(rawJson, {
-    ...(await import('../prettier.config.js')),
+    ...(await import('../prettier.config.js')).default,
     parser: 'json',
   })
   if (output) {

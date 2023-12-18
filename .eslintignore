@@ -23,10 +23,14 @@
 # vim: set filetype=ignore:
 .obsidian/
 
-docs/venice.oas.json
-dist/
 # Maybe do not ignore examples? We want them to be nice and consistent after all
 
 .next
 # Website should have its own lint settings
 website
+
+# build artifacts
+dist/
+esm/
+cjs/
+types/

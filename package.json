@@ -14,7 +14,8 @@
     "test::debug": "NODE_OPTIONS=--experimental-vm-modules node --inspect-brk $(pnpm bin)/jest --runInBand --watch",
     "commitlint": "commitlint --edit",
     "prepare": "husky install",
-    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish"
+    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish",
+    "prettier:pkgjson": "pnpm prettier --write ./sdks/*/package.json ./packages/*/package.json"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
@@ -32,6 +33,7 @@
     "@types/prettier": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "alias-hq": "^6.2.3",
     "esbuild": "^0.19.9",
     "esbuild-jest": "^0.5.0",
     "eslint": "^8.55.0",
@@ -51,7 +53,7 @@
     "prettier": "^3.1.0",
     "prettier-plugin-packagejson": "^2.4.6",
     "prettier-plugin-sql": "^0.17.0",
-    "tsx": "^4.6.1",
+    "tsx": "^4.6.2",
     "turbo": "^1.10.16",
     "type-fest": "^4.8.3",
     "typescript": "^5.3.2",

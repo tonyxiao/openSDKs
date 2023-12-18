@@ -1,34 +1,56 @@
 {
   "name": "@opensdks/sdk-plaid",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.0.5",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./*.oas.js": "./*.oas.js",
+    "./*.oas.json": "./*.oas.json",
+    "./*": {
+      "types": "./types/*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./cjs/*.js"
+    }
+  },
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
   "files": [
-    "dist",
-    "**/*.ts",
+    "types",
+    "esm",
+    "cjs",
+    "src",
+    "*.d.ts",
+    "*.oas.json",
     "!**/*.spec.ts",
-    "!**/*.json"
+    "!cjs/**/*.json",
+    "!esm/**/*.json"
   ],
   "scripts": {
     "build": "concurrently npm:build:*",
-    "build:dts": "mkdir -p dist && cp *.d.ts ./dist",
-    "build:json": "mkdir -p dist && npx tsx ../../bin/oasJsonToJs.ts ./ ./dist",
-    "build:ts": "tsc -p ./tsconfig.build.json",
-    "clean": "rm -rf ./dist",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs",
+    "build:cjs-pkgjson": "mkdir -p ./cjs && echo '{\"type\": \"commonjs\"}' > ./cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
+    "clean": "rm -rf ./esm ./cjs ./types",
     "download": "curl --fail https://raw.githubusercontent.com/plaid/plaid-openapi/master/2020-09-14.yml > ./plaid.oas.yaml",
     "generate": "run-s generate:*",
     "generate:json": "cat plaid.oas.yaml | node ../../bin/yaml2json.js -o plaid.oas",
-    "generate:types": "openapi-typescript ./plaid.oas.json --output plaid.oas.d.ts"
+    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./plaid.oas.json",
+    "version": "pnpm version"
   },
   "dependencies": {},
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1",
-    "prettier": "3.1.0"
+    "prettier": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "type": "module"
+  }
 }

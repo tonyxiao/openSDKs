@@ -1,14 +1,9 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    // Allow us to support top level await without compiler error
-    // Though the actual code does not run due to esm / cjs + typescript issues
-    // that are too difficult to figure out...
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
     // This makes React implicitly available in mdx files
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {} // Do not remap any workspace packages otherwise messes with eslint setup
   },
   "include": ["**/*.ts", "**/*.mts", "**/*.tsx"]
 }
