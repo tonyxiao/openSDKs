@@ -60,6 +60,9 @@ jobs:
       - name: Run builds
         run: pnpm turbo build --filter !website
 
+      - name: Run integration tests
+        run: cd examples && node test.cjs && node test.mjs
+
       # TODO: Add step to publish package here would be nice
 
       - name: Send Slack notification for job status
