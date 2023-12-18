@@ -3,8 +3,12 @@
  * when importing modules with dynamic paths at runtime
  */
 
-import {join as pathJoin} from 'node:path'
+import {dirname, join as pathJoin} from 'node:path'
+import * as url from 'node:url'
 import {getPackageJson, listSdks, prettyWrite} from './syncPackages.js'
+
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const sdkJsons = listSdks().map((p) => {
   if (!p.packageJson.name) {
