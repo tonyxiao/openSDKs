@@ -77,7 +77,7 @@ const packageJsonTemplate: PackageJson = {
     // For declarationMap to work, we include our actual source files
     '**/*.ts',
     '**/*.d.ts',
-    '**/*.oas.json',
+    '**/*.json',
     // Already present in dist, but if we exclude can cause issues with declration map though
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
@@ -89,13 +89,13 @@ const packageJsonTemplate: PackageJson = {
     clean: 'rm -rf ./dist',
     build: 'concurrently npm:build:*',
     'build:cjs':
-      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs',
+      'tsc -p ./tsconfig.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./dist/cjs',
     'build:cjs-pkgjson':
       'mkdir -p ./dist/cjs && echo \'{"type": "commonjs"}\' > ./dist/cjs/package.json',
     'build:esm':
-      'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./dist/esm',
+      'tsc -p ./tsconfig.json --declaration false --declarationMap false --outDir ./dist/esm',
     'build:types':
-      'tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types',
+      'tsc -p ./tsconfig.json --emitDeclarationOnly --outDir ./dist/types',
     // without with `pnpm -r version patch` command won't work...
     version: 'pnpm version', // We might not want to use this and instead use template version
   },
@@ -110,6 +110,8 @@ const packageJsonTemplate: PackageJson = {
 const tsConfigTemplate: TsConfigJson = {
   extends: '../../tsconfig.base.json',
   compilerOptions: {
+    module: 'NodeNext',
+    moduleResolution: 'NodeNext',
     outDir: './dist',
     baseUrl: './',
     rootDir: './', // workaround issue with #module/* path not working when building @see https://share.cleanshot.com/gWWkV8xW
@@ -171,7 +173,7 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     })
 
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.json'),
       format: 'tsconfig.json',
       data: {
         ...tsConfigTemplate,
@@ -180,6 +182,7 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
         exclude: [...(tsConfigTemplate.exclude ?? []), '*.openapi.ts'],
       },
     })
+    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.build.json'), {force: true})
   })
 
   listPackages().forEach((p) => {
@@ -203,9 +206,9 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     })
 
     // Delete previous
-    // fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
+    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.build.json'), {force: true})
     void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
+      path: pathJoin(p.dirPath, 'tsconfig.json'),
       format: 'tsconfig.json',
       data: tsConfigTemplate,
     })
