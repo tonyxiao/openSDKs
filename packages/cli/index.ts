@@ -54,7 +54,7 @@ export async function generateFromOas(oasPath: string) {
   const oas = JSON.parse(fs.readFileSync(oasPath, 'utf8')) as OpenAPISpec
   const meta = await prettyFormat(generateMeta(oas))
 
-  const types = await generateTypes(oas)
+  const types = await prettyFormat(await generateTypes(oas))
 
   return {meta, types}
 }

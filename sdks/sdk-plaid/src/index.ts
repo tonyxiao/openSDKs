@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type plaidTypes from '../plaid.oas.js'
+import type plaidTypes from '../plaid.oas.types.js'
 import {default as plaidOasMeta} from './plaid.oas.meta.js'
 
 export type PlaidSDKTypes = SDKTypes<

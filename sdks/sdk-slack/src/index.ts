@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type SlackTypes from '../slack.oas.js'
+import type SlackTypes from '../slack.oas.types.js'
 import {default as slackOasMeta} from './slack.oas.meta.js'
 
 export type SlackSDKTypes = SDKTypes<

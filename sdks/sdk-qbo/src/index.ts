@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type {default as qboOasTypes} from '../qbo.oas.js'
+import type {default as qboOasTypes} from '../qbo.oas.types.js'
 import {default as qboOasMeta} from './qbo.oas.meta.js'
 
 export {qboOasTypes}

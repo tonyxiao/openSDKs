@@ -1,5 +1,5 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type githubTypes from '../github.oas.js'
+import type githubTypes from '../github.oas.types.js'
 import {default as githubOasMeta} from './github.oas.meta.js'
 
 export type GithubSDKTypes = SDKTypes<
