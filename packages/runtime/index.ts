@@ -6,9 +6,8 @@ import {createClient} from './createClient.js'
 export * from '@opensdks/links'
 export * from './HTTPError.js'
 export * from './createClient.js'
-export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
-type NonEmptyReadonlyArray<T> = readonly [T, ...T[]]
+export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
 export type OpenAPIMeta = {
   info: OpenAPISpec['info']
@@ -78,8 +77,10 @@ export function initSDK<
   return {...client, def: sdkDef} as any
 }
 
-// MARK: -
+// MARK: - Type utils
 
 type RequireAtLeastOne<T> = {
   [K in keyof T]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<keyof T, K>>>
 }[keyof T]
+
+type NonEmptyReadonlyArray<T> = readonly [T, ...T[]]

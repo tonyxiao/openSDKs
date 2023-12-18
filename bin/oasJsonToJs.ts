@@ -12,7 +12,7 @@ import prettier from 'prettier'
 export async function writeJsonForTs(jsonFileName: string, outDir = '') {
   const rawJson = fs.readFileSync(jsonFileName, 'utf8')
   const formattedJson = await prettier.format(rawJson, {
-    ...(await import('../prettier.config.js')),
+    ...(await import('../prettier.config.js')).default,
     parser: 'json',
   })
 

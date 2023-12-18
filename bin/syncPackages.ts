@@ -35,7 +35,7 @@ export async function prettyWrite(
   fs.writeFileSync(
     opts.path,
     await prettier.format(JSON.stringify(opts.data), {
-      ...(await import('../prettier.config.js')),
+      ...(await import('../prettier.config.js')).default,
       filepath: opts.format, // Sort imports will apply, better than just parser: json
     }),
   )
@@ -48,7 +48,7 @@ export const listPackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.2-next',
+  version: '0.0.2',
   type: 'module',
   main: 'dist/cjs/index.js', // backward compat for node 10
   module: 'dist/esm/index.js', // backward compat for those that do not support "exports"
@@ -126,7 +126,11 @@ const tsConfigTemplate: TsConfigJson = {
     // moduleResolution: 'Node',
   },
   include: ['*.ts'],
-  exclude: ['*.spec.ts'], // I think this is only for emitting, not for type checking
+  // I think this is only for emitting, not for type checking
+  exclude: [
+    '*.spec.ts',
+    'generateFromOas.ts', // Need to exclude this for now because sometimes contain esm specific code...
+  ],
 }
 
 // MARK: - Main

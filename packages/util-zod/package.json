@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/util-zod",
-  "version": "0.0.2-next",
+  "version": "0.0.2",
   "sideEffects": false,
   "type": "module",
   "imports": {
