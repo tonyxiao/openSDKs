@@ -1,11 +1,15 @@
 import {jest} from '@jest/globals'
 import {initSDK} from '@opensdks/runtime'
-import {veniceSdkDef} from './index.js'
+import initVeniceSDK, {veniceSdkDef} from './index.js'
 
 jest.setTimeout(70 * 15 * 1000) // In case of cold start
 
-const venice = initSDK(veniceSdkDef, {headers: {}})
-
 test('healthcheck', async () => {
+  const venice = initSDK(veniceSdkDef, {headers: {}})
+  expect(await venice.GET('/health').then((r) => r.data)).toBeTruthy()
+})
+
+test('healthcheck with default init', async () => {
+  const venice = initVeniceSDK({headers: {}})
   expect(await venice.GET('/health').then((r) => r.data)).toBeTruthy()
 })
