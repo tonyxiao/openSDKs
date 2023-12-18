@@ -1,11 +1,8 @@
 {
   "name": "@opensdks/util-zod",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "sideEffects": false,
   "type": "module",
-  "imports": {
-    "#module/*": "./*"
-  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
