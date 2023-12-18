@@ -14,12 +14,6 @@ export type QBOSDKTypes = SDKTypes<
   }
 >
 
-const servers = {
-  sandbox: qboOasMeta.servers?.find((s) => s.url.includes('sandbox'))?.url,
-  production: qboOasMeta.servers?.find((s) => s.url.includes('production'))
-    ?.url,
-}
-
 /**
  * Quickbooks Online SDK.
  * TODO: handle oauth token refresh and working with links to do so.
@@ -30,7 +24,10 @@ export const qboSdkDef = {
   createClient: (ctx, {realmId, accessToken, envName, ...options}) => {
     const client = ctx.createClient({
       ...options,
-      baseUrl: servers[envName]?.replace('{realmId}', realmId),
+      baseUrl: qboOasMeta.servers
+        .find((s) => s.description === envName)
+        ?.url?.replace('{realmId}', realmId),
+      // TODO: Should probably extract this server name substitution into a generic function for interacting with oas
       headers: {
         authorization: `Bearer ${accessToken}`,
         accept: 'application/json',
