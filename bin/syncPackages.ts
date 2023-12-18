@@ -49,7 +49,7 @@ export const listCorePackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.5',
+  version: '0.0.6',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"
@@ -85,10 +85,11 @@ const packageJsonTemplate: PackageJson = {
     // '!*.d.ts',
     // We exclude tests, but maybe they can actually serve as examples?
     '!**/*.spec.ts',
+    // No longer necessary to exclude json files as we no longer import them...
     // Exclude dist json files copied by tsc as we are using #module/ import from root
     // Though not strictly necessary as we don't import directly anymore.
-    '!cjs/**/*.json',
-    '!esm/**/*.json',
+    // '!cjs/**/*.json',
+    // '!esm/**/*.json',
   ],
   scripts: {
     clean: 'rm -rf ./esm ./cjs ./types',
