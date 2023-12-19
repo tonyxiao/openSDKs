@@ -19,10 +19,6 @@ export interface paths {
     /** Health check */
     get: operations['health']
   }
-  '/viewer': {
-    /** Get current viewer accessing the API */
-    get: operations['getViewer']
-  }
   '/debug/raw-schemas': {
     /** @description Get raw schemas */
     get: operations['getRawSchemas']
@@ -110,6 +106,10 @@ export interface paths {
   '/verticals/investment/security': {
     get: operations['verticals-investment-security_list']
   }
+  '/viewer': {
+    /** Get current viewer accessing the API */
+    get: operations['getViewer']
+  }
   '/openapi.json': {
     get: operations['getOpenapiDocument']
   }
@@ -147,39 +147,6 @@ export interface components {
         message: string
       }[]
     }
-    Viewer: OneOf<
-      [
-        {
-          /** @enum {string} */
-          role: 'anon'
-        },
-        {
-          /** @enum {string} */
-          role: 'end_user'
-          endUserId: string
-          /** @description Must start with 'org_' */
-          orgId: string
-        },
-        {
-          /** @enum {string} */
-          role: 'user'
-          /** @description Must start with 'user_' */
-          userId: string
-          /** @description Must start with 'org_' */
-          orgId?: string | null
-        },
-        {
-          /** @enum {string} */
-          role: 'org'
-          /** @description Must start with 'org_' */
-          orgId: string
-        },
-        {
-          /** @enum {string} */
-          role: 'system'
-        },
-      ]
-    >
     /**
      * Error
      * @description The error information
@@ -336,6 +303,47 @@ export interface components {
        */
       metadata?: unknown
     }
+    Viewer: OneOf<
+      [
+        {
+          /** @enum {string} */
+          role: 'anon'
+        },
+        {
+          /** @enum {string} */
+          role: 'end_user'
+          endUserId: string
+          /** @description Must start with 'org_' */
+          orgId: string
+        },
+        {
+          /** @enum {string} */
+          role: 'user'
+          /** @description Must start with 'user_' */
+          userId: string
+          /** @description Must start with 'org_' */
+          orgId?: string | null
+          /** @description Currently clerk user */
+          extra?: {
+            [key: string]: unknown
+          }
+        },
+        {
+          /** @enum {string} */
+          role: 'org'
+          /** @description Must start with 'org_' */
+          orgId: string
+          /** @description Currently clerk organization */
+          extra?: {
+            [key: string]: unknown
+          }
+        },
+        {
+          /** @enum {string} */
+          role: 'system'
+        },
+      ]
+    >
   }
   responses: never
   parameters: never
@@ -356,23 +364,6 @@ export interface operations {
       200: {
         content: {
           'application/json': string
-        }
-      }
-      /** @description Internal server error */
-      500: {
-        content: {
-          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
-        }
-      }
-    }
-  }
-  /** Get current viewer accessing the API */
-  getViewer: {
-    responses: {
-      /** @description Successful response */
-      200: {
-        content: {
-          'application/json': components['schemas']['Viewer']
         }
       }
       /** @description Internal server error */
@@ -608,6 +599,18 @@ export interface operations {
           settings?: {
             [key: string]: unknown
           } | null
+          displayName?: string | null
+          endUserId?: string | null
+          disabled?: boolean
+          /**
+           * @description
+           *   JSON object can can be used to associate arbitrary metadata to
+           *   avoid needing a separate 1-1 table just for simple key values in your application.
+           *   During updates this object will be shallowly merged
+           */
+          metadata?: unknown
+          /** @description Must start with 'int_' */
+          integrationId?: string | null
         }
       }
     }
@@ -721,6 +724,10 @@ export interface operations {
            *   During updates this object will be shallowly merged
            */
           metadata?: unknown
+          disabled?: boolean
+          endUserId?: string | null
+          /** @description Must start with 'int_' */
+          integrationId?: string | null
         }
       }
     }
@@ -1631,6 +1638,23 @@ export interface operations {
       404: {
         content: {
           'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  /** Get current viewer accessing the API */
+  getViewer: {
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': components['schemas']['Viewer']
         }
       }
       /** @description Internal server error */
