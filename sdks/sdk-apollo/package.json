@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-apollo",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "type": "module",
   "exports": {
     ".": {
@@ -8,7 +8,7 @@
       "import": "./esm/index.js",
       "require": "./cjs/index.js"
     },
-    "./*.oas.js": "./*.oas.js",
+    "./*.oas.types.js": "./*.oas.types.js",
     "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./types/*.d.ts",
@@ -24,6 +24,7 @@
     "esm",
     "cjs",
     "src",
+    "*.ts",
     "*.d.ts",
     "*.oas.json",
     "!**/*.spec.ts",

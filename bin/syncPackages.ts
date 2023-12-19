@@ -49,7 +49,7 @@ export const listCorePackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.8',
+  version: '0.0.10',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"
@@ -65,7 +65,7 @@ const packageJsonTemplate: PackageJson = {
       import: './esm/index.js',
       require: './cjs/index.js',
     },
-    './*.oas.js': './*.oas.js', // maps to d.ts file
+    './*.oas.types.js': './*.oas.types.js', // maps to d.ts file
     './*.oas.json': './*.oas.json', // for those that can read it
     './*': {
       types: './types/*.d.ts',
@@ -78,7 +78,8 @@ const packageJsonTemplate: PackageJson = {
     'esm',
     'cjs',
     // For declarationMap to work, we include our actual source files
-    'src',
+    'src', // Sometimes we do nesting
+    '*.ts', // Sometimes we do not do nesting...
     '*.d.ts',
     '*.oas.json',
     // Already present in dist, but if we exclude can cause issues with declration map though
@@ -245,6 +246,8 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
   })
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
 
+  // TODO: This needs to be run twice right now it seems...
+  // might be a "race condition" 
   // Update examples package.json
   await addSdksAsDeps(pathJoin(__dirname, '../examples/package.json'), {
     extraDeps: {'@opensdks/runtime': packageJsonTemplate.version!},
@@ -253,3 +256,5 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     version: 'workspace:*',
   })
 }
+
+
