@@ -2,7 +2,7 @@
 // For the full app, see https://what-did-we-work-on.vercel.app/
 
 import {initSDK} from '@opensdks/runtime'
-import type {GithubSDKTypes} from '@opensdks/sdk-github'
+import type {oasTypes as GithubSDKTypes} from '@opensdks/sdk-github/github.oas.types'
 import {githubSdkDef} from '@opensdks/sdk-github'
 import {openaiSdkDef} from '@opensdks/sdk-openai'
 
@@ -27,7 +27,7 @@ export async function fetchCommits(prLink: string) {
     .then((r) => r.data)
 }
 
-type Commit = GithubSDKTypes['oas']['components']['schemas']['commit']
+type Commit = GithubSDKTypes['components']['schemas']['commit']
 
 export const summarizeCommits = async (commits: Commit[]) => {
   const messages = commits.map((commit) => commit.commit.message).join('\n')

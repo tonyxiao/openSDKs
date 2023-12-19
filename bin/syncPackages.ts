@@ -49,7 +49,7 @@ export const listCorePackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.10',
+  version: '0.0.11',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"
@@ -65,7 +65,7 @@ const packageJsonTemplate: PackageJson = {
       import: './esm/index.js',
       require: './cjs/index.js',
     },
-    './*.oas.types.js': './*.oas.types.js', // maps to d.ts file
+    './*.oas.types': './*.oas.types.js', // maps to d.ts file
     './*.oas.json': './*.oas.json', // for those that can read it
     './*': {
       types: './types/*.d.ts',

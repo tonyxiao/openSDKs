@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-openai",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "type": "module",
   "exports": {
     ".": {
@@ -8,7 +8,7 @@
       "import": "./esm/index.js",
       "require": "./cjs/index.js"
     },
-    "./*.oas.types.js": "./*.oas.types.js",
+    "./*.oas.types": "./*.oas.types.js",
     "./*.oas.json": "./*.oas.json",
     "./*": {
       "types": "./types/*.d.ts",
