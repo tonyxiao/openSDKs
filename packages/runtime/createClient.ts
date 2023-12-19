@@ -37,6 +37,7 @@ export function createClient<Paths extends {}>({
   const client = _createClient<Paths>({...clientOptions, fetch: customFetch})
 
   return {
+    clientOptions,
     links,
     client,
     /** Untyped request */
