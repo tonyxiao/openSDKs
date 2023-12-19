@@ -145,7 +145,10 @@ const tsConfigTemplate: TsConfigJson = {
   ],
 }
 
-async function addSdksAsDeps(pkgJsonPath: string, opts?: {version?: string}) {
+async function addSdksAsDeps(
+  pkgJsonPath: string,
+  opts?: {version?: string; extraDeps?: Record<string, string>},
+) {
   const sdkJsons = listSdkPackages().map((p) => {
     if (!p.packageJson.name) {
       throw new Error(`No name in package.json at ${p.packageJsonPath}`)
@@ -164,6 +167,7 @@ async function addSdksAsDeps(pkgJsonPath: string, opts?: {version?: string}) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       sdkJsons.map((p) => [p.name!, opts?.version ?? p.version!]),
     ),
+    ...opts?.extraDeps,
   }
 
   await prettyWrite({
@@ -242,7 +246,9 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
 
   // Update examples package.json
-  await addSdksAsDeps(pathJoin(__dirname, '../examples/package.json'))
+  await addSdksAsDeps(pathJoin(__dirname, '../examples/package.json'), {
+    extraDeps: {'@opensdks/runtime': packageJsonTemplate.version!},
+  })
   await addSdksAsDeps(pathJoin(__dirname, '../website/package.json'), {
     version: 'workspace:*',
   })
