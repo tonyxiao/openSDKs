@@ -1764,6 +1764,7 @@ export interface components {
       | 'el'
       | 'en-GB'
       | 'en-US'
+      | 'es-419'
       | 'es-ES'
       | 'fi'
       | 'fr'
@@ -2394,7 +2395,6 @@ export interface components {
       user_count?: number | null
       privacy_level: components['schemas']['GuildScheduledEventPrivacyLevels']
       user_rsvp?: null | components['schemas']['ScheduledEventUserResponse']
-      auto_start: boolean
       entity_metadata: components['schemas']['EntityMetadataExternalResponse']
     }
     FlagToChannelAction: {
@@ -4394,7 +4394,6 @@ export interface components {
       user_count?: number | null
       privacy_level: components['schemas']['GuildScheduledEventPrivacyLevels']
       user_rsvp?: null | components['schemas']['ScheduledEventUserResponse']
-      auto_start: boolean
     }
     ScheduledEventUserResponse: {
       guild_scheduled_event_id: components['schemas']['SnowflakeType']
@@ -4524,7 +4523,6 @@ export interface components {
       user_count?: number | null
       privacy_level: components['schemas']['GuildScheduledEventPrivacyLevels']
       user_rsvp?: null | components['schemas']['ScheduledEventUserResponse']
-      auto_start: boolean
       entity_metadata?:
         | null
         | components['schemas']['EntityMetadataStageInstanceResponse']
@@ -4897,7 +4895,6 @@ export interface components {
       user_count?: number | null
       privacy_level: components['schemas']['GuildScheduledEventPrivacyLevels']
       user_rsvp?: null | components['schemas']['ScheduledEventUserResponse']
-      auto_start: boolean
       entity_metadata?:
         | null
         | components['schemas']['EntityMetadataVoiceResponse']

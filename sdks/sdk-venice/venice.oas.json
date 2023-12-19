@@ -26,6 +26,32 @@
         }
       }
     },
+    "/viewer": {
+      "get": {
+        "operationId": "getViewer",
+        "summary": "Get current viewer accessing the API",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/Viewer"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/debug/raw-schemas": {
       "get": {
         "operationId": "getRawSchemas",
@@ -2019,6 +2045,58 @@
           "message": "Internal server error",
           "issues": []
         }
+      },
+      "Viewer": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {"role": {"type": "string", "enum": ["anon"]}},
+            "required": ["role"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "role": {"type": "string", "enum": ["end_user"]},
+              "endUserId": {"type": "string", "minLength": 1},
+              "orgId": {
+                "type": "string",
+                "description": "Must start with 'org_'"
+              }
+            },
+            "required": ["role", "endUserId", "orgId"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "role": {"type": "string", "enum": ["user"]},
+              "userId": {
+                "type": "string",
+                "description": "Must start with 'user_'"
+              },
+              "orgId": {
+                "type": ["string", "null"],
+                "description": "Must start with 'org_'"
+              }
+            },
+            "required": ["role", "userId"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "role": {"type": "string", "enum": ["org"]},
+              "orgId": {
+                "type": "string",
+                "description": "Must start with 'org_'"
+              }
+            },
+            "required": ["role", "orgId"]
+          },
+          {
+            "type": "object",
+            "properties": {"role": {"type": "string", "enum": ["system"]}},
+            "required": ["role"]
+          }
+        ]
       },
       "error.BAD_REQUEST": {
         "type": "object",

@@ -13,7 +13,7 @@ export const oasMeta = {
       name: 'Apache 2.0',
       url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
     },
-    version: '1.51.3',
+    version: '1.52.0',
   },
   servers: [{url: 'https://api.twilio.com'}],
 } as const

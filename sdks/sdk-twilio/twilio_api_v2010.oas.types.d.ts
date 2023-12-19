@@ -804,16 +804,6 @@ export interface components {
       connect_app_homepage_url?: string | null
       /** @description The SID that we assigned to the Connect App. */
       connect_app_sid?: string | null
-      /**
-       * Format: date-time-rfc-2822
-       * @description The date and time in GMT that the resource was created specified in [RFC 2822](https://www.ietf.org/rfc/rfc2822.txt) format.
-       */
-      date_created?: string | null
-      /**
-       * Format: date-time-rfc-2822
-       * @description The date and time in GMT that the resource was last updated specified in [RFC 2822](https://www.ietf.org/rfc/rfc2822.txt) format.
-       */
-      date_updated?: string | null
       /** @description The set of permissions that you authorized for the Connect App.  Can be: `get-all` or `post-all`. */
       permissions?:
         | components['schemas']['authorized_connect_app_enum_permission'][]

@@ -8413,7 +8413,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -8430,7 +8430,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -8574,7 +8574,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -8591,7 +8591,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -8700,7 +8700,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -8717,7 +8717,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -8834,7 +8834,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": [
@@ -8853,7 +8853,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "options": {
             "type": [
@@ -8958,7 +8958,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -8975,7 +8975,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -9155,7 +9155,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -9172,7 +9172,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -9281,7 +9281,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -9298,7 +9298,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -9454,7 +9454,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "value": {
             "$ref": "#/components/schemas/Int53Type"
@@ -9513,7 +9513,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "value": {
             "type": "number",
@@ -9574,7 +9574,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "value": {
             "type": "string",
@@ -9695,7 +9695,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": [
@@ -9714,7 +9714,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "options": {
             "type": [
@@ -9978,7 +9978,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -9995,7 +9995,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -10104,7 +10104,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -10121,7 +10121,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -10291,7 +10291,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -10308,7 +10308,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -10436,7 +10436,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -10453,7 +10453,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -10646,7 +10646,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": [
@@ -10665,7 +10665,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "options": {
             "type": [
@@ -10780,7 +10780,7 @@
               "minLength": 1,
               "maxLength": 32
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "description": {
             "type": "string",
@@ -10797,7 +10797,7 @@
               "minLength": 1,
               "maxLength": 100
             },
-            "maxProperties": 33
+            "maxProperties": 34
           },
           "required": {
             "type": [
@@ -11931,6 +11931,11 @@
             "title": "en-US",
             "description": "The en-US locale",
             "const": "en-US"
+          },
+          {
+            "title": "es-419",
+            "description": "The es-419 locale",
+            "const": "es-419"
           },
           {
             "title": "es-ES",
@@ -15043,9 +15048,6 @@
               }
             ]
           },
-          "auto_start": {
-            "type": "boolean"
-          },
           "entity_metadata": {
             "$ref": "#/components/schemas/EntityMetadataExternalResponse"
           }
@@ -15058,7 +15060,6 @@
           "status",
           "entity_type",
           "privacy_level",
-          "auto_start",
           "entity_metadata"
         ]
       },
@@ -24592,9 +24593,6 @@
                 "$ref": "#/components/schemas/ScheduledEventUserResponse"
               }
             ]
-          },
-          "auto_start": {
-            "type": "boolean"
           }
         },
         "required": [
@@ -24604,8 +24602,7 @@
           "scheduled_start_time",
           "status",
           "entity_type",
-          "privacy_level",
-          "auto_start"
+          "privacy_level"
         ]
       },
       "ScheduledEventUserResponse": {
@@ -25219,9 +25216,6 @@
               }
             ]
           },
-          "auto_start": {
-            "type": "boolean"
-          },
           "entity_metadata": {
             "oneOf": [
               {
@@ -25240,8 +25234,7 @@
           "scheduled_start_time",
           "status",
           "entity_type",
-          "privacy_level",
-          "auto_start"
+          "privacy_level"
         ]
       },
       "StandardStickerResponse": {
@@ -27079,9 +27072,6 @@
               }
             ]
           },
-          "auto_start": {
-            "type": "boolean"
-          },
           "entity_metadata": {
             "oneOf": [
               {
@@ -27100,8 +27090,7 @@
           "scheduled_start_time",
           "status",
           "entity_type",
-          "privacy_level",
-          "auto_start"
+          "privacy_level"
         ]
       },
       "WebhookSlackEmbed": {

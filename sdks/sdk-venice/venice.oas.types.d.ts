@@ -3,10 +3,25 @@
  * Do not make direct changes to the file.
  */
 
+/** OneOf type helpers */
+type Without<T, U> = {[P in Exclude<keyof T, keyof U>]?: never}
+type XOR<T, U> = T | U extends object
+  ? (Without<T, U> & U) | (Without<U, T> & T)
+  : T | U
+type OneOf<T extends any[]> = T extends [infer Only]
+  ? Only
+  : T extends [infer A, infer B, ...infer Rest]
+    ? OneOf<[XOR<A, B>, ...Rest]>
+    : never
+
 export interface paths {
   '/health': {
     /** Health check */
     get: operations['health']
+  }
+  '/viewer': {
+    /** Get current viewer accessing the API */
+    get: operations['getViewer']
   }
   '/debug/raw-schemas': {
     /** @description Get raw schemas */
@@ -132,6 +147,39 @@ export interface components {
         message: string
       }[]
     }
+    Viewer: OneOf<
+      [
+        {
+          /** @enum {string} */
+          role: 'anon'
+        },
+        {
+          /** @enum {string} */
+          role: 'end_user'
+          endUserId: string
+          /** @description Must start with 'org_' */
+          orgId: string
+        },
+        {
+          /** @enum {string} */
+          role: 'user'
+          /** @description Must start with 'user_' */
+          userId: string
+          /** @description Must start with 'org_' */
+          orgId?: string | null
+        },
+        {
+          /** @enum {string} */
+          role: 'org'
+          /** @description Must start with 'org_' */
+          orgId: string
+        },
+        {
+          /** @enum {string} */
+          role: 'system'
+        },
+      ]
+    >
     /**
      * Error
      * @description The error information
@@ -308,6 +356,23 @@ export interface operations {
       200: {
         content: {
           'application/json': string
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  /** Get current viewer accessing the API */
+  getViewer: {
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': components['schemas']['Viewer']
         }
       }
       /** @description Internal server error */
