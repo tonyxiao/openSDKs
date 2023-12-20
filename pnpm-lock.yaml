@@ -139,7 +139,7 @@ importers:
         specifier: ^4.6.2
         version: 4.6.2
 
-  packages/links:
+  packages/fetch-links:
     devDependencies:
       axios:
         specifier: ^1.6.2
@@ -152,7 +152,7 @@ importers:
     dependencies:
       '@opensdks/fetch-links':
         specifier: workspace:*
-        version: link:../links
+        version: link:../fetch-links
       openapi-fetch:
         specifier: 0.8.1
         version: 0.8.1
