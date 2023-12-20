@@ -53,7 +53,7 @@ Creating a new SDK adapter in `opensdks` follows a standardized process, leverag
 
 ## Conclusion
 
-By following these steps, you can seamlessly create and integrate new SDK adapters into `opensdks`. For more detailed examples and guidance, refer to the existing SDKs in the `sdks` folder and the usage examples in `docs/example.ts`.
+By following these steps, you can seamlessly create and integrate new SDK adapters into `opensdks`. For more detailed examples and guidance, refer to the existing SDKs in the `sdks` folder.
 
 ---
 
