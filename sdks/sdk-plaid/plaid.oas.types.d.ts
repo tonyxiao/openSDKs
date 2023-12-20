@@ -219,7 +219,7 @@ export interface paths {
      *
      * This endpoint is offered as an add-on to Transactions. To request access to this endpoint, submit a [product access request](https://dashboard.plaid.com/team/products) or contact your Plaid account manager.
      *
-     * This endpoint can only be called on an Item that has already been initialized with Transactions (either during Link, by specifying it in `/link/token/create`; or after Link, by calling `/transactions/get` or `/transactions/sync`). Once all historical transactions have been fetched, call `/transactions/recurring/get` to receive the Recurring Transactions streams and subscribe to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook. To know when historical transactions have been fetched, if you are using `/transactions/sync` listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#SyncUpdatesAvailableWebhook-historical-update-complete) webhook and check that the `historical_update_complete` field in the payload is `true`. If using `/transactions/get`, listen for the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook.
+     * This endpoint can only be called on an Item that has already been initialized with Transactions (either during Link, by specifying it in `/link/token/create`; or after Link, by calling `/transactions/get` or `/transactions/sync`). For optimal results, we strongly recommend customers using Recurring Transactions to request at least 180 days of history when initializing items with Transactions (using the [`days_requested`](https://plaid.com/docs/api/tokens/#link-token-create-request-transactions-days-requested) option). Once all historical transactions have been fetched, call `/transactions/recurring/get` to receive the Recurring Transactions streams and subscribe to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook. To know when historical transactions have been fetched, if you are using `/transactions/sync` listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#SyncUpdatesAvailableWebhook-historical-update-complete) webhook and check that the `historical_update_complete` field in the payload is `true`. If using `/transactions/get`, listen for the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook.
      *
      * After the initial call, you can call `/transactions/recurring/get` endpoint at any point in the future to retrieve the latest summary of recurring streams. Listen to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook to be notified when new updates are available.
      */
@@ -654,6 +654,30 @@ export interface paths {
      */
     post: operations['beaconReportGet']
   }
+  '/beacon/report_syndication/get': {
+    /**
+     * Get a Beacon Report Syndication
+     * @description Returns a Beacon Report Syndication for a given Beacon Report Syndication id.
+     */
+    post: operations['beaconReportSyndicationGet']
+  }
+  '/beacon/user/update': {
+    /**
+     * Update the identity data of a Beacon User
+     * @description Update the identity data for a Beacon User in your Beacon Program.
+     *
+     * Similar to `/beacon/user/create`, several checks are performed immediately when you submit a change to `/beacon/user/update`:
+     *
+     *   - The user's updated PII is searched against all other users within the Beacon Program you specified. If a match is found that violates your program's "Duplicate Information Filtering" settings, the user will be returned with a status of `pending_review`.
+     *
+     *   - The user's updated PII is also searched against all fraud reports created by your organization across all of your Beacon Programs. If the user's data matches a fraud report that your team created, the user will be returned with a status of `rejected`.
+     *
+     *   - Finally, the user's PII is searched against all fraud report shared with the Beacon Network by other companies. If a matching fraud report is found, the user will be returned with a `pending_review` status if your program has enabled automatic flagging based on network fraud.
+     *
+     * Plaid maintains a version history for each Beacon User, so the Beacon User's identity data before and after the update is retained as separate versions.
+     */
+    post: operations['beaconUserUpdate']
+  }
   '/processor/auth/get': {
     /**
      * Retrieve Auth data
@@ -947,8 +971,6 @@ export interface paths {
      * Set verification status for Sandbox account
      * @description The `/sandbox/item/set_verification_status` endpoint can be used to change the verification status of an Item in in the Sandbox in order to simulate the Automated Micro-deposit flow.
      *
-     * Note that not all Plaid developer accounts are enabled for micro-deposit based verification by default. Your account must be enabled for this feature in order to test it in Sandbox. To enable this features or check your status, contact your account manager or [submit a product access Support ticket](https://dashboard.plaid.com/support/new/product-and-development/product-troubleshooting/request-product-access).
-     *
      * For more information on testing Automated Micro-deposits in Sandbox, see [Auth full coverage testing](https://plaid.com/docs/auth/coverage/testing#).
      */
     post: operations['sandboxItemSetVerificationStatus']
@@ -1109,6 +1131,7 @@ export interface paths {
      */
     post: operations['depositSwitchCreate']
   }
+  '/items/transactions/notify': {}
   '/item/import': {
     /**
      * Import Item
@@ -2221,6 +2244,8 @@ export interface components {
        * @description This option only applies to calls for Items that were not initialized with Transactions during Link and are now adding the Transactions product to the Item for the first time. In these cases, this option controls the maximum number of days of transaction history that Plaid will request from the financial institution. For developer accounts created after December 3, 2023, if no value is specified, this will default to 90 days. For developer accounts created on December 3, 2023 or earlier, if no value is specified, this will default to 730 days until June 24, 2024, at which point it will default to 90 days.
        *
        * If Transactions has already been added to the Item prior to this call, this field will have no effect.
+       *
+       * We strongly recommend that customers utilizing [Recurring Transactions](https://plaid.com/docs/api/products/transactions/#transactionsrecurringget) request at least 180 days of history for optimal results.
        * @default 90
        */
       days_requested?: number
@@ -2405,7 +2430,7 @@ export interface components {
       secret?: components['schemas']['APISecret']
       /**
        * @description The cursor value represents the last update requested. Providing it will cause the response to only return changes after this update.
-       * If omitted, the entire history of updates will be returned, starting with the first-added transactions on the Item. The cursor also accepts the special value of `"now"`, which can be used to fast-forward the cursor as part of migrating an existing Item from `/transactions/get` to `/transactions/sync`. For more information, see the [Transactions sync migration guide](https://plaid.com/docs/transactions/sync-migration/). Note that using the `"now` value is not supported for any use case other than migrating existing Items from `/transactions/get`.
+       * If omitted, the entire history of updates will be returned, starting with the first-added transactions on the Item. The cursor also accepts the special value of `"now"`, which can be used to fast-forward the cursor as part of migrating an existing Item from `/transactions/get` to `/transactions/sync`. For more information, see the [Transactions sync migration guide](https://plaid.com/docs/transactions/sync-migration/). Note that using the `"now"` value is not supported for any use case other than migrating existing Items from `/transactions/get`.
        *
        * The upper-bound length of this cursor is 256 characters of base64.
        */
@@ -2440,6 +2465,8 @@ export interface components {
        * @description This option only applies to calls for Items that were not initialized with Transactions during Link and are now adding the Transactions product to the Item for the first time. In these cases, this option controls the maximum number of days of transaction history that Plaid will request from the financial institution. For developer accounts created after December 3, 2023, if no value is specified, this will default to 90 days. For developer accounts created on December 3, 2023 or earlier, if no value is specified, this will default to 730 days until June 24, 2024, at which point it will default to 90 days.
        *
        * If Transactions has already been added to the Item prior to this call, this field will have no effect.
+       *
+       * We strongly recommend that customers utilizing [Recurring Transactions](https://plaid.com/docs/api/products/transactions/#transactionsrecurringget) request at least 180 days of history for optimal results.
        * @default 90
        */
       days_requested?: number
@@ -2614,9 +2641,18 @@ export interface components {
        */
       accounts: components['schemas']['AccountBase'][]
       item: components['schemas']['Item']
+      payment_risk_assessment?: components['schemas']['AccountsBalanceGetResponsePaymentRiskAssessment']
       request_id: components['schemas']['RequestID']
       [key: string]: unknown
     }
+    /** @description This object provides detailed risk assessment for the requested transaction */
+    AccountsBalanceGetResponsePaymentRiskAssessment: {
+      /** @description A five-tier risk assessment for the transaction based on the probability of return. */
+      risk_level?: string
+      /** @description Indicates whether the requested ACH debit amount is greater than the threshold (set by customers) of the available or current balance. */
+      exceeds_balance_threshold?: boolean
+      [key: string]: unknown
+    } | null
     /** @description CategoriesGetRequest defines the request schema for `/categories/get` */
     CategoriesGetRequest: Record<string, never>
     /** @description CategoriesGetResponse defines the response schema for `/categories/get` */
@@ -2760,7 +2796,30 @@ export interface components {
       secret?: components['schemas']['APISecret']
       client_id?: components['schemas']['APIClientID']
       options?: components['schemas']['AccountsBalanceGetRequestOptions']
+      payment_details?: components['schemas']['AccountsBalanceGetRequestPaymentDetails']
     }
+    /** @description An optional object containing payment details. If set, a payment risk assessment is performed and returned as AccountsBalanceGetResponsePaymentRiskAssessment. */
+    AccountsBalanceGetRequestPaymentDetails: {
+      /**
+       * @description The Plaid `account_id` of the account that is the funding source for the proposed transaction. The `account_id` is returned in the `/accounts/get` endpoint as well as the [`onSuccess`](/docs/link/ios/#link-ios-onsuccess-linkSuccess-metadata-accounts-id) callback metadata.
+       *
+       * This will return an [`INVALID_ACCOUNT_ID`](/docs/errors/invalid-input/#invalid_account_id) error if the account has been removed at the bank or if the `account_id` is no longer valid.
+       */
+      account_id?: string
+      /** @description The unique ID that you would like to use to refer to this transaction. For your convenience mapping your internal data, you could use your internal identifier for this transaction. The max length for this field is 36 characters. */
+      client_transaction_id?: string
+      /**
+       * Format: double
+       * @description The transaction amount, in USD (e.g. `102.05`)
+       */
+      amount?: number
+      /**
+       * @description The threshold percentage of the account balance used for comparison with the requested ACH debit amount.
+       * @default 90
+       */
+      balance_threshold_percentage?: number
+      [key: string]: unknown
+    } | null
     /** @description An optional object to filter `/accounts/balance/get` results. */
     AccountsBalanceGetRequestOptions: {
       /**
@@ -4043,6 +4102,8 @@ export interface components {
         | 'zero_hash'
         | 'taba_pay'
         | 'knot'
+        | 'sardine'
+        | 'alloy'
     }
     /** @description ProcessorTokenCreateResponse defines the response schema for `/processor/token/create` and `/processor/apex/processor_token/create` */
     ProcessorTokenCreateResponse: {
@@ -4260,7 +4321,7 @@ export interface components {
       access_tokens?: string[]
       /** @description The name of the Link customization from the Plaid Dashboard to be applied to Link. If not specified, the `default` customization will be used. When using a Link customization, the language in the customization must match the language selected via the `language` parameter, and the countries in the customization should match the country codes selected via `country_codes`. */
       link_customization_name?: string
-      /** @description A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. When used in Production or Development, must be an https URI. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. Note that any redirect URI must also be added to the Allowed redirect URIs list in the [developer dashboard](https://dashboard.plaid.com/team/api). If initializing on Android, `android_package_name` must be specified instead and `redirect_uri` should be left blank. */
+      /** @description A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. When used in Production or Development, must be an https URI. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. Note that any redirect URI must also be added to the Allowed redirect URIs list in the [developer dashboard](https://dashboard.plaid.com/team/api). If initializing on Android, `android_package_name` must be specified instead and `redirect_uri` should be left blank. If using Hosted Link (beta) the `redirect_uri` must be set to `https://hosted.plaid.com/oauth/redirect`. */
       redirect_uri?: string
       /** @description The name of your app's Android package. Required if using the `link_token` to initialize Link on Android. Any package name specified here must also be added to the Allowed Android package names setting on the [developer dashboard](https://dashboard.plaid.com/team/api). When creating a `link_token` for initializing Link on other platforms, `android_package_name` must be left blank and `redirect_uri` should be used instead. */
       android_package_name?: string
@@ -4332,11 +4393,13 @@ export interface components {
     LinkTokenTransactions: {
       /**
        * @description The maximum number of days of transaction history to request for the Transactions product. For developer accounts created after December 3, 2023, if no value is specified, this will default to 90 days. For developer accounts created on December 3, 2023 or earlier, if no value is specified, this will default to 730 days until June 24, 2024, at which point it will default to 90 days.
+       *
+       * We strongly recommend that customers utilizing [Recurring Transactions](https://plaid.com/docs/api/products/transactions/#transactionsrecurringget) request at least 180 days of history for optimal results.
        * @default 90
        */
       days_requested?: number
     }
-    /** @description Configuration parameters for Hosted Link */
+    /** @description Configuration parameters for Hosted Link (beta). Only available for participants in the Hosted Link beta program. */
     LinkTokenCreateHostedLink: {
       delivery_method?: components['schemas']['HostedLinkDeliveryMethod']
       completion_redirect_uri?: components['schemas']['HostedLinkCompletionRedirectURI']
@@ -4346,17 +4409,14 @@ export interface components {
     /**
      * @description How Plaid should deliver the Plaid Link session to the customer.
      * 'sms' will deliver via SMS. Must pass `user.phone_number`.
-     * 'email' will deliver via email. Must pass `user.email_address`.
+     * 'email' will deliver via email. Must pass `user.email_address`. In the Sandbox environment, this field will be ignored; use the Production or Development environment to test Hosted Link session delivery instead.
      *
      * @enum {string}
      */
     HostedLinkDeliveryMethod: 'sms' | 'email'
-    /**
-     * @description URI that Hosted Link will redirect to upon completion of the Link flow. This will only occur in Hosted Link
-     * sessions, not in other implementation methods.
-     */
+    /** @description URI that Hosted Link will redirect to upon completion of the Link flow. This will only occur in Hosted Link sessions, not in other implementation methods. */
     HostedLinkCompletionRedirectURI: string
-    /** @description How many seconds the link will be valid for. Must be positive. Cannot be longer than 21 days. */
+    /** @description How many seconds the link will be valid for. Must be positive. Cannot be longer than 21 days. The default lifetime is 4 hours. */
     HostedLinkURLLifetimeSeconds: number
     /** @description Specifies options for initializing Link for use with the Payment Initiation (Europe) product. This field is required if `payment_initiation` is included in the `products` array. Either `payment_id` or `consent_id` must be provided. */
     LinkTokenCreateRequestPaymentInitiation: {
@@ -4593,13 +4653,13 @@ export interface components {
        * @description The expiration timestamp for the `link_token`, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
        */
       expiration: string | null
-      /** @description Information about link sessions created using this `link_token`. */
+      /** @description Information about Link sessions created using this `link_token`. This field will only be present if your client is enabled for Hosted Link (beta). Session data will be provided for up to six hours after the session has ended. */
       link_sessions?: components['schemas']['LinkTokenGetSessionsResponse'][]
       metadata: components['schemas']['LinkTokenGetMetadataResponse']
       request_id: components['schemas']['RequestID']
       [key: string]: unknown
     }
-    /** @description An object containing information about a link session. */
+    /** @description An object containing information about a link session. This field will only be present if your client is enabled for Hosted Link (beta). Session data will be provided for up to six hours after the session has ended. */
     LinkTokenGetSessionsResponse: {
       /** @description The unique ID for the link session. */
       link_session_id: string
@@ -4733,7 +4793,7 @@ export interface components {
        */
       expiration: string
       request_id: components['schemas']['RequestID']
-      /** @description A URL of a Plaid-hosted Link flow that will use the Link token returned by this request */
+      /** @description A URL of a Plaid-hosted Link flow that will use the Link token returned by this request. Only present if the client is enabled for Hosted Link (beta). */
       hosted_link_url?: string
       [key: string]: unknown
     }
@@ -5072,13 +5132,13 @@ export interface components {
     LinkDeliveryWebhookCallbackType: 'ON_SUCCESS' | 'ON_EVENT' | 'ON_EXIT'
     /**
      * LinkDeliveryWebhookCommunicationMethod
-     * @description The communication method used to deliver the hosted link session
+     * @description The communication method used to deliver the Hosted Link session
      * @enum {string}
      */
     LinkDeliveryWebhookCommunicationMethod: 'SMS' | 'EMAIL'
     /**
      * LinkDeliveryWebhookDeliveryStatus
-     * @description The status of the delivery of the hosted link to the user
+     * @description The status of the delivery of the Hosted Link to the user
      * @enum {string}
      */
     LinkDeliveryWebhookDeliveryStatus: 'SUCCESS' | 'FAILURE'
@@ -5137,7 +5197,7 @@ export interface components {
     }
     /**
      * LinkCallbackMetadata
-     * @description Information related to the callback from the hosted Link session.
+     * @description Information related to the callback from the Hosted Link session.
      */
     LinkCallbackMetadata: {
       callback_type?: components['schemas']['LinkDeliveryWebhookCallbackType']
@@ -5581,10 +5641,10 @@ export interface components {
       /** @description This will be set to `true` if the stream has been modified by request to a `/transactions/recurring/streams` endpoint. It will be `false` for all other streams. */
       is_user_modified: boolean
       /**
-       * Format: date
-       * @description The date of the most recent user modification. This will only be set if `is_user_modified` is `true`.
+       * Format: date-time
+       * @description The date and time of the most recent user modification. This will only be set if `is_user_modified` is `true`.
        */
-      last_user_modified_date?: string
+      last_user_modified_datetime?: string
       [key: string]: unknown
     }
     /**
@@ -5867,6 +5927,8 @@ export interface components {
        * `UNKNOWN`: We don’t know the confidence level for this counterparty.
        */
       confidence_level?: string | null
+      /** @description The phone number associated with the primary_counterparty in E. 164 format. If there is a location match (i.e. a street address is returned in the location object), the phone number will be location specific. */
+      phone_number: string | null
       [key: string]: unknown
     }
     /**
@@ -6220,9 +6282,9 @@ export interface components {
       /** @description `SYNC_UPDATES_AVAILABLE` */
       webhook_code: string
       item_id: components['schemas']['ItemId']
-      /** @description Indicates if initial pull information is available. */
+      /** @description Indicates if initial pull information (most recent 30 days of transaction history) is available. */
       initial_update_complete: boolean
-      /** @description Indicates if historical pull information is available. */
+      /** @description Indicates if historical pull information (maximum transaction history requested, up to 2 years) is available. */
       historical_update_complete: boolean
       environment: components['schemas']['WebhookEnvironmentValues']
       [key: string]: unknown
@@ -6544,6 +6606,8 @@ export interface components {
       emails: components['schemas']['Email'][]
       /** @description Data about the various addresses associated with the account by the financial institution. May be an empty array if no relevant information is returned from the financial institution. */
       addresses: components['schemas']['Address'][]
+      /** @description document_id is the id of the document that this identity belongs to */
+      document_id?: string | null
       [key: string]: unknown
     }
     /**
@@ -8359,6 +8423,9 @@ export interface components {
        * See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
        */
       unofficial_currency_code: string | null
+      /** @description The ISO-10383 Market Identifier Code of the exchange or market in which the security is being traded. */
+      market_identifier_code: string | null
+      option_contract: components['schemas']['OptionContract']
       [key: string]: unknown
     }
     /**
@@ -8433,6 +8500,35 @@ export interface components {
       | 'trust fee'
       | 'unqualified gain'
       | 'withdrawal'
+    /**
+     * OptionContract
+     * @description Details about the option security.
+     *
+     * For the Sandbox environment, this data is currently only available if the item is using a custom configuration object, and the `ticker` field of the custom security follows the [OCC Option Symbol](https://en.wikipedia.org/wiki/Option_symbol#The_OCC_Option_Symbol) standard with no spaces.
+     */
+    OptionContract: {
+      /**
+       * @description The type of this option contract. It is one of:
+       *
+       * `put`: for Put option contracts
+       *
+       * `call`: for Call option contracts
+       */
+      contract_type: string
+      /**
+       * Format: date
+       * @description The expiration date for this option contract, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
+       */
+      expiration_date: string
+      /**
+       * Format: double
+       * @description The strike price for this option contract, per share of security.
+       */
+      strike_price: number
+      /** @description The ticker of the underlying security for this option contract. */
+      underlying_security_ticker: string
+      [key: string]: unknown
+    } | null
     /**
      * InvestmentTransaction
      * @description A transaction within an investment account.
@@ -9597,7 +9693,9 @@ export interface components {
      * TransferIntentCreateNetwork
      * @description The network or rails used for the transfer. Defaults to `same-day-ach`.
      *
-     * For transfers submitted as either `ach` or `same-day-ach` the cutoff for same-day is 3:30 PM Eastern Time and the cutoff for next-day transfers is 5:30 PM Eastern Time. It is recommended to submit a transfer at least 15 minutes before the cutoff time in order to ensure that it will be processed before the cutoff. Any transfer that is indicated as `same-day-ach` and that misses the same-day cutoff, but is submitted in time for the next-day cutoff, will be sent over next-day rails and will not incur same-day charges. Note that both legs of the transfer will be downgraded if applicable.
+     * For transfers submitted as `ach`, the next-day cutoff is 5:30 PM Eastern Time.
+     *
+     * For transfers submitted as `same-day-ach`, the same-day cutoff is 3:30 PM Eastern Time. If the transfer is submitted after this cutoff but before the next-day cutoff, it will be sent over next-day rails and will not incur same-day charges; this will apply to both legs of the transfer if applicable.
      * @default same-day-ach
      * @enum {string}
      */
@@ -9606,7 +9704,9 @@ export interface components {
      * TransferNetwork
      * @description The network or rails used for the transfer.
      *
-     * For transfers submitted as either `ach` or `same-day-ach` the cutoff for same-day is 3:30 PM Eastern Time and the cutoff for next-day transfers is 5:30 PM Eastern Time. It is recommended to submit a transfer at least 15 minutes before the cutoff time in order to ensure that it will be processed before the cutoff. Any transfer that is indicated as `same-day-ach` and that misses the same-day cutoff, but is submitted in time for the next-day cutoff, will be sent over next-day rails and will not incur same-day charges. Note that both legs of the transfer will be downgraded if applicable.
+     * For transfers submitted as `ach`, the next-day cutoff is 5:30 PM Eastern Time.
+     *
+     * For transfers submitted as `same-day-ach`, the same-day cutoff is 3:30 PM Eastern Time. If the transfer is submitted after this cutoff but before the next-day cutoff, it will be sent over next-day rails and will not incur same-day charges; this will apply to both legs of the transfer if applicable.
      *
      * For transfers submitted as `rtp`,  Plaid will automatically route between Real Time Payment rail by TCH or FedNow rails as necessary. If a transfer is submitted as `rtp` and the counterparty account is not eligible for RTP, the `/transfer/authorization/create` request will fail with an `INVALID_FIELD` error code. To pre-check to determine whether a counterparty account can support RTP, call `/transfer/capabilities/get` before calling `/transfer/authorization/create`.
      * @enum {string}
@@ -9737,7 +9837,7 @@ export interface components {
       /** @deprecated */
       network?: components['schemas']['TransferNetwork']
       amount?: components['schemas']['TransferAmount']
-      /** @description The transfer description. Maximum of 15 characters. If reprocessing a returned transfer, please note that the `description` field must be `"Retry"` to indicate that it's a retry of a previously returned transfer. You may retry a transfer up to 2 times, within 180 days of creating the original transfer. Only transfers that were returned with code `R01` or `R09` may be retried. For a full listing of ACH return codes, see [Transfer errors](https://plaid.com/docs/errors/transfer/#ach-return-codes). */
+      /** @description The transfer description. Maximum of 15 characters. If reprocessing a returned transfer, please note that the `description` field must be `"Retry 1"` or `"Retry 2"` to indicate that it's a retry of a previously returned transfer. You may retry a transfer up to 2 times, within 180 days of creating the original transfer. Only transfers that were returned with code `R01` or `R09` may be retried. For a full listing of ACH return codes, see [Transfer errors](https://plaid.com/docs/errors/transfer/#ach-return-codes). */
       description: string
       /** @deprecated */
       ach_class?: components['schemas']['ACHClass']
@@ -9767,7 +9867,11 @@ export interface components {
       access_token: components['schemas']['TransferAccessToken']
       idempotency_key: components['schemas']['TransferRecurringIdempotencyKey']
       account_id: components['schemas']['TransferAccountID']
-      funding_account_id?: components['schemas']['TransferUnmigratedFundingAccountIDRequest']
+      /**
+       * @deprecated
+       * @description Specify the account used to fund the transfer. Customers can find a list of `funding_account_id`s in the Accounts page of your Plaid Dashboard, under the "Account ID" column. If this field is left blank, it will default to the default `funding_account_id` specified during onboarding.
+       */
+      funding_account_id?: string | null
       type: components['schemas']['TransferType']
       network: components['schemas']['TransferNetwork']
       ach_class?: components['schemas']['ACHClass']
@@ -11320,7 +11424,7 @@ export interface components {
       secret?: components['schemas']['APISecret']
       /** @description The Plaid `account_id` corresponding to the end-user account that will be debited or credited. */
       account_id?: string | null
-      funding_account_id?: components['schemas']['TransferUnmigratedFundingAccountIDRequest']
+      funding_account_id?: components['schemas']['TransferMigratedFundingAccountIDRequest']
       mode: components['schemas']['TransferIntentCreateMode']
       network?: components['schemas']['TransferIntentCreateNetwork']
       amount: components['schemas']['TransferAmount']
@@ -11867,7 +11971,17 @@ export interface components {
     AccountIdentity: components['schemas']['AccountBase'] & {
       /** @description Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. For business accounts, the name reported may be either the name of the individual or the name of the business, depending on the institution; detecting whether the linked account is a business account is not currently supported. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array. In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29) */
       owners: components['schemas']['Owner'][]
+      /** @description Array of documents that identity data is dervied from. This array will be empty if none of the account identity is from a document. */
+      documents?: components['schemas']['IdentityDocument'][]
       [key: string]: unknown
+    }
+    /**
+     * IdentityDocument
+     * @description Document object with metadata of the document uploaded
+     */
+    IdentityDocument: {
+      metadata?: components['schemas']['IdentityDocumentMetadata']
+      document_id?: string
     }
     /**
      * AccountIdentityMatchScore
@@ -14159,6 +14273,32 @@ export interface components {
       [key: string]: unknown
     }
     /**
+     * IdentityDocumentMetadata
+     * @description In closed beta. Object representing metadata pertaining to the document.
+     */
+    IdentityDocumentMetadata: {
+      /** @description The name of the document. */
+      name?: string
+      /** @description Boolean field indicating if the uploaded document's account number matches the account number we have on file */
+      is_account_number_match?: boolean
+      /**
+       * @description The processing status of the document.
+       *
+       * `PROCESSING_COMPLETE`: The document was successfully processed.
+       *
+       * `DOCUMENT_ERROR`: The document could not be processed. Possible causes include: The document was an unacceptable document type such as an offer letter or bank statement, the document image was cropped or blurry, or the document was corrupted.
+       *
+       * `UNKNOWN` or `null`: An internal error occurred. If this happens repeatedly, contact support or your Plaid account manager.
+       */
+      status?: string
+      /** Format: date-time */
+      last_updated?: string
+      /** Format: date-time */
+      uploaded_at?: string
+      page_count?: number
+      [key: string]: unknown
+    }
+    /**
      * CreditDocumentType
      * @description The type of document.
      *
@@ -16235,6 +16375,10 @@ export interface components {
        * @description Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DDTHH:mm:ssZ) indicating the last time that the transactions for the given account have been updated.
        */
       transactions_last_updated?: string | null
+      /** @description Indicates if the receiver bank account is closed */
+      is_account_closed?: boolean | null
+      /** @description Indicates if the receiver bank account is either frozen or restricted */
+      is_account_frozen_or_restricted?: boolean | null
     }
     /**
      * SignalWarning
@@ -16447,6 +16591,11 @@ export interface components {
        * @description The total amount of funds in the account
        */
       current: number
+      /**
+       * Format: double
+       * @description The total amount of funds in the account after subtracting pending debit transaction amounts
+       */
+      available: number
       [key: string]: unknown
     }
     /**
@@ -16953,6 +17102,8 @@ export interface components {
       /** @description The name of the primary counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description. */
       merchant_name: string | null
       payment_channel: components['schemas']['PaymentChannel']
+      /** @description The phone number associated with the primary_counterparty in E. 164 format. If there is a location match (i.e. a street address is returned in the location object), the phone number will be location specific. */
+      phone_number: string | null
       personal_finance_category: components['schemas']['PersonalFinanceCategory']
       /** @description The URL of an icon associated with the primary personal finance category. The icon will always be 100×100 pixel PNG file. */
       personal_finance_category_icon_url: string
@@ -17297,6 +17448,8 @@ export interface components {
       assets_under_management?: components['schemas']['PartnerEndCustomerAssetsUnderManagement']
       /** @description A list of URIs indicating the destination(s) where a user can be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. URIs should not contain any query parameters. When used in Production or Development, URIs must use https. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. To modify redirect URIs for an end customer after creating them, go to the end customer's [API page](https://dashboard.plaid.com/team/api) in the Dashboard. */
       redirect_uris?: string[]
+      /** @description The unique identifier assigned to a financial institution by regulatory authorities, if applicable. For banks, this is the FDIC Certificate Number. For credit unions, this is the Credit Union Charter Number. */
+      registration_number?: string
     }
     /** @description Response schema for `/partner/customer/create`. */
     PartnerCustomerCreateResponse: {
@@ -17571,7 +17724,7 @@ export interface components {
     }
     /**
      * LinkUserDeliveryStatusWebhook
-     * @description Webhook indicating that the status of the delivery of the hosted link session to a user
+     * @description Webhook indicating that the status of the delivery of the Hosted Link session to a user
      */
     LinkUserDeliveryStatusWebhook: {
       /** @description `LINK_DELIVERY` */
@@ -17615,6 +17768,46 @@ export interface components {
       detailed: string
       [key: string]: unknown
     } | null
+    /**
+     * UserAccountRevokedWebhook
+     * @description The `USER_ACCOUNT_REVOKED` webhook is fired when an end user has revoked access to their account on the Data Provider's portal. The user can restore access to the revoked account by regranting permissions on the Data Provider's portal. This webhook is currently in beta. It will be available in GA in Jan 2024.
+     */
+    UserAccountRevokedWebhook: {
+      /** @description `ITEM` */
+      webhook_type: string
+      /** @description `USER_ACCOUNT_REVOKED` */
+      webhook_code: string
+      item_id: components['schemas']['ItemId']
+      /** @description The external account ID of the affected account */
+      account_id: string
+      error?: components['schemas']['PlaidError']
+      environment: components['schemas']['WebhookEnvironmentValues']
+      [key: string]: unknown
+    }
+    /**
+     * StatementsRefreshCompleteWebhook
+     * @description Fired when refreshed statements extraction is completed or failed to be completed. Triggered by calling `/statements/refresh`.
+     */
+    StatementsRefreshCompleteWebhook: {
+      /** @description `STATEMENTS` */
+      webhook_type: string
+      /** @description `STATEMENTS_REFRESH_COMPLETE` */
+      webhook_code: string
+      /** @description The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive. */
+      item_id: string
+      result: components['schemas']['StatementsRefreshCompleteResult']
+      environment: components['schemas']['WebhookEnvironmentValues']
+      [key: string]: unknown
+    }
+    /**
+     * @description The result of the statement refresh extraction
+     *
+     * `SUCCESS`: The statements were successfully extracted and can be listed via `/statements/list/` and downloaded via `/statements/download/`.
+     *
+     * `FAILURE`: The statements failed to be extracted.
+     * @enum {string}
+     */
+    StatementsRefreshCompleteResult: 'SUCCESS' | 'FAILURE'
     /**
      * BaseReportsProductReadyWebhook
      * @description Fired when the Base Report has been generated and `/cra/base_report/get` is ready to be called.  If you attempt to retrieve a Base Report before this webhook has fired, you’ll receive a response with the HTTP status code 400 and a Plaid error code of `PRODUCT_NOT_READY`.
@@ -17813,21 +18006,22 @@ export interface components {
     }
     /**
      * LinkSessionFinishedWebhook
-     * @description Contains the state of a completed link session, along with the public token if available.
+     * @description Contains the state of a completed Link session, along with the public token if available.
      */
     LinkSessionFinishedWebhook: {
       /** @description `LINK` */
       webhook_type: string
       /** @description `SESSION_FINISHED` */
       webhook_code: string
-      /** @description The final status of the link session. Will always be "SUCCESS" or "EXITED". */
+      /** @description The final status of the Link session. Will always be "SUCCESS" or "EXITED". */
       status: string
-      /** @description The identifier for the link session. */
+      /** @description The identifier for the Link session. */
       link_session_id: string
-      /** @description The link token used to create the link session. */
+      /** @description The link token used to create the Link session. */
       link_token: string
-      /** @description The public token generated by the link session. */
+      /** @description The public token generated by the Link session. */
       public_token?: string
+      environment: components['schemas']['WebhookEnvironmentValues']
       [key: string]: unknown
     }
     /**
@@ -18186,7 +18380,7 @@ export interface components {
      * AssetReportAddOns
      * @description A list of add-ons that should be included in the Asset Report.
      *
-     * `fast_assets`: When Fast Assets is requested, Plaid will create two versions of the Asset Report: the Fast Asset Report, which will contain only Identity and Balance information, and the Full Asset Report, which will also contain Transactions information. A `PRODUCT_READY` webhook will be fired for each Asset Report when it is ready, and the `report_type` field will indicate whether the webhook is firing for the `full` or `fast` Asset Report. To retrieve the Fast Asset Report, call `/asset_report/get` with `fast_report` set to `true`. There is no additional charge for using Fast Assets.
+     * `fast_assets`: When Fast Assets is requested, Plaid will create two versions of the Asset Report: the Fast Asset Report, which will contain only Identity and Balance information, and the Full Asset Report, which will also contain Transactions information. A `PRODUCT_READY` webhook will be fired for each Asset Report when it is ready, and the `report_type` field will indicate whether the webhook is firing for the `full` or `fast` Asset Report. To retrieve the Fast Asset Report, call `/asset_report/get` with `fast_report` set to `true`. There is no additional charge for using Fast Assets. To create a Fast Asset Report, Plaid must successfully retrieve both Identity and Balance data; if Plaid encounters an error obtaining this data, the Fast Asset Report will not be created. However, as long as Plaid can obtain Transactions data, the Full Asset Report will still be available.
      *
      * `investments`: Request an Asset Report with Investments. This add-on is in closed beta and not generally available.
      * @enum {string}
@@ -18918,6 +19112,26 @@ export interface components {
       phone_number: components['schemas']['BeaconMatchSummaryCode']
       [key: string]: unknown
     }
+    /** @description Request input for getting a Beacon Report Syndication */
+    BeaconReportSyndicationGetRequest: {
+      beacon_report_syndication_id: components['schemas']['BeaconReportSyndicationID']
+      client_id?: components['schemas']['APIClientID']
+      secret?: components['schemas']['APISecret']
+    }
+    /**
+     * @description A Beacon Report Syndication represents a Beacon Report created either by your organization or another Beacon customer that matches a specific Beacon User you've created.
+     *
+     * The `analysis` field in the response indicates which fields matched between the originally reported Beacon User and the Beacon User that the report was syndicated to.
+     *
+     * The `report` field in the response contains a subset of information from the original report.
+     */
+    BeaconReportSyndicationGetResponse: {
+      id: components['schemas']['BeaconReportSyndicationID']
+      report: components['schemas']['BeaconReportSyndicationOriginalReport']
+      analysis: components['schemas']['BeaconReportSyndicationAnalysis']
+      request_id: components['schemas']['RequestID']
+      [key: string]: unknown
+    }
     /**
      * BeaconReportSyndicationID
      * @description ID of the associated Beacon Report Syndication.
@@ -19066,7 +19280,7 @@ export interface components {
       value: components['schemas']['IDNumberValue']
       type: components['schemas']['IDNumberType']
       [key: string]: unknown
-    }
+    } | null
     /**
      * BeaconUserName
      * @description The full name for a given Beacon User.
@@ -19076,6 +19290,15 @@ export interface components {
       family_name: components['schemas']['FamilyNameField']
       [key: string]: unknown
     }
+    /**
+     * BeaconUserName
+     * @description The full name for a given Beacon User.
+     */
+    BeaconUserNameNullable: {
+      given_name: components['schemas']['GivenNameField']
+      family_name: components['schemas']['FamilyNameField']
+      [key: string]: unknown
+    } | null
     /**
      * BeaconUserPhoneNumber
      * @description A phone number in E.164 format.
@@ -19095,6 +19318,19 @@ export interface components {
       country: components['schemas']['GenericCountryCode']
       [key: string]: unknown
     }
+    /**
+     * BeaconUserRequestAddress
+     * @description Home address for the associated user. For more context on this field, see [Input Validation by Country](https://plaid.com/docs/identity-verification/hybrid-input-validation/#input-validation-by-country).
+     */
+    BeaconUserRequestAddressNullable: {
+      street: components['schemas']['Street']
+      street2?: components['schemas']['Street2']
+      city: components['schemas']['City']
+      region?: components['schemas']['Region']
+      postal_code?: components['schemas']['PostalCode']
+      country: components['schemas']['GenericCountryCode']
+      [key: string]: unknown
+    } | null
     /**
      * BeaconUserRequestData
      * @description A Beacon User's data which is used to check against duplicate records and the Beacon Fraud Network.
@@ -19129,6 +19365,40 @@ export interface components {
      * @enum {string}
      */
     BeaconUserStatus: 'rejected' | 'pending_review' | 'cleared'
+    /** @description Request input for updating the identity data of a Beacon User. */
+    BeaconUserUpdateRequest: {
+      beacon_user_id: components['schemas']['BeaconUserID']
+      user: components['schemas']['BeaconUserUpdateRequestData']
+      client_id?: components['schemas']['APIClientID']
+      secret?: components['schemas']['APISecret']
+    }
+    /**
+     * BeaconUserUpdateRequestData
+     * @description A subset of a Beacon User's data which is used to patch the existing identity data associated with a Beacon User. At least one field must be provided,.
+     */
+    BeaconUserUpdateRequestData: {
+      date_of_birth?: components['schemas']['ISO8601Date']
+      name?: components['schemas']['BeaconUserNameNullable']
+      address?: components['schemas']['BeaconUserRequestAddressNullable']
+      email_address?: components['schemas']['EmailAddress']
+      phone_number?: components['schemas']['BeaconUserPhoneNumber']
+      id_number?: components['schemas']['BeaconUserIDNumber']
+      ip_address?: components['schemas']['IPAddress']
+      [key: string]: unknown
+    }
+    /** @description A Beacon User represents an end user that has been scanned against the Beacon Network. */
+    BeaconUserUpdateResponse: {
+      id: components['schemas']['BeaconUserID']
+      created_at: components['schemas']['Timestamp']
+      updated_at: components['schemas']['UpdatedAtTimestamp']
+      status: components['schemas']['BeaconUserStatus']
+      program_id: components['schemas']['BeaconProgramID']
+      client_user_id: components['schemas']['ClientUserID']
+      user: components['schemas']['BeaconUserData']
+      audit_trail: components['schemas']['BeaconAuditTrail']
+      request_id: components['schemas']['RequestID']
+      [key: string]: unknown
+    }
     /**
      * CityName
      * @description City from the end user's address
@@ -20965,11 +21235,15 @@ export interface components {
      * @example 2020-07-24T03:26:02Z
      */
     UpdatedAtTimestamp: string
-    /** @description Home address for the user. For more context on this field, see [Input Validation by Country](https://plaid.com/docs/identity-verification/hybrid-input-validation/#input-validation-by-country). */
+    /**
+     * @description Home address for the user. Supported values are: not provided, address with only country code or full address.
+     *
+     * For more context on this field, see [Input Validation by Country](https://plaid.com/docs/identity-verification/hybrid-input-validation/#input-validation-by-country).
+     */
     UserAddress: {
-      street: components['schemas']['Street']
+      street?: components['schemas']['StreetNullable']
       street2?: components['schemas']['Street2']
-      city: components['schemas']['City']
+      city?: components['schemas']['CityNullable']
       region?: components['schemas']['Region']
       postal_code?: components['schemas']['PostalCode']
       country: components['schemas']['GenericCountryCode']
@@ -23608,7 +23882,7 @@ export interface operations {
    *
    * This endpoint is offered as an add-on to Transactions. To request access to this endpoint, submit a [product access request](https://dashboard.plaid.com/team/products) or contact your Plaid account manager.
    *
-   * This endpoint can only be called on an Item that has already been initialized with Transactions (either during Link, by specifying it in `/link/token/create`; or after Link, by calling `/transactions/get` or `/transactions/sync`). Once all historical transactions have been fetched, call `/transactions/recurring/get` to receive the Recurring Transactions streams and subscribe to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook. To know when historical transactions have been fetched, if you are using `/transactions/sync` listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#SyncUpdatesAvailableWebhook-historical-update-complete) webhook and check that the `historical_update_complete` field in the payload is `true`. If using `/transactions/get`, listen for the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook.
+   * This endpoint can only be called on an Item that has already been initialized with Transactions (either during Link, by specifying it in `/link/token/create`; or after Link, by calling `/transactions/get` or `/transactions/sync`). For optimal results, we strongly recommend customers using Recurring Transactions to request at least 180 days of history when initializing items with Transactions (using the [`days_requested`](https://plaid.com/docs/api/tokens/#link-token-create-request-transactions-days-requested) option). Once all historical transactions have been fetched, call `/transactions/recurring/get` to receive the Recurring Transactions streams and subscribe to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook. To know when historical transactions have been fetched, if you are using `/transactions/sync` listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#SyncUpdatesAvailableWebhook-historical-update-complete) webhook and check that the `historical_update_complete` field in the payload is `true`. If using `/transactions/get`, listen for the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook.
    *
    * After the initial call, you can call `/transactions/recurring/get` endpoint at any point in the future to retrieve the latest summary of recurring streams. Listen to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook to be notified when new updates are available.
    */
@@ -24711,6 +24985,54 @@ export interface operations {
     }
   }
   /**
+   * Get a Beacon Report Syndication
+   * @description Returns a Beacon Report Syndication for a given Beacon Report Syndication id.
+   */
+  beaconReportSyndicationGet: {
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['BeaconReportSyndicationGetRequest']
+      }
+    }
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          'application/json': components['schemas']['BeaconReportSyndicationGetResponse']
+        }
+      }
+    }
+  }
+  /**
+   * Update the identity data of a Beacon User
+   * @description Update the identity data for a Beacon User in your Beacon Program.
+   *
+   * Similar to `/beacon/user/create`, several checks are performed immediately when you submit a change to `/beacon/user/update`:
+   *
+   *   - The user's updated PII is searched against all other users within the Beacon Program you specified. If a match is found that violates your program's "Duplicate Information Filtering" settings, the user will be returned with a status of `pending_review`.
+   *
+   *   - The user's updated PII is also searched against all fraud reports created by your organization across all of your Beacon Programs. If the user's data matches a fraud report that your team created, the user will be returned with a status of `rejected`.
+   *
+   *   - Finally, the user's PII is searched against all fraud report shared with the Beacon Network by other companies. If a matching fraud report is found, the user will be returned with a `pending_review` status if your program has enabled automatic flagging based on network fraud.
+   *
+   * Plaid maintains a version history for each Beacon User, so the Beacon User's identity data before and after the update is retained as separate versions.
+   */
+  beaconUserUpdate: {
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['BeaconUserUpdateRequest']
+      }
+    }
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          'application/json': components['schemas']['BeaconUserUpdateResponse']
+        }
+      }
+    }
+  }
+  /**
    * Retrieve Auth data
    * @description The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for a checking or savings account that''s associated with a given `processor_token`. The endpoint also returns high-level account data and balances when available.
    *
@@ -25410,8 +25732,6 @@ export interface operations {
   /**
    * Set verification status for Sandbox account
    * @description The `/sandbox/item/set_verification_status` endpoint can be used to change the verification status of an Item in in the Sandbox in order to simulate the Automated Micro-deposit flow.
-   *
-   * Note that not all Plaid developer accounts are enabled for micro-deposit based verification by default. Your account must be enabled for this feature in order to test it in Sandbox. To enable this features or check your status, contact your account manager or [submit a product access Support ticket](https://dashboard.plaid.com/support/new/product-and-development/product-troubleshooting/request-product-access).
    *
    * For more information on testing Automated Micro-deposits in Sandbox, see [Auth full coverage testing](https://plaid.com/docs/auth/coverage/testing#).
    */

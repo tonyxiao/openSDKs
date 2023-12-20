@@ -9,7 +9,7 @@
   "dependencies": {
     "@octokit/rest": "^20.0.2",
     "@opensdks/fetch-links": "0.0.13",
-    "@opensdks/runtime": "0.0.13",
+    "@opensdks/runtime": "0.0.14",
     "@opensdks/sdk-apollo": "0.0.13",
     "@opensdks/sdk-discord": "0.0.13",
     "@opensdks/sdk-github": "0.0.13",

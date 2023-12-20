@@ -49,7 +49,7 @@ export const listCorePackages = () =>
 
 // Templates
 const packageJsonTemplate: PackageJson = {
-  version: '0.0.13',
+  version: '0.0.14',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"

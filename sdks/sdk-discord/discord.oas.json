@@ -24179,7 +24179,7 @@
             "items": {
               "$ref": "#/components/schemas/RichEmbedField"
             },
-            "maxItems": 1521
+            "maxItems": 25
           },
           "provider": {
             "oneOf": [
@@ -26506,6 +26506,12 @@
             ],
             "format": "int32"
           },
+          "global_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "mfa_enabled": {
             "type": "boolean"
           },
@@ -26594,6 +26600,12 @@
               "null"
             ],
             "format": "int32"
+          },
+          "global_name": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [

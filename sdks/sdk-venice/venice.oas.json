@@ -140,7 +140,11 @@
                   },
                   "connectorName": {
                     "type": ["string", "null"],
-                    "description": "Which provider to use"
+                    "description": "Filter connector config by connector name"
+                  },
+                  "connectorConfigDisplayName": {
+                    "type": ["string", "null"],
+                    "description": "Filter connector config by displayName "
                   },
                   "connectorConfigId": {
                     "type": "string",

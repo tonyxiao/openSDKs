@@ -4781,6 +4781,7 @@ export interface components {
       banner?: string | null
       /** Format: int32 */
       accent_color?: number | null
+      global_name?: string | null
       mfa_enabled: boolean
       locale: components['schemas']['AvailableLocalesEnum']
       email?: string | null
@@ -4800,6 +4801,7 @@ export interface components {
       banner?: string | null
       /** Format: int32 */
       accent_color?: number | null
+      global_name?: string | null
     }
     UserSelect: {
       /**

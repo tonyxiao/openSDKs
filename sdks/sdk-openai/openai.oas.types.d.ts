@@ -2150,8 +2150,10 @@ export interface components {
       assistant_id: string
       /** @description The ID of the [Model](/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used. */
       model?: string | null
-      /** @description Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis. */
+      /** @description Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. */
       instructions?: string | null
+      /** @description Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. */
+      additional_instructions?: string | null
       /** @description Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis. */
       tools?:
         | (

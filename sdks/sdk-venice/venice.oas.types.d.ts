@@ -443,8 +443,10 @@ export interface operations {
           displayName?: string | null
           /** @description Where to send user to after connect / if they press back button */
           redirectUrl?: string | null
-          /** @description Which provider to use */
+          /** @description Filter connector config by connector name */
           connectorName?: string | null
+          /** @description Filter connector config by displayName */
+          connectorConfigDisplayName?: string | null
           /** @description Must start with 'ccfg_' */
           connectorConfigId?: string
           /** @default true */
