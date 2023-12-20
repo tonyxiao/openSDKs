@@ -40,7 +40,7 @@
     "version": "pnpm version"
   },
   "dependencies": {
-    "@opensdks/links": "workspace:*",
+    "@opensdks/fetch-links": "workspace:*",
     "openapi-fetch": "0.8.1",
     "openapi-typescript-helpers": "0.0.4",
     "openapi3-ts": "4.1.2"

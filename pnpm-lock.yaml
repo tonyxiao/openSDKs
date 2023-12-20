@@ -150,7 +150,7 @@ importers:
 
   packages/runtime:
     dependencies:
-      '@opensdks/links':
+      '@opensdks/fetch-links':
         specifier: workspace:*
         version: link:../links
       openapi-fetch:

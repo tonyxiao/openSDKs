@@ -3,7 +3,7 @@ import type {ClientOptions, OpenAPIClient} from './createClient.js'
 import {createClient} from './createClient.js'
 
 // export type * from 'openapi-typescript-helpers'
-export * from '@opensdks/links'
+export * from '@opensdks/fetch-links'
 export * from './HTTPError.js'
 export * from './createClient.js'
 

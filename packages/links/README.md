@@ -1,4 +1,4 @@
-# @opensdks/links
+# @opensdks/fetch-links
 
 Simple middlewares built on top of the standard Web Request & Response API (also known as the Fetch API)
 

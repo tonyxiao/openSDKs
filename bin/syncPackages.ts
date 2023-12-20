@@ -131,7 +131,7 @@ const tsConfigTemplate: TsConfigJson = {
     //   //   // if main is specified
     //   //   // EDIT: This doesn't work as the build output contains files in `paths` https://share.cleanshot.com/Nlmd0fKt
     //   //   // '@opensdks/util-zod': ['../../packages/util-zod/index.ts'],
-    //   //   // '@opensdks/links': ['../../packages/links/index.ts'],
+    //   //   // '@opensdks/fetch-links': ['../../packages/links/index.ts'],
     //   //   // '@opensdks/runtime': ['../../packages/runtime/index.ts'],
     // },
     // publish cjs for now and esm later...

@@ -1,5 +1,5 @@
 {
-  "name": "@opensdks/links",
+  "name": "@opensdks/fetch-links",
   "version": "0.0.11",
   "type": "module",
   "exports": {
