@@ -1,8 +1,9 @@
 import type {Link} from './link.js'
-import {applyLinks, fetchLink} from './link.js'
+import {applyLinks} from './link.js'
+import {fetchLink} from './links/index.js'
 
-/** 
- * Create a custom fetch function with middleware (aka) baked in. 
+/**
+ * Create a custom fetch function with middleware (aka) baked in.
  * The terminating `fetchLink` is automatically added at the end of the chain.
  */
 export function createFetchWithLinks(opts: {
