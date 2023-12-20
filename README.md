@@ -6,19 +6,11 @@
       <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="website/public/logo-light.png">
     </picture>
     <h1 align="center">OpenSDKs</h1>
+    <p align="center">Type-safe, extensible and standardized API clients</p>
   </a>
 </p>
 
 <p align="center">
-  <a aria-label="Venice logo" href="https://venice.is">
-    <img src="website/public/made-by-venice.svg">
-  </a>
-  <a aria-label="NPM version" href="https://www.npmjs.com/package/@opensdks/runtime">
-    <img alt="" src="https://img.shields.io/npm/v/next.svg?style=for-the-badge&labelColor=000000">
-  </a>
-  <a aria-label="License" href="https://github.com/vercel/next.js/blob/canary/license.md">
-    <img alt="" src="https://img.shields.io/npm/l/next.svg?style=for-the-badge&labelColor=000000">
-  </a>
   <a aria-label="Join the community on GitHub" href="https://github.com/orgs/useVenice/projects/2">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
