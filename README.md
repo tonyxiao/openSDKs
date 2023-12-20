@@ -17,7 +17,7 @@
 </p>
 
 > **NOTE:**
-> This repo is fully working but documentation is still work in progress. In the mean time please check the [examples folder](https://github.com/useVenice/openSDKs/tree/main/examples) folder for usage guide and the [sdks folder](https://github.com/useVenice/openSDKs/tree/main/sdks) for a list of pre-packaged SDKs. 
+> This repo is fully working but documentation is still work in progress. In the mean time please check the [examples folder](./examples) folder for usage guide and the [sdks folder](./sdks) for a list of pre-packaged SDKs.
 
 OpenSDKs is a repository of type-safe, ready-to-use SDKs, for all your external APIs - powered by a zero abstraction lightweight runtime that embraces fetch and HTTP.
 
@@ -132,7 +132,7 @@ To contribute new SDKs to the OpenSDKs suite, you can follow the [`CONTRIBUTING.
 
 ## Credits
 
-- [drwpow/openapi-typescript](github.com/drwpow/openapi-typescript) - OpenSDKs would not be exist if not for the amazing work done by @drwpow. `@opensdks/runtime` depends on `openapi-fetch` and `@opensdks/cli` 's `generate` command uses `openapi-typescript` under the hood. 
-- [APIs-guru/openapi-directory](https://github.com/APIs-guru/openapi-directory) - For creating the largest OpenAPI spec registry in the world. I just wish more people knew about you. 
-- [trpc/trpc](https://github.com/trpc/trpc) - For pioneering such an amazing deveoper experience! We borrowed a lot of ideas from you (ok fine I know you borrowed links from apollo too :P), in particular using ES proxy to allow VSCode to `go to definition` from api call site directly to route definition is amazing, and we are shamelessly borrowing that. 
-- [apollographql/apollo-client](https://github.com/apollographql/apollo-client) - for being the OG of links (as far as I know!) and certainly for introducing me to them. I am still missing `apollo-link-state` and `graphql-anywhere` to this date. Would you ever bring it back? :/ 
+- [drwpow/openapi-typescript](github.com/drwpow/openapi-typescript) - OpenSDKs would not be exist if not for the amazing work done by @drwpow. `@opensdks/runtime` depends on `openapi-fetch` and `@opensdks/cli` 's `generate` command uses `openapi-typescript` under the hood.
+- [APIs-guru/openapi-directory](https://github.com/APIs-guru/openapi-directory) - For creating the largest OpenAPI spec registry in the world. I just wish more people knew about you.
+- [trpc/trpc](https://github.com/trpc/trpc) - For pioneering such an amazing deveoper experience! We borrowed a lot of ideas from you (ok fine I know you borrowed links from apollo too :P), in particular using ES proxy to allow VSCode to `go to definition` from api call site directly to route definition is amazing, and we are shamelessly borrowing that.
+- [apollographql/apollo-client](https://github.com/apollographql/apollo-client) - for being the OG of links (as far as I know!) and certainly for introducing me to them. I am still missing `apollo-link-state` and `graphql-anywhere` to this date. Would you ever bring it back? :/
