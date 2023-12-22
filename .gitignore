@@ -137,3 +137,6 @@ types
 .turbo
 .envrc
 .DS_Store
+
+.vercel
+

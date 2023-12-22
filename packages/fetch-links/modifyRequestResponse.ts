@@ -2,13 +2,16 @@ import type {HTTPMethod} from './link.js'
 
 export function modifyRequest(
   req: Request,
-  overrides: RequestInit & {method?: HTTPMethod; url?: string},
+  overrides: Omit<RequestInit, 'headers'> & {
+    method?: HTTPMethod
+    url?: string
+    headers?: HeadersInit | ((headers: Headers) => void)
+  },
 ) {
   return new Request(overrides.url ?? req.url, {
-    method: overrides.method ?? req.method,
-    headers: mergeHeaders(req.headers, overrides.headers),
-    body: overrides.body ?? req.body,
     // Can we spread this? Or is there a better way to duplicate
+    method: req.method,
+    body: req.body,
     cache: req.cache,
     credentials: req.credentials,
     integrity: req.integrity,
@@ -18,7 +21,38 @@ export function modifyRequest(
     referrer: req.referrer,
     referrerPolicy: req.referrerPolicy,
     signal: req.signal,
+    ...overrides,
+    headers: modifyHeaders(req.headers, overrides.headers),
   })
+}
+
+export function modifyResponse(
+  res: Response,
+  overrides: Omit<ResponseInit, 'headers'> & {
+    headers?: HeadersInit | ((headers: Headers) => void)
+  },
+) {
+  return new Response(res.body, {
+    status: res.status,
+    statusText: res.statusText,
+    ...overrides,
+    headers: modifyHeaders(res.headers, overrides.headers),
+  })
+}
+
+export function modifyHeaders(
+  original: HeadersInit,
+  modify: HeadersInit | ((headers: Headers) => void) | undefined,
+) {
+  const headers = new Headers(original)
+  if (!modify) {
+    return headers
+  } else if (typeof modify === 'function') {
+    modify(headers)
+    return headers
+  } else {
+    return mergeHeaders(headers, modify)
+  }
 }
 
 /** Courtesy of https://github.com/whitecrownclown/merge-headers/blob/master/index.ts */

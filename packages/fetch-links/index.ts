@@ -2,5 +2,5 @@
 export * from './createFetchWithLinks.js'
 export * from './link.js'
 export * from './links/index.js'
-export * from './modifyRequest.js'
+export * from './modifyRequestResponse.js'
 // codegen:end

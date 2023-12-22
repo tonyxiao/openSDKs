@@ -3,7 +3,7 @@ import type {HTTPMethod} from './link.js'
 import {applyLinks} from './link.js'
 import {axiosLink} from './links/axiosLink.js'
 import {fetchLink, logLink, retryLink, throwLink} from './links/index.js'
-import {modifyRequest} from './modifyRequest.js'
+import {modifyRequest, modifyResponse} from './modifyRequestResponse.js'
 
 const req = new Request('https://httpbin.org/anything', {method: 'GET'})
 
@@ -72,8 +72,37 @@ test('modify header link', async () => {
     },
     fetchLink(),
   ])
+
   const data = await res.json<HTTPBinResponse>()
   expect(data.headers['X-Modified-Header']).toEqual(randomStr)
+})
+
+test('modify response link', async () => {
+  const res = await applyLinks(req, [fetchLink()])
+
+  expect(res.headers.get('Content-Type')).toContain('application/json')
+
+  const res2 = await applyLinks(req, [
+    async (req, next) =>
+      modifyResponse(await next(req), {
+        headers: {'Content-Type': 'text/plain'},
+      }),
+    fetchLink(),
+  ])
+  expect(res2.headers.get('Content-Type')).toEqual('text/plain')
+
+  const res3 = await applyLinks(req, [
+    async (req, next) =>
+      modifyResponse(await next(req), {
+        headers: (h) => h.delete('content-type'),
+      }),
+    fetchLink(),
+  ])
+  expect(res3.headers.get('Content-Type')).toEqual(null)
+  expect(res3.headers.get('x-random')).toEqual(null)
+  expect(Object.fromEntries(res3.headers.entries())['content-type']).toEqual(
+    undefined,
+  )
 })
 
 interface HTTPBinResponse {
