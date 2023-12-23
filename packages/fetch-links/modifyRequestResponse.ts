@@ -9,9 +9,11 @@ export function modifyRequest(
   },
 ) {
   return new Request(overrides.url ?? req.url, {
+    // only include body if it exists
+    // otherwise we get TypeError: cannot include body for GET / HEAD requests
+    ...(req.body != null && {body: req.body}), 
     // Can we spread this? Or is there a better way to duplicate
     method: req.method,
-    body: req.body,
     cache: req.cache,
     credentials: req.credentials,
     integrity: req.integrity,
