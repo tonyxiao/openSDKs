@@ -25,6 +25,9 @@ export interface paths {
   '/v1/contacts/{id}': {
     get: operations['getContact']
   }
+  '/v1/contacts/search': {
+    post: operations['searchContacts']
+  }
   '/v1/email_accounts': {
     get: operations['listEmailAccounts']
   }
@@ -362,6 +365,47 @@ export interface operations {
         content: {
           'application/json': {
             contact: components['schemas']['contact']
+          }
+        }
+      }
+    }
+  }
+  searchContacts: {
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The contact's name, title, company, or email */
+          q_keywords?: string
+          /** @description An array of stage ids the contact must belong to. Refer to /contact_stages to get a list of possible stage ids. */
+          contact_stage_ids?: string[]
+          /**
+           * @description 	Possible values: "contact_last_activity_date", "contact_email_last_opened_at", "contact_email_last_clicked_at", "contact_created_at", or "contact_updated_at"
+           * @enum {string}
+           */
+          sort_by_field?:
+            | 'contact_last_activity_date'
+            | 'contact_email_last_opened_at'
+            | 'contact_email_last_clicked_at'
+            | 'contact_created_at'
+            | 'contact_updated_at'
+          /** @description Possible values: true or false */
+          sort_ascending?: boolean
+          /** @description Which page to return. Defaults to 1 */
+          page?: number
+        }
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            contacts: components['schemas']['contact'][]
+            pagination: {
+              page: number
+              per_page: number
+              total_entries: number
+              total_pages: number
+            }
           }
         }
       }

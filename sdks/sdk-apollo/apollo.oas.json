@@ -435,6 +435,95 @@
         }
       }
     },
+    "/v1/contacts/search": {
+      "post": {
+        "operationId": "searchContacts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "q_keywords": {
+                    "type": "string",
+                    "description": "The contact's name, title, company, or email"
+                  },
+                  "contact_stage_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "An array of stage ids the contact must belong to. Refer to /contact_stages to get a list of possible stage ids."
+                  },
+                  "sort_by_field": {
+                    "type": "string",
+                    "enum": [
+                      "contact_last_activity_date",
+                      "contact_email_last_opened_at",
+                      "contact_email_last_clicked_at",
+                      "contact_created_at",
+                      "contact_updated_at"
+                    ],
+                    "description": "\tPossible values: \"contact_last_activity_date\", \"contact_email_last_opened_at\", \"contact_email_last_clicked_at\", \"contact_created_at\", or \"contact_updated_at\""
+                  },
+                  "sort_ascending": {
+                    "type": "boolean",
+                    "description": "Possible values: true or false"
+                  },
+                  "page": {
+                    "type": "number",
+                    "description": "Which page to return. Defaults to 1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contacts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "per_page": {
+                          "type": "number"
+                        },
+                        "total_entries": {
+                          "type": "number"
+                        },
+                        "total_pages": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total_entries",
+                        "total_pages"
+                      ]
+                    }
+                  },
+                  "required": ["contacts", "pagination"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/email_accounts": {
       "get": {
         "operationId": "listEmailAccounts",

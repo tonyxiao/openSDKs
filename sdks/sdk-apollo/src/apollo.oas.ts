@@ -298,6 +298,57 @@ export const oas: OpenAPISpec = createDocument({
         response: z.object({contact: apolloContact}),
       }),
     },
+    '/v1/contacts/search': {
+      post: jsonOperation('searchContacts', {
+        body: z.object({
+          q_keywords: z
+            .string()
+            .optional()
+            .describe("The contact's name, title, company, or email"),
+          contact_stage_ids: z
+            .array(z.string())
+            .optional()
+            .describe(
+              'An array of stage ids the contact must belong to. Refer to /contact_stages to get a list of possible stage ids.',
+            ),
+          sort_by_field: z
+            .enum([
+              'contact_last_activity_date',
+              'contact_email_last_opened_at',
+              'contact_email_last_clicked_at',
+              'contact_created_at',
+              'contact_updated_at',
+            ])
+            .optional()
+            .describe(
+              '	Possible values: "contact_last_activity_date", "contact_email_last_opened_at", "contact_email_last_clicked_at", "contact_created_at", or "contact_updated_at"',
+            ),
+          sort_ascending: z
+            .boolean()
+            .optional()
+            .describe('Possible values: true or false'),
+          page: z
+            .number()
+            .optional()
+            .describe('Which page to return. Defaults to 1'),
+        }),
+        response: z.object({
+          contacts: z.array(apolloContact),
+          pagination: z.object({
+            page: z.number(), // 1,
+            per_page: z.number(), // 25,
+            total_entries: z.number(), // 10000,
+            total_pages: z.number(), // 400,
+          }),
+          // breadcrumbs: [],
+          // partial_results_only: false,
+          // disable_eu_prospecting: false,
+          // partial_results_limit: 10000,
+
+          // num_fetch_result: null,
+        }),
+      }),
+    },
     '/v1/email_accounts': {
       get: jsonOperation('listEmailAccounts', {
         response: z.object({email_accounts: z.array(emailAccount)}),

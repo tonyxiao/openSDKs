@@ -13,3 +13,11 @@ maybeTest('get email accounts', async () => {
 
   expect(res.data.email_accounts.length).toBeGreaterThanOrEqual(0)
 })
+
+maybeTest.only('get contacts', async () => {
+  const apollo = initSDK(apolloSdkDef, {api_key: apiKey})
+
+  const res = await apollo.POST('/v1/contacts/search', {body: {}})
+
+  expect(res.data.contacts.length).toBeGreaterThanOrEqual(0)
+})
