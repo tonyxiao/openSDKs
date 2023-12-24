@@ -180,74 +180,77 @@ async function addSdksAsDeps(
 
 // MARK: - Main
 if (import.meta.url.endsWith(process.argv[1]!)) {
-  listSdkPackages().forEach((p) => {
-    // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
-    p.packageJson = {
-      ...(p.packageJson as {}),
-      ...(packageJsonTemplate as {}),
-      scripts: {
-        ...p.packageJson.scripts,
-        ...packageJsonTemplate.scripts,
-      } as {},
-      devDependencies: {
-        ...p.packageJson.devDependencies,
-        ...packageJsonTemplate.devDependencies,
-        '@opensdks/runtime': 'workspace:*',
-        'openapi-typescript': '6.7.1',
-      },
-    }
+  await Promise.all(
+    listSdkPackages().map(async (p) => {
+      // console.log(p.dirPath, p.packageJson.name, p.packageJson.scripts)
+      p.packageJson = {
+        ...(p.packageJson as {}),
+        ...(packageJsonTemplate as {}),
+        scripts: {
+          ...p.packageJson.scripts,
+          ...packageJsonTemplate.scripts,
+        } as {},
+        devDependencies: {
+          ...p.packageJson.devDependencies,
+          ...packageJsonTemplate.devDependencies,
+          '@opensdks/runtime': 'workspace:*',
+          'openapi-typescript': '6.7.1',
+        },
+      }
 
-    void prettyWrite({
-      path: p.packageJsonPath,
-      format: 'package.json',
-      data: p.packageJson,
-    })
+      await prettyWrite({
+        path: p.packageJsonPath,
+        format: 'package.json',
+        data: p.packageJson,
+      })
 
-    void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
-      format: 'tsconfig.json',
-      data: {
-        ...tsConfigTemplate,
-        // For now until we figure out the cannot be named w/o a reference problem
-        // @see https://share.cleanshot.com/V2q3rQBR
-        include: ['./src/**/*.ts'],
-        exclude: [...(tsConfigTemplate.exclude ?? []), '**/*.oas.ts'],
-      },
-    })
-    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
-  })
+      await prettyWrite({
+        path: pathJoin(p.dirPath, 'tsconfig.build.json'),
+        format: 'tsconfig.json',
+        data: {
+          ...tsConfigTemplate,
+          // For now until we figure out the cannot be named w/o a reference problem
+          // @see https://share.cleanshot.com/V2q3rQBR
+          include: ['./src/**/*.ts'],
+          exclude: [...(tsConfigTemplate.exclude ?? []), '**/*.oas.ts'],
+        },
+      })
+      fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
+    }),
+  )
+  await Promise.all(
+    listCorePackages().map(async (p) => {
+      p.packageJson = {
+        ...(p.packageJson as {}),
+        ...(packageJsonTemplate as {}),
+        scripts: {
+          ...p.packageJson.scripts,
+          ...packageJsonTemplate.scripts,
+        } as {},
+        devDependencies: {
+          ...p.packageJson.devDependencies,
+          ...packageJsonTemplate.devDependencies,
+        } as {},
+      }
+      await prettyWrite({
+        path: p.packageJsonPath,
+        format: 'package.json',
+        data: p.packageJson,
+      })
 
-  listCorePackages().forEach((p) => {
-    p.packageJson = {
-      ...(p.packageJson as {}),
-      ...(packageJsonTemplate as {}),
-      scripts: {
-        ...p.packageJson.scripts,
-        ...packageJsonTemplate.scripts,
-      } as {},
-      devDependencies: {
-        ...p.packageJson.devDependencies,
-        ...packageJsonTemplate.devDependencies,
-      } as {},
-    }
-    void prettyWrite({
-      path: p.packageJsonPath,
-      format: 'package.json',
-      data: p.packageJson,
-    })
-
-    // Delete previous
-    fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
-    void prettyWrite({
-      path: pathJoin(p.dirPath, 'tsconfig.build.json'),
-      format: 'tsconfig.json',
-      data: tsConfigTemplate,
-    })
-  })
+      // Delete previous
+      fs.rmSync(pathJoin(p.dirPath, 'tsconfig.json'), {force: true})
+      await prettyWrite({
+        path: pathJoin(p.dirPath, 'tsconfig.build.json'),
+        format: 'tsconfig.json',
+        data: tsConfigTemplate,
+      })
+    }),
+  )
   // console.log(listPackages(pathJoin(__dirname, '../packages')))
 
   // TODO: This needs to be run twice right now it seems...
-  // might be a "race condition" 
+  // might be a "race condition"
   // Update examples package.json
   await addSdksAsDeps(pathJoin(__dirname, '../examples/package.json'), {
     extraDeps: {'@opensdks/runtime': packageJsonTemplate.version!},
@@ -256,5 +259,3 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
     version: 'workspace:*',
   })
 }
-
-

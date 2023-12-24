@@ -6,6 +6,6 @@
       "@opensdks/*": ["./packages/*/index.ts", "./sdks/*/src/index.ts"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "bin/syncPackages.ts"],
   "exclude": ["**/types", "**/esm", "**/cjs", "website"]
 }
