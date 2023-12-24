@@ -1,6 +1,7 @@
 {
   "name": "create-opensdk",
   "version": "0.0.14",
+  "private": true,
   "type": "module",
   "exports": {
     ".": {
