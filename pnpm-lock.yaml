@@ -139,6 +139,12 @@ importers:
         specifier: ^4.6.2
         version: 4.6.2
 
+  packages/create-opensdk:
+    devDependencies:
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+
   packages/fetch-links:
     devDependencies:
       axios:
@@ -247,6 +253,21 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  sdks/sdk-outreach:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+
   sdks/sdk-plaid:
     devDependencies:
       '@opensdks/runtime':
@@ -270,6 +291,21 @@ importers:
       '@opensdks/util-zod':
         specifier: workspace:*
         version: link:../../packages/util-zod
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+
+  sdks/sdk-salesloft:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -339,12 +375,18 @@ importers:
       '@opensdks/sdk-openai':
         specifier: workspace:*
         version: link:../sdks/sdk-openai
+      '@opensdks/sdk-outreach':
+        specifier: workspace:*
+        version: link:../sdks/sdk-outreach
       '@opensdks/sdk-plaid':
         specifier: workspace:*
         version: link:../sdks/sdk-plaid
       '@opensdks/sdk-qbo':
         specifier: workspace:*
         version: link:../sdks/sdk-qbo
+      '@opensdks/sdk-salesloft':
+        specifier: workspace:*
+        version: link:../sdks/sdk-salesloft
       '@opensdks/sdk-slack':
         specifier: workspace:*
         version: link:../sdks/sdk-slack

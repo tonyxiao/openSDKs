@@ -37,12 +37,17 @@
     "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
+    "download": "curl https://api.apis.guru/v2/specs/salesloft.com/v2/openapi.json | prettier --parser json > ./salesloft.orig.oas.json",
+    "generate": "run-s generate:*",
+    "generate:json": "npx tsx ./src/salesloft.oas.ts | prettier --parser json > ./salesloft.oas.json",
+    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./salesloft.oas.json",
     "version": "pnpm version"
   },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1"
+    "openapi-typescript": "6.7.1",
+    "prettier": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"

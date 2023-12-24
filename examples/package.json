@@ -21,8 +21,6 @@
     "@opensdks/sdk-slack": "0.0.14",
     "@opensdks/sdk-twilio": "0.0.14",
     "@opensdks/sdk-venice": "0.0.14",
-    "@opensdks/sdks/sdk-outreach": "0.0.14",
-    "@opensdks/sdks/sdk-salesloft": "0.0.14",
     "openapi-fetch": "^0.8.2",
     "remark-toc": "^9.0.0",
     "twilio": "^4.19.3"

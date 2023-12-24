@@ -16,7 +16,7 @@ if (!name) {
 }
 
 const pkgDir = nodePath.join(baseDir, `sdk-${name}`)
-await fs.mkdir(pkgDir, {recursive: true})
+await fs.mkdir(nodePath.join(pkgDir, 'src'), {recursive: true})
 await fs.writeFile(
   nodePath.join(pkgDir, 'package.json'),
   JSON.stringify({
@@ -24,4 +24,9 @@ await fs.writeFile(
     type: 'module',
   }),
 )
+
+// TODO:
+// 1) Automate creation of index.ts as well
+// 2) Automate downloading oas spec from places
+// 3) Automate runninng local oas script
 console.log('Now run syncPackges')

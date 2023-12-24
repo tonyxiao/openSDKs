@@ -37,12 +37,15 @@
     "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
+    "download": "curl --compressed https://developers.outreach.io/page-data/api/reference/overview/page-data.json | jq -r  .result.data.contentItem.data.redocStoreStr | jq .definition.data | prettier --parser json > ./outreach.oas.json",
+    "generate": "npx tsx ../../packages/cli/generateFromOas.ts ./outreach.oas.json",
     "version": "pnpm version"
   },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1"
+    "openapi-typescript": "6.7.1",
+    "prettier": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
