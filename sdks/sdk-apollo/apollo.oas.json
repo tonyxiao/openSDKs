@@ -1020,6 +1020,56 @@
           "id": {
             "type": "string"
           },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "linkedin_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "organization_name": {
+            "type": "string"
+          },
+          "organization_id": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone_numbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Need to test this out..."
+          },
           "emailer_campaign_ids": {
             "type": "array",
             "items": {
@@ -1045,11 +1095,13 @@
                 "id",
                 "send_email_from_email_account_id",
                 "emailer_campaign_id"
-              ]
+              ],
+              "additionalProperties": {}
             }
           }
         },
-        "required": ["id", "contact_campaign_statuses"]
+        "required": ["id", "contact_campaign_statuses"],
+        "additionalProperties": {}
       },
       "email_account": {
         "type": "object",

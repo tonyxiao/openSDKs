@@ -153,12 +153,32 @@ export interface components {
     }
     contact: {
       id: string
+      first_name?: string
+      last_name?: string
+      name?: string
+      /** Format: uri */
+      linkedin_url?: string
+      title?: string
+      organization_name?: string
+      organization_id?: string
+      headline?: string
+      /** Format: uri */
+      photo_url?: string
+      /** Format: date-time */
+      updated_at?: string
+      label_ids?: string[]
+      /** Format: email */
+      email?: string
+      /** @description Need to test this out... */
+      phone_numbers?: string[]
       emailer_campaign_ids?: string[]
       contact_campaign_statuses: {
         id: string
         send_email_from_email_account_id: string
         emailer_campaign_id: string
+        [key: string]: unknown
       }[]
+      [key: string]: unknown
     }
     email_account: {
       id: string

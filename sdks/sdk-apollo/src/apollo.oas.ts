@@ -76,6 +76,22 @@ export type ApolloContact = z.infer<typeof apolloContact>
 export const apolloContact = z
   .object({
     id: z.string(),
+    first_name: z.string().optional(),
+    last_name: z.string().optional(),
+    name: z.string().optional(),
+    linkedin_url: z.string().url().optional(),
+    title: z.string().optional(),
+    organization_name: z.string().optional(),
+    organization_id: z.string().optional(),
+    headline: z.string().optional(),
+    photo_url: z.string().url().optional(),
+    updated_at: z.string().datetime().optional(),
+    label_ids: z.array(z.string()).optional(),
+    email: z.string().email().optional(),
+    phone_numbers: z
+      .array(z.string())
+      .optional()
+      .describe('Need to test this out...'),
     emailer_campaign_ids: z.array(z.string()).optional(),
     contact_campaign_statuses: z.array(
       z
@@ -84,10 +100,10 @@ export const apolloContact = z
           send_email_from_email_account_id: z.string(),
           emailer_campaign_id: z.string(),
         })
-        .passthrough(),
+        .catchall(z.unknown()),
     ),
   })
-  .passthrough()
+  .catchall(z.unknown())
   .openapi({ref: 'contact'})
 
 export type ApolloEmailerCampaignAddContactIdsResponse = z.infer<
