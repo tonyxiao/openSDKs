@@ -19,19 +19,13 @@ export const apolloSdkDef = {
     ctx.createClient({
       ...options,
       links: (defaultLinks) => [
-        async (req, next) => {
-          if (req.method === 'GET') {
-            const url = new URL(req.url)
-            url.searchParams.set('api_key', api_key)
-            return next(modifyRequest(req, {url: url.toString()}))
-          } else {
-            // Cannot use req.json() because if body didn't exist it would have crashed
-            const bodyText = await req.text()
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            const body = {...(bodyText && JSON.parse(bodyText)), api_key}
-            return next(modifyRequest(req, {body: JSON.stringify(body)}))
-          }
-        },
+        (req, next) =>
+          next(
+            modifyRequest(req, {
+              url: {searchParams: {api_key}},
+              duplex: 'half', // TODO: Should this be the default?
+            }),
+          ),
         ...defaultLinks,
       ],
     }),
