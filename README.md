@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Join the community on GitHub" href="https://github.com/orgs/useVenice/projects/2">
+  <a aria-label="Join the community on GitHub" href="https://github.com/orgs/opensdks-org/projects/2">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
@@ -34,7 +34,7 @@ const github = initSDK(githubSdkDef, {
 })
 
 const {data: commits} = await github.GET('/repos/{owner}/{repo}/commits', {
-  params: {path: {owner: 'useVenice', repo: 'openSDKs'}},
+  params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
 })
 console.log(commits)
 //           ^?
@@ -70,7 +70,7 @@ Instead, OpenSDK calls map one to one to the underlying HTTP API so there is not
 
 ```typescript
 void github.GET('/repos/{owner}/{repo}/commits', {
-  params: {path: {owner: 'useVenice', repo: 'openSDKs'}},
+  params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
 })
 ```
 
@@ -108,15 +108,15 @@ In traditional settings, each API client behaves uniquely, requiring developers 
 
 ## Examples
 
-https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
+https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
 
-https://github.com/useVenice/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
+https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
 
 For a full app example, check out the [`What did we work on app`](https://github.com/dosu-ai/what-did-we-work-on/). Demo link is here [https://what-did-we-work-on.vercel.app//](https://what-did-we-work-on.vercel.app//).
 
 ## Community
 
-The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/useVenice/projects/2).
+The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/opensdks-org/projects/2).
 
 To chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
 
@@ -128,7 +128,7 @@ To contribute new SDKs to the OpenSDKs suite, you can follow the [`CONTRIBUTING.
 
 ## Contributors
 
-<img src="https://contributors-img.web.app/image?repo=useVenice/openSDKs"/>
+<img src="https://contributors-img.web.app/image?repo=opensdks-org/openSDKs"/>
 
 ## Credits
 

@@ -4,7 +4,7 @@ const nextConfig = {
   redirects: async () => [
     {
       source: '/',
-      destination: 'https://github.com/useVenice/openSDKs',
+      destination: 'https://github.com/opensdks-org/openSDKs',
       permanent: false,
     },
   ],

@@ -19,7 +19,7 @@ const github = initSDK(githubSdkDef, {
 
 await github
   .GET('/repos/{owner}/{repo}/commits', {
-    params: {path: {owner: 'useVenice', repo: 'openSDKs'}},
+    params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
   })
   .then((r) => {
     r.data.forEach((data) => {
@@ -31,7 +31,7 @@ const octokit = new Octokit()
 
 await octokit.rest.repos
   .listCommits({
-    owner: 'useVenice',
+    owner: 'opensdks-org',
     repo: 'openSDKs',
   })
   .then((r) => {
@@ -109,7 +109,7 @@ export const venice = initSDK(veniceSdkDef, {
 })
 
 await github
-  .GET('/orgs/{org}/actions/secrets', {params: {path: {org: 'usevenice'}}})
+  .GET('/orgs/{org}/actions/secrets', {params: {path: {org: 'opensdks-org'}}})
   .then((r) => {
     console.log(r.data.secrets[0]?.selected_repositories_url)
   })

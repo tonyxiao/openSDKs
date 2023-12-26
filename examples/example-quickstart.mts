@@ -7,7 +7,7 @@ const github = initSDK(githubSdkDef, {
 })
 
 const {data: commits} = await github.GET('/repos/{owner}/{repo}/commits', {
-  params: {path: {owner: 'useVenice', repo: 'openSDKs'}},
+  params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
 })
 console.log(commits)
 //           ^?

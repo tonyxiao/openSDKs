@@ -2,7 +2,7 @@
   "name": "opensdks",
   "version": "0.0.0",
   "private": true,
-  "repository": "git@github.com:useVenice/openSDKs.git",
+  "repository": "git@github.com:opensdks-org/openSDKs.git",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
