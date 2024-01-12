@@ -349,10 +349,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/AccountStage"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/AccountStage"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -485,10 +493,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/AccountTier"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/AccountTier"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -1038,10 +1054,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Account"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Account"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -1484,10 +1508,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CallInstruction"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CallInstruction"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -1708,10 +1740,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Action"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Action"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -1952,10 +1992,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Call"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Call"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -2333,10 +2381,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Email"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Email"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -2562,10 +2618,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/BulkJob"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/BulkJob"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -2664,10 +2728,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/BulkJobResult"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/BulkJobResult"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -2777,10 +2849,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/BulkJobResult"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/BulkJobResult"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -2987,10 +3067,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CadenceMembership"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CadenceMembership"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -3272,10 +3360,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Cadence"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Cadence"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -3405,10 +3501,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CalendarEvent"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CalendarEvent"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -3658,10 +3762,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CallDataRecord"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CallDataRecord"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -3766,10 +3878,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CallDisposition"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CallDisposition"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -3853,10 +3973,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CallSentiment"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CallSentiment"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4019,10 +4147,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CrmActivity"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CrmActivity"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4136,10 +4272,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CrmActivityField"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CrmActivityField"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4270,10 +4414,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CrmUser"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CrmUser"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4371,10 +4523,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CustomField"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CustomField"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4595,10 +4755,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/EmailTemplateAttachment"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/EmailTemplateAttachment"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4802,10 +4970,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/EmailTemplate"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/EmailTemplate"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -4937,10 +5113,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Group"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Group"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -5073,10 +5257,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Import"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Import"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -5460,10 +5652,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Meeting"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Meeting"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -5896,10 +6096,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Note"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Note"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -6152,10 +6360,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/PendingEmail"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PendingEmail"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -6701,7 +6917,7 @@
                       "$ref": "#/components/schemas/Metadata"
                     }
                   },
-                  "required": ["data"]
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -7196,10 +7412,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/PersonStage"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PersonStage"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -7598,10 +7822,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/PhoneNumberAssignment"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PhoneNumberAssignment"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -7661,10 +7893,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CallerId"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/CallerId"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -7792,10 +8032,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/SavedListView"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/SavedListView"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8059,10 +8307,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Step"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Step"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8209,10 +8465,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Success"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Success"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8310,10 +8574,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Tag"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Tag"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8504,10 +8776,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Task"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8777,10 +9057,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/TeamTemplateAttachment"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/TeamTemplateAttachment"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -8929,10 +9217,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/TeamTemplate"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/TeamTemplate"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -9209,10 +9505,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/User"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },
@@ -9272,10 +9576,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Subscription"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Subscription"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data", "metadata"]
                 }
               }
             },

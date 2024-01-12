@@ -51,7 +51,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['AccountStage'][]
+            '*/*': {
+              data: components['schemas']['AccountStage'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -110,7 +113,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['AccountTier'][]
+            '*/*': {
+              data: components['schemas']['AccountTier'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -326,7 +332,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Account'][]
+            '*/*': {
+              data: components['schemas']['Account'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -580,7 +589,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CallInstruction'][]
+            '*/*': {
+              data: components['schemas']['CallInstruction'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -668,7 +680,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Action'][]
+            '*/*': {
+              data: components['schemas']['Action'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -784,7 +799,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Call'][]
+            '*/*': {
+              data: components['schemas']['Call'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -940,7 +958,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Email'][]
+            '*/*': {
+              data: components['schemas']['Email'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1042,7 +1063,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['BulkJob'][]
+            '*/*': {
+              data: components['schemas']['BulkJob'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1098,7 +1122,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['BulkJobResult'][]
+            '*/*': {
+              data: components['schemas']['BulkJobResult'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1158,7 +1185,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['BulkJobResult'][]
+            '*/*': {
+              data: components['schemas']['BulkJobResult'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1262,7 +1292,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CadenceMembership'][]
+            '*/*': {
+              data: components['schemas']['CadenceMembership'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1388,7 +1421,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Cadence'][]
+            '*/*': {
+              data: components['schemas']['Cadence'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1437,7 +1473,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CalendarEvent'][]
+            '*/*': {
+              data: components['schemas']['CalendarEvent'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1606,7 +1645,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CallDataRecord'][]
+            '*/*': {
+              data: components['schemas']['CallDataRecord'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1662,7 +1704,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CallDisposition'][]
+            '*/*': {
+              data: components['schemas']['CallDisposition'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1698,7 +1743,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CallSentiment'][]
+            '*/*': {
+              data: components['schemas']['CallSentiment'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1776,7 +1824,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CrmActivity'][]
+            '*/*': {
+              data: components['schemas']['CrmActivity'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1833,7 +1884,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CrmActivityField'][]
+            '*/*': {
+              data: components['schemas']['CrmActivityField'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1873,7 +1927,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CrmUser'][]
+            '*/*': {
+              data: components['schemas']['CrmUser'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -1910,7 +1967,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CustomField'][]
+            '*/*': {
+              data: components['schemas']['CustomField'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2037,7 +2097,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['EmailTemplateAttachment'][]
+            '*/*': {
+              data: components['schemas']['EmailTemplateAttachment'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2097,7 +2160,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['EmailTemplate'][]
+            '*/*': {
+              data: components['schemas']['EmailTemplate'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2176,7 +2242,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Group'][]
+            '*/*': {
+              data: components['schemas']['Group'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2234,7 +2303,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Import'][]
+            '*/*': {
+              data: components['schemas']['Import'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2431,7 +2503,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Meeting'][]
+            '*/*': {
+              data: components['schemas']['Meeting'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2648,7 +2723,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Note'][]
+            '*/*': {
+              data: components['schemas']['Note'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2814,7 +2892,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['PendingEmail'][]
+            '*/*': {
+              data: components['schemas']['PendingEmail'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -2968,7 +3049,7 @@ export interface paths {
           content: {
             '*/*': {
               data: components['schemas']['Person'][]
-              metadata?: components['schemas']['Metadata']
+              metadata: components['schemas']['Metadata']
             }
           }
         }
@@ -3246,7 +3327,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['PersonStage'][]
+            '*/*': {
+              data: components['schemas']['PersonStage'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3487,7 +3571,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['PhoneNumberAssignment'][]
+            '*/*': {
+              data: components['schemas']['PhoneNumberAssignment'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3533,7 +3620,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['CallerId'][]
+            '*/*': {
+              data: components['schemas']['CallerId'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3593,7 +3683,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['SavedListView'][]
+            '*/*': {
+              data: components['schemas']['SavedListView'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3735,7 +3828,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Step'][]
+            '*/*': {
+              data: components['schemas']['Step'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3801,7 +3897,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Success'][]
+            '*/*': {
+              data: components['schemas']['Success'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3840,7 +3939,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Tag'][]
+            '*/*': {
+              data: components['schemas']['Tag'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -3891,7 +3993,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Task'][]
+            '*/*': {
+              data: components['schemas']['Task'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -4038,7 +4143,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['TeamTemplateAttachment'][]
+            '*/*': {
+              data: components['schemas']['TeamTemplateAttachment'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -4092,7 +4200,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['TeamTemplate'][]
+            '*/*': {
+              data: components['schemas']['TeamTemplate'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -4210,7 +4321,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['User'][]
+            '*/*': {
+              data: components['schemas']['User'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -4254,7 +4368,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Subscription'][]
+            '*/*': {
+              data: components['schemas']['Subscription'][]
+              metadata: components['schemas']['Metadata']
+            }
           }
         }
       }

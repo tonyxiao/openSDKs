@@ -1,4 +1,4 @@
-import {OpenAPISpec} from '@opensdks/runtime'
+import {oas30, OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, Oas30Schema, z} from '@opensdks/util-zod'
 import _oas from '../salesloft.orig.oas.json'
 
@@ -263,40 +263,26 @@ const paths = _oas.paths as Partial<typeof _oas.paths>
 delete paths['/v2/cadence_imports.json']
 delete paths['/v2/cadence_exports/{id}.json']
 
-_oas.paths['/v2/people.json'].get.responses[200].content['*/*'].schema = {
-  properties: {
-    data: _oas.paths['/v2/people.json'].get.responses[200].content['*/*']
-      .schema as Oas30Schema,
-    metadata: {$ref: '#/components/schemas/Metadata'},
-  },
-  required: ['data'],
-} satisfies Oas30Schema as any
-
-// // Change `*/*` content type to `application/json` content type for type inference to work better
-// for (const operations of Object.values(
-//   (paths as OpenAPI30Spec['paths']) ?? {},
-// )) {
-//   for (const method of [
-//     'get',
-//     'put',
-//     'post',
-//     'delete',
-//     'options',
-//     'head',
-//     'patch',
-//     'trace',
-//   ] as const) {
-//     const operation = operations[method]
-//     for (const response of Object.values(
-//       (operation?.responses ?? {}) as Record<string, oas30.ResponseObject>,
-//     )) {
-//       if (response.content?.['*/*']) {
-//         response.content['application/json'] = response.content['*/*']
-//         delete response.content['*/*']
-//       }
-//     }
-//   }
-// }
+// Patch the listing endpoints to return `metadata` and `data` and not just data alone.
+for (const operations of Object.values(
+  (paths as oas30.OpenAPIObject['paths']) ?? {},
+)) {
+  for (const response of Object.values(
+    (operations.get?.responses ?? {}) as Record<string, oas30.ResponseObject>,
+  )) {
+    if (
+      (response.content?.['*/*']?.schema as oas30.SchemaObject).type === 'array'
+    ) {
+      response.content!['*/*']!.schema = {
+        properties: {
+          data: response.content!['*/*']!.schema as Oas30Schema,
+          metadata: {$ref: '#/components/schemas/Metadata'},
+        },
+        required: ['data', 'metadata'],
+      } satisfies Oas30Schema
+    }
+  }
+}
 
 // Assigning overrides
 Object.assign(_oas.paths, overwrites.paths)
