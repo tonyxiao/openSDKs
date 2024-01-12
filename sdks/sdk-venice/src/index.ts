@@ -27,4 +27,6 @@ export function initVeniceSDK(opts: VeniceSDKTypes['options']) {
   return initSDK(veniceSdkDef, opts)
 }
 
+export type VeniceSDK = ReturnType<typeof initVeniceSDK>
+
 export default initVeniceSDK

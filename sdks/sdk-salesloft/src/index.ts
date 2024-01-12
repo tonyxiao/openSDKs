@@ -1,5 +1,5 @@
 import type {ClientOptions} from '@opensdks/runtime'
-import {type SdkDefinition, type SDKTypes} from '@opensdks/runtime'
+import {initSDK, type SdkDefinition, type SDKTypes} from '@opensdks/runtime'
 import type oasTypes from '../salesloft.oas.types.js'
 import {default as oasMeta} from './salesloft.oas.meta.js'
 
@@ -16,3 +16,9 @@ export const salesloftSdkDef = {
 } satisfies SdkDefinition<SalesloftSDKTypes>
 
 export default salesloftSdkDef
+
+export function initSalesloftSDK(opts: SalesloftSDKTypes['options']) {
+  return initSDK(salesloftSdkDef, opts)
+}
+
+export type SalesloftSDK = ReturnType<typeof initSalesloftSDK>

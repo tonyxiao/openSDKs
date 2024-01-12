@@ -1,5 +1,6 @@
 import type {ClientOptions} from '@opensdks/runtime'
 import {
+  initSDK,
   modifyRequest, // TODO: this is a dependency, not devDep
   type SdkDefinition,
   type SDKTypes,
@@ -30,5 +31,11 @@ export const apolloSdkDef = {
       ],
     }),
 } satisfies SdkDefinition<ApolloSDKTypes>
+
+export function initApolloSDK(opts: ApolloSDKTypes['options']) {
+  return initSDK(apolloSdkDef, opts)
+}
+
+export type ApolloSDK = ReturnType<typeof initApolloSDK>
 
 export default apolloSdkDef
