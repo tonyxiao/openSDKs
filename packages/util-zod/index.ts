@@ -10,8 +10,10 @@ export {extendZodWithOpenApi, createDocument}
 
 export type OpenAPISpec = oas30.OpenAPIObject | oas31.OpenAPIObject
 
+export {oas30, oas31}
 /** We use a super-set of JSON schema defined by the OpenAPI 3.1 spec */
 export type Oas31Schema = oas31.SchemaObject & {$schema?: string}
+export type Oas30Schema = oas30.SchemaObject & {$schema?: string}
 
 /**
  * Convert to JSONSchema using OpenAPI 3.1 spec, which is a superset of JSONSchema Draft 2020-12

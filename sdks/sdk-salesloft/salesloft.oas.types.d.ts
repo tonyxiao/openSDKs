@@ -2966,7 +2966,10 @@ export interface paths {
         /** @description Success */
         200: {
           content: {
-            '*/*': components['schemas']['Person'][]
+            '*/*': {
+              data: components['schemas']['Person'][]
+              metadata?: components['schemas']['Metadata']
+            }
           }
         }
       }
@@ -7704,6 +7707,21 @@ export interface components {
       /** Format: date-time */
       updated_at: string
       [key: string]: unknown
+    }
+    Metadata: {
+      filtering: Record<string, never>
+      paging: {
+        per_page: number
+        current_page: number
+        next_page: number | null
+        prev_page: number | null
+      }
+      sorting: {
+        /** @example updated_at */
+        sort_by: string
+        /** @example DESC NULLS LAST */
+        sort_direction: string
+      }
     }
     CadenceSettings: {
       name: string

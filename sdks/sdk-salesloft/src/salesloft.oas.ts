@@ -1,5 +1,5 @@
 import {OpenAPISpec} from '@opensdks/runtime'
-import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
+import {createDocument, jsonOperation, Oas30Schema, z} from '@opensdks/util-zod'
 import _oas from '../salesloft.orig.oas.json'
 
 const cadenceSettings = z
@@ -204,6 +204,22 @@ const cadencePartial = z
   .catchall(z.any())
   .openapi({ref: '_Cadence'})
 
+const metadata = z
+  .object({
+    filtering: z.object({}).passthrough(),
+    paging: z.object({
+      per_page: z.number(),
+      current_page: z.number(),
+      next_page: z.number().nullable(),
+      prev_page: z.number().nullable(),
+    }),
+    sorting: z.object({
+      sort_by: z.string().openapi({example: 'updated_at'}),
+      sort_direction: z.string().openapi({example: 'DESC NULLS LAST'}),
+    }),
+  })
+  .openapi({ref: 'Metadata'})
+
 const overwrites = createDocument({
   openapi: '3.0.0',
   info: _oas.info,
@@ -238,6 +254,7 @@ const overwrites = createDocument({
       cadenceImport,
       cadenceExport,
       cadencePartial,
+      metadata,
     },
   },
 })
@@ -245,6 +262,43 @@ const overwrites = createDocument({
 const paths = _oas.paths as Partial<typeof _oas.paths>
 delete paths['/v2/cadence_imports.json']
 delete paths['/v2/cadence_exports/{id}.json']
+
+_oas.paths['/v2/people.json'].get.responses[200].content['*/*'].schema = {
+  properties: {
+    data: _oas.paths['/v2/people.json'].get.responses[200].content['*/*']
+      .schema as Oas30Schema,
+    metadata: {$ref: '#/components/schemas/Metadata'},
+  },
+  required: ['data'],
+} satisfies Oas30Schema as any
+
+// // Change `*/*` content type to `application/json` content type for type inference to work better
+// for (const operations of Object.values(
+//   (paths as OpenAPI30Spec['paths']) ?? {},
+// )) {
+//   for (const method of [
+//     'get',
+//     'put',
+//     'post',
+//     'delete',
+//     'options',
+//     'head',
+//     'patch',
+//     'trace',
+//   ] as const) {
+//     const operation = operations[method]
+//     for (const response of Object.values(
+//       (operation?.responses ?? {}) as Record<string, oas30.ResponseObject>,
+//     )) {
+//       if (response.content?.['*/*']) {
+//         response.content['application/json'] = response.content['*/*']
+//         delete response.content['*/*']
+//       }
+//     }
+//   }
+// }
+
+// Assigning overrides
 Object.assign(_oas.paths, overwrites.paths)
 Object.assign(_oas.components.schemas, overwrites.components?.schemas)
 

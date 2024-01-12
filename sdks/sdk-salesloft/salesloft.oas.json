@@ -6690,10 +6690,18 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Person"
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Person"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Metadata"
+                    }
                   },
-                  "type": "array"
+                  "required": ["data"]
                 }
               }
             },
@@ -13272,6 +13280,50 @@
         },
         "required": ["current_state", "id", "created_at", "updated_at"],
         "additionalProperties": {}
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "filtering": {
+            "type": "object",
+            "properties": {}
+          },
+          "paging": {
+            "type": "object",
+            "properties": {
+              "per_page": {
+                "type": "number"
+              },
+              "current_page": {
+                "type": "number"
+              },
+              "next_page": {
+                "type": "number",
+                "nullable": true
+              },
+              "prev_page": {
+                "type": "number",
+                "nullable": true
+              }
+            },
+            "required": ["per_page", "current_page", "next_page", "prev_page"]
+          },
+          "sorting": {
+            "type": "object",
+            "properties": {
+              "sort_by": {
+                "type": "string",
+                "example": "updated_at"
+              },
+              "sort_direction": {
+                "type": "string",
+                "example": "DESC NULLS LAST"
+              }
+            },
+            "required": ["sort_by", "sort_direction"]
+          }
+        },
+        "required": ["filtering", "paging", "sorting"]
       },
       "CadenceSettings": {
         "type": "object",
