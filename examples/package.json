@@ -17,7 +17,7 @@
     "@opensdks/sdk-outreach": "0.0.14",
     "@opensdks/sdk-plaid": "0.0.14",
     "@opensdks/sdk-qbo": "0.0.14",
-    "@opensdks/sdk-salesloft": "0.0.14",
+    "@opensdks/sdk-salesloft": "0.0.15",
     "@opensdks/sdk-slack": "0.0.14",
     "@opensdks/sdk-twilio": "0.0.14",
     "@opensdks/sdk-venice": "0.0.14",

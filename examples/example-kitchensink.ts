@@ -138,5 +138,5 @@ export const salesloft = initSDK(salesloftSdkDef, {
 })
 
 await salesloft.GET('/v2/people.json', {}).then((r) => {
-  console.log(r.data.map((p) => p.id))
+  console.log(r.data.data.map((p) => p.id))
 })
