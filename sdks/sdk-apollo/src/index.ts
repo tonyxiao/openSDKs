@@ -1,4 +1,4 @@
-import type {ClientOptions} from '@opensdks/runtime'
+import type {ClientOptions, Link} from '@opensdks/runtime'
 import {
   initSDK,
   modifyRequest, // TODO: this is a dependency, not devDep
@@ -16,19 +16,27 @@ export type ApolloSDKTypes = SDKTypes<
 export const apolloSdkDef = {
   types: {} as ApolloSDKTypes,
   oasMeta: apolloOasMeta,
-  createClient: (ctx, {api_key, ...options}) =>
+  createClient: (ctx, {api_key, ...opts}) =>
     ctx.createClient({
-      ...options,
-      links: (defaultLinks) => [
-        (req, next) =>
-          next(
-            modifyRequest(req, {
-              url: {searchParams: {api_key}},
-              duplex: 'half', // TODO: Should this be the default?
-            }),
-          ),
-        ...defaultLinks,
-      ],
+      ...opts,
+      links: (defaultLinks) => {
+        const links: Link[] = [
+          (req, next) =>
+            next(
+              modifyRequest(req, {
+                url: {searchParams: {api_key}},
+                duplex: 'half', // TODO: Should this be the default?
+              }),
+            ),
+
+          ...defaultLinks,
+        ]
+        return Array.isArray(opts.links)
+          ? opts.links
+          : opts.links
+            ? opts.links(links)
+            : links
+      },
     }),
 } satisfies SdkDefinition<ApolloSDKTypes>
 
