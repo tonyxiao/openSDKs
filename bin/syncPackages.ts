@@ -140,10 +140,7 @@ const tsConfigTemplate: TsConfigJson = {
   },
   include: ['*.ts'],
   // I think this is only for emitting, not for type checking
-  exclude: [
-    '**/*.spec.ts',
-    'generateFromOas.ts', // Need to exclude this for now because sometimes contain esm specific code...
-  ],
+  exclude: ['**/*.spec.ts'],
 }
 
 async function addSdksAsDeps(

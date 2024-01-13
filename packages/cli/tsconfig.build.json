@@ -2,5 +2,5 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {"baseUrl": "./"},
   "include": ["*.ts"],
-  "exclude": ["**/*.spec.ts", "generateFromOas.ts"]
+  "exclude": ["**/*.spec.ts"]
 }

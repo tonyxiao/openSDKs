@@ -14,6 +14,7 @@
     "@opensdks/sdk-apollo": "workspace:*",
     "@opensdks/sdk-discord": "workspace:*",
     "@opensdks/sdk-github": "workspace:*",
+    "@opensdks/sdk-nango": "workspace:*",
     "@opensdks/sdk-openai": "workspace:*",
     "@opensdks/sdk-outreach": "workspace:*",
     "@opensdks/sdk-plaid": "workspace:*",

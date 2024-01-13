@@ -39,7 +39,7 @@
     "clean": "rm -rf ./esm ./cjs ./types",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./src/apollo.oas.ts | prettier --parser json > ./apollo.oas.json",
-    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./apollo.oas.json",
+    "generate:types": "node ../../packages/cli/generateFromOas.js ./apollo.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},

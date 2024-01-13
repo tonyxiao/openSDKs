@@ -13,6 +13,7 @@
     "@opensdks/sdk-apollo": "0.0.14",
     "@opensdks/sdk-discord": "0.0.14",
     "@opensdks/sdk-github": "0.0.14",
+    "@opensdks/sdk-nango": "0.0.14",
     "@opensdks/sdk-openai": "0.0.14",
     "@opensdks/sdk-outreach": "0.0.14",
     "@opensdks/sdk-plaid": "0.0.14",

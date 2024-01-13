@@ -40,7 +40,7 @@
     "download": "curl https://api.apis.guru/v2/specs/salesloft.com/v2/openapi.json | prettier --parser json > ./salesloft.orig.oas.json",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./src/salesloft.oas.ts | prettier --parser json > ./salesloft.oas.json",
-    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./salesloft.oas.json",
+    "generate:types": "node ../../packages/cli/generateFromOas.js ./salesloft.oas.json",
     "version": "pnpm version"
   },
   "devDependencies": {

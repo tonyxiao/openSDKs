@@ -40,7 +40,7 @@
     "download": "curl --fail https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml -o ./openai.oas.yaml",
     "generate": "run-s generate:*",
     "generate:json": "cat openai.oas.yaml | node ../../bin/yaml2json.js -o openai.oas",
-    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./openai.oas.json",
+    "generate:types": "node ../../packages/cli/generateFromOas.js ./openai.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},

@@ -40,7 +40,7 @@
     "download": "curl --fail https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json -o ./slack.orig.oas.json",
     "generate": "run-s generate:*",
     "generate:json": "npx tsx ./src/slack.oas.ts | prettier --parser json > ./slack.oas.json",
-    "generate:types": "npx tsx ../../packages/cli/generateFromOas.ts ./slack.oas.json",
+    "generate:types": "node ../../packages/cli/generateFromOas.js ./slack.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},
