@@ -63,7 +63,7 @@ export function initSDK<
   : OpenAPIClient<TDef['types']['oas']['paths']>) & {def: TDef} {
   const {oasMeta: oas, defaultOptions} = sdkDef
   const clientOptions = {
-    baseUrl: oas?.servers?.[0]?.url,
+    ...(oas?.servers?.[0]?.url && {baseUrl: oas?.servers?.[0]?.url}),
     ...defaultOptions,
     ...options,
   }

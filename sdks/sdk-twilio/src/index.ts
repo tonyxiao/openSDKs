@@ -24,8 +24,8 @@ export const twilioSdkDef = {
     const headers = new Headers(_options.headers as HeadersInit)
     headers.set('Authorization', `Basic ${btoa(`${accountSid}:${authToken}`)}`)
     const options: typeof _options = {
-      baseUrl: oas_api_v2010.servers[0].url,
       ..._options,
+      baseUrl: _options.baseUrl ?? oas_api_v2010.servers[0].url,
       headers,
     }
     const api_v2010 = ctx.createClient<Oas_api_v2010['paths']>(options)
