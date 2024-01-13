@@ -1,8 +1,7 @@
 {
   "name": "@opensdks/cli",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "type": "module",
-  "bin": "./generateFromOas.js",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
@@ -20,6 +19,7 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/index.d.ts",
+  "bin": "./generateFromOas.js",
   "files": [
     "types",
     "esm",
