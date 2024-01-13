@@ -1,0 +1,708 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nango API",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.nango.dev"
+    }
+  ],
+  "paths": {
+    "/config": {
+      "get": {
+        "operationId": "listIntegrations",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "configs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "$ref": "#/components/schemas/Provider"
+                          },
+                          "unique_key": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["provider", "unique_key"]
+                      }
+                    }
+                  },
+                  "required": ["configs"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateIntegration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "$ref": "#/components/schemas/Provider"
+                  },
+                  "app_link": {
+                    "type": ["string", "null"]
+                  },
+                  "auth_mode": {
+                    "$ref": "#/components/schemas/AuthMode"
+                  },
+                  "provider_config_key": {
+                    "type": "string"
+                  },
+                  "oauth_client_id": {
+                    "type": "string"
+                  },
+                  "oauth_client_secret": {
+                    "type": "string"
+                  },
+                  "oauth_scopes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "provider_config_key",
+                  "oauth_client_id",
+                  "oauth_client_secret"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIntegration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "$ref": "#/components/schemas/Provider"
+                  },
+                  "app_link": {
+                    "type": ["string", "null"]
+                  },
+                  "auth_mode": {
+                    "$ref": "#/components/schemas/AuthMode"
+                  },
+                  "provider_config_key": {
+                    "type": "string"
+                  },
+                  "oauth_client_id": {
+                    "type": "string"
+                  },
+                  "oauth_client_secret": {
+                    "type": "string"
+                  },
+                  "oauth_scopes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "provider_config_key",
+                  "oauth_client_id",
+                  "oauth_client_secret"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config/{provider_config_key}": {
+      "get": {
+        "operationId": "getIntegration",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider_config_key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "include_creds",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "config": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/Integration"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "provider": {
+                              "$ref": "#/components/schemas/Provider"
+                            },
+                            "unique_key": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["provider", "unique_key"]
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["config"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteIntegration",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider_config_key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connection": {
+      "get": {
+        "operationId": "listConnections",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "connections": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "connection_id": {
+                            "type": "string"
+                          },
+                          "created": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "provider": {
+                            "$ref": "#/components/schemas/Provider"
+                          }
+                        },
+                        "required": [
+                          "connection_id",
+                          "created",
+                          "id",
+                          "provider"
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["connections"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connection/{connectionId}": {
+      "get": {
+        "operationId": "getConnection",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connectionId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "provider_config_key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "force_refresh",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "refresh_token",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteConnection",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connection_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "provider_config_key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "force_refresh",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "refresh_token",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {},
+    "schemas": {
+      "Provider": {
+        "type": "string",
+        "enum": [
+          "accelo",
+          "adobe",
+          "aircall",
+          "airtable",
+          "apollo",
+          "amazon",
+          "amplitude",
+          "asana",
+          "ashby",
+          "atlassian",
+          "bamboohr",
+          "battlenet",
+          "bitbucket",
+          "boldsign",
+          "box",
+          "braintree",
+          "braintree-sandbox",
+          "brex",
+          "brex-staging",
+          "calendly",
+          "clickup",
+          "confluence",
+          "contentstack",
+          "deel",
+          "deel-sandbox",
+          "digitalocean",
+          "discord",
+          "docusign",
+          "docusign-sandbox",
+          "dropbox",
+          "epic-games",
+          "evaluagent",
+          "eventbrite",
+          "exact-online",
+          "factorial",
+          "facebook",
+          "figjam",
+          "figma",
+          "fitbit",
+          "freshbooks",
+          "freshservice",
+          "front",
+          "github",
+          "github-app",
+          "gitlab",
+          "gong",
+          "google",
+          "google-calendar",
+          "google-mail",
+          "google-sheet",
+          "gorgias",
+          "greenhouse",
+          "gumroad",
+          "gusto",
+          "health-gorilla",
+          "highlevel",
+          "hubspot",
+          "instagram",
+          "intercom",
+          "intuit",
+          "jira",
+          "keap",
+          "lever",
+          "linear",
+          "linkedin",
+          "linkhut",
+          "mailchimp",
+          "microsoft-teams",
+          "mixpanel",
+          "miro",
+          "monday",
+          "mural",
+          "nationbuilder",
+          "netsuite",
+          "notion",
+          "one-drive",
+          "osu",
+          "outreach",
+          "pagerduty",
+          "pandadoc",
+          "payfit",
+          "pennylane",
+          "pipedrive",
+          "qualtrics",
+          "quickbooks",
+          "ramp",
+          "ramp-sandbox",
+          "reddit",
+          "ring-central",
+          "ring-central-sandbox",
+          "segment",
+          "sage",
+          "salesforce",
+          "salesforce-sandbox",
+          "salesloft",
+          "servicem8",
+          "shopify",
+          "shortcut",
+          "slack",
+          "smugmug",
+          "splitwise",
+          "spotify",
+          "squareup",
+          "squareup-sandbox",
+          "stackexchange",
+          "strava",
+          "stripe",
+          "stripe-express",
+          "survey-monkey",
+          "teamwork",
+          "timely",
+          "trello",
+          "todoist",
+          "twitch",
+          "twitter",
+          "twitter-v2",
+          "twinfield",
+          "typeform",
+          "uber",
+          "unauthenticated",
+          "wakatime",
+          "wave-accounting",
+          "wildix-pbx",
+          "workable",
+          "xero",
+          "yahoo",
+          "yandex",
+          "youtube",
+          "zapier-nla",
+          "zendesk",
+          "zenefits",
+          "zoho",
+          "zoho-books",
+          "zoho-crm",
+          "zoho-desk",
+          "zoho-inventory",
+          "zoho-invoice",
+          "zoom"
+        ]
+      },
+      "AuthMode": {
+        "type": "string",
+        "enum": ["OAUTH2", "OAUTH1", "BASIC", "API_KEY"]
+      },
+      "Integration": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/Provider"
+          },
+          "unique_key": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "client_secret": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "string"
+          },
+          "app_link": {
+            "type": ["string", "null"]
+          },
+          "auth_mode": {
+            "$ref": "#/components/schemas/AuthMode"
+          }
+        },
+        "required": [
+          "provider",
+          "unique_key",
+          "client_id",
+          "client_secret",
+          "auth_mode"
+        ]
+      },
+      "Connection": {
+        "type": "object",
+        "properties": {
+          "connection_id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "number"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/Provider"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "provider_config_key": {
+            "type": "string"
+          },
+          "credentials": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/AuthMode"
+              },
+              "access_token": {
+                "type": "string"
+              },
+              "refresh_token": {
+                "type": "string"
+              },
+              "expires_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "raw": {
+                "type": "object",
+                "properties": {
+                  "access_token": {
+                    "type": "string"
+                  },
+                  "expires_in": {
+                    "type": "number"
+                  },
+                  "expires_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "refresh_token": {
+                    "type": ["string", "null"]
+                  },
+                  "refresh_token_expires_in": {
+                    "type": ["number", "null"]
+                  },
+                  "token_type": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "access_token",
+                  "expires_in",
+                  "expires_at",
+                  "token_type"
+                ]
+              }
+            },
+            "required": ["type", "access_token", "expires_at", "raw"]
+          },
+          "connection_config": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "metadata": {
+            "type": ["object", "null"],
+            "additionalProperties": {}
+          },
+          "credentials_iv": {
+            "type": "string"
+          },
+          "credentials_tag": {
+            "type": "string"
+          },
+          "environment_id": {
+            "type": "number"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "last_fetched_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "connection_id",
+          "created",
+          "id",
+          "provider",
+          "updated_at",
+          "provider_config_key",
+          "credentials",
+          "connection_config",
+          "metadata",
+          "credentials_iv",
+          "credentials_tag",
+          "environment_id",
+          "deleted",
+          "deleted_at",
+          "last_fetched_at"
+        ]
+      }
+    }
+  }
+}
