@@ -186,11 +186,11 @@ importers:
   packages/util-zod:
     dependencies:
       zod:
-        specifier: 3.21.4
-        version: 3.21.4
+        specifier: ^3.22.4
+        version: 3.22.4
       zod-openapi:
-        specifier: 2.11.0
-        version: 2.11.0(zod@3.21.4)
+        specifier: ^2.12.0
+        version: 2.12.0(zod@3.22.4)
     devDependencies:
       concurrently:
         specifier: ^8.2.2
@@ -231,6 +231,24 @@ importers:
       '@opensdks/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+
+  sdks/sdk-nango:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      '@opensdks/util-zod':
+        specifier: workspace:*
+        version: link:../../packages/util-zod
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -372,6 +390,9 @@ importers:
       '@opensdks/sdk-github':
         specifier: workspace:*
         version: link:../sdks/sdk-github
+      '@opensdks/sdk-nango':
+        specifier: workspace:*
+        version: link:../sdks/sdk-nango
       '@opensdks/sdk-openai':
         specifier: workspace:*
         version: link:../sdks/sdk-openai
@@ -10698,17 +10719,17 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod-openapi@2.11.0(zod@3.21.4):
-    resolution: {integrity: sha512-nG/l7AzEguGnnWrLmVLZfk80c6G79LQFlIVG3oby203DLcQ1X8lged82pkxPZoD6ytdutoKTyKLles760+mZUw==}
+  /zod-openapi@2.12.0(zod@3.22.4):
+    resolution: {integrity: sha512-vTjUNJN7COtV36w5kVaKMpX6Anwn8fDWOBWkpJMnfbNJMjjM5IO8I//2N4cQbvB3EKOdX4ym/4Laa7lrtrWYLg==}
     engines: {node: '>=16.11'}
     peerDependencies:
       zod: ^3.21.4
     dependencies:
-      zod: 3.21.4
+      zod: 3.22.4
     dev: false
 
-  /zod@3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
   /zwitch@2.0.4:
