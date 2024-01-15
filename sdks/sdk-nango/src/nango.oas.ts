@@ -1,7 +1,7 @@
 import {OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
-const zNangoProvider = z
+const zNangoProviderId = z
   .enum([
     'accelo',
     'adobe',
@@ -142,16 +142,16 @@ const zNangoProvider = z
     'zoho-invoice',
     'zoom',
   ])
-  .openapi({ref: 'Provider'})
+  .openapi({ref: 'ProviderId'})
 
 export const zAuthMode = z
   .enum(['OAUTH2', 'OAUTH1', 'BASIC', 'API_KEY'])
   .openapi({ref: 'AuthMode'})
 
-export type NangoProvider = z.infer<typeof zNangoProvider>
+export type NangoProvider = z.infer<typeof zNangoProviderId>
 
 export const zIntegrationShort = z.object({
-  provider: zNangoProvider,
+  provider: zNangoProviderId,
   /** aka provider_config_key */
   unique_key: z.string(),
 })
@@ -165,7 +165,11 @@ export const zConnectionShort = z.object({
   created: z.string().datetime(),
   /** Now this is actually the unique id for the connection */
   id: z.number(),
-  provider: zNangoProvider,
+  provider: z
+    .string()
+    .describe(
+      'This is actually the provider_config_key instead of the provider id',
+    ),
 })
 
 export const zConnection = zConnectionShort
