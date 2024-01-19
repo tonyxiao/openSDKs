@@ -19,35 +19,43 @@
 > **NOTE:**
 > This repo is fully working but documentation is still work in progress. In the mean time please check the [examples folder](./examples) folder for usage guide and the [sdks folder](./sdks) for a list of pre-packaged SDKs.
 
-OpenSDKs is a repository of type-safe and standardized SDKs for all your APIs - powered by a single lightweight and extensible runtime that embraces Web Standards and HTTP. 
+OpenSDKs is a repository of type-safe and standardized SDKs for all your APIs - powered by a single lightweight and extensible `runtime` that embraces Web Standards and HTTP, and a `cli` that can generate a custom SDKs from any OpenAPI spec. 
 
 ```sh
 npm install @opensdks/runtime
+npm install -D @opensdks/cli
 ```
+
+![Demo](./examples/demo.gif)
+
 <h2>Table of Contents</h2>
 
 - [Quick start](#quick-start)
-  - [Pre-packaged SDK](#pre-packaged-sdk)
+  - [Use pre-packaged SDK](#use-pre-packaged-sdk)
   - [Bring your own OpenAPI spec (WIP)](#bring-your-own-openapi-spec-wip)
 - [Why (aka the problem)](#why-aka-the-problem)
+  - [Most SDKs are leaky abstractions on top of HTTP APIs](#most-sdks-are-leaky-abstractions-on-top-of-http-apis)
+  - [SDKs force technical choices on you that get in your way](#sdks-force-technical-choices-on-you-that-get-in-your-way)
+  - [Some SDKs are poorly built / maintained, and some APIs don't have SDKs at alls](#some-sdks-are-poorly-built--maintained-and-some-apis-dont-have-sdks-at-alls)
+  - [Lack of consistency makes it hard to scale if you work with lots of SDKs / APIs](#lack-of-consistency-makes-it-hard-to-scale-if-you-work-with-lots-of-sdks--apis)
 - [Features](#features)
-  - [Zero abstraction, it's just HTTP](#zero-abstraction-its-just-http)
-  - [Powerful middleware when you need them](#powerful-middleware-when-you-need-them)
-  - [Work by default in all environments](#work-by-default-in-all-environments)
-  - [In-editor API reference you actually want to read](#in-editor-api-reference-you-actually-want-to-read)
-  - [Know one, know all](#know-one-know-all)
-  - [Powerful middlewares when you need them (`Links`)](#powerful-middlewares-when-you-need-them-links)
-    - [Built-in links](#built-in-links)
-    - [Custom links](#custom-links)
+  - [0️⃣ Zero abstraction, it's just (typesafe) HTTP](#0️⃣-zero-abstraction-its-just-typesafe-http)
+  - [✅ Work by default in all environments](#-work-by-default-in-all-environments)
+  - [📚 In-editor API reference you actually want to read](#-in-editor-api-reference-you-actually-want-to-read)
+  - [💪 Powerful \& extensible middlewares when you need them (`Links`)](#-powerful--extensible-middlewares-when-you-need-them-links)
+  - [💡 Automatic consistency that lets you scale infra and learn once, use everywhere](#-automatic-consistency-that-lets-you-scale-infra-and-learn-once-use-everywhere)
+- [Links](#links)
+  - [Built-in links](#built-in-links)
+  - [Custom links](#custom-links)
 - [Pre-packaged SDKs](#pre-packaged-sdks)
 - [Contribute new SDK](#contribute-new-sdk)
 - [Examples](#examples)
 - [FAQs](#faqs)
-  - [The API I need does not have a spec!](#the-api-i-need-does-not-have-a-spec)
+  - [The API I need does not have an OpenAPI spec!](#the-api-i-need-does-not-have-an-openapi-spec)
   - [But I would prefer adhoc ts types because codegen is annoying](#but-i-would-prefer-adhoc-ts-types-because-codegen-is-annoying)
   - [What if an existing / official spec is wrong, incomplete or un-ergonomic?](#what-if-an-existing--official-spec-is-wrong-incomplete-or-un-ergonomic)
   - [How are links executed under the hood?](#how-are-links-executed-under-the-hood)
-  - [Why would I want to use this instead of the custom SDK provided each API vendor?](#why-would-i-want-to-use-this-instead-of-the-custom-sdk-provided-each-api-vendor)
+  - [Why would I want to use this instead of the native SDK provided by each API vendor?](#why-would-i-want-to-use-this-instead-of-the-native-sdk-provided-by-each-api-vendor)
   - [Should I use this for our internal / private API?](#should-i-use-this-for-our-internal--private-api)
   - [I don't like types, should I still use OpenSDKs?](#i-dont-like-types-should-i-still-use-opensdks)
   - [What do you plan to work on next?](#what-do-you-plan-to-work-on-next)
@@ -70,10 +78,27 @@ const github = initSDK(githubSdkDef, {
   headers: {authorization: `Bearer ${process.env['GITHUB_TOKEN']}`},
 })
 
-const {data: commits} = await github.GET('/repos/{owner}/{repo}/commits', {
+const res = await github.GET('/repos/{owner}/{repo}/commits', {
   params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
 })
+console.log(res.data[0]?.committer)
+//                          ^? (property) committer: {
+//                                 name?: string | null | undefined;
+//                                 email?: string | null | undefined;
+//                                 login: string;
+//                                 id: number;
+//                                 node_id: string;
+//                                 avatar_url: string;
+//                                 gravatar_id: string | null;
+//                                 url: string;
+//                                 html_url: string;
+//                                 ... 11 more ...;
+//                                 starred_at?: string | undefined;
+//                             } | null | undefined
 ```
+
+
+
 
 ### Bring your own OpenAPI spec (WIP)
 
@@ -99,126 +124,103 @@ const {data} = await sdk.GET('/your_rest_endpoint')
 
 ## Why (aka the problem)
 
-### SDKs introduce leaky abstractions on top of HTTP
-- Hard to understand what's happening under the hood. Have to learn both the API and the SDK. 
-- Rate limiting info not available
+### Most SDKs are leaky abstractions on top of HTTP APIs
 
-### SDKs make technical choices for you and get in your way
-- Fetch vs. Axios
-- Where to log
+Unlike SDKs offered by major platforms like iOS, Windows, or Unity that are valuable by themselves, most 3rd party SDKs are merely glorified API clients that supposedly make it easier to interact with the underlying HTTP-based API. The problem is that these glue code often introduce what are known as '[leaky abstractions](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/)', obscuring what is happening under the hood while introducing its own nuances and a dual-learning curve. 
+
+For example, debugging is much more difficult without easy access to the underlying HTTP request, and often times the HTTP API have more up to date and better documentation than SDK for a specific programming language so you end up having to reference the API anyways. 
+
+What's worse is sometimes essential information such as rate limiting details that would have been accessible in HTTP headers are inaccessible when using the SDK (I'm looking at you Hubspot!), forcing you to monkey-patch or completely opt-out of the SDK for specific requests. 
+
+### SDKs force technical choices on you that get in your way
+
+SDKs, by design, operate directly within your codebase, and this in-process nature means their technical choices and dependencies can negatively impact your applications. 
+
+For instance, for a long time the OpenAI SDK used axios for HTTP requests, which uses APIs that are not available in edge environments. Therefore for their docs Vercel had to recommend a community SDK called [openai-edge](https://github.com/dan-kwiat/openai-edge) that worked for their edge runtime. Other times vendors choose to ship platform-specific SDKs (e.g. [stripe-node](https://github.com/stripe/stripe-node)), forcing you to polyfill or implement hacky bundler workarounds if you are building an isomorphic application. 
+
+SDKs may also choose to make asynchronous requests for performance, but in a typical serverless environment [all async workloads must finish](https://levelup.gitconnected.com/avoiding-the-pitfalls-of-async-node-js-functions-in-aws-lambda-941220582e7a) before the HTTP handler completes. Hopefully your SDK of choice provides you a way to await for requests to flush, otherwise you are pretty much guaranteed data loss or subtle bugs. 
+
+Logging is another common issue. Your engineers may spend hours coming through your codebase to make sure every log statement is properly instrumented, only to get surprised by a [rogue console.log](https://github.com/HubSpot/hubspot-api-nodejs/blob/bb202a08ddb48f9967b5db36de9bcebe3c3b9aae/src/services/decorators/RetryDecorator.ts#L74-L76) deep inside a SDK that you have no control over messing up your observability setup and eating into your logs storage. 
 
 ### Some SDKs are poorly built / maintained, and some APIs don't have SDKs at alls
 
+Case in point, as of the time of this writing (Jan 19, 2024), the [PagerDuty JS SDK](https://github.com/PagerDuty/PDJS) was last updated 2 years ago, even though the API itself was updated just [last week](https://developer.pagerduty.com/api-reference/f1a95bb9397ba-changelog). Needless to say, to learn how you use the SDK, you are asked to refer to the API documentation.
+
+Even major APIs like Salesforce don't have their own SDKs, instead you will have to rely on community built [jsforce](https://github.com/jsforce/jsforce), which unfortunately has a 13 year old untyped JavaScript codebase that still transpiles its code back to ECMAScript 5 (2009), presumably for Internet Explorer support? Good luck keeping your own bundle size lean and startup time fast. Understandable though, as it is hard especially for a team of volunteers to justify a rewrite when it still "technically works". 
+
+And sometimes a provider (ahem [Apollo](https://apolloio.github.io/apollo-api-docs)) doesn't even have an SDK at all, and you are having to essentially build a wrapper client "SDK" in your own codebase so you can interact with them, which is arguably preferable than using an out of date SDK that introduces confusion and bundle bloat.
+
+It's not their fault really. The core business of API providers is their applications & APIs, and writing well built, extensible SDK in language they may or may not have experience in is not an easy job, no to mention staying on top of changes as programming languages themselves evolve (e.g. introduction of the fetch API). Some of those API providers are large and slow moving companies, others are tiny startups starved of engineering resources. Expecting all them to build great SDKs is unfortunately not realistic. 
+
+### Lack of consistency makes it hard to scale if you work with lots of SDKs / APIs
+
+All of the problems listed above compounds if you work with multiple SDKs / APIs (e.g. if you have lots of integrations within your product). Trying to achieve consistent behavior across things like logging, error handling, and retries become nearly impossible as the number of integrations increase. Some companies that work with lots of APIs (e.g. integrations platform) end up ditching SDKs entirely for this reason and revert to making raw HTTP requests, but then they lose out on type safety and other convenience that SDK provides. 
+
+And thats why OpenSDKs exists - to give you a single extensible SDK runtime that lets you work with all APIs in a typesafe and consistent way. 
 
 
-### Problem compounds quickly if you work with multiple APIs / SDKs. 
-- really hard to do consistent error handling
-- So you say fuck it i'm just gonna do HTTP keeping it simple forget SDKs. But then you lose out on all the type safety and other convenience SDK providers
-
-- And that's why OpenSDKs exist
-
-
-
-
-
-- Different SDKs behave differently, , and some APIs have no SDK at all
-  - Making it a challenge to 
-
-
-
-
-
-
-
-
-
-Type safety, consistency and extensibility. 
-
-- Many popular SDKs suck
-    - jsforce
-    - logging anyone?
-
-- SDKs take away your choice
-    - HTTP request library
-    - 
-
-- Consistency is important
-    - axios or fetch?
-    - proxy config
-
-- Type safety
-    - Leveraging OpenAPI spec
-    - 
-- It's just HTTP!
-    - Most of these so called "SDKs" are really just API clients, the job of an API client is to make it easier to interact with API, not introduce yet another leaky abstraction layer that you have to learn (and debug!)
-- Powerful middleware's
-    - Logging
-    - Proxies
-    - Retries
-    - Rate limiting
-    - Runtime validation & warning
-- 
-    - Most 
-- Learn once, use everywhere
-    - For public apis, for private apis, or even pick and choose
 
 ## Features
 
-TODO(chatGPT): Generate an emoji for every bullet point
+### 0️⃣ Zero abstraction, it's just (typesafe) HTTP
 
-- Type safety
-
-- It's just HTTP!
-
-- Extensible architecture via links
-
-  - Logging
-
-  - Proxies
-
-  - Retries
-
-  - Rate limiting
-
-  - Runtime validation & warning
-
-- Generated code that you actually want to read (courtesy of openapi-typescript)
-
-- Automatic `cli` with completion for every SDK (coming soon)
-
-- Learn once, use everywhere
-
-  - For public apis or for private apis
-
-- ✅&nbsp; End-to-end type-safety for all third-party SDKs you consume
-- 🧙‍♂️&nbsp; Easily add any SDKs that you want to use.
-- 🐎&nbsp; Snappy DX - quick type lookup without leaving the code editor.
-
-### Zero abstraction, it's just HTTP
-
-Most SDKs are merely thin layers on top of HTTP APIs, but they are [leaky abstractions](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) that poorly hide what is going on in the HTTP layer. So you find yourself referring to both the SDK docs and the HTTP api docs, and when something doesn't behave as you expect you are left debugging both the SDK code as well as the underlying HTTP request & response.
-
-Instead, OpenSDK calls map one to one to the underlying HTTP API so there is nothing to learn and nothing to debug. If you know how to HTTP, you know how to use OpenSDK.
+Once initialized, the methods available map one to one to the underlying HTTP API so there is nothing to learn. If you know how to HTTP, you know how to use OpenSDK.
 
 ```typescript
-void github.GET('/repos/{owner}/{repo}/commits', {
+const res = await github.GET('/repos/{owner}/{repo}/commits', {
   params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
+})
+console.log(res.data[0]?.committer?.name)
+//                                   ^? (property) name?: string | null | undefined
+```
+
+Working directly with HTTP doesn't mean you have to lose type-safety though. Both the request (including path, params, headers and body) and response are fully typed with auto-complete support, enabling both productivity and correctness. 
+
+![Demo](./examples/demo.gif)
+
+### ✅ Work by default in all environments
+
+OpenSDKs use the fetch API by default (swappable if you prefer axios or any other request lib) which is pretty much universally available on all environment that javascript runs on. From node.js, to browser, to deno, to bun, to vercel edge, to even completely bespoke environments such as the [coda pack runtime](https://coda.io/packs/build/latest/guides/basics/fetcher/). This also means that caching works out of the box in environments like next.js that extends the fetch API for efficient rendering of server components. 
+
+### 📚 In-editor API reference you actually want to read
+
+Instead of navigating through thousands of lines of code across multiple files, OpenSDKs provide a streamlined in-editor documentation experience. This means you no longer need to leave your editor to consult API documentation, which is frequently more convenient than going to an API's online documentation. 
+
+![Demo](./examples/demo-api-reference.gif)
+
+### 💪 Powerful & extensible middlewares when you need them (`Links`)
+
+Inspired by [trpc link](https://trpc.io/docs/client/links) and [Apollo link](https://www.apollographql.com/docs/react/api/link/introduction/), OpenSDKs runtime includes a composable set of middlewares called Links that are atomic in scope and can add incredibly powerful functionalities in an easy to understand way. For example 
+
+```ts
+const discord = createSdk(discordSdkDef, {
+  links: [
+    rateLimitLink({backend: RedisCache}),
+    retryLink(),
+    authorizationLink({storage: AsyncStorage}), // Store credentials in react native environmemnt
+    oauth2RefreshLink({onChange: () => {}}),
+    logLink({verbose: true}),
+    errorHandlingMiddleware(),
+    axiosLink(), // Use axios instead of fetch
+    (req, next) => {
+      // Do something custom here... 
+      return next(req)
+    }
+  ],
 })
 ```
 
-### Work by default in all environments
+This interface is one of the best ways to extend the sdk / runtime with your own custom functionalities. See [Links](#links) section for more details. 
 
-OpenSDKs are versatile, functioning across all browsers. Unlike some SDKs that rely on `axios`, OpenSDKs use `fetch` and include `customFetch` for environments lacking native `fetch` support, ensuring consistent operation in any setting.
+### 💡 Automatic consistency that lets you scale infra and learn once, use everywhere
 
-### In-editor API reference you actually want to read
+Because each SDK is just an adapter that plugs into the same underlying runtime & cli, things like API documentation, error handling and request interface are automaticaly consistent, making it much easier to enforce global patterns like logging and metrics in your codebase and scale your integrations infrastructure. 
 
-Thanks to leveraging [openapi-typescript](https://github.com/drwpow/openapi-typescript/tree/main/packages/openapi-typescript), instead of navigating through thousands of lines of code across multiple files, OpenSDKs provide a streamlined in-editor documentation experience. This means developers no longer need to leave their editor to consult API documentation, as everything is conveniently embedded within the specs. Additionally, OpenSDKs ensure end-to-end type safety, enhancing both the efficiency and reliability of the development process.
+An added bonus is that you no longer have a dual-learning curve whenever your product needs to use a new API, and can therefore build new integrations and go to production that much faster. 
 
-### Know one, know all
 
-In traditional settings, each API client behaves uniquely, requiring developers to learn the nuances of every specific SDK. However, with OpenSDKs, there's a unifying similarity in how all APIs behave. This consistency significantly reduces the learning curve, making it easier for developers to transition between different APIs without the need to relearn or adjust to a new environment.
 
-### Powerful middlewares when you need them (`Links`)
+## Links
 
 When an SDK is initialized, it receives an array of Links that are chained together to return.
 
@@ -232,26 +234,7 @@ type Link = (
 
 ```
 
-Links are meant to be atomic in scope, but when composed together they can perform incredibly powerful functionality in an easy to understand way. For example 
-
-```ts
-const discord = createSdk(discordSdkDef, {
-  links: [
-    rateLimitLink({storage: AsyncStorage}),
-    retryLink(),
-    authorizationLink({storage: AsyncStorage}),
-    oauth1RefreshLink({onChange: () => {}}),
-    logLink({verbose: true}),
-    errorHandlingMiddleware(),
-    axios(),
-    fetchMiddleware(),
-  ],
-})
-```
-
-For a diagram and better conceptual understanding, check out [trpc link](https://trpc.io/docs/client/links) and [Apollo link](https://www.apollographql.com/docs/react/api/link/introduction/) that OpenSDK's fetch links are inspired by.
-
-#### Built-in links
+### Built-in links
 
 
 | Link                  | Description                                                                                                                                                                                                                                                                                                                                                                       | Accepted options                                                                                         |
@@ -267,7 +250,7 @@ For a diagram and better conceptual understanding, check out [trpc link](https:/
 
 There are plenty of other good ideas for links, for example I would love to see a `mockLink` that uses the OpenAPI spec to starting a fully fledged mock server, or a `remoteLogLink` that sends the Request / Response to chromeDevTools or Pulse app inspection in a GUI. Please create issues for new ideas or better yet create a PR and contribute! :)
 
-#### Custom links
+### Custom links
 
 The simplest link is one that does nothing and simply passes the request along to the next one in the chain. 
 
@@ -332,7 +315,7 @@ A pre-packaged SDK is not limited to just a pre-generated API client (i.e. it ca
 | `@opensdks/sdk-plaid`   |                                                              |         |
 |                         |                                                              |         |
 
-For the most up to date list, see the [sdks folder](./sdks)****
+For the most up to date list, see the [sdks folder](./sdks)
 
 
 
@@ -362,12 +345,12 @@ https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca
 
 https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
 
-For a full app example, check out the [`What did we work on app`](https://github.com/dosu-ai/what-did-we-work-on/). Demo link is here [https://what-did-we-work-on.vercel.app//](https://what-did-we-work-on.vercel.app//).
+For a full app example, check out the [`What did we work on app`](https://github.com/dosu-ai/what-did-we-work-on/). Demo link is here [https://what-did-we-work-on.vercel.app/](https://what-did-we-work-on.vercel.app/).
 
 
 ## FAQs
 
-### The API I need does not have a spec!
+### The API I need does not have an OpenAPI spec!
 
 You can polyfill it by create your own spec document and you don't need the API provider's permission to do so. After all a spec is nothing but a standardized description of the inputs expected by and output return by the API. And this is a lot easier than you might think because 
 
@@ -439,19 +422,20 @@ export function GET(req: NextRequest) {
 }
 ```
 
-### Why would I want to use this instead of the custom SDK provided each API vendor?
+### Why would I want to use this instead of the native SDK provided by each API vendor?
 
 I mean did you read the [why](#why) section? 
 
 TODO(chatGPT)
 
-Ok more seriously, it's easier to answer the reverse question. And here's a list of reasons for "when should I use the custom SDK provided by API vendor instead of the standardized OpenSDKs". 
+Ok more seriously, it's easier to answer the reverse question. And here's a list of reasons for "when should I use the native SDK provided by API vendor instead of the standardized OpenSDKs". 
+
+- You only work with a single api and therefore don't need to care about infrastructure consistency across them
 
 - You prefer to not know about HTTP or a different call style (e.g. `stripe.customers.list()` )
 - You need features that are not yet supported by OpenSDKs
   - Examples of this include streaming responses, or converting ISO date strings into `Date` objects
   - Please do open a github issues though so we can prioiritize those based on demand. 
-- You only work with a single 3rd party API and don't need to care about consistensy across integrations. 
 - You want your life to be difficult (sorry did I say I was going to be serious? 🧐)
 
 It's worth noting that the best APIs already generate SDKs from OpenAPI specs (e.g. Github, Slack, OpenAI) so an OpenSDK would therefore give you the exact same set of typesafe endpoints as custom SDK, just in a consistent, zero-learning curve kind of way.
