@@ -47,16 +47,16 @@ npm install -D @opensdks/cli
 - [Links](#links)
   - [Built-in links](#built-in-links)
   - [Custom links](#custom-links)
-- [Pre-packaged SDKs](#pre-packaged-sdks)
-- [Contribute new SDK](#contribute-new-sdk)
-- [Examples](#examples)
+- [List of pre-packaged SDKs](#list-of-pre-packaged-sdks)
+  - [Contribute a new SDK](#contribute-a-new-sdk)
+- [Usage Examples](#usage-examples)
 - [FAQs](#faqs)
   - [The API I need does not have an OpenAPI spec!](#the-api-i-need-does-not-have-an-openapi-spec)
   - [But I would prefer adhoc ts types because codegen is annoying](#but-i-would-prefer-adhoc-ts-types-because-codegen-is-annoying)
   - [What if an existing / official spec is wrong, incomplete or un-ergonomic?](#what-if-an-existing--official-spec-is-wrong-incomplete-or-un-ergonomic)
   - [How are links executed under the hood?](#how-are-links-executed-under-the-hood)
   - [Why would I want to use this instead of the native SDK provided by each API vendor?](#why-would-i-want-to-use-this-instead-of-the-native-sdk-provided-by-each-api-vendor)
-  - [Should I use this for our internal / private API?](#should-i-use-this-for-our-internal--private-api)
+  - [This looks great. Can I use this for our internal / private API?](#this-looks-great-can-i-use-this-for-our-internal--private-api)
   - [I don't like types, should I still use OpenSDKs?](#i-dont-like-types-should-i-still-use-opensdks)
   - [What do you plan to work on next?](#what-do-you-plan-to-work-on-next)
   - [How does this relate to trpc? Does this replace it?](#how-does-this-relate-to-trpc-does-this-replace-it)
@@ -297,7 +297,7 @@ initSdk(sdDef, {
 })
 ```
 
-## Pre-packaged SDKs
+## List of pre-packaged SDKs
 
 A pre-packaged SDK is not limited to just a pre-generated API client (i.e. it can be more than just running `npx @opensdks/cli generate` on an OpenAPI spec). It also handles things like adding credentials the request and providing additional functionality beyond HTTP Endpoint wrapper. For example the QBO SDK contains methds to make it easier to make a QBO `query` and paginate through all records via an `AsyncIterator`
 
@@ -317,29 +317,30 @@ A pre-packaged SDK is not limited to just a pre-generated API client (i.e. it ca
 
 For the most up to date list, see the [sdks folder](./sdks)
 
+### Contribute a new SDK
 
+> We are working on tooling to make this much easier, in the meantime you can follow the guidelines below. When in doubt, look at how other SDKs are implemented and follow the pattern.
 
-## Contribute new SDK
+1. Duplicate an existing folder inside [sdks](./sdks) as a template and rename it to be an unique name in the format of `sdk-$name`. Depending on the API you are working with, each of the following in would be the best starting point
+   1. sdk-github: Simplest case with a single up to date OpenAPI spec
+   2. sdk-twilio: Multiple OpenAPI spec in a single SDK
+   3. sdk-apollo: Poliyfilling OpenAPI spec for API that does not natively have one
+   4. sdk-salesloft: Extending the OpenAPI spec for an api that technically has a spec but is incomplete / out of date
+   5. sdk-qbo: Support a non-RESTful HTTP api a with OpenAPI spec polyfill plus custom methods to handle custom sql-like QUERY for Quickbooks Online
 
-1. Create a new directory in `sdks`  with a unique name prefixed with `sdk-$name`
-2. Copy `tsconfig.json` and `package.json` over from another sdk folder, then update `$name` references and in particular the `download` and `generate` commands
-   1. `download`: If available, get OpenAPI spec from a url and save into the package as `$name.oas.json`. This step should depend on the internet
-   2. `generate`: Optionally generate `$name.oas.json` from code in case spec is not available from URL, Then generate typescript types into `$name.oas.d.ts`  via `@opensdks/cli` (or `openapi-typescript`)
-3. Modify the generated `index.ts` to add in custom initialization parameters (typically auth credentials), add a test to ensure it works with a sample credential
-4. (Optionally) extend the sdk definition in `index.ts` , for example adding support for `AyncIterator` pagination to make it more urgomomic if needed.
-5. Submit a PR 🎆 
+2. Update references to match your API in `package.json`
+   1. `name` field
+   2. `download*` command in `scripts` field. If available, get OpenAPI spec from a url and save into the package as `$name.oas.json`. This step should depend on the internet
+   3. `generate*` command in `scripts` field. Optionally generate OpenAPI spec json, then generate the `$name.oas.meta.ts` and `$name.oas.types.d.ts` via the `@opensdks/cli` . Unlike `download`, this step should NOT depend on the internet.
 
+3. Modify `index.ts` 
+   1. Add in custom initialization parameters (typically auth credentials)
+   2. (Optionally) extend the sdk definition in `index.ts` in the `createClient` property, for example adding support for custom non-RESTful api endpoints or simplify pagination with `AyncIterator` .
+   3. Add an `index.spec.ts` ideally to ensure it works with a sample credential
 
+4. Submit a PR 🎆 
 
-When in doubt, look at how other SDKs are implemented and follow the pattern. We plan to ship an `@opensdks/cli` for this to make this easier and more streamlined
-
-- TODO: Here's a video of my doing it
-
-
-
-- OpenAPI Spec
-
-## Examples
+## Usage Examples
 
 https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
 
@@ -424,33 +425,31 @@ export function GET(req: NextRequest) {
 
 ### Why would I want to use this instead of the native SDK provided by each API vendor?
 
-I mean did you read the [why](#why) section? 
+I mean did you read the [why](#why) section? 😅
 
-TODO(chatGPT)
-
-Ok more seriously, it's easier to answer the reverse question. And here's a list of reasons for "when should I use the native SDK provided by API vendor instead of the standardized OpenSDKs". 
+Ok more seriously, it's easier to answer the reverse question - "when should I use the native SDK provided by API vendor instead of the standardized OpenSDKs"?
 
 - You only work with a single api and therefore don't need to care about infrastructure consistency across them
 
-- You prefer to not know about HTTP or a different call style (e.g. `stripe.customers.list()` )
+- You prefer a different call style (e.g. `stripe.customers.list()`  vs. `stripe.GET('/customers')` )
 - You need features that are not yet supported by OpenSDKs
-  - Examples of this include streaming responses, or converting ISO date strings into `Date` objects
+  - Examples of this include streaming responses, or support for converting JSON into non-JSON values (e.g. ISO date strings to/from `Date` objects)
   - Please do open a github issues though so we can prioiritize those based on demand. 
-- You want your life to be difficult (sorry did I say I was going to be serious? 🧐)
+- You want your life to be difficult (sorry did I say I was going to be serious? 🙊)
 
-It's worth noting that the best APIs already generate SDKs from OpenAPI specs (e.g. Github, Slack, OpenAI) so an OpenSDK would therefore give you the exact same set of typesafe endpoints as custom SDK, just in a consistent, zero-learning curve kind of way.
+It's worth noting that the best APIs already generate SDKs from OpenAPI specs (e.g. Github, Slack, OpenAI) so an OpenSDK would therefore give you the exact same set of typesafe endpoints as custom SDK, just in more a consistent and extensible way. 
 
-### Should I use this for our internal / private API?
+### This looks great. Can I use this for our internal / private API?
 
- (Yes if you have RESTful API. In the future we might support other non-REST protocols like GraphQL or json-rpc)
+Yes as long as you have a RESTful API. OpenSDKs works best if your API already produces an OpenAPI spec, otherwise you can always polyfill one (we have many examples of this, e.g. [sdk-apollo](./sdks/sdk-apollo)). 
 
-TODO(chatGPT)
+If you already use tech such as GraphQL / trpc / grpc / direct db access in React server component that comes with type safety out of the box, then OpenSDKs would not be necessary. 
+
+There are other protocols that don't have inherent type safety such as json-rpc that could benefit from OpenSDKs. We are looking to support those too, please open an issue to let us know your use case. 
 
 ### I don't like types, should I still use OpenSDKs?
 
-🤷 I feel bad for you, but I you can still use this library from JS. You can still benefit from links and pre-packaged SDKs that expose additional functionalities on top of api calls. For example, see the `getAll` method `sdk-qbo/index.ts` that returns an `AsyncIterator` that uses Quickbooks' custom query language to paginate through all entities of a given type.
-
-TODO(chatGPT)
+🤷 I feel bad for you, but you can still use this library from JS. You will still benefit from the extensibility provided by links and pre-packaged SDKs that expose additional functionalities on top of api calls. For example, see the `getAll` method  inside [sdk-qbo](./sdks/sdk-qbo) that returns an `AsyncIterator` that uses Quickbooks' custom query language to paginate through all entities of a given type.
 
 ### What do you plan to work on next?
 
@@ -460,19 +459,17 @@ You tell us! Check out our roadmap on Github and tell us what's important to you
 
 No not at all. In all likelihood you will using OpenSDKs together with trpc. 
 
-trpc is designed for for client-server communication in your full-stack TypeScript web app, and it is useless when you don't have access to the server's source code, assuming it is even written in TypeScript to begin with. 
+trpc is designed for internal client-server communication in your full-stack TypeScript web app, and it is useless when you don't have access to the server's source code, assuming it is even written in TypeScript to begin with. 
 
-On the other hand OpenSDKs is most valuable when you are working with multiple 3rd party APIs that you don't control. Each SDK is just an `npm install` away with zero incremental learning curve. 
-
-TODO(chatGPT): 
+On the other hand OpenSDKs is most valuable when you are working with multiple 3rd party APIs that you don't control, where each SDK is either an `npm install` or `npx @opensdks/cli generate` away. 
 
 ## Community
 
 The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/opensdks-org/projects/2).
 
-To chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
+Follow us on [Twitter](https://twitter.com/openSDKs) for updates. 
 
-[Twitter](https://twitter.com/openSDKs)
+To get support from the team and chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
 
 ## Contributors
 
