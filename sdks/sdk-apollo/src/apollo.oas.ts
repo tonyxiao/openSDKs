@@ -106,6 +106,14 @@ export const apolloContact = z
   .catchall(z.unknown())
   .openapi({ref: 'contact'})
 
+export type ApolloAccount = z.infer<typeof apolloAccount>
+export const apolloAccount = z
+  .object({
+    id: z.string(),
+  })
+  .catchall(z.unknown())
+  .openapi({ref: 'account'})
+
 export type ApolloEmailerCampaignAddContactIdsResponse = z.infer<
   typeof apolloEmailerCampaignAddContactIdsResponse
 >

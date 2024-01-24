@@ -83,6 +83,7 @@ export function modifyRequest(
       referrer: req.referrer,
       referrerPolicy: req.referrerPolicy,
       signal: req.signal,
+      duplex: 'half', // Solves for duplex is required issue
       ...overrides,
       headers: modifyHeaders(req.headers, overrides.headers),
     },
