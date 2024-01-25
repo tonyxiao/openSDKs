@@ -31,6 +31,9 @@ export const salesforceSdkDef = {
   // Cannot use the oasMeta because the serverUrl is going to be instance dependent
   createClient: (ctx, options) => {
     const client = ctx.createClient(options)
+    // TODO: Add typesafe handling of response from query just like supablue postgREST.js client
+    // @see https://github.com/supabase/postgrest-js?tab=readme-ov-file
+    /** NOTE: `SELECT *` is now allowed by Salesforce. Exact columns need to be specified */
     function query<T = {[k: string]: any}>(query: string) {
       return client
         .request('GET', '/query', {params: {query: {q: query}}})
