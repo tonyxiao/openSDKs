@@ -44,3 +44,10 @@ maybeTest('list and get account', async () => {
   // console.log('getRes', res.data)
   expect(getRes.response.status).toEqual(200)
 })
+
+// TODO: Check for skip / only in test cases
+maybeTest('query', async () => {
+  const res = await sfdc.query('SELECT Id, Name FROM Account LIMIT 10')
+  console.log('res', res.records)
+  // expect(res).toEqual(200)
+})
