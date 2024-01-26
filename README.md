@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Join the community on GitHub" href="https://github.com/orgs/opensdks-org/projects/2">
+  <a aria-label="Join the community on GitHub" href="https://github.com/orgs/tonyxiao/projects/2">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
@@ -79,7 +79,7 @@ const github = initSDK(githubSdkDef, {
 })
 
 const res = await github.GET('/repos/{owner}/{repo}/commits', {
-  params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
+  params: {path: {owner: 'tonyxiao', repo: 'openSDKs'}},
 })
 console.log(res.data[0]?.committer)
 //                          ^? (property) committer: {
@@ -168,7 +168,7 @@ Once initialized, the methods available map one to one to the underlying HTTP AP
 
 ```typescript
 const res = await github.GET('/repos/{owner}/{repo}/commits', {
-  params: {path: {owner: 'opensdks-org', repo: 'openSDKs'}},
+  params: {path: {owner: 'tonyxiao', repo: 'openSDKs'}},
 })
 console.log(res.data[0]?.committer?.name)
 //                                   ^? (property) name?: string | null | undefined
@@ -342,9 +342,9 @@ For the most up to date list, see the [sdks folder](./sdks)
 
 ## Usage Examples
 
-https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
+https://github.com/tonyxiao/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/example.ts#L1-L128
 
-https://github.com/opensdks-org/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
+https://github.com/tonyxiao/openSDKs/blob/a3281e910c489fbeb7c70787a3fe6da5ca5f525f/examples/summarize-pr.ts#L1-L54
 
 For a full app example, check out the [`What did we work on app`](https://github.com/dosu-ai/what-did-we-work-on/). Demo link is here [https://what-did-we-work-on.vercel.app/](https://what-did-we-work-on.vercel.app/).
 
@@ -465,7 +465,7 @@ On the other hand OpenSDKs is most valuable when you are working with multiple 3
 
 ## Community
 
-The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/opensdks-org/projects/2).
+The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/tonyxiao/projects/2).
 
 Follow us on [Twitter](https://twitter.com/openSDKs) for updates. 
 
@@ -473,7 +473,7 @@ To get support from the team and chat with other community members you can join 
 
 ## Contributors
 
-<img src="https://contributors-img.web.app/image?repo=opensdks-org/openSDKs"/>
+<img src="https://contributors-img.web.app/image?repo=tonyxiao/openSDKs"/>
 
 ## Credits
 
