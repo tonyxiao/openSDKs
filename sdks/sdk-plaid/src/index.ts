@@ -1,9 +1,10 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
-import type plaidTypes from '../plaid.oas.types.js'
-import {default as plaidOasMeta} from './plaid.oas.meta.js'
+import {initSDK} from '@opensdks/runtime'
+import type {oasTypes} from '../plaid.oas.types.js'
+import {oasMeta} from './plaid.oas.meta.js'
 
 export type PlaidSDKTypes = SDKTypes<
-  plaidTypes,
+  oasTypes,
   Omit<ClientOptions, 'headers'> & {
     headers: {
       'PLAID-CLIENT-ID': string
@@ -15,7 +16,13 @@ export type PlaidSDKTypes = SDKTypes<
 
 export const plaidSdkDef = {
   types: {} as PlaidSDKTypes,
-  oasMeta: plaidOasMeta,
+  oasMeta,
 } satisfies SdkDefinition<PlaidSDKTypes>
+
+export function initPlaidSDK(opts: PlaidSDKTypes['options']) {
+  return initSDK(plaidSdkDef, opts)
+}
+
+export type PlaidSDK = ReturnType<typeof initPlaidSDK>
 
 export default plaidSdkDef

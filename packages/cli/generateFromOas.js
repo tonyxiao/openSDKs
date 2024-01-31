@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+/** For internal use only. TODO: Merge me with extenral */
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import {parseArgs} from 'node:util'
-import {generateFromOas} from '@opensdks/cli'
+import {generateMultiFileFromOas} from '@opensdks/cli'
 
 const {
   positionals: [filename],
@@ -18,7 +19,7 @@ const {
 if (!filename) {
   throw new Error('You must specify a filename')
 }
-const ret = await generateFromOas(filename)
+const ret = await generateMultiFileFromOas(filename)
 
 if (options.debug) {
   console.log(ret.meta)

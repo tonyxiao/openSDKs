@@ -19,7 +19,7 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/index.d.ts",
-  "bin": "./generateFromOas.js",
+  "bin": "./bin.js",
   "files": [
     "types",
     "esm",

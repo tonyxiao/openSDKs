@@ -38,7 +38,8 @@ export type SdkDefinition<
   oasMeta?: OpenAPIMeta
   defaultOptions?: ClientOptions
 }> & {
-  types: T
+  /** Only exists at compile time used for type inference */
+  readonly types: T
   createClient?: (
     ctx: {
       createClient: <TPaths extends {} = T['oas']['paths']>(
