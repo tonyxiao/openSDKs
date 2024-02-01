@@ -107,19 +107,20 @@ You can also work with any API by generating a client using the OpenAPI spec.
 ```sh
 npx @opensdks/cli generate $YOUR_OPENAPI_URL --name $YOUR_API_NAME
 # e.g. 
-# npx @opensdks/cli generate https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml --name openAI > sdk.ts
+# npx @opensdks/cli generate https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml --name openAI --output openai.ts
 ```
 
 ```ts
-import {initSdk} from '@opensdks/runtime'
-import sdkDef from './your_sdk'
+import initOpenAISDK from './openai'
 
-const sdk = initSdk(sdkDef, {
-    headers: { /* Add your own authentication here */ } 
+const openai = initOpenAISDK({
+  headers: {
+    authorization: `Bearer ${process.env['OPENAI_SECRET_KEY']}`,
+  },
 })
 
-const {data} = await sdk.GET('/your_rest_endpoint')
-//      ^ data is fully typed!
+const {data} = await openai.GET('/models')
+//      ^ data is fully typed! @example https://share.cleanshot.com/Wv69QY1R
 ```
 
 
