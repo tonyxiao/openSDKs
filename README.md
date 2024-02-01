@@ -105,7 +105,9 @@ console.log(res.data[0]?.committer)
 You can also work with any API by generating a client using the OpenAPI spec. 
 
 ```sh
-npx @opensdks/cli generate $YOUR_OPENAPI_URL --meta-dir ./ --types-dir ./
+npx @opensdks/cli generate $YOUR_OPENAPI_URL --name $YOUR_API_NAME
+# e.g. 
+# npx @opensdks/cli generate https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml --name openAI > sdk.ts
 ```
 
 ```ts
