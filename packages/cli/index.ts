@@ -6,6 +6,7 @@ import type {OpenAPI3} from 'openapi-typescript'
 import openapiTS from 'openapi-typescript'
 import prettier from 'prettier'
 import R from 'remeda'
+import yaml from 'yaml'
 import type {OpenAPISpec} from '@opensdks/runtime'
 
 async function prettyFormat(content: string) {
@@ -120,18 +121,33 @@ export async function generateSingleFileFromOas(
   `)
 }
 
-async function getJson<T>(input: string): Promise<T> {
+async function getText(input: string) {
   try {
     const url = new URL(input)
     const res = await fetch(url)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return res.json()
+
+    return await res.text()
   } catch (err) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
     if ((err as any)?.code !== 'ERR_INVALID_URL') {
       throw err
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return JSON.parse(fs.readFileSync(input, 'utf8'))
+    return fs.readFileSync(input, 'utf8')
   }
+}
+
+export function parseJsonOrYaml(text: string): unknown {
+  try {
+    return JSON.parse(text)
+  } catch (err) {
+    if (!(err instanceof SyntaxError)) {
+      throw err
+    }
+    return yaml.parse(text)
+  }
+}
+
+async function getJson<T>(input: string): Promise<T> {
+  const text = await getText(input)
+  return parseJsonOrYaml(text) as T
 }

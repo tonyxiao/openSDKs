@@ -43,7 +43,8 @@
   "dependencies": {
     "openapi-typescript": "^6.7.3",
     "prettier": "^3.1.0",
-    "remeda": "^1.31.0"
+    "remeda": "^1.31.0",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",

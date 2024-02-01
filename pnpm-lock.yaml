@@ -128,6 +128,9 @@ importers:
       remeda:
         specifier: ^1.31.0
         version: 1.31.0
+      yaml:
+        specifier: ^2.3.4
+        version: 2.3.4
     devDependencies:
       '@opensdks/runtime':
         specifier: workspace:*
