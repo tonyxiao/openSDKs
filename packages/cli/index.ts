@@ -90,7 +90,7 @@ export default init${upperName}SDK
 }
 
 export async function generateMultiFileFromOas(oasPath: string) {
-  const oas = JSON.parse(fs.readFileSync(oasPath, 'utf8')) as OpenAPISpec
+  const oas = await getJson<OpenAPISpec>(oasPath)
   const meta = await prettyFormat(generateMeta(oas, {exportDefault: true}))
 
   const types = await prettyFormat(
@@ -104,7 +104,7 @@ export async function generateSingleFileFromOas(
   oasPath: string,
   opts: {name: string},
 ) {
-  const oas = JSON.parse(fs.readFileSync(oasPath, 'utf8')) as OpenAPISpec
+  const oas = await getJson<OpenAPISpec>(oasPath)
 
   const meta = generateMeta(oas, {})
   const types = await generateTypes(oas, {})
@@ -118,4 +118,20 @@ export async function generateSingleFileFromOas(
   ${sdkDefs}
   ${types}
   `)
+}
+
+async function getJson<T>(input: string): Promise<T> {
+  try {
+    const url = new URL(input)
+    const res = await fetch(url)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return res.json()
+  } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    if ((err as any)?.code !== 'ERR_INVALID_URL') {
+      throw err
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return JSON.parse(fs.readFileSync(input, 'utf8'))
+  }
 }
