@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Join the community on GitHub" href="https://github.com/orgs/tonyxiao/projects/2">
+  <a aria-label="Join the community on GitHub" href="https://discord.gg/dHdefDmjnK">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
@@ -472,7 +472,7 @@ The OpenSDKs roadmap can be found on [GitHub Projects](https://github.com/orgs/t
 
 Follow us on [Twitter](https://twitter.com/openSDKs) for updates. 
 
-To get support from the team and chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/6VNXagtqZK).
+To get support from the team and chat with other community members you can join the [OpenSDKs Discord](https://discord.gg/dHdefDmjnK).
 
 ## Contributors
 
