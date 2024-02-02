@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Join the community on GitHub" href="https://discord.gg/dHdefDmjnK" target="_blank">
+  <a aria-label="Join the community on GitHub" href="https://discord.gg/dHdefDmjnK">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
@@ -68,7 +68,7 @@ npm install -D @opensdks/cli
 
 ### Use pre-packaged SDK
 
-If the API you are looking to work with is already a [pre-packaged SDK](#sdks), then you can import and use directly. 
+If the API you are looking to work with is already a [pre-packaged SDK](#list-of-pre-packaged-sdks), then you can import and use directly. 
 
 ```ts
 import {initSDK} from '@opensdks/runtime'
