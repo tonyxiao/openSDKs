@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Join the community on GitHub" href="https://discord.gg/dHdefDmjnK">
+  <a aria-label="Join the community on GitHub" href="https://discord.gg/dHdefDmjnK" target="_blank">
     <img alt="" src="website/public/join-the-community.svg">
   </a>
 </p>
