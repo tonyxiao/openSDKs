@@ -7,7 +7,7 @@ import openapiTS from 'openapi-typescript'
 import prettier from 'prettier'
 import R from 'remeda'
 import yaml from 'yaml'
-import type {OpenAPISpec} from '@opensdks/runtime'
+import type {HTTPMethod, oas30, OpenAPISpec} from '@opensdks/runtime'
 
 async function prettyFormat(content: string) {
   return prettier.format(content, {
@@ -147,7 +147,33 @@ export function parseJsonOrYaml(text: string): unknown {
   }
 }
 
-async function getJson<T>(input: string): Promise<T> {
+export async function getJson<T>(input: string): Promise<T> {
   const text = await getText(input)
   return parseJsonOrYaml(text) as T
+}
+
+// MARK: -
+
+export async function listEndpointNames(filename: string) {
+  const oas = await getJson<OpenAPISpec>(filename)
+  return getEndpoints(oas).map(
+    (op) => `${op.method.toUpperCase().padEnd(6)} ${op.path}`,
+  )
+}
+
+export function getEndpoints(oas: OpenAPISpec) {
+  return Object.entries(oas.paths ?? {})
+    .flatMap(([path, pathItem]) =>
+      Object.entries(pathItem as {}).map(([method, op]) => {
+        if (!isOperation(op)) {
+          return null
+        }
+        return {method: method as HTTPMethod, path, operation: op}
+      }),
+    )
+    .filter((i): i is NonNullable<typeof i> => !!i)
+}
+
+function isOperation(op: unknown): op is oas30.OperationObject {
+  return op != null && typeof op === 'object' && 'responses' in op
 }
