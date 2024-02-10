@@ -156,9 +156,15 @@ export async function getJson<T>(input: string): Promise<T> {
 
 export async function listEndpointNames(filename: string) {
   const oas = await getJson<OpenAPISpec>(filename)
-  return getEndpoints(oas).map(
-    (op) => `${op.method.toUpperCase().padEnd(6)} ${op.path}`,
-  )
+  const baseUrl = oas.servers?.[0]?.url.replace(/\/$/, '') ?? ''
+
+  return getEndpoints(oas).map((ep) => {
+    const url = new URL(`${baseUrl}`)
+
+    return `${ep.method.toUpperCase().padEnd(6)}\t${
+      ep.operation.operationId ?? ''
+    }\t${url.pathname}${ep.path}`
+  })
 }
 
 export function getEndpoints(oas: OpenAPISpec) {
