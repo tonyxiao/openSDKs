@@ -394,6 +394,24 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
+  sdks/sdk-supaglue:
+    devDependencies:
+      '@opensdks/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      change-case:
+        specifier: ^5.4.2
+        version: 5.4.2
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
   sdks/sdk-twilio:
     devDependencies:
       '@opensdks/runtime':

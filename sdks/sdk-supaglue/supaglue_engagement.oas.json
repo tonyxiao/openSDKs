@@ -1,0 +1,3620 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "0.25.6",
+    "title": "Unified Engagement API",
+    "contact": {
+      "name": "Supaglue",
+      "email": "docs@supaglue.com",
+      "url": "https://supaglue.com"
+    },
+    "description": "#### Introduction\nWelcome to the Unified API (Engagement) documentation. You can use this API to write to multiple third-party providers within the Engagement category.\n\n[View common schema for Engagement](https://docs.supaglue.com/platform/common-schemas/engagement)\n\n#### Base API URL\n\n```\nhttps://api.supaglue.io/engagement/v2\n```\n"
+  },
+  "servers": [
+    {
+      "url": "https://api.supaglue.io/engagement/v2",
+      "description": "Supaglue API"
+    }
+  ],
+  "paths": {
+    "/accounts": {
+      "post": {
+        "operationId": "createAccount",
+        "summary": "Create account",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_account"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "id": 1234,
+                  "name": "My Company",
+                  "domain": "mycompany.com",
+                  "created_at": "2023-02-27T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listAccounts",
+        "summary": "List accounts",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/account"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/accounts/_search": {
+      "post": {
+        "operationId": "searchAccounts",
+        "summary": "Search accounts",
+        "description": "Search accounts by name and/or domain. If both are specified, it will perform an AND operation.\nSupport:\n\n| Provider  | Search By               |\n| --------- | ----------------------- |\n| Apollo    | name only               |\n| Salesloft | name, domain            |\n| Outreach  | name, domain            |\n\nNote: only `read_from_cache=false` is supported at the moment.\n",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filter": {
+                    "type": "object",
+                    "description": "The criteria to upsert on. If both name and domain are specified, it would perform an AND operation. If more than one account is found that matches, then an error will be thrown.",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the account to upsert on. Supported for Outreach, Salesloft, and Apollo."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain of the account to upsert on. Only supported for Outreach and Salesloft."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "filter"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paginated accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/account"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/accounts/{account_id}": {
+      "get": {
+        "operationId": "getAccount",
+        "summary": "Get account",
+        "description": "Support:\n\n| Provider   | Supported |\n| ---------- | --------- |\n| Salesloft  | Yes       |\n| Outreach   | Yes       |\n| Apollo     | No        |\n",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/account"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAccount",
+        "summary": "Update account",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_account"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "record": {
+                      "id": 1234,
+                      "name": "My Company",
+                      "domain": "mycompany.com",
+                      "created_at": "2023-02-27T00:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "$ref": "#/components/schemas/errors"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/accounts/_upsert": {
+      "post": {
+        "operationId": "upsertAccount",
+        "summary": "Upsert account",
+        "description": "Upsert an account. If the account matching the given criteria does not exist, it will be created. If the account does exist, it will be updated.\nUpsert by name is supported for Outreach, Salesloft, and Apollo. Upsert by domain is supported for Outreach and Salesloft. If both are specified, it will perform an AND operation.\n",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_account"
+                  },
+                  "upsert_on": {
+                    "type": "object",
+                    "description": "The criteria to upsert on. If both name and domain are specified, it would perform an AND operation. If more than one account is found that matches, then an error will be thrown.",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the account to upsert on. Supported for Outreach, Salesloft, and Apollo."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain of the account to upsert on. Only supported for Outreach and Salesloft."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "record",
+                  "upsert_on"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account upserted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "$ref": "#/components/schemas/errors"
+                    },
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts": {
+      "post": {
+        "operationId": "createContact",
+        "summary": "Create contact",
+        "description": "Some providers do not support `primary` phone number type, in which case we will default to `mobile`. If both `primary` and `mobile` phone numbers are specified and only a single mobile number is possible, then `mobile` will be used and `primary` will be dropped.\n",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_contact"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "id": 1234,
+                  "address": {
+                    "city": "San Francisco",
+                    "country": "USA",
+                    "street_1": "525 Brannan St",
+                    "street_2": null,
+                    "postalCode": "94107",
+                    "state": "CA"
+                  },
+                  "email_addresses": [
+                    {
+                      "email_address": "hello@supaglue.com",
+                      "email_address_type": "workline2"
+                    }
+                  ],
+                  "first_name": "George",
+                  "last_name": "Xing",
+                  "phone_numbers": [
+                    {
+                      "phone_number": "+14151234567",
+                      "phone_number_type": "mobile"
+                    }
+                  ],
+                  "created_at": "2023-02-27T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listContacts",
+        "summary": "List contacts",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts/_search": {
+      "post": {
+        "operationId": "searchContacts",
+        "summary": "Search contacts",
+        "description": "Search contacts by email. Note: only `read_from_cache=false` is supported at the moment.\n:::danger\nFor apollo, each unique email incurs a separate API call towards the ratelimit.\n:::\n",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/remote_provider_page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filter": {
+                    "type": "object",
+                    "properties": {
+                      "emails": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "hello@example.com"
+                        },
+                        "description": "The emails to search for. This will be imeplemented as an OR search."
+                      }
+                    },
+                    "required": [
+                      "emails"
+                    ]
+                  }
+                },
+                "required": [
+                  "filter"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paginated Contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts/{contact_id}": {
+      "get": {
+        "operationId": "getContact",
+        "summary": "Get contact",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateContact",
+        "summary": "Update contact",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_contact"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "record": {
+                      "id": 1234,
+                      "address": {
+                        "city": "San Francisco",
+                        "country": "USA",
+                        "street_1": "525 Brannan St",
+                        "street_2": null,
+                        "postalCode": "94107",
+                        "state": "CA"
+                      },
+                      "email_addresses": [
+                        {
+                          "email_address": "hello@supaglue.com",
+                          "email_address_type": "workline2"
+                        }
+                      ],
+                      "first_name": "George",
+                      "last_name": "Xing",
+                      "phone_numbers": [
+                        {
+                          "phone_number": "+14151234567",
+                          "phone_number_type": "mobile"
+                        }
+                      ],
+                      "created_at": "2023-02-27T00:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/users": {
+      "get": {
+        "operationId": "listUsers",
+        "summary": "List users",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/user"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/users/{user_id}": {
+      "get": {
+        "operationId": "getUser",
+        "summary": "Get user",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/mailboxes": {
+      "get": {
+        "operationId": "listMailboxes",
+        "summary": "List mailboxes",
+        "tags": [
+          "Mailboxes"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Mailboxes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/mailbox"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/mailboxes/{mailbox_id}": {
+      "get": {
+        "operationId": "getMailbox",
+        "summary": "Get mailbox",
+        "tags": [
+          "Mailboxes"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mailbox",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mailbox"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "mailbox_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/sequences": {
+      "post": {
+        "operationId": "createSequence",
+        "summary": "Create sequence",
+        "description": "Note this uses an undocumented private api endpoint for Apollo and should be considered to be in alpha state",
+        "tags": [
+          "Sequences"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_sequence"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sequence created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listSequences",
+        "summary": "List sequences",
+        "tags": [
+          "Sequences"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Sequences",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/sequence"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/sequences/{sequence_id}": {
+      "get": {
+        "operationId": "getSequence",
+        "summary": "Get sequence",
+        "tags": [
+          "Sequences"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sequence"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "sequence_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/sequences/{sequence_id}/sequence_steps": {
+      "post": {
+        "operationId": "createSequenceStep",
+        "summary": "Create sequence step",
+        "tags": [
+          "Sequences"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_sequence_step"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sequence step created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "sequence_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the sequence.",
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/sequences/{sequence_id}/sequence_steps/{sequence_step_id}": {
+      "patch": {
+        "operationId": "updateSequenceStep",
+        "summary": "Update Sequence Step",
+        "description": "Works for `apollo` and `outreach`. Not supported in `salesloft`",
+        "tags": [
+          "Sequences"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/update_sequence_step"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sequence step updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "$ref": "#/components/schemas/errors"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "sequence_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the sequence.",
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        },
+        {
+          "name": "sequence_step_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the sequence step.",
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/sequence_states": {
+      "post": {
+        "operationId": "createSequenceState",
+        "summary": "Create sequence state",
+        "description": "Add a contact to a sequence. If the contact is already in the sequence, it will return the id of the existing sequence state.\n",
+        "tags": [
+          "Sequence States"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_sequence_state"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "id": "355843a5-c536-4e82-b497-05160bfb7d78",
+                  "state": "active",
+                  "mailbox_id": "a7e860b5-cb8b-400b-812d-921fa526140c",
+                  "sequencestate_id": "6bdcebc2-f886-4de3-88ed-0b9eb420f7b1",
+                  "sequence_id": "45e07817-fd59-4ec8-a727-066d2db27c9b",
+                  "created_at": "2023-02-27T00:00:00Z",
+                  "updated_at": "2023-02-27T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sequence state created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listSequenceStates",
+        "summary": "List sequence states",
+        "tags": [
+          "Sequence States"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Sequence States",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/sequence_state"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/sequence_states/_search": {
+      "post": {
+        "operationId": "searchSequenceStates",
+        "summary": "Search sequence states",
+        "description": "Search sequence states by contact_id and/or sequence_id. Note: only `read_from_cache=false` is supported at the moment.\nSupport:\n\n| Provider  | Search By               |\n| --------- | ----------------------- |\n| Apollo    | contact_id only         |\n| Salesloft | contact_id, sequence_id |\n| Outreach  | contact_id, sequence_id |\n",
+        "tags": [
+          "Sequence States"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/remote_provider_page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filter": {
+                    "type": "object",
+                    "description": "If both contact_id and sequence_id are provided, the search will be performed as an AND search.",
+                    "properties": {
+                      "contact_id": {
+                        "type": "string",
+                        "description": "The ID of the contact to filter on."
+                      },
+                      "sequence_id": {
+                        "type": "string",
+                        "description": "The ID of the sequence to filter on."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "filter"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paginated Sequence States",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/sequence_state"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/sequence_states/_batch": {
+      "post": {
+        "operationId": "batchCreateSequenceState",
+        "summary": "Batch create sequence states",
+        "description": "Add multiple contacts to a sequence atomically. You must pass in the same sequenceId, userId and mailboxId for all the contact records.\n\nSupport:\n\n| Provider  | Supported |\n| --------- | --------- |\n| Apollo    | Yes       |\n| Outreach  | No        |\n| Salesloft | No        |\n",
+        "tags": [
+          "Sequence States"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "records": {
+                    "type": "array",
+                    "description": "Will use the batch endpoints when possible (e.g. Apollo)",
+                    "items": {
+                      "$ref": "#/components/schemas/create_sequence_state"
+                    }
+                  }
+                },
+                "required": [
+                  "records"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sequence states created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "records": {
+                      "type": "array",
+                      "description": "Created records, in order passed in",
+                      "items": {
+                        "$ref": "#/components/schemas/created_record"
+                      }
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/sequence_states/{sequence_state_id}": {
+      "get": {
+        "operationId": "getSequenceState",
+        "summary": "Get sequence state",
+        "tags": [
+          "Sequence States"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence State",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sequence_state"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "sequence_state_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "ffb62704-addd-454e-bb86-ed0799703dc6"
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Accounts",
+      "description": "The `Account` Common Object represents a \"company\" or \"account\" in Engagements."
+    },
+    {
+      "name": "Contacts",
+      "description": "The `Contact` Common Object represents a \"contact\" in Engagements."
+    },
+    {
+      "name": "Sequences",
+      "description": "The `Sequence` Common Object represents a \"sequence\" in Engagements."
+    },
+    {
+      "name": "Sequence States",
+      "description": "The `Sequence State` Common Object represents the state of a contact in a sequence, commonly known as a \"sequence membership\"."
+    },
+    {
+      "name": "Users",
+      "description": "The `User` Common Object represents a \"user\" in Engagements."
+    },
+    {
+      "name": "Mailboxes",
+      "description": "The `Mailbox` Common Object is used to represent email mailbox, used within the application for sending and syncing emails."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "x-api-key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header",
+        "description": "API key to allow developers to access the API"
+      }
+    },
+    "schemas": {
+      "account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "23e640fe-6105-4a11-a636-3aa6b6c6e762"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "My Company"
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true,
+            "example": "mycompany.com"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "raw_data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "owner_id",
+          "name",
+          "domain",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_account": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "My Company"
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true,
+            "example": "mycompany.com"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "ae4be028-9078-4850-a0bf-d2112b7c4d11"
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "contact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "23e640fe-6105-4a11-a636-3aa6b6c6e762"
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "45edea5a-0b9a-44ff-bd45-4452014eb4fa"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "job_title": {
+            "type": "string",
+            "nullable": true,
+            "example": "CEO"
+          },
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "open_count": {
+            "type": "number"
+          },
+          "click_count": {
+            "type": "number"
+          },
+          "reply_count": {
+            "type": "number"
+          },
+          "bounced_count": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "raw_data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "owner_id",
+          "first_name",
+          "last_name",
+          "job_title",
+          "address",
+          "email_addresses",
+          "phone_numbers",
+          "open_count",
+          "click_count",
+          "reply_count",
+          "bounced_count",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_contact": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "job_title": {
+            "type": "string",
+            "nullable": true,
+            "example": "CEO"
+          },
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "ae4be028-9078-4850-a0bf-d2112b7c4d11"
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "sequence_state": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "state": {
+            "type": "string",
+            "nullable": true,
+            "example": "active"
+          },
+          "contact_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "c590dc63-8e43-48a4-8154-1fbb00ac936b"
+          },
+          "mailbox_id": {
+            "nullable": true,
+            "type": "string",
+            "example": "39fd1fe0-094b-4a61-b47f-3e3ac033203d"
+          },
+          "user_id": {
+            "nullable": true,
+            "type": "string",
+            "example": "ab0530ef-61dd-4a99-b26b-6b5a61c7c62e"
+          },
+          "sequence_id": {
+            "nullable": true,
+            "type": "string",
+            "example": "b854e510-1c40-4ef6-ade4-8eb35f49d331"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "mailbox_id",
+          "user_id",
+          "contact_id",
+          "sequence_id",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_sequence_state": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string",
+            "example": "c590dc63-8e43-48a4-8154-1fbb00ac936b"
+          },
+          "mailbox_id": {
+            "type": "string",
+            "example": "39fd1fe0-094b-4a61-b47f-3e3ac033203d",
+            "description": "The ID of the mailbox to use for the sequence. Required for Apollo and Outreach. Unused for Salesloft."
+          },
+          "sequence_id": {
+            "type": "string",
+            "example": "b854e510-1c40-4ef6-ade4-8eb35f49d331"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "The ID of the user who is performing the action. Required for Salesloft, optional for Apollo, unused for Outreach."
+          }
+        },
+        "required": [
+          "contact_id",
+          "sequence_id"
+        ]
+      },
+      "mailbox": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "user_id": {
+            "nullable": true,
+            "type": "string",
+            "example": "39fd1fe0-094b-4a61-b47f-3e3ac033203d"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_disabled": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "When disabled, cannot be used to send email."
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "user_id",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "george@supaglue.com"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_locked": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "When locked, cannot send email or take most actions in the app. This is null when provider does not have such concept (e.g. apollo)"
+          }
+        },
+        "required": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "sequence": {
+        "type": "object",
+        "properties": {
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "95fe0d29-e8cc-48ac-9afd-e02d8037a597"
+          },
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "is_enabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Raw values in Outreach, ids in Apollo, and not supported in Salesloft",
+            "items": {
+              "type": "string"
+            }
+          },
+          "num_steps": {
+            "type": "number"
+          },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_archived": {
+            "type": "boolean",
+            "description": "When archived, cannot add contact to sequence or send mail."
+          },
+          "share_type": {
+            "type": "string",
+            "description": "The share type of the sequence. If `team` will share with the whole team. `private` will only share with the owner.",
+            "enum": [
+              "team",
+              "private"
+            ]
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/sequence_step"
+            },
+            "description": "Only returned when getting single sequence, not returned when listing sequences because it is too expensive to do so."
+          }
+        },
+        "required": [
+          "id",
+          "is_enabled",
+          "name",
+          "tags",
+          "num_steps",
+          "metrics",
+          "created_at",
+          "updated_at",
+          "last_modified_at"
+        ]
+      },
+      "sequence_step": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name given by the user for the step. Used by Salesloft only."
+          },
+          "interval_seconds": {
+            "type": "number",
+            "description": "The interval (in seconds) until this step will activate after the previous step (in case of first step, relative to when prospect first enters a sequence); only applicable to interval-based sequences. This is 0 by default"
+          },
+          "date": {
+            "type": "string",
+            "example": "2023-01-01",
+            "description": "The date this step will activate; only applicable to date-based sequences."
+          },
+          "template": {
+            "description": "The email/message template to be used for this step. Only applicable for email or message steps.",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the template"
+              },
+              "body": {
+                "type": "string",
+                "description": "The body of the email (HTML)."
+              },
+              "subject": {
+                "type": "string",
+                "description": "The subject of the email."
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the template. In Outreach, if missing this will create an `invisible` template that doesn't show up in the templates list UI."
+              },
+              "to": {
+                "type": "array",
+                "description": "A list of default person and email address pairs to receive this template in the \"to\" field",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cc": {
+                "type": "array",
+                "description": "A list of default person and email address pairs to receive this template in the \"cc\" field",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "bcc": {
+                "type": "array",
+                "description": "A list of default person and email address pairs to receive this template in the \"bcc\" field",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "body",
+              "subject"
+            ]
+          },
+          "is_reply": {
+            "type": "boolean",
+            "description": "If true, this step will be sent as a reply to the previous step."
+          },
+          "order": {
+            "type": "number",
+            "description": "The step's display order within its sequence. Only applicable for Outreach when adding steps one at a time after the initial sequence creation, otherwise when creating steps together with sequence order is implicit based on the order of step within the step array. Salesloft does not use the `order` param, and order is instead determined by `interval_seconds` which translates into the `day` parameter"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "auto_email",
+              "manual_email",
+              "call",
+              "task",
+              "linkedin_send_message"
+            ],
+            "description": "The type of the sequence state. Note: `linkedin_send_message` is undocumented in Outreach and subject to change.\n\nSee below for how these types are mapped:\n\n<table>\n  <thead>\n      <tr>\n          <th>Provider</th>\n          <th>auto_email</th>\n          <th>manual_email</th>\n          <th>call</th>\n          <th>task</th>\n          <th>linkedin_send_message</th>\n      </tr>\n  </thead>\n  <tbody>\n      <tr>\n          <td>Apollo</td>\n          <td>auto_email</td>\n          <td>manual_email</td>\n          <td>call</td>\n          <td>action_item</td>\n          <td>linkedin_send_message</td>\n      </tr>\n      <tr>\n          <td>Outreach</td>\n          <td>auto_email</td>\n          <td>manual_email</td>\n          <td>call</td>\n          <td>task</td>\n          <td>linkedin_send_message</td>\n      </tr>\n      <tr>\n          <td>Salesloft</td>\n          <td>Email</td>\n          <td>Email</td>\n          <td>Phone</td>\n          <td>Other</td>\n          <td>(Not supported)</td>\n      </tr>\n  </tbody>\n</table>\n"
+          },
+          "task_note": {
+            "type": "string",
+            "description": "An optional note to be attached to this step."
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "create_sequence": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Raw values in Outreach, ids in Apollo, and not supported in Salesloft",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "The share type of the sequence. Setting to `team` will share with the whole team. `private` will only share with the owner.",
+            "enum": [
+              "team",
+              "private"
+            ]
+          },
+          "owner_id": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/create_sequence_step"
+            }
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "create_sequence_step": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name given by the user for the step. Used by Salesloft only."
+          },
+          "interval_seconds": {
+            "type": "number",
+            "description": "The interval (in seconds) until this step will activate after the previous step (in case of first step, relative to when prospect first enters a sequence); only applicable to interval-based sequences. This is 0 by default"
+          },
+          "date": {
+            "type": "string",
+            "example": "2023-01-01",
+            "description": "The date this step will activate; only applicable to date-based sequences."
+          },
+          "template": {
+            "description": "The email/message template to be used for this step. Only applicable for email or message steps.",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The ID of the template to use for this step."
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "The body of the email (HTML)."
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the template. In Outreach, if missing this will create an `invisible` template that doesn't show up in the templates list UI."
+                  },
+                  "to": {
+                    "type": "array",
+                    "description": "A list of default person and email address pairs to receive this template in the \"to\" field",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "cc": {
+                    "type": "array",
+                    "description": "A list of default person and email address pairs to receive this template in the \"cc\" field",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "bcc": {
+                    "type": "array",
+                    "description": "A list of default person and email address pairs to receive this template in the \"bcc\" field",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "custom_fields": {
+                    "$ref": "#/components/schemas/custom_fields"
+                  }
+                },
+                "required": [
+                  "body",
+                  "subject"
+                ]
+              }
+            ]
+          },
+          "is_reply": {
+            "type": "boolean",
+            "description": "If true, this step will be sent as a reply to the previous step."
+          },
+          "order": {
+            "type": "number",
+            "description": "The step's display order within its sequence. Only applicable for Outreach when adding steps one at a time after the initial sequence creation, otherwise when creating steps together with sequence order is implicit based on the order of step within the step array. Salesloft does not use the `order` param, and order is instead determined by `interval_seconds` which translates into the `day` parameter"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "auto_email",
+              "manual_email",
+              "call",
+              "task",
+              "linkedin_send_message"
+            ],
+            "description": "The type of the sequence state. Note: `linkedin_send_message` is undocumented in Outreach and subject to change.\n\nSee below for how these types are mapped:\n\n<table>\n  <thead>\n      <tr>\n          <th>Provider</th>\n          <th>auto_email</th>\n          <th>manual_email</th>\n          <th>call</th>\n          <th>task</th>\n          <th>linkedin_send_message</th>\n      </tr>\n  </thead>\n  <tbody>\n      <tr>\n          <td>Apollo</td>\n          <td>auto_email</td>\n          <td>manual_email</td>\n          <td>call</td>\n          <td>action_item</td>\n          <td>linkedin_send_message</td>\n      </tr>\n      <tr>\n          <td>Outreach</td>\n          <td>auto_email</td>\n          <td>manual_email</td>\n          <td>call</td>\n          <td>task</td>\n          <td>linkedin_send_message</td>\n      </tr>\n      <tr>\n          <td>Salesloft</td>\n          <td>Email</td>\n          <td>Email</td>\n          <td>Phone</td>\n          <td>Other</td>\n          <td>(Not supported)</td>\n      </tr>\n  </tbody>\n</table>\n"
+          },
+          "task_note": {
+            "type": "string",
+            "description": "An optional note to be attached to this step."
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "update_sequence_step": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "description": "The email/message template to be used for this step. Only applicable for email or message steps.",
+            "type": "object",
+            "properties": {
+              "body": {
+                "type": "string",
+                "description": "The body of the email (HTML)."
+              },
+              "subject": {
+                "type": "string",
+                "description": "The subject of the email."
+              }
+            }
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "pagination": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "example": "eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ=="
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "example": "eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9"
+          },
+          "total_count": {
+            "type": "number",
+            "example": 100
+          }
+        },
+        "required": [
+          "next",
+          "previous"
+        ]
+      },
+      "address": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "city": {
+            "type": "string",
+            "nullable": true,
+            "example": "San Francisco"
+          },
+          "country": {
+            "type": "string",
+            "nullable": true,
+            "example": "USA"
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true,
+            "example": "94107"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true,
+            "example": "CA"
+          },
+          "street_1": {
+            "type": "string",
+            "nullable": true,
+            "example": "525 Brannan"
+          },
+          "street_2": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          }
+        },
+        "required": [
+          "city",
+          "country",
+          "postal_code",
+          "state",
+          "street_1",
+          "street_2"
+        ],
+        "example": [
+          {
+            "city": "San Francisco",
+            "country": "US",
+            "postal_code": "94107",
+            "state": "CA",
+            "street_1": "525 Brannan",
+            "street_2": null
+          }
+        ]
+      },
+      "email_addresses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "email_address": {
+              "type": "string",
+              "example": "hello@supaglue.com"
+            },
+            "email_address_type": {
+              "type": "string",
+              "nullable": true,
+              "enum": [
+                "primary",
+                "personal",
+                "work"
+              ]
+            }
+          },
+          "required": [
+            "email_address",
+            "email_address_type"
+          ]
+        },
+        "example": [
+          {
+            "email_address": "hello@supaglue.com",
+            "email_address_type": "work"
+          }
+        ]
+      },
+      "phone_numbers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "phone_number": {
+              "type": "string",
+              "nullable": true,
+              "example": "+14151234567"
+            },
+            "phone_number_type": {
+              "type": "string",
+              "nullable": true,
+              "enum": [
+                "primary",
+                "work",
+                "home",
+                "mobile",
+                "other"
+              ]
+            }
+          },
+          "required": [
+            "phone_number",
+            "phone_number_type"
+          ]
+        },
+        "example": [
+          {
+            "phone_number": "+14151234567",
+            "phone_number_type": "work"
+          }
+        ]
+      },
+      "custom_fields": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Custom properties to be inserted that are not covered by the common object. Object keys must match exactly to the corresponding provider API."
+      },
+      "created_record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "A unique identifier for the instance of the error. Provide this to support when contacting Supaglue.",
+              "example": "9366efb4-8fb1-4a28-bfb0-8d6f9cc6b5c5"
+            },
+            "detail": {
+              "type": "string",
+              "description": "A detailed description of the error.",
+              "example": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]"
+            },
+            "problem_type": {
+              "type": "string",
+              "description": "The Supaglue error code associated with the error.",
+              "example": "MISSING_REQUIRED_FIELD",
+              "deprecated": true
+            },
+            "title": {
+              "type": "string",
+              "description": "A brief description of the error. The schema and type of message will vary by Provider.",
+              "example": "Property values were not valid\n"
+            },
+            "code": {
+              "type": "string",
+              "description": "The Supaglue error code associated with the error.",
+              "example": "MISSING_REQUIRED_FIELD"
+            },
+            "status": {
+              "type": "string",
+              "description": "The HTTP status code associated with the error.",
+              "example": "400"
+            },
+            "meta": {
+              "type": "object",
+              "description": "Additional metadata about the error.",
+              "properties": {
+                "cause": {
+                  "type": "object",
+                  "description": "The cause of the error. Usually the underlying error from the remote Provider.",
+                  "example": {
+                    "code": 400,
+                    "body": {
+                      "status": "error",
+                      "message": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+                      "correlationId": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "category": "VALIDATION_ERROR"
+                    },
+                    "headers": {
+                      "access-control-allow-credentials": "false",
+                      "cf-cache-status": "DYNAMIC",
+                      "cf-ray": "8053d17b9dae9664-SJC",
+                      "connection": "close",
+                      "content-length": "361",
+                      "content-type": "application/json;charset=utf-8",
+                      "date": "Mon, 11 Sep 2023 23:51:22 GMT",
+                      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+                      "report-to": "{\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v3?s=FgwuXObO%2Fz6ahUJKsxjDLaXTWjooJ8tB0w4%2B%2BKaulGStx0FGkn1PoJoOx2KrFMfihzNdfAqikq7CmgbdlmwKB8hkmp3eTb68qpg10LXFlRgiSqRhbWM7yYSfo8CXmPBc\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+                      "server": "cloudflare",
+                      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+                      "vary": "origin, Accept-Encoding",
+                      "x-content-type-options": "nosniff",
+                      "x-envoy-upstream-service-time": "91",
+                      "x-evy-trace-listener": "listener_https",
+                      "x-evy-trace-route-configuration": "listener_https/all",
+                      "x-evy-trace-route-service-name": "envoyset-translator",
+                      "x-evy-trace-served-by-pod": "iad02/hubapi-td/envoy-proxy-6c94986c56-9xsh2",
+                      "x-evy-trace-virtual-host": "all",
+                      "x-hubspot-correlation-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "x-hubspot-ratelimit-interval-milliseconds": "10000",
+                      "x-hubspot-ratelimit-max": "100",
+                      "x-hubspot-ratelimit-remaining": "99",
+                      "x-hubspot-ratelimit-secondly": "10",
+                      "x-hubspot-ratelimit-secondly-remaining": "9",
+                      "x-request-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "x-trace": "2B1B4386362759B6A4C34802AD168B803DDC1BE770000000000000000000"
+                    }
+                  }
+                },
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "remote-provider",
+                    "supaglue"
+                  ],
+                  "description": "The origin of the error.",
+                  "example": "remote-provider"
+                },
+                "application_name": {
+                  "type": "string",
+                  "description": "The name of the application that generated the error.",
+                  "example": "MyCompany Production"
+                }
+              },
+              "required": [
+                "origin"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "id",
+            "detail",
+            "problem_type",
+            "title",
+            "code",
+            "status",
+            "meta"
+          ],
+          "example": [
+            {
+              "meta": {
+                "cause": {
+                  "code": 400,
+                  "body": {
+                    "status": "error",
+                    "message": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+                    "correlationId": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "category": "VALIDATION_ERROR"
+                  },
+                  "headers": {
+                    "access-control-allow-credentials": "false",
+                    "cf-cache-status": "DYNAMIC",
+                    "cf-ray": "8053d17b9dae9664-SJC",
+                    "connection": "close",
+                    "content-length": "361",
+                    "content-type": "application/json;charset=utf-8",
+                    "date": "Mon, 11 Sep 2023 23:51:22 GMT",
+                    "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+                    "report-to": "{\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v3?s=FgwuXObO%2Fz6ahUJKsxjDLaXTWjooJ8tB0w4%2B%2BKaulGStx0FGkn1PoJoOx2KrFMfihzNdfAqikq7CmgbdlmwKB8hkmp3eTb68qpg10LXFlRgiSqRhbWM7yYSfo8CXmPBc\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+                    "server": "cloudflare",
+                    "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+                    "vary": "origin, Accept-Encoding",
+                    "x-content-type-options": "nosniff",
+                    "x-envoy-upstream-service-time": "91",
+                    "x-evy-trace-listener": "listener_https",
+                    "x-evy-trace-route-configuration": "listener_https/all",
+                    "x-evy-trace-route-service-name": "envoyset-translator",
+                    "x-evy-trace-served-by-pod": "iad02/hubapi-td/envoy-proxy-6c94986c56-9xsh2",
+                    "x-evy-trace-virtual-host": "all",
+                    "x-hubspot-correlation-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "x-hubspot-ratelimit-interval-milliseconds": "10000",
+                    "x-hubspot-ratelimit-max": "100",
+                    "x-hubspot-ratelimit-remaining": "99",
+                    "x-hubspot-ratelimit-secondly": "10",
+                    "x-hubspot-ratelimit-secondly-remaining": "9",
+                    "x-request-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "x-trace": "2B1B4386362759B6A4C34802AD168B803DDC1BE770000000000000000000"
+                  }
+                }
+              },
+              "detail": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+              "problem_type": "MISSING_REQUIRED_FIELD",
+              "title": "Property values were not valid\n",
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": "400",
+              "id": "9366efb4-8fb1-4a28-bfb0-8d6f9cc6b5c5"
+            }
+          ]
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "detail": {
+              "type": "string"
+            },
+            "problem_type": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "include_deleted_data": {
+        "name": "include_deleted_data",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "example": true,
+        "description": "Whether to include data that was deleted in providers."
+      },
+      "include_raw_data": {
+        "name": "include_raw_data",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Whether to include raw data fetched from the 3rd party provider.",
+        "example": true
+      },
+      "created_after": {
+        "name": "created_after",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects created after this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "created_before": {
+        "name": "created_before",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects created before this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "modified_after": {
+        "name": "modified_after",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": "If provided, will only return objects modified after this datetime. Datetime must be in ISO 8601 format and URI encoded.",
+        "example": "2023-02-23T00:00:00Z"
+      },
+      "modified_before": {
+        "name": "modified_before",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects modified before this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "cursor": {
+        "name": "cursor",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        "description": "The pagination cursor value"
+      },
+      "page_size": {
+        "name": "page_size",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": 123,
+        "description": "Number of results to return per page. (Max: 1000)"
+      },
+      "remote_provider_page_size": {
+        "name": "page_size",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": 100,
+        "description": "Number of results to return per page. (Max: 100)"
+      },
+      "read_from_cache": {
+        "name": "read_from_cache",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "example": true,
+        "description": "Whether to read from Supaglue's Managed Destination cache or to read directly from the provider. \n\n\n**NOTE**: `read_from_cache=true` requires you to have the object synced to the Supaglue Managed Destination.\n"
+      },
+      "x-customer-id": {
+        "name": "x-customer-id",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "example": "my-customer-1",
+        "description": "The customer ID that uniquely identifies the customer in your application",
+        "required": true
+      },
+      "x-provider-name": {
+        "name": "x-provider-name",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "example": "salesforce",
+        "description": "The provider name",
+        "required": true
+      }
+    },
+    "responses": {
+      "badRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "conflict": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "internalServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "notFound": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "notImplemented": {
+        "description": "Not implemented",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "remoteProviderError": {
+        "description": "Remote provider error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "unprocessableEntity": {
+        "description": "Unprocessable entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

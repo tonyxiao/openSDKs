@@ -1,0 +1,6084 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "0.25.6",
+    "title": "Unified CRM API",
+    "contact": {
+      "name": "Supaglue",
+      "email": "docs@supaglue.com",
+      "url": "https://supaglue.com"
+    },
+    "description": "#### Introduction\n\nWelcome to the Unified API (CRM) documentation. You can use this API to write to multiple third-party providers within the CRM category.\n\n[View common schema for CRM](https://docs.supaglue.com/platform/common-schemas/crm)\n\n#### Base API URL\n```\nhttps://api.supaglue.io/crm/v2\n```\n"
+  },
+  "servers": [
+    {
+      "url": "https://api.supaglue.io/crm/v2",
+      "description": "Supaglue API"
+    }
+  ],
+  "paths": {
+    "/accounts": {
+      "post": {
+        "operationId": "createAccount",
+        "summary": "Create account",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_account"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listAccounts",
+        "summary": "List accounts",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/account"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/accounts/_upsert": {
+      "post": {
+        "operationId": "upsertAccount",
+        "summary": "Upsert account",
+        "description": "Upsert an account. If the account does not exist, it will be created. If the account does exist, it will be updated.\nOnly supported for Salesforce and Hubspot.\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_account"
+                  },
+                  "upsert_on": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "enum": [
+                          "domain",
+                          "website"
+                        ],
+                        "description": "The key to upsert on. Only `website` is supported for Salesforce, while both `domain` and `website` are supported for Hubspot."
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "The values to upsert on. If more than one value is provided, it will act as a logical OR. If more than one account is found that matches, then an error will be thrown.",
+                        "items": {
+                          "type": "string",
+                          "example": "mydomain.com"
+                        }
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "values"
+                    ]
+                  }
+                },
+                "required": [
+                  "record",
+                  "upsert_on"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account upserted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/accounts/{account_id}": {
+      "get": {
+        "operationId": "getAccount",
+        "summary": "Get account",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/account"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "addresses": [
+                        {
+                          "address_type": "BILLING",
+                          "city": "San Francisco",
+                          "country": "CX",
+                          "postal_code": "94107",
+                          "state": "CA",
+                          "street1": "525 Brannan",
+                          "street2": null
+                        },
+                        {
+                          "address_type": "BILLING",
+                          "city": "San Francisco",
+                          "country": "US",
+                          "postal_code": "94107",
+                          "state": "CA",
+                          "street1": "525 Brannan",
+                          "street2": null
+                        }
+                      ],
+                      "description": "Integration API",
+                      "id": 1234,
+                      "industry": "API's",
+                      "last_activity_at": "2022-02-10T00:00:00Z",
+                      "name": "Supaglue",
+                      "number_of_employees": 276000,
+                      "owner_id": "9377fd4d-d420-4e0b-93ea-789078a3eab4",
+                      "phone_numbers": [
+                        {
+                          "phone_number": "+14151234567",
+                          "phone_number_type": "mobile"
+                        }
+                      ],
+                      "created_at": "2023-02-27T00:00:00Z",
+                      "updated_at": "2023-02-27T00:00:00Z",
+                      "website": "https://supaglue.com/"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAccount",
+        "summary": "Update account",
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_account"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+          }
+        }
+      ]
+    },
+    "/contacts": {
+      "post": {
+        "operationId": "createContact",
+        "summary": "Create contact",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_contact"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "first_name": "George",
+                  "last_activity_at": "2022-02-10T00:00:00Z",
+                  "last_name": "Xing",
+                  "account_id": "64571bff-48ea-4469-9fa0-ee1a0bab38bd"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "$ref": "#/components/schemas/errors"
+                    },
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listContacts",
+        "summary": "List contacts",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts/_search": {
+      "post": {
+        "operationId": "searchContacts",
+        "summary": "Search contacts",
+        "description": "Search contacts by a filter.\nSupport:\n\n| Provider    | Search By       |\n| ----------- | --------------- |\n| Hubspot     | Email           |\n| Salesforce  | Email           |\n| Pipedrive   | (Not Supported) |\n| MS Dynamics | (Not Supported) |\n",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filter": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "The email to search on.",
+                        "example": "hello@example.com"
+                      }
+                    },
+                    "required": [
+                      "email"
+                    ]
+                  }
+                },
+                "required": [
+                  "filter"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paginated Contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/contact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts/_upsert": {
+      "post": {
+        "operationId": "upsertContact",
+        "summary": "Upsert contact",
+        "description": "Upsert a contact. If the contact does not exist, it will be created. If the contact does exist, it will be updated.\nOnly supported for Salesforce, Hubspot, and Pipedrive.\n",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_contact"
+                  },
+                  "upsert_on": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "enum": [
+                          "email"
+                        ],
+                        "description": "The key to upsert on. Only `email` is supported for all providers."
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "The values to upsert on. If more than one value is provided, it will act as a logical OR. If more than one account is found that matches, then an error will be thrown.",
+                        "items": {
+                          "type": "string",
+                          "example": "hello@example.com"
+                        }
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "values"
+                    ]
+                  }
+                },
+                "required": [
+                  "record",
+                  "upsert_on"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact upserted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/contacts/{contact_id}": {
+      "get": {
+        "operationId": "getContact",
+        "summary": "Get contact",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateContact",
+        "summary": "Update contact",
+        "tags": [
+          "Contacts"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_contact"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "record": {
+                      "first_name": "George",
+                      "last_name": "Xing",
+                      "account_id": "0ce05511-adbc-4144-a049-6631c7ea3b04"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/leads": {
+      "post": {
+        "operationId": "createLead",
+        "summary": "Create lead",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_lead"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "company": "Supaglue",
+                  "first_name": "George",
+                  "last_name": "Xing",
+                  "lead_source": "API Blogger",
+                  "title": "Co-Founder"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lead created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listLeads",
+        "summary": "List leads",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Leads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/lead"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/leads/_upsert": {
+      "post": {
+        "operationId": "upsertLead",
+        "summary": "Upsert lead",
+        "description": "Upsert a lead. If the lead does not exist, it will be created. If the lead does exist, it will be updated.\nOnly supported for Salesforce.\n",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_lead"
+                  },
+                  "upsert_on": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "enum": [
+                          "email"
+                        ],
+                        "description": "The key to upsert on. Only `email` is supported."
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "The values to upsert on. If more than one value is provided, it will act as a logical OR. If more than one account is found that matches, then an error will be thrown.",
+                        "items": {
+                          "type": "string",
+                          "example": "hello@example.com"
+                        }
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "values"
+                    ]
+                  }
+                },
+                "required": [
+                  "record",
+                  "upsert_on"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lead upserted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/leads/_search": {
+      "post": {
+        "operationId": "searchLeads",
+        "summary": "Search leads",
+        "description": "Search leads by a filter.\nSupport:\n\n| Provider    | Search By       |\n| ----------- | --------------- |\n| Hubspot     | Email           |\n| Salesforce  | Email           |\n| Pipedrive   | (Not Supported) |\n| MS Dynamics | (Not Supported) |\n",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filter": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "The email to search on.",
+                        "example": "hello@example.com"
+                      }
+                    },
+                    "required": [
+                      "email"
+                    ]
+                  }
+                },
+                "required": [
+                  "filter"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paginated Leads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/lead"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/leads/{lead_id}": {
+      "get": {
+        "operationId": "getLead",
+        "summary": "Get lead",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lead"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateLead",
+        "summary": "Update lead",
+        "tags": [
+          "Leads"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_lead"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "record": {
+                      "company": "Supaglue",
+                      "first_name": "George",
+                      "last_name": "Xing",
+                      "lead_source": "API Blogger",
+                      "title": "Co-Founder"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lead updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "lead_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "82de27cb-6f8c-4278-b783-82d1d916eddc"
+        }
+      ]
+    },
+    "/opportunities": {
+      "post": {
+        "operationId": "createOpportunity",
+        "summary": "Create opportunity",
+        "tags": [
+          "Opportunities"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_opportunity"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              },
+              "example": {
+                "record": {
+                  "amount": 100000,
+                  "close_date": "2023-02-27T00:00:00Z",
+                  "description": "Wants to use open source unified API for third-party integrations",
+                  "name": "Needs Integrations",
+                  "stage": "Closed Won",
+                  "account_id": "109c88c0-7bf4-4cd8-afbc-b51f9432ca0b"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Opportunity created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listOpportunities",
+        "summary": "List opportunities",
+        "tags": [
+          "Opportunities"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Leads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/opportunity"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/opportunities/{opportunity_id}": {
+      "get": {
+        "operationId": "getOpportunity",
+        "summary": "Get opportunity",
+        "tags": [
+          "Opportunities"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/associations_to_fetch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/opportunity"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "account": {
+                        "id": "a329053d-bf86-4b82-8356-9e897aa7dacc"
+                      },
+                      "amount": 100000,
+                      "close_date": "2023-02-27T00:00:00Z",
+                      "description": "Wants to use open source unified API for third-party integrations",
+                      "id": 1234,
+                      "last_activity_at": "2023-02-27T00:00:00Z",
+                      "name": "Needs third-party integrations",
+                      "owner": "93b0c2b5-26a8-4b92-b4e5-05d764eb1119",
+                      "created_at": "2023-02-27T00:00:00Z",
+                      "updated_at": "2023-02-27T00:00:00Z",
+                      "stage": "Closed Won"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOpportunity",
+        "summary": "Update opportunity",
+        "tags": [
+          "Opportunities"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_opportunity"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Opportunity updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "$ref": "#/components/schemas/errors"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "opportunity_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "c9f58083-a370-47b5-ad02-99160ea20372"
+        }
+      ]
+    },
+    "/users": {
+      "get": {
+        "operationId": "listUsers",
+        "summary": "List users",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          },
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Leads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/user"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/users/{user_id}": {
+      "get": {
+        "operationId": "getUser",
+        "summary": "Get user",
+        "description": "The common schema User maps to the following 3rd-party provider objects:\n\n| Provider  | Remote object ID  |\n| --------- | ----------------- |\n| Hubspot   | V3 Owner          |\n| Dynamics  | Azure System User |\n| Intercom  | Admin             |\n",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/include_raw_data"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "0258cbc6-6020-430a-848e-aafacbadf4ae"
+        }
+      ]
+    },
+    "/custom_objects/{object_name}/records": {
+      "post": {
+        "operationId": "createCustomObjectRecord",
+        "summary": "Create custom object record",
+        "tags": [
+          "CustomObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Create custom object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_custom_object_record"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Custom Object Record created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listCustomObjectRecords",
+        "summary": "List custom object records",
+        "tags": [
+          "CustomObjects"
+        ],
+        "description": "List custom object records\nNote: This endpoint will only work if a Sync is setup with the Supaglue managed destination.\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Custom Objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/custom_object_record"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "$ref": "#/components/parameters/object_name"
+        }
+      ]
+    },
+    "/custom_objects/{object_name}/records/{record_id}": {
+      "patch": {
+        "operationId": "updateCustomObjectRecord",
+        "summary": "Update custom object record",
+        "tags": [
+          "CustomObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Update custom object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_custom_object_record"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Custom Object Record created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCustomObjectRecord",
+        "summary": "Get custom object record",
+        "tags": [
+          "CustomObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Get custom object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "responses": {
+          "200": {
+            "description": "Custom Object Record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_object_record"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "$ref": "#/components/parameters/object_name"
+        },
+        {
+          "name": "record_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the record to retrieve or update",
+          "schema": {
+            "type": "string"
+          },
+          "example": "82de27cb-6f8c-4278-b783-82d1d916eddc"
+        }
+      ]
+    },
+    "/standard_objects/{object_name}/records": {
+      "post": {
+        "operationId": "createStandardObjectRecord",
+        "summary": "Create standard object record",
+        "tags": [
+          "StandardObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Create standard object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_standard_object_record"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Standard Object Record created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listStandardObjectRecords",
+        "summary": "List standard object records",
+        "tags": [
+          "StandardObjects"
+        ],
+        "description": "List standard object records\nNote: This endpoint will only work if a Sync is setup with the Supaglue managed destination.\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/read_from_cache"
+          },
+          {
+            "$ref": "#/components/parameters/modified_after"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated Standard Objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/standard_object_record"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "$ref": "#/components/parameters/object_name"
+        }
+      ]
+    },
+    "/standard_objects/{object_name}/records/{record_id}": {
+      "patch": {
+        "operationId": "updateStandardObjectRecord",
+        "summary": "Update standard object record",
+        "tags": [
+          "StandardObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Update standard object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "$ref": "#/components/schemas/create_update_standard_object_record"
+                  }
+                },
+                "required": [
+                  "record"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Standard Object Record created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {
+                      "$ref": "#/components/schemas/created_record"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getStandardObjectRecord",
+        "summary": "Get standard object record",
+        "tags": [
+          "StandardObjects"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Get standard object record\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "responses": {
+          "200": {
+            "description": "Standard Object Record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/standard_object_record"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "$ref": "#/components/parameters/object_name"
+        },
+        {
+          "name": "record_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the record to retrieve or update",
+          "schema": {
+            "type": "string"
+          },
+          "example": "82de27cb-6f8c-4278-b783-82d1d916eddc"
+        }
+      ]
+    },
+    "/associations": {
+      "get": {
+        "operationId": "listAssociations",
+        "tags": [
+          "Associations"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "List associations for a record and target object",
+        "description": "Get a list of associations\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [
+          {
+            "name": "source_record_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "source_object",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "target_object",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Associations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/association"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "put": {
+        "operationId": "upsertAssociation",
+        "summary": "Upsert association",
+        "tags": [
+          "Associations"
+        ],
+        "parameters": [],
+        "description": "Upsert association\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_update_association"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Association created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "association": {
+                      "$ref": "#/components/schemas/association"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/metadata/associations": {
+      "get": {
+        "operationId": "listAssociationSchemas",
+        "tags": [
+          "AssociationSchemas"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "List association schemas",
+        "description": "Get a list of Association Schemas\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [
+          {
+            "name": "source_object",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "target_object",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Association Schemas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/association_schema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAssociationSchema",
+        "summary": "Create association schema",
+        "tags": [
+          "AssociationSchemas"
+        ],
+        "description": "Create an association schema\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n\nNote: When creating a new association schema for Hubspot, Hubspot will also create a default association schema (with an empty name). Either can be used to create associations.\n",
+        "parameters": [],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_update_association_schema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Association Schema created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "association_schema": {
+                      "$ref": "#/components/schemas/association_schema"
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/metadata/custom_objects": {
+      "get": {
+        "operationId": "listCustomObjectSchemas",
+        "summary": "List custom object schemas",
+        "tags": [
+          "CustomObjectSchemas"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "List custom object schemas\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "An array containing the names and labels of Custom Objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/simple_custom_object_schema"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomObjectSchema",
+        "summary": "Create custom object schema",
+        "tags": [
+          "CustomObjectSchemas"
+        ],
+        "parameters": [],
+        "description": "Create custom object schema\n\nSupport:\n\n| Provider    | Supported | Notes                                                   |\n| ----------- | --------- | ------------------------------------------------------- |\n| Hubspot     | Yes       | All field types supported except picklist/multipicklist |\n| Salesforce  | Yes       | All field types supported except picklist/multipicklist |\n| Pipedrive   | No        |                                                         |\n| MS Dynamics | No        |                                                         |\n",
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "object": {
+                    "$ref": "#/components/schemas/create_custom_object_schema"
+                  }
+                },
+                "required": [
+                  "object"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Custom Object Schema created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "object": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    },
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/metadata/standard_objects": {
+      "get": {
+        "operationId": "listStandardObjectSchemas",
+        "summary": "List standard object schemas",
+        "tags": [
+          "StandardObjectSchemas"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "List standard object schemas\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "An array containing the names of Standard Objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/metadata/properties/{object_name}": {
+      "get": {
+        "operationId": "listPropertiesPreview",
+        "summary": "List properties",
+        "tags": [
+          "Properties"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List properties",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "properties": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/property_unified"
+                      }
+                    }
+                  },
+                  "required": [
+                    "properties"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProperty",
+        "summary": "Create property",
+        "description": "Creates a custom property in the provider and registers it in Supaglue.\n\n:::note\nThis endpoint is only supported for Salesforce and Hubspot currently.\n:::\n",
+        "tags": [
+          "Properties"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_property"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a property",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/property_unified"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "object_name",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "contact"
+        }
+      ]
+    },
+    "/metadata/properties/{object_name}/{property_name}": {
+      "get": {
+        "operationId": "getProperty",
+        "summary": "Get property (preview)",
+        "description": ":::note\nThis feature is only available in Preview to select customers on our Enterprise plan. [Contact us](mailto:team@supaglue.com) for more information.\n:::\n",
+        "tags": [
+          "Properties"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get property",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/property_unified"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProperty",
+        "summary": "Update property (preview)",
+        "description": ":::note\nThis feature is only available in Preview to select customers on our Enterprise plan. [Contact us](mailto:team@supaglue.com) for more information.\n:::\n\n:::note\nThis endpoint is only supported for Salesforce and Hubspot currently.\n:::\n",
+        "tags": [
+          "Properties"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/update_property"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create a property",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/property_unified"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "object_name",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "The name of the object."
+          },
+          "example": "contact"
+        },
+        {
+          "name": "property_name",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "The name of the property."
+          },
+          "example": "email"
+        }
+      ]
+    },
+    "/metadata/properties/{object_name}/register": {
+      "post": {
+        "operationId": "registerProperty",
+        "summary": "Register Property (preview)",
+        "description": ":::note\nThis feature is only available in Preview to select customers on our Enterprise plan. [Contact us](mailto:team@supaglue.com) for more information.\n:::\nRegisters a custom property in Supaglue.\nThis may be useful for custom properties that were already created in the Customer's provider.\nE.g. a custom field has some machine ID for a particular customer that you want to map to `my_custom_field`.\n",
+        "tags": [
+          "Properties"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/register_property"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Register a property",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/property_unified"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "object_name",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "The name of the object."
+          },
+          "example": "contact"
+        }
+      ]
+    },
+    "/metadata/custom_objects/{object_name}": {
+      "get": {
+        "operationId": "getCustomObjectSchema",
+        "summary": "Get custom object schema details",
+        "tags": [
+          "CustomObjectSchemas"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "description": "Get custom object schema details\n\nSupport:\n\n| Provider    | Supported |\n| ----------- | --------- |\n| Hubspot     | Yes       |\n| Salesforce  | Yes       |\n| Pipedrive   | No        |\n| MS Dynamics | No        |\n",
+        "responses": {
+          "200": {
+            "description": "CustomObject",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_object_schema"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCustomObjectSchema",
+        "summary": "Update custom object schema",
+        "tags": [
+          "CustomObjectSchemas"
+        ],
+        "description": "Update custom object schema\n\nSupport:\n\n| Provider    | Supported | Notes                                                   |\n| ----------- | --------- | ------------------------------------------------------- |\n| Hubspot     | Yes       | All field types supported except picklist/multipicklist |\n| Salesforce  | Yes       | All field types supported except picklist/multipicklist |\n| Pipedrive   | No        |                                                         |\n| MS Dynamics | No        |                                                         |\n",
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "object": {
+                    "$ref": "#/components/schemas/update_custom_object_schema"
+                  }
+                },
+                "required": [
+                  "object"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Custom Object Schema updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "warnings": {
+                      "$ref": "#/components/schemas/warnings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "$ref": "#/components/parameters/object_name"
+        }
+      ]
+    },
+    "/lists": {
+      "get": {
+        "operationId": "listLists",
+        "summary": "List lists",
+        "tags": [
+          "Lists"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/remote_provider_page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/object_type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List Lists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/list_metadata"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        }
+      ]
+    },
+    "/lists/{list_id}": {
+      "get": {
+        "operationId": "listListMemberships",
+        "summary": "List list memberships",
+        "description": "Support:\n\n| Provider   | Object                                      | Common Schema support | Notes                                 |\n| ---------- | ------------------------------------------- | --------------------- | ------------------------------------- |\n| Hubspot    | `contact`, `account`                        | Yes                   | Raw data response from V3 API         |\n| Salesforce | `contact`, `account`, `lead`, `opportunity` | Yes                   | Raw data response from V57.0 REST API |\n",
+        "tags": [
+          "Lists"
+        ],
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/remote_provider_page_size"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/object_type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List membership",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/pagination"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/list_membership"
+                      }
+                    }
+                  },
+                  "required": [
+                    "pagination",
+                    "records"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "499": {
+            "$ref": "#/components/responses/remoteProviderError"
+          },
+          "500": {
+            "$ref": "#/components/responses/internalServerError"
+          },
+          "501": {
+            "$ref": "#/components/responses/notImplemented"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/x-customer-id"
+        },
+        {
+          "$ref": "#/components/parameters/x-provider-name"
+        },
+        {
+          "name": "list_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "220e715a-0cbc-4d2d-8420-cd729f12f094"
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Accounts",
+      "description": "The `Account` Common Object represents a \"company\" in CRMs."
+    },
+    {
+      "name": "Contacts",
+      "description": "The `Contact` Common Object represents a \"contact\" in CRMs."
+    },
+    {
+      "name": "Leads",
+      "description": "The `Lead` Common Object represents a \"potential customer\" in CRMs."
+    },
+    {
+      "name": "Opportunities",
+      "description": "The `Opportunity` Common Object represents a \"deal opportunity\" in CRMs."
+    },
+    {
+      "name": "Users",
+      "description": "The `User` Common Object represents a \"user\" that can log in to CRMs."
+    },
+    {
+      "name": "Lists",
+      "description": "The `List` Object represents a collection of CRM records."
+    },
+    {
+      "name": "CustomObjectSchemas",
+      "description": "A `Custom Object Schema` is an object schema defined by the user."
+    },
+    {
+      "name": "StandardObjectSchemas",
+      "description": "A `Standard Object Schema` is an object schema of a standard object type supported by the provider."
+    },
+    {
+      "name": "CustomObjects",
+      "description": "A `Custom Object` is an instance of a `Custom Object Schema`."
+    },
+    {
+      "name": "AssociationSchemas",
+      "description": "An `Association Schema` is an object describing an association between two entities."
+    },
+    {
+      "name": "Association",
+      "description": "An `Association` is an instance of a relationship between two entities."
+    },
+    {
+      "name": "Properties",
+      "description": "A `Property` is a field in a Provider Object."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "x-api-key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header",
+        "description": "API key to allow developers to access the API"
+      }
+    },
+    "schemas": {
+      "account": {
+        "type": "object",
+        "properties": {
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Integration API"
+          },
+          "id": {
+            "type": "string",
+            "example": 1234
+          },
+          "industry": {
+            "type": "string",
+            "nullable": true,
+            "example": "API's"
+          },
+          "last_activity_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Sample Customer"
+          },
+          "number_of_employees": {
+            "type": "integer",
+            "nullable": true,
+            "example": 276000
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "d8ceb3ff-8b7f-4fa7-b8de-849292f6ca69"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "lifecycle_stage": {
+            "$ref": "#/components/schemas/lifecycle_stage"
+          },
+          "website": {
+            "type": "string",
+            "nullable": true,
+            "example": "https://supaglue.com/"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          }
+        },
+        "required": [
+          "addresses",
+          "description",
+          "id",
+          "industry",
+          "last_activity_at",
+          "name",
+          "number_of_employees",
+          "owner_id",
+          "phone_numbers",
+          "website",
+          "lifecycle_stage",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_update_account": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Integration API"
+          },
+          "industry": {
+            "type": "string",
+            "nullable": true,
+            "example": "API's"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Sample Customer"
+          },
+          "number_of_employees": {
+            "type": "integer",
+            "nullable": true,
+            "example": 276000
+          },
+          "website": {
+            "type": "string",
+            "nullable": true,
+            "example": "https://supaglue.com/"
+          },
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "lifecycle_stage": {
+            "$ref": "#/components/schemas/lifecycle_stage"
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "contact": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "fd089246-09b1-4e3b-a60a-7a76314bbcce"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "23e640fe-6105-4a11-a636-3aa6b6c6e762"
+          },
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "last_activity_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "lifecycle_stage": {
+            "$ref": "#/components/schemas/lifecycle_stage"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "raw_data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "account_id",
+          "owner_id",
+          "description",
+          "id",
+          "addresses",
+          "email_addresses",
+          "first_name",
+          "last_activity_at",
+          "last_name",
+          "phone_numbers",
+          "lifecycle_stage",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_update_contact": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "64571bff-48ea-4469-9fa0-ee1a0bab38bd"
+          },
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "lifecycle_stage": {
+            "$ref": "#/components/schemas/lifecycle_stage"
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "lead": {
+        "type": "object",
+        "properties": {
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "company": {
+            "type": "string",
+            "nullable": true,
+            "example": "Supaglue"
+          },
+          "converted_account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "88cc44ca-7a34-4e8b-b0da-51c3aae34daf"
+          },
+          "converted_account": {
+            "$ref": "#/components/schemas/account"
+          },
+          "converted_contact_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "8c8de778-a219-4d6c-848c-1d57b52149f6"
+          },
+          "converted_contact": {
+            "$ref": "#/components/schemas/contact"
+          },
+          "converted_date": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-27T00:00:00Z"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "lead_source": {
+            "type": "string",
+            "nullable": true,
+            "example": "API Blogger"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "62e5e0f7-becd-4ae2-be82-8b4e1d5ed8a2"
+          },
+          "phone_numbers": {
+            "$ref": "#/components/schemas/phone_numbers"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "example": "Co-Founder"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-10T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-10T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          }
+        },
+        "required": [
+          "addresses",
+          "company",
+          "converted_account_id",
+          "converted_contact_id",
+          "converted_date",
+          "id",
+          "last_name",
+          "lead_source",
+          "owner_id",
+          "phone_numbers",
+          "title",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "create_update_lead": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "nullable": true,
+            "example": "Supaglue"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George"
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Xing"
+          },
+          "lead_source": {
+            "type": "string",
+            "nullable": true,
+            "example": "API Blogger"
+          },
+          "title": {
+            "type": "string",
+            "example": "Co-Founder"
+          },
+          "email_addresses": {
+            "$ref": "#/components/schemas/email_addresses"
+          },
+          "addresses": {
+            "$ref": "#/components/schemas/addresses"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "converted_contact_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "ad43955d-2b27-4ec3-b38a-0ca07a76d43b"
+          },
+          "converted_account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "2e1e6813-0459-47f5-ad4c-3d137c0e1fdd"
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "opportunity": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "fd089246-09b1-4e3b-a60a-7a76314bbcce"
+          },
+          "amount": {
+            "type": "integer",
+            "nullable": true,
+            "example": 100000
+          },
+          "close_date": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-27T00:00:00Z"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Wants to use open source unified API for third-party integrations"
+          },
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "last_activity_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-27T00:00:00Z"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Needs third-party integrations"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "d8ceb3ff-8b7f-4fa7-b8de-849292f6ca69"
+          },
+          "pipeline": {
+            "type": "string",
+            "nullable": true
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true,
+            "example": "Closed Won"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "example": "OPEN"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2023-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          }
+        },
+        "required": [
+          "account_id",
+          "amount",
+          "description",
+          "id",
+          "last_activity_at",
+          "name",
+          "owner_id",
+          "stage",
+          "status",
+          "pipeline",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 54312
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "George Xing"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "george@supaglue.com"
+          },
+          "is_active": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "example": false
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-27T00:00:00Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "is_active",
+          "created_at",
+          "updated_at",
+          "is_deleted",
+          "last_modified_at"
+        ]
+      },
+      "property_unified": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The machine name of the property as it appears in the third-party Provider.",
+            "example": "FirstName"
+          },
+          "custom_name": {
+            "type": "string",
+            "description": "Only applicable for custom properties. This represents the unique identifier that can be used to refer to this property across all customers."
+          },
+          "label": {
+            "type": "string",
+            "description": "The human-readable name of the property as provided by the third-party Provider.",
+            "example": "First Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the field."
+          },
+          "is_required": {
+            "type": "boolean",
+            "description": "Whether or not this field is required. Must be false for Salesforce boolean fields.",
+            "example": false
+          },
+          "default_value": {
+            "description": "The default value for the property. Only supported for Salesforce.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "group_name": {
+            "type": "string",
+            "example": "supaglue",
+            "description": "Only applicable for Hubspot. If specified, Supaglue will attempt to attach the field to this group if it exists, or create it if it doesn't."
+          },
+          "type": {
+            "$ref": "#/components/schemas/property_type"
+          },
+          "precision": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 18."
+          },
+          "scale": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 0."
+          },
+          "options": {
+            "type": "array",
+            "description": "The list of options for a picklist/multipicklist field.",
+            "items": {
+              "$ref": "#/components/schemas/picklist_option"
+            }
+          },
+          "raw_details": {
+            "type": "object",
+            "description": "The raw details of the property as provided by the third-party Provider, if available.",
+            "additionalProperties": true,
+            "example": {}
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "type"
+        ]
+      },
+      "create_property": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique identifier to be used to refer to this property across all customers. Supaglue will use this to appropriately map to the provider field ID.\n",
+            "example": "ticketId"
+          },
+          "label": {
+            "type": "string",
+            "description": "The human-readable name of the property as provided by the third-party Provider.",
+            "example": "First Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the field."
+          },
+          "is_required": {
+            "type": "boolean",
+            "description": "Defaults to false.",
+            "example": false
+          },
+          "group_name": {
+            "type": "string",
+            "example": "supaglue",
+            "description": "Only applicable for Hubspot. If specified, Supaglue will attempt to attach the field to this group if it exists, or create it if it doesn't. If not specified, Supaglue will create the field in the 'custom_properties' group."
+          },
+          "type": {
+            "$ref": "#/components/schemas/property_type"
+          },
+          "precision": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 18."
+          },
+          "scale": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 0."
+          },
+          "options": {
+            "type": "array",
+            "description": "The list of options for a picklist/multipicklist field.",
+            "items": {
+              "$ref": "#/components/schemas/picklist_option"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "label",
+          "type"
+        ]
+      },
+      "register_property": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The machine name of the property as it appears in the third-party Provider.",
+            "example": 1234523
+          },
+          "name": {
+            "type": "string",
+            "description": "The unique identifier to be used to refer to this property across all customers. Supaglue will use this to appropriately map to the provider field ID.\n",
+            "example": "ticketId"
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
+      "update_property": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The human-readable name of the property as provided by the third-party Provider.",
+            "example": "First Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the field."
+          },
+          "is_required": {
+            "type": "boolean",
+            "description": "Defaults to false.",
+            "example": false
+          },
+          "group_name": {
+            "type": "string",
+            "example": "supaglue",
+            "description": "Only applicable for Hubspot. If specified, Supaglue will attempt to attach the field to this group if it exists, or create it if it doesn't."
+          },
+          "type": {
+            "$ref": "#/components/schemas/property_type"
+          },
+          "precision": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 18."
+          },
+          "scale": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 0."
+          },
+          "options": {
+            "type": "array",
+            "description": "The list of options for a picklist/multipicklist field.",
+            "items": {
+              "$ref": "#/components/schemas/picklist_option"
+            }
+          }
+        }
+      },
+      "property_type": {
+        "type": "string",
+        "enum": [
+          "text",
+          "textarea",
+          "number",
+          "picklist",
+          "multipicklist",
+          "date",
+          "datetime",
+          "boolean",
+          "url",
+          "other"
+        ],
+        "description": "Type of the field.\n\n:::note\n`picklist` and `multipicklist` property types are currently only supported in Salesforce and Hubspot\n:::\n\n:::note\n`url` property type currently is only natively supported in Salesforce.\n:::\n\nSupport:\n\n<table>\n  <thead>\n    <tr>\n      <th>Type</th>\n      <th>Hubspot (type-fieldType)</th>\n      <th>Salesforce</th>\n      <th>Pipedrive</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>text</td>\n      <td>string-text</td>\n      <td>Text</td>\n      <td>varchar_auto</td>\n    </tr>\n    <tr>\n      <td>textarea</td>\n      <td>string-textarea</td>\n      <td>Textarea</td>\n      <td>text</td>\n    </tr>\n    <tr>\n      <td>number</td>\n      <td>number-number</td>\n      <td>Int/Double (depending on scale)</td>\n      <td>double</td>\n    </tr>\n    <tr>\n      <td>picklist</td>\n      <td>enumeration-select</td>\n      <td>Picklist</td>\n      <td>enum</td>\n    </tr>\n    <tr>\n      <td>multipicklist</td>\n      <td>enumeration-checkbox</td>\n      <td>Multipicklist</td>\n      <td>set</td>\n    </tr>\n    <tr>\n      <td>date</td>\n      <td>date-date</td>\n      <td>Date</td>\n      <td>date</td>\n    </tr>\n    <tr>\n      <td>datetime</td>\n      <td>datetime-date</td>\n      <td>Datetime</td>\n      <td>date</td>\n    </tr>\n    <tr>\n      <td>boolean</td>\n      <td>bool-booleancheckbox</td>\n      <td>Checkbox</td>\n      <td>enum</td>\n    </tr>\n    <tr>\n      <td>url</td>\n      <td>Not Supported</td>\n      <td>Url</td>\n      <td>Not Supported</td>\n    </tr>\n  </tbody>\n  </table>\n"
+      },
+      "picklist_option": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "example": "Option 1"
+          },
+          "value": {
+            "type": "string",
+            "example": "option_1"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of this option."
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Defaults to false."
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ]
+      },
+      "list_metadata": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "00BDn00000RHS32MAH",
+            "description": "The provider-specific unique identifier for this list."
+          },
+          "object_type": {
+            "type": "string",
+            "enum": [
+              "contact",
+              "account",
+              "lead",
+              "opportunity"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "example": "RecentlyViewedContacts",
+            "description": "The developer name of this list."
+          },
+          "label": {
+            "type": "string",
+            "example": "Recently Viewed Contacts",
+            "description": "The label for this list."
+          },
+          "raw_data": {
+            "type": "object",
+            "description": "The raw data from the provider for this list.",
+            "additionalProperties": true,
+            "example": {
+              "attributes": {
+                "type": "ListView",
+                "url": "/services/data/v57.0/sobjects/ListView/00BDn00000RHS32MAH"
+              },
+              "Id": "00BDn00000RHS32MAH",
+              "Name": "Recently Viewed Contacts",
+              "DeveloperName": "RecentlyViewedContacts",
+              "NamespacePrefix": null,
+              "SobjectType": "Contact",
+              "IsSoqlCompatible": true,
+              "CreatedDate": "2023-05-26T22:25:47.000+0000",
+              "CreatedById": "005Dn0000079fN6IAI",
+              "LastModifiedDate": "2023-05-26T22:25:47.000+0000",
+              "LastModifiedById": "005Dn0000079fN6IAI",
+              "SystemModstamp": "2023-05-26T22:25:47.000+0000",
+              "LastViewedDate": null,
+              "LastReferencedDate": null
+            }
+          }
+        },
+        "required": [
+          "id",
+          "object_type",
+          "name",
+          "label",
+          "raw_data"
+        ]
+      },
+      "list_membership": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/contact"
+          },
+          {
+            "$ref": "#/components/schemas/account"
+          },
+          {
+            "$ref": "#/components/schemas/lead"
+          },
+          {
+            "$ref": "#/components/schemas/opportunity"
+          }
+        ]
+      },
+      "create_update_opportunity": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "nullable": true,
+            "example": 100000
+          },
+          "close_date": {
+            "type": "string",
+            "nullable": true,
+            "example": "2022-02-10T00:00:00Z"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Wants to use open source unified API for third-party integrations"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "example": "Needs Integrations"
+          },
+          "stage": {
+            "type": "string",
+            "example": "Closed Won"
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "64571bff-48ea-4469-9fa0-ee1a0bab38bd"
+          },
+          "owner_id": {
+            "type": "string",
+            "nullable": true,
+            "example": "9f3e97fd-4d5d-4efc-959d-bbebfac079f5"
+          },
+          "pipeline": {
+            "type": "string",
+            "nullable": true
+          },
+          "custom_fields": {
+            "$ref": "#/components/schemas/custom_fields"
+          }
+        }
+      },
+      "custom_object_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ticket"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Ticket object"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "singular": {
+                "type": "string",
+                "example": "Ticket"
+              },
+              "plural": {
+                "type": "string",
+                "example": "Tickets"
+              }
+            },
+            "required": [
+              "singular",
+              "plural"
+            ]
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/custom_object_field"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "labels",
+          "fields"
+        ]
+      },
+      "custom_object_field": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The machine name of the property as it appears in the third-party Provider. In Salesforce, this must end with `__c`.",
+            "example": "FirstName"
+          },
+          "label": {
+            "type": "string",
+            "description": "The human-readable name of the property as provided by the third-party Provider.",
+            "example": "First Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the field."
+          },
+          "is_required": {
+            "type": "boolean",
+            "description": "Whether or not this field is required. Must be false for Salesforce boolean fields.",
+            "example": false
+          },
+          "default_value": {
+            "description": "The default value for the property. Only supported for Salesforce.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "group_name": {
+            "type": "string",
+            "example": "supaglue",
+            "description": "Only applicable for Hubspot. If specified, Supaglue will attempt to attach the field to this group if it exists, or create it if it doesn't."
+          },
+          "type": {
+            "$ref": "#/components/schemas/property_type"
+          },
+          "precision": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 18."
+          },
+          "scale": {
+            "type": "number",
+            "description": "Only applicable in Salesforce. If not given, will default to 0."
+          },
+          "options": {
+            "type": "array",
+            "description": "The list of options for a picklist/multipicklist field.",
+            "items": {
+              "$ref": "#/components/schemas/picklist_option"
+            }
+          },
+          "raw_details": {
+            "type": "object",
+            "description": "The raw details of the property as provided by the third-party Provider, if available.",
+            "additionalProperties": true,
+            "example": {}
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "type"
+        ]
+      },
+      "custom_object_record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "custom_object_name": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "custom_object_name",
+          "data",
+          "is_deleted",
+          "last_modified_at"
+        ],
+        "example": {
+          "id": "001Fn00023f8oYYIA0",
+          "custom_object_name": "MyCustomObject__c",
+          "data": {
+            "Name": "Acme Corp",
+            "Description": "We create the best embedded integration platforms."
+          },
+          "is_deleted": false,
+          "last_modified_at": "2021-01-01T00:00:00Z"
+        }
+      },
+      "standard_object_record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object_name": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "last_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "object_name",
+          "data",
+          "is_deleted",
+          "last_modified_at"
+        ],
+        "example": {
+          "id": "001Fn00023f8oYYIA0",
+          "object_name": "Account",
+          "data": {
+            "Name": "Acme Corp",
+            "Description": "We create the best embedded integration platforms."
+          },
+          "is_deleted": false,
+          "last_modified_at": "2021-01-01T00:00:00Z"
+        }
+      },
+      "simple_custom_object_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ticket"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "singular": {
+                "type": "string",
+                "example": "Ticket"
+              },
+              "plural": {
+                "type": "string",
+                "example": "Tickets"
+              }
+            },
+            "required": [
+              "singular",
+              "plural"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "label"
+        ]
+      },
+      "association": {
+        "type": "object",
+        "description": "An instance of an association between two records.",
+        "properties": {
+          "association_schema_id": {
+            "type": "string"
+          },
+          "source_object": {
+            "type": "string",
+            "description": "The name of the object that the source record belongs to.",
+            "example": "company"
+          },
+          "source_record_id": {
+            "type": "string",
+            "example": "45636a40-87e3-4707-b43c-39fecf9a8f4b"
+          },
+          "target_object": {
+            "type": "string",
+            "description": "The name of the object that the target record belongs to.",
+            "example": "contact"
+          },
+          "target_record_id": {
+            "type": "string",
+            "example": "ad204784-a71b-440a-8482-c3d5ab64110f"
+          }
+        },
+        "required": [
+          "association_schema_id",
+          "source_record_id",
+          "target_record_id",
+          "source_object",
+          "target_object"
+        ]
+      },
+      "association_schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source_object": {
+            "type": "string",
+            "example": "contact"
+          },
+          "target_object": {
+            "type": "string",
+            "example": "my_custom_object"
+          },
+          "display_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source_object",
+          "target_object",
+          "display_name"
+        ]
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "A unique identifier for the instance of the error. Provide this to support when contacting Supaglue.",
+              "example": "9366efb4-8fb1-4a28-bfb0-8d6f9cc6b5c5"
+            },
+            "detail": {
+              "type": "string",
+              "description": "A detailed description of the error.",
+              "example": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]"
+            },
+            "problem_type": {
+              "type": "string",
+              "description": "The Supaglue error code associated with the error.",
+              "example": "MISSING_REQUIRED_FIELD",
+              "deprecated": true
+            },
+            "title": {
+              "type": "string",
+              "description": "A brief description of the error. The schema and type of message will vary by Provider.",
+              "example": "Property values were not valid\n"
+            },
+            "code": {
+              "type": "string",
+              "description": "The Supaglue error code associated with the error.",
+              "example": "MISSING_REQUIRED_FIELD"
+            },
+            "status": {
+              "type": "string",
+              "description": "The HTTP status code associated with the error.",
+              "example": "400"
+            },
+            "meta": {
+              "type": "object",
+              "description": "Additional metadata about the error.",
+              "properties": {
+                "cause": {
+                  "type": "object",
+                  "description": "The cause of the error. Usually the underlying error from the remote Provider.",
+                  "example": {
+                    "code": 400,
+                    "body": {
+                      "status": "error",
+                      "message": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+                      "correlationId": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "category": "VALIDATION_ERROR"
+                    },
+                    "headers": {
+                      "access-control-allow-credentials": "false",
+                      "cf-cache-status": "DYNAMIC",
+                      "cf-ray": "8053d17b9dae9664-SJC",
+                      "connection": "close",
+                      "content-length": "361",
+                      "content-type": "application/json;charset=utf-8",
+                      "date": "Mon, 11 Sep 2023 23:51:22 GMT",
+                      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+                      "report-to": "{\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v3?s=FgwuXObO%2Fz6ahUJKsxjDLaXTWjooJ8tB0w4%2B%2BKaulGStx0FGkn1PoJoOx2KrFMfihzNdfAqikq7CmgbdlmwKB8hkmp3eTb68qpg10LXFlRgiSqRhbWM7yYSfo8CXmPBc\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+                      "server": "cloudflare",
+                      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+                      "vary": "origin, Accept-Encoding",
+                      "x-content-type-options": "nosniff",
+                      "x-envoy-upstream-service-time": "91",
+                      "x-evy-trace-listener": "listener_https",
+                      "x-evy-trace-route-configuration": "listener_https/all",
+                      "x-evy-trace-route-service-name": "envoyset-translator",
+                      "x-evy-trace-served-by-pod": "iad02/hubapi-td/envoy-proxy-6c94986c56-9xsh2",
+                      "x-evy-trace-virtual-host": "all",
+                      "x-hubspot-correlation-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "x-hubspot-ratelimit-interval-milliseconds": "10000",
+                      "x-hubspot-ratelimit-max": "100",
+                      "x-hubspot-ratelimit-remaining": "99",
+                      "x-hubspot-ratelimit-secondly": "10",
+                      "x-hubspot-ratelimit-secondly-remaining": "9",
+                      "x-request-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                      "x-trace": "2B1B4386362759B6A4C34802AD168B803DDC1BE770000000000000000000"
+                    }
+                  }
+                },
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "remote-provider",
+                    "supaglue"
+                  ],
+                  "description": "The origin of the error.",
+                  "example": "remote-provider"
+                },
+                "application_name": {
+                  "type": "string",
+                  "description": "The name of the application that generated the error.",
+                  "example": "MyCompany Production"
+                }
+              },
+              "required": [
+                "origin"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "id",
+            "detail",
+            "problem_type",
+            "title",
+            "code",
+            "status",
+            "meta"
+          ],
+          "example": [
+            {
+              "meta": {
+                "cause": {
+                  "code": 400,
+                  "body": {
+                    "status": "error",
+                    "message": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+                    "correlationId": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "category": "VALIDATION_ERROR"
+                  },
+                  "headers": {
+                    "access-control-allow-credentials": "false",
+                    "cf-cache-status": "DYNAMIC",
+                    "cf-ray": "8053d17b9dae9664-SJC",
+                    "connection": "close",
+                    "content-length": "361",
+                    "content-type": "application/json;charset=utf-8",
+                    "date": "Mon, 11 Sep 2023 23:51:22 GMT",
+                    "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+                    "report-to": "{\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v3?s=FgwuXObO%2Fz6ahUJKsxjDLaXTWjooJ8tB0w4%2B%2BKaulGStx0FGkn1PoJoOx2KrFMfihzNdfAqikq7CmgbdlmwKB8hkmp3eTb68qpg10LXFlRgiSqRhbWM7yYSfo8CXmPBc\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+                    "server": "cloudflare",
+                    "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+                    "vary": "origin, Accept-Encoding",
+                    "x-content-type-options": "nosniff",
+                    "x-envoy-upstream-service-time": "91",
+                    "x-evy-trace-listener": "listener_https",
+                    "x-evy-trace-route-configuration": "listener_https/all",
+                    "x-evy-trace-route-service-name": "envoyset-translator",
+                    "x-evy-trace-served-by-pod": "iad02/hubapi-td/envoy-proxy-6c94986c56-9xsh2",
+                    "x-evy-trace-virtual-host": "all",
+                    "x-hubspot-correlation-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "x-hubspot-ratelimit-interval-milliseconds": "10000",
+                    "x-hubspot-ratelimit-max": "100",
+                    "x-hubspot-ratelimit-remaining": "99",
+                    "x-hubspot-ratelimit-secondly": "10",
+                    "x-hubspot-ratelimit-secondly-remaining": "9",
+                    "x-request-id": "ac94252c-90b5-45d2-ad1d-9a9f7651d7d2",
+                    "x-trace": "2B1B4386362759B6A4C34802AD168B803DDC1BE770000000000000000000"
+                  }
+                }
+              },
+              "detail": "Property values were not valid: [{\"isValid\":false,\"message\":\"Property \\\"__about_us\\\" does not exist\",\"error\":\"PROPERTY_DOESNT_EXIST\",\"name\":\"__about_us\",\"localizedErrorMessage\":\"Property \\\"__about_us\\\" does not exist\"}]",
+              "problem_type": "MISSING_REQUIRED_FIELD",
+              "title": "Property values were not valid\n",
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": "400",
+              "id": "9366efb4-8fb1-4a28-bfb0-8d6f9cc6b5c5"
+            }
+          ]
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "detail": {
+              "type": "string"
+            },
+            "problem_type": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "created_record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "addresses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "address_type": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "mailing",
+                "other",
+                "billing",
+                "shipping"
+              ]
+            },
+            "city": {
+              "type": "string",
+              "nullable": true,
+              "example": "San Francisco"
+            },
+            "country": {
+              "type": "string",
+              "nullable": true,
+              "example": "USA"
+            },
+            "postal_code": {
+              "type": "string",
+              "nullable": true,
+              "example": "94107"
+            },
+            "state": {
+              "type": "string",
+              "nullable": true,
+              "example": "CA"
+            },
+            "street_1": {
+              "type": "string",
+              "nullable": true,
+              "example": "525 Brannan"
+            },
+            "street_2": {
+              "type": "string",
+              "nullable": true,
+              "example": null
+            }
+          },
+          "required": [
+            "address_type",
+            "city",
+            "country",
+            "postal_code",
+            "state",
+            "street_1",
+            "street_2"
+          ]
+        },
+        "example": [
+          {
+            "address_type": "shipping",
+            "city": "San Francisco",
+            "country": "US",
+            "postal_code": "94107",
+            "state": "CA",
+            "street_1": "525 Brannan",
+            "street_2": null
+          }
+        ]
+      },
+      "email_addresses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "email_address": {
+              "type": "string",
+              "example": "hello@supaglue.com"
+            },
+            "email_address_type": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "work",
+                "other"
+              ]
+            }
+          },
+          "required": [
+            "email_address",
+            "email_address_type"
+          ]
+        },
+        "example": [
+          {
+            "email_address": "hello@supaglue.com",
+            "email_address_type": "work"
+          }
+        ]
+      },
+      "phone_numbers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "phone_number": {
+              "type": "string",
+              "nullable": true,
+              "example": "+14151234567"
+            },
+            "phone_number_type": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "mobile",
+                "fax",
+                "other"
+              ]
+            }
+          },
+          "required": [
+            "phone_number",
+            "phone_number_type"
+          ]
+        },
+        "example": [
+          {
+            "phone_number": "+14151234567",
+            "phone_number_type": "primary"
+          }
+        ]
+      },
+      "pagination": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "example": "eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ=="
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "example": "eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9"
+          },
+          "total_count": {
+            "type": "number",
+            "example": 100
+          }
+        },
+        "required": [
+          "next",
+          "previous"
+        ]
+      },
+      "custom_fields": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Custom properties to be inserted that are not covered by the common object. Object keys must match exactly to the corresponding provider API."
+      },
+      "equals_filter": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "equals"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "value"
+        ]
+      },
+      "contains_filter": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "contains"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "value"
+        ]
+      },
+      "filter": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/equals_filter"
+          },
+          {
+            "$ref": "#/components/schemas/contains_filter"
+          }
+        ]
+      },
+      "lifecycle_stage": {
+        "type": "string",
+        "nullable": true,
+        "enum": [
+          "subscriber",
+          "lead",
+          "marketingqualifiedlead",
+          "salesqualifiedlead",
+          "opportunity",
+          "customer",
+          "evangelist",
+          "other"
+        ]
+      },
+      "create_update_association_schema": {
+        "type": "object",
+        "properties": {
+          "source_object": {
+            "type": "string"
+          },
+          "target_object": {
+            "type": "string"
+          },
+          "suggested_key_name": {
+            "type": "string",
+            "description": "The underlying provider may change this (e.g. adding `__c` for Salesforce)."
+          },
+          "display_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_object",
+          "target_object",
+          "suggested_key_name",
+          "display_name"
+        ]
+      },
+      "create_update_association": {
+        "type": "object",
+        "properties": {
+          "association_schema_id": {
+            "type": "string"
+          },
+          "source_object": {
+            "type": "string",
+            "description": "The name of the object that the source record belongs to.",
+            "example": "company"
+          },
+          "source_record_id": {
+            "type": "string",
+            "example": "45636a40-87e3-4707-b43c-39fecf9a8f4b"
+          },
+          "target_object": {
+            "type": "string",
+            "description": "The name of the object that the target record belongs to.",
+            "example": "contact"
+          },
+          "target_record_id": {
+            "type": "string",
+            "example": "ad204784-a71b-440a-8482-c3d5ab64110f"
+          }
+        },
+        "required": [
+          "association_schema_id",
+          "source_record_id",
+          "target_record_id",
+          "source_object",
+          "target_object"
+        ]
+      },
+      "create_update_custom_object_record": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "create_update_standard_object_record": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "create_custom_object_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ticket",
+            "description": "The name you'd like to use for the custom object. For Salesforce, we will append `__c` if necessary. For HubSpot, it will pass through as-is."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Ticket object"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "singular": {
+                "type": "string",
+                "example": "Ticket"
+              },
+              "plural": {
+                "type": "string",
+                "example": "Tickets"
+              }
+            },
+            "required": [
+              "singular",
+              "plural"
+            ]
+          },
+          "primary_field_id": {
+            "type": "string",
+            "description": "The key name of the \"primary\" field. For example, in HubSpot, this is the field that will be displayed for a record in the UI by default. For Salesforce, this will be referenced as the \"Name\" field.",
+            "example": "ticket_id"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/custom_object_field"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "labels",
+          "primary_field_id",
+          "fields"
+        ]
+      },
+      "update_custom_object_schema": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Ticket object"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "singular": {
+                "type": "string",
+                "example": "Ticket"
+              },
+              "plural": {
+                "type": "string",
+                "example": "Tickets"
+              }
+            },
+            "required": [
+              "singular",
+              "plural"
+            ]
+          },
+          "primary_field_id": {
+            "type": "string",
+            "description": "The key name of the \"primary\" field. For example, in HubSpot, this is the field that will be displayed for a record in the UI by default. For Salesforce, this will be referenced as the \"Name\" field.",
+            "example": "ticket_id"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/custom_object_field"
+            }
+          }
+        },
+        "required": [
+          "description",
+          "labels",
+          "primary_field_id",
+          "fields"
+        ]
+      },
+      "created_custom_object_record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "custom_object_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "custom_object_id"
+        ]
+      }
+    },
+    "parameters": {
+      "include_deleted_data": {
+        "name": "include_deleted_data",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "example": true,
+        "description": "Whether to include data that was deleted in providers."
+      },
+      "include_raw_data": {
+        "name": "include_raw_data",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Whether to include raw data fetched from the 3rd party provider.",
+        "example": true
+      },
+      "read_from_cache": {
+        "name": "read_from_cache",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "example": true,
+        "description": "Whether to read from Supaglue's Managed Destination cache or to read directly from the provider. \n\n\n**NOTE**: `read_from_cache=true` requires you to have the object synced to the Supaglue Managed Destination.\n"
+      },
+      "created_after": {
+        "name": "created_after",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects created after this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "created_before": {
+        "name": "created_before",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects created before this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "modified_after": {
+        "name": "modified_after",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": "If provided, will only return objects modified after this datetime. Datetime must be in ISO 8601 format and URI encoded.",
+        "example": "2023-02-23T00:00:00Z"
+      },
+      "modified_before": {
+        "name": "modified_before",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "example": "2023-02-23T00:00:00Z",
+        "description": "If provided, will only return objects modified before this datetime. Datetime must be in ISO 8601 format and URI encoded."
+      },
+      "cursor": {
+        "name": "cursor",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+        "description": "The pagination cursor value"
+      },
+      "remote_provider_page_size": {
+        "name": "page_size",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": 100,
+        "description": "Number of results to return per page. (Max: 100)"
+      },
+      "page_size": {
+        "name": "page_size",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "example": 123,
+        "description": "Number of results to return per page. (Max: 1000)"
+      },
+      "x-customer-id": {
+        "name": "x-customer-id",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "example": "my-customer-1",
+        "description": "The customer ID that uniquely identifies the customer in your application",
+        "required": true
+      },
+      "x-provider-name": {
+        "name": "x-provider-name",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "example": "salesforce",
+        "description": "The provider name",
+        "required": true
+      },
+      "object_type": {
+        "name": "object_type",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "contact",
+            "account",
+            "opportunity",
+            "lead"
+          ]
+        },
+        "example": "contact",
+        "description": "The Supaglue common object type to fetch a list for.\n\nSupport:\n\n<table>\n  <thead>\n    <tr>\n    <th>Provider</th>\n    <th>Object Type</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Salesforce</td>\n      <td>countact, account, opportunity, lead</td>\n    </tr>\n    <tr>\n      <td>Hubspot</td>\n      <td>contact, account</td>\n    </tr>\n  </tbody>\n  </table>\n",
+        "required": true
+      },
+      "object_name": {
+        "name": "object_name",
+        "in": "path",
+        "schema": {
+          "type": "string"
+        },
+        "example": "MyCustomObject__c",
+        "description": "The unique name of the custom object. For Salesforce, this should end with __c. For Hubspot, this will typically be the singular form of the object.",
+        "required": true
+      },
+      "associations_to_fetch": {
+        "name": "associations_to_fetch",
+        "in": "query",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "contact"
+          }
+        },
+        "description": "List of associated objects to attempt to fetch associations for. Only relevant for hubspot and when `read_from_cache` is false.\n"
+      }
+    },
+    "responses": {
+      "badRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "conflict": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "internalServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "notFound": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "notImplemented": {
+        "description": "Not implemented",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "remoteProviderError": {
+        "description": "Remote provider error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "unprocessableEntity": {
+        "description": "Unprocessable entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
