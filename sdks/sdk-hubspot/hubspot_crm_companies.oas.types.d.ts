@@ -386,6 +386,16 @@ export interface components {
         [key: string]: components['schemas']['ValueWithTimestamp'][]
       }
       id: string
+      /**
+       * @example {
+       *   "city": "Cambridge",
+       *   "name": "Biglytics",
+       *   "phone": "(877) 929-0687",
+       *   "state": "Massachusetts",
+       *   "domain": "biglytics.net",
+       *   "industry": "Technology"
+       * }
+       */
       properties: {
         [key: string]: string | null
       }
@@ -440,7 +450,19 @@ export interface components {
      * }
      */
     SimplePublicObjectBatchInput: {
+      /** @example my_unique_property_name */
+      idProperty?: string
       id: string
+      /**
+       * @example {
+       *   "city": "Cambridge",
+       *   "name": "Biglytics",
+       *   "phone": "(877) 929-0687",
+       *   "state": "Massachusetts",
+       *   "domain": "biglytics.net",
+       *   "industry": "Technology"
+       * }
+       */
       properties: {
         [key: string]: string
       }
@@ -488,6 +510,16 @@ export interface components {
      */
     SimplePublicObjectInputForCreate: {
       associations: components['schemas']['PublicAssociationsForObject'][]
+      /**
+       * @example {
+       *   "city": "Cambridge",
+       *   "name": "Biglytics",
+       *   "phone": "(877) 929-0687",
+       *   "state": "Massachusetts",
+       *   "domain": "biglytics.net",
+       *   "industry": "Technology"
+       * }
+       */
       properties: {
         [key: string]: string
       }

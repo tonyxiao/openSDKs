@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-hubspot",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "exports": {
     ".": {
@@ -38,21 +38,16 @@
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
     "debug": "npx tsx ../../bin/jsonToJs.ts dist/",
-    "download": "concurrently npm:download:*",
-    "download:crm-associations": "curl --fail https://api.hubspot.com/api-catalog-public/v1/apis/crm/v4/associations -o ./hubspot_crm_associations.oas.json",
-    "download:crm-companies": "curl --fail https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/companies -o ./hubspot_crm_companies.oas.json",
-    "download:crm-contacts": "curl --fail https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/contacts -o ./hubspot_crm_contacts.oas.json",
-    "download:crm-deals": "curl --fail https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/deals -o ./hubspot_crm_deals.oas.json",
-    "generate": "concurrently npm:generate:*",
-    "generate:crm-associations": "node ../../packages/cli/generateFromOas.js ./hubspot_crm_associations.oas.json",
-    "generate:crm-companies": "node ../../packages/cli/generateFromOas.js ./hubspot_crm_companies.oas.json",
-    "generate:crm-contacts": "node ../../packages/cli/generateFromOas.js ./hubspot_crm_contacts.oas.json",
-    "generate:crm-deals": "node ../../packages/cli/generateFromOas.js ./hubspot_crm_deals.oas.json",
+    "download": "npx tsx -e \"import('./manifest').then(r => r.download())\"",
+    "generate": "npx tsx -e \"import('./manifest').then(r => r.generate())\"",
+    "generate:index": "npx tsx -e \"import('./manifest').then(async r => console.log(await r.generateIndex()))\"",
     "version": "pnpm version"
   },
   "dependencies": {},
   "devDependencies": {
+    "@opensdks/cli": "workspace:*",
     "@opensdks/runtime": "workspace:*",
+    "change-case": "^5.4.2",
     "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1"
   },

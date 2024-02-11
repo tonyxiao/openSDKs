@@ -1,0 +1,223 @@
+{
+  "results": [
+    {
+      "name": "WEBHOOKS",
+      "features": {
+        "Webhooks": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/webhooks/v3",
+          "stage": "LATEST"
+        }
+      }
+    },
+    {
+      "name": "EVENTS",
+      "features": {
+        "Events": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/events/v3/events",
+          "stage": "DEVELOPER_PREVIEW"
+        }
+      }
+    },
+    {
+      "name": "COMMUNICATION-PREFERENCES",
+      "features": {
+        "Communications-status": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/communication-preferences/v3",
+          "stage": "DEVELOPER_PREVIEW"
+        }
+      }
+    },
+    {
+      "name": "AUTH",
+      "features": {
+        "Oauth": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/oauth/v1",
+          "stage": "LATEST"
+        }
+      }
+    },
+    {
+      "name": "BUSINESS-UNITS",
+      "features": {
+        "Business Units": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/business-units/v3",
+          "stage": "STABLE"
+        }
+      }
+    },
+    {
+      "name": "ANALYTICS",
+      "features": {
+        "Custom Behavioral Events": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/events/v3/send",
+          "stage": "DEVELOPER_PREVIEW"
+        }
+      }
+    },
+    {
+      "name": "CMS",
+      "features": {
+        "Domains": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/domains",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Source Code": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/source-code",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Blog-posts": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/blogs/blog-posts",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Authors": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/blogs/authors",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Url-redirects": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/url-redirects",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Performance": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/performance",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Hubdb": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/hubdb",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Tags": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/blogs/tags",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Audit-logs": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/audit-logs",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Site-search": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/cms/v3/site-search",
+          "stage": "DEVELOPER_PREVIEW"
+        }
+      }
+    },
+    {
+      "name": "MARKETING",
+      "features": {
+        "Marketing-events-beta": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/marketing/v3/marketing-events-beta",
+          "stage": "LATEST"
+        },
+        "Transactional": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/marketing/v3/transactional",
+          "stage": "LATEST"
+        }
+      }
+    },
+    {
+      "name": "AUTOMATION",
+      "features": {
+        "Actions": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/automation/v4/actions",
+          "stage": "LATEST"
+        }
+      }
+    },
+    {
+      "name": "CONVERSATIONS",
+      "features": {
+        "Visitor Identification": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/conversations/v3/visitor-identification",
+          "stage": "LATEST"
+        }
+      }
+    },
+    {
+      "name": "CRM",
+      "features": {
+        "Crm Extensions": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/extensions/sales-objects/v1/object-types",
+          "stage": "LATEST"
+        },
+        "Products": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/products",
+          "stage": "LATEST"
+        },
+        "Crm Associations": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v4/associations",
+          "stage": "STABLE"
+        },
+        "Pipelines": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/pipelines",
+          "stage": "LATEST"
+        },
+        "Accounting": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/extensions/accounting",
+          "stage": "LATEST"
+        },
+        "Companies": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/companies",
+          "stage": "LATEST"
+        },
+        "Calling": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/extensions/calling",
+          "stage": "LATEST"
+        },
+        "Quotes": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/quotes",
+          "stage": "LATEST"
+        },
+        "Deals": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/deals",
+          "stage": "LATEST"
+        },
+        "Imports": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/imports",
+          "stage": "LATEST"
+        },
+        "Schemas": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/schemas",
+          "stage": "LATEST"
+        },
+        "Properties": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/properties",
+          "stage": "LATEST"
+        },
+        "Associations": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/associations",
+          "stage": "LATEST"
+        },
+        "Owners": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/owners",
+          "stage": "LATEST"
+        },
+        "Timeline": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/timeline",
+          "stage": "LATEST"
+        },
+        "Contacts": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/contacts",
+          "stage": "LATEST"
+        },
+        "Feedback Submissions": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/feedback_submissions",
+          "stage": "DEVELOPER_PREVIEW"
+        },
+        "Objects": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects",
+          "stage": "LATEST"
+        },
+        "Videoconferencing": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/extensions/videoconferencing",
+          "stage": "LATEST"
+        },
+        "Tickets": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/tickets",
+          "stage": "LATEST"
+        },
+        "Line Items": {
+          "openAPI": "https://api.hubspot.com/api-catalog-public/v1/apis/crm/v3/objects/line_items",
+          "stage": "LATEST"
+        }
+      }
+    }
+  ]
+}

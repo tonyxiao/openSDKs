@@ -121,7 +121,7 @@ export async function generateSingleFileFromOas(
   `)
 }
 
-async function getText(input: string) {
+export async function getText(input: string) {
   try {
     const url = new URL(input)
     const res = await fetch(url)

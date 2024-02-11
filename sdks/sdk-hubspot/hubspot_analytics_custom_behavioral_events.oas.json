@@ -1,0 +1,247 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Events Send Event Completions",
+    "description" : "HTTP API for triggering instances of custom behavioral events",
+    "version" : "v3",
+    "x-hubspot-product-tier-requirements" : {
+      "marketing" : "ENTERPRISE",
+      "sales" : "ENTERPRISE",
+      "service" : "ENTERPRISE",
+      "cms" : "ENTERPRISE"
+    },
+    "x-hubspot-documentation-banner" : "NONE",
+    "x-hubspot-api-use-case" : "You want to track more complex interactions that visitors perform when they navigate to your website and engage with your content.",
+    "x-hubspot-related-documentation" : [ {
+      "name" : "Custom events guide",
+      "url" : "https://hubspot.dev/guides/api/analytics/events"
+    } ],
+    "x-hubspot-introduction" : "Use the custom events API to define events that you can later create and associate with records in your HubSpot CRM."
+  },
+  "servers" : [ {
+    "url" : "https://api.hubapi.com"
+  } ],
+  "tags" : [ {
+    "name" : "Custom event data"
+  }, {
+    "name" : "Behavioral_Events_Tracking"
+  }, {
+    "name" : ""
+  } ],
+  "paths" : {
+    "/events/v3/send" : {
+      "post" : {
+        "tags" : [ "Custom event data" ],
+        "summary" : "Send custom event completion",
+        "description" : "Endpoint to send an instance of a custom event.",
+        "operationId" : "post-/events/v3/send_send",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BehavioralEventHttpCompletionRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "No content",
+            "content" : { }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/Error"
+          }
+        },
+        "security" : [ {
+          "private_apps_legacy" : [ "analytics.behavioral_events.send" ]
+        }, {
+          "oauth2_legacy" : [ "analytics.behavioral_events.send" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ErrorDetail" : {
+        "required" : [ "message" ],
+        "type" : "object",
+        "properties" : {
+          "subCategory" : {
+            "type" : "string",
+            "description" : "A specific category that contains more specific detail about the error"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "The status code associated with the error detail"
+          },
+          "in" : {
+            "type" : "string",
+            "description" : "The name of the field or parameter in which the error was found."
+          },
+          "context" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "description" : "Context about the error condition",
+            "example" : {
+              "missingScopes" : [ "scope1", "scope2" ]
+            }
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "A human readable message describing the error along with remediation steps where appropriate"
+          }
+        }
+      },
+      "Error" : {
+        "required" : [ "category", "correlationId", "message" ],
+        "type" : "object",
+        "properties" : {
+          "subCategory" : {
+            "type" : "string",
+            "description" : "A specific category that contains more specific detail about the error"
+          },
+          "context" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "description" : "Context about the error condition",
+            "example" : {
+              "missingScopes" : [ "scope1", "scope2" ],
+              "invalidPropertyName" : [ "propertyValue" ]
+            }
+          },
+          "correlationId" : {
+            "type" : "string",
+            "description" : "A unique identifier for the request. Include this value with any error reports or support tickets",
+            "format" : "uuid",
+            "example" : "aeb5f871-7f07-4993-9211-075dc63e7cbf"
+          },
+          "links" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "A map of link names to associated URIs containing documentation about the error or recommended remediation steps",
+            "example" : {
+              "knowledge-base" : "https://www.hubspot.com/products/service/knowledge-base"
+            }
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "A human readable message describing the error along with remediation steps where appropriate",
+            "example" : "Invalid input (details will vary based on the error)"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "The error category",
+            "example" : "VALIDATION_ERROR"
+          },
+          "errors" : {
+            "type" : "array",
+            "description" : "further information about the error",
+            "items" : {
+              "$ref" : "#/components/schemas/ErrorDetail"
+            }
+          }
+        },
+        "example" : {
+          "message" : "Invalid input (details will vary based on the error)",
+          "correlationId" : "aeb5f871-7f07-4993-9211-075dc63e7cbf",
+          "category" : "VALIDATION_ERROR",
+          "links" : {
+            "knowledge-base" : "https://www.hubspot.com/products/service/knowledge-base"
+          }
+        }
+      },
+      "BehavioralEventHttpCompletionRequest" : {
+        "required" : [ "eventName" ],
+        "type" : "object",
+        "properties" : {
+          "occurredAt" : {
+            "type" : "string",
+            "description" : "The time when this event occurred (if any). If this isn't set, the current time will be used",
+            "format" : "date-time"
+          },
+          "eventName" : {
+            "type" : "string",
+            "description" : "Internal name of the event-type to trigger"
+          },
+          "utk" : {
+            "type" : "string",
+            "description" : "User token"
+          },
+          "uuid" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "Email of visitor"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "Map of properties for the event in the format property internal name - property value"
+          },
+          "objectId" : {
+            "type" : "string",
+            "description" : "The object id that this event occurred on. Could be a contact id or a visitor id."
+          }
+        }
+      }
+    },
+    "responses" : {
+      "Error" : {
+        "description" : "An error occurred.",
+        "content" : {
+          "*/*" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "oauth2_legacy" : {
+        "type" : "oauth2",
+        "flows" : {
+          "authorizationCode" : {
+            "authorizationUrl" : "https://app.hubspot.com/oauth/authorize",
+            "tokenUrl" : "https://api.hubapi.com/oauth/v1/token",
+            "scopes" : {
+              "behavioral_events.event_definitions.read_write" : "Read from and write to custom behavioral events definitions",
+              "analytics.behavioral_events.send" : "Send Behavioral Event Completions"
+            }
+          }
+        }
+      },
+      "private_apps_legacy" : {
+        "type" : "apiKey",
+        "name" : "private-app-legacy",
+        "in" : "header"
+      }
+    }
+  },
+  "x-hubspot-available-client-libraries" : [ "PHP", "Node", "Ruby", "Python" ],
+  "x-hubspot-product-tier-requirements" : {
+    "marketing" : "ENTERPRISE",
+    "sales" : "ENTERPRISE",
+    "service" : "ENTERPRISE",
+    "cms" : "ENTERPRISE"
+  },
+  "x-hubspot-documentation-banner" : "NONE"
+}

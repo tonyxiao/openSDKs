@@ -386,6 +386,16 @@ export interface components {
         [key: string]: components['schemas']['ValueWithTimestamp'][]
       }
       id: string
+      /**
+       * @example {
+       *   "amount": "1500.00",
+       *   "dealname": "Custom data integrations",
+       *   "pipeline": "default",
+       *   "closedate": "2019-12-07T16:50:06.678Z",
+       *   "dealstage": "presentationscheduled",
+       *   "hubspot_owner_id": "910901"
+       * }
+       */
       properties: {
         [key: string]: string | null
       }
@@ -440,7 +450,19 @@ export interface components {
      * }
      */
     SimplePublicObjectBatchInput: {
+      /** @example my_unique_property_name */
+      idProperty?: string
       id: string
+      /**
+       * @example {
+       *   "amount": "1500.00",
+       *   "dealname": "Custom data integrations",
+       *   "pipeline": "default",
+       *   "closedate": "2019-12-07T16:50:06.678Z",
+       *   "dealstage": "presentationscheduled",
+       *   "hubspot_owner_id": "910901"
+       * }
+       */
       properties: {
         [key: string]: string
       }
@@ -488,6 +510,16 @@ export interface components {
      */
     SimplePublicObjectInputForCreate: {
       associations: components['schemas']['PublicAssociationsForObject'][]
+      /**
+       * @example {
+       *   "amount": "1500.00",
+       *   "dealname": "Custom data integrations",
+       *   "pipeline": "default",
+       *   "closedate": "2019-12-07T16:50:06.678Z",
+       *   "dealstage": "presentationscheduled",
+       *   "hubspot_owner_id": "910901"
+       * }
+       */
       properties: {
         [key: string]: string
       }

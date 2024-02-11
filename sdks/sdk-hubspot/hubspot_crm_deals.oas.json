@@ -28,6 +28,8 @@
   }, {
     "name" : "Public_Object"
   }, {
+    "name" : "Associations"
+  }, {
     "name" : "GDPR"
   }, {
     "name" : "Search"
@@ -1270,6 +1272,14 @@
             "additionalProperties" : {
               "type" : "string",
               "nullable" : true
+            },
+            "example" : {
+              "amount" : "1500.00",
+              "dealname" : "Custom data integrations",
+              "pipeline" : "default",
+              "closedate" : "2019-12-07T16:50:06.678Z",
+              "dealstage" : "presentationscheduled",
+              "hubspot_owner_id" : "910901"
             }
           },
           "updatedAt" : {
@@ -1356,6 +1366,10 @@
         "required" : [ "id", "properties" ],
         "type" : "object",
         "properties" : {
+          "idProperty" : {
+            "type" : "string",
+            "example" : "my_unique_property_name"
+          },
           "id" : {
             "type" : "string"
           },
@@ -1363,6 +1377,14 @@
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
+            },
+            "example" : {
+              "amount" : "1500.00",
+              "dealname" : "Custom data integrations",
+              "pipeline" : "default",
+              "closedate" : "2019-12-07T16:50:06.678Z",
+              "dealstage" : "presentationscheduled",
+              "hubspot_owner_id" : "910901"
             }
           }
         },
@@ -1422,6 +1444,14 @@
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
+            },
+            "example" : {
+              "amount" : "1500.00",
+              "dealname" : "Custom data integrations",
+              "pipeline" : "default",
+              "closedate" : "2019-12-07T16:50:06.678Z",
+              "dealstage" : "presentationscheduled",
+              "hubspot_owner_id" : "910901"
             }
           }
         },
@@ -1466,12 +1496,12 @@
             "authorizationUrl" : "https://app.hubspot.com/oauth/authorize",
             "tokenUrl" : "https://api.hubapi.com/oauth/v1/token",
             "scopes" : {
-              "crm.objects.goals.read" : "Read goals",
               "media_bridge.read" : "Read media and media events",
-              "crm.objects.custom.write" : "Change custom object records",
-              "e-commerce" : "e-commerce",
+              "tickets" : "Read and write tickets",
+              "crm.objects.goals.read" : "Read goals",
               "crm.objects.custom.read" : "View custom object records",
-              "tickets" : "Read and write tickets"
+              "crm.objects.custom.write" : "Change custom object records",
+              "e-commerce" : "e-commerce"
             }
           }
         }
@@ -1483,6 +1513,8 @@
             "authorizationUrl" : "https://app.hubspot.com/oauth/authorize",
             "tokenUrl" : "https://api.hubapi.com/oauth/v1/token",
             "scopes" : {
+              "crm.objects.quotes.read" : "Quotes",
+              "crm.objects.deals.write" : " ",
               "crm.objects.line_items.read" : "Line Items",
               "crm.objects.deals.read" : " ",
               "crm.objects.quotes.write" : "Quotes",
@@ -1490,9 +1522,7 @@
               "crm.objects.contacts.write" : " ",
               "crm.objects.companies.write" : " ",
               "crm.objects.companies.read" : " ",
-              "crm.objects.line_items.write" : "Line Items",
-              "crm.objects.quotes.read" : "Quotes",
-              "crm.objects.deals.write" : " "
+              "crm.objects.line_items.write" : "Line Items"
             }
           }
         }

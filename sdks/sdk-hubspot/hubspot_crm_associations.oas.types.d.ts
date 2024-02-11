@@ -4,64 +4,33 @@
  */
 
 export interface paths {
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/archive': {
+  '/{fromObjectType}/{toObjectType}/batch/archive': {
     /**
-     * Delete
-     * @description Batch delete associations for objects
+     * Archive a batch of associations
+     * @description Remove the associations between all pairs of objects identified in the request body.
      */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/archive_archive']
+    post: operations['post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/archive']
   }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/associate/default': {
+  '/{fromObjectType}/{toObjectType}/batch/create': {
     /**
-     * Create Default Associations
-     * @description Create the default (most generic) association type between two object types
+     * Create a batch of associations
+     * @description Associate all pairs of objects identified in the request body.
      */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/associate/default_createDefault']
+    post: operations['post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/create']
   }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/create': {
+  '/{fromObjectType}/{toObjectType}/batch/read': {
     /**
-     * Create
-     * @description Batch create associations for objects
+     * Read a batch of associations
+     * @description Get the IDs of all `{toObjectType}` objects associated with those specified in the request body.
      */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/create_create']
+    post: operations['post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/read']
   }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/labels/archive': {
+  '/{fromObjectType}/{toObjectType}/types': {
     /**
-     * Delete Specific Labels
-     * @description Batch delete specific association labels for objects. Deleting an unlabeled association will also delete all labeled associations between those two objects
+     * List association types
+     * @description List all the valid association types available between two object types
      */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/labels/archive_archiveLabels']
-  }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/read': {
-    /**
-     * Read
-     * @description Batch read associations for objects to specific object type. The 'after' field in a returned paging object  can be added alongside the 'id' to retrieve the next page of associations from that objectId. The 'link' field is deprecated and should be ignored.
-     */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/read_getPage']
-  }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/labels': {
-    /**
-     * Read
-     * @description Returns all association types between two object types
-     */
-    get: operations['get-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_getAll']
-    /**
-     * Update
-     * @description Update a user defined association definition
-     */
-    put: operations['put-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_update']
-    /**
-     * Create
-     * @description Create a user defined association definition
-     */
-    post: operations['post-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_create']
-  }
-  '/crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}': {
-    /**
-     * Delete
-     * @description Deletes an association definition
-     */
-    delete: operations['delete-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}_archive']
+    get: operations['get-/crm/v3/associations/{fromObjectType}/{toObjectType}/types']
   }
 }
 
@@ -69,6 +38,18 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
+    /**
+     * @example {
+     *   "id": "37295"
+     * }
+     */
+    PublicObjectId: {
+      /** @description The unique ID that identifies an object. */
+      id: string
+    }
+    CollectionResponsePublicAssociationDefinitionNoPaging: {
+      results: components['schemas']['PublicAssociationDefinition'][]
+    }
     StandardError: {
       status: string
       id?: string
@@ -83,120 +64,32 @@ export interface components {
         [key: string]: string
       }
     }
-    LabelsBetweenObjectPair: {
-      fromObjectTypeId: string
-      /** Format: int32 */
-      fromObjectId: number
-      toObjectTypeId: string
-      /** Format: int32 */
-      toObjectId: number
-      labels: string[]
-    }
-    PublicAssociationMultiWithLabel: {
-      from: components['schemas']['PublicObjectId']
-      to: components['schemas']['MultiAssociatedObjectWithLabel'][]
-      paging?: components['schemas']['Paging']
-    }
-    BatchInputPublicDefaultAssociationMultiPost: {
-      inputs: components['schemas']['PublicDefaultAssociationMultiPost'][]
-    }
-    BatchInputPublicAssociationMultiArchive: {
-      inputs: components['schemas']['PublicAssociationMultiArchive'][]
-    }
-    PublicAssociationDefinitionUpdateRequest: {
-      label: string
-      /** Format: int32 */
-      associationTypeId: number
-    }
-    MultiAssociatedObjectWithLabel: {
-      /** Format: int32 */
-      toObjectId: number
-      associationTypes: components['schemas']['AssociationSpecWithLabel'][]
-    }
-    ErrorDetail: {
-      /** @description A human readable message describing the error along with remediation steps where appropriate */
-      message: string
-      /** @description The name of the field or parameter in which the error was found. */
-      in?: string
-      /** @description The status code associated with the error detail */
-      code?: string
-      /** @description A specific category that contains more specific detail about the error */
-      subCategory?: string
-      /**
-       * @description Context about the error condition
-       * @example {
-       *   "missingScopes": [
-       *     "scope1",
-       *     "scope2"
-       *   ]
-       * }
-       */
-      context?: {
-        [key: string]: string[]
-      }
-    }
-    AssociationSpecWithLabel: {
-      /** @enum {string} */
-      category: 'HUBSPOT_DEFINED' | 'USER_DEFINED' | 'INTEGRATOR_DEFINED'
-      /** Format: int32 */
-      typeId: number
-      label?: string
-    }
-    PublicAssociationMultiPost: {
-      from: components['schemas']['PublicObjectId']
-      to: components['schemas']['PublicObjectId']
-      types: components['schemas']['AssociationSpec'][]
-    }
-    BatchResponseLabelsBetweenObjectPair: {
-      /** @enum {string} */
-      status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
-      results: components['schemas']['LabelsBetweenObjectPair'][]
-      /** Format: date-time */
-      requestedAt?: string
-      /** Format: date-time */
-      startedAt: string
-      /** Format: date-time */
-      completedAt: string
-      links?: {
-        [key: string]: string
-      }
-    }
-    PublicObjectId: {
-      id: string
-    }
-    PublicAssociationDefinitionCreateRequest: {
-      label: string
-      name: string
-    }
-    PublicAssociationMultiArchive: {
-      from: components['schemas']['PublicObjectId']
-      to: components['schemas']['PublicObjectId'][]
-    }
-    BatchResponsePublicAssociationMultiWithLabelWithErrors: {
-      /** @enum {string} */
-      status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
-      results: components['schemas']['PublicAssociationMultiWithLabel'][]
-      /** Format: int32 */
-      numErrors?: number
-      errors?: components['schemas']['StandardError'][]
-      /** Format: date-time */
-      requestedAt?: string
-      /** Format: date-time */
-      startedAt: string
-      /** Format: date-time */
-      completedAt: string
-      links?: {
-        [key: string]: string
-      }
-    }
     Paging: {
       next?: components['schemas']['NextPage']
       prev?: components['schemas']['PreviousPage']
     }
-    PublicDefaultAssociation: {
+    /**
+     * @example {
+     *   "from": {
+     *     "id": "53628"
+     *   },
+     *   "to": [
+     *     {
+     *       "id": "12726",
+     *       "type": "contact_to_company"
+     *     },
+     *     {
+     *       "id": "61352",
+     *       "type": "contact_to_company"
+     *     }
+     *   ]
+     * }
+     */
+    PublicAssociationMulti: {
       from: components['schemas']['PublicObjectId']
-      to: components['schemas']['PublicObjectId']
-      associationSpec: components['schemas']['AssociationSpec']
+      /** @description The IDs of objects that are associated with the object identified by the ID in 'from'. */
+      to: components['schemas']['AssociatedId'][]
+      paging?: components['schemas']['Paging']
     }
     /**
      * @example {
@@ -246,17 +139,26 @@ export interface components {
         [key: string]: string
       }
     }
-    BatchInputPublicAssociationMultiPost: {
-      inputs: components['schemas']['PublicAssociationMultiPost'][]
-    }
-    PublicDefaultAssociationMultiPost: {
+    /**
+     * @example {
+     *   "from": {
+     *     "id": "53628"
+     *   },
+     *   "to": {
+     *     "id": "12726"
+     *   },
+     *   "type": "contact_to_company"
+     * }
+     */
+    PublicAssociation: {
       from: components['schemas']['PublicObjectId']
       to: components['schemas']['PublicObjectId']
+      type: string
     }
-    BatchResponsePublicDefaultAssociation: {
+    BatchResponsePublicAssociationWithErrors: {
       /** @enum {string} */
       status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
-      results: components['schemas']['PublicDefaultAssociation'][]
+      results: components['schemas']['PublicAssociation'][]
       /** Format: int32 */
       numErrors?: number
       errors?: components['schemas']['StandardError'][]
@@ -270,10 +172,13 @@ export interface components {
         [key: string]: string
       }
     }
-    BatchResponsePublicAssociationMultiWithLabel: {
+    BatchResponsePublicAssociationMultiWithErrors: {
       /** @enum {string} */
       status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
-      results: components['schemas']['PublicAssociationMultiWithLabel'][]
+      results: components['schemas']['PublicAssociationMulti'][]
+      /** Format: int32 */
+      numErrors?: number
+      errors?: components['schemas']['StandardError'][]
       /** Format: date-time */
       requestedAt?: string
       /** Format: date-time */
@@ -284,17 +189,30 @@ export interface components {
         [key: string]: string
       }
     }
-    BatchInputPublicFetchAssociationsBatchRequest: {
-      inputs: components['schemas']['PublicFetchAssociationsBatchRequest'][]
+    ErrorDetail: {
+      /** @description A human readable message describing the error along with remediation steps where appropriate */
+      message: string
+      /** @description The name of the field or parameter in which the error was found. */
+      in?: string
+      /** @description The status code associated with the error detail */
+      code?: string
+      /** @description A specific category that contains more specific detail about the error */
+      subCategory?: string
+      /**
+       * @description Context about the error condition
+       * @example {
+       *   "missingScopes": [
+       *     "scope1",
+       *     "scope2"
+       *   ]
+       * }
+       */
+      context?: {
+        [key: string]: string[]
+      }
     }
-    AssociationSpec: {
-      /** @enum {string} */
-      associationCategory:
-        | 'HUBSPOT_DEFINED'
-        | 'USER_DEFINED'
-        | 'INTEGRATOR_DEFINED'
-      /** Format: int32 */
-      associationTypeId: number
+    BatchInputPublicObjectId: {
+      inputs: components['schemas']['PublicObjectId'][]
     }
     ErrorCategory: {
       name: string
@@ -363,16 +281,24 @@ export interface components {
         | 'NOT_EXTENDED'
         | 'NETWORK_AUTHENTICATION_REQUIRED'
     }
-    CollectionResponseAssociationSpecWithLabelNoPaging: {
-      results: components['schemas']['AssociationSpecWithLabel'][]
+    /**
+     * @example {
+     *   "id": "1",
+     *   "name": "contact_to_company"
+     * }
+     */
+    PublicAssociationDefinition: {
+      id: string
+      name: string
     }
-    BatchResponseLabelsBetweenObjectPairWithErrors: {
+    PreviousPage: {
+      before: string
+      link?: string
+    }
+    BatchResponsePublicAssociation: {
       /** @enum {string} */
       status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
-      results: components['schemas']['LabelsBetweenObjectPair'][]
-      /** Format: int32 */
-      numErrors?: number
-      errors?: components['schemas']['StandardError'][]
+      results: components['schemas']['PublicAssociation'][]
       /** Format: date-time */
       requestedAt?: string
       /** Format: date-time */
@@ -383,17 +309,36 @@ export interface components {
         [key: string]: string
       }
     }
-    PreviousPage: {
-      before: string
-      link?: string
+    BatchResponsePublicAssociationMulti: {
+      /** @enum {string} */
+      status: 'PENDING' | 'PROCESSING' | 'CANCELED' | 'COMPLETE'
+      results: components['schemas']['PublicAssociationMulti'][]
+      /** Format: date-time */
+      requestedAt?: string
+      /** Format: date-time */
+      startedAt: string
+      /** Format: date-time */
+      completedAt: string
+      links?: {
+        [key: string]: string
+      }
     }
     NextPage: {
       after: string
       link?: string
     }
-    PublicFetchAssociationsBatchRequest: {
+    /**
+     * @example {
+     *   "id": "172859",
+     *   "type": "contact_to_company"
+     * }
+     */
+    AssociatedId: {
       id: string
-      after?: string
+      type: string
+    }
+    BatchInputPublicAssociation: {
+      inputs: components['schemas']['PublicAssociation'][]
     }
   }
   responses: {
@@ -416,10 +361,10 @@ export type external = Record<string, never>
 
 export interface operations {
   /**
-   * Delete
-   * @description Batch delete associations for objects
+   * Archive a batch of associations
+   * @description Remove the associations between all pairs of objects identified in the request body.
    */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/archive_archive': {
+  'post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/archive': {
     parameters: {
       path: {
         fromObjectType: string
@@ -428,7 +373,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        'application/json': components['schemas']['BatchInputPublicAssociationMultiArchive']
+        'application/json': components['schemas']['BatchInputPublicAssociation']
       }
     }
     responses: {
@@ -440,10 +385,10 @@ export interface operations {
     }
   }
   /**
-   * Create Default Associations
-   * @description Create the default (most generic) association type between two object types
+   * Create a batch of associations
+   * @description Associate all pairs of objects identified in the request body.
    */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/associate/default_createDefault': {
+  'post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/create': {
     parameters: {
       path: {
         fromObjectType: string
@@ -452,56 +397,30 @@ export interface operations {
     }
     requestBody: {
       content: {
-        'application/json': components['schemas']['BatchInputPublicDefaultAssociationMultiPost']
-      }
-    }
-    responses: {
-      /** @description successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['BatchResponsePublicDefaultAssociation']
-        }
-      }
-      default: components['responses']['Error']
-    }
-  }
-  /**
-   * Create
-   * @description Batch create associations for objects
-   */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/create_create': {
-    parameters: {
-      path: {
-        fromObjectType: string
-        toObjectType: string
-      }
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['BatchInputPublicAssociationMultiPost']
+        'application/json': components['schemas']['BatchInputPublicAssociation']
       }
     }
     responses: {
       /** @description successful operation */
       201: {
         content: {
-          'application/json': components['schemas']['BatchResponseLabelsBetweenObjectPair']
+          'application/json': components['schemas']['BatchResponsePublicAssociation']
         }
       }
       /** @description multiple statuses */
       207: {
         content: {
-          'application/json': components['schemas']['BatchResponseLabelsBetweenObjectPairWithErrors']
+          'application/json': components['schemas']['BatchResponsePublicAssociationWithErrors']
         }
       }
       default: components['responses']['Error']
     }
   }
   /**
-   * Delete Specific Labels
-   * @description Batch delete specific association labels for objects. Deleting an unlabeled association will also delete all labeled associations between those two objects
+   * Read a batch of associations
+   * @description Get the IDs of all `{toObjectType}` objects associated with those specified in the request body.
    */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/labels/archive_archiveLabels': {
+  'post-/crm/v3/associations/{fromObjectType}/{toObjectType}/batch/read': {
     parameters: {
       path: {
         fromObjectType: string
@@ -510,54 +429,30 @@ export interface operations {
     }
     requestBody: {
       content: {
-        'application/json': components['schemas']['BatchInputPublicAssociationMultiPost']
-      }
-    }
-    responses: {
-      /** @description No content */
-      204: {
-        content: {}
-      }
-      default: components['responses']['Error']
-    }
-  }
-  /**
-   * Read
-   * @description Batch read associations for objects to specific object type. The 'after' field in a returned paging object  can be added alongside the 'id' to retrieve the next page of associations from that objectId. The 'link' field is deprecated and should be ignored.
-   */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/read_getPage': {
-    parameters: {
-      path: {
-        fromObjectType: string
-        toObjectType: string
-      }
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['BatchInputPublicFetchAssociationsBatchRequest']
+        'application/json': components['schemas']['BatchInputPublicObjectId']
       }
     }
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          'application/json': components['schemas']['BatchResponsePublicAssociationMultiWithLabel']
+          'application/json': components['schemas']['BatchResponsePublicAssociationMulti']
         }
       }
       /** @description multiple statuses */
       207: {
         content: {
-          'application/json': components['schemas']['BatchResponsePublicAssociationMultiWithLabelWithErrors']
+          'application/json': components['schemas']['BatchResponsePublicAssociationMultiWithErrors']
         }
       }
       default: components['responses']['Error']
     }
   }
   /**
-   * Read
-   * @description Returns all association types between two object types
+   * List association types
+   * @description List all the valid association types available between two object types
    */
-  'get-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_getAll': {
+  'get-/crm/v3/associations/{fromObjectType}/{toObjectType}/types': {
     parameters: {
       path: {
         fromObjectType: string
@@ -568,78 +463,8 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          'application/json': components['schemas']['CollectionResponseAssociationSpecWithLabelNoPaging']
+          'application/json': components['schemas']['CollectionResponsePublicAssociationDefinitionNoPaging']
         }
-      }
-      default: components['responses']['Error']
-    }
-  }
-  /**
-   * Update
-   * @description Update a user defined association definition
-   */
-  'put-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_update': {
-    parameters: {
-      path: {
-        fromObjectType: string
-        toObjectType: string
-      }
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['PublicAssociationDefinitionUpdateRequest']
-      }
-    }
-    responses: {
-      /** @description No content */
-      204: {
-        content: {}
-      }
-      default: components['responses']['Error']
-    }
-  }
-  /**
-   * Create
-   * @description Create a user defined association definition
-   */
-  'post-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_create': {
-    parameters: {
-      path: {
-        fromObjectType: string
-        toObjectType: string
-      }
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['PublicAssociationDefinitionCreateRequest']
-      }
-    }
-    responses: {
-      /** @description successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['CollectionResponseAssociationSpecWithLabelNoPaging']
-        }
-      }
-      default: components['responses']['Error']
-    }
-  }
-  /**
-   * Delete
-   * @description Deletes an association definition
-   */
-  'delete-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}_archive': {
-    parameters: {
-      path: {
-        fromObjectType: string
-        toObjectType: string
-        associationTypeId: number
-      }
-    }
-    responses: {
-      /** @description No content */
-      204: {
-        content: {}
       }
       default: components['responses']['Error']
     }
