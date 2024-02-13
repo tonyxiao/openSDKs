@@ -27,7 +27,7 @@ export type QueryResponse<T> = {
 // TODO: Add handling for instanceUrl, apiVersion and auth tokens into this
 export const salesforceSdkDef = {
   types: {} as SalesforceSDKTypes,
-  defaultOptions: {},
+  defaultOptions: {}, // needed due to instance-specific server url in oasMeta 
   // Cannot use the oasMeta because the serverUrl is going to be instance dependent
   createClient: (ctx, options) => {
     const client = ctx.createClient(options)
