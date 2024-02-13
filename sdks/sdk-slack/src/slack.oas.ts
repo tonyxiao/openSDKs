@@ -18,6 +18,10 @@ for (const pathItem of Object.values(oas.paths ?? {})) {
             | undefined)
         : undefined
     // console.log('removed', {idx}, param)
+    // TODO: This is already the `security` field, so we don't really need it.
+    // Tho verifying that it matches could be good. 
+    // More importantly we should put token in the top level `security` field
+    // so we can auto generate headers for it
     const scope = param?.description?.match(/Requires scope: \`(.+)\`/)
     // console.log('scope', scope)
     if (scope?.[1]) {
