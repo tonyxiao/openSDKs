@@ -10,6 +10,11 @@ import yaml from 'yaml'
 import type {HTTPMethod, oas30, OpenAPISpec} from '@opensdks/runtime'
 
 async function prettyFormat(content: string) {
+  // Temp workaround for the fact that prettier doesn't always work in client environments easily
+  // TODO: Make me a global flag rather than env var
+  if (process.env['NO_PRETTY']) {
+    return content
+  }
   return prettier.format(content, {
     ...(await import('./prettier.config.js')).default,
     parser: 'typescript',
