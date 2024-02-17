@@ -106,6 +106,12 @@ export interface paths {
   '/verticals/investment/security': {
     get: operations['verticals-investment-security_list']
   }
+  '/verticals/sales-engagement/contacts': {
+    get: operations['verticals-salesEngagement-listContacts']
+  }
+  '/verticals/banking/category': {
+    get: operations['verticals-banking-listCategories']
+  }
   '/viewer': {
     /** Get current viewer accessing the API */
     get: operations['getViewer']
@@ -302,6 +308,15 @@ export interface components {
        *   During updates this object will be shallowly merged
        */
       metadata?: unknown
+    }
+    'sales-engagement.contact': {
+      id: string
+      first_name: string
+      last_name: string
+    }
+    'banking.category': {
+      id: string
+      name: string
     }
     Viewer: OneOf<
       [
@@ -528,6 +543,9 @@ export interface operations {
         'application/json': {
           state?: {
             [key: string]: unknown
+          }
+          streams?: {
+            [key: string]: boolean
           }
         }
       }
@@ -1627,6 +1645,82 @@ export interface operations {
               id: string
               _original?: unknown
             }[]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'verticals-salesEngagement-listContacts': {
+    parameters: {
+      query?: {
+        limit?: number
+        offset?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            hasNextPage: boolean
+            items: components['schemas']['sales-engagement.contact'][]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'verticals-banking-listCategories': {
+    parameters: {
+      query?: {
+        limit?: number
+        offset?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            hasNextPage: boolean
+            items: ({
+              _raw?: unknown
+            } & components['schemas']['banking.category'])[]
           }
         }
       }

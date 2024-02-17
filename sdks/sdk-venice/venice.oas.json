@@ -263,7 +263,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "state": {"type": "object", "additionalProperties": {}}
+                  "state": {"type": "object", "additionalProperties": {}},
+                  "streams": {
+                    "type": "object",
+                    "additionalProperties": {"type": "boolean"}
+                  }
                 }
               }
             }
@@ -1980,6 +1984,124 @@
         }
       }
     },
+    "/verticals/sales-engagement/contacts": {
+      "get": {
+        "operationId": "verticals-salesEngagement-listContacts",
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/sales-engagement.contact"
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verticals/banking/category": {
+      "get": {
+        "operationId": "verticals-banking-listCategories",
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hasNextPage": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {"$ref": "#/components/schemas/banking.category"}
+                        ],
+                        "type": "object",
+                        "properties": {"_raw": {}}
+                      }
+                    }
+                  },
+                  "required": ["hasNextPage", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/viewer": {
       "get": {
         "operationId": "getViewer",
@@ -2255,6 +2377,20 @@
           }
         },
         "required": ["createdAt", "updatedAt", "id"]
+      },
+      "sales-engagement.contact": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "first_name": {"type": "string"},
+          "last_name": {"type": "string"}
+        },
+        "required": ["id", "first_name", "last_name"]
+      },
+      "banking.category": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}, "name": {"type": "string"}},
+        "required": ["id", "name"]
       },
       "Viewer": {
         "oneOf": [
