@@ -33,6 +33,7 @@ export interface paths {
     post: operations['passthrough']
   }
   '/core/resource/{id}/source_sync': {
+    /** @description Return records that would have otherwise been emitted during a sync and return it instead */
     post: operations['sourceSync']
   }
   '/core/resource': {
@@ -43,6 +44,9 @@ export interface paths {
     get: operations['getResource']
     delete: operations['deleteResource']
     patch: operations['updateResource']
+  }
+  '/core/resource/{id}/_sync': {
+    post: operations['syncResource']
   }
   '/core/connector_config': {
     get: operations['adminListConnectorConfigs']
@@ -75,6 +79,9 @@ export interface paths {
   '/core/pipeline/{id}': {
     delete: operations['deletePipeline']
     patch: operations['updatePipeline']
+  }
+  '/core/pipeline/{id}/_sync': {
+    post: operations['syncPipeline']
   }
   '/verticals/accounting/account': {
     get: operations['verticals-accounting-account_list']
@@ -532,6 +539,7 @@ export interface operations {
       }
     }
   }
+  /** @description Return records that would have otherwise been emitted during a sync and return it instead */
   sourceSync: {
     parameters: {
       path: {
@@ -768,6 +776,59 @@ export interface operations {
       404: {
         content: {
           'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  syncResource: {
+    parameters: {
+      path: {
+        id: string
+      }
+    }
+    requestBody: {
+      content: {
+        'application/json': {
+          /** @description Run sync in the background, not compatible with other options for now... */
+          async?: boolean | null
+          /** @description Only sync resource metadata and skip pipelines */
+          metaOnly?: boolean | null
+          /** @description Remove `state` of pipeline and trigger a full resync */
+          fullResync?: boolean | null
+          /**
+           * @description
+           *     Triggers provider to refresh data from its source
+           *     https://plaid.com/docs/api/products/transactions/#transactionsrefresh
+           *     This may also load historical transactions. For example,
+           *     Finicity treats historical transaction as premium service.
+           */
+          todo_upstreamRefresh?: boolean | null
+          /**
+           * @description
+           *     See coda's implmementation. Requires adding a new message to the sync protocol
+           *     to remove all data from a particular source_id
+           */
+          todo_removeUnsyncedData?: boolean | null
+        }
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': unknown
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
         }
       }
       /** @description Internal server error */
@@ -1252,6 +1313,59 @@ export interface operations {
       404: {
         content: {
           'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  syncPipeline: {
+    parameters: {
+      path: {
+        id: string
+      }
+    }
+    requestBody: {
+      content: {
+        'application/json': {
+          /** @description Run sync in the background, not compatible with other options for now... */
+          async?: boolean | null
+          /** @description Only sync resource metadata and skip pipelines */
+          metaOnly?: boolean | null
+          /** @description Remove `state` of pipeline and trigger a full resync */
+          fullResync?: boolean | null
+          /**
+           * @description
+           *     Triggers provider to refresh data from its source
+           *     https://plaid.com/docs/api/products/transactions/#transactionsrefresh
+           *     This may also load historical transactions. For example,
+           *     Finicity treats historical transaction as premium service.
+           */
+          todo_upstreamRefresh?: boolean | null
+          /**
+           * @description
+           *     See coda's implmementation. Requires adding a new message to the sync protocol
+           *     to remove all data from a particular source_id
+           */
+          todo_removeUnsyncedData?: boolean | null
+        }
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': unknown
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
         }
       }
       /** @description Internal server error */

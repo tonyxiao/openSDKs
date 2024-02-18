@@ -244,7 +244,8 @@
     "/core/resource/{id}/source_sync": {
       "post": {
         "operationId": "sourceSync",
-        "tags": ["Core"],
+        "description": "Return records that would have otherwise been emitted during a sync and return it instead",
+        "tags": ["Internal"],
         "parameters": [
           {
             "in": "path",
@@ -594,6 +595,79 @@
             "content": {
               "application/json": {
                 "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/resource/{id}/_sync": {
+      "post": {
+        "operationId": "syncResource",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "async": {
+                    "type": ["boolean", "null"],
+                    "description": "Run sync in the background, not compatible with other options for now..."
+                  },
+                  "metaOnly": {
+                    "type": ["boolean", "null"],
+                    "description": "Only sync resource metadata and skip pipelines "
+                  },
+                  "fullResync": {
+                    "type": ["boolean", "null"],
+                    "description": "Remove `state` of pipeline and trigger a full resync"
+                  },
+                  "todo_upstreamRefresh": {
+                    "type": ["boolean", "null"],
+                    "description": "\n    Triggers provider to refresh data from its source\n    https://plaid.com/docs/api/products/transactions/#transactionsrefresh\n    This may also load historical transactions. For example,\n    Finicity treats historical transaction as premium service.\n  "
+                  },
+                  "todo_removeUnsyncedData": {
+                    "type": ["boolean", "null"],
+                    "description": "\n    See coda's implmementation. Requires adding a new message to the sync protocol\n    to remove all data from a particular source_id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
               }
             }
           },
@@ -1336,6 +1410,79 @@
             "content": {
               "application/json": {
                 "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/pipeline/{id}/_sync": {
+      "post": {
+        "operationId": "syncPipeline",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'pipe_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "async": {
+                    "type": ["boolean", "null"],
+                    "description": "Run sync in the background, not compatible with other options for now..."
+                  },
+                  "metaOnly": {
+                    "type": ["boolean", "null"],
+                    "description": "Only sync resource metadata and skip pipelines "
+                  },
+                  "fullResync": {
+                    "type": ["boolean", "null"],
+                    "description": "Remove `state` of pipeline and trigger a full resync"
+                  },
+                  "todo_upstreamRefresh": {
+                    "type": ["boolean", "null"],
+                    "description": "\n    Triggers provider to refresh data from its source\n    https://plaid.com/docs/api/products/transactions/#transactionsrefresh\n    This may also load historical transactions. For example,\n    Finicity treats historical transaction as premium service.\n  "
+                  },
+                  "todo_removeUnsyncedData": {
+                    "type": ["boolean", "null"],
+                    "description": "\n    See coda's implmementation. Requires adding a new message to the sync protocol\n    to remove all data from a particular source_id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
               }
             }
           },
