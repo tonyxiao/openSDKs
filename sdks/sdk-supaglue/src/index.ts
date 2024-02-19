@@ -61,6 +61,25 @@ export type SupaglueSDKTypes = SDKTypes<
   }
 >
 
+export interface ConnectionWithCredentials {
+  id: string
+  application_id: string
+  customer_id: string
+  provider_id: string
+  category: string
+  provider_name: string
+  credentials: {
+    type: string
+    access_token: string
+    refresh_token: string
+    expires_at: string
+  }
+  schema_mappings_config: unknown
+  entity_mappings: unknown
+  connection_sync_config: unknown
+  instance_url: string
+}
+
 export const supaglueSdkDef = {
   types: {} as SupaglueSDKTypes,
   defaultOptions: {},
@@ -103,7 +122,21 @@ export const supaglueSdkDef = {
       ...options,
       baseUrl: options.baseUrl ?? oas_ticketing.servers[0]?.url,
     })
+
+    const _private = ctx.createClient({
+      ...options,
+      baseUrl: options.baseUrl ?? 'https://api.supaglue.io',
+    })
     return {
+      private: {
+        ..._private,
+        exportConnection(opts: {customerId: string; connectionId: string}) {
+          return _private.request<ConnectionWithCredentials>(
+            'GET',
+            `/private/v2/customers/${opts.customerId}/connections/${opts.connectionId}`,
+          )
+        },
+      },
       actions,
       crm,
       data,
