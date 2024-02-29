@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-nango",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "exports": {
     ".": {
@@ -37,8 +37,9 @@
     "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
+    "download": "curl --fail https://raw.githubusercontent.com/NangoHQ/nango/master/docs-v2/spec.yaml > ./nango.oas.yaml",
     "generate": "run-s generate:*",
-    "generate:json": "npx tsx ./src/nango.oas.ts | prettier --parser json > ./nango.oas.json",
+    "generate:json": "cat nango.oas.yaml | node ../../bin/yaml2json.js -o nango.oas",
     "generate:types": "node ../../packages/cli/generateFromOas.js ./nango.oas.json",
     "version": "pnpm version"
   },

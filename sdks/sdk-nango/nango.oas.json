@@ -2,98 +2,44 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Nango API",
-    "version": "0.0.0"
+    "description": "Nango API specs used to authorize & sync data with external APIs.",
+    "version": "1.0.0"
   },
   "servers": [
-    {
-      "url": "https://api.nango.dev"
-    }
+    {"url": "https://api.nango.dev", "description": "Production server"},
+    {"url": "http://localhost:3003", "description": "Local server"}
   ],
   "paths": {
     "/config": {
       "get": {
-        "operationId": "listIntegrations",
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
+        "description": "Returns a list of integrations",
         "responses": {
           "200": {
+            "description": "Successfully returned a list of integrations",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": ["configs"],
                   "properties": {
                     "configs": {
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "required": ["unique_key", "provider"],
                         "properties": {
-                          "provider": {
-                            "$ref": "#/components/schemas/Provider"
-                          },
                           "unique_key": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "The integration ID that you created in Nango."
+                          },
+                          "provider": {
+                            "type": "string",
+                            "description": "The Nango API Configuration."
                           }
-                        },
-                        "required": ["provider", "unique_key"]
+                        }
                       }
                     }
-                  },
-                  "required": ["configs"]
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "updateIntegration",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "provider": {
-                    "$ref": "#/components/schemas/Provider"
-                  },
-                  "app_link": {
-                    "type": ["string", "null"]
-                  },
-                  "auth_mode": {
-                    "$ref": "#/components/schemas/AuthMode"
-                  },
-                  "provider_config_key": {
-                    "type": "string"
-                  },
-                  "oauth_client_id": {
-                    "type": "string"
-                  },
-                  "oauth_client_secret": {
-                    "type": "string"
-                  },
-                  "oauth_scopes": {
-                    "type": "string"
                   }
-                },
-                "required": [
-                  "provider",
-                  "provider_config_key",
-                  "oauth_client_id",
-                  "oauth_client_secret"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
                 }
               }
             }
@@ -101,51 +47,167 @@
         }
       },
       "post": {
-        "operationId": "createIntegration",
+        "description": "Create a new integration",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["provider_config_key", "provider"],
                 "properties": {
-                  "provider": {
-                    "$ref": "#/components/schemas/Provider"
-                  },
-                  "app_link": {
-                    "type": ["string", "null"]
-                  },
-                  "auth_mode": {
-                    "$ref": "#/components/schemas/AuthMode"
-                  },
                   "provider_config_key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique integration ID, which you will use in the other API calls to reference this integration."
+                  },
+                  "provider": {
+                    "type": "string",
+                    "description": "The Nango API Configuration."
                   },
                   "oauth_client_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of your OAuth app (registed with the external API). Required for OAuth APIs."
                   },
                   "oauth_client_secret": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The secret of your OAuth app (registed with the external API). Required for OAuth APIs."
                   },
                   "oauth_scopes": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Comma separated list of scopes."
                   }
-                },
-                "required": [
-                  "provider",
-                  "provider_config_key",
-                  "oauth_client_id",
-                  "oauth_client_secret"
-                ]
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
+            "description": "Successfully created an integration",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
+                  "type": "object",
+                  "required": ["config"],
+                  "properties": {
+                    "config": {
+                      "type": "object",
+                      "required": ["unique_key", "provider"],
+                      "properties": {
+                        "unique_key": {
+                          "type": "string",
+                          "description": "The integration ID that you created in Nango."
+                        },
+                        "provider": {
+                          "type": "string",
+                          "description": "The Nango API Configuration."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Edits an integration (only for OAuth APIs)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "provider_config_key",
+                  "provider",
+                  "oauth_client_id",
+                  "oauth_client_secret"
+                ],
+                "properties": {
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The integration ID that you created on Nango."
+                  },
+                  "provider": {
+                    "type": "string",
+                    "description": "The Nango API Configuration."
+                  },
+                  "oauth_client_id": {
+                    "type": "string",
+                    "description": "The ID of your OAuth app (registed with the external API)."
+                  },
+                  "oauth_client_secret": {
+                    "type": "string",
+                    "description": "The secret of your OAuth app (registed with the external API)."
+                  },
+                  "oauth_scopes": {
+                    "type": "string",
+                    "description": "Comma separated list of scopes."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully edit an integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["config"],
+                  "properties": {
+                    "config": {
+                      "type": "object",
+                      "required": ["unique_key", "provider"],
+                      "properties": {
+                        "unique_key": {
+                          "type": "string",
+                          "description": "The integration ID that you created in Nango."
+                        },
+                        "provider": {
+                          "type": "string",
+                          "description": "The Nango API Configuration."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
@@ -153,59 +215,115 @@
         }
       }
     },
-    "/config/{provider_config_key}": {
+    "/config/{providerConfigKey}": {
       "get": {
-        "operationId": "getIntegration",
+        "description": "Returns a specific integration",
         "parameters": [
           {
+            "name": "providerConfigKey",
             "in": "path",
-            "name": "provider_config_key",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID that you created in Nango."
           },
           {
-            "in": "query",
             "name": "include_creds",
-            "schema": {
-              "type": "boolean"
-            }
+            "in": "query",
+            "required": false,
+            "description": "If true, the response will contain the client ID, secret, scopes, auth_mode and app link - if applicable. include_creds is false by default.",
+            "schema": {"type": "boolean"}
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
         "responses": {
           "200": {
+            "description": "Successfully returned an integration",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": ["config"],
                   "properties": {
                     "config": {
-                      "anyOf": [
-                        {
-                          "$ref": "#/components/schemas/Integration"
+                      "type": "object",
+                      "required": ["unique_key", "provider"],
+                      "properties": {
+                        "unique_key": {
+                          "type": "string",
+                          "description": "The integration ID that you created in Nango."
                         },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "provider": {
-                              "$ref": "#/components/schemas/Provider"
-                            },
-                            "unique_key": {
-                              "type": "string"
+                        "provider": {
+                          "type": "string",
+                          "description": "The Nango API Configuration."
+                        },
+                        "actions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The name of the action."
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "description": "The creation timestamp of the sync."
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "description": "The last updated timestamp of the sync."
+                              }
                             }
-                          },
-                          "required": ["provider", "unique_key"]
+                          }
+                        },
+                        "syncs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The name of the sync."
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "description": "The creation timestamp of the sync."
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "description": "The last updated timestamp of the sync."
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Description of what the sync does and details about it"
+                              }
+                            }
+                          }
                         }
-                      ]
+                      }
                     }
-                  },
-                  "required": ["config"]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
@@ -213,28 +331,36 @@
         }
       },
       "delete": {
-        "operationId": "deleteIntegration",
+        "description": "Deletes a specific integration",
         "parameters": [
           {
+            "name": "providerConfigKey",
             "in": "path",
-            "name": "provider_config_key",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID that you created in Nango."
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
         "responses": {
-          "200": {
+          "204": {"description": "Successfully deleled an integration"},
+          "400": {
+            "description": "Invalid request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
@@ -244,48 +370,147 @@
     },
     "/connection": {
       "get": {
-        "operationId": "listConnections",
-        "requestBody": {
-          "content": {
-            "application/json": {}
+        "description": "Returns a list of connections without credentials",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "query",
+            "schema": {"type": "string"},
+            "description": "Filter the list of connections based on this connection ID."
           }
-        },
+        ],
         "responses": {
           "200": {
+            "description": "Successfully returned a list of connections",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": ["configs"],
                   "properties": {
-                    "connections": {
+                    "configs": {
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "required": [
+                          "id",
+                          "connection_id",
+                          "provider",
+                          "provider_config_key",
+                          "created"
+                        ],
                         "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "The internal Nango ID used for the connection."
+                          },
                           "connection_id": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "The connection ID used to create the connection."
+                          },
+                          "provider": {
+                            "type": "string",
+                            "description": "The Nango API Configuration."
+                          },
+                          "provider_config_key": {
+                            "type": "string",
+                            "description": "The integration ID used to create the connection (aka Unique Key, Provider Config Key)."
                           },
                           "created": {
                             "type": "string",
-                            "format": "date-time"
+                            "description": "Connection creation date."
                           },
-                          "id": {
-                            "type": "number"
-                          },
-                          "provider": {
-                            "$ref": "#/components/schemas/Provider"
+                          "metadata": {
+                            "type": "object",
+                            "description": "Custom metadata attached to the connection"
                           }
-                        },
-                        "required": [
-                          "connection_id",
-                          "created",
-                          "id",
-                          "provider"
-                        ]
+                        }
                       }
                     }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Adds a connection for which you already have credentials.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["connection_id", "provider_config_key"],
+                "properties": {
+                  "connection_id": {
+                    "type": "string",
+                    "description": "The connection ID used to create the connection."
                   },
-                  "required": ["connections"]
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The integration ID that you created on Nango."
+                  },
+                  "access_token": {
+                    "type": "string",
+                    "description": "(OAuth 2, required) Existing access token."
+                  },
+                  "refresh_token": {
+                    "type": "string",
+                    "description": "(OAuth 2, optional) Pass the refresh token if you have it."
+                  },
+                  "expires_at": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "(OAuth 2, optional) Safer and preferred."
+                  },
+                  "expires_in": {
+                    "type": "integer",
+                    "description": "(OAuth 2, optional) In seconds."
+                  },
+                  "oauth_token": {
+                    "type": "string",
+                    "description": "(OAuth 1, required) The client token to be attached to the connection."
+                  },
+                  "oauth_token_secret": {
+                    "type": "string",
+                    "description": "(OAuth 1, required) The client token secret to be attached to the connection."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "(OAuth, required for some APIs) Metadata to be attached to the connection."
+                  },
+                  "connection_config": {
+                    "type": "object",
+                    "description": "(OAuth, required for some APIs) Additional configuration to be attached to the connection."
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "(Basic, required) username to be attached to the connection."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "(Basic, required) password to be attached to the connection."
+                  },
+                  "api_key": {
+                    "type": "string",
+                    "description": "(API Key, required) API key to be attached to the connection."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Successfully created an integrations"},
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
@@ -295,50 +520,55 @@
     },
     "/connection/{connectionId}": {
       "get": {
-        "operationId": "getConnection",
+        "description": "Returns a specific connection with credentials",
         "parameters": [
           {
-            "in": "path",
             "name": "connectionId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
           },
           {
-            "in": "query",
             "name": "provider_config_key",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
+            "in": "query",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
           },
           {
-            "in": "query",
             "name": "force_refresh",
-            "schema": {
-              "type": "boolean"
-            }
+            "in": "query",
+            "description": "If true, Nango will attempt to refresh the access access token regardless of its expiration status (false by default).",
+            "schema": {"type": "boolean"}
           },
           {
-            "in": "query",
             "name": "refresh_token",
-            "schema": {
-              "type": "boolean"
-            }
+            "in": "query",
+            "description": "If true, return the refresh token as part of the response (false by default).",
+            "schema": {"type": "boolean"}
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
         "responses": {
-          "200": {
+          "200": {"description": "Successfully returned a connection"},
+          "400": {
+            "description": "Invalid request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connection"
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown Connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
@@ -346,362 +576,1118 @@
         }
       },
       "delete": {
-        "operationId": "deleteConnection",
+        "description": "Deletes a specific connection",
         "parameters": [
           {
+            "name": "connectionId",
             "in": "path",
-            "name": "connection_id",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
           },
           {
-            "in": "query",
             "name": "provider_config_key",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
             "in": "query",
-            "name": "force_refresh",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "refresh_token",
-            "schema": {
-              "type": "boolean"
-            }
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        },
         "responses": {
-          "200": {
+          "204": {"description": "Successfully deleled an connection"},
+          "400": {
+            "description": "Invalid request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
                 }
               }
             }
           }
         }
       }
-    }
-  },
-  "components": {
-    "securitySchemes": {},
-    "schemas": {
-      "Provider": {
-        "type": "string",
-        "enum": [
-          "accelo",
-          "adobe",
-          "aircall",
-          "airtable",
-          "apollo",
-          "amazon",
-          "amplitude",
-          "asana",
-          "ashby",
-          "atlassian",
-          "bamboohr",
-          "battlenet",
-          "bitbucket",
-          "boldsign",
-          "box",
-          "braintree",
-          "braintree-sandbox",
-          "brex",
-          "brex-staging",
-          "calendly",
-          "clickup",
-          "confluence",
-          "contentstack",
-          "deel",
-          "deel-sandbox",
-          "digitalocean",
-          "discord",
-          "docusign",
-          "docusign-sandbox",
-          "dropbox",
-          "epic-games",
-          "evaluagent",
-          "eventbrite",
-          "exact-online",
-          "factorial",
-          "facebook",
-          "figjam",
-          "figma",
-          "fitbit",
-          "freshbooks",
-          "freshservice",
-          "front",
-          "github",
-          "github-app",
-          "gitlab",
-          "gong",
-          "google",
-          "google-calendar",
-          "google-mail",
-          "google-sheet",
-          "gorgias",
-          "greenhouse",
-          "gumroad",
-          "gusto",
-          "health-gorilla",
-          "highlevel",
-          "hubspot",
-          "instagram",
-          "intercom",
-          "intuit",
-          "jira",
-          "keap",
-          "lever",
-          "linear",
-          "linkedin",
-          "linkhut",
-          "mailchimp",
-          "microsoft-teams",
-          "mixpanel",
-          "miro",
-          "monday",
-          "mural",
-          "nationbuilder",
-          "netsuite",
-          "notion",
-          "one-drive",
-          "osu",
-          "outreach",
-          "pagerduty",
-          "pandadoc",
-          "payfit",
-          "pennylane",
-          "pipedrive",
-          "qualtrics",
-          "quickbooks",
-          "ramp",
-          "ramp-sandbox",
-          "reddit",
-          "ring-central",
-          "ring-central-sandbox",
-          "segment",
-          "sage",
-          "salesforce",
-          "salesforce-sandbox",
-          "salesloft",
-          "servicem8",
-          "shopify",
-          "shortcut",
-          "slack",
-          "smugmug",
-          "splitwise",
-          "spotify",
-          "squareup",
-          "squareup-sandbox",
-          "stackexchange",
-          "strava",
-          "stripe",
-          "stripe-express",
-          "survey-monkey",
-          "teamwork",
-          "timely",
-          "trello",
-          "todoist",
-          "twitch",
-          "twitter",
-          "twitter-v2",
-          "twinfield",
-          "typeform",
-          "uber",
-          "unauthenticated",
-          "wakatime",
-          "wave-accounting",
-          "wildix-pbx",
-          "workable",
-          "xero",
-          "yahoo",
-          "yandex",
-          "youtube",
-          "zapier-nla",
-          "zendesk",
-          "zenefits",
-          "zoho",
-          "zoho-books",
-          "zoho-crm",
-          "zoho-desk",
-          "zoho-inventory",
-          "zoho-invoice",
-          "zoom"
-        ]
-      },
-      "AuthMode": {
-        "type": "string",
-        "enum": ["OAUTH2", "OAUTH1", "BASIC", "API_KEY"]
-      },
-      "Integration": {
-        "type": "object",
-        "properties": {
-          "provider": {
-            "$ref": "#/components/schemas/Provider"
+    },
+    "/connection/{connectionId}/metadata": {
+      "post": {
+        "description": "Set custom metadata for the connection.",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
           },
-          "unique_key": {
-            "type": "string"
-          },
-          "client_id": {
-            "type": "string"
-          },
-          "client_secret": {
-            "type": "string"
-          },
-          "scopes": {
-            "type": "string"
-          },
-          "app_link": {
-            "type": ["string", "null"]
-          },
-          "auth_mode": {
-            "$ref": "#/components/schemas/AuthMode"
+          {
+            "name": "Provider-Config-Key",
+            "in": "header",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
           }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {"type": "object"}}}
         },
-        "required": [
-          "provider",
-          "unique_key",
-          "client_id",
-          "client_secret",
-          "auth_mode"
-        ]
-      },
-      "Connection": {
-        "type": "object",
-        "properties": {
-          "connection_id": {
-            "type": "string"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "id": {
-            "type": "number"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/Provider"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "provider_config_key": {
-            "type": "string"
-          },
-          "credentials": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "$ref": "#/components/schemas/AuthMode"
-              },
-              "access_token": {
-                "type": "string"
-              },
-              "refresh_token": {
-                "type": "string"
-              },
-              "expires_at": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "raw": {
-                "type": "object",
-                "properties": {
-                  "access_token": {
-                    "type": "string"
-                  },
-                  "expires_in": {
-                    "type": "number"
-                  },
-                  "expires_at": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "refresh_token": {
-                    "type": ["string", "null"]
-                  },
-                  "refresh_token_expires_in": {
-                    "type": ["number", "null"]
-                  },
-                  "token_type": {
-                    "type": "string"
-                  },
-                  "scope": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "access_token",
-                  "expires_in",
-                  "expires_at",
-                  "token_type"
-                ]
+        "responses": {
+          "201": {"description": "Successfully created an integrations"},
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
               }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Edit custom metadata for the connection (only overrides specified properties, not the entire metadata).",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "name": "Provider-Config-Key",
+            "in": "header",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {"type": "object"}}}
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the metadata",
+            "content": {"application/json": {"schema": {"type": "object"}}}
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/records": {
+      "get": {
+        "description": "Returns data synced with Nango Sync",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The data model to fetch"
+          },
+          {
+            "name": "delta",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string"},
+            "description": "Timestamp, e.g. 2023-05-31T11:46:13.390Z. If passed only records added or updated after this timestamp are returned, otherwise all records are returned."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer"},
+            "description": "The maximum number of records to return. Defaults to 100."
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string"},
+            "description": "Base 64 encoded value that can be used to fetch the next page of results. The cursor will be included until there are no more results to paginate through.\n"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["added", "updated", "deleted"]
             },
-            "required": ["type", "access_token", "expires_at", "raw"]
+            "description": "Filter to only show results that have been added or updated or deleted. Helpful when used in conjuction with the delta parameter to retrieve a subset or records that were added, updated, or deleted with the latest sync."
           },
-          "connection_config": {
-            "type": "object",
-            "additionalProperties": {}
+          {
+            "name": "Connection-Id",
+            "in": "header",
+            "required": true,
+            "description": "The connection ID used to create the connection.",
+            "schema": {"type": "string"}
           },
-          "metadata": {
-            "type": ["object", "null"],
-            "additionalProperties": {}
+          {
+            "name": "Provider-Config-Key",
+            "in": "header",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "your-properties": {
+                            "type": "string",
+                            "description": "The data Nango synced in for you",
+                            "example": "Your synced data, in the schema you (or Nango) defined in nango.yaml"
+                          },
+                          "_nango_metadata": {
+                            "type": "object",
+                            "properties": {
+                              "deleted_at": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The timestamp at which Nango detected the record as deleted"
+                              },
+                              "last_action": {
+                                "type": "string",
+                                "description": "The last action seen on this record",
+                                "enum": ["ADDED", "UPDATED", "DELETED"]
+                              },
+                              "first_seen_at": {
+                                "type": "string",
+                                "description": "The timestamp at which Nango first saw this record",
+                                "example": "2023-09-18T15:20:35.941305+00:00"
+                              },
+                              "last_modified_at": {
+                                "type": "string",
+                                "description": "The timestamp at which Nango last detected a change to this record",
+                                "example": "2023-09-18T15:20:35.941305+00:00"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next_cursor": {
+                      "type": "string",
+                      "description": "The base64-encoded cursor for pagination",
+                      "example": "MjAyMy0xMS0xN1QxMTo0NzoxNC40NDcrMDI6MDB8fDAzZTA1NzIxLWNiZmQtNGYxNS1iYTNhLWFlNjM2Y2MwNmEw=="
+                    }
+                  }
+                }
+              }
+            }
           },
-          "credentials_iv": {
-            "type": "string"
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/records": {
+      "get": {
+        "description": "Returns data synced with Nango Sync",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The data model to fetch"
           },
-          "credentials_tag": {
-            "type": "string"
+          {
+            "name": "delta",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string"},
+            "description": "Timestamp, e.g. 2023-05-31T11:46:13.390Z. If passed only records added or updated after this timestamp are returned, otherwise all records are returned."
           },
-          "environment_id": {
-            "type": "number"
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer"},
+            "description": "The maximum number of records to return. If not passed, all records are returned."
           },
-          "deleted": {
-            "type": "boolean"
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer"},
+            "description": "The number of records to skip. If not passed, no records are skipped."
           },
-          "deleted_at": {
-            "type": ["string", "null"],
-            "format": "date-time"
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["created_at", "updated_at", "id"]
+            },
+            "description": "Set how the records are sorted. The default is id. The options are 'created_at', 'updated_at', 'id'."
           },
-          "last_fetched_at": {
-            "type": ["string", "null"],
-            "format": "date-time"
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["desc", "asc"]},
+            "description": "Set the order of results. The default is 'desc'. The options are 'desc' or 'asc'."
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["added", "updated", "deleted"]
+            },
+            "description": "Filter to only show results that have been added or updated or deleted. Helpful when used in conjuction with the delta parameter to retrieve a subset or records that were added, updated, or deleted with the latest sync."
+          },
+          {
+            "name": "Connection-Id",
+            "in": "header",
+            "required": true,
+            "description": "The connection ID used to create the connection.",
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "Provider-Config-Key",
+            "in": "header",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "your-properties": {
+                        "type": "string",
+                        "description": "The data Nango synced in for you",
+                        "example": "Your synced data, in the schema you (or Nango) defined in nango.yaml"
+                      },
+                      "_nango_metadata": {
+                        "type": "object",
+                        "properties": {
+                          "deleted_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The timestamp at which Nango detected the record as deleted"
+                          },
+                          "last_action": {
+                            "type": "string",
+                            "description": "The last action seen on this record",
+                            "enum": ["ADDED", "UPDATED", "DELETED"]
+                          },
+                          "first_seen_at": {
+                            "type": "string",
+                            "description": "The timestamp at which Nango first saw this record",
+                            "example": "2023-09-18T15:20:35.941305+00:00"
+                          },
+                          "last_modified_at": {
+                            "type": "string",
+                            "description": "The timestamp at which Nango last detected a change to this record",
+                            "example": "2023-09-18T15:20:35.941305+00:00"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/trigger": {
+      "post": {
+        "description": "Triggers an additional, one-off execution of specified sync(s) (for a given connection or all applicable connections if no connection is specified).",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["provider_config_key", "syncs"],
+                "properties": {
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The ID of the integration that you established within Nango."
+                  },
+                  "connection_id": {
+                    "type": "string",
+                    "description": "The ID of the connection. If omitted, the syncs will be triggered for all relevant connections."
+                  },
+                  "syncs": {
+                    "type": "array",
+                    "description": "An array of sync names to trigger. If the array is empty, all syncs are triggered.",
+                    "items": {"type": "string"}
+                  },
+                  "full_resync": {
+                    "type": "boolean",
+                    "description": "Clear the records and reset the \"lastSyncDate\" associated with the sync before triggering a new sync job."
+                  }
+                }
+              }
+            }
           }
         },
-        "required": [
-          "connection_id",
-          "created",
-          "id",
-          "provider",
-          "updated_at",
-          "provider_config_key",
-          "credentials",
-          "connection_config",
-          "metadata",
-          "credentials_iv",
-          "credentials_tag",
-          "environment_id",
-          "deleted",
-          "deleted_at",
-          "last_fetched_at"
-        ]
+        "responses": {
+          "200": {"description": "Successfully triggered the sync"},
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/start": {
+      "post": {
+        "description": "Starts the schedule of specified sync(s) for a given connection or all applicable connections if no connection is specified.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["provider_config_key", "syncs"],
+                "properties": {
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The ID of the integration that you established within Nango."
+                  },
+                  "connection_id": {
+                    "type": "string",
+                    "description": "The ID of the connection. If omitted, the syncs will be started for all relevant connections."
+                  },
+                  "syncs": {
+                    "type": "array",
+                    "description": "A list of sync names that you wish to start.",
+                    "items": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Successfully started the sync"},
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/pause": {
+      "post": {
+        "description": "Pauses the schedule of specified sync(s) for a given connection or all applicable connections if no connection is specified.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["provider_config_key", "syncs"],
+                "properties": {
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The ID of the integration that you established within Nango."
+                  },
+                  "connection_id": {
+                    "type": "string",
+                    "description": "The ID of the connection. If omitted, the syncs will be paused for all relevant connections."
+                  },
+                  "syncs": {
+                    "type": "array",
+                    "description": "A list of sync names that you wish to pause.",
+                    "items": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Successfully paused the sync"},
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/status": {
+      "get": {
+        "description": "Get the status of specified sync(s) (for a given connection or all applicable connections if no connection is specified)",
+        "parameters": [
+          {
+            "name": "provider_config_key",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The ID of the integration you established within Nango"
+          },
+          {
+            "name": "syncs",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The name of the syncs you want to fetch a status for. Pass in \"*\" to return all syncs per the integration"
+          },
+          {
+            "name": "connection_id",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string"},
+            "description": "The ID of the connection. If omitted, all connections will be surfaced."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned a list of syncs and their status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "syncs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The unique identifier for the sync."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the sync."
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "RUNNING",
+                              "PAUSED",
+                              "STOPPED",
+                              "SUCCESS",
+                              "ERROR"
+                            ],
+                            "description": "The current status of the sync."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "The most recent sync type completed",
+                            "enum": ["INCREMENTAL", "INITIAL"]
+                          },
+                          "finishedAt": {
+                            "type": "string",
+                            "description": "ISO string of the most recently completed sync"
+                          },
+                          "nextScheduledSyncAt": {
+                            "type": "string",
+                            "description": "ISO string of the next scheduled sync time"
+                          },
+                          "frequency": {
+                            "type": "string",
+                            "description": "The execution frequency of the sync"
+                          },
+                          "latestResult": {
+                            "type": "object",
+                            "description": "Additional information regarding the latest result of the sync. Contains a model name with added, updated and deleted records"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sync/update-connection-frequency": {
+      "put": {
+        "description": "Override a sync's default frequency for a specific connection, or revert to the default frequency.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "provider_config_key",
+                  "connection_id",
+                  "sync_name",
+                  "frequency"
+                ],
+                "properties": {
+                  "provider_config_key": {
+                    "type": "string",
+                    "description": "The ID of the integration you established within Nango"
+                  },
+                  "connection_id": {
+                    "type": "string",
+                    "description": "The ID of the connection"
+                  },
+                  "sync_name": {
+                    "type": "string",
+                    "description": "The name of the sync you want to update"
+                  },
+                  "frequency": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The frequency you want to set (ex: 'every hour'). Set null to revert to the default frequency"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the frequency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "frequency": {
+                      "type": "string",
+                      "description": "The updated frequency value"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/trigger": {
+      "post": {
+        "description": "Triggers an action for a connection",
+        "parameters": [
+          {
+            "name": "Connection-Id",
+            "in": "header",
+            "required": true,
+            "description": "The connection ID used to create the connection.",
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "Provider-Config-Key",
+            "in": "header",
+            "required": true,
+            "description": "The integration ID used to create the connection (aka Unique Key).",
+            "schema": {"type": "string"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["action_name"],
+                "properties": {
+                  "action_name": {
+                    "type": "string",
+                    "description": "The name of the action to trigger."
+                  },
+                  "input": {
+                    "type": "object",
+                    "description": "The necessary input for your action's 'runAction' function."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the result of the action",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "your-properties": {
+                      "type": "string",
+                      "description": "The data returned by the action",
+                      "example": "The data returned by the action"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"message": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environment-variables": {
+      "get": {
+        "description": "Retrieve the environment variables as added in the Nango dashboard",
+        "responses": {
+          "200": {
+            "description": "Retrieve the environment variables as added in the Nango dashboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the environment variable",
+                        "example": "MY_SECRET_KEY"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The value of the environment variable",
+                        "example": "SK_373892NSHFNCOWFO..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proxy/{anyPath}": {
+      "get": {
+        "description": "Make a GET request with the Proxy.",
+        "parameters": [
+          {
+            "name": "anyPath",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "$ANY_QUERY_PARAMS",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "in": "header",
+            "name": "Connection-Id",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "in": "header",
+            "name": "Provider-Config-Key",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID used to create the connection (aka Unique Key)."
+          },
+          {
+            "in": "header",
+            "name": "Retries",
+            "schema": {"type": "string"},
+            "description": "The number of retries in case of failure (with exponential back-off). Optional, default 0."
+          },
+          {
+            "in": "header",
+            "name": "Retry On",
+            "schema": {"type": "string"},
+            "description": "Comma separated status codes to explicitly retry on in addition to the default 5xx and 429."
+          },
+          {
+            "in": "header",
+            "name": "Base-Url-Override",
+            "schema": {"type": "string"},
+            "description": "Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional"
+          },
+          {
+            "in": "header",
+            "name": "Decompress",
+            "schema": {"type": "string"},
+            "description": "Override the decompress option when making requests. Optional, defaults to false"
+          },
+          {
+            "in": "header",
+            "name": "nango-proxy-$ANY_HEADER",
+            "schema": {"type": "string"},
+            "description": "Any other headers you send are passed on to the external API"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response exactly as returned by the external API"
+          }
+        }
+      },
+      "post": {
+        "description": "Make a POST request with the Proxy.",
+        "parameters": [
+          {
+            "name": "anyPath",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "in": "header",
+            "name": "Connection-Id",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "in": "header",
+            "name": "Provider-Config-Key",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID used to create the connection (aka Unique Key)."
+          },
+          {
+            "in": "header",
+            "name": "Retries",
+            "schema": {"type": "string"},
+            "description": "The number of retries in case of failure (with exponential back-off). Optional, default 0."
+          },
+          {
+            "in": "header",
+            "name": "Base-Url-Override",
+            "schema": {"type": "string"},
+            "description": "Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional"
+          },
+          {
+            "in": "header",
+            "name": "Decompress",
+            "schema": {"type": "string"},
+            "description": "Override the decompress option when making requests. Optional, defaults to false"
+          },
+          {
+            "in": "header",
+            "name": "nango-proxy-$ANY_HEADER",
+            "schema": {"type": "string"},
+            "description": "Any other headers you send are passed on to the external API"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {"$ANY_BODY_PARAMS": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The response exactly as returned by the external API"
+          }
+        }
+      },
+      "put": {
+        "description": "Make a PUT request with the Proxy.",
+        "parameters": [
+          {
+            "name": "anyPath",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "in": "header",
+            "name": "Connection-Id",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "in": "header",
+            "name": "Provider-Config-Key",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID used to create the connection (aka Unique Key)."
+          },
+          {
+            "in": "header",
+            "name": "Retries",
+            "schema": {"type": "string"},
+            "description": "The number of retries in case of failure (with exponential back-off). Optional, default 0."
+          },
+          {
+            "in": "header",
+            "name": "Base-Url-Override",
+            "schema": {"type": "string"},
+            "description": "Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional"
+          },
+          {
+            "in": "header",
+            "name": "Decompress",
+            "schema": {"type": "string"},
+            "description": "Override the decompress option when making requests. Optional, defaults to false"
+          },
+          {
+            "in": "header",
+            "name": "nango-proxy-$ANY_HEADER",
+            "schema": {"type": "string"},
+            "description": "Any other headers you send are passed on to the external API"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {"$ANY_BODY_PARAMS": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The response exactly as returned by the external API"
+          }
+        }
+      },
+      "patch": {
+        "description": "Make a PATCH request with the Proxy.",
+        "parameters": [
+          {
+            "name": "anyPath",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "in": "header",
+            "name": "Connection-Id",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "in": "header",
+            "name": "Provider-Config-Key",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID used to create the connection (aka Unique Key)."
+          },
+          {
+            "in": "header",
+            "name": "Retries",
+            "schema": {"type": "string"},
+            "description": "The number of retries in case of failure (with exponential back-off). Optional, default 0."
+          },
+          {
+            "in": "header",
+            "name": "Base-Url-Override",
+            "schema": {"type": "string"},
+            "description": "Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional"
+          },
+          {
+            "in": "header",
+            "name": "Decompress",
+            "schema": {"type": "string"},
+            "description": "Override the decompress option when making requests. Optional, defaults to false"
+          },
+          {
+            "in": "header",
+            "name": "nango-proxy-$ANY_HEADER",
+            "schema": {"type": "string"},
+            "description": "Any other headers you send are passed on to the external API"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {"$ANY_BODY_PARAMS": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The response exactly as returned by the external API"
+          }
+        }
+      },
+      "delete": {
+        "description": "Make a DELETE request with the Proxy.",
+        "parameters": [
+          {
+            "name": "anyPath",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "$ANY_QUERY_PARAMS",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "in": "header",
+            "name": "Connection-Id",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The connection ID used to create the connection."
+          },
+          {
+            "in": "header",
+            "name": "Provider-Config-Key",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The integration ID used to create the connection (aka Unique Key)."
+          },
+          {
+            "in": "header",
+            "name": "Retries",
+            "schema": {"type": "string"},
+            "description": "The number of retries in case of failure (with exponential back-off). Optional, default 0."
+          },
+          {
+            "in": "header",
+            "name": "Base-Url-Override",
+            "schema": {"type": "string"},
+            "description": "Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional"
+          },
+          {
+            "in": "header",
+            "name": "Decompress",
+            "schema": {"type": "string"},
+            "description": "Override the decompress option when making requests. Optional, defaults to false"
+          },
+          {
+            "in": "header",
+            "name": "nango-proxy-$ANY_HEADER",
+            "schema": {"type": "string"},
+            "description": "Any other headers you send are passed on to the external API"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response exactly as returned by the external API"
+          }
+        }
       }
     }
   }

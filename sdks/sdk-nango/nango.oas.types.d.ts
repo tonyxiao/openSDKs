@@ -5,414 +5,1025 @@
 
 export interface paths {
   '/config': {
-    get: operations['listIntegrations']
-    put: operations['updateIntegration']
-    post: operations['createIntegration']
+    /** @description Returns a list of integrations */
+    get: {
+      responses: {
+        /** @description Successfully returned a list of integrations */
+        200: {
+          content: {
+            'application/json': {
+              configs: {
+                /** @description The integration ID that you created in Nango. */
+                unique_key: string
+                /** @description The Nango API Configuration. */
+                provider: string
+              }[]
+            }
+          }
+        }
+      }
+    }
+    /** @description Edits an integration (only for OAuth APIs) */
+    put: {
+      requestBody: {
+        content: {
+          'application/json': {
+            /** @description The integration ID that you created on Nango. */
+            provider_config_key: string
+            /** @description The Nango API Configuration. */
+            provider: string
+            /** @description The ID of your OAuth app (registed with the external API). */
+            oauth_client_id: string
+            /** @description The secret of your OAuth app (registed with the external API). */
+            oauth_client_secret: string
+            /** @description Comma separated list of scopes. */
+            oauth_scopes?: string
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully edit an integration */
+        200: {
+          content: {
+            'application/json': {
+              config: {
+                /** @description The integration ID that you created in Nango. */
+                unique_key: string
+                /** @description The Nango API Configuration. */
+                provider: string
+              }
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+        /** @description Unknown integration */
+        404: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+    /** @description Create a new integration */
+    post: {
+      requestBody: {
+        content: {
+          'application/json': {
+            /** @description A unique integration ID, which you will use in the other API calls to reference this integration. */
+            provider_config_key: string
+            /** @description The Nango API Configuration. */
+            provider: string
+            /** @description The ID of your OAuth app (registed with the external API). Required for OAuth APIs. */
+            oauth_client_id?: string
+            /** @description The secret of your OAuth app (registed with the external API). Required for OAuth APIs. */
+            oauth_client_secret?: string
+            /** @description Comma separated list of scopes. */
+            oauth_scopes?: string
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully created an integration */
+        200: {
+          content: {
+            'application/json': {
+              config: {
+                /** @description The integration ID that you created in Nango. */
+                unique_key: string
+                /** @description The Nango API Configuration. */
+                provider: string
+              }
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
   }
-  '/config/{provider_config_key}': {
-    get: operations['getIntegration']
-    delete: operations['deleteIntegration']
+  '/config/{providerConfigKey}': {
+    /** @description Returns a specific integration */
+    get: {
+      parameters: {
+        query?: {
+          /** @description If true, the response will contain the client ID, secret, scopes, auth_mode and app link - if applicable. include_creds is false by default. */
+          include_creds?: boolean
+        }
+        path: {
+          /** @description The integration ID that you created in Nango. */
+          providerConfigKey: string
+        }
+      }
+      responses: {
+        /** @description Successfully returned an integration */
+        200: {
+          content: {
+            'application/json': {
+              config: {
+                /** @description The integration ID that you created in Nango. */
+                unique_key: string
+                /** @description The Nango API Configuration. */
+                provider: string
+                actions?: {
+                  /** @description The name of the action. */
+                  name?: string
+                  /** @description The creation timestamp of the sync. */
+                  created_at?: string
+                  /** @description The last updated timestamp of the sync. */
+                  updated_at?: string
+                }[]
+                syncs?: {
+                  /** @description The name of the sync. */
+                  name?: string
+                  /** @description The creation timestamp of the sync. */
+                  created_at?: string
+                  /** @description The last updated timestamp of the sync. */
+                  updated_at?: string
+                  /** @description Description of what the sync does and details about it */
+                  description?: string
+                }[]
+              }
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+        /** @description Unknown integration */
+        404: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+    /** @description Deletes a specific integration */
+    delete: {
+      parameters: {
+        path: {
+          /** @description The integration ID that you created in Nango. */
+          providerConfigKey: string
+        }
+      }
+      responses: {
+        /** @description Successfully deleled an integration */
+        204: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+        /** @description Unknown integration */
+        404: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
   }
   '/connection': {
-    get: operations['listConnections']
+    /** @description Returns a list of connections without credentials */
+    get: {
+      parameters: {
+        query?: {
+          /** @description Filter the list of connections based on this connection ID. */
+          connectionId?: string
+        }
+      }
+      responses: {
+        /** @description Successfully returned a list of connections */
+        200: {
+          content: {
+            'application/json': {
+              configs: {
+                /** @description The internal Nango ID used for the connection. */
+                id: number
+                /** @description The connection ID used to create the connection. */
+                connection_id: string
+                /** @description The Nango API Configuration. */
+                provider: string
+                /** @description The integration ID used to create the connection (aka Unique Key, Provider Config Key). */
+                provider_config_key: string
+                /** @description Connection creation date. */
+                created: string
+                /** @description Custom metadata attached to the connection */
+                metadata?: Record<string, never>
+              }[]
+            }
+          }
+        }
+      }
+    }
+    /** @description Adds a connection for which you already have credentials. */
+    post: {
+      requestBody: {
+        content: {
+          'application/json': {
+            /** @description The connection ID used to create the connection. */
+            connection_id: string
+            /** @description The integration ID that you created on Nango. */
+            provider_config_key: string
+            /** @description (OAuth 2, required) Existing access token. */
+            access_token?: string
+            /** @description (OAuth 2, optional) Pass the refresh token if you have it. */
+            refresh_token?: string
+            /**
+             * Format: date
+             * @description (OAuth 2, optional) Safer and preferred.
+             */
+            expires_at?: string
+            /** @description (OAuth 2, optional) In seconds. */
+            expires_in?: number
+            /** @description (OAuth 1, required) The client token to be attached to the connection. */
+            oauth_token?: string
+            /** @description (OAuth 1, required) The client token secret to be attached to the connection. */
+            oauth_token_secret?: string
+            /** @description (OAuth, required for some APIs) Metadata to be attached to the connection. */
+            metadata?: Record<string, never>
+            /** @description (OAuth, required for some APIs) Additional configuration to be attached to the connection. */
+            connection_config?: Record<string, never>
+            /** @description (Basic, required) username to be attached to the connection. */
+            username?: string
+            /** @description (Basic, required) password to be attached to the connection. */
+            password?: string
+            /** @description (API Key, required) API key to be attached to the connection. */
+            api_key?: string
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully created an integrations */
+        200: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
   }
   '/connection/{connectionId}': {
-    get: operations['getConnection']
-    delete: operations['deleteConnection']
+    /** @description Returns a specific connection with credentials */
+    get: {
+      parameters: {
+        query: {
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          provider_config_key: string
+          /** @description If true, Nango will attempt to refresh the access access token regardless of its expiration status (false by default). */
+          force_refresh?: boolean
+          /** @description If true, return the refresh token as part of the response (false by default). */
+          refresh_token?: boolean
+        }
+        path: {
+          /** @description The connection ID used to create the connection. */
+          connectionId: string
+        }
+      }
+      responses: {
+        /** @description Successfully returned a connection */
+        200: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+        /** @description Unknown Connection */
+        404: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+    /** @description Deletes a specific connection */
+    delete: {
+      parameters: {
+        query: {
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          provider_config_key: string
+        }
+        path: {
+          /** @description The connection ID used to create the connection. */
+          connectionId: string
+        }
+      }
+      responses: {
+        /** @description Successfully deleled an connection */
+        204: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+        /** @description Unknown connection */
+        404: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/connection/{connectionId}/metadata': {
+    /** @description Set custom metadata for the connection. */
+    post: {
+      parameters: {
+        header: {
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+        }
+        path: {
+          /** @description The connection ID used to create the connection. */
+          connectionId: string
+        }
+      }
+      requestBody: {
+        content: {
+          'application/json': Record<string, never>
+        }
+      }
+      responses: {
+        /** @description Successfully created an integrations */
+        201: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+    /** @description Edit custom metadata for the connection (only overrides specified properties, not the entire metadata). */
+    patch: {
+      parameters: {
+        header: {
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+        }
+        path: {
+          /** @description The connection ID used to create the connection. */
+          connectionId: string
+        }
+      }
+      requestBody: {
+        content: {
+          'application/json': Record<string, never>
+        }
+      }
+      responses: {
+        /** @description Successfully updated the metadata */
+        200: {
+          content: {
+            'application/json': Record<string, never>
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/records': {
+    /** @description Returns data synced with Nango Sync */
+    get: {
+      parameters: {
+        query: {
+          /** @description The data model to fetch */
+          model: string
+          /** @description Timestamp, e.g. 2023-05-31T11:46:13.390Z. If passed only records added or updated after this timestamp are returned, otherwise all records are returned. */
+          delta?: string
+          /** @description The maximum number of records to return. Defaults to 100. */
+          limit?: number
+          /** @description Base 64 encoded value that can be used to fetch the next page of results. The cursor will be included until there are no more results to paginate through. */
+          cursor?: string
+          /** @description Filter to only show results that have been added or updated or deleted. Helpful when used in conjuction with the delta parameter to retrieve a subset or records that were added, updated, or deleted with the latest sync. */
+          filter?: 'added' | 'updated' | 'deleted'
+        }
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+        }
+      }
+      responses: {
+        /** @description Successfully returned records */
+        200: {
+          content: {
+            'application/json': {
+              records?: {
+                /**
+                 * @description The data Nango synced in for you
+                 * @example Your synced data, in the schema you (or Nango) defined in nango.yaml
+                 */
+                'your-properties'?: string
+                _nango_metadata?: {
+                  /** @description The timestamp at which Nango detected the record as deleted */
+                  deleted_at?: string | null
+                  /**
+                   * @description The last action seen on this record
+                   * @enum {string}
+                   */
+                  last_action?: 'ADDED' | 'UPDATED' | 'DELETED'
+                  /**
+                   * @description The timestamp at which Nango first saw this record
+                   * @example 2023-09-18T15:20:35.941305+00:00
+                   */
+                  first_seen_at?: string
+                  /**
+                   * @description The timestamp at which Nango last detected a change to this record
+                   * @example 2023-09-18T15:20:35.941305+00:00
+                   */
+                  last_modified_at?: string
+                }
+              }[]
+              /**
+               * @description The base64-encoded cursor for pagination
+               * @example MjAyMy0xMS0xN1QxMTo0NzoxNC40NDcrMDI6MDB8fDAzZTA1NzIxLWNiZmQtNGYxNS1iYTNhLWFlNjM2Y2MwNmEw==
+               */
+              next_cursor?: string
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/records': {
+    /** @description Returns data synced with Nango Sync */
+    get: {
+      parameters: {
+        query: {
+          /** @description The data model to fetch */
+          model: string
+          /** @description Timestamp, e.g. 2023-05-31T11:46:13.390Z. If passed only records added or updated after this timestamp are returned, otherwise all records are returned. */
+          delta?: string
+          /** @description The maximum number of records to return. If not passed, all records are returned. */
+          limit?: number
+          /** @description The number of records to skip. If not passed, no records are skipped. */
+          offset?: number
+          /** @description Set how the records are sorted. The default is id. The options are 'created_at', 'updated_at', 'id'. */
+          sort_by?: 'created_at' | 'updated_at' | 'id'
+          /** @description Set the order of results. The default is 'desc'. The options are 'desc' or 'asc'. */
+          order?: 'desc' | 'asc'
+          /** @description Filter to only show results that have been added or updated or deleted. Helpful when used in conjuction with the delta parameter to retrieve a subset or records that were added, updated, or deleted with the latest sync. */
+          filter?: 'added' | 'updated' | 'deleted'
+        }
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+        }
+      }
+      responses: {
+        /** @description Successfully returned records */
+        200: {
+          content: {
+            'application/json': {
+              /**
+               * @description The data Nango synced in for you
+               * @example Your synced data, in the schema you (or Nango) defined in nango.yaml
+               */
+              'your-properties'?: string
+              _nango_metadata?: {
+                /** @description The timestamp at which Nango detected the record as deleted */
+                deleted_at?: string | null
+                /**
+                 * @description The last action seen on this record
+                 * @enum {string}
+                 */
+                last_action?: 'ADDED' | 'UPDATED' | 'DELETED'
+                /**
+                 * @description The timestamp at which Nango first saw this record
+                 * @example 2023-09-18T15:20:35.941305+00:00
+                 */
+                first_seen_at?: string
+                /**
+                 * @description The timestamp at which Nango last detected a change to this record
+                 * @example 2023-09-18T15:20:35.941305+00:00
+                 */
+                last_modified_at?: string
+              }
+            }[]
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/trigger': {
+    /** @description Triggers an additional, one-off execution of specified sync(s) (for a given connection or all applicable connections if no connection is specified). */
+    post: {
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @description The ID of the integration that you established within Nango. */
+            provider_config_key: string
+            /** @description The ID of the connection. If omitted, the syncs will be triggered for all relevant connections. */
+            connection_id?: string
+            /** @description An array of sync names to trigger. If the array is empty, all syncs are triggered. */
+            syncs: string[]
+            /** @description Clear the records and reset the "lastSyncDate" associated with the sync before triggering a new sync job. */
+            full_resync?: boolean
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully triggered the sync */
+        200: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/start': {
+    /** @description Starts the schedule of specified sync(s) for a given connection or all applicable connections if no connection is specified. */
+    post: {
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @description The ID of the integration that you established within Nango. */
+            provider_config_key: string
+            /** @description The ID of the connection. If omitted, the syncs will be started for all relevant connections. */
+            connection_id?: string
+            /** @description A list of sync names that you wish to start. */
+            syncs: string[]
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully started the sync */
+        200: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/pause': {
+    /** @description Pauses the schedule of specified sync(s) for a given connection or all applicable connections if no connection is specified. */
+    post: {
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @description The ID of the integration that you established within Nango. */
+            provider_config_key: string
+            /** @description The ID of the connection. If omitted, the syncs will be paused for all relevant connections. */
+            connection_id?: string
+            /** @description A list of sync names that you wish to pause. */
+            syncs: string[]
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully paused the sync */
+        200: {
+          content: never
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/status': {
+    /** @description Get the status of specified sync(s) (for a given connection or all applicable connections if no connection is specified) */
+    get: {
+      parameters: {
+        query: {
+          /** @description The ID of the integration you established within Nango */
+          provider_config_key: string
+          /** @description The name of the syncs you want to fetch a status for. Pass in "*" to return all syncs per the integration */
+          syncs: string
+          /** @description The ID of the connection. If omitted, all connections will be surfaced. */
+          connection_id?: string
+        }
+      }
+      responses: {
+        /** @description Successfully returned a list of syncs and their status */
+        200: {
+          content: {
+            'application/json': {
+              syncs?: {
+                /** @description The unique identifier for the sync. */
+                id?: string
+                /** @description The name of the sync. */
+                name?: string
+                /**
+                 * @description The current status of the sync.
+                 * @enum {string}
+                 */
+                status?: 'RUNNING' | 'PAUSED' | 'STOPPED' | 'SUCCESS' | 'ERROR'
+                /**
+                 * @description The most recent sync type completed
+                 * @enum {string}
+                 */
+                type?: 'INCREMENTAL' | 'INITIAL'
+                /** @description ISO string of the most recently completed sync */
+                finishedAt?: string
+                /** @description ISO string of the next scheduled sync time */
+                nextScheduledSyncAt?: string
+                /** @description The execution frequency of the sync */
+                frequency?: string
+                /** @description Additional information regarding the latest result of the sync. Contains a model name with added, updated and deleted records */
+                latestResult?: Record<string, never>
+              }[]
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/sync/update-connection-frequency': {
+    /** @description Override a sync's default frequency for a specific connection, or revert to the default frequency. */
+    put: {
+      requestBody: {
+        content: {
+          'application/json': {
+            /** @description The ID of the integration you established within Nango */
+            provider_config_key: string
+            /** @description The ID of the connection */
+            connection_id: string
+            /** @description The name of the sync you want to update */
+            sync_name: string
+            /** @description The frequency you want to set (ex: 'every hour'). Set null to revert to the default frequency */
+            frequency: string | null
+          }
+        }
+      }
+      responses: {
+        /** @description Successfully updated the frequency */
+        200: {
+          content: {
+            'application/json': {
+              /** @description The updated frequency value */
+              frequency?: string
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/action/trigger': {
+    /** @description Triggers an action for a connection */
+    post: {
+      parameters: {
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+        }
+      }
+      requestBody: {
+        content: {
+          'application/json': {
+            /** @description The name of the action to trigger. */
+            action_name: string
+            /** @description The necessary input for your action's 'runAction' function. */
+            input?: Record<string, never>
+          }
+        }
+      }
+      responses: {
+        /** @description Returns the result of the action */
+        200: {
+          content: {
+            'application/json': {
+              /**
+               * @description The data returned by the action
+               * @example The data returned by the action
+               */
+              'your-properties'?: string
+            }
+          }
+        }
+        /** @description Invalid request */
+        400: {
+          content: {
+            'application/json': {
+              message?: string
+            }
+          }
+        }
+      }
+    }
+  }
+  '/environment-variables': {
+    /** @description Retrieve the environment variables as added in the Nango dashboard */
+    get: {
+      responses: {
+        /** @description Retrieve the environment variables as added in the Nango dashboard */
+        200: {
+          content: {
+            'application/json': {
+              /**
+               * @description The name of the environment variable
+               * @example MY_SECRET_KEY
+               */
+              name?: string
+              /**
+               * @description The value of the environment variable
+               * @example SK_373892NSHFNCOWFO...
+               */
+              value?: string
+            }[]
+          }
+        }
+      }
+    }
+  }
+  '/proxy/{anyPath}': {
+    /** @description Make a GET request with the Proxy. */
+    get: {
+      parameters: {
+        query: {
+          $ANY_QUERY_PARAMS: string
+        }
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+          /** @description The number of retries in case of failure (with exponential back-off). Optional, default 0. */
+          Retries?: string
+          /** @description Comma separated status codes to explicitly retry on in addition to the default 5xx and 429. */
+          'Retry On'?: string
+          /** @description Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional */
+          'Base-Url-Override'?: string
+          /** @description Override the decompress option when making requests. Optional, defaults to false */
+          Decompress?: string
+          /** @description Any other headers you send are passed on to the external API */
+          'nango-proxy-$ANY_HEADER'?: string
+        }
+        path: {
+          anyPath: string
+        }
+      }
+      responses: {
+        /** @description The response exactly as returned by the external API */
+        200: {
+          content: never
+        }
+      }
+    }
+    /** @description Make a PUT request with the Proxy. */
+    put: {
+      parameters: {
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+          /** @description The number of retries in case of failure (with exponential back-off). Optional, default 0. */
+          Retries?: string
+          /** @description Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional */
+          'Base-Url-Override'?: string
+          /** @description Override the decompress option when making requests. Optional, defaults to false */
+          Decompress?: string
+          /** @description Any other headers you send are passed on to the external API */
+          'nango-proxy-$ANY_HEADER'?: string
+        }
+        path: {
+          anyPath: string
+        }
+      }
+      requestBody?: {
+        content: {
+          'application/json': {
+            $ANY_BODY_PARAMS?: string
+          }
+        }
+      }
+      responses: {
+        /** @description The response exactly as returned by the external API */
+        200: {
+          content: never
+        }
+      }
+    }
+    /** @description Make a POST request with the Proxy. */
+    post: {
+      parameters: {
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+          /** @description The number of retries in case of failure (with exponential back-off). Optional, default 0. */
+          Retries?: string
+          /** @description Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional */
+          'Base-Url-Override'?: string
+          /** @description Override the decompress option when making requests. Optional, defaults to false */
+          Decompress?: string
+          /** @description Any other headers you send are passed on to the external API */
+          'nango-proxy-$ANY_HEADER'?: string
+        }
+        path: {
+          anyPath: string
+        }
+      }
+      requestBody?: {
+        content: {
+          'application/json': {
+            $ANY_BODY_PARAMS?: string
+          }
+        }
+      }
+      responses: {
+        /** @description The response exactly as returned by the external API */
+        200: {
+          content: never
+        }
+      }
+    }
+    /** @description Make a DELETE request with the Proxy. */
+    delete: {
+      parameters: {
+        query: {
+          $ANY_QUERY_PARAMS: string
+        }
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+          /** @description The number of retries in case of failure (with exponential back-off). Optional, default 0. */
+          Retries?: string
+          /** @description Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional */
+          'Base-Url-Override'?: string
+          /** @description Override the decompress option when making requests. Optional, defaults to false */
+          Decompress?: string
+          /** @description Any other headers you send are passed on to the external API */
+          'nango-proxy-$ANY_HEADER'?: string
+        }
+        path: {
+          anyPath: string
+        }
+      }
+      responses: {
+        /** @description The response exactly as returned by the external API */
+        200: {
+          content: never
+        }
+      }
+    }
+    /** @description Make a PATCH request with the Proxy. */
+    patch: {
+      parameters: {
+        header: {
+          /** @description The connection ID used to create the connection. */
+          'Connection-Id': string
+          /** @description The integration ID used to create the connection (aka Unique Key). */
+          'Provider-Config-Key': string
+          /** @description The number of retries in case of failure (with exponential back-off). Optional, default 0. */
+          Retries?: string
+          /** @description Provide an API base URL when the base API is not listed in the providers.yaml or it needs to be overridden. Optional */
+          'Base-Url-Override'?: string
+          /** @description Override the decompress option when making requests. Optional, defaults to false */
+          Decompress?: string
+          /** @description Any other headers you send are passed on to the external API */
+          'nango-proxy-$ANY_HEADER'?: string
+        }
+        path: {
+          anyPath: string
+        }
+      }
+      requestBody?: {
+        content: {
+          'application/json': {
+            $ANY_BODY_PARAMS?: string
+          }
+        }
+      }
+      responses: {
+        /** @description The response exactly as returned by the external API */
+        200: {
+          content: never
+        }
+      }
+    }
   }
 }
 
 export type webhooks = Record<string, never>
 
-export interface components {
-  schemas: {
-    /** @enum {string} */
-    Provider:
-      | 'accelo'
-      | 'adobe'
-      | 'aircall'
-      | 'airtable'
-      | 'apollo'
-      | 'amazon'
-      | 'amplitude'
-      | 'asana'
-      | 'ashby'
-      | 'atlassian'
-      | 'bamboohr'
-      | 'battlenet'
-      | 'bitbucket'
-      | 'boldsign'
-      | 'box'
-      | 'braintree'
-      | 'braintree-sandbox'
-      | 'brex'
-      | 'brex-staging'
-      | 'calendly'
-      | 'clickup'
-      | 'confluence'
-      | 'contentstack'
-      | 'deel'
-      | 'deel-sandbox'
-      | 'digitalocean'
-      | 'discord'
-      | 'docusign'
-      | 'docusign-sandbox'
-      | 'dropbox'
-      | 'epic-games'
-      | 'evaluagent'
-      | 'eventbrite'
-      | 'exact-online'
-      | 'factorial'
-      | 'facebook'
-      | 'figjam'
-      | 'figma'
-      | 'fitbit'
-      | 'freshbooks'
-      | 'freshservice'
-      | 'front'
-      | 'github'
-      | 'github-app'
-      | 'gitlab'
-      | 'gong'
-      | 'google'
-      | 'google-calendar'
-      | 'google-mail'
-      | 'google-sheet'
-      | 'gorgias'
-      | 'greenhouse'
-      | 'gumroad'
-      | 'gusto'
-      | 'health-gorilla'
-      | 'highlevel'
-      | 'hubspot'
-      | 'instagram'
-      | 'intercom'
-      | 'intuit'
-      | 'jira'
-      | 'keap'
-      | 'lever'
-      | 'linear'
-      | 'linkedin'
-      | 'linkhut'
-      | 'mailchimp'
-      | 'microsoft-teams'
-      | 'mixpanel'
-      | 'miro'
-      | 'monday'
-      | 'mural'
-      | 'nationbuilder'
-      | 'netsuite'
-      | 'notion'
-      | 'one-drive'
-      | 'osu'
-      | 'outreach'
-      | 'pagerduty'
-      | 'pandadoc'
-      | 'payfit'
-      | 'pennylane'
-      | 'pipedrive'
-      | 'qualtrics'
-      | 'quickbooks'
-      | 'ramp'
-      | 'ramp-sandbox'
-      | 'reddit'
-      | 'ring-central'
-      | 'ring-central-sandbox'
-      | 'segment'
-      | 'sage'
-      | 'salesforce'
-      | 'salesforce-sandbox'
-      | 'salesloft'
-      | 'servicem8'
-      | 'shopify'
-      | 'shortcut'
-      | 'slack'
-      | 'smugmug'
-      | 'splitwise'
-      | 'spotify'
-      | 'squareup'
-      | 'squareup-sandbox'
-      | 'stackexchange'
-      | 'strava'
-      | 'stripe'
-      | 'stripe-express'
-      | 'survey-monkey'
-      | 'teamwork'
-      | 'timely'
-      | 'trello'
-      | 'todoist'
-      | 'twitch'
-      | 'twitter'
-      | 'twitter-v2'
-      | 'twinfield'
-      | 'typeform'
-      | 'uber'
-      | 'unauthenticated'
-      | 'wakatime'
-      | 'wave-accounting'
-      | 'wildix-pbx'
-      | 'workable'
-      | 'xero'
-      | 'yahoo'
-      | 'yandex'
-      | 'youtube'
-      | 'zapier-nla'
-      | 'zendesk'
-      | 'zenefits'
-      | 'zoho'
-      | 'zoho-books'
-      | 'zoho-crm'
-      | 'zoho-desk'
-      | 'zoho-inventory'
-      | 'zoho-invoice'
-      | 'zoom'
-    /** @enum {string} */
-    AuthMode: 'OAUTH2' | 'OAUTH1' | 'BASIC' | 'API_KEY'
-    Integration: {
-      provider: components['schemas']['Provider']
-      unique_key: string
-      client_id: string
-      client_secret: string
-      scopes?: string
-      app_link?: string | null
-      auth_mode: components['schemas']['AuthMode']
-    }
-    Connection: {
-      connection_id: string
-      /** Format: date-time */
-      created: string
-      id: number
-      provider: components['schemas']['Provider']
-      /** Format: date-time */
-      updated_at: string
-      provider_config_key: string
-      credentials: {
-        type: components['schemas']['AuthMode']
-        access_token: string
-        refresh_token?: string
-        /** Format: date-time */
-        expires_at: string
-        raw: {
-          access_token: string
-          expires_in: number
-          /** Format: date-time */
-          expires_at: string
-          refresh_token?: string | null
-          refresh_token_expires_in?: number | null
-          token_type: string
-          scope?: string
-        }
-      }
-      connection_config: {
-        [key: string]: unknown
-      }
-      metadata: {
-        [key: string]: unknown
-      } | null
-      credentials_iv: string
-      credentials_tag: string
-      environment_id: number
-      deleted: boolean
-      /** Format: date-time */
-      deleted_at: string | null
-      /** Format: date-time */
-      last_fetched_at: string | null
-    }
-  }
-  responses: never
-  parameters: never
-  requestBodies: never
-  headers: never
-  pathItems: never
-}
+export type components = Record<string, never>
 
 export type $defs = Record<string, never>
 
 export type external = Record<string, never>
 
-export interface operations {
-  listIntegrations: {
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': {
-            configs: {
-              provider: components['schemas']['Provider']
-              unique_key: string
-            }[]
-          }
-        }
-      }
-    }
-  }
-  updateIntegration: {
-    requestBody?: {
-      content: {
-        'application/json': {
-          provider: components['schemas']['Provider']
-          app_link?: string | null
-          auth_mode?: components['schemas']['AuthMode']
-          provider_config_key: string
-          oauth_client_id: string
-          oauth_client_secret: string
-          oauth_scopes?: string
-        }
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': null
-        }
-      }
-    }
-  }
-  createIntegration: {
-    requestBody?: {
-      content: {
-        'application/json': {
-          provider: components['schemas']['Provider']
-          app_link?: string | null
-          auth_mode?: components['schemas']['AuthMode']
-          provider_config_key: string
-          oauth_client_id: string
-          oauth_client_secret: string
-          oauth_scopes?: string
-        }
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': null
-        }
-      }
-    }
-  }
-  getIntegration: {
-    parameters: {
-      query?: {
-        include_creds?: boolean
-      }
-      path: {
-        provider_config_key: string
-      }
-    }
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': {
-            config:
-              | components['schemas']['Integration']
-              | {
-                  provider: components['schemas']['Provider']
-                  unique_key: string
-                }
-          }
-        }
-      }
-    }
-  }
-  deleteIntegration: {
-    parameters: {
-      path: {
-        provider_config_key: string
-      }
-    }
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': null
-        }
-      }
-    }
-  }
-  listConnections: {
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': {
-            connections: {
-              connection_id: string
-              /** Format: date-time */
-              created: string
-              id: number
-              provider: components['schemas']['Provider']
-            }[]
-          }
-        }
-      }
-    }
-  }
-  getConnection: {
-    parameters: {
-      query: {
-        provider_config_key: string
-        force_refresh?: boolean
-        refresh_token?: boolean
-      }
-      path: {
-        connectionId: string
-      }
-    }
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': components['schemas']['Connection']
-        }
-      }
-    }
-  }
-  deleteConnection: {
-    parameters: {
-      query: {
-        provider_config_key: string
-        force_refresh?: boolean
-        refresh_token?: boolean
-      }
-      path: {
-        connection_id: string
-      }
-    }
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': null
-        }
-      }
-    }
-  }
-}
+export type operations = Record<string, never>
 
 export interface oasTypes {
   components: components
