@@ -95,14 +95,18 @@ export {
 /*
 // Copy paste this part manually into createClient... 
 ${oasNames
-  .map((n) => `const ${n} = ctx.createClient<Oas_${n}['paths']>(options)`)
+  .map(
+    (n) => `const ${n} = ctx.createClient<Oas_${n}['paths']>({
+    ...options,
+    baseUrl: options.baseUrl ?? oas_${n}.servers[0]?.url,
+  })`,
+  )
   .join('\n')}
 
   return {
     ${oasNames.join(',\n')}
   }
 */
-
   `
 }
 

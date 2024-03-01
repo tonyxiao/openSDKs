@@ -190,78 +190,201 @@ export type HubspotSDKTypes = SDKTypes<
 export const hubspotSdkDef = {
   types: {} as HubspotSDKTypes,
   defaultOptions: {},
-  createClient(ctx, _options) {
-    const options: typeof _options = {
-      ..._options,
-      baseUrl: _options.baseUrl ?? oas_crm_contacts.servers[0].url,
-    }
-    const analytics_custom_behavioral_events =
-      ctx.createClient<Oas_analytics_custom_behavioral_events['paths']>(options)
-    const auth_oauth = ctx.createClient<Oas_auth_oauth['paths']>(options)
-    const automation_actions =
-      ctx.createClient<Oas_automation_actions['paths']>(options)
-    const business_units_business_units =
-      ctx.createClient<Oas_business_units_business_units['paths']>(options)
-    const cms_audit_logs =
-      ctx.createClient<Oas_cms_audit_logs['paths']>(options)
-    const cms_authors = ctx.createClient<Oas_cms_authors['paths']>(options)
-    const cms_blog_posts =
-      ctx.createClient<Oas_cms_blog_posts['paths']>(options)
-    const cms_domains = ctx.createClient<Oas_cms_domains['paths']>(options)
-    const cms_hubdb = ctx.createClient<Oas_cms_hubdb['paths']>(options)
-    const cms_performance =
-      ctx.createClient<Oas_cms_performance['paths']>(options)
-    const cms_site_search =
-      ctx.createClient<Oas_cms_site_search['paths']>(options)
-    const cms_source_code =
-      ctx.createClient<Oas_cms_source_code['paths']>(options)
-    const cms_tags = ctx.createClient<Oas_cms_tags['paths']>(options)
-    const cms_url_redirects =
-      ctx.createClient<Oas_cms_url_redirects['paths']>(options)
-    const communication_preferences_communications_status =
-      ctx.createClient<
-        Oas_communication_preferences_communications_status['paths']
-      >(options)
-    const conversations_visitor_identification =
-      ctx.createClient<Oas_conversations_visitor_identification['paths']>(
-        options,
-      )
-    const crm_accounting =
-      ctx.createClient<Oas_crm_accounting['paths']>(options)
-    const crm_associations =
-      ctx.createClient<Oas_crm_associations['paths']>(options)
-    const crm_calling = ctx.createClient<Oas_crm_calling['paths']>(options)
-    const crm_companies = ctx.createClient<Oas_crm_companies['paths']>(options)
-    const crm_contacts = ctx.createClient<Oas_crm_contacts['paths']>(options)
-    const crm_crm_associations =
-      ctx.createClient<Oas_crm_crm_associations['paths']>(options)
-    const crm_crm_extensions =
-      ctx.createClient<Oas_crm_crm_extensions['paths']>(options)
-    const crm_deals = ctx.createClient<Oas_crm_deals['paths']>(options)
-    const crm_feedback_submissions =
-      ctx.createClient<Oas_crm_feedback_submissions['paths']>(options)
-    const crm_imports = ctx.createClient<Oas_crm_imports['paths']>(options)
-    const crm_line_items =
-      ctx.createClient<Oas_crm_line_items['paths']>(options)
-    const crm_objects = ctx.createClient<Oas_crm_objects['paths']>(options)
-    const crm_owners = ctx.createClient<Oas_crm_owners['paths']>(options)
-    const crm_pipelines = ctx.createClient<Oas_crm_pipelines['paths']>(options)
-    const crm_products = ctx.createClient<Oas_crm_products['paths']>(options)
-    const crm_properties =
-      ctx.createClient<Oas_crm_properties['paths']>(options)
-    const crm_quotes = ctx.createClient<Oas_crm_quotes['paths']>(options)
-    const crm_schemas = ctx.createClient<Oas_crm_schemas['paths']>(options)
-    const crm_tickets = ctx.createClient<Oas_crm_tickets['paths']>(options)
-    const crm_timeline = ctx.createClient<Oas_crm_timeline['paths']>(options)
-    const crm_videoconferencing =
-      ctx.createClient<Oas_crm_videoconferencing['paths']>(options)
-    const events_events = ctx.createClient<Oas_events_events['paths']>(options)
-    const marketing_marketing_events_beta =
-      ctx.createClient<Oas_marketing_marketing_events_beta['paths']>(options)
-    const marketing_transactional =
-      ctx.createClient<Oas_marketing_transactional['paths']>(options)
-    const webhooks_webhooks =
-      ctx.createClient<Oas_webhooks_webhooks['paths']>(options)
+  createClient(ctx, options) {
+    const analytics_custom_behavioral_events = ctx.createClient<
+      Oas_analytics_custom_behavioral_events['paths']
+    >({
+      ...options,
+      baseUrl:
+        options.baseUrl ??
+        oas_analytics_custom_behavioral_events.servers[0]?.url,
+    })
+    const auth_oauth = ctx.createClient<Oas_auth_oauth['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_auth_oauth.servers[0]?.url,
+    })
+    const automation_actions = ctx.createClient<
+      Oas_automation_actions['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_automation_actions.servers[0]?.url,
+    })
+    const business_units_business_units = ctx.createClient<
+      Oas_business_units_business_units['paths']
+    >({
+      ...options,
+      baseUrl:
+        options.baseUrl ?? oas_business_units_business_units.servers[0]?.url,
+    })
+    const cms_audit_logs = ctx.createClient<Oas_cms_audit_logs['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_audit_logs.servers[0]?.url,
+    })
+    const cms_authors = ctx.createClient<Oas_cms_authors['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_authors.servers[0]?.url,
+    })
+    const cms_blog_posts = ctx.createClient<Oas_cms_blog_posts['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_blog_posts.servers[0]?.url,
+    })
+    const cms_domains = ctx.createClient<Oas_cms_domains['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_domains.servers[0]?.url,
+    })
+    const cms_hubdb = ctx.createClient<Oas_cms_hubdb['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_hubdb.servers[0]?.url,
+    })
+    const cms_performance = ctx.createClient<Oas_cms_performance['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_performance.servers[0]?.url,
+    })
+    const cms_site_search = ctx.createClient<Oas_cms_site_search['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_site_search.servers[0]?.url,
+    })
+    const cms_source_code = ctx.createClient<Oas_cms_source_code['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_source_code.servers[0]?.url,
+    })
+    const cms_tags = ctx.createClient<Oas_cms_tags['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_tags.servers[0]?.url,
+    })
+    const cms_url_redirects = ctx.createClient<Oas_cms_url_redirects['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_cms_url_redirects.servers[0]?.url,
+    })
+    const communication_preferences_communications_status = ctx.createClient<
+      Oas_communication_preferences_communications_status['paths']
+    >({
+      ...options,
+      baseUrl:
+        options.baseUrl ??
+        oas_communication_preferences_communications_status.servers[0]?.url,
+    })
+    const conversations_visitor_identification = ctx.createClient<
+      Oas_conversations_visitor_identification['paths']
+    >({
+      ...options,
+      baseUrl:
+        options.baseUrl ??
+        oas_conversations_visitor_identification.servers[0]?.url,
+    })
+    const crm_accounting = ctx.createClient<Oas_crm_accounting['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_accounting.servers[0]?.url,
+    })
+    const crm_associations = ctx.createClient<Oas_crm_associations['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_associations.servers[0]?.url,
+    })
+    const crm_calling = ctx.createClient<Oas_crm_calling['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_calling.servers[0]?.url,
+    })
+    const crm_companies = ctx.createClient<Oas_crm_companies['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_companies.servers[0]?.url,
+    })
+    const crm_contacts = ctx.createClient<Oas_crm_contacts['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_contacts.servers[0]?.url,
+    })
+    const crm_crm_associations = ctx.createClient<
+      Oas_crm_crm_associations['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_crm_associations.servers[0]?.url,
+    })
+    const crm_crm_extensions = ctx.createClient<
+      Oas_crm_crm_extensions['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_crm_extensions.servers[0]?.url,
+    })
+    const crm_deals = ctx.createClient<Oas_crm_deals['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_deals.servers[0]?.url,
+    })
+    const crm_feedback_submissions = ctx.createClient<
+      Oas_crm_feedback_submissions['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_feedback_submissions.servers[0]?.url,
+    })
+    const crm_imports = ctx.createClient<Oas_crm_imports['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_imports.servers[0]?.url,
+    })
+    const crm_line_items = ctx.createClient<Oas_crm_line_items['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_line_items.servers[0]?.url,
+    })
+    const crm_objects = ctx.createClient<Oas_crm_objects['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_objects.servers[0]?.url,
+    })
+    const crm_owners = ctx.createClient<Oas_crm_owners['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_owners.servers[0]?.url,
+    })
+    const crm_pipelines = ctx.createClient<Oas_crm_pipelines['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_pipelines.servers[0]?.url,
+    })
+    const crm_products = ctx.createClient<Oas_crm_products['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_products.servers[0]?.url,
+    })
+    const crm_properties = ctx.createClient<Oas_crm_properties['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_properties.servers[0]?.url,
+    })
+    const crm_quotes = ctx.createClient<Oas_crm_quotes['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_quotes.servers[0]?.url,
+    })
+    const crm_schemas = ctx.createClient<Oas_crm_schemas['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_schemas.servers[0]?.url,
+    })
+    const crm_tickets = ctx.createClient<Oas_crm_tickets['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_tickets.servers[0]?.url,
+    })
+    const crm_timeline = ctx.createClient<Oas_crm_timeline['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_timeline.servers[0]?.url,
+    })
+    const crm_videoconferencing = ctx.createClient<
+      Oas_crm_videoconferencing['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_crm_videoconferencing.servers[0]?.url,
+    })
+    const events_events = ctx.createClient<Oas_events_events['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_events_events.servers[0]?.url,
+    })
+    const marketing_marketing_events_beta = ctx.createClient<
+      Oas_marketing_marketing_events_beta['paths']
+    >({
+      ...options,
+      baseUrl:
+        options.baseUrl ?? oas_marketing_marketing_events_beta.servers[0]?.url,
+    })
+    const marketing_transactional = ctx.createClient<
+      Oas_marketing_transactional['paths']
+    >({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_marketing_transactional.servers[0]?.url,
+    })
+    const webhooks_webhooks = ctx.createClient<Oas_webhooks_webhooks['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_webhooks_webhooks.servers[0]?.url,
+    })
 
     return {
       analytics_custom_behavioral_events,
