@@ -16,10 +16,28 @@ export class HTTPError<T> extends Error {
     error,
     response: r,
   }: Extract<FetchResponse<T>, {error: unknown}> & {method: HTTPMethod}) {
-    super(`[${r.status} ${r.statusText}] ${method.toUpperCase()} ${r.url}`)
+    super(
+      [
+        `[${r.status} ${r.statusText}] ${method.toUpperCase()} ${r.url}`,
+        safeJsonStringify(error),
+      ]
+        .filter((l) => !!l)
+        .join('\n'),
+    )
     this.method = method
     this.error = error
     this.response = r
     Object.setPrototypeOf(this, HTTPError.prototype)
+  }
+}
+
+function safeJsonStringify(value: unknown) {
+  try {
+    if (value == null) {
+      return null
+    }
+    return JSON.stringify(value, null, 2)
+  } catch {
+    return `Not JSON: ${value}`
   }
 }
