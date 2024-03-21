@@ -22,7 +22,7 @@
         "summary": "Company",
         "operationId": "get-company",
         "tags": ["Organization"],
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Basic company data",
@@ -93,8 +93,7 @@
             "description": "Index to start from (defaults to 0)",
             "required": false,
             "schema": {"type": "integer"}
-          },
-          {"$ref": "#/components/parameters/API-Version"}
+          }
         ],
         "responses": {
           "200": {
@@ -134,10 +133,7 @@
         "summary": "Individual",
         "operationId": "get-individual",
         "tags": ["Organization"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {"$ref": "#/components/requestBodies/Individual"},
         "responses": {
           "200": {
@@ -197,10 +193,7 @@
         "operationId": "get-employment",
         "tags": ["Organization"],
         "requestBody": {"$ref": "#/components/requestBodies/Individual-Ids"},
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "responses": {
           "200": {
             "description": "Employment data",
@@ -303,8 +296,7 @@
               "format": "date",
               "example": "2021-01-01"
             }
-          },
-          {"$ref": "#/components/parameters/API-Version"}
+          }
         ],
         "responses": {
           "200": {
@@ -348,10 +340,7 @@
         "operationId": "get-pay-statement",
         "description": "Read detailed pay statements for each individual.\n\nDeduction and contribution types are supported by the payroll systems that supports Benefits.",
         "tags": ["Payroll"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -475,7 +464,7 @@
         "description": "List all company-wide deductions and contributions.",
         "operationId": "get-company-benefits",
         "tags": ["Deductions"],
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -505,10 +494,7 @@
         "summary": "Create Deduction",
         "description": "Creates a new company-wide deduction or contribution. Please use the `/providers` endpoint to view available types for each provider.",
         "operationId": "create-company-benefits",
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "tags": ["Deductions"],
         "requestBody": {
           "content": {
@@ -587,10 +573,7 @@
         "operationId": "register-company-benefits",
         "description": "Register existing benefits from the customer on the provider, on Finch's end. Please use the `/provider` endpoint to view available types for each provider.",
         "tags": ["Deductions"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -667,7 +650,7 @@
         "summary": "[Deprecated] Get Deductions Metadata",
         "operationId": "get-company-benefits-meta",
         "description": "Get deductions metadata",
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "tags": ["Deductions"],
         "responses": {
           "200": {
@@ -711,7 +694,7 @@
         "summary": "Get Deduction",
         "operationId": "get-company-benefit",
         "description": "Lists deductions and contributions information for a given item",
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "tags": ["Deductions"],
         "responses": {
           "200": {
@@ -757,10 +740,7 @@
         "operationId": "update-company-benefits",
         "description": "Updates an existing company-wide deduction or contribution",
         "tags": ["Deductions"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -812,7 +792,7 @@
         "summary": "Get Enrolled Individuals",
         "operationId": "get-company-benefits-enrolled",
         "description": "Lists individuals currently enrolled in a given deduction.",
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "tags": ["Deductions"],
         "responses": {
           "200": {
@@ -869,7 +849,6 @@
         "description": "Get enrollment information for the given individuals.",
         "tags": ["Deductions"],
         "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
           {"$ref": "#/components/parameters/Content-Type"},
           {
             "schema": {
@@ -946,10 +925,7 @@
         "operationId": "post-employer-individual-benefits-benefit_id",
         "description": "Enroll an individual into a deduction or contribution. This is an overwrite operation. If the employee is already enrolled, the enrollment amounts will be adjusted. Making the same request multiple times will not create new enrollments, but will continue to set the state of the existing enrollment.",
         "tags": ["Deductions"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1157,10 +1133,7 @@
         "operationId": "delete-individual-benefits",
         "description": "Unenroll individuals from a deduction or contribution",
         "tags": ["Deductions"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1222,10 +1195,7 @@
         "tags": ["Management"],
         "security": [],
         "operationId": "create-access-token",
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1276,7 +1246,7 @@
         "summary": "Providers",
         "operationId": "get-providers",
         "description": "Return details on all available payroll and HR systems.",
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "tags": ["Management"],
         "responses": {
           "200": {
@@ -1551,7 +1521,7 @@
         },
         "operationId": "get-introspect",
         "description": "Read account information associated with an `access_token`",
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}]
+        "parameters": []
       }
     },
     "/disconnect": {
@@ -1560,7 +1530,7 @@
         "operationId": "post-disconnect",
         "description": "Disconnect one or more `access_token`s from your application.",
         "tags": ["Management"],
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -1580,7 +1550,7 @@
         "operationId": "post-forward",
         "description": "The Forward API allows you to make direct requests to an employment system. If Finch’s unified API\ndoesn’t have a data model that cleanly fits your needs, then Forward allows you to push or pull\ndata models directly against an integration’s API.",
         "tags": ["Management"],
-        "parameters": [{"$ref": "#/components/parameters/API-Version"}],
+        "parameters": [],
         "requestBody": {"$ref": "#/components/requestBodies/Forward"},
         "responses": {
           "200": {
@@ -1674,10 +1644,7 @@
         "operationId": "get-jobs-automated",
         "description": "Get all automated jobs. Automated jobs are completed by a machine. By default, jobs are sorted in descending order by submission time. For scheduled jobs such as data syncs, only the next scheduled job is shown.",
         "tags": ["Management"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1825,10 +1792,7 @@
         "summary": "Enqueue a New Automated Job",
         "operationId": "post-jobs-automated",
         "description": "Enqueue an automated job. Currently, only the `data_sync_all` job type is supported, which will enqueue a job to re-sync all data for a connection. `data_sync_all` has a concurrency limit of 1 job at a time per connection. This means that if this endpoint is called while a job is already in progress for this connection, Finch will return the `job_id` of the job that is currently in progress. Finch allows a fixed window rate limit of 1 forced refresh per hour per connection.\n\nThis endpoint is available for *Scale* tier customers as an add-on. To request access to this endpoint, please contact your Finch account manager.",
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "tags": ["Management"],
         "requestBody": {
           "content": {
@@ -2036,10 +2000,7 @@
         "operationId": "get-jobs-job_id",
         "description": "Get an automated job by `job_id`.",
         "tags": ["Management"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "responses": {
           "200": {
             "description": "OK",
@@ -2081,10 +2042,7 @@
         "operationId": "get-jobs-manual-job_id",
         "description": "Get a manual job by `job_id`. Manual jobs are completed by a human and include Assisted Benefits jobs.",
         "tags": ["Management"],
-        "parameters": [
-          {"$ref": "#/components/parameters/API-Version"},
-          {"$ref": "#/components/parameters/Content-Type"}
-        ],
+        "parameters": [{"$ref": "#/components/parameters/Content-Type"}],
         "responses": {
           "200": {
             "description": "OK",

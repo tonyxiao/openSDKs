@@ -1593,11 +1593,6 @@ export interface operations {
    * @description Read basic company data
    */
   'get-company': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description Basic company data */
       200: {
@@ -1619,9 +1614,6 @@ export interface operations {
         /** @description Index to start from (defaults to 0) */
         offset?: number
       }
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
     }
     responses: {
       /** @description Company directory and organization structure */
@@ -1639,7 +1631,6 @@ export interface operations {
   'get-individual': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -1660,7 +1651,6 @@ export interface operations {
   'get-employment': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -1686,9 +1676,6 @@ export interface operations {
         /** @description The end date to retrieve payments by a company (inclusive) in `YYYY-MM-DD` format. */
         end_date: string
       }
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
     }
     responses: {
       /** @description Payment data */
@@ -1708,7 +1695,6 @@ export interface operations {
   'get-pay-statement': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -1741,11 +1727,6 @@ export interface operations {
    * @description List all company-wide deductions and contributions.
    */
   'get-company-benefits': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description OK */
       200: {
@@ -1762,7 +1743,6 @@ export interface operations {
   'create-company-benefits': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -1803,7 +1783,6 @@ export interface operations {
   'register-company-benefits': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -1842,11 +1821,6 @@ export interface operations {
    * @description Get deductions metadata
    */
   'get-company-benefits-meta': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description OK */
       200: {
@@ -1862,9 +1836,6 @@ export interface operations {
    */
   'get-company-benefit': {
     parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
       path: {
         benefit_id: string
       }
@@ -1891,7 +1862,6 @@ export interface operations {
   'update-company-benefits': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {
@@ -1929,9 +1899,6 @@ export interface operations {
    */
   'get-company-benefits-enrolled': {
     parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
       path: {
         benefit_id: string
       }
@@ -1962,7 +1929,6 @@ export interface operations {
         individual_ids?: string
       }
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {
@@ -1991,7 +1957,6 @@ export interface operations {
   'post-employer-individual-benefits-benefit_id': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {
@@ -2047,7 +2012,6 @@ export interface operations {
   'delete-individual-benefits': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {
@@ -2084,7 +2048,6 @@ export interface operations {
   'create-access-token': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -2116,11 +2079,6 @@ export interface operations {
    * @description Return details on all available payroll and HR systems.
    */
   'get-providers': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description OK */
       200: {
@@ -2135,11 +2093,6 @@ export interface operations {
    * @description Read account information associated with an `access_token`
    */
   'get-introspect': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description OK */
       200: {
@@ -2154,11 +2107,6 @@ export interface operations {
    * @description Disconnect one or more `access_token`s from your application.
    */
   'post-disconnect': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     responses: {
       /** @description OK */
       200: {
@@ -2175,11 +2123,6 @@ export interface operations {
    * data models directly against an integration’s API.
    */
   'post-forward': {
-    parameters: {
-      header: {
-        'Finch-API-Version': components['parameters']['API-Version']
-      }
-    }
     requestBody: components['requestBodies']['Forward']
     responses: {
       /** @description Successful response */
@@ -2217,7 +2160,6 @@ export interface operations {
   'get-jobs-automated': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -2285,7 +2227,6 @@ export interface operations {
   'post-jobs-automated': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
     }
@@ -2388,7 +2329,6 @@ export interface operations {
   'get-jobs-job_id': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {
@@ -2415,7 +2355,6 @@ export interface operations {
   'get-jobs-manual-job_id': {
     parameters: {
       header: {
-        'Finch-API-Version': components['parameters']['API-Version']
         'Content-Type': components['parameters']['Content-Type']
       }
       path: {

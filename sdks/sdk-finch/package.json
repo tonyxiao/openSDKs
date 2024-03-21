@@ -37,8 +37,10 @@
     "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
-    "download": "curl --fail https://api.tryfinch.com/openapi.json | prettier --parser json > ./finch.oas.json",
-    "generate": "node ../../packages/cli/generateFromOas.js ./finch.oas.json",
+    "download": "curl --fail https://api.tryfinch.com/openapi.json > ./finch.orig.oas.json",
+    "generate": "run-s generate:*",
+    "generate:json": "npx tsx ./src/finch.oas.ts | prettier --parser json > ./finch.oas.json",
+    "generate:types": "node ../../packages/cli/generateFromOas.js ./finch.oas.json",
     "version": "pnpm version"
   },
   "dependencies": {},
