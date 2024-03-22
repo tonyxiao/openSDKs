@@ -4,6 +4,7 @@ import type {
   SdkDefinition,
   SDKTypes,
 } from '@opensdks/runtime'
+import {initSDK} from '@opensdks/runtime'
 import type Oas_api_v2010 from '../twilio_api_v2010.oas.types.js'
 import type Oas_messaging_v1 from '../twilio_messaging_v1.oas.types.js'
 import {default as oas_api_v2010} from './twilio_api_v2010.oas.meta.js'
@@ -35,3 +36,9 @@ export const twilioSdkDef = {
 } satisfies SdkDefinition<TwilioSDKTypes>
 
 export default twilioSdkDef
+
+export function initTwilioSDK(opts: TwilioSDKTypes['options']) {
+  return initSDK(twilioSdkDef, opts)
+}
+
+export type TwilioSDK = ReturnType<typeof initTwilioSDK>

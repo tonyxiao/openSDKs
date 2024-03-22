@@ -4,6 +4,7 @@ import type {
   SdkDefinition,
   SDKTypes,
 } from '@opensdks/runtime'
+import {initSDK} from '@opensdks/runtime'
 import type Oas_core from '../twenty_core.oas.types.js'
 import type Oas_metadata from '../twenty_metadata.oas.types.js'
 import {default as oas_core} from './twenty_core.oas.meta.js'
@@ -35,3 +36,9 @@ export const twentySdkDef = {
 } satisfies SdkDefinition<TwentySDKTypes>
 
 export default twentySdkDef
+
+export function initTwentySDK(opts: TwentySDKTypes['options']) {
+  return initSDK(twentySdkDef, opts)
+}
+
+export type TwentySDK = ReturnType<typeof initTwentySDK>
