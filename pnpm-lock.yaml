@@ -439,6 +439,18 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  sdks/sdk-twenty:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
   sdks/sdk-twilio:
     devDependencies:
       '@opensdks/runtime':
