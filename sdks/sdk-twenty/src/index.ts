@@ -13,24 +13,30 @@ import {default as oas_metadata} from './twenty_metadata.oas.meta.js'
 // Maybe this should be in a dedicated metadata file?
 export {oas_core, oas_metadata}
 
+export type {Oas_core, Oas_metadata}
+
 export type TwentySDKTypes = SDKTypes<
   OpenAPITypes,
-  ClientOptions & {accountSid: string; authToken: string}
+  Omit<ClientOptions, 'headers'> & {
+    headers: {
+      authorization: `Bearer ${string}`
+      [k: string]: string
+    }
+  }
 >
 
 export const twentySdkDef = {
   types: {} as TwentySDKTypes,
   defaultOptions: {},
-  createClient(ctx, {accountSid, authToken, ..._options}) {
-    const headers = new Headers(_options.headers as HeadersInit)
-    headers.set('Authorization', `Basic ${btoa(`${accountSid}:${authToken}`)}`)
-    const options: typeof _options = {
-      ..._options,
-      baseUrl: _options.baseUrl ?? oas_core.servers[0].url,
-      headers,
-    }
-    const core = ctx.createClient<Oas_core['paths']>(options)
-    const metadata = ctx.createClient<Oas_metadata['paths']>(options)
+  createClient(ctx, options) {
+    const core = ctx.createClient<Oas_core['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_core.servers[0].url,
+    })
+    const metadata = ctx.createClient<Oas_metadata['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_metadata.servers[0].url,
+    })
     return {core, metadata}
   },
 } satisfies SdkDefinition<TwentySDKTypes>

@@ -26,6 +26,9 @@ export type FinchSDKTypes = SDKTypes<
 export const finchSdkDef = {
   types: {} as FinchSDKTypes,
   oasMeta,
+  // createClient(ctx, {accountSid, authToken, ..._options}) {
+  //   const headers = new Headers(_options.headers as HeadersInit)
+  //   headers.set('Authorization', `Basic ${btoa(`${accountSid}:${authToken}`)}`)
 } satisfies SdkDefinition<FinchSDKTypes>
 
 export function initFinchSDK(opts: FinchSDKTypes['options']) {
