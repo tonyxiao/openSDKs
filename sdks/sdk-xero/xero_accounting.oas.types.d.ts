@@ -10,8 +10,8 @@ export interface paths {
     /** Creates a new chart of accounts */
     put: operations['createAccount']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -23,8 +23,8 @@ export interface paths {
     /** Deletes a chart of accounts */
     delete: operations['deleteAccount']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -32,8 +32,8 @@ export interface paths {
     /** Retrieves attachments for a specific accounts by using a unique account Id */
     get: operations['getAccountAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -41,8 +41,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific account using a unique attachment Id */
     get: operations['getAccountAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -54,8 +54,8 @@ export interface paths {
     /** Updates attachment on a specific account by filename */
     post: operations['updateAccountAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -67,8 +67,8 @@ export interface paths {
     /** Updates a specific batch payment for invoices and credit notes */
     post: operations['deleteBatchPayment']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -78,8 +78,8 @@ export interface paths {
     /** Updates a specific batch payment for invoices and credit notes */
     post: operations['deleteBatchPaymentByUrlParam']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -89,8 +89,8 @@ export interface paths {
     /** Creates a history record for a specific batch payment */
     put: operations['createBatchPaymentHistoryRecord']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -102,8 +102,8 @@ export interface paths {
     /** Updates or creates one or more spent or received money transaction */
     post: operations['updateOrCreateBankTransactions']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -113,8 +113,8 @@ export interface paths {
     /** Updates a single spent or received money transaction */
     post: operations['updateBankTransaction']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -122,8 +122,8 @@ export interface paths {
     /** Retrieves any attachments from a specific bank transactions */
     get: operations['getBankTransactionAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -131,8 +131,8 @@ export interface paths {
     /** Retrieves specific attachments from a specific BankTransaction using a unique attachment Id */
     get: operations['getBankTransactionAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -144,8 +144,8 @@ export interface paths {
     /** Updates a specific attachment from a specific bank transaction by filename */
     post: operations['updateBankTransactionAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -155,8 +155,8 @@ export interface paths {
     /** Creates a history record for a specific bank transactions */
     put: operations['createBankTransactionHistoryRecord']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -166,8 +166,8 @@ export interface paths {
     /** Creates a bank transfer */
     put: operations['createBankTransfer']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -175,8 +175,8 @@ export interface paths {
     /** Retrieves specific bank transfers by using a unique bank transfer Id */
     get: operations['getBankTransfer']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -184,8 +184,8 @@ export interface paths {
     /** Retrieves attachments from a specific bank transfer */
     get: operations['getBankTransferAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -193,8 +193,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific bank transfer using a unique attachment ID */
     get: operations['getBankTransferAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -204,8 +204,8 @@ export interface paths {
     put: operations['createBankTransferAttachmentByFileName']
     post: operations['updateBankTransferAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -215,8 +215,8 @@ export interface paths {
     /** Creates a history record for a specific bank transfer */
     put: operations['createBankTransferHistoryRecord']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -224,8 +224,8 @@ export interface paths {
     /** Retrieves all the branding themes */
     get: operations['getBrandingThemes']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -233,8 +233,8 @@ export interface paths {
     /** Retrieves a specific branding theme using a unique branding theme Id */
     get: operations['getBrandingTheme']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -244,8 +244,8 @@ export interface paths {
     /** Creates a new custom payment service for a specific branding theme */
     post: operations['createBrandingThemePaymentServices']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -253,8 +253,8 @@ export interface paths {
     /** Retrieve a list of budgets */
     get: operations['getBudgets']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -262,8 +262,8 @@ export interface paths {
     /** Retrieves a specific budget, which includes budget lines */
     get: operations['getBudget']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -275,8 +275,8 @@ export interface paths {
     /** Updates or creates one or more contacts in a Xero organisation */
     post: operations['updateOrCreateContacts']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -284,8 +284,8 @@ export interface paths {
     /** Retrieves a specific contact by contact number in a Xero organisation */
     get: operations['getContactByContactNumber']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -295,8 +295,8 @@ export interface paths {
     /** Updates a specific contact in a Xero organisation */
     post: operations['updateContact']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -304,8 +304,8 @@ export interface paths {
     /** Retrieves attachments for a specific contact in a Xero organisation */
     get: operations['getContactAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -313,8 +313,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific contact using a unique attachment Id */
     get: operations['getContactAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -324,8 +324,8 @@ export interface paths {
     put: operations['createContactAttachmentByFileName']
     post: operations['updateContactAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -333,8 +333,8 @@ export interface paths {
     /** Retrieves CIS settings for a specific contact in a Xero organisation */
     get: operations['getContactCISSettings']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -344,8 +344,8 @@ export interface paths {
     /** Creates a new history record for a specific contact */
     put: operations['createContactHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -355,8 +355,8 @@ export interface paths {
     /** Creates a contact group */
     put: operations['createContactGroup']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -366,8 +366,8 @@ export interface paths {
     /** Updates a specific contact group */
     post: operations['updateContactGroup']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -377,8 +377,8 @@ export interface paths {
     /** Deletes all contacts from a specific contact group */
     delete: operations['deleteContactGroupContacts']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -386,8 +386,8 @@ export interface paths {
     /** Deletes a specific contact from a contact group using a unique contact Id */
     delete: operations['deleteContactGroupContact']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -399,8 +399,8 @@ export interface paths {
     /** Updates or creates one or more credit notes */
     post: operations['updateOrCreateCreditNotes']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -410,8 +410,8 @@ export interface paths {
     /** Updates a specific credit note */
     post: operations['updateCreditNote']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -419,8 +419,8 @@ export interface paths {
     /** Retrieves attachments for a specific credit notes */
     get: operations['getCreditNoteAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -428,8 +428,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific credit note using a unique attachment Id */
     get: operations['getCreditNoteAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -441,8 +441,8 @@ export interface paths {
     /** Updates attachments on a specific credit note by file name */
     post: operations['updateCreditNoteAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -450,8 +450,8 @@ export interface paths {
     /** Retrieves credit notes as PDF files */
     get: operations['getCreditNoteAsPdf']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -459,8 +459,8 @@ export interface paths {
     /** Creates allocation for a specific credit note */
     put: operations['createCreditNoteAllocation']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -468,8 +468,8 @@ export interface paths {
     /** Deletes an Allocation from a Credit Note */
     delete: operations['deleteCreditNoteAllocations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -479,8 +479,8 @@ export interface paths {
     /** Retrieves history records of a specific credit note */
     put: operations['createCreditNoteHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -490,8 +490,8 @@ export interface paths {
     /** Create a new currency for a Xero organisation */
     put: operations['createCurrency']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -503,8 +503,8 @@ export interface paths {
     /** Creates a single new employees used in Xero payrun */
     post: operations['updateOrCreateEmployees']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -512,8 +512,8 @@ export interface paths {
     /** Retrieves a specific employee used in Xero payrun using a unique employee Id */
     get: operations['getEmployee']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -523,8 +523,8 @@ export interface paths {
     /** Creates expense claims */
     put: operations['createExpenseClaims']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -534,8 +534,8 @@ export interface paths {
     /** Updates a specific expense claims */
     post: operations['updateExpenseClaim']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -545,8 +545,8 @@ export interface paths {
     /** Creates a history record for a specific expense claim */
     put: operations['createExpenseClaimHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -558,8 +558,8 @@ export interface paths {
     /** Updates or creates one or more sales invoices or purchase bills */
     post: operations['updateOrCreateInvoices']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -569,8 +569,8 @@ export interface paths {
     /** Updates a specific sales invoices or purchase bills */
     post: operations['updateInvoice']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -578,8 +578,8 @@ export interface paths {
     /** Retrieves invoices or purchase bills as PDF files */
     get: operations['getInvoiceAsPdf']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -587,8 +587,8 @@ export interface paths {
     /** Retrieves attachments for a specific invoice or purchase bill */
     get: operations['getInvoiceAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -596,8 +596,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific invoices or purchase bills by using a unique attachment Id */
     get: operations['getInvoiceAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -609,8 +609,8 @@ export interface paths {
     /** Updates an attachment from a specific invoices or purchase bill by filename */
     post: operations['updateInvoiceAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -618,8 +618,8 @@ export interface paths {
     /** Retrieves a URL to an online invoice */
     get: operations['getOnlineInvoice']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -627,8 +627,8 @@ export interface paths {
     /** Sends a copy of a specific invoice to related contact via email */
     post: operations['emailInvoice']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -638,8 +638,8 @@ export interface paths {
     /** Creates a history record for a specific invoice */
     put: operations['createInvoiceHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -647,8 +647,8 @@ export interface paths {
     /** Retrieves invoice reminder settings */
     get: operations['getInvoiceReminders']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -660,8 +660,8 @@ export interface paths {
     /** Updates or creates one or more items */
     post: operations['updateOrCreateItems']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -673,8 +673,8 @@ export interface paths {
     /** Deletes a specific item */
     delete: operations['deleteItem']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -684,8 +684,8 @@ export interface paths {
     /** Creates a history record for a specific item */
     put: operations['createItemHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -693,8 +693,8 @@ export interface paths {
     /** Retrieves journals */
     get: operations['getJournals']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -702,8 +702,8 @@ export interface paths {
     /** Retrieves a specific journal using a unique journal Id. */
     get: operations['getJournal']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -711,8 +711,8 @@ export interface paths {
     /** Retrieves a specific journal using a unique journal number. */
     get: operations['getJournalByNumber']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -722,8 +722,8 @@ export interface paths {
     /** Creates linked transactions (billable expenses) */
     put: operations['createLinkedTransaction']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -735,8 +735,8 @@ export interface paths {
     /** Deletes a specific linked transactions (billable expenses) */
     delete: operations['deleteLinkedTransaction']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -748,8 +748,8 @@ export interface paths {
     /** Updates or creates a single manual journal */
     post: operations['updateOrCreateManualJournals']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -759,8 +759,8 @@ export interface paths {
     /** Updates a specific manual journal */
     post: operations['updateManualJournal']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -768,8 +768,8 @@ export interface paths {
     /** Retrieves attachment for a specific manual journal */
     get: operations['getManualJournalAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -777,8 +777,8 @@ export interface paths {
     /** Allows you to retrieve a specific attachment from a specific manual journal using a unique attachment Id */
     get: operations['getManualJournalAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -790,8 +790,8 @@ export interface paths {
     /** Updates a specific attachment from a specific manual journal by file name */
     post: operations['updateManualJournalAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -801,8 +801,8 @@ export interface paths {
     /** Creates a history record for a specific manual journal */
     put: operations['createManualJournalHistoryRecord']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -810,8 +810,8 @@ export interface paths {
     /** Retrieves Xero organisation details */
     get: operations['getOrganisations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -819,8 +819,8 @@ export interface paths {
     /** Retrieves a list of the key actions your app has permission to perform in the connected Xero organisation. */
     get: operations['getOrganisationActions']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -828,8 +828,8 @@ export interface paths {
     /** Retrieves the CIS settings for the Xero organistaion. */
     get: operations['getOrganisationCISSettings']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -837,8 +837,8 @@ export interface paths {
     /** Retrieves overpayments */
     get: operations['getOverpayments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -846,8 +846,8 @@ export interface paths {
     /** Retrieves a specific overpayment using a unique overpayment Id */
     get: operations['getOverpayment']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -855,8 +855,8 @@ export interface paths {
     /** Creates a single allocation for a specific overpayment */
     put: operations['createOverpaymentAllocations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -864,8 +864,8 @@ export interface paths {
     /** Deletes an Allocation from an overpayment */
     delete: operations['deleteOverpaymentAllocations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -875,8 +875,8 @@ export interface paths {
     /** Creates a history record for a specific overpayment */
     put: operations['createOverpaymentHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -888,8 +888,8 @@ export interface paths {
     /** Creates a single payment for invoice or credit notes */
     post: operations['createPayment']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -899,8 +899,8 @@ export interface paths {
     /** Updates a specific payment for invoices and credit notes */
     post: operations['deletePayment']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -910,8 +910,8 @@ export interface paths {
     /** Creates a history record for a specific payment */
     put: operations['createPaymentHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -921,8 +921,8 @@ export interface paths {
     /** Creates a payment service */
     put: operations['createPaymentService']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -930,8 +930,8 @@ export interface paths {
     /** Retrieves prepayments */
     get: operations['getPrepayments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -939,8 +939,8 @@ export interface paths {
     /** Allows you to retrieve a specified prepayments */
     get: operations['getPrepayment']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -948,8 +948,8 @@ export interface paths {
     /** Allows you to create an Allocation for prepayments */
     put: operations['createPrepaymentAllocations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -957,8 +957,8 @@ export interface paths {
     /** Deletes an Allocation from a Prepayment */
     delete: operations['deletePrepaymentAllocations']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -968,8 +968,8 @@ export interface paths {
     /** Creates a history record for a specific prepayment */
     put: operations['createPrepaymentHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -981,8 +981,8 @@ export interface paths {
     /** Updates or creates one or more purchase orders */
     post: operations['updateOrCreatePurchaseOrders']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -990,8 +990,8 @@ export interface paths {
     /** Retrieves specific purchase order as PDF files using a unique purchase order Id */
     get: operations['getPurchaseOrderAsPdf']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1001,8 +1001,8 @@ export interface paths {
     /** Updates a specific purchase order */
     post: operations['updatePurchaseOrder']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1010,8 +1010,8 @@ export interface paths {
     /** Retrieves a specific purchase order using purchase order number */
     get: operations['getPurchaseOrderByNumber']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1021,8 +1021,8 @@ export interface paths {
     /** Creates a history record for a specific purchase orders */
     put: operations['createPurchaseOrderHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1030,8 +1030,8 @@ export interface paths {
     /** Retrieves attachments for a specific purchase order */
     get: operations['getPurchaseOrderAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1039,8 +1039,8 @@ export interface paths {
     /** Retrieves specific attachment for a specific purchase order using a unique attachment Id */
     get: operations['getPurchaseOrderAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1052,8 +1052,8 @@ export interface paths {
     /** Updates a specific attachment for a specific purchase order by filename */
     post: operations['updatePurchaseOrderAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1065,8 +1065,8 @@ export interface paths {
     /** Updates or creates one or more quotes */
     post: operations['updateOrCreateQuotes']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1076,8 +1076,8 @@ export interface paths {
     /** Updates a specific quote */
     post: operations['updateQuote']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1087,8 +1087,8 @@ export interface paths {
     /** Creates a history record for a specific quote */
     put: operations['createQuoteHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1096,8 +1096,8 @@ export interface paths {
     /** Retrieves a specific quote as a PDF file using a unique quote Id */
     get: operations['getQuoteAsPdf']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1105,8 +1105,8 @@ export interface paths {
     /** Retrieves attachments for a specific quote */
     get: operations['getQuoteAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1114,8 +1114,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific quote using a unique attachment Id */
     get: operations['getQuoteAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1127,8 +1127,8 @@ export interface paths {
     /** Updates a specific attachment from a specific quote by filename */
     post: operations['updateQuoteAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1138,8 +1138,8 @@ export interface paths {
     /** Creates draft expense claim receipts for any user */
     put: operations['createReceipt']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1149,8 +1149,8 @@ export interface paths {
     /** Updates a specific draft expense claim receipts */
     post: operations['updateReceipt']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1158,8 +1158,8 @@ export interface paths {
     /** Retrieves attachments for a specific expense claim receipt */
     get: operations['getReceiptAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1167,8 +1167,8 @@ export interface paths {
     /** Retrieves a specific attachments from a specific expense claim receipts by using a unique attachment Id */
     get: operations['getReceiptAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1180,8 +1180,8 @@ export interface paths {
     /** Updates a specific attachment on a specific expense claim receipts by file name */
     post: operations['updateReceiptAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1191,8 +1191,8 @@ export interface paths {
     /** Creates a history record for a specific receipt */
     put: operations['createReceiptHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1204,8 +1204,8 @@ export interface paths {
     /** Creates or deletes one or more repeating invoice templates */
     post: operations['updateOrCreateRepeatingInvoices']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1215,8 +1215,8 @@ export interface paths {
     /** Deletes a specific repeating invoice template */
     post: operations['updateRepeatingInvoice']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1224,8 +1224,8 @@ export interface paths {
     /** Retrieves attachments from a specific repeating invoice */
     get: operations['getRepeatingInvoiceAttachments']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1233,8 +1233,8 @@ export interface paths {
     /** Retrieves a specific attachment from a specific repeating invoice */
     get: operations['getRepeatingInvoiceAttachmentById']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1246,8 +1246,8 @@ export interface paths {
     /** Updates a specific attachment from a specific repeating invoices by file name */
     post: operations['updateRepeatingInvoiceAttachmentByFileName']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1257,8 +1257,8 @@ export interface paths {
     /** Creates a  history record for a specific repeating invoice */
     put: operations['createRepeatingInvoiceHistory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1266,8 +1266,8 @@ export interface paths {
     /** Retrieve reports for 1099 */
     get: operations['getReportTenNinetyNine']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1275,8 +1275,8 @@ export interface paths {
     /** Retrieves report for aged payables by contact */
     get: operations['getReportAgedPayablesByContact']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1284,8 +1284,8 @@ export interface paths {
     /** Retrieves report for aged receivables by contact */
     get: operations['getReportAgedReceivablesByContact']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1293,8 +1293,8 @@ export interface paths {
     /** Retrieves report for balancesheet */
     get: operations['getReportBalanceSheet']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1302,8 +1302,8 @@ export interface paths {
     /** Retrieves report for bank summary */
     get: operations['getReportBankSummary']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1311,8 +1311,8 @@ export interface paths {
     /** Retrieves a specific report using a unique ReportID */
     get: operations['getReportFromId']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1320,8 +1320,8 @@ export interface paths {
     /** Retrieves report for budget summary */
     get: operations['getReportBudgetSummary']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1329,8 +1329,8 @@ export interface paths {
     /** Retrieves report for executive summary */
     get: operations['getReportExecutiveSummary']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1338,8 +1338,8 @@ export interface paths {
     /** Retrieves a list of the organistaions unique reports that require a uuid to fetch */
     get: operations['getReportsList']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1347,8 +1347,8 @@ export interface paths {
     /** Retrieves report for profit and loss */
     get: operations['getReportProfitAndLoss']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1356,8 +1356,8 @@ export interface paths {
     /** Retrieves report for trial balance */
     get: operations['getReportTrialBalance']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1365,8 +1365,8 @@ export interface paths {
     /** Sets the chart of accounts, the conversion date and conversion balances */
     post: operations['postSetup']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1378,8 +1378,8 @@ export interface paths {
     /** Updates tax rates */
     post: operations['updateTaxRate']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1387,8 +1387,8 @@ export interface paths {
     /** Retrieves a specific tax rate according to given TaxType code */
     get: operations['getTaxRateByTaxType']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1398,8 +1398,8 @@ export interface paths {
     /** Create tracking categories */
     put: operations['createTrackingCategory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1411,8 +1411,8 @@ export interface paths {
     /** Deletes a specific tracking category */
     delete: operations['deleteTrackingCategory']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1420,8 +1420,8 @@ export interface paths {
     /** Creates options for a specific tracking category */
     put: operations['createTrackingOptions']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1431,8 +1431,8 @@ export interface paths {
     /** Deletes a specific option for a specific tracking category */
     delete: operations['deleteTrackingOptions']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1440,8 +1440,8 @@ export interface paths {
     /** Retrieves users */
     get: operations['getUsers']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -1449,8 +1449,8 @@ export interface paths {
     /** Retrieves a specific user */
     get: operations['getUser']
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
   }
@@ -5120,7 +5120,7 @@ export interface components {
      * @description Xero identifier for Tenant
      * @example YOUR_XERO_TENANT_ID
      */
-    requiredHeader: string
+    requiredHeader?: string
     /**
      * @description If false return 200 OK and mix of successfully created objects and any with validation errors
      * @example true
@@ -5331,7 +5331,7 @@ export interface components {
     /** @description HistoryRecords containing an array of HistoryRecord objects in body of request */
     historyRecords: {
       content: {
-        /** @example { "HistoryRecords": [ { "Details": "Hello World" } ] } */
+        /** @example {   "HistoryRecords": [   {   "Details": "Hello World" } ] } */
         'application/json': components['schemas']['HistoryRecords']
       }
     }
@@ -5360,8 +5360,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -5377,8 +5377,8 @@ export interface operations {
   /** Creates a new chart of accounts */
   createAccount: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -5407,8 +5407,8 @@ export interface operations {
   /** Retrieves a single chart of accounts by using a unique account Id */
   getAccount: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         AccountID: components['parameters']['AccountID']
@@ -5426,8 +5426,8 @@ export interface operations {
   /** Updates a chart of accounts */
   updateAccount: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5437,7 +5437,7 @@ export interface operations {
     /** @description Request of type Accounts array with one Account */
     requestBody: {
       content: {
-        /** @example { "Accounts":[ { "Code":"123456", "Name":"BarFoo", "AccountID":"99ce6032-0678-4aa0-8148-240c75fee33a", "Type":"EXPENSE", "Description":"GoodBye World", "TaxType":"INPUT", "EnablePaymentsToAccount":false, "ShowInExpenseClaims":false, "Class":"EXPENSE", "ReportingCode":"EXP", "ReportingCodeName":"Expense", "UpdatedDateUTC":"2019-02-21T16:29:47.96-08:00" } ] } */
+        /** @example {   "Accounts":[   {   "Code":"123456", "Name":"BarFoo", "AccountID":"99ce6032-0678-4aa0-8148-240c75fee33a", "Type":"EXPENSE", "Description":"GoodBye World", "TaxType":"INPUT", "EnablePaymentsToAccount":false, "ShowInExpenseClaims":false, "Class":"EXPENSE", "ReportingCode":"EXP", "ReportingCodeName":"Expense", "UpdatedDateUTC":"2019-02-21T16:29:47.96-08:00" } ] } */
         'application/json': components['schemas']['Accounts']
       }
     }
@@ -5459,8 +5459,8 @@ export interface operations {
   /** Deletes a chart of accounts */
   deleteAccount: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         AccountID: components['parameters']['AccountID']
@@ -5484,8 +5484,8 @@ export interface operations {
   /** Retrieves attachments for a specific accounts by using a unique account Id */
   getAccountAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         AccountID: components['parameters']['AccountID']
@@ -5504,7 +5504,7 @@ export interface operations {
   getAccountAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -5525,7 +5525,7 @@ export interface operations {
   getAccountAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -5545,8 +5545,8 @@ export interface operations {
   /** Creates an attachment on a specific account */
   createAccountAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5573,8 +5573,8 @@ export interface operations {
   /** Updates attachment on a specific account by filename */
   updateAccountAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5618,8 +5618,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -5638,8 +5638,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -5663,14 +5663,14 @@ export interface operations {
   /** Updates a specific batch payment for invoices and credit notes */
   deleteBatchPayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
     requestBody: {
       content: {
-        /** @example { "BatchPaymentID": "9bf296e9-0748-4d29-a3dc-24dde1098030", "Status":"DELETED" } */
+        /** @example {   "BatchPaymentID": "9bf296e9-0748-4d29-a3dc-24dde1098030", "Status":"DELETED" } */
         'application/json': components['schemas']['BatchPaymentDelete']
       }
     }
@@ -5687,8 +5687,8 @@ export interface operations {
   /** Retrieves a specific batch payment using a unique batch payment Id */
   getBatchPayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BatchPaymentID: components['parameters']['BatchPaymentID']
@@ -5706,8 +5706,8 @@ export interface operations {
   /** Updates a specific batch payment for invoices and credit notes */
   deleteBatchPaymentByUrlParam: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5716,7 +5716,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        /** @example { "Status":"DELETED" } */
+        /** @example {   "Status":"DELETED" } */
         'application/json': components['schemas']['BatchPaymentDeleteByUrlParam']
       }
     }
@@ -5733,8 +5733,8 @@ export interface operations {
   /** Retrieves history from a specific batch payment */
   getBatchPaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BatchPaymentID: components['parameters']['BatchPaymentID']
@@ -5752,8 +5752,8 @@ export interface operations {
   /** Creates a history record for a specific batch payment */
   createBatchPaymentHistoryRecord: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5792,8 +5792,8 @@ export interface operations {
         page?: number
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -5813,8 +5813,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -5842,8 +5842,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -5869,8 +5869,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransactionID: components['parameters']['BankTransactionID']
@@ -5891,8 +5891,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -5918,8 +5918,8 @@ export interface operations {
   /** Retrieves any attachments from a specific bank transactions */
   getBankTransactionAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransactionID: components['parameters']['BankTransactionID']
@@ -5938,7 +5938,7 @@ export interface operations {
   getBankTransactionAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -5959,7 +5959,7 @@ export interface operations {
   getBankTransactionAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -5979,8 +5979,8 @@ export interface operations {
   /** Creates an attachment for a specific bank transaction by filename */
   createBankTransactionAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6007,8 +6007,8 @@ export interface operations {
   /** Updates a specific attachment from a specific bank transaction by filename */
   updateBankTransactionAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6035,8 +6035,8 @@ export interface operations {
   /** Retrieves history from a specific bank transaction using a unique bank transaction Id */
   getBankTransactionsHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransactionID: components['parameters']['BankTransactionID']
@@ -6049,8 +6049,8 @@ export interface operations {
   /** Creates a history record for a specific bank transactions */
   createBankTransactionHistoryRecord: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6078,8 +6078,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -6095,8 +6095,8 @@ export interface operations {
   /** Creates a bank transfer */
   createBankTransfer: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -6120,8 +6120,8 @@ export interface operations {
   /** Retrieves specific bank transfers by using a unique bank transfer Id */
   getBankTransfer: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransferID: components['parameters']['BankTransferID']
@@ -6139,8 +6139,8 @@ export interface operations {
   /** Retrieves attachments from a specific bank transfer */
   getBankTransferAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransferID: components['parameters']['BankTransferID']
@@ -6159,7 +6159,7 @@ export interface operations {
   getBankTransferAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -6180,7 +6180,7 @@ export interface operations {
   getBankTransferAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -6199,8 +6199,8 @@ export interface operations {
   }
   createBankTransferAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6226,8 +6226,8 @@ export interface operations {
   }
   updateBankTransferAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6254,8 +6254,8 @@ export interface operations {
   /** Retrieves history from a specific bank transfer using a unique bank transfer Id */
   getBankTransferHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BankTransferID: components['parameters']['BankTransferID']
@@ -6268,8 +6268,8 @@ export interface operations {
   /** Creates a history record for a specific bank transfer */
   createBankTransferHistoryRecord: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6285,8 +6285,8 @@ export interface operations {
   /** Retrieves all the branding themes */
   getBrandingThemes: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -6301,8 +6301,8 @@ export interface operations {
   /** Retrieves a specific branding theme using a unique branding theme Id */
   getBrandingTheme: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BrandingThemeID: components['parameters']['BrandingThemeID']
@@ -6320,8 +6320,8 @@ export interface operations {
   /** Retrieves the payment services for a specific branding theme */
   getBrandingThemePaymentServices: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BrandingThemeID: components['parameters']['BrandingThemeID']
@@ -6339,8 +6339,8 @@ export interface operations {
   /** Creates a new custom payment service for a specific branding theme */
   createBrandingThemePaymentServices: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6384,8 +6384,8 @@ export interface operations {
          */
         DateFrom?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -6412,8 +6412,8 @@ export interface operations {
          */
         DateFrom?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         BudgetID: components['parameters']['BudgetID']
@@ -6464,8 +6464,8 @@ export interface operations {
          */
         searchTerm?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -6484,8 +6484,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -6517,8 +6517,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -6546,8 +6546,8 @@ export interface operations {
   /** Retrieves a specific contact by contact number in a Xero organisation */
   getContactByContactNumber: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         /**
@@ -6569,8 +6569,8 @@ export interface operations {
   /** Retrieves a specific contacts in a Xero organisation using a unique contact Id */
   getContact: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactID: components['parameters']['ContactID']
@@ -6588,8 +6588,8 @@ export interface operations {
   /** Updates a specific contact in a Xero organisation */
   updateContact: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6616,8 +6616,8 @@ export interface operations {
   /** Retrieves attachments for a specific contact in a Xero organisation */
   getContactAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactID: components['parameters']['ContactID']
@@ -6636,7 +6636,7 @@ export interface operations {
   getContactAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -6657,7 +6657,7 @@ export interface operations {
   getContactAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -6676,8 +6676,8 @@ export interface operations {
   }
   createContactAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6703,8 +6703,8 @@ export interface operations {
   }
   updateContactAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6731,8 +6731,8 @@ export interface operations {
   /** Retrieves CIS settings for a specific contact in a Xero organisation */
   getContactCISSettings: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactID: components['parameters']['ContactID']
@@ -6750,8 +6750,8 @@ export interface operations {
   /** Retrieves history records for a specific contact */
   getContactHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactID: components['parameters']['ContactID']
@@ -6764,8 +6764,8 @@ export interface operations {
   /** Creates a new history record for a specific contact */
   createContactHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6793,8 +6793,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -6809,8 +6809,8 @@ export interface operations {
   /** Creates a contact group */
   createContactGroup: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -6839,8 +6839,8 @@ export interface operations {
   /** Retrieves a specific contact group by using a unique contact group Id */
   getContactGroup: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactGroupID: components['parameters']['ContactGroupID']
@@ -6858,8 +6858,8 @@ export interface operations {
   /** Updates a specific contact group */
   updateContactGroup: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6869,7 +6869,7 @@ export interface operations {
     /** @description an array of Contact groups with Name of specific group to update */
     requestBody: {
       content: {
-        /** @example { "ContactGroups":[ { "Name":"Suppliers" } ] } */
+        /** @example {   "ContactGroups":[   {   "Name":"Suppliers" } ] } */
         'application/json': components['schemas']['ContactGroups']
       }
     }
@@ -6886,8 +6886,8 @@ export interface operations {
   /** Creates contacts to a specific contact group */
   createContactGroupContacts: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -6914,8 +6914,8 @@ export interface operations {
   /** Deletes all contacts from a specific contact group */
   deleteContactGroupContacts: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactGroupID: components['parameters']['ContactGroupID']
@@ -6931,8 +6931,8 @@ export interface operations {
   /** Deletes a specific contact from a contact group using a unique contact Id */
   deleteContactGroupContact: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ContactGroupID: components['parameters']['ContactGroupID']
@@ -6968,8 +6968,8 @@ export interface operations {
         page?: number
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -6989,15 +6989,15 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
     /** @description Credit Notes with array of CreditNote object in body of request */
     requestBody: {
       content: {
-        /** @example { "CreditNotes":[ { "Type":"ACCPAYCREDIT", "Contact":{ "ContactID":"430fa14a-f945-44d3-9f97-5df5e28441b8" }, "Date":"2019-01-05", "LineItems":[ { "Description":"Foobar", "Quantity":2.0, "UnitAmount":20.0, "AccountCode":"400" } ] } ] } */
+        /** @example {   "CreditNotes":[   {   "Type":"ACCPAYCREDIT", "Contact":{   "ContactID":"430fa14a-f945-44d3-9f97-5df5e28441b8" }, "Date":"2019-01-05", "LineItems":[   {   "Description":"Foobar", "Quantity":2.0, "UnitAmount":20.0, "AccountCode":"400" } ] } ] } */
         'application/json': components['schemas']['CreditNotes']
       }
     }
@@ -7018,15 +7018,15 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
     /** @description an array of Credit Notes with a single CreditNote object. */
     requestBody: {
       content: {
-        /** @example { "CreditNotes":[ { "Type":"ACCPAYCREDIT", "Contact":{ "ContactID":"430fa14a-f945-44d3-9f97-5df5e28441b8" }, "Date":"2019-01-05", "Status":"AUTHORISED", "Reference": "HelloWorld", "LineItems":[ { "Description":"Foobar", "Quantity":2.0, "UnitAmount":20.0, "AccountCode":"400" } ] } ] } */
+        /** @example {   "CreditNotes":[   {   "Type":"ACCPAYCREDIT", "Contact":{   "ContactID":"430fa14a-f945-44d3-9f97-5df5e28441b8" }, "Date":"2019-01-05", "Status":"AUTHORISED", "Reference": "HelloWorld", "LineItems":[   {   "Description":"Foobar", "Quantity":2.0, "UnitAmount":20.0, "AccountCode":"400" } ] } ] } */
         'application/json': components['schemas']['CreditNotes']
       }
     }
@@ -7046,8 +7046,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         CreditNoteID: components['parameters']['CreditNoteID']
@@ -7068,8 +7068,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7096,8 +7096,8 @@ export interface operations {
   /** Retrieves attachments for a specific credit notes */
   getCreditNoteAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         CreditNoteID: components['parameters']['CreditNoteID']
@@ -7116,7 +7116,7 @@ export interface operations {
   getCreditNoteAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -7137,7 +7137,7 @@ export interface operations {
   getCreditNoteAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -7160,8 +7160,8 @@ export interface operations {
       query?: {
         IncludeOnline?: components['parameters']['includeOnline']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7188,8 +7188,8 @@ export interface operations {
   /** Updates attachments on a specific credit note by file name */
   updateCreditNoteAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7216,8 +7216,8 @@ export interface operations {
   /** Retrieves credit notes as PDF files */
   getCreditNoteAsPdf: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         CreditNoteID: components['parameters']['CreditNoteID']
@@ -7238,8 +7238,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7266,8 +7266,8 @@ export interface operations {
   /** Deletes an Allocation from a Credit Note */
   deleteCreditNoteAllocations: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         CreditNoteID: components['parameters']['CreditNoteID']
@@ -7286,8 +7286,8 @@ export interface operations {
   /** Retrieves history records of a specific credit note */
   getCreditNoteHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         CreditNoteID: components['parameters']['CreditNoteID']
@@ -7300,8 +7300,8 @@ export interface operations {
   /** Retrieves history records of a specific credit note */
   createCreditNoteHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7329,8 +7329,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -7345,8 +7345,8 @@ export interface operations {
   /** Create a new currency for a Xero organisation */
   createCurrency: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7381,8 +7381,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -7401,8 +7401,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7429,8 +7429,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7454,8 +7454,8 @@ export interface operations {
   /** Retrieves a specific employee used in Xero payrun using a unique employee Id */
   getEmployee: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         EmployeeID: components['parameters']['EmployeeID']
@@ -7485,8 +7485,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -7502,8 +7502,8 @@ export interface operations {
   /** Creates expense claims */
   createExpenseClaims: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7527,8 +7527,8 @@ export interface operations {
   /** Retrieves a specific expense claim using a unique expense claim Id */
   getExpenseClaim: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ExpenseClaimID: components['parameters']['ExpenseClaimID']
@@ -7546,8 +7546,8 @@ export interface operations {
   /** Updates a specific expense claims */
   updateExpenseClaim: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7573,8 +7573,8 @@ export interface operations {
   /** Retrieves history records of a specific expense claim */
   getExpenseClaimHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ExpenseClaimID: components['parameters']['ExpenseClaimID']
@@ -7587,8 +7587,8 @@ export interface operations {
   /** Creates a history record for a specific expense claim */
   createExpenseClaimHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7652,8 +7652,8 @@ export interface operations {
         unitdp?: components['parameters']['unitdp']
         summaryOnly?: components['parameters']['summaryOnly']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -7673,8 +7673,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7702,8 +7702,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -7729,8 +7729,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         InvoiceID: components['parameters']['InvoiceID']
@@ -7751,8 +7751,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7778,8 +7778,8 @@ export interface operations {
   /** Retrieves invoices or purchase bills as PDF files */
   getInvoiceAsPdf: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         InvoiceID: components['parameters']['InvoiceID']
@@ -7797,8 +7797,8 @@ export interface operations {
   /** Retrieves attachments for a specific invoice or purchase bill */
   getInvoiceAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         InvoiceID: components['parameters']['InvoiceID']
@@ -7817,7 +7817,7 @@ export interface operations {
   getInvoiceAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -7838,7 +7838,7 @@ export interface operations {
   getInvoiceAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -7861,8 +7861,8 @@ export interface operations {
       query?: {
         IncludeOnline?: components['parameters']['includeOnline']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7889,8 +7889,8 @@ export interface operations {
   /** Updates an attachment from a specific invoices or purchase bill by filename */
   updateInvoiceAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7917,8 +7917,8 @@ export interface operations {
   /** Retrieves a URL to an online invoice */
   getOnlineInvoice: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         InvoiceID: components['parameters']['InvoiceID']
@@ -7936,8 +7936,8 @@ export interface operations {
   /** Sends a copy of a specific invoice to related contact via email */
   emailInvoice: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7961,8 +7961,8 @@ export interface operations {
   /** Retrieves history records for a specific invoice */
   getInvoiceHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         InvoiceID: components['parameters']['InvoiceID']
@@ -7975,8 +7975,8 @@ export interface operations {
   /** Creates a history record for a specific invoice */
   createInvoiceHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -7992,8 +7992,8 @@ export interface operations {
   /** Retrieves invoice reminder settings */
   getInvoiceReminders: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -8021,8 +8021,8 @@ export interface operations {
         order?: string
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -8042,8 +8042,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8071,8 +8071,8 @@ export interface operations {
         summarizeErrors?: components['parameters']['summarizeErrors']
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8098,8 +8098,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ItemID: components['parameters']['ItemID']
@@ -8120,8 +8120,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8147,8 +8147,8 @@ export interface operations {
   /** Deletes a specific item */
   deleteItem: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ItemID: components['parameters']['ItemID']
@@ -8165,8 +8165,8 @@ export interface operations {
   /** Retrieves history for a specific item */
   getItemHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ItemID: components['parameters']['ItemID']
@@ -8179,8 +8179,8 @@ export interface operations {
   /** Creates a history record for a specific item */
   createItemHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8207,8 +8207,8 @@ export interface operations {
          */
         paymentsOnly?: boolean
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -8224,8 +8224,8 @@ export interface operations {
   /** Retrieves a specific journal using a unique journal Id. */
   getJournal: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         JournalID: components['parameters']['JournalID']
@@ -8243,8 +8243,8 @@ export interface operations {
   /** Retrieves a specific journal using a unique journal number. */
   getJournalByNumber: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         JournalNumber: components['parameters']['JournalNumber']
@@ -8294,8 +8294,8 @@ export interface operations {
          */
         TargetTransactionID?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -8310,8 +8310,8 @@ export interface operations {
   /** Creates linked transactions (billable expenses) */
   createLinkedTransaction: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8335,8 +8335,8 @@ export interface operations {
   /** Retrieves a specific linked transaction (billable expenses) using a unique linked transaction Id */
   getLinkedTransaction: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         LinkedTransactionID: components['parameters']['LinkedTransactionID']
@@ -8354,8 +8354,8 @@ export interface operations {
   /** Updates a specific linked transactions (billable expenses) */
   updateLinkedTransaction: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8386,8 +8386,8 @@ export interface operations {
   /** Deletes a specific linked transactions (billable expenses) */
   deleteLinkedTransaction: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         LinkedTransactionID: components['parameters']['LinkedTransactionID']
@@ -8421,8 +8421,8 @@ export interface operations {
          */
         page?: number
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -8441,8 +8441,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8469,8 +8469,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8494,8 +8494,8 @@ export interface operations {
   /** Retrieves a specific manual journal */
   getManualJournal: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ManualJournalID: components['parameters']['ManualJournalID']
@@ -8513,8 +8513,8 @@ export interface operations {
   /** Updates a specific manual journal */
   updateManualJournal: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8540,8 +8540,8 @@ export interface operations {
   /** Retrieves attachment for a specific manual journal */
   getManualJournalAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ManualJournalID: components['parameters']['ManualJournalID']
@@ -8560,7 +8560,7 @@ export interface operations {
   getManualJournalAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -8581,7 +8581,7 @@ export interface operations {
   getManualJournalAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -8601,8 +8601,8 @@ export interface operations {
   /** Creates a specific attachment for a specific manual journal by file name */
   createManualJournalAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8629,8 +8629,8 @@ export interface operations {
   /** Updates a specific attachment from a specific manual journal by file name */
   updateManualJournalAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8657,8 +8657,8 @@ export interface operations {
   /** Retrieves history for a specific manual journal */
   getManualJournalsHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ManualJournalID: components['parameters']['ManualJournalID']
@@ -8671,8 +8671,8 @@ export interface operations {
   /** Creates a history record for a specific manual journal */
   createManualJournalHistoryRecord: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8688,8 +8688,8 @@ export interface operations {
   /** Retrieves Xero organisation details */
   getOrganisations: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -8704,8 +8704,8 @@ export interface operations {
   /** Retrieves a list of the key actions your app has permission to perform in the connected Xero organisation. */
   getOrganisationActions: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -8720,8 +8720,8 @@ export interface operations {
   /** Retrieves the CIS settings for the Xero organistaion. */
   getOrganisationCISSettings: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         OrganisationID: components['parameters']['OrganisationID']
@@ -8757,8 +8757,8 @@ export interface operations {
         page?: number
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -8774,8 +8774,8 @@ export interface operations {
   /** Retrieves a specific overpayment using a unique overpayment Id */
   getOverpayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         OverpaymentID: components['parameters']['OverpaymentID']
@@ -8796,8 +8796,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8824,8 +8824,8 @@ export interface operations {
   /** Deletes an Allocation from an overpayment */
   deleteOverpaymentAllocations: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         OverpaymentID: components['parameters']['OverpaymentID']
@@ -8844,8 +8844,8 @@ export interface operations {
   /** Retrieves history records of a specific overpayment */
   getOverpaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         OverpaymentID: components['parameters']['OverpaymentID']
@@ -8858,8 +8858,8 @@ export interface operations {
   /** Creates a history record for a specific overpayment */
   createOverpaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8897,8 +8897,8 @@ export interface operations {
          */
         page?: number
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -8917,8 +8917,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8942,8 +8942,8 @@ export interface operations {
   /** Creates a single payment for invoice or credit notes */
   createPayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -8967,8 +8967,8 @@ export interface operations {
   /** Retrieves a specific payment for invoices and credit notes using a unique payment Id */
   getPayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PaymentID: components['parameters']['PaymentID']
@@ -8986,8 +8986,8 @@ export interface operations {
   /** Updates a specific payment for invoices and credit notes */
   deletePayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -8996,7 +8996,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        /** @example { "Payments":[ { "Status":"DELETED" } ] } */
+        /** @example {   "Payments":[   {   "Status":"DELETED" } ] } */
         'application/json': components['schemas']['PaymentDelete']
       }
     }
@@ -9013,8 +9013,8 @@ export interface operations {
   /** Retrieves history records of a specific payment */
   getPaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PaymentID: components['parameters']['PaymentID']
@@ -9027,8 +9027,8 @@ export interface operations {
   /** Creates a history record for a specific payment */
   createPaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9049,8 +9049,8 @@ export interface operations {
   /** Retrieves payment services */
   getPaymentServices: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -9065,8 +9065,8 @@ export interface operations {
   /** Creates a payment service */
   createPaymentService: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9108,8 +9108,8 @@ export interface operations {
         page?: number
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -9125,8 +9125,8 @@ export interface operations {
   /** Allows you to retrieve a specified prepayments */
   getPrepayment: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PrepaymentID: components['parameters']['PrepaymentID']
@@ -9147,8 +9147,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9175,8 +9175,8 @@ export interface operations {
   /** Deletes an Allocation from a Prepayment */
   deletePrepaymentAllocations: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PrepaymentID: components['parameters']['PrepaymentID']
@@ -9195,8 +9195,8 @@ export interface operations {
   /** Retrieves history record for a specific prepayment */
   getPrepaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PrepaymentID: components['parameters']['PrepaymentID']
@@ -9209,8 +9209,8 @@ export interface operations {
   /** Creates a history record for a specific prepayment */
   createPrepaymentHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9258,8 +9258,8 @@ export interface operations {
          */
         page?: number
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -9278,8 +9278,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9306,8 +9306,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9330,8 +9330,8 @@ export interface operations {
   /** Retrieves specific purchase order as PDF files using a unique purchase order Id */
   getPurchaseOrderAsPdf: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PurchaseOrderID: components['parameters']['PurchaseOrderID']
@@ -9349,8 +9349,8 @@ export interface operations {
   /** Retrieves a specific purchase order using a unique purchase order Id */
   getPurchaseOrder: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PurchaseOrderID: components['parameters']['PurchaseOrderID']
@@ -9368,8 +9368,8 @@ export interface operations {
   /** Updates a specific purchase order */
   updatePurchaseOrder: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9395,8 +9395,8 @@ export interface operations {
   /** Retrieves a specific purchase order using purchase order number */
   getPurchaseOrderByNumber: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         /**
@@ -9418,8 +9418,8 @@ export interface operations {
   /** Retrieves history for a specific purchase order */
   getPurchaseOrderHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PurchaseOrderID: components['parameters']['PurchaseOrderID']
@@ -9432,8 +9432,8 @@ export interface operations {
   /** Creates a history record for a specific purchase orders */
   createPurchaseOrderHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9449,8 +9449,8 @@ export interface operations {
   /** Retrieves attachments for a specific purchase order */
   getPurchaseOrderAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         PurchaseOrderID: components['parameters']['PurchaseOrderID']
@@ -9469,7 +9469,7 @@ export interface operations {
   getPurchaseOrderAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -9490,7 +9490,7 @@ export interface operations {
   getPurchaseOrderAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -9510,8 +9510,8 @@ export interface operations {
   /** Creates attachment for a specific purchase order */
   createPurchaseOrderAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9538,8 +9538,8 @@ export interface operations {
   /** Updates a specific attachment for a specific purchase order by filename */
   updatePurchaseOrderAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9618,8 +9618,8 @@ export interface operations {
          */
         QuoteNumber?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -9638,8 +9638,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9666,8 +9666,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9690,8 +9690,8 @@ export interface operations {
   /** Retrieves a specific quote using a unique quote Id */
   getQuote: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         QuoteID: components['parameters']['QuoteID']
@@ -9709,8 +9709,8 @@ export interface operations {
   /** Updates a specific quote */
   updateQuote: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9736,8 +9736,8 @@ export interface operations {
   /** Retrieves history records of a specific quote */
   getQuoteHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         QuoteID: components['parameters']['QuoteID']
@@ -9750,8 +9750,8 @@ export interface operations {
   /** Creates a history record for a specific quote */
   createQuoteHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9767,8 +9767,8 @@ export interface operations {
   /** Retrieves a specific quote as a PDF file using a unique quote Id */
   getQuoteAsPdf: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         QuoteID: components['parameters']['QuoteID']
@@ -9786,8 +9786,8 @@ export interface operations {
   /** Retrieves attachments for a specific quote */
   getQuoteAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         QuoteID: components['parameters']['QuoteID']
@@ -9806,7 +9806,7 @@ export interface operations {
   getQuoteAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -9827,7 +9827,7 @@ export interface operations {
   getQuoteAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -9847,8 +9847,8 @@ export interface operations {
   /** Creates attachment for a specific quote */
   createQuoteAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9875,8 +9875,8 @@ export interface operations {
   /** Updates a specific attachment from a specific quote by filename */
   updateQuoteAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -9921,8 +9921,8 @@ export interface operations {
         order?: string
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -9941,8 +9941,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -9969,8 +9969,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ReceiptID: components['parameters']['ReceiptID']
@@ -9991,8 +9991,8 @@ export interface operations {
       query?: {
         unitdp?: components['parameters']['unitdp']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10018,8 +10018,8 @@ export interface operations {
   /** Retrieves attachments for a specific expense claim receipt */
   getReceiptAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ReceiptID: components['parameters']['ReceiptID']
@@ -10038,7 +10038,7 @@ export interface operations {
   getReceiptAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -10059,7 +10059,7 @@ export interface operations {
   getReceiptAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -10079,8 +10079,8 @@ export interface operations {
   /** Creates an attachment on a specific expense claim receipts by file name */
   createReceiptAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10107,8 +10107,8 @@ export interface operations {
   /** Updates a specific attachment on a specific expense claim receipts by file name */
   updateReceiptAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10135,8 +10135,8 @@ export interface operations {
   /** Retrieves a history record for a specific receipt */
   getReceiptHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         ReceiptID: components['parameters']['ReceiptID']
@@ -10149,8 +10149,8 @@ export interface operations {
   /** Creates a history record for a specific receipt */
   createReceiptHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10183,8 +10183,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10202,8 +10202,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10230,8 +10230,8 @@ export interface operations {
       query?: {
         summarizeErrors?: components['parameters']['summarizeErrors']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10255,8 +10255,8 @@ export interface operations {
   /** Retrieves a specific repeating invoice by using a unique repeating invoice Id */
   getRepeatingInvoice: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         RepeatingInvoiceID: components['parameters']['RepeatingInvoiceID']
@@ -10274,8 +10274,8 @@ export interface operations {
   /** Deletes a specific repeating invoice template */
   updateRepeatingInvoice: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10301,8 +10301,8 @@ export interface operations {
   /** Retrieves attachments from a specific repeating invoice */
   getRepeatingInvoiceAttachments: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         RepeatingInvoiceID: components['parameters']['RepeatingInvoiceID']
@@ -10321,7 +10321,7 @@ export interface operations {
   getRepeatingInvoiceAttachmentById: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -10342,7 +10342,7 @@ export interface operations {
   getRepeatingInvoiceAttachmentByFileName: {
     parameters: {
       header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         contentType: components['parameters']['ContentType']
       }
       path: {
@@ -10362,8 +10362,8 @@ export interface operations {
   /** Creates an attachment from a specific repeating invoices by file name */
   createRepeatingInvoiceAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10390,8 +10390,8 @@ export interface operations {
   /** Updates a specific attachment from a specific repeating invoices by file name */
   updateRepeatingInvoiceAttachmentByFileName: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10418,8 +10418,8 @@ export interface operations {
   /** Retrieves history record for a specific repeating invoice */
   getRepeatingInvoiceHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         RepeatingInvoiceID: components['parameters']['RepeatingInvoiceID']
@@ -10432,8 +10432,8 @@ export interface operations {
   /** Creates a  history record for a specific repeating invoice */
   createRepeatingInvoiceHistory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -10456,8 +10456,8 @@ export interface operations {
          */
         reportYear?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10486,8 +10486,8 @@ export interface operations {
         fromDate?: components['parameters']['FromDate']
         toDate?: components['parameters']['ToDate']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10516,8 +10516,8 @@ export interface operations {
         fromDate?: components['parameters']['FromDate']
         toDate?: components['parameters']['ToDate']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10569,8 +10569,8 @@ export interface operations {
          */
         paymentsOnly?: boolean
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10589,8 +10589,8 @@ export interface operations {
         fromDate?: components['parameters']['FromDate']
         toDate?: components['parameters']['ToDate']
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10605,8 +10605,8 @@ export interface operations {
   /** Retrieves a specific report using a unique ReportID */
   getReportFromId: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         /**
@@ -10645,8 +10645,8 @@ export interface operations {
          */
         timeframe?: number
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10668,8 +10668,8 @@ export interface operations {
          */
         date?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10684,8 +10684,8 @@ export interface operations {
   /** Retrieves a list of the organistaions unique reports that require a uuid to fetch */
   getReportsList: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10744,8 +10744,8 @@ export interface operations {
          */
         paymentsOnly?: boolean
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10772,8 +10772,8 @@ export interface operations {
          */
         paymentsOnly?: boolean
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10788,8 +10788,8 @@ export interface operations {
   /** Sets the chart of accounts, the conversion date and conversion balances */
   postSetup: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10824,8 +10824,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10840,8 +10840,8 @@ export interface operations {
   /** Creates one or more tax rates */
   createTaxRates: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10865,8 +10865,8 @@ export interface operations {
   /** Updates tax rates */
   updateTaxRate: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10889,8 +10889,8 @@ export interface operations {
   /** Retrieves a specific tax rate according to given TaxType code */
   getTaxRateByTaxType: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         TaxType: components['parameters']['TaxType']
@@ -10925,8 +10925,8 @@ export interface operations {
          */
         includeArchived?: boolean
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
     }
     responses: {
@@ -10941,8 +10941,8 @@ export interface operations {
   /** Create tracking categories */
   createTrackingCategory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
     }
@@ -10966,8 +10966,8 @@ export interface operations {
   /** Retrieves specific tracking categories and options using a unique tracking category Id */
   getTrackingCategory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         TrackingCategoryID: components['parameters']['TrackingCategoryID']
@@ -10985,8 +10985,8 @@ export interface operations {
   /** Updates a specific tracking category */
   updateTrackingCategory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -11012,8 +11012,8 @@ export interface operations {
   /** Deletes a specific tracking category */
   deleteTrackingCategory: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         TrackingCategoryID: components['parameters']['TrackingCategoryID']
@@ -11032,8 +11032,8 @@ export interface operations {
   /** Creates options for a specific tracking category */
   createTrackingOptions: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -11060,8 +11060,8 @@ export interface operations {
   /** Updates a specific option for a specific tracking category */
   updateTrackingOptions: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'Idempotency-Key'?: components['parameters']['idempotencyKey']
       }
       path: {
@@ -11088,8 +11088,8 @@ export interface operations {
   /** Deletes a specific option for a specific tracking category */
   deleteTrackingOptions: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         TrackingCategoryID: components['parameters']['TrackingCategoryID']
@@ -11121,8 +11121,8 @@ export interface operations {
          */
         order?: string
       }
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
         'If-Modified-Since'?: components['parameters']['ifModifiedSince']
       }
     }
@@ -11138,8 +11138,8 @@ export interface operations {
   /** Retrieves a specific user */
   getUser: {
     parameters: {
-      header: {
-        'xero-tenant-id': components['parameters']['requiredHeader']
+      header?: {
+        'xero-tenant-id'?: components['parameters']['requiredHeader']
       }
       path: {
         UserID: components['parameters']['UserID']

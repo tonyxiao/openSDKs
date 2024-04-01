@@ -10,10 +10,10 @@ maybeTest('list accounts', async () => {
     headers: {authorization: `Bearer ${accessToken}`},
   })
 
-  const conns = await xero.listConnections()
-  const firstTenantId = conns[0]?.tenantId
+  const conns = await xero.identity.GET('/Connections')
+  const firstTenantId = conns.data[0]?.tenantId
 
-  const res = await xero.GET('/Accounts', {
+  const res = await xero.accounting.GET('/Accounts', {
     params: {header: {'xero-tenant-id': firstTenantId!}},
   })
 

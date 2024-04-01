@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-xero",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
   "exports": {
     ".": {
@@ -38,19 +38,21 @@
     "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
     "clean": "rm -rf ./esm ./cjs ./types",
     "debug": "npx tsx ../../bin/jsonToJs.ts dist/",
-    "download": "concurrently npm:download:*",
-    "download:xero_accounting": "curl --fail https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml -o ./xero_accounting.oas.yaml",
-    "generate": "concurrently npm:generate:*",
-    "generate:xero_accounting:json": "cat xero_accounting.oas.yaml | node ../../bin/yaml2json.js -o xero_accounting.oas",
-    "generate:xero_accounting": "pwd; node ../../packages/cli/generateFromOas.js ./xero_accounting.oas.json",
+    "download": "npx tsx -e \"import('./manifest').then(r => r.download())\"",
+    "generate": "npx tsx -e \"import('./manifest').then(r => r.generate())\"",
+    "generate:index": "npx tsx -e \"import('./manifest').then(async r => console.log(await r.generateIndex()))\"",
     "version": "pnpm version"
   },
   "dependencies": {
     "@opensdks/runtime": "workspace:*"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "change-case": "^5.4.2",
     "concurrently": "^8.2.2",
-    "openapi-typescript": "6.7.1"
+    "js-yaml": "^4.1.0",
+    "openapi-typescript": "6.7.1",
+    "prettier": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
