@@ -15,9 +15,45 @@ export type XeroSDKTypes = SDKTypes<
   }
 >
 
+export interface Connection {
+  id: string
+  authEventId: string
+  tenantId: string
+  tenantType: string
+  tenantName: string
+  createdDateUtc: string
+  updatedDateUtc: string
+}
+
 export const xeroSdkDef = {
   types: {} as XeroSDKTypes,
   oasMeta: xeroOasMeta,
+  createClient(ctx, options) {
+    const client = ctx.createClient({
+      ...options,
+      headers: {
+        // xero returns xml by default unless we ask for JSON
+        accept: 'application/json',
+        ...options.headers,
+      },
+    })
+
+    // TODO: Create a separate OpenAPI spec for this one
+    const rootClient = ctx.createClient({
+      ...options,
+      baseUrl: 'https://api.xero.com/',
+      headers: {
+        accept: 'application/json',
+        ...options.headers,
+      },
+    })
+    function listConnections() {
+      return rootClient
+        .request<Connection[]>('GET', '/connections')
+        .then((r) => r.data)
+    }
+    return {...client, listConnections}
+  },
 } satisfies SdkDefinition<XeroSDKTypes>
 
 export function initXeroSDK(opts: XeroSDKTypes['options']) {
