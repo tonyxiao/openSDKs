@@ -1,6 +1,6 @@
 {
   "name": "@opensdks/sdk-xero",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "exports": {
     ".": {
@@ -45,9 +45,10 @@
     "generate:xero_accounting": "pwd; node ../../packages/cli/generateFromOas.js ./xero_accounting.oas.json",
     "version": "pnpm version"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@opensdks/runtime": "workspace:*"
+  },
   "devDependencies": {
-    "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
     "openapi-typescript": "6.7.1"
   },
