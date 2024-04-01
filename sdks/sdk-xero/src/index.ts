@@ -1,7 +1,9 @@
 import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
 import {initSDK} from '@opensdks/runtime'
-import type xeroTypes from '../xero_accounting.oas.types.js'
+import type {default as xeroTypes} from '../xero_accounting.oas.types.js'
 import {default as xeroOasMeta} from './xero_accounting.oas.meta.js'
+
+export {xeroTypes}
 
 export type XeroSDKTypes = SDKTypes<
   xeroTypes,
