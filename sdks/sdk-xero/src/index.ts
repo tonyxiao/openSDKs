@@ -16,6 +16,10 @@ export type XeroSDKTypes = SDKTypes<
 export const xeroSdkDef = {
   types: {} as XeroSDKTypes,
   oasMeta: xeroOasMeta,
+  createClient: (ctx, {...opts}) =>
+    ctx.createClient({
+      ...opts,
+    }),
 } satisfies SdkDefinition<XeroSDKTypes>
 
 export function initXeroSDK(opts: XeroSDKTypes['options']) {
