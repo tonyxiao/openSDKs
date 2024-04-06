@@ -185,6 +185,7 @@ export interface components {
       description?: string
       icon?: string
       isCustom?: boolean
+      isRemote?: boolean
       isActive?: boolean
       isSystem?: boolean
       createdAt?: string

@@ -8,206 +8,6 @@ export interface paths {
     /** Get Open Api Schema */
     get: operations['GetOpenApiSchema']
   }
-  '/activityTargets': {
-    /**
-     * Find Many activityTargets
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activityTargets**
-     */
-    get: operations['findManyActivityTargets']
-    /** Create One activityTarget */
-    post: operations['createOneActivityTarget']
-  }
-  '/activityTargets/{id}': {
-    /**
-     * Find One activityTarget
-     * @description **depth** can be provided to request your **activityTarget**
-     */
-    get: operations['findOneActivityTarget']
-    /** Update One activityTargets */
-    put: operations['UpdateOneActivityTarget']
-    /** Delete One activityTarget */
-    delete: operations['deleteOneActivityTarget']
-  }
-  '/activities': {
-    /**
-     * Find Many activities
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activities**
-     */
-    get: operations['findManyActivities']
-    /** Create One activity */
-    post: operations['createOneActivity']
-  }
-  '/activities/{id}': {
-    /**
-     * Find One activity
-     * @description **depth** can be provided to request your **activity**
-     */
-    get: operations['findOneActivity']
-    /** Update One activities */
-    put: operations['UpdateOneActivity']
-    /** Delete One activity */
-    delete: operations['deleteOneActivity']
-  }
-  '/apiKeys': {
-    /**
-     * Find Many apiKeys
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **apiKeys**
-     */
-    get: operations['findManyApiKeys']
-    /** Create One apiKey */
-    post: operations['createOneApiKey']
-  }
-  '/apiKeys/{id}': {
-    /**
-     * Find One apiKey
-     * @description **depth** can be provided to request your **apiKey**
-     */
-    get: operations['findOneApiKey']
-    /** Update One apiKeys */
-    put: operations['UpdateOneApiKey']
-    /** Delete One apiKey */
-    delete: operations['deleteOneApiKey']
-  }
-  '/attachments': {
-    /**
-     * Find Many attachments
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **attachments**
-     */
-    get: operations['findManyAttachments']
-    /** Create One attachment */
-    post: operations['createOneAttachment']
-  }
-  '/attachments/{id}': {
-    /**
-     * Find One attachment
-     * @description **depth** can be provided to request your **attachment**
-     */
-    get: operations['findOneAttachment']
-    /** Update One attachments */
-    put: operations['UpdateOneAttachment']
-    /** Delete One attachment */
-    delete: operations['deleteOneAttachment']
-  }
-  '/blocklists': {
-    /**
-     * Find Many blocklists
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **blocklists**
-     */
-    get: operations['findManyBlocklists']
-    /** Create One blocklist */
-    post: operations['createOneBlocklist']
-  }
-  '/blocklists/{id}': {
-    /**
-     * Find One blocklist
-     * @description **depth** can be provided to request your **blocklist**
-     */
-    get: operations['findOneBlocklist']
-    /** Update One blocklists */
-    put: operations['UpdateOneBlocklist']
-    /** Delete One blocklist */
-    delete: operations['deleteOneBlocklist']
-  }
-  '/comments': {
-    /**
-     * Find Many comments
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **comments**
-     */
-    get: operations['findManyComments']
-    /** Create One comment */
-    post: operations['createOneComment']
-  }
-  '/comments/{id}': {
-    /**
-     * Find One comment
-     * @description **depth** can be provided to request your **comment**
-     */
-    get: operations['findOneComment']
-    /** Update One comments */
-    put: operations['UpdateOneComment']
-    /** Delete One comment */
-    delete: operations['deleteOneComment']
-  }
-  '/companies': {
-    /**
-     * Find Many companies
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **companies**
-     */
-    get: operations['findManyCompanies']
-    /** Create One company */
-    post: operations['createOneCompany']
-  }
-  '/companies/{id}': {
-    /**
-     * Find One company
-     * @description **depth** can be provided to request your **company**
-     */
-    get: operations['findOneCompany']
-    /** Update One companies */
-    put: operations['UpdateOneCompany']
-    /** Delete One company */
-    delete: operations['deleteOneCompany']
-  }
-  '/connectedAccounts': {
-    /**
-     * Find Many connectedAccounts
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **connectedAccounts**
-     */
-    get: operations['findManyConnectedAccounts']
-    /** Create One connectedAccount */
-    post: operations['createOneConnectedAccount']
-  }
-  '/connectedAccounts/{id}': {
-    /**
-     * Find One connectedAccount
-     * @description **depth** can be provided to request your **connectedAccount**
-     */
-    get: operations['findOneConnectedAccount']
-    /** Update One connectedAccounts */
-    put: operations['UpdateOneConnectedAccount']
-    /** Delete One connectedAccount */
-    delete: operations['deleteOneConnectedAccount']
-  }
-  '/favorites': {
-    /**
-     * Find Many favorites
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **favorites**
-     */
-    get: operations['findManyFavorites']
-    /** Create One favorite */
-    post: operations['createOneFavorite']
-  }
-  '/favorites/{id}': {
-    /**
-     * Find One favorite
-     * @description **depth** can be provided to request your **favorite**
-     */
-    get: operations['findOneFavorite']
-    /** Update One favorites */
-    put: operations['UpdateOneFavorite']
-    /** Delete One favorite */
-    delete: operations['deleteOneFavorite']
-  }
-  '/opportunities': {
-    /**
-     * Find Many opportunities
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **opportunities**
-     */
-    get: operations['findManyOpportunities']
-    /** Create One opportunity */
-    post: operations['createOneOpportunity']
-  }
-  '/opportunities/{id}': {
-    /**
-     * Find One opportunity
-     * @description **depth** can be provided to request your **opportunity**
-     */
-    get: operations['findOneOpportunity']
-    /** Update One opportunities */
-    put: operations['UpdateOneOpportunity']
-    /** Delete One opportunity */
-    delete: operations['deleteOneOpportunity']
-  }
   '/people': {
     /**
      * Find Many people
@@ -227,26 +27,6 @@ export interface paths {
     put: operations['UpdateOnePerson']
     /** Delete One person */
     delete: operations['deleteOnePerson']
-  }
-  '/pipelineSteps': {
-    /**
-     * Find Many pipelineSteps
-     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **pipelineSteps**
-     */
-    get: operations['findManyPipelineSteps']
-    /** Create One pipelineStep */
-    post: operations['createOnePipelineStep']
-  }
-  '/pipelineSteps/{id}': {
-    /**
-     * Find One pipelineStep
-     * @description **depth** can be provided to request your **pipelineStep**
-     */
-    get: operations['findOnePipelineStep']
-    /** Update One pipelineSteps */
-    put: operations['UpdateOnePipelineStep']
-    /** Delete One pipelineStep */
-    delete: operations['deleteOnePipelineStep']
   }
   '/viewFields': {
     /**
@@ -468,1029 +248,229 @@ export interface paths {
     /** Delete One messageChannelMessageAssociation */
     delete: operations['deleteOneMessageChannelMessageAssociation']
   }
+  '/events': {
+    /**
+     * Find Many events
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **events**
+     */
+    get: operations['findManyEvents']
+    /** Create One event */
+    post: operations['createOneEvent']
+  }
+  '/events/{id}': {
+    /**
+     * Find One event
+     * @description **depth** can be provided to request your **event**
+     */
+    get: operations['findOneEvent']
+    /** Update One events */
+    put: operations['UpdateOneEvent']
+    /** Delete One event */
+    delete: operations['deleteOneEvent']
+  }
+  '/activityTargets': {
+    /**
+     * Find Many activityTargets
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activityTargets**
+     */
+    get: operations['findManyActivityTargets']
+    /** Create One activityTarget */
+    post: operations['createOneActivityTarget']
+  }
+  '/activityTargets/{id}': {
+    /**
+     * Find One activityTarget
+     * @description **depth** can be provided to request your **activityTarget**
+     */
+    get: operations['findOneActivityTarget']
+    /** Update One activityTargets */
+    put: operations['UpdateOneActivityTarget']
+    /** Delete One activityTarget */
+    delete: operations['deleteOneActivityTarget']
+  }
+  '/activities': {
+    /**
+     * Find Many activities
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activities**
+     */
+    get: operations['findManyActivities']
+    /** Create One activity */
+    post: operations['createOneActivity']
+  }
+  '/activities/{id}': {
+    /**
+     * Find One activity
+     * @description **depth** can be provided to request your **activity**
+     */
+    get: operations['findOneActivity']
+    /** Update One activities */
+    put: operations['UpdateOneActivity']
+    /** Delete One activity */
+    delete: operations['deleteOneActivity']
+  }
+  '/apiKeys': {
+    /**
+     * Find Many apiKeys
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **apiKeys**
+     */
+    get: operations['findManyApiKeys']
+    /** Create One apiKey */
+    post: operations['createOneApiKey']
+  }
+  '/apiKeys/{id}': {
+    /**
+     * Find One apiKey
+     * @description **depth** can be provided to request your **apiKey**
+     */
+    get: operations['findOneApiKey']
+    /** Update One apiKeys */
+    put: operations['UpdateOneApiKey']
+    /** Delete One apiKey */
+    delete: operations['deleteOneApiKey']
+  }
+  '/attachments': {
+    /**
+     * Find Many attachments
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **attachments**
+     */
+    get: operations['findManyAttachments']
+    /** Create One attachment */
+    post: operations['createOneAttachment']
+  }
+  '/attachments/{id}': {
+    /**
+     * Find One attachment
+     * @description **depth** can be provided to request your **attachment**
+     */
+    get: operations['findOneAttachment']
+    /** Update One attachments */
+    put: operations['UpdateOneAttachment']
+    /** Delete One attachment */
+    delete: operations['deleteOneAttachment']
+  }
+  '/blocklists': {
+    /**
+     * Find Many blocklists
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **blocklists**
+     */
+    get: operations['findManyBlocklists']
+    /** Create One blocklist */
+    post: operations['createOneBlocklist']
+  }
+  '/blocklists/{id}': {
+    /**
+     * Find One blocklist
+     * @description **depth** can be provided to request your **blocklist**
+     */
+    get: operations['findOneBlocklist']
+    /** Update One blocklists */
+    put: operations['UpdateOneBlocklist']
+    /** Delete One blocklist */
+    delete: operations['deleteOneBlocklist']
+  }
+  '/comments': {
+    /**
+     * Find Many comments
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **comments**
+     */
+    get: operations['findManyComments']
+    /** Create One comment */
+    post: operations['createOneComment']
+  }
+  '/comments/{id}': {
+    /**
+     * Find One comment
+     * @description **depth** can be provided to request your **comment**
+     */
+    get: operations['findOneComment']
+    /** Update One comments */
+    put: operations['UpdateOneComment']
+    /** Delete One comment */
+    delete: operations['deleteOneComment']
+  }
+  '/companies': {
+    /**
+     * Find Many companies
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **companies**
+     */
+    get: operations['findManyCompanies']
+    /** Create One company */
+    post: operations['createOneCompany']
+  }
+  '/companies/{id}': {
+    /**
+     * Find One company
+     * @description **depth** can be provided to request your **company**
+     */
+    get: operations['findOneCompany']
+    /** Update One companies */
+    put: operations['UpdateOneCompany']
+    /** Delete One company */
+    delete: operations['deleteOneCompany']
+  }
+  '/connectedAccounts': {
+    /**
+     * Find Many connectedAccounts
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **connectedAccounts**
+     */
+    get: operations['findManyConnectedAccounts']
+    /** Create One connectedAccount */
+    post: operations['createOneConnectedAccount']
+  }
+  '/connectedAccounts/{id}': {
+    /**
+     * Find One connectedAccount
+     * @description **depth** can be provided to request your **connectedAccount**
+     */
+    get: operations['findOneConnectedAccount']
+    /** Update One connectedAccounts */
+    put: operations['UpdateOneConnectedAccount']
+    /** Delete One connectedAccount */
+    delete: operations['deleteOneConnectedAccount']
+  }
+  '/favorites': {
+    /**
+     * Find Many favorites
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **favorites**
+     */
+    get: operations['findManyFavorites']
+    /** Create One favorite */
+    post: operations['createOneFavorite']
+  }
+  '/favorites/{id}': {
+    /**
+     * Find One favorite
+     * @description **depth** can be provided to request your **favorite**
+     */
+    get: operations['findOneFavorite']
+    /** Update One favorites */
+    put: operations['UpdateOneFavorite']
+    /** Delete One favorite */
+    delete: operations['deleteOneFavorite']
+  }
+  '/opportunities': {
+    /**
+     * Find Many opportunities
+     * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **opportunities**
+     */
+    get: operations['findManyOpportunities']
+    /** Create One opportunity */
+    post: operations['createOneOpportunity']
+  }
+  '/opportunities/{id}': {
+    /**
+     * Find One opportunity
+     * @description **depth** can be provided to request your **opportunity**
+     */
+    get: operations['findOneOpportunity']
+    /** Update One opportunities */
+    put: operations['UpdateOneOpportunity']
+    /** Delete One opportunity */
+    delete: operations['deleteOneOpportunity']
+  }
 }
 
 export interface webhooks {
-  'Create activityTarget': {
-    post: {
-      /** @description *create*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activityTarget' | 'create.activityTarget'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activityTarget'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ActivityTarget']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update activityTarget': {
-    post: {
-      /** @description *update*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activityTarget' | 'update.activityTarget'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activityTarget'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ActivityTarget']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete activityTarget': {
-    post: {
-      /** @description *delete*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activityTarget' | 'delete.activityTarget'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activityTarget'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ActivityTarget']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create activity': {
-    post: {
-      /** @description *create*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activity' | 'create.activity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Activity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update activity': {
-    post: {
-      /** @description *update*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activity' | 'update.activity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Activity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete activity': {
-    post: {
-      /** @description *delete*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.activity' | 'delete.activity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'activity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Activity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create apiKey': {
-    post: {
-      /** @description *create*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.apiKey' | 'create.apiKey'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'apiKey'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ApiKey']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update apiKey': {
-    post: {
-      /** @description *update*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.apiKey' | 'update.apiKey'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'apiKey'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ApiKey']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete apiKey': {
-    post: {
-      /** @description *delete*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.apiKey' | 'delete.apiKey'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'apiKey'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ApiKey']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create attachment': {
-    post: {
-      /** @description *create*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.attachment' | 'create.attachment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'attachment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Attachment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update attachment': {
-    post: {
-      /** @description *update*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.attachment' | 'update.attachment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'attachment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Attachment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete attachment': {
-    post: {
-      /** @description *delete*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.attachment' | 'delete.attachment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'attachment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Attachment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create blocklist': {
-    post: {
-      /** @description *create*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.blocklist' | 'create.blocklist'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'blocklist'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Blocklist']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update blocklist': {
-    post: {
-      /** @description *update*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.blocklist' | 'update.blocklist'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'blocklist'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Blocklist']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete blocklist': {
-    post: {
-      /** @description *delete*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.blocklist' | 'delete.blocklist'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'blocklist'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Blocklist']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create comment': {
-    post: {
-      /** @description *create*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.comment' | 'create.comment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'comment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Comment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update comment': {
-    post: {
-      /** @description *update*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.comment' | 'update.comment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'comment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Comment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete comment': {
-    post: {
-      /** @description *delete*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.comment' | 'delete.comment'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'comment'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Comment']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create company': {
-    post: {
-      /** @description *create*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.company' | 'create.company'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'company'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Company']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update company': {
-    post: {
-      /** @description *update*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.company' | 'update.company'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'company'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Company']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete company': {
-    post: {
-      /** @description *delete*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.company' | 'delete.company'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'company'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Company']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create connectedAccount': {
-    post: {
-      /** @description *create*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.connectedAccount' | 'create.connectedAccount'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'connectedAccount'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ConnectedAccount']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update connectedAccount': {
-    post: {
-      /** @description *update*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.connectedAccount' | 'update.connectedAccount'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'connectedAccount'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ConnectedAccount']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete connectedAccount': {
-    post: {
-      /** @description *delete*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.connectedAccount' | 'delete.connectedAccount'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'connectedAccount'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['ConnectedAccount']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create favorite': {
-    post: {
-      /** @description *create*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.favorite' | 'create.favorite'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'favorite'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Favorite']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update favorite': {
-    post: {
-      /** @description *update*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.favorite' | 'update.favorite'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'favorite'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Favorite']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete favorite': {
-    post: {
-      /** @description *delete*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.favorite' | 'delete.favorite'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'favorite'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Favorite']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create opportunity': {
-    post: {
-      /** @description *create*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.opportunity' | 'create.opportunity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'opportunity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Opportunity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update opportunity': {
-    post: {
-      /** @description *update*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.opportunity' | 'update.opportunity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'opportunity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Opportunity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete opportunity': {
-    post: {
-      /** @description *delete*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.opportunity' | 'delete.opportunity'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'opportunity'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['Opportunity']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
   'Create person': {
     post: {
       /** @description *create*.**person**, *&#42;*.**person**, *&#42;*.**&#42;** */
@@ -1582,108 +562,6 @@ export interface webhooks {
             /** @example 2024-02-14T11:27:01.779Z */
             eventDate?: string
             record?: components['schemas']['Person']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Create pipelineStep': {
-    post: {
-      /** @description *create*.**pipelineStep**, *&#42;*.**pipelineStep**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.pipelineStep' | 'create.pipelineStep'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'pipelineStep'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['PipelineStep']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Update pipelineStep': {
-    post: {
-      /** @description *update*.**pipelineStep**, *&#42;*.**pipelineStep**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.pipelineStep' | 'update.pipelineStep'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'pipelineStep'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['PipelineStep']
-          }
-        }
-      }
-      responses: {
-        /** @description Return a 200 status to indicate that the data was received successfully */
-        200: {
-          content: never
-        }
-      }
-    }
-  }
-  'Delete pipelineStep': {
-    post: {
-      /** @description *delete*.**pipelineStep**, *&#42;*.**pipelineStep**, *&#42;*.**&#42;** */
-      requestBody?: {
-        content: {
-          'application/json': {
-            /** @example https://example.com/incomingWebhook */
-            targetUrl?: string
-            /** @enum {string} */
-            eventType?: '*.*' | '*.pipelineStep' | 'delete.pipelineStep'
-            objectMetadata?: {
-              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
-              id?: string
-              /** @enum {string} */
-              nameSingular?: 'pipelineStep'
-            }
-            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
-            workspaceId?: string
-            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
-            webhookId?: string
-            /** @example 2024-02-14T11:27:01.779Z */
-            eventDate?: string
-            record?: components['schemas']['PipelineStep']
           }
         }
       }
@@ -2835,10 +1713,1536 @@ export interface webhooks {
       }
     }
   }
+  'Create event': {
+    post: {
+      /** @description *create*.**event**, *&#42;*.**event**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.event' | 'create.event'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'event'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Event']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update event': {
+    post: {
+      /** @description *update*.**event**, *&#42;*.**event**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.event' | 'update.event'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'event'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Event']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete event': {
+    post: {
+      /** @description *delete*.**event**, *&#42;*.**event**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.event' | 'delete.event'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'event'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Event']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create activityTarget': {
+    post: {
+      /** @description *create*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activityTarget' | 'create.activityTarget'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activityTarget'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ActivityTarget']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update activityTarget': {
+    post: {
+      /** @description *update*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activityTarget' | 'update.activityTarget'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activityTarget'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ActivityTarget']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete activityTarget': {
+    post: {
+      /** @description *delete*.**activityTarget**, *&#42;*.**activityTarget**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activityTarget' | 'delete.activityTarget'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activityTarget'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ActivityTarget']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create activity': {
+    post: {
+      /** @description *create*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activity' | 'create.activity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Activity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update activity': {
+    post: {
+      /** @description *update*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activity' | 'update.activity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Activity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete activity': {
+    post: {
+      /** @description *delete*.**activity**, *&#42;*.**activity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.activity' | 'delete.activity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'activity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Activity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create apiKey': {
+    post: {
+      /** @description *create*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.apiKey' | 'create.apiKey'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'apiKey'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ApiKey']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update apiKey': {
+    post: {
+      /** @description *update*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.apiKey' | 'update.apiKey'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'apiKey'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ApiKey']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete apiKey': {
+    post: {
+      /** @description *delete*.**apiKey**, *&#42;*.**apiKey**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.apiKey' | 'delete.apiKey'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'apiKey'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ApiKey']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create attachment': {
+    post: {
+      /** @description *create*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.attachment' | 'create.attachment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'attachment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Attachment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update attachment': {
+    post: {
+      /** @description *update*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.attachment' | 'update.attachment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'attachment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Attachment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete attachment': {
+    post: {
+      /** @description *delete*.**attachment**, *&#42;*.**attachment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.attachment' | 'delete.attachment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'attachment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Attachment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create blocklist': {
+    post: {
+      /** @description *create*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.blocklist' | 'create.blocklist'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'blocklist'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Blocklist']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update blocklist': {
+    post: {
+      /** @description *update*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.blocklist' | 'update.blocklist'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'blocklist'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Blocklist']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete blocklist': {
+    post: {
+      /** @description *delete*.**blocklist**, *&#42;*.**blocklist**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.blocklist' | 'delete.blocklist'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'blocklist'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Blocklist']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create comment': {
+    post: {
+      /** @description *create*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.comment' | 'create.comment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'comment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Comment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update comment': {
+    post: {
+      /** @description *update*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.comment' | 'update.comment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'comment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Comment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete comment': {
+    post: {
+      /** @description *delete*.**comment**, *&#42;*.**comment**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.comment' | 'delete.comment'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'comment'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Comment']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create company': {
+    post: {
+      /** @description *create*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.company' | 'create.company'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'company'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Company']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update company': {
+    post: {
+      /** @description *update*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.company' | 'update.company'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'company'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Company']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete company': {
+    post: {
+      /** @description *delete*.**company**, *&#42;*.**company**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.company' | 'delete.company'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'company'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Company']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create connectedAccount': {
+    post: {
+      /** @description *create*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.connectedAccount' | 'create.connectedAccount'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'connectedAccount'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ConnectedAccount']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update connectedAccount': {
+    post: {
+      /** @description *update*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.connectedAccount' | 'update.connectedAccount'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'connectedAccount'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ConnectedAccount']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete connectedAccount': {
+    post: {
+      /** @description *delete*.**connectedAccount**, *&#42;*.**connectedAccount**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.connectedAccount' | 'delete.connectedAccount'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'connectedAccount'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['ConnectedAccount']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create favorite': {
+    post: {
+      /** @description *create*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.favorite' | 'create.favorite'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'favorite'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Favorite']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update favorite': {
+    post: {
+      /** @description *update*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.favorite' | 'update.favorite'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'favorite'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Favorite']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete favorite': {
+    post: {
+      /** @description *delete*.**favorite**, *&#42;*.**favorite**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.favorite' | 'delete.favorite'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'favorite'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Favorite']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Create opportunity': {
+    post: {
+      /** @description *create*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.opportunity' | 'create.opportunity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'opportunity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Opportunity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Update opportunity': {
+    post: {
+      /** @description *update*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.opportunity' | 'update.opportunity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'opportunity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Opportunity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
+  'Delete opportunity': {
+    post: {
+      /** @description *delete*.**opportunity**, *&#42;*.**opportunity**, *&#42;*.**&#42;** */
+      requestBody?: {
+        content: {
+          'application/json': {
+            /** @example https://example.com/incomingWebhook */
+            targetUrl?: string
+            /** @enum {string} */
+            eventType?: '*.*' | '*.opportunity' | 'delete.opportunity'
+            objectMetadata?: {
+              /** @example 370985db-22d8-4463-8e5f-2271d30913bd */
+              id?: string
+              /** @enum {string} */
+              nameSingular?: 'opportunity'
+            }
+            /** @example 872cfcf1-c79f-42bc-877d-5829f06eb3f9 */
+            workspaceId?: string
+            /** @example 90056586-1228-4e03-a507-70140aa85c05 */
+            webhookId?: string
+            /** @example 2024-02-14T11:27:01.779Z */
+            eventDate?: string
+            record?: components['schemas']['Opportunity']
+          }
+        }
+      }
+      responses: {
+        /** @description Return a 200 status to indicate that the data was received successfully */
+        200: {
+          content: never
+        }
+      }
+    }
+  }
 }
 
 export interface components {
   schemas: {
+    /**
+     * @description A person
+     * @example {}
+     */
+    Person: {
+      /** @description Contact’s name */
+      name?: {
+        lastName?: string
+        firstName?: string
+      }
+      /** @description Contact’s Email */
+      email?: string
+      /** @description Contact’s Linkedin account */
+      linkedinLink?: {
+        url?: string
+        label?: string
+      }
+      /** @description Point of Contact for Opportunities */
+      pointOfContactForOpportunities?: components['schemas']['Opportunity'][]
+      /** @description Activities tied to the contact */
+      activityTargets?: components['schemas']['ActivityTarget'][]
+      /** @description Favorites linked to the contact */
+      favorites?: components['schemas']['Favorite'][]
+      /** @description Attachments linked to the contact. */
+      attachments?: components['schemas']['Attachment'][]
+      /** @description Message Participants */
+      messageParticipants?: components['schemas']['MessageParticipant'][]
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Contact’s X/Twitter account */
+      xLink?: {
+        url?: string
+        label?: string
+      }
+      /** @description Contact’s job title */
+      jobTitle?: string
+      /** @description Contact’s phone number */
+      phone?: string
+      /** @description Contact’s city */
+      city?: string
+      /** @description Contact’s avatar */
+      avatarUrl?: string
+      /** @description Person record Position */
+      position?: number
+      /** @description Contact’s company */
+      company?: unknown
+      /** @description Contact’s company id foreign key */
+      companyId?: string
+      /** @description Events linked to the company */
+      events?: components['schemas']['Event'][]
+    }
+    /**
+     * @description (System) View Fields
+     * @example {
+     *   "fieldMetadataId": ""
+     * }
+     */
+    ViewField: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description View Field target field */
+      fieldMetadataId: string
+      /** @description View Field visibility */
+      isVisible?: boolean
+      /** @description View Field size */
+      size?: number
+      /** @description View Field position */
+      position?: number
+      /** @description View Field related view */
+      view?: unknown
+      /** @description View Field related view id foreign key */
+      viewId?: string
+    }
+    /**
+     * @description (System) View Filters
+     * @example {
+     *   "fieldMetadataId": ""
+     * }
+     */
+    ViewFilter: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description View Filter target field */
+      fieldMetadataId: string
+      /** @description View Filter operand */
+      operand?: string
+      /** @description View Filter value */
+      value?: string
+      /** @description View Filter Display Value */
+      displayValue?: string
+      /** @description View Filter related view */
+      view?: unknown
+      /** @description View Filter related view id foreign key */
+      viewId?: string
+    }
+    /**
+     * @description (System) View Sorts
+     * @example {
+     *   "fieldMetadataId": ""
+     * }
+     */
+    ViewSort: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description View Sort target field */
+      fieldMetadataId: string
+      /** @description View Sort direction */
+      direction?: string
+      /** @description View Sort related view */
+      view?: unknown
+      /** @description View Sort related view id foreign key */
+      viewId?: string
+    }
+    /**
+     * @description (System) Views
+     * @example {
+     *   "objectMetadataId": ""
+     * }
+     */
+    View: {
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description View name */
+      name?: string
+      /** @description View type */
+      type?: string
+      /** @description View key */
+      key?: string
+      /** @description Id */
+      id?: string
+      /** @description View target object */
+      objectMetadataId: string
+      /** @description View icon */
+      icon?: string
+      /** @description View position */
+      position?: number
+      /** @description Describes if the view is in compact mode */
+      isCompact?: boolean
+      /** @description View Fields */
+      viewFields?: components['schemas']['ViewField'][]
+      /** @description View Filters */
+      viewFilters?: components['schemas']['ViewFilter'][]
+      /** @description View Sorts */
+      viewSorts?: components['schemas']['ViewSort'][]
+      /** @description View Kanban column field */
+      kanbanFieldMetadataId?: string
+    }
+    /**
+     * @description A webhook
+     * @example {}
+     */
+    Webhook: {
+      /** @description Webhook operation */
+      operation?: string
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Webhook target url */
+      targetUrl?: string
+    }
+    /**
+     * @description A workspace member
+     * @example {
+     *   "userId": ""
+     * }
+     */
+    WorkspaceMember: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Workspace member name */
+      name?: {
+        lastName?: string
+        firstName?: string
+      }
+      /** @description Preferred color scheme */
+      colorScheme?: string
+      /** @description Preferred language */
+      locale?: string
+      /** @description Workspace member avatar */
+      avatarUrl?: string
+      /** @description Related user email address */
+      userEmail?: string
+      /** @description Associated User Id */
+      userId: string
+      /** @description Activities created by the workspace member */
+      authoredActivities?: components['schemas']['Activity'][]
+      /** @description Activities assigned to the workspace member */
+      assignedActivities?: components['schemas']['Activity'][]
+      /** @description Favorites linked to the workspace member */
+      favorites?: components['schemas']['Favorite'][]
+      /** @description Account owner for companies */
+      accountOwnerForCompanies?: components['schemas']['Company'][]
+      /** @description Attachments created by the workspace member */
+      authoredAttachments?: components['schemas']['Attachment'][]
+      /** @description Authored comments */
+      authoredComments?: components['schemas']['Comment'][]
+      /** @description Connected accounts */
+      connectedAccounts?: components['schemas']['ConnectedAccount'][]
+      /** @description Message Participants */
+      messageParticipants?: components['schemas']['MessageParticipant'][]
+      /** @description Blocklisted handles */
+      blocklist?: components['schemas']['Blocklist'][]
+      /** @description Events linked to the workspace member */
+      events?: components['schemas']['Event'][]
+    }
+    /**
+     * @description Message Thread
+     * @example {}
+     */
+    MessageThread: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Messages from the thread. */
+      messages?: components['schemas']['Message'][]
+      /** @description Messages from the channel. */
+      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
+    }
+    /**
+     * @description Message
+     * @example {}
+     */
+    Message: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Message id from the message header */
+      headerMessageId?: string
+      /** @description Message Direction */
+      direction?: string
+      /** @description Subject */
+      subject?: string
+      /** @description Text */
+      text?: string
+      /** @description Message Thread Id */
+      messageThread?: unknown
+      /** @description Message Thread Id id foreign key */
+      messageThreadId?: string
+      /** @description The date the message was received */
+      receivedAt?: string
+      /** @description Message Participants */
+      messageParticipants?: components['schemas']['MessageParticipant'][]
+      /** @description Messages from the channel. */
+      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
+    }
+    /**
+     * @description Message Channels
+     * @example {
+     *   "connectedAccountId": ""
+     * }
+     */
+    MessageChannel: {
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Visibility */
+      visibility?: string
+      /** @description Handle */
+      handle?: string
+      /** @description Channel Type */
+      type?: string
+      /** @description Is Contact Auto Creation Enabled */
+      isContactAutoCreationEnabled?: boolean
+      /** @description Last sync cursor */
+      syncCursor?: string
+      /** @description Last sync date */
+      syncedAt?: string
+      /** @description Last sync status */
+      syncStatus?: string
+      /** @description Ongoing sync started at */
+      ongoingSyncStartedAt?: string
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Connected Account */
+      connectedAccount?: unknown
+      /** @description Connected Account id foreign key */
+      connectedAccountId: string
+      /** @description Messages from the channel. */
+      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
+    }
+    /**
+     * @description Message Participants
+     * @example {
+     *   "messageId": ""
+     * }
+     */
+    MessageParticipant: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Role */
+      role?: string
+      /** @description Handle */
+      handle?: string
+      /** @description Display Name */
+      displayName?: string
+      /** @description Message */
+      message?: unknown
+      /** @description Message id foreign key */
+      messageId: string
+      /** @description Person */
+      person?: unknown
+      /** @description Person id foreign key */
+      personId?: string
+      /** @description Workspace member */
+      workspaceMember?: unknown
+      /** @description Workspace member id foreign key */
+      workspaceMemberId?: string
+    }
+    /**
+     * @description Message Synced with a Message Channel
+     * @example {}
+     */
+    MessageChannelMessageAssociation: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Message id from the messaging provider */
+      messageExternalId?: string
+      /** @description Thread id from the messaging provider */
+      messageThreadExternalId?: string
+      /** @description Message Channel Id */
+      messageChannel?: unknown
+      /** @description Message Channel Id id foreign key */
+      messageChannelId?: string
+      /** @description Message Id */
+      message?: unknown
+      /** @description Message Id id foreign key */
+      messageId?: string
+      /** @description Message Thread Id */
+      messageThread?: unknown
+      /** @description Message Thread Id id foreign key */
+      messageThreadId?: string
+    }
+    /**
+     * @description An event
+     * @example {}
+     */
+    Event: {
+      /** @description Id */
+      id?: string
+      /** @description Creation date */
+      createdAt?: string
+      /** @description Update date */
+      updatedAt?: string
+      /** @description Event name/type */
+      name?: string
+      /** @description Json value for event details */
+      properties?: unknown
+      /** @description Event workspace member */
+      workspaceMember?: unknown
+      /** @description Event workspace member id foreign key */
+      workspaceMemberId?: string
+      /** @description Event person */
+      person?: unknown
+      /** @description Event person id foreign key */
+      personId?: string
+      /** @description Event company */
+      company?: unknown
+      /** @description Event company id foreign key */
+      companyId?: string
+      /** @description Events opportunity */
+      opportunity?: unknown
+      /** @description Events opportunity id foreign key */
+      opportunityId?: string
+    }
     /**
      * @description An activity target
      * @example {}
@@ -2869,9 +3273,7 @@ export interface components {
     }
     /**
      * @description An activity
-     * @example {
-     *   "authorId": ""
-     * }
+     * @example {}
      */
     Activity: {
       /** @description Id */
@@ -2901,7 +3303,7 @@ export interface components {
       /** @description Activity author */
       author?: unknown
       /** @description Activity author id foreign key */
-      authorId: string
+      authorId?: string
       /** @description Activity assignee */
       assignee?: unknown
       /** @description Activity assignee id foreign key */
@@ -2934,14 +3336,14 @@ export interface components {
      * }
      */
     Attachment: {
+      /** @description Attachment name */
+      name?: string
       /** @description Id */
       id?: string
       /** @description Creation date */
       createdAt?: string
       /** @description Update date */
       updatedAt?: string
-      /** @description Attachment name */
-      name?: string
       /** @description Attachment full path */
       fullPath?: string
       /** @description Attachment type */
@@ -3029,8 +3431,6 @@ export interface components {
       domainName?: string
       /** @description The company address */
       address?: string
-      /** @description Number of employees in the company */
-      employees?: number
       /** @description The company Linkedin account */
       linkedinLink?: {
         url?: string
@@ -3048,6 +3448,8 @@ export interface components {
       }
       /** @description Ideal Customer Profile:  Indicates whether the company is the most suitable and valuable customer for you */
       idealCustomerProfile?: boolean
+      /** @description Number of employees in the company */
+      employees?: number
       /** @description Company record position */
       position?: number
       /** @description People linked to the company. */
@@ -3064,6 +3466,8 @@ export interface components {
       favorites?: components['schemas']['Favorite'][]
       /** @description Attachments linked to the company. */
       attachments?: components['schemas']['Attachment'][]
+      /** @description Events linked to the company */
+      events?: components['schemas']['Event'][]
     }
     /**
      * @description A connected account
@@ -3072,6 +3476,12 @@ export interface components {
      * }
      */
     ConnectedAccount: {
+      /** @description Auth failed at */
+      authFailedAt?: string
+      /** @description Message Channel */
+      messageChannels?: components['schemas']['MessageChannel'][]
+      /** @description Last sync history ID */
+      lastSyncHistoryId?: string
       /** @description Id */
       id?: string
       /** @description Creation date */
@@ -3090,10 +3500,6 @@ export interface components {
       accountOwner?: unknown
       /** @description Account Owner id foreign key */
       accountOwnerId: string
-      /** @description Last sync history ID */
-      lastSyncHistoryId?: string
-      /** @description Message Channel */
-      messageChannels?: components['schemas']['MessageChannel'][]
     }
     /**
      * @description A favorite
@@ -3132,8 +3538,6 @@ export interface components {
      * @example {}
      */
     Opportunity: {
-      /** @description Id */
-      id?: string
       /** @description Creation date */
       createdAt?: string
       /** @description Update date */
@@ -3145,18 +3549,16 @@ export interface components {
         amountMicros?: string
         currencyCode?: string
       }
-      /** @description Opportunity close date */
-      closeDate?: string
       /** @description Opportunity probability */
       probability?: string
       /** @description Opportunity stage */
       stage?: string
+      /** @description Id */
+      id?: string
+      /** @description Opportunity close date */
+      closeDate?: string
       /** @description Opportunity record position */
       position?: number
-      /** @description Opportunity pipeline step */
-      pipelineStep?: unknown
-      /** @description Opportunity pipeline step id foreign key */
-      pipelineStepId?: string
       /** @description Opportunity point of contact */
       pointOfContact?: unknown
       /** @description Opportunity point of contact id foreign key */
@@ -3171,384 +3573,8 @@ export interface components {
       activityTargets?: components['schemas']['ActivityTarget'][]
       /** @description Attachments linked to the opportunity. */
       attachments?: components['schemas']['Attachment'][]
-    }
-    /**
-     * @description A person
-     * @example {}
-     */
-    Person: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Contact’s name */
-      name?: {
-        lastName?: string
-        firstName?: string
-      }
-      /** @description Contact’s Email */
-      email?: string
-      /** @description Contact’s Linkedin account */
-      linkedinLink?: {
-        url?: string
-        label?: string
-      }
-      /** @description Contact’s X/Twitter account */
-      xLink?: {
-        url?: string
-        label?: string
-      }
-      /** @description Contact’s job title */
-      jobTitle?: string
-      /** @description Contact’s phone number */
-      phone?: string
-      /** @description Contact’s city */
-      city?: string
-      /** @description Contact’s avatar */
-      avatarUrl?: string
-      /** @description Person record Position */
-      position?: number
-      /** @description Contact’s company */
-      company?: unknown
-      /** @description Contact’s company id foreign key */
-      companyId?: string
-      /** @description Point of Contact for Opportunities */
-      pointOfContactForOpportunities?: components['schemas']['Opportunity'][]
-      /** @description Activities tied to the contact */
-      activityTargets?: components['schemas']['ActivityTarget'][]
-      /** @description Favorites linked to the contact */
-      favorites?: components['schemas']['Favorite'][]
-      /** @description Attachments linked to the contact. */
-      attachments?: components['schemas']['Attachment'][]
-      /** @description Message Participants */
-      messageParticipants?: components['schemas']['MessageParticipant'][]
-    }
-    /**
-     * @description A pipeline step
-     * @example {}
-     */
-    PipelineStep: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Pipeline Step name */
-      name?: string
-      /** @description Pipeline Step color */
-      color?: string
-      /** @description Pipeline Step position */
-      position?: number
-      /** @description Opportunities linked to the step. */
-      opportunities?: components['schemas']['Opportunity'][]
-    }
-    /**
-     * @description (System) View Fields
-     * @example {
-     *   "fieldMetadataId": ""
-     * }
-     */
-    ViewField: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description View Field target field */
-      fieldMetadataId: string
-      /** @description View Field visibility */
-      isVisible?: boolean
-      /** @description View Field size */
-      size?: number
-      /** @description View Field position */
-      position?: number
-      /** @description View Field related view */
-      view?: unknown
-      /** @description View Field related view id foreign key */
-      viewId?: string
-    }
-    /**
-     * @description (System) View Filters
-     * @example {
-     *   "fieldMetadataId": ""
-     * }
-     */
-    ViewFilter: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description View Filter target field */
-      fieldMetadataId: string
-      /** @description View Filter operand */
-      operand?: string
-      /** @description View Filter value */
-      value?: string
-      /** @description View Filter Display Value */
-      displayValue?: string
-      /** @description View Filter related view */
-      view?: unknown
-      /** @description View Filter related view id foreign key */
-      viewId?: string
-    }
-    /**
-     * @description (System) View Sorts
-     * @example {
-     *   "fieldMetadataId": ""
-     * }
-     */
-    ViewSort: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description View Sort target field */
-      fieldMetadataId: string
-      /** @description View Sort direction */
-      direction?: string
-      /** @description View Sort related view */
-      view?: unknown
-      /** @description View Sort related view id foreign key */
-      viewId?: string
-    }
-    /**
-     * @description (System) Views
-     * @example {
-     *   "objectMetadataId": ""
-     * }
-     */
-    View: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description View name */
-      name?: string
-      /** @description View target object */
-      objectMetadataId: string
-      /** @description View type */
-      type?: string
-      /** @description View key */
-      key?: string
-      /** @description View icon */
-      icon?: string
-      /** @description View position */
-      position?: number
-      /** @description Describes if the view is in compact mode */
-      isCompact?: boolean
-      /** @description View Fields */
-      viewFields?: components['schemas']['ViewField'][]
-      /** @description View Filters */
-      viewFilters?: components['schemas']['ViewFilter'][]
-      /** @description View Sorts */
-      viewSorts?: components['schemas']['ViewSort'][]
-    }
-    /**
-     * @description A webhook
-     * @example {}
-     */
-    Webhook: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Webhook target url */
-      targetUrl?: string
-      /** @description Webhook operation */
-      operation?: string
-    }
-    /**
-     * @description A workspace member
-     * @example {
-     *   "userId": ""
-     * }
-     */
-    WorkspaceMember: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Workspace member name */
-      name?: {
-        lastName?: string
-        firstName?: string
-      }
-      /** @description Preferred color scheme */
-      colorScheme?: string
-      /** @description Preferred language */
-      locale?: string
-      /** @description Workspace member avatar */
-      avatarUrl?: string
-      /** @description Related user email address */
-      userEmail?: string
-      /** @description Associated User Id */
-      userId: string
-      /** @description Activities created by the workspace member */
-      authoredActivities?: components['schemas']['Activity'][]
-      /** @description Activities assigned to the workspace member */
-      assignedActivities?: components['schemas']['Activity'][]
-      /** @description Favorites linked to the workspace member */
-      favorites?: components['schemas']['Favorite'][]
-      /** @description Account owner for companies */
-      accountOwnerForCompanies?: components['schemas']['Company'][]
-      /** @description Attachments created by the workspace member */
-      authoredAttachments?: components['schemas']['Attachment'][]
-      /** @description Authored comments */
-      authoredComments?: components['schemas']['Comment'][]
-      /** @description Connected accounts */
-      connectedAccounts?: components['schemas']['ConnectedAccount'][]
-      /** @description Message Participants */
-      messageParticipants?: components['schemas']['MessageParticipant'][]
-      /** @description Blocklisted handles */
-      blocklist?: components['schemas']['Blocklist'][]
-    }
-    /**
-     * @description Message Thread
-     * @example {}
-     */
-    MessageThread: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Messages from the thread. */
-      messages?: components['schemas']['Message'][]
-      /** @description Messages from the channel. */
-      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
-    }
-    /**
-     * @description Message
-     * @example {}
-     */
-    Message: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Message id from the message header */
-      headerMessageId?: string
-      /** @description Message Thread Id */
-      messageThread?: unknown
-      /** @description Message Thread Id id foreign key */
-      messageThreadId?: string
-      /** @description Message Direction */
-      direction?: string
-      /** @description Subject */
-      subject?: string
-      /** @description Text */
-      text?: string
-      /** @description The date the message was received */
-      receivedAt?: string
-      /** @description Message Participants */
-      messageParticipants?: components['schemas']['MessageParticipant'][]
-      /** @description Messages from the channel. */
-      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
-    }
-    /**
-     * @description Message Channels
-     * @example {
-     *   "connectedAccountId": ""
-     * }
-     */
-    MessageChannel: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Visibility */
-      visibility?: string
-      /** @description Handle */
-      handle?: string
-      /** @description Connected Account */
-      connectedAccount?: unknown
-      /** @description Connected Account id foreign key */
-      connectedAccountId: string
-      /** @description Channel Type */
-      type?: string
-      /** @description Is Contact Auto Creation Enabled */
-      isContactAutoCreationEnabled?: boolean
-      /** @description Messages from the channel. */
-      messageChannelMessageAssociations?: components['schemas']['MessageChannelMessageAssociation'][]
-    }
-    /**
-     * @description Message Participants
-     * @example {
-     *   "messageId": ""
-     * }
-     */
-    MessageParticipant: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Message */
-      message?: unknown
-      /** @description Message id foreign key */
-      messageId: string
-      /** @description Role */
-      role?: string
-      /** @description Handle */
-      handle?: string
-      /** @description Display Name */
-      displayName?: string
-      /** @description Person */
-      person?: unknown
-      /** @description Person id foreign key */
-      personId?: string
-      /** @description Workspace member */
-      workspaceMember?: unknown
-      /** @description Workspace member id foreign key */
-      workspaceMemberId?: string
-    }
-    /**
-     * @description Message Synced with a Message Channel
-     * @example {}
-     */
-    MessageChannelMessageAssociation: {
-      /** @description Id */
-      id?: string
-      /** @description Creation date */
-      createdAt?: string
-      /** @description Update date */
-      updatedAt?: string
-      /** @description Message Channel Id */
-      messageChannel?: unknown
-      /** @description Message Channel Id id foreign key */
-      messageChannelId?: string
-      /** @description Message Id */
-      message?: unknown
-      /** @description Message Id id foreign key */
-      messageId?: string
-      /** @description Message id from the messaging provider */
-      messageExternalId?: string
-      /** @description Message Thread Id */
-      messageThread?: unknown
-      /** @description Message Thread Id id foreign key */
-      messageThreadId?: string
-      /** @description Thread id from the messaging provider */
-      messageThreadExternalId?: string
+      /** @description Events linked to the opportunity. */
+      events?: components['schemas']['Event'][]
     }
   }
   responses: {
@@ -3637,1416 +3663,6 @@ export interface operations {
           }
         }
       }
-    }
-  }
-  /**
-   * Find Many activityTargets
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activityTargets**
-   */
-  findManyActivityTargets: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activityTargets?: components['schemas']['ActivityTarget'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One activityTarget */
-  createOneActivityTarget: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ActivityTarget']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              activityTarget?: components['schemas']['ActivityTarget']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One activityTarget
-   * @description **depth** can be provided to request your **activityTarget**
-   */
-  findOneActivityTarget: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activityTarget?: components['schemas']['ActivityTarget']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One activityTargets */
-  UpdateOneActivityTarget: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ActivityTarget']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activityTarget?: components['schemas']['ActivityTarget']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One activityTarget */
-  deleteOneActivityTarget: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activityTarget?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many activities
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activities**
-   */
-  findManyActivities: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activities?: components['schemas']['Activity'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One activity */
-  createOneActivity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Activity']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              activity?: components['schemas']['Activity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One activity
-   * @description **depth** can be provided to request your **activity**
-   */
-  findOneActivity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activity?: components['schemas']['Activity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One activities */
-  UpdateOneActivity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Activity']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activity?: components['schemas']['Activity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One activity */
-  deleteOneActivity: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              activity?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many apiKeys
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **apiKeys**
-   */
-  findManyApiKeys: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              apiKeys?: components['schemas']['ApiKey'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One apiKey */
-  createOneApiKey: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ApiKey']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              apiKey?: components['schemas']['ApiKey']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One apiKey
-   * @description **depth** can be provided to request your **apiKey**
-   */
-  findOneApiKey: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              apiKey?: components['schemas']['ApiKey']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One apiKeys */
-  UpdateOneApiKey: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ApiKey']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              apiKey?: components['schemas']['ApiKey']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One apiKey */
-  deleteOneApiKey: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              apiKey?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many attachments
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **attachments**
-   */
-  findManyAttachments: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              attachments?: components['schemas']['Attachment'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One attachment */
-  createOneAttachment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Attachment']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              attachment?: components['schemas']['Attachment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One attachment
-   * @description **depth** can be provided to request your **attachment**
-   */
-  findOneAttachment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              attachment?: components['schemas']['Attachment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One attachments */
-  UpdateOneAttachment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Attachment']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              attachment?: components['schemas']['Attachment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One attachment */
-  deleteOneAttachment: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              attachment?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many blocklists
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **blocklists**
-   */
-  findManyBlocklists: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              blocklists?: components['schemas']['Blocklist'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One blocklist */
-  createOneBlocklist: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Blocklist']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              blocklist?: components['schemas']['Blocklist']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One blocklist
-   * @description **depth** can be provided to request your **blocklist**
-   */
-  findOneBlocklist: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              blocklist?: components['schemas']['Blocklist']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One blocklists */
-  UpdateOneBlocklist: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Blocklist']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              blocklist?: components['schemas']['Blocklist']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One blocklist */
-  deleteOneBlocklist: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              blocklist?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many comments
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **comments**
-   */
-  findManyComments: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              comments?: components['schemas']['Comment'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One comment */
-  createOneComment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Comment']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              comment?: components['schemas']['Comment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One comment
-   * @description **depth** can be provided to request your **comment**
-   */
-  findOneComment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              comment?: components['schemas']['Comment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One comments */
-  UpdateOneComment: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Comment']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              comment?: components['schemas']['Comment']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One comment */
-  deleteOneComment: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              comment?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many companies
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **companies**
-   */
-  findManyCompanies: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              companies?: components['schemas']['Company'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One company */
-  createOneCompany: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Company']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              company?: components['schemas']['Company']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One company
-   * @description **depth** can be provided to request your **company**
-   */
-  findOneCompany: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              company?: components['schemas']['Company']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One companies */
-  UpdateOneCompany: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Company']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              company?: components['schemas']['Company']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One company */
-  deleteOneCompany: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              company?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many connectedAccounts
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **connectedAccounts**
-   */
-  findManyConnectedAccounts: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              connectedAccounts?: components['schemas']['ConnectedAccount'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One connectedAccount */
-  createOneConnectedAccount: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ConnectedAccount']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              connectedAccount?: components['schemas']['ConnectedAccount']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One connectedAccount
-   * @description **depth** can be provided to request your **connectedAccount**
-   */
-  findOneConnectedAccount: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              connectedAccount?: components['schemas']['ConnectedAccount']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One connectedAccounts */
-  UpdateOneConnectedAccount: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['ConnectedAccount']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              connectedAccount?: components['schemas']['ConnectedAccount']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One connectedAccount */
-  deleteOneConnectedAccount: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              connectedAccount?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many favorites
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **favorites**
-   */
-  findManyFavorites: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              favorites?: components['schemas']['Favorite'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One favorite */
-  createOneFavorite: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Favorite']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              favorite?: components['schemas']['Favorite']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One favorite
-   * @description **depth** can be provided to request your **favorite**
-   */
-  findOneFavorite: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              favorite?: components['schemas']['Favorite']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One favorites */
-  UpdateOneFavorite: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Favorite']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              favorite?: components['schemas']['Favorite']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One favorite */
-  deleteOneFavorite: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              favorite?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many opportunities
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **opportunities**
-   */
-  findManyOpportunities: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              opportunities?: components['schemas']['Opportunity'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One opportunity */
-  createOneOpportunity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Opportunity']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              opportunity?: components['schemas']['Opportunity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One opportunity
-   * @description **depth** can be provided to request your **opportunity**
-   */
-  findOneOpportunity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              opportunity?: components['schemas']['Opportunity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One opportunities */
-  UpdateOneOpportunity: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['Opportunity']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              opportunity?: components['schemas']['Opportunity']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One opportunity */
-  deleteOneOpportunity: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              opportunity?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
     }
   }
   /**
@@ -5179,147 +3795,6 @@ export interface operations {
           'application/json': {
             data?: {
               person?: {
-                /** Format: uuid */
-                id?: string
-              }
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find Many pipelineSteps
-   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **pipelineSteps**
-   */
-  findManyPipelineSteps: {
-    parameters: {
-      query?: {
-        order_by?: components['parameters']['orderBy']
-        filter?: components['parameters']['filter']
-        limit?: components['parameters']['limit']
-        depth?: components['parameters']['depth']
-        last_cursor?: components['parameters']['lastCursor']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              pipelineSteps?: components['schemas']['PipelineStep'][]
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Create One pipelineStep */
-  createOnePipelineStep: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['PipelineStep']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      201: {
-        content: {
-          'application/json': {
-            data?: {
-              pipelineStep?: components['schemas']['PipelineStep']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /**
-   * Find One pipelineStep
-   * @description **depth** can be provided to request your **pipelineStep**
-   */
-  findOnePipelineStep: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              pipelineStep?: components['schemas']['PipelineStep']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Update One pipelineSteps */
-  UpdateOnePipelineStep: {
-    parameters: {
-      query?: {
-        depth?: components['parameters']['depth']
-      }
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    /** @description body */
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['PipelineStep']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              pipelineStep?: components['schemas']['PipelineStep']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One pipelineStep */
-  deleteOnePipelineStep: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              pipelineStep?: {
                 /** Format: uuid */
                 id?: string
               }
@@ -6871,6 +5346,1557 @@ export interface operations {
           'application/json': {
             data?: {
               messageChannelMessageAssociation?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many events
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **events**
+   */
+  findManyEvents: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              events?: components['schemas']['Event'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One event */
+  createOneEvent: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Event']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              event?: components['schemas']['Event']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One event
+   * @description **depth** can be provided to request your **event**
+   */
+  findOneEvent: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              event?: components['schemas']['Event']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One events */
+  UpdateOneEvent: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Event']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              event?: components['schemas']['Event']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One event */
+  deleteOneEvent: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              event?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many activityTargets
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activityTargets**
+   */
+  findManyActivityTargets: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activityTargets?: components['schemas']['ActivityTarget'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One activityTarget */
+  createOneActivityTarget: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ActivityTarget']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              activityTarget?: components['schemas']['ActivityTarget']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One activityTarget
+   * @description **depth** can be provided to request your **activityTarget**
+   */
+  findOneActivityTarget: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activityTarget?: components['schemas']['ActivityTarget']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One activityTargets */
+  UpdateOneActivityTarget: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ActivityTarget']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activityTarget?: components['schemas']['ActivityTarget']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One activityTarget */
+  deleteOneActivityTarget: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activityTarget?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many activities
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **activities**
+   */
+  findManyActivities: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activities?: components['schemas']['Activity'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One activity */
+  createOneActivity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Activity']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              activity?: components['schemas']['Activity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One activity
+   * @description **depth** can be provided to request your **activity**
+   */
+  findOneActivity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activity?: components['schemas']['Activity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One activities */
+  UpdateOneActivity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Activity']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activity?: components['schemas']['Activity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One activity */
+  deleteOneActivity: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              activity?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many apiKeys
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **apiKeys**
+   */
+  findManyApiKeys: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              apiKeys?: components['schemas']['ApiKey'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One apiKey */
+  createOneApiKey: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ApiKey']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              apiKey?: components['schemas']['ApiKey']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One apiKey
+   * @description **depth** can be provided to request your **apiKey**
+   */
+  findOneApiKey: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              apiKey?: components['schemas']['ApiKey']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One apiKeys */
+  UpdateOneApiKey: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ApiKey']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              apiKey?: components['schemas']['ApiKey']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One apiKey */
+  deleteOneApiKey: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              apiKey?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many attachments
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **attachments**
+   */
+  findManyAttachments: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              attachments?: components['schemas']['Attachment'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One attachment */
+  createOneAttachment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Attachment']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              attachment?: components['schemas']['Attachment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One attachment
+   * @description **depth** can be provided to request your **attachment**
+   */
+  findOneAttachment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              attachment?: components['schemas']['Attachment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One attachments */
+  UpdateOneAttachment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Attachment']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              attachment?: components['schemas']['Attachment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One attachment */
+  deleteOneAttachment: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              attachment?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many blocklists
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **blocklists**
+   */
+  findManyBlocklists: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              blocklists?: components['schemas']['Blocklist'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One blocklist */
+  createOneBlocklist: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Blocklist']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              blocklist?: components['schemas']['Blocklist']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One blocklist
+   * @description **depth** can be provided to request your **blocklist**
+   */
+  findOneBlocklist: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              blocklist?: components['schemas']['Blocklist']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One blocklists */
+  UpdateOneBlocklist: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Blocklist']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              blocklist?: components['schemas']['Blocklist']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One blocklist */
+  deleteOneBlocklist: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              blocklist?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many comments
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **comments**
+   */
+  findManyComments: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              comments?: components['schemas']['Comment'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One comment */
+  createOneComment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Comment']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              comment?: components['schemas']['Comment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One comment
+   * @description **depth** can be provided to request your **comment**
+   */
+  findOneComment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              comment?: components['schemas']['Comment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One comments */
+  UpdateOneComment: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Comment']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              comment?: components['schemas']['Comment']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One comment */
+  deleteOneComment: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              comment?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many companies
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **companies**
+   */
+  findManyCompanies: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              companies?: components['schemas']['Company'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One company */
+  createOneCompany: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Company']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              company?: components['schemas']['Company']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One company
+   * @description **depth** can be provided to request your **company**
+   */
+  findOneCompany: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              company?: components['schemas']['Company']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One companies */
+  UpdateOneCompany: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Company']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              company?: components['schemas']['Company']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One company */
+  deleteOneCompany: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              company?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many connectedAccounts
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **connectedAccounts**
+   */
+  findManyConnectedAccounts: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              connectedAccounts?: components['schemas']['ConnectedAccount'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One connectedAccount */
+  createOneConnectedAccount: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ConnectedAccount']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              connectedAccount?: components['schemas']['ConnectedAccount']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One connectedAccount
+   * @description **depth** can be provided to request your **connectedAccount**
+   */
+  findOneConnectedAccount: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              connectedAccount?: components['schemas']['ConnectedAccount']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One connectedAccounts */
+  UpdateOneConnectedAccount: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ConnectedAccount']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              connectedAccount?: components['schemas']['ConnectedAccount']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One connectedAccount */
+  deleteOneConnectedAccount: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              connectedAccount?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many favorites
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **favorites**
+   */
+  findManyFavorites: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              favorites?: components['schemas']['Favorite'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One favorite */
+  createOneFavorite: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Favorite']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              favorite?: components['schemas']['Favorite']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One favorite
+   * @description **depth** can be provided to request your **favorite**
+   */
+  findOneFavorite: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              favorite?: components['schemas']['Favorite']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One favorites */
+  UpdateOneFavorite: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Favorite']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              favorite?: components['schemas']['Favorite']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One favorite */
+  deleteOneFavorite: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              favorite?: {
+                /** Format: uuid */
+                id?: string
+              }
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find Many opportunities
+   * @description **order_by**, **filter**, **limit**, **depth** or **last_cursor** can be provided to request your **opportunities**
+   */
+  findManyOpportunities: {
+    parameters: {
+      query?: {
+        order_by?: components['parameters']['orderBy']
+        filter?: components['parameters']['filter']
+        limit?: components['parameters']['limit']
+        depth?: components['parameters']['depth']
+        last_cursor?: components['parameters']['lastCursor']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              opportunities?: components['schemas']['Opportunity'][]
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Create One opportunity */
+  createOneOpportunity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Opportunity']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      201: {
+        content: {
+          'application/json': {
+            data?: {
+              opportunity?: components['schemas']['Opportunity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /**
+   * Find One opportunity
+   * @description **depth** can be provided to request your **opportunity**
+   */
+  findOneOpportunity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              opportunity?: components['schemas']['Opportunity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Update One opportunities */
+  UpdateOneOpportunity: {
+    parameters: {
+      query?: {
+        depth?: components['parameters']['depth']
+      }
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    /** @description body */
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Opportunity']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              opportunity?: components['schemas']['Opportunity']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One opportunity */
+  deleteOneOpportunity: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              opportunity?: {
                 /** Format: uuid */
                 id?: string
               }
