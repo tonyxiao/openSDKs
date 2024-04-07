@@ -379,6 +379,21 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
+  sdks/sdk-revert:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+
   sdks/sdk-salesforce:
     devDependencies:
       '@opensdks/runtime':
