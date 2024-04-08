@@ -10,15 +10,16 @@ export type FinchSDKTypes = SDKTypes<
       /**
        * Bearer: connection-specific access token for connection specific requests
        * Basic: base64 encoded client_id:client_secret for non connection specific requests
+       * Optional: For auth/token endpoint
        * TODO: Would be nice to get some helper with this type of request.
        * */
-      authorization: `Bearer ${string}` | `Basic ${string}`
+      authorization?: `Bearer ${string}` | `Basic ${string}`
       /** 
        * Header used to specify the version for a given API request. 
        * Current version is 2020-09-17. 
        * */
-      'FINCH-API-VERSION': string
-      [k: string]: string
+      'FINCH-API-VERSION'?: string
+      [k: string]: string | undefined
     }
   }
 >
