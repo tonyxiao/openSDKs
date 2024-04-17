@@ -10,18 +10,14 @@ export interface paths {
   '/v1/departments': {
     get: operations['getDepartments']
   }
+  '/v1/jobs/{id}': {
+    get: operations['getDepartment']
+  }
 }
 
 export type webhooks = Record<string, never>
 
-export interface components {
-  schemas: never
-  responses: never
-  parameters: never
-  requestBodies: never
-  headers: never
-  pathItems: never
-}
+export type components = Record<string, never>
 
 export type $defs = Record<string, never>
 
@@ -30,10 +26,6 @@ export type external = Record<string, never>
 export interface operations {
   getDepartment: {
     parameters: {
-      query?: {
-        /** @description This parameter defines how to represent the list of departments. The default value is 'list’, which returns a flat list of departments. If this is set to 'tree’, departments are represented in a tree-like structure where they may include sub-departments as children. */
-        render_as?: 'list' | 'tree'
-      }
       path: {
         /** @description The ID of the department to retrieve */
         id: string
@@ -48,13 +40,33 @@ export interface operations {
       200: {
         content: {
           'application/json': {
+            /** @description The job’s unique identifier */
             id: number
             name: string
-            parent_id?: string | null
-            parent_department_external_ids?: string | null
-            child_ids?: number[] | null
-            child_department_external_ids?: number[] | null
-            external_id: string
+            /** @description An arbitrary ID provided by an external source; does not map to another entity within Greenhouse. */
+            requisition_id: string
+            notes: string
+            /** @description One of true, false. If the job is confidential or not. */
+            confidential: boolean
+            /** @enum {string} */
+            status: 'open' | 'closed' | 'draft'
+            created_at: string
+            opened_at: string
+            closed_at: string
+            updated_at: string
+            /** @description Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature. */
+            is_template: boolean | null
+            /** @description If this job was copied from another job, this field contains the id of the source job. */
+            copied_from_id: number
+            departments: {
+              id: number
+              name: string
+              parent_id?: string | null
+              parent_department_external_ids?: string | null
+              child_ids?: number[] | null
+              child_department_external_ids?: number[] | null
+              external_id: string
+            }[]
           }
         }
       }

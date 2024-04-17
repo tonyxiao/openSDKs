@@ -185,14 +185,133 @@
           }
         }
       }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
-        "in": "query"
+    },
+    "/v1/jobs/{id}": {
+      "get": {
+        "operationId": "getDepartment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The ID of the department to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the department to retrieve"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "description": "The job’s unique identifier"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "requisition_id": {
+                      "type": "string",
+                      "description": "An arbitrary ID provided by an external source; does not map to another entity within Greenhouse."
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "confidential": {
+                      "type": "boolean",
+                      "description": "One of true, false. If the job is confidential or not."
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["open", "closed", "draft"]
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "opened_at": {
+                      "type": "string"
+                    },
+                    "closed_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "is_template": {
+                      "type": ["boolean", "null"],
+                      "description": "Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature."
+                    },
+                    "copied_from_id": {
+                      "type": "number",
+                      "description": "If this job was copied from another job, this field contains the id of the source job."
+                    },
+                    "departments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "parent_id": {
+                            "type": ["string", "null"]
+                          },
+                          "parent_department_external_ids": {
+                            "type": ["string", "null"]
+                          },
+                          "child_ids": {
+                            "type": ["array", "null"],
+                            "items": {
+                              "type": "number"
+                            }
+                          },
+                          "child_department_external_ids": {
+                            "type": ["array", "null"],
+                            "items": {
+                              "type": "number"
+                            }
+                          },
+                          "external_id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["id", "name", "external_id"]
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "requisition_id",
+                    "notes",
+                    "confidential",
+                    "status",
+                    "created_at",
+                    "opened_at",
+                    "closed_at",
+                    "updated_at",
+                    "is_template",
+                    "copied_from_id",
+                    "departments"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

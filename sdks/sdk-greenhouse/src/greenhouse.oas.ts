@@ -21,16 +21,43 @@ const greenhouseDepartment = z.object({
 //     children: z.lazy(() => greenhouseDepartment.array()),
 //   })
 
+const greenhouseJob = z.object({
+  id: z.number().describe('The job’s unique identifier'),
+  name: z.string(),
+  requisition_id: z
+    .string()
+    .describe(
+      'An arbitrary ID provided by an external source; does not map to another entity within Greenhouse.',
+    ),
+  notes: z.string(),
+  confidential: z
+    .boolean()
+    .describe('One of true, false. If the job is confidential or not.'),
+  status: z.enum(['open', 'closed', 'draft']),
+  created_at: z.coerce.date(),
+  opened_at: z.coerce.date(),
+  closed_at: z.coerce.date(),
+  updated_at: z.coerce.date(),
+  is_template: z
+    .boolean()
+    .describe(
+      'Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature.',
+    )
+    .nullable(),
+  copied_from_id: z
+    .number()
+    .describe(
+      'If this job was copied from another job, this field contains the id of the source job.',
+    ),
+  departments: z.array(greenhouseDepartment),
+  //TODO: Add other properties
+})
+
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Greenhouse Harvest API', version: '0.0.0'},
   servers: [{url: 'https://harvest.greenhouse.io'}],
   security: [{api_key: []}],
-  components: {
-    securitySchemes: {
-      api_key: {type: 'apiKey', name: 'api_key', in: 'query'},
-    },
-  },
   paths: {
     '/v1/departments/{id}': {
       get: jsonOperation('getDepartment', {
@@ -82,6 +109,14 @@ export const oas: OpenAPISpec = createDocument({
               'If supplied, only return department(s) with that external ID.',
             ),
         }),
+      }),
+    },
+    '/v1/jobs/{id}': {
+      get: jsonOperation('getDepartment', {
+        path: z.object({
+          id: z.string().describe('The ID of the department to retrieve'),
+        }),
+        response: greenhouseJob,
       }),
     },
   },
