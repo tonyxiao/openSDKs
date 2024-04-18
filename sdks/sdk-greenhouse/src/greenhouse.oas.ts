@@ -9,17 +9,56 @@ const greenhouseDepartment = z.object({
   child_ids: z.array(z.number()).nullish(),
   child_department_external_ids: z.array(z.number()).nullish(),
   external_id: z.string(),
+  // TODO: Support children field recursively
+  children: z.array(z.any()),
 })
 
-// TODO (@tony): Support children field recursively. Would you know a workaround?
-// export type GreenhouseDepartment = z.infer<typeof greenhouseDepartmentBase> & {
-//   children: GreenhouseDepartment[]
-// }
+const candidateValueTypePair = z.object({
+  value: z.string(),
+  type: z.string().nullish(),
+})
+const hiringTeamInstance = z.object({
+  id: z.number(),
+  first_name: z.string(),
+  last_name: z.string(),
+  name: z.string(),
+  employee_id: z.string(),
+  responsible: z.boolean().nullish(),
+})
 
-// export let greenhouseDepartment: z.ZodType<GreenhouseDepartment> =
-//   greenhouseDepartmentBase.extend({
-//     children: z.lazy(() => greenhouseDepartment.array()),
-//   })
+const greenhouseCandidate = z.object({
+  id: z.number(),
+  first_name: z.string(),
+  last_name: z.string(),
+  company: z.string(),
+  title: z.string(),
+  created_at: z.coerce.date(),
+  updated_at: z.coerce.date(),
+  last_activity: z.coerce.date(),
+  is_private: z.boolean(),
+  photo_url: z.string().nullable(),
+  application_ids: z.array(z.number()),
+  can_email: z.boolean(),
+  tags: z.array(z.string()),
+  attachments: z.array(
+    z.object({
+      filename: z.string(),
+      url: z.string(),
+      type: z.string(),
+      created_at: z.coerce.date(),
+    }),
+  ),
+  phone_numbers: z.array(candidateValueTypePair),
+  addresses: z.array(candidateValueTypePair),
+  email_addresses: z.array(candidateValueTypePair),
+  website_addresses: z.array(candidateValueTypePair),
+  social_media_addresses: z.array(candidateValueTypePair),
+  recruiter: hiringTeamInstance,
+  coordinator: hiringTeamInstance,
+  // TODO: Add zod schema for applications
+  applications: z.array(z.any()),
+})
+
 const greenhouseOffice = z.object({
   id: z.number(),
   name: z.string(),
@@ -31,7 +70,7 @@ const greenhouseOffice = z.object({
   external_id: z.string(),
 })
 
-const greenhouseOpenings = z.object({
+const greenhouseOpening = z.object({
   id: z.number(),
   opening_id: z.string().nullable(),
   status: z.string(),
@@ -46,41 +85,10 @@ const greenhouseOpenings = z.object({
     .nullable(),
 })
 
-const greenhouseCustomFields = z.object({
-  employment_type: z.string(),
-  maximum_budget: z.string(),
-  salary_range: z.object({
-    min_value: z.number(),
-    max_value: z.number(),
-    unit: z.string(),
-  }),
-})
-
 const customFieldValue = z.object({
   name: z.string(),
   type: z.string(),
   value: z.string(),
-})
-const keyedCustomFields = z.object({
-  employment_type: customFieldValue,
-  budget: customFieldValue,
-  salary_range: z.object({
-    name: z.string(),
-    type: z.string(),
-    value: z.object({
-      min_value: z.number(),
-      max_value: z.number(),
-      unit: z.string(),
-    }),
-  }),
-})
-const hiringTeamInstance = z.object({
-  id: z.number(),
-  first_name: z.string(),
-  last_name: z.string(),
-  name: z.string(),
-  employee_id: z.string(),
-  responsible: z.boolean().nullish(),
 })
 
 const hiringTeam = z.object({
@@ -88,6 +96,23 @@ const hiringTeam = z.object({
   recruiters: z.array(hiringTeamInstance),
   coordinators: z.array(hiringTeamInstance),
   sourcers: z.array(hiringTeamInstance),
+})
+
+const greenhouseOffer = z.object({
+  id: z.number(),
+  version: z.number(),
+  application_id: z.number(),
+  job_id: z.number(),
+  candidate_id: z.number(),
+  opening: greenhouseOpening,
+  created_at: z.coerce.date(),
+  updated_at: z.coerce.date(),
+  sent_at: z.string(),
+  resolved_at: z.coerce.date(),
+  starts_at: z.string(),
+  status: z.string(),
+  custom_fields: z.record(z.string(), z.any()),
+  keyed_custom_fields: z.record(z.string(), customFieldValue),
 })
 
 const greenhouseJob = z.object({
@@ -120,9 +145,9 @@ const greenhouseJob = z.object({
     ),
   departments: z.array(greenhouseDepartment),
   offices: z.array(greenhouseOffice),
-  openings: z.array(greenhouseOpenings),
-  custom_fields: greenhouseCustomFields,
-  keyed_custom_fields: keyedCustomFields,
+  openings: z.array(greenhouseOpening),
+  custom_fields: z.record(z.string(), z.any()),
+  keyed_custom_fields: z.record(z.string(), customFieldValue),
   hiring_team: hiringTeam,
 })
 
@@ -185,11 +210,114 @@ export const oas: OpenAPISpec = createDocument({
       }),
     },
     '/v1/jobs/{id}': {
-      get: jsonOperation('getDepartment', {
+      get: jsonOperation('getJob', {
         path: z.object({
-          id: z.string().describe('The ID of the department to retrieve'),
+          id: z.string().describe('The ID of the job to retrieve'),
         }),
         response: greenhouseJob,
+      }),
+    },
+    '/v1/jobs': {
+      get: jsonOperation('getJobs', {
+        query: z.object({
+          // TODO: Support other parameters
+          per_page: z
+            .number()
+            .min(1)
+            .max(500)
+            .optional()
+            .describe(
+              'Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.',
+            )
+            .default(100),
+          page: z
+            .number()
+            .optional()
+            .describe(
+              'A cursor for use in pagination. Returns the n-th chunk of per_page objects.',
+            ),
+          external_id: z
+            .string()
+            .optional()
+            .describe(
+              'If supplied, only return department(s) with that external ID.',
+            ),
+        }),
+        response: z.array(greenhouseJob),
+      }),
+    },
+    '/v1/offers/{id}': {
+      get: jsonOperation('getOffer', {
+        path: z.object({
+          id: z.string().describe('The ID of the offer to retrieve'),
+        }),
+        response: greenhouseOffer,
+      }),
+    },
+    '/v1/offers': {
+      get: jsonOperation('getOffers', {
+        query: z.object({
+          // TODO: Support other parameters
+          per_page: z
+            .number()
+            .min(1)
+            .max(500)
+            .optional()
+            .describe(
+              'Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.',
+            )
+            .default(100),
+          page: z
+            .number()
+            .optional()
+            .describe(
+              'A cursor for use in pagination. Returns the n-th chunk of per_page objects.',
+            ),
+          external_id: z
+            .string()
+            .optional()
+            .describe(
+              'If supplied, only return department(s) with that external ID.',
+            ),
+        }),
+        response: z.array(greenhouseOffer),
+      }),
+    },
+    '/v1/candidates/{id}': {
+      get: jsonOperation('getCandidate', {
+        path: z.object({
+          id: z.string().describe('The ID of the candidate to retrieve'),
+        }),
+        response: greenhouseCandidate,
+      }),
+    },
+    '/v1/candidates': {
+      get: jsonOperation('getCandidates', {
+        query: z.object({
+          // TODO: Support other parameters
+          per_page: z
+            .number()
+            .min(1)
+            .max(500)
+            .optional()
+            .describe(
+              'Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.',
+            )
+            .default(100),
+          page: z
+            .number()
+            .optional()
+            .describe(
+              'A cursor for use in pagination. Returns the n-th chunk of per_page objects.',
+            ),
+          external_id: z
+            .string()
+            .optional()
+            .describe(
+              'If supplied, only return department(s) with that external ID.',
+            ),
+        }),
+        response: z.array(greenhouseCandidate),
       }),
     },
   },

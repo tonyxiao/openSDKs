@@ -11,7 +11,22 @@ export interface paths {
     get: operations['getDepartments']
   }
   '/v1/jobs/{id}': {
-    get: operations['getDepartment']
+    get: operations['getJob']
+  }
+  '/v1/jobs': {
+    get: operations['getJobs']
+  }
+  '/v1/offers/{id}': {
+    get: operations['getOffer']
+  }
+  '/v1/offers': {
+    get: operations['getOffers']
+  }
+  '/v1/candidates/{id}': {
+    get: operations['getCandidate']
+  }
+  '/v1/candidates': {
+    get: operations['getCandidates']
   }
 }
 
@@ -26,8 +41,76 @@ export type external = Record<string, never>
 export interface operations {
   getDepartment: {
     parameters: {
+      query?: {
+        /** @description This parameter defines how to represent the list of departments. The default value is 'list’, which returns a flat list of departments. If this is set to 'tree’, departments are represented in a tree-like structure where they may include sub-departments as children. */
+        render_as?: 'list' | 'tree'
+      }
       path: {
         /** @description The ID of the department to retrieve */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            id: number
+            name: string
+            parent_id?: string | null
+            parent_department_external_ids?: string | null
+            child_ids?: number[] | null
+            child_department_external_ids?: number[] | null
+            external_id: string
+            children: unknown[]
+          }
+        }
+      }
+    }
+  }
+  getDepartments: {
+    parameters: {
+      query?: {
+        /** @description This parameter defines how to represent the list of departments. The default value is 'list’, which returns a flat list of departments. If this is set to 'tree’, departments are represented in a tree-like structure where they may include sub-departments as children. */
+        render_as?: 'list' | 'tree'
+        /** @description Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100. */
+        per_page?: number
+        /** @description A cursor for use in pagination. Returns the n-th chunk of per_page objects. */
+        page?: number
+        /** @description If supplied, only return department(s) with that external ID. */
+        external_id?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            id: number
+            name: string
+            parent_id?: string | null
+            parent_department_external_ids?: string | null
+            child_ids?: number[] | null
+            child_department_external_ids?: number[] | null
+            external_id: string
+            children: unknown[]
+          }[]
+        }
+      }
+    }
+  }
+  getJob: {
+    parameters: {
+      path: {
+        /** @description The ID of the job to retrieve */
         id: string
       }
     }
@@ -66,6 +149,7 @@ export interface operations {
               child_ids?: number[] | null
               child_department_external_ids?: number[] | null
               external_id: string
+              children: unknown[]
             }[]
             offices: {
               id: number
@@ -90,33 +174,13 @@ export interface operations {
               } | null
             }[]
             custom_fields: {
-              employment_type: string
-              maximum_budget: string
-              salary_range: {
-                min_value: number
-                max_value: number
-                unit: string
-              }
+              [key: string]: unknown
             }
             keyed_custom_fields: {
-              employment_type: {
+              [key: string]: {
                 name: string
                 type: string
                 value: string
-              }
-              budget: {
-                name: string
-                type: string
-                value: string
-              }
-              salary_range: {
-                name: string
-                type: string
-                value: {
-                  min_value: number
-                  max_value: number
-                  unit: string
-                }
               }
             }
             hiring_team: {
@@ -158,11 +222,182 @@ export interface operations {
       }
     }
   }
-  getDepartments: {
+  getJobs: {
     parameters: {
       query?: {
-        /** @description This parameter defines how to represent the list of departments. The default value is 'list’, which returns a flat list of departments. If this is set to 'tree’, departments are represented in a tree-like structure where they may include sub-departments as children. */
-        render_as?: 'list' | 'tree'
+        /** @description Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100. */
+        per_page?: number
+        /** @description A cursor for use in pagination. Returns the n-th chunk of per_page objects. */
+        page?: number
+        /** @description If supplied, only return department(s) with that external ID. */
+        external_id?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            /** @description The job’s unique identifier */
+            id: number
+            name: string
+            /** @description An arbitrary ID provided by an external source; does not map to another entity within Greenhouse. */
+            requisition_id: string
+            notes: string
+            /** @description One of true, false. If the job is confidential or not. */
+            confidential: boolean
+            /** @enum {string} */
+            status: 'open' | 'closed' | 'draft'
+            created_at: string
+            opened_at: string
+            closed_at: string
+            updated_at: string
+            /** @description Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature. */
+            is_template: boolean | null
+            /** @description If this job was copied from another job, this field contains the id of the source job. */
+            copied_from_id: number
+            departments: {
+              id: number
+              name: string
+              parent_id?: string | null
+              parent_department_external_ids?: string | null
+              child_ids?: number[] | null
+              child_department_external_ids?: number[] | null
+              external_id: string
+              children: unknown[]
+            }[]
+            offices: {
+              id: number
+              name: string
+              location: {
+                name: string
+              }
+              parent_id: number
+              child_ids?: number[] | null
+              external_id: string
+            }[]
+            openings: {
+              id: number
+              opening_id: string | null
+              status: string
+              opened_at: string
+              closed_at: string
+              application_id: number
+              close_reason: {
+                id: number
+                name: string
+              } | null
+            }[]
+            custom_fields: {
+              [key: string]: unknown
+            }
+            keyed_custom_fields: {
+              [key: string]: {
+                name: string
+                type: string
+                value: string
+              }
+            }
+            hiring_team: {
+              hiring_managers: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              recruiters: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              coordinators: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              sourcers: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+            }
+          }[]
+        }
+      }
+    }
+  }
+  getOffer: {
+    parameters: {
+      path: {
+        /** @description The ID of the offer to retrieve */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            id: number
+            version: number
+            application_id: number
+            job_id: number
+            candidate_id: number
+            opening: {
+              id: number
+              opening_id: string | null
+              status: string
+              opened_at: string
+              closed_at: string
+              application_id: number
+              close_reason: {
+                id: number
+                name: string
+              } | null
+            }
+            created_at: string
+            updated_at: string
+            sent_at: string
+            resolved_at: string
+            starts_at: string
+            status: string
+            custom_fields: {
+              [key: string]: unknown
+            }
+            keyed_custom_fields: {
+              [key: string]: {
+                name: string
+                type: string
+                value: string
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  getOffers: {
+    parameters: {
+      query?: {
         /** @description Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100. */
         per_page?: number
         /** @description A cursor for use in pagination. Returns the n-th chunk of per_page objects. */
@@ -181,12 +416,196 @@ export interface operations {
         content: {
           'application/json': {
             id: number
-            name: string
-            parent_id?: string | null
-            parent_department_external_ids?: string | null
-            child_ids?: number[] | null
-            child_department_external_ids?: number[] | null
-            external_id: string
+            version: number
+            application_id: number
+            job_id: number
+            candidate_id: number
+            opening: {
+              id: number
+              opening_id: string | null
+              status: string
+              opened_at: string
+              closed_at: string
+              application_id: number
+              close_reason: {
+                id: number
+                name: string
+              } | null
+            }
+            created_at: string
+            updated_at: string
+            sent_at: string
+            resolved_at: string
+            starts_at: string
+            status: string
+            custom_fields: {
+              [key: string]: unknown
+            }
+            keyed_custom_fields: {
+              [key: string]: {
+                name: string
+                type: string
+                value: string
+              }
+            }
+          }[]
+        }
+      }
+    }
+  }
+  getCandidate: {
+    parameters: {
+      path: {
+        /** @description The ID of the candidate to retrieve */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            id: number
+            first_name: string
+            last_name: string
+            company: string
+            title: string
+            created_at: string
+            updated_at: string
+            last_activity: string
+            is_private: boolean
+            photo_url: string | null
+            application_ids: number[]
+            can_email: boolean
+            tags: string[]
+            attachments: {
+              filename: string
+              url: string
+              type: string
+              created_at: string
+            }[]
+            phone_numbers: {
+              value: string
+              type?: string | null
+            }[]
+            addresses: {
+              value: string
+              type?: string | null
+            }[]
+            email_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            website_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            social_media_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            recruiter: {
+              id: number
+              first_name: string
+              last_name: string
+              name: string
+              employee_id: string
+              responsible?: boolean | null
+            }
+            coordinator: {
+              id: number
+              first_name: string
+              last_name: string
+              name: string
+              employee_id: string
+              responsible?: boolean | null
+            }
+            applications: unknown[]
+          }
+        }
+      }
+    }
+  }
+  getCandidates: {
+    parameters: {
+      query?: {
+        /** @description Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100. */
+        per_page?: number
+        /** @description A cursor for use in pagination. Returns the n-th chunk of per_page objects. */
+        page?: number
+        /** @description If supplied, only return department(s) with that external ID. */
+        external_id?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            id: number
+            first_name: string
+            last_name: string
+            company: string
+            title: string
+            created_at: string
+            updated_at: string
+            last_activity: string
+            is_private: boolean
+            photo_url: string | null
+            application_ids: number[]
+            can_email: boolean
+            tags: string[]
+            attachments: {
+              filename: string
+              url: string
+              type: string
+              created_at: string
+            }[]
+            phone_numbers: {
+              value: string
+              type?: string | null
+            }[]
+            addresses: {
+              value: string
+              type?: string | null
+            }[]
+            email_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            website_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            social_media_addresses: {
+              value: string
+              type?: string | null
+            }[]
+            recruiter: {
+              id: number
+              first_name: string
+              last_name: string
+              name: string
+              employee_id: string
+              responsible?: boolean | null
+            }
+            coordinator: {
+              id: number
+              first_name: string
+              last_name: string
+              name: string
+              employee_id: string
+              responsible?: boolean | null
+            }
+            applications: unknown[]
           }[]
         }
       }
