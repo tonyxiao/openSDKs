@@ -290,6 +290,332 @@
                         },
                         "required": ["id", "name", "external_id"]
                       }
+                    },
+                    "offices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["name"]
+                          },
+                          "parent_id": {
+                            "type": "number"
+                          },
+                          "child_ids": {
+                            "type": ["array", "null"],
+                            "items": {
+                              "type": "number"
+                            }
+                          },
+                          "external_id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "location",
+                          "parent_id",
+                          "external_id"
+                        ]
+                      }
+                    },
+                    "openings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "opening_id": {
+                            "type": ["string", "null"]
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "opened_at": {
+                            "type": "string"
+                          },
+                          "closed_at": {
+                            "type": "string"
+                          },
+                          "application_id": {
+                            "type": "number"
+                          },
+                          "close_reason": {
+                            "type": ["object", "null"],
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["id", "name"]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "opening_id",
+                          "status",
+                          "opened_at",
+                          "closed_at",
+                          "application_id",
+                          "close_reason"
+                        ]
+                      }
+                    },
+                    "custom_fields": {
+                      "type": "object",
+                      "properties": {
+                        "employment_type": {
+                          "type": "string"
+                        },
+                        "maximum_budget": {
+                          "type": "string"
+                        },
+                        "salary_range": {
+                          "type": "object",
+                          "properties": {
+                            "min_value": {
+                              "type": "number"
+                            },
+                            "max_value": {
+                              "type": "number"
+                            },
+                            "unit": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["min_value", "max_value", "unit"]
+                        }
+                      },
+                      "required": [
+                        "employment_type",
+                        "maximum_budget",
+                        "salary_range"
+                      ]
+                    },
+                    "keyed_custom_fields": {
+                      "type": "object",
+                      "properties": {
+                        "employment_type": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["name", "type", "value"]
+                        },
+                        "budget": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["name", "type", "value"]
+                        },
+                        "salary_range": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "object",
+                              "properties": {
+                                "min_value": {
+                                  "type": "number"
+                                },
+                                "max_value": {
+                                  "type": "number"
+                                },
+                                "unit": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["min_value", "max_value", "unit"]
+                            }
+                          },
+                          "required": ["name", "type", "value"]
+                        }
+                      },
+                      "required": ["employment_type", "budget", "salary_range"]
+                    },
+                    "hiring_team": {
+                      "type": "object",
+                      "properties": {
+                        "hiring_managers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "employee_id": {
+                                "type": "string"
+                              },
+                              "responsible": {
+                                "type": ["boolean", "null"]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "first_name",
+                              "last_name",
+                              "name",
+                              "employee_id"
+                            ]
+                          }
+                        },
+                        "recruiters": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "employee_id": {
+                                "type": "string"
+                              },
+                              "responsible": {
+                                "type": ["boolean", "null"]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "first_name",
+                              "last_name",
+                              "name",
+                              "employee_id"
+                            ]
+                          }
+                        },
+                        "coordinators": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "employee_id": {
+                                "type": "string"
+                              },
+                              "responsible": {
+                                "type": ["boolean", "null"]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "first_name",
+                              "last_name",
+                              "name",
+                              "employee_id"
+                            ]
+                          }
+                        },
+                        "sourcers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "employee_id": {
+                                "type": "string"
+                              },
+                              "responsible": {
+                                "type": ["boolean", "null"]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "first_name",
+                              "last_name",
+                              "name",
+                              "employee_id"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "hiring_managers",
+                        "recruiters",
+                        "coordinators",
+                        "sourcers"
+                      ]
                     }
                   },
                   "required": [
@@ -305,7 +631,12 @@
                     "updated_at",
                     "is_template",
                     "copied_from_id",
-                    "departments"
+                    "departments",
+                    "offices",
+                    "openings",
+                    "custom_fields",
+                    "keyed_custom_fields",
+                    "hiring_team"
                   ]
                 }
               }

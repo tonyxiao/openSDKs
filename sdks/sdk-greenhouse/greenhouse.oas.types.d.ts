@@ -67,6 +67,92 @@ export interface operations {
               child_department_external_ids?: number[] | null
               external_id: string
             }[]
+            offices: {
+              id: number
+              name: string
+              location: {
+                name: string
+              }
+              parent_id: number
+              child_ids?: number[] | null
+              external_id: string
+            }[]
+            openings: {
+              id: number
+              opening_id: string | null
+              status: string
+              opened_at: string
+              closed_at: string
+              application_id: number
+              close_reason: {
+                id: number
+                name: string
+              } | null
+            }[]
+            custom_fields: {
+              employment_type: string
+              maximum_budget: string
+              salary_range: {
+                min_value: number
+                max_value: number
+                unit: string
+              }
+            }
+            keyed_custom_fields: {
+              employment_type: {
+                name: string
+                type: string
+                value: string
+              }
+              budget: {
+                name: string
+                type: string
+                value: string
+              }
+              salary_range: {
+                name: string
+                type: string
+                value: {
+                  min_value: number
+                  max_value: number
+                  unit: string
+                }
+              }
+            }
+            hiring_team: {
+              hiring_managers: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              recruiters: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              coordinators: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+              sourcers: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+                responsible?: boolean | null
+              }[]
+            }
           }
         }
       }

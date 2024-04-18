@@ -20,6 +20,75 @@ const greenhouseDepartment = z.object({
 //   greenhouseDepartmentBase.extend({
 //     children: z.lazy(() => greenhouseDepartment.array()),
 //   })
+const greenhouseOffice = z.object({
+  id: z.number(),
+  name: z.string(),
+  location: z.object({
+    name: z.string(),
+  }),
+  parent_id: z.number(),
+  child_ids: z.array(z.number()).nullish(),
+  external_id: z.string(),
+})
+
+const greenhouseOpenings = z.object({
+  id: z.number(),
+  opening_id: z.string().nullable(),
+  status: z.string(),
+  opened_at: z.coerce.date(),
+  closed_at: z.coerce.date(),
+  application_id: z.number(),
+  close_reason: z
+    .object({
+      id: z.number(),
+      name: z.string(),
+    })
+    .nullable(),
+})
+
+const greenhouseCustomFields = z.object({
+  employment_type: z.string(),
+  maximum_budget: z.string(),
+  salary_range: z.object({
+    min_value: z.number(),
+    max_value: z.number(),
+    unit: z.string(),
+  }),
+})
+
+const customFieldValue = z.object({
+  name: z.string(),
+  type: z.string(),
+  value: z.string(),
+})
+const keyedCustomFields = z.object({
+  employment_type: customFieldValue,
+  budget: customFieldValue,
+  salary_range: z.object({
+    name: z.string(),
+    type: z.string(),
+    value: z.object({
+      min_value: z.number(),
+      max_value: z.number(),
+      unit: z.string(),
+    }),
+  }),
+})
+const hiringTeamInstance = z.object({
+  id: z.number(),
+  first_name: z.string(),
+  last_name: z.string(),
+  name: z.string(),
+  employee_id: z.string(),
+  responsible: z.boolean().nullish(),
+})
+
+const hiringTeam = z.object({
+  hiring_managers: z.array(hiringTeamInstance),
+  recruiters: z.array(hiringTeamInstance),
+  coordinators: z.array(hiringTeamInstance),
+  sourcers: z.array(hiringTeamInstance),
+})
 
 const greenhouseJob = z.object({
   id: z.number().describe('The job’s unique identifier'),
@@ -50,7 +119,11 @@ const greenhouseJob = z.object({
       'If this job was copied from another job, this field contains the id of the source job.',
     ),
   departments: z.array(greenhouseDepartment),
-  //TODO: Add other properties
+  offices: z.array(greenhouseOffice),
+  openings: z.array(greenhouseOpenings),
+  custom_fields: greenhouseCustomFields,
+  keyed_custom_fields: keyedCustomFields,
+  hiring_team: hiringTeam,
 })
 
 export const oas: OpenAPISpec = createDocument({
