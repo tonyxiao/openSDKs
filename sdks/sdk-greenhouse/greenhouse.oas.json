@@ -1552,7 +1552,299 @@
                     },
                     "applications": {
                       "type": "array",
-                      "items": {}
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "candidate_id": {
+                            "type": "number"
+                          },
+                          "prospect": {
+                            "type": "boolean"
+                          },
+                          "applied_at": {
+                            "type": "string"
+                          },
+                          "rejected_at": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "last_activity_at": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "address": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["address"]
+                          },
+                          "source": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "public_name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["id", "public_name"]
+                          },
+                          "credited_to": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "employee_id": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "first_name",
+                              "last_name",
+                              "name",
+                              "employee_id"
+                            ]
+                          },
+                          "rejection_reason": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "rejection_details": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "jobs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["id", "name"]
+                            }
+                          },
+                          "job_post_id": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "current_stage": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["id", "name"]
+                          },
+                          "answers": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "question": {
+                                  "type": "string"
+                                },
+                                "answer": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["question", "answer"]
+                            }
+                          },
+                          "prospective_office": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "prospective_department": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "prospect_detail": {
+                            "type": "object",
+                            "properties": {
+                              "prospect_pool": {
+                                "anyOf": [
+                                  {
+                                    "type": "null"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "prospect_stage": {
+                                "anyOf": [
+                                  {
+                                    "type": "null"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "prospect_owner": {
+                                "anyOf": [
+                                  {
+                                    "type": "null"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "prospect_pool",
+                              "prospect_stage",
+                              "prospect_owner"
+                            ]
+                          },
+                          "custom_fields": {
+                            "type": "object",
+                            "properties": {
+                              "application_custom_test": {
+                                "anyOf": [
+                                  {
+                                    "type": "null"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["application_custom_test"]
+                          },
+                          "keyed_custom_fields": {
+                            "type": "object",
+                            "properties": {
+                              "application_custom_test": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": ["name", "type", "value"]
+                              }
+                            },
+                            "required": ["application_custom_test"]
+                          },
+                          "attachments": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "filename": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "filename",
+                                "url",
+                                "type",
+                                "created_at"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "candidate_id",
+                          "prospect",
+                          "applied_at",
+                          "rejected_at",
+                          "last_activity_at",
+                          "location",
+                          "source",
+                          "credited_to",
+                          "rejection_reason",
+                          "rejection_details",
+                          "jobs",
+                          "job_post_id",
+                          "status",
+                          "current_stage",
+                          "answers",
+                          "prospective_office",
+                          "prospective_department",
+                          "prospect_detail",
+                          "custom_fields",
+                          "keyed_custom_fields",
+                          "attachments"
+                        ]
+                      }
                     }
                   },
                   "required": [
@@ -1838,7 +2130,299 @@
                       },
                       "applications": {
                         "type": "array",
-                        "items": {}
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "candidate_id": {
+                              "type": "number"
+                            },
+                            "prospect": {
+                              "type": "boolean"
+                            },
+                            "applied_at": {
+                              "type": "string"
+                            },
+                            "rejected_at": {
+                              "anyOf": [
+                                {
+                                  "type": "null"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "last_activity_at": {
+                              "type": "string"
+                            },
+                            "location": {
+                              "type": "object",
+                              "properties": {
+                                "address": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["address"]
+                            },
+                            "source": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "public_name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["id", "public_name"]
+                            },
+                            "credited_to": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "employee_id": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "first_name",
+                                "last_name",
+                                "name",
+                                "employee_id"
+                              ]
+                            },
+                            "rejection_reason": {
+                              "anyOf": [
+                                {
+                                  "type": "null"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "rejection_details": {
+                              "anyOf": [
+                                {
+                                  "type": "null"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "jobs": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": ["id", "name"]
+                              }
+                            },
+                            "job_post_id": {
+                              "type": "number"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "current_stage": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["id", "name"]
+                            },
+                            "answers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "question": {
+                                    "type": "string"
+                                  },
+                                  "answer": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": ["question", "answer"]
+                              }
+                            },
+                            "prospective_office": {
+                              "anyOf": [
+                                {
+                                  "type": "null"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "prospective_department": {
+                              "anyOf": [
+                                {
+                                  "type": "null"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "prospect_detail": {
+                              "type": "object",
+                              "properties": {
+                                "prospect_pool": {
+                                  "anyOf": [
+                                    {
+                                      "type": "null"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "prospect_stage": {
+                                  "anyOf": [
+                                    {
+                                      "type": "null"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "prospect_owner": {
+                                  "anyOf": [
+                                    {
+                                      "type": "null"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "prospect_pool",
+                                "prospect_stage",
+                                "prospect_owner"
+                              ]
+                            },
+                            "custom_fields": {
+                              "type": "object",
+                              "properties": {
+                                "application_custom_test": {
+                                  "anyOf": [
+                                    {
+                                      "type": "null"
+                                    },
+                                    {
+                                      "type": "string"
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": ["application_custom_test"]
+                            },
+                            "keyed_custom_fields": {
+                              "type": "object",
+                              "properties": {
+                                "application_custom_test": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": ["name", "type", "value"]
+                                }
+                              },
+                              "required": ["application_custom_test"]
+                            },
+                            "attachments": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "filename": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "filename",
+                                  "url",
+                                  "type",
+                                  "created_at"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "candidate_id",
+                            "prospect",
+                            "applied_at",
+                            "rejected_at",
+                            "last_activity_at",
+                            "location",
+                            "source",
+                            "credited_to",
+                            "rejection_reason",
+                            "rejection_details",
+                            "jobs",
+                            "job_post_id",
+                            "status",
+                            "current_stage",
+                            "answers",
+                            "prospective_office",
+                            "prospective_department",
+                            "prospect_detail",
+                            "custom_fields",
+                            "keyed_custom_fields",
+                            "attachments"
+                          ]
+                        }
                       }
                     },
                     "required": [

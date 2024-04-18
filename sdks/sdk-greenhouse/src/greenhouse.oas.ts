@@ -1,6 +1,93 @@
 import {OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
+const locationSchema = z.object({
+  address: z.string(),
+})
+
+const sourceSchema = z.object({
+  id: z.number(),
+  public_name: z.string(),
+})
+
+const creditedToSchema = z.object({
+  id: z.number(),
+  first_name: z.string(),
+  last_name: z.string(),
+  name: z.string(),
+  employee_id: z.string(),
+})
+
+const jobSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+})
+
+const currentStageSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+})
+
+const answerSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+})
+
+const attachmentSchema = z.object({
+  filename: z.string(),
+  url: z.string(),
+  type: z.string(),
+  created_at: z.string(),
+})
+
+const rejectionReasonSchema = z.union([z.null(), z.string()])
+const rejectionDetailsSchema = z.union([z.null(), z.string()])
+const prospectiveOfficeSchema = z.union([z.null(), z.string()])
+const prospectiveDepartmentSchema = z.union([z.null(), z.string()])
+const prospectPoolSchema = z.union([z.null(), z.string()])
+const prospectStageSchema = z.union([z.null(), z.string()])
+const prospectOwnerSchema = z.union([z.null(), z.string()])
+
+const applicationCustomTestSchema = z.union([z.null(), z.string()])
+const applicationCustomTestKeyedSchema = z.object({
+  name: z.string(),
+  type: z.string(),
+  value: z.string(),
+})
+
+const greenhouseApplication = z.object({
+  id: z.number(),
+  candidate_id: z.number(),
+  prospect: z.boolean(),
+  applied_at: z.string(),
+  rejected_at: rejectionReasonSchema,
+  last_activity_at: z.string(),
+  location: locationSchema,
+  source: sourceSchema,
+  credited_to: creditedToSchema,
+  rejection_reason: rejectionReasonSchema,
+  rejection_details: rejectionDetailsSchema,
+  jobs: z.array(jobSchema),
+  job_post_id: z.number(),
+  status: z.string(),
+  current_stage: currentStageSchema,
+  answers: z.array(answerSchema),
+  prospective_office: prospectiveOfficeSchema,
+  prospective_department: prospectiveDepartmentSchema,
+  prospect_detail: z.object({
+    prospect_pool: prospectPoolSchema,
+    prospect_stage: prospectStageSchema,
+    prospect_owner: prospectOwnerSchema,
+  }),
+  custom_fields: z.object({
+    application_custom_test: applicationCustomTestSchema,
+  }),
+  keyed_custom_fields: z.object({
+    application_custom_test: applicationCustomTestKeyedSchema,
+  }),
+  attachments: z.array(attachmentSchema),
+})
+
 const greenhouseDepartment = z.object({
   id: z.number(),
   name: z.string(),
@@ -9,7 +96,7 @@ const greenhouseDepartment = z.object({
   child_ids: z.array(z.number()).nullish(),
   child_department_external_ids: z.array(z.number()).nullish(),
   external_id: z.string(),
-  // TODO: Support children field recursively
+  // TODO: Support children field recursively whenever available in zodapi. More: https://github.com/asteasolutions/zod-to-openapi/discussions/191
   children: z.array(z.any()),
 })
 
@@ -55,8 +142,7 @@ const greenhouseCandidate = z.object({
   social_media_addresses: z.array(candidateValueTypePair),
   recruiter: hiringTeamInstance,
   coordinator: hiringTeamInstance,
-  // TODO: Add zod schema for applications
-  applications: z.array(z.any()),
+  applications: z.array(greenhouseApplication),
 })
 
 const greenhouseOffice = z.object({

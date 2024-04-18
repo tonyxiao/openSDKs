@@ -524,7 +524,67 @@ export interface operations {
               employee_id: string
               responsible?: boolean | null
             }
-            applications: unknown[]
+            applications: {
+              id: number
+              candidate_id: number
+              prospect: boolean
+              applied_at: string
+              rejected_at: null | string
+              last_activity_at: string
+              location: {
+                address: string
+              }
+              source: {
+                id: number
+                public_name: string
+              }
+              credited_to: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+              }
+              rejection_reason: null | string
+              rejection_details: null | string
+              jobs: {
+                id: number
+                name: string
+              }[]
+              job_post_id: number
+              status: string
+              current_stage: {
+                id: number
+                name: string
+              }
+              answers: {
+                question: string
+                answer: string
+              }[]
+              prospective_office: null | string
+              prospective_department: null | string
+              prospect_detail: {
+                prospect_pool: null | string
+                prospect_stage: null | string
+                prospect_owner: null | string
+              }
+              custom_fields: {
+                application_custom_test: null | string
+              }
+              keyed_custom_fields: {
+                application_custom_test: {
+                  name: string
+                  type: string
+                  value: string
+                }
+              }
+              attachments: {
+                filename: string
+                url: string
+                type: string
+                created_at: string
+              }[]
+            }[]
           }
         }
       }
@@ -605,7 +665,67 @@ export interface operations {
               employee_id: string
               responsible?: boolean | null
             }
-            applications: unknown[]
+            applications: {
+              id: number
+              candidate_id: number
+              prospect: boolean
+              applied_at: string
+              rejected_at: null | string
+              last_activity_at: string
+              location: {
+                address: string
+              }
+              source: {
+                id: number
+                public_name: string
+              }
+              credited_to: {
+                id: number
+                first_name: string
+                last_name: string
+                name: string
+                employee_id: string
+              }
+              rejection_reason: null | string
+              rejection_details: null | string
+              jobs: {
+                id: number
+                name: string
+              }[]
+              job_post_id: number
+              status: string
+              current_stage: {
+                id: number
+                name: string
+              }
+              answers: {
+                question: string
+                answer: string
+              }[]
+              prospective_office: null | string
+              prospective_department: null | string
+              prospect_detail: {
+                prospect_pool: null | string
+                prospect_stage: null | string
+                prospect_owner: null | string
+              }
+              custom_fields: {
+                application_custom_test: null | string
+              }
+              keyed_custom_fields: {
+                application_custom_test: {
+                  name: string
+                  type: string
+                  value: string
+                }
+              }
+              attachments: {
+                filename: string
+                url: string
+                type: string
+                created_at: string
+              }[]
+            }[]
           }[]
         }
       }
