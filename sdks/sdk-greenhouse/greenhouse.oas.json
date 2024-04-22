@@ -9,11 +9,6 @@
       "url": "https://harvest.greenhouse.io"
     }
   ],
-  "security": [
-    {
-      "api_key": []
-    }
-  ],
   "paths": {
     "/v1/departments/{id}": {
       "get": {

@@ -241,7 +241,6 @@ export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Greenhouse Harvest API', version: '0.0.0'},
   servers: [{url: 'https://harvest.greenhouse.io'}],
-  security: [{api_key: []}],
   paths: {
     '/v1/departments/{id}': {
       get: jsonOperation('getDepartment', {

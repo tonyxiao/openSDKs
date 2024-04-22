@@ -9,8 +9,17 @@ export {greenhouseTypes}
 export type GreenhouseSDKTypes = SDKTypes<
   greenhouseTypes,
   Omit<ClientOptions, 'headers'> & {
-    headers: {
-      authorization?: `Basic ${string}`
+    /**
+     * Greenhouse API key becomes the username here with password always kept as
+     * an empty string
+     */
+    auth: {
+      basic: {
+        username: `${string}`
+        password?: ''
+      }
+    }
+    headers?: {
       [k: string]: string | undefined
     }
   }
@@ -19,6 +28,18 @@ export type GreenhouseSDKTypes = SDKTypes<
 export const greenhouseSdkDef = {
   types: {} as GreenhouseSDKTypes,
   oasMeta: greenhouseOasMeta,
+  createClient(ctx, {...opts}) {
+    const headers = new Headers(opts['headers'] as HeadersInit)
+    headers.set(
+      'Authorization',
+      `Basic ${btoa(
+        `${opts['auth']['basic']['username']}:${
+          opts['auth']['basic']['password'] || ''
+        }`,
+      )}`,
+    )
+    return ctx.createClient({...opts, headers})
+  },
 } satisfies SdkDefinition<GreenhouseSDKTypes>
 
 export function initGreenhouseSDK(opts: GreenhouseSDKTypes['options']) {
