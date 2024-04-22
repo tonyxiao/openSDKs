@@ -42,7 +42,9 @@
     "generate:types": "node ../../packages/cli/generateFromOas.js ./greenhouse.oas.json",
     "version": "pnpm version"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@opensdks/runtime": "workspace:*"
+  },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "@opensdks/util-zod": "workspace:*",
