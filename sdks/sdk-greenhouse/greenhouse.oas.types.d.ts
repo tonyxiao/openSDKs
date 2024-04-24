@@ -32,7 +32,268 @@ export interface paths {
 
 export type webhooks = Record<string, never>
 
-export type components = Record<string, never>
+export interface components {
+  schemas: {
+    department: {
+      id: number
+      name: string
+      parent_id?: string | null
+      parent_department_external_ids?: string | null
+      child_ids?: number[] | null
+      child_department_external_ids?: number[] | null
+      external_id: string
+      children: unknown[]
+      [key: string]: unknown
+    }
+    job: {
+      /** @description The job’s unique identifier */
+      id: number
+      name: string
+      /** @description An arbitrary ID provided by an external source; does not map to another entity within Greenhouse. */
+      requisition_id: string
+      notes: string
+      /** @description One of true, false. If the job is confidential or not. */
+      confidential: boolean
+      /** @enum {string} */
+      status: 'open' | 'closed' | 'draft'
+      created_at: string
+      opened_at: string
+      closed_at: string
+      updated_at: string
+      /** @description Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature. */
+      is_template: boolean | null
+      /** @description If this job was copied from another job, this field contains the id of the source job. */
+      copied_from_id: number
+      departments: components['schemas']['department'][]
+      offices: {
+        id: number
+        name: string
+        location: {
+          name: string
+        }
+        parent_id: number
+        child_ids?: number[] | null
+        external_id: string
+      }[]
+      openings: {
+        id: number
+        opening_id: string | null
+        status: string
+        opened_at: string
+        closed_at: string
+        application_id: number
+        close_reason: {
+          id: number
+          name: string
+        } | null
+      }[]
+      custom_fields: {
+        [key: string]: unknown
+      }
+      keyed_custom_fields: {
+        [key: string]: {
+          name: string
+          type: string
+          value: string
+        }
+      }
+      hiring_team: {
+        hiring_managers: {
+          id: number
+          first_name: string
+          last_name: string
+          name: string
+          employee_id: string
+          responsible?: boolean | null
+        }[]
+        recruiters: {
+          id: number
+          first_name: string
+          last_name: string
+          name: string
+          employee_id: string
+          responsible?: boolean | null
+        }[]
+        coordinators: {
+          id: number
+          first_name: string
+          last_name: string
+          name: string
+          employee_id: string
+          responsible?: boolean | null
+        }[]
+        sourcers: {
+          id: number
+          first_name: string
+          last_name: string
+          name: string
+          employee_id: string
+          responsible?: boolean | null
+        }[]
+      }
+      [key: string]: unknown
+    }
+    offer: {
+      id: number
+      version: number
+      application_id: number
+      job_id: number
+      candidate_id: number
+      opening: {
+        id: number
+        opening_id: string | null
+        status: string
+        opened_at: string
+        closed_at: string
+        application_id: number
+        close_reason: {
+          id: number
+          name: string
+        } | null
+      }
+      created_at: string
+      updated_at: string
+      sent_at: string
+      resolved_at: string
+      starts_at: string
+      status: string
+      custom_fields: {
+        [key: string]: unknown
+      }
+      keyed_custom_fields: {
+        [key: string]: {
+          name: string
+          type: string
+          value: string
+        }
+      }
+    }
+    candidate: {
+      id: number
+      first_name: string
+      last_name: string
+      company: string
+      title: string
+      created_at: string
+      updated_at: string
+      last_activity: string
+      is_private: boolean
+      photo_url: string | null
+      application_ids: number[]
+      can_email: boolean
+      tags: string[]
+      attachments: {
+        filename: string
+        url: string
+        type: string
+        created_at: string
+      }[]
+      phone_numbers: {
+        value: string
+        type?: string | null
+      }[]
+      addresses: {
+        value: string
+        type?: string | null
+      }[]
+      email_addresses: {
+        value: string
+        type?: string | null
+      }[]
+      website_addresses: {
+        value: string
+        type?: string | null
+      }[]
+      social_media_addresses: {
+        value: string
+        type?: string | null
+      }[]
+      recruiter: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }
+      coordinator: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }
+      applications: {
+        id: number
+        candidate_id: number
+        prospect: boolean
+        applied_at: string
+        rejected_at: null | string
+        last_activity_at: string
+        location: {
+          address: string
+        }
+        source: {
+          id: number
+          public_name: string
+        }
+        credited_to: {
+          id: number
+          first_name: string
+          last_name: string
+          name: string
+          employee_id: string
+        }
+        rejection_reason: null | string
+        rejection_details: null | string
+        jobs: {
+          id: number
+          name: string
+        }[]
+        job_post_id: number
+        status: string
+        current_stage: {
+          id: number
+          name: string
+        }
+        answers: {
+          question: string
+          answer: string
+        }[]
+        prospective_office: null | string
+        prospective_department: null | string
+        prospect_detail: {
+          prospect_pool: null | string
+          prospect_stage: null | string
+          prospect_owner: null | string
+        }
+        custom_fields: {
+          application_custom_test: null | string
+        }
+        keyed_custom_fields: {
+          application_custom_test: {
+            name: string
+            type: string
+            value: string
+          }
+        }
+        attachments: {
+          filename: string
+          url: string
+          type: string
+          created_at: string
+        }[]
+      }[]
+      [key: string]: unknown
+    }
+  }
+  responses: never
+  parameters: never
+  requestBodies: never
+  headers: never
+  pathItems: never
+}
 
 export type $defs = Record<string, never>
 
@@ -58,16 +319,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            name: string
-            parent_id?: string | null
-            parent_department_external_ids?: string | null
-            child_ids?: number[] | null
-            child_department_external_ids?: number[] | null
-            external_id: string
-            children: unknown[]
-          }
+          'application/json': components['schemas']['department']
         }
       }
     }
@@ -93,16 +345,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            name: string
-            parent_id?: string | null
-            parent_department_external_ids?: string | null
-            child_ids?: number[] | null
-            child_department_external_ids?: number[] | null
-            external_id: string
-            children: unknown[]
-          }[]
+          'application/json': components['schemas']['department'][]
         }
       }
     }
@@ -122,102 +365,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            /** @description The job’s unique identifier */
-            id: number
-            name: string
-            /** @description An arbitrary ID provided by an external source; does not map to another entity within Greenhouse. */
-            requisition_id: string
-            notes: string
-            /** @description One of true, false. If the job is confidential or not. */
-            confidential: boolean
-            /** @enum {string} */
-            status: 'open' | 'closed' | 'draft'
-            created_at: string
-            opened_at: string
-            closed_at: string
-            updated_at: string
-            /** @description Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature. */
-            is_template: boolean | null
-            /** @description If this job was copied from another job, this field contains the id of the source job. */
-            copied_from_id: number
-            departments: {
-              id: number
-              name: string
-              parent_id?: string | null
-              parent_department_external_ids?: string | null
-              child_ids?: number[] | null
-              child_department_external_ids?: number[] | null
-              external_id: string
-              children: unknown[]
-            }[]
-            offices: {
-              id: number
-              name: string
-              location: {
-                name: string
-              }
-              parent_id: number
-              child_ids?: number[] | null
-              external_id: string
-            }[]
-            openings: {
-              id: number
-              opening_id: string | null
-              status: string
-              opened_at: string
-              closed_at: string
-              application_id: number
-              close_reason: {
-                id: number
-                name: string
-              } | null
-            }[]
-            custom_fields: {
-              [key: string]: unknown
-            }
-            keyed_custom_fields: {
-              [key: string]: {
-                name: string
-                type: string
-                value: string
-              }
-            }
-            hiring_team: {
-              hiring_managers: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              recruiters: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              coordinators: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              sourcers: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-            }
-          }
+          'application/json': components['schemas']['job']
         }
       }
     }
@@ -241,102 +389,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            /** @description The job’s unique identifier */
-            id: number
-            name: string
-            /** @description An arbitrary ID provided by an external source; does not map to another entity within Greenhouse. */
-            requisition_id: string
-            notes: string
-            /** @description One of true, false. If the job is confidential or not. */
-            confidential: boolean
-            /** @enum {string} */
-            status: 'open' | 'closed' | 'draft'
-            created_at: string
-            opened_at: string
-            closed_at: string
-            updated_at: string
-            /** @description Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature. */
-            is_template: boolean | null
-            /** @description If this job was copied from another job, this field contains the id of the source job. */
-            copied_from_id: number
-            departments: {
-              id: number
-              name: string
-              parent_id?: string | null
-              parent_department_external_ids?: string | null
-              child_ids?: number[] | null
-              child_department_external_ids?: number[] | null
-              external_id: string
-              children: unknown[]
-            }[]
-            offices: {
-              id: number
-              name: string
-              location: {
-                name: string
-              }
-              parent_id: number
-              child_ids?: number[] | null
-              external_id: string
-            }[]
-            openings: {
-              id: number
-              opening_id: string | null
-              status: string
-              opened_at: string
-              closed_at: string
-              application_id: number
-              close_reason: {
-                id: number
-                name: string
-              } | null
-            }[]
-            custom_fields: {
-              [key: string]: unknown
-            }
-            keyed_custom_fields: {
-              [key: string]: {
-                name: string
-                type: string
-                value: string
-              }
-            }
-            hiring_team: {
-              hiring_managers: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              recruiters: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              coordinators: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-              sourcers: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-                responsible?: boolean | null
-              }[]
-            }
-          }[]
+          'application/json': components['schemas']['job'][]
         }
       }
     }
@@ -356,41 +409,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            version: number
-            application_id: number
-            job_id: number
-            candidate_id: number
-            opening: {
-              id: number
-              opening_id: string | null
-              status: string
-              opened_at: string
-              closed_at: string
-              application_id: number
-              close_reason: {
-                id: number
-                name: string
-              } | null
-            }
-            created_at: string
-            updated_at: string
-            sent_at: string
-            resolved_at: string
-            starts_at: string
-            status: string
-            custom_fields: {
-              [key: string]: unknown
-            }
-            keyed_custom_fields: {
-              [key: string]: {
-                name: string
-                type: string
-                value: string
-              }
-            }
-          }
+          'application/json': components['schemas']['offer']
         }
       }
     }
@@ -414,41 +433,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            version: number
-            application_id: number
-            job_id: number
-            candidate_id: number
-            opening: {
-              id: number
-              opening_id: string | null
-              status: string
-              opened_at: string
-              closed_at: string
-              application_id: number
-              close_reason: {
-                id: number
-                name: string
-              } | null
-            }
-            created_at: string
-            updated_at: string
-            sent_at: string
-            resolved_at: string
-            starts_at: string
-            status: string
-            custom_fields: {
-              [key: string]: unknown
-            }
-            keyed_custom_fields: {
-              [key: string]: {
-                name: string
-                type: string
-                value: string
-              }
-            }
-          }[]
+          'application/json': components['schemas']['offer'][]
         }
       }
     }
@@ -468,124 +453,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            first_name: string
-            last_name: string
-            company: string
-            title: string
-            created_at: string
-            updated_at: string
-            last_activity: string
-            is_private: boolean
-            photo_url: string | null
-            application_ids: number[]
-            can_email: boolean
-            tags: string[]
-            attachments: {
-              filename: string
-              url: string
-              type: string
-              created_at: string
-            }[]
-            phone_numbers: {
-              value: string
-              type?: string | null
-            }[]
-            addresses: {
-              value: string
-              type?: string | null
-            }[]
-            email_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            website_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            social_media_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            recruiter: {
-              id: number
-              first_name: string
-              last_name: string
-              name: string
-              employee_id: string
-              responsible?: boolean | null
-            }
-            coordinator: {
-              id: number
-              first_name: string
-              last_name: string
-              name: string
-              employee_id: string
-              responsible?: boolean | null
-            }
-            applications: {
-              id: number
-              candidate_id: number
-              prospect: boolean
-              applied_at: string
-              rejected_at: null | string
-              last_activity_at: string
-              location: {
-                address: string
-              }
-              source: {
-                id: number
-                public_name: string
-              }
-              credited_to: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-              }
-              rejection_reason: null | string
-              rejection_details: null | string
-              jobs: {
-                id: number
-                name: string
-              }[]
-              job_post_id: number
-              status: string
-              current_stage: {
-                id: number
-                name: string
-              }
-              answers: {
-                question: string
-                answer: string
-              }[]
-              prospective_office: null | string
-              prospective_department: null | string
-              prospect_detail: {
-                prospect_pool: null | string
-                prospect_stage: null | string
-                prospect_owner: null | string
-              }
-              custom_fields: {
-                application_custom_test: null | string
-              }
-              keyed_custom_fields: {
-                application_custom_test: {
-                  name: string
-                  type: string
-                  value: string
-                }
-              }
-              attachments: {
-                filename: string
-                url: string
-                type: string
-                created_at: string
-              }[]
-            }[]
-          }
+          'application/json': components['schemas']['candidate']
         }
       }
     }
@@ -609,124 +477,7 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': {
-            id: number
-            first_name: string
-            last_name: string
-            company: string
-            title: string
-            created_at: string
-            updated_at: string
-            last_activity: string
-            is_private: boolean
-            photo_url: string | null
-            application_ids: number[]
-            can_email: boolean
-            tags: string[]
-            attachments: {
-              filename: string
-              url: string
-              type: string
-              created_at: string
-            }[]
-            phone_numbers: {
-              value: string
-              type?: string | null
-            }[]
-            addresses: {
-              value: string
-              type?: string | null
-            }[]
-            email_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            website_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            social_media_addresses: {
-              value: string
-              type?: string | null
-            }[]
-            recruiter: {
-              id: number
-              first_name: string
-              last_name: string
-              name: string
-              employee_id: string
-              responsible?: boolean | null
-            }
-            coordinator: {
-              id: number
-              first_name: string
-              last_name: string
-              name: string
-              employee_id: string
-              responsible?: boolean | null
-            }
-            applications: {
-              id: number
-              candidate_id: number
-              prospect: boolean
-              applied_at: string
-              rejected_at: null | string
-              last_activity_at: string
-              location: {
-                address: string
-              }
-              source: {
-                id: number
-                public_name: string
-              }
-              credited_to: {
-                id: number
-                first_name: string
-                last_name: string
-                name: string
-                employee_id: string
-              }
-              rejection_reason: null | string
-              rejection_details: null | string
-              jobs: {
-                id: number
-                name: string
-              }[]
-              job_post_id: number
-              status: string
-              current_stage: {
-                id: number
-                name: string
-              }
-              answers: {
-                question: string
-                answer: string
-              }[]
-              prospective_office: null | string
-              prospective_department: null | string
-              prospect_detail: {
-                prospect_pool: null | string
-                prospect_stage: null | string
-                prospect_owner: null | string
-              }
-              custom_fields: {
-                application_custom_test: null | string
-              }
-              keyed_custom_fields: {
-                application_custom_test: {
-                  name: string
-                  type: string
-                  value: string
-                }
-              }
-              attachments: {
-                filename: string
-                url: string
-                type: string
-                created_at: string
-              }[]
-            }[]
-          }[]
+          'application/json': components['schemas']['candidate'][]
         }
       }
     }

@@ -88,17 +88,20 @@ const greenhouseApplication = z.object({
   attachments: z.array(attachmentSchema),
 })
 
-const greenhouseDepartment = z.object({
-  id: z.number(),
-  name: z.string(),
-  parent_id: z.string().nullish(),
-  parent_department_external_ids: z.string().nullish(),
-  child_ids: z.array(z.number()).nullish(),
-  child_department_external_ids: z.array(z.number()).nullish(),
-  external_id: z.string(),
-  // TODO: Support children field recursively whenever available in zodapi. More: https://github.com/asteasolutions/zod-to-openapi/discussions/191
-  children: z.array(z.any()),
-})
+const greenhouseDepartment = z
+  .object({
+    id: z.number(),
+    name: z.string(),
+    parent_id: z.string().nullish(),
+    parent_department_external_ids: z.string().nullish(),
+    child_ids: z.array(z.number()).nullish(),
+    child_department_external_ids: z.array(z.number()).nullish(),
+    external_id: z.string(),
+    // TODO: Support children field recursively whenever available in zodapi. More: https://github.com/asteasolutions/zod-to-openapi/discussions/191
+    children: z.array(z.any()),
+  })
+  .catchall(z.unknown())
+  .openapi({ref: 'department'})
 
 const candidateValueTypePair = z.object({
   value: z.string(),
@@ -113,37 +116,40 @@ const hiringTeamInstance = z.object({
   responsible: z.boolean().nullish(),
 })
 
-const greenhouseCandidate = z.object({
-  id: z.number(),
-  first_name: z.string(),
-  last_name: z.string(),
-  company: z.string(),
-  title: z.string(),
-  created_at: z.coerce.date(),
-  updated_at: z.coerce.date(),
-  last_activity: z.coerce.date(),
-  is_private: z.boolean(),
-  photo_url: z.string().nullable(),
-  application_ids: z.array(z.number()),
-  can_email: z.boolean(),
-  tags: z.array(z.string()),
-  attachments: z.array(
-    z.object({
-      filename: z.string(),
-      url: z.string(),
-      type: z.string(),
-      created_at: z.coerce.date(),
-    }),
-  ),
-  phone_numbers: z.array(candidateValueTypePair),
-  addresses: z.array(candidateValueTypePair),
-  email_addresses: z.array(candidateValueTypePair),
-  website_addresses: z.array(candidateValueTypePair),
-  social_media_addresses: z.array(candidateValueTypePair),
-  recruiter: hiringTeamInstance,
-  coordinator: hiringTeamInstance,
-  applications: z.array(greenhouseApplication),
-})
+const greenhouseCandidate = z
+  .object({
+    id: z.number(),
+    first_name: z.string(),
+    last_name: z.string(),
+    company: z.string(),
+    title: z.string(),
+    created_at: z.coerce.date(),
+    updated_at: z.coerce.date(),
+    last_activity: z.coerce.date(),
+    is_private: z.boolean(),
+    photo_url: z.string().nullable(),
+    application_ids: z.array(z.number()),
+    can_email: z.boolean(),
+    tags: z.array(z.string()),
+    attachments: z.array(
+      z.object({
+        filename: z.string(),
+        url: z.string(),
+        type: z.string(),
+        created_at: z.coerce.date(),
+      }),
+    ),
+    phone_numbers: z.array(candidateValueTypePair),
+    addresses: z.array(candidateValueTypePair),
+    email_addresses: z.array(candidateValueTypePair),
+    website_addresses: z.array(candidateValueTypePair),
+    social_media_addresses: z.array(candidateValueTypePair),
+    recruiter: hiringTeamInstance,
+    coordinator: hiringTeamInstance,
+    applications: z.array(greenhouseApplication),
+  })
+  .catchall(z.unknown())
+  .openapi({ref: 'candidate'})
 
 const greenhouseOffice = z.object({
   id: z.number(),
@@ -184,58 +190,63 @@ const hiringTeam = z.object({
   sourcers: z.array(hiringTeamInstance),
 })
 
-const greenhouseOffer = z.object({
-  id: z.number(),
-  version: z.number(),
-  application_id: z.number(),
-  job_id: z.number(),
-  candidate_id: z.number(),
-  opening: greenhouseOpening,
-  created_at: z.coerce.date(),
-  updated_at: z.coerce.date(),
-  sent_at: z.string(),
-  resolved_at: z.coerce.date(),
-  starts_at: z.string(),
-  status: z.string(),
-  custom_fields: z.record(z.string(), z.any()),
-  keyed_custom_fields: z.record(z.string(), customFieldValue),
-})
+const greenhouseOffer = z
+  .object({
+    id: z.number(),
+    version: z.number(),
+    application_id: z.number(),
+    job_id: z.number(),
+    candidate_id: z.number(),
+    opening: greenhouseOpening,
+    created_at: z.coerce.date(),
+    updated_at: z.coerce.date(),
+    sent_at: z.string(),
+    resolved_at: z.coerce.date(),
+    starts_at: z.string(),
+    status: z.string(),
+    custom_fields: z.record(z.string(), z.any()),
+    keyed_custom_fields: z.record(z.string(), customFieldValue),
+  })
+  .openapi({ref: 'offer'})
 
-const greenhouseJob = z.object({
-  id: z.number().describe('The job’s unique identifier'),
-  name: z.string(),
-  requisition_id: z
-    .string()
-    .describe(
-      'An arbitrary ID provided by an external source; does not map to another entity within Greenhouse.',
-    ),
-  notes: z.string(),
-  confidential: z
-    .boolean()
-    .describe('One of true, false. If the job is confidential or not.'),
-  status: z.enum(['open', 'closed', 'draft']),
-  created_at: z.coerce.date(),
-  opened_at: z.coerce.date(),
-  closed_at: z.coerce.date(),
-  updated_at: z.coerce.date(),
-  is_template: z
-    .boolean()
-    .describe(
-      'Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature.',
-    )
-    .nullable(),
-  copied_from_id: z
-    .number()
-    .describe(
-      'If this job was copied from another job, this field contains the id of the source job.',
-    ),
-  departments: z.array(greenhouseDepartment),
-  offices: z.array(greenhouseOffice),
-  openings: z.array(greenhouseOpening),
-  custom_fields: z.record(z.string(), z.any()),
-  keyed_custom_fields: z.record(z.string(), customFieldValue),
-  hiring_team: hiringTeam,
-})
+const greenhouseJob = z
+  .object({
+    id: z.number().describe('The job’s unique identifier'),
+    name: z.string(),
+    requisition_id: z
+      .string()
+      .describe(
+        'An arbitrary ID provided by an external source; does not map to another entity within Greenhouse.',
+      ),
+    notes: z.string(),
+    confidential: z
+      .boolean()
+      .describe('One of true, false. If the job is confidential or not.'),
+    status: z.enum(['open', 'closed', 'draft']),
+    created_at: z.coerce.date(),
+    opened_at: z.coerce.date(),
+    closed_at: z.coerce.date(),
+    updated_at: z.coerce.date(),
+    is_template: z
+      .boolean()
+      .describe(
+        'Is this job designated as a template used to create other jobs. This may be true, false, or null. Null is an indication this job was created before template job feature.',
+      )
+      .nullable(),
+    copied_from_id: z
+      .number()
+      .describe(
+        'If this job was copied from another job, this field contains the id of the source job.',
+      ),
+    departments: z.array(greenhouseDepartment),
+    offices: z.array(greenhouseOffice),
+    openings: z.array(greenhouseOpening),
+    custom_fields: z.record(z.string(), z.any()),
+    keyed_custom_fields: z.record(z.string(), customFieldValue),
+    hiring_team: hiringTeam,
+  })
+  .catchall(z.unknown())
+  .openapi({ref: 'job'})
 
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
