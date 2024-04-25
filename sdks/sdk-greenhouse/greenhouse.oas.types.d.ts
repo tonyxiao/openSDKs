@@ -65,73 +65,77 @@ export interface components {
       /** @description If this job was copied from another job, this field contains the id of the source job. */
       copied_from_id: number
       departments: components['schemas']['department'][]
-      offices: {
-        id: number
-        name: string
-        location: {
-          name: string
-        }
-        parent_id: number
-        child_ids?: number[] | null
-        external_id: string
-      }[]
-      openings: {
-        id: number
-        opening_id: string | null
-        status: string
-        opened_at: string
-        closed_at: string
-        application_id: number
-        close_reason: {
-          id: number
-          name: string
-        } | null
-      }[]
+      offices: components['schemas']['office'][]
+      openings: components['schemas']['opening'][]
       custom_fields: {
         [key: string]: unknown
       }
       keyed_custom_fields: {
-        [key: string]: {
-          name: string
-          type: string
-          value: string
-        }
+        [key: string]: components['schemas']['keyedCustomFields']
       }
-      hiring_team: {
-        hiring_managers: {
-          id: number
-          first_name: string
-          last_name: string
-          name: string
-          employee_id: string
-          responsible?: boolean | null
-        }[]
-        recruiters: {
-          id: number
-          first_name: string
-          last_name: string
-          name: string
-          employee_id: string
-          responsible?: boolean | null
-        }[]
-        coordinators: {
-          id: number
-          first_name: string
-          last_name: string
-          name: string
-          employee_id: string
-          responsible?: boolean | null
-        }[]
-        sourcers: {
-          id: number
-          first_name: string
-          last_name: string
-          name: string
-          employee_id: string
-          responsible?: boolean | null
-        }[]
-      }
+      hiring_team: components['schemas']['hiringTeam']
       [key: string]: unknown
+    }
+    office: {
+      id: number
+      name: string
+      location: {
+        name: string
+      }
+      parent_id: number
+      child_ids?: number[] | null
+      external_id: string
+    }
+    opening: {
+      id: number
+      opening_id: string | null
+      status: string
+      opened_at: string
+      closed_at: string
+      application_id: number
+      close_reason: {
+        id: number
+        name: string
+      } | null
+    }
+    keyedCustomFields: {
+      name: string
+      type: string
+      value: string
+    }
+    hiringTeam: {
+      hiring_managers: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }[]
+      recruiters: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }[]
+      coordinators: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }[]
+      sourcers: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+        responsible?: boolean | null
+      }[]
     }
     offer: {
       id: number
@@ -139,18 +143,7 @@ export interface components {
       application_id: number
       job_id: number
       candidate_id: number
-      opening: {
-        id: number
-        opening_id: string | null
-        status: string
-        opened_at: string
-        closed_at: string
-        application_id: number
-        close_reason: {
-          id: number
-          name: string
-        } | null
-      }
+      opening: components['schemas']['opening']
       created_at: string
       updated_at: string
       sent_at: string
@@ -161,11 +154,7 @@ export interface components {
         [key: string]: unknown
       }
       keyed_custom_fields: {
-        [key: string]: {
-          name: string
-          type: string
-          value: string
-        }
+        [key: string]: components['schemas']['keyedCustomFields']
       }
     }
     candidate: {
@@ -224,68 +213,70 @@ export interface components {
         employee_id: string
         responsible?: boolean | null
       }
-      applications: {
-        id: number
-        candidate_id: number
-        prospect: boolean
-        applied_at: string
-        rejected_at: null | string
-        last_activity_at: string
-        location: {
-          address: string
-        }
-        source: {
-          id: number
-          public_name: string
-        }
-        credited_to: {
-          id: number
-          first_name: string
-          last_name: string
-          name: string
-          employee_id: string
-        }
-        rejection_reason: null | string
-        rejection_details: null | string
-        jobs: {
-          id: number
-          name: string
-        }[]
-        job_post_id: number
-        status: string
-        current_stage: {
-          id: number
-          name: string
-        }
-        answers: {
-          question: string
-          answer: string
-        }[]
-        prospective_office: null | string
-        prospective_department: null | string
-        prospect_detail: {
-          prospect_pool: null | string
-          prospect_stage: null | string
-          prospect_owner: null | string
-        }
-        custom_fields: {
-          application_custom_test: null | string
-        }
-        keyed_custom_fields: {
-          application_custom_test: {
-            name: string
-            type: string
-            value: string
-          }
-        }
-        attachments: {
-          filename: string
-          url: string
-          type: string
-          created_at: string
-        }[]
-      }[]
+      applications: components['schemas']['application'][]
       [key: string]: unknown
+    }
+    application: {
+      id: number
+      candidate_id: number
+      prospect: boolean
+      applied_at: string
+      rejected_at: null | string
+      last_activity_at: string
+      location: {
+        address: string
+      }
+      source: {
+        id: number
+        public_name: string
+      }
+      credited_to: {
+        id: number
+        first_name: string
+        last_name: string
+        name: string
+        employee_id: string
+      }
+      rejection_reason: null | string
+      rejection_details: null | string
+      jobs: {
+        id: number
+        name: string
+      }[]
+      job_post_id: number
+      status: string
+      current_stage: {
+        id: number
+        name: string
+      }
+      answers: {
+        question: string
+        answer: string
+      }[]
+      prospective_office: null | string
+      prospective_department: null | string
+      prospect_detail: {
+        prospect_pool: null | string
+        prospect_stage: null | string
+        prospect_owner: null | string
+      }
+      custom_fields: {
+        application_custom_test: null | string
+      }
+      keyed_custom_fields: {
+        application_custom_test: {
+          name: string
+          type: string
+          value: string
+        }
+      }
+      attachments: components['schemas']['attachment'][]
+    }
+    attachment: {
+      filename: string
+      url: string
+      type: string
+      created_at: string
     }
   }
   responses: never

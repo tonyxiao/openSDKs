@@ -33,12 +33,14 @@ const answerSchema = z.object({
   answer: z.string(),
 })
 
-const attachmentSchema = z.object({
-  filename: z.string(),
-  url: z.string(),
-  type: z.string(),
-  created_at: z.string(),
-})
+const attachmentSchema = z
+  .object({
+    filename: z.string(),
+    url: z.string(),
+    type: z.string(),
+    created_at: z.string(),
+  })
+  .openapi({ref: 'attachment'})
 
 const rejectionReasonSchema = z.union([z.null(), z.string()])
 const rejectionDetailsSchema = z.union([z.null(), z.string()])
@@ -55,38 +57,40 @@ const applicationCustomTestKeyedSchema = z.object({
   value: z.string(),
 })
 
-const greenhouseApplication = z.object({
-  id: z.number(),
-  candidate_id: z.number(),
-  prospect: z.boolean(),
-  applied_at: z.string(),
-  rejected_at: rejectionReasonSchema,
-  last_activity_at: z.string(),
-  location: locationSchema,
-  source: sourceSchema,
-  credited_to: creditedToSchema,
-  rejection_reason: rejectionReasonSchema,
-  rejection_details: rejectionDetailsSchema,
-  jobs: z.array(jobSchema),
-  job_post_id: z.number(),
-  status: z.string(),
-  current_stage: currentStageSchema,
-  answers: z.array(answerSchema),
-  prospective_office: prospectiveOfficeSchema,
-  prospective_department: prospectiveDepartmentSchema,
-  prospect_detail: z.object({
-    prospect_pool: prospectPoolSchema,
-    prospect_stage: prospectStageSchema,
-    prospect_owner: prospectOwnerSchema,
-  }),
-  custom_fields: z.object({
-    application_custom_test: applicationCustomTestSchema,
-  }),
-  keyed_custom_fields: z.object({
-    application_custom_test: applicationCustomTestKeyedSchema,
-  }),
-  attachments: z.array(attachmentSchema),
-})
+const greenhouseApplication = z
+  .object({
+    id: z.number(),
+    candidate_id: z.number(),
+    prospect: z.boolean(),
+    applied_at: z.string(),
+    rejected_at: rejectionReasonSchema,
+    last_activity_at: z.string(),
+    location: locationSchema,
+    source: sourceSchema,
+    credited_to: creditedToSchema,
+    rejection_reason: rejectionReasonSchema,
+    rejection_details: rejectionDetailsSchema,
+    jobs: z.array(jobSchema),
+    job_post_id: z.number(),
+    status: z.string(),
+    current_stage: currentStageSchema,
+    answers: z.array(answerSchema),
+    prospective_office: prospectiveOfficeSchema,
+    prospective_department: prospectiveDepartmentSchema,
+    prospect_detail: z.object({
+      prospect_pool: prospectPoolSchema,
+      prospect_stage: prospectStageSchema,
+      prospect_owner: prospectOwnerSchema,
+    }),
+    custom_fields: z.object({
+      application_custom_test: applicationCustomTestSchema,
+    }),
+    keyed_custom_fields: z.object({
+      application_custom_test: applicationCustomTestKeyedSchema,
+    }),
+    attachments: z.array(attachmentSchema),
+  })
+  .openapi({ref: 'application'})
 
 const greenhouseDepartment = z
   .object({
@@ -151,44 +155,52 @@ const greenhouseCandidate = z
   .catchall(z.unknown())
   .openapi({ref: 'candidate'})
 
-const greenhouseOffice = z.object({
-  id: z.number(),
-  name: z.string(),
-  location: z.object({
+const greenhouseOffice = z
+  .object({
+    id: z.number(),
     name: z.string(),
-  }),
-  parent_id: z.number(),
-  child_ids: z.array(z.number()).nullish(),
-  external_id: z.string(),
-})
-
-const greenhouseOpening = z.object({
-  id: z.number(),
-  opening_id: z.string().nullable(),
-  status: z.string(),
-  opened_at: z.coerce.date(),
-  closed_at: z.coerce.date(),
-  application_id: z.number(),
-  close_reason: z
-    .object({
-      id: z.number(),
+    location: z.object({
       name: z.string(),
-    })
-    .nullable(),
-})
+    }),
+    parent_id: z.number(),
+    child_ids: z.array(z.number()).nullish(),
+    external_id: z.string(),
+  })
+  .openapi({ref: 'office'})
 
-const customFieldValue = z.object({
-  name: z.string(),
-  type: z.string(),
-  value: z.string(),
-})
+const greenhouseOpening = z
+  .object({
+    id: z.number(),
+    opening_id: z.string().nullable(),
+    status: z.string(),
+    opened_at: z.coerce.date(),
+    closed_at: z.coerce.date(),
+    application_id: z.number(),
+    close_reason: z
+      .object({
+        id: z.number(),
+        name: z.string(),
+      })
+      .nullable(),
+  })
+  .openapi({ref: 'opening'})
 
-const hiringTeam = z.object({
-  hiring_managers: z.array(hiringTeamInstance),
-  recruiters: z.array(hiringTeamInstance),
-  coordinators: z.array(hiringTeamInstance),
-  sourcers: z.array(hiringTeamInstance),
-})
+const customFieldValue = z
+  .object({
+    name: z.string(),
+    type: z.string(),
+    value: z.string(),
+  })
+  .openapi({ref: 'keyedCustomFields'})
+
+const hiringTeam = z
+  .object({
+    hiring_managers: z.array(hiringTeamInstance),
+    recruiters: z.array(hiringTeamInstance),
+    coordinators: z.array(hiringTeamInstance),
+    sourcers: z.array(hiringTeamInstance),
+  })
+  .openapi({ref: 'hiringTeam'})
 
 const greenhouseOffer = z
   .object({
