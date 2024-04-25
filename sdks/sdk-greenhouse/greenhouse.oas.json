@@ -483,84 +483,13 @@
           "offices": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["name"]
-                },
-                "parent_id": {
-                  "type": "number"
-                },
-                "child_ids": {
-                  "type": ["array", "null"],
-                  "items": {
-                    "type": "number"
-                  }
-                },
-                "external_id": {
-                  "type": "string"
-                }
-              },
-              "required": ["id", "name", "location", "parent_id", "external_id"]
+              "$ref": "#/components/schemas/office"
             }
           },
           "openings": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "opening_id": {
-                  "type": ["string", "null"]
-                },
-                "status": {
-                  "type": "string"
-                },
-                "opened_at": {
-                  "type": "string"
-                },
-                "closed_at": {
-                  "type": "string"
-                },
-                "application_id": {
-                  "type": "number"
-                },
-                "close_reason": {
-                  "type": ["object", "null"],
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "name": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "name"]
-                }
-              },
-              "required": [
-                "id",
-                "opening_id",
-                "status",
-                "opened_at",
-                "closed_at",
-                "application_id",
-                "close_reason"
-              ]
+              "$ref": "#/components/schemas/opening"
             }
           },
           "custom_fields": {
@@ -570,163 +499,11 @@
           "keyed_custom_fields": {
             "type": "object",
             "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                }
-              },
-              "required": ["name", "type", "value"]
+              "$ref": "#/components/schemas/keyedCustomFields"
             }
           },
           "hiring_team": {
-            "type": "object",
-            "properties": {
-              "hiring_managers": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "first_name": {
-                      "type": "string"
-                    },
-                    "last_name": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "employee_id": {
-                      "type": "string"
-                    },
-                    "responsible": {
-                      "type": ["boolean", "null"]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "first_name",
-                    "last_name",
-                    "name",
-                    "employee_id"
-                  ]
-                }
-              },
-              "recruiters": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "first_name": {
-                      "type": "string"
-                    },
-                    "last_name": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "employee_id": {
-                      "type": "string"
-                    },
-                    "responsible": {
-                      "type": ["boolean", "null"]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "first_name",
-                    "last_name",
-                    "name",
-                    "employee_id"
-                  ]
-                }
-              },
-              "coordinators": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "first_name": {
-                      "type": "string"
-                    },
-                    "last_name": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "employee_id": {
-                      "type": "string"
-                    },
-                    "responsible": {
-                      "type": ["boolean", "null"]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "first_name",
-                    "last_name",
-                    "name",
-                    "employee_id"
-                  ]
-                }
-              },
-              "sourcers": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "first_name": {
-                      "type": "string"
-                    },
-                    "last_name": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "employee_id": {
-                      "type": "string"
-                    },
-                    "responsible": {
-                      "type": ["boolean", "null"]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "first_name",
-                    "last_name",
-                    "name",
-                    "employee_id"
-                  ]
-                }
-              }
-            },
-            "required": [
-              "hiring_managers",
-              "recruiters",
-              "coordinators",
-              "sourcers"
-            ]
+            "$ref": "#/components/schemas/hiringTeam"
           }
         },
         "required": [
@@ -751,6 +528,241 @@
         ],
         "additionalProperties": {}
       },
+      "office": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["name"]
+          },
+          "parent_id": {
+            "type": "number"
+          },
+          "child_ids": {
+            "type": ["array", "null"],
+            "items": {
+              "type": "number"
+            }
+          },
+          "external_id": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "location", "parent_id", "external_id"]
+      },
+      "opening": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "opening_id": {
+            "type": ["string", "null"]
+          },
+          "status": {
+            "type": "string"
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "closed_at": {
+            "type": "string"
+          },
+          "application_id": {
+            "type": "number"
+          },
+          "close_reason": {
+            "type": ["object", "null"],
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "name"]
+          }
+        },
+        "required": [
+          "id",
+          "opening_id",
+          "status",
+          "opened_at",
+          "closed_at",
+          "application_id",
+          "close_reason"
+        ]
+      },
+      "keyedCustomFields": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "type", "value"]
+      },
+      "hiringTeam": {
+        "type": "object",
+        "properties": {
+          "hiring_managers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                },
+                "responsible": {
+                  "type": ["boolean", "null"]
+                }
+              },
+              "required": [
+                "id",
+                "first_name",
+                "last_name",
+                "name",
+                "employee_id"
+              ]
+            }
+          },
+          "recruiters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                },
+                "responsible": {
+                  "type": ["boolean", "null"]
+                }
+              },
+              "required": [
+                "id",
+                "first_name",
+                "last_name",
+                "name",
+                "employee_id"
+              ]
+            }
+          },
+          "coordinators": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                },
+                "responsible": {
+                  "type": ["boolean", "null"]
+                }
+              },
+              "required": [
+                "id",
+                "first_name",
+                "last_name",
+                "name",
+                "employee_id"
+              ]
+            }
+          },
+          "sourcers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                },
+                "responsible": {
+                  "type": ["boolean", "null"]
+                }
+              },
+              "required": [
+                "id",
+                "first_name",
+                "last_name",
+                "name",
+                "employee_id"
+              ]
+            }
+          }
+        },
+        "required": [
+          "hiring_managers",
+          "recruiters",
+          "coordinators",
+          "sourcers"
+        ]
+      },
       "offer": {
         "type": "object",
         "properties": {
@@ -770,48 +782,7 @@
             "type": "number"
           },
           "opening": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "opening_id": {
-                "type": ["string", "null"]
-              },
-              "status": {
-                "type": "string"
-              },
-              "opened_at": {
-                "type": "string"
-              },
-              "closed_at": {
-                "type": "string"
-              },
-              "application_id": {
-                "type": "number"
-              },
-              "close_reason": {
-                "type": ["object", "null"],
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                },
-                "required": ["id", "name"]
-              }
-            },
-            "required": [
-              "id",
-              "opening_id",
-              "status",
-              "opened_at",
-              "closed_at",
-              "application_id",
-              "close_reason"
-            ]
+            "$ref": "#/components/schemas/opening"
           },
           "created_at": {
             "type": "string"
@@ -838,19 +809,7 @@
           "keyed_custom_fields": {
             "type": "object",
             "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                }
-              },
-              "required": ["name", "type", "value"]
+              "$ref": "#/components/schemas/keyedCustomFields"
             }
           }
         },
@@ -1066,292 +1025,7 @@
           "applications": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "candidate_id": {
-                  "type": "number"
-                },
-                "prospect": {
-                  "type": "boolean"
-                },
-                "applied_at": {
-                  "type": "string"
-                },
-                "rejected_at": {
-                  "anyOf": [
-                    {
-                      "type": "null"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "last_activity_at": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "object",
-                  "properties": {
-                    "address": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["address"]
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "public_name": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "public_name"]
-                },
-                "credited_to": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "first_name": {
-                      "type": "string"
-                    },
-                    "last_name": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "employee_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "first_name",
-                    "last_name",
-                    "name",
-                    "employee_id"
-                  ]
-                },
-                "rejection_reason": {
-                  "anyOf": [
-                    {
-                      "type": "null"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "rejection_details": {
-                  "anyOf": [
-                    {
-                      "type": "null"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "jobs": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["id", "name"]
-                  }
-                },
-                "job_post_id": {
-                  "type": "number"
-                },
-                "status": {
-                  "type": "string"
-                },
-                "current_stage": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "name": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "name"]
-                },
-                "answers": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "question": {
-                        "type": "string"
-                      },
-                      "answer": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["question", "answer"]
-                  }
-                },
-                "prospective_office": {
-                  "anyOf": [
-                    {
-                      "type": "null"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "prospective_department": {
-                  "anyOf": [
-                    {
-                      "type": "null"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "prospect_detail": {
-                  "type": "object",
-                  "properties": {
-                    "prospect_pool": {
-                      "anyOf": [
-                        {
-                          "type": "null"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "prospect_stage": {
-                      "anyOf": [
-                        {
-                          "type": "null"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "prospect_owner": {
-                      "anyOf": [
-                        {
-                          "type": "null"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    }
-                  },
-                  "required": [
-                    "prospect_pool",
-                    "prospect_stage",
-                    "prospect_owner"
-                  ]
-                },
-                "custom_fields": {
-                  "type": "object",
-                  "properties": {
-                    "application_custom_test": {
-                      "anyOf": [
-                        {
-                          "type": "null"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    }
-                  },
-                  "required": ["application_custom_test"]
-                },
-                "keyed_custom_fields": {
-                  "type": "object",
-                  "properties": {
-                    "application_custom_test": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "type": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "string"
-                        }
-                      },
-                      "required": ["name", "type", "value"]
-                    }
-                  },
-                  "required": ["application_custom_test"]
-                },
-                "attachments": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "filename": {
-                        "type": "string"
-                      },
-                      "url": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["filename", "url", "type", "created_at"]
-                  }
-                }
-              },
-              "required": [
-                "id",
-                "candidate_id",
-                "prospect",
-                "applied_at",
-                "rejected_at",
-                "last_activity_at",
-                "location",
-                "source",
-                "credited_to",
-                "rejection_reason",
-                "rejection_details",
-                "jobs",
-                "job_post_id",
-                "status",
-                "current_stage",
-                "answers",
-                "prospective_office",
-                "prospective_department",
-                "prospect_detail",
-                "custom_fields",
-                "keyed_custom_fields",
-                "attachments"
-              ]
+              "$ref": "#/components/schemas/application"
             }
           }
         },
@@ -1380,6 +1054,287 @@
           "applications"
         ],
         "additionalProperties": {}
+      },
+      "application": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "candidate_id": {
+            "type": "number"
+          },
+          "prospect": {
+            "type": "boolean"
+          },
+          "applied_at": {
+            "type": "string"
+          },
+          "rejected_at": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "last_activity_at": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string"
+              }
+            },
+            "required": ["address"]
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "public_name": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "public_name"]
+          },
+          "credited_to": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "first_name": {
+                "type": "string"
+              },
+              "last_name": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "employee_id": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "first_name", "last_name", "name", "employee_id"]
+          },
+          "rejection_reason": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "rejection_details": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": ["id", "name"]
+            }
+          },
+          "job_post_id": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string"
+          },
+          "current_stage": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "name"]
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string"
+                },
+                "answer": {
+                  "type": "string"
+                }
+              },
+              "required": ["question", "answer"]
+            }
+          },
+          "prospective_office": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "prospective_department": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "prospect_detail": {
+            "type": "object",
+            "properties": {
+              "prospect_pool": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "prospect_stage": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "prospect_owner": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": ["prospect_pool", "prospect_stage", "prospect_owner"]
+          },
+          "custom_fields": {
+            "type": "object",
+            "properties": {
+              "application_custom_test": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": ["application_custom_test"]
+          },
+          "keyed_custom_fields": {
+            "type": "object",
+            "properties": {
+              "application_custom_test": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "type", "value"]
+              }
+            },
+            "required": ["application_custom_test"]
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/attachment"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "candidate_id",
+          "prospect",
+          "applied_at",
+          "rejected_at",
+          "last_activity_at",
+          "location",
+          "source",
+          "credited_to",
+          "rejection_reason",
+          "rejection_details",
+          "jobs",
+          "job_post_id",
+          "status",
+          "current_stage",
+          "answers",
+          "prospective_office",
+          "prospective_department",
+          "prospect_detail",
+          "custom_fields",
+          "keyed_custom_fields",
+          "attachments"
+        ]
+      },
+      "attachment": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        },
+        "required": ["filename", "url", "type", "created_at"]
       }
     }
   }
