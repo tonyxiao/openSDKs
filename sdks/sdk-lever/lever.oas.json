@@ -1,0 +1,254 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Lever API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.lever.co/v1"
+    }
+  ],
+  "paths": {
+    "/postings/{id}": {
+      "get": {
+        "operationId": "getPosting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The ID of the posting to retrieve",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the posting to retrieve"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/posting"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "posting": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "updatedAt": {
+            "type": "number"
+          },
+          "user": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "hiringManager": {
+            "type": "string"
+          },
+          "confidentiality": {
+            "type": "string",
+            "enum": ["non-confidential"]
+          },
+          "categories": {
+            "type": "object",
+            "properties": {
+              "team": {
+                "type": "string"
+              },
+              "department": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "allLocations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "commitment": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "team",
+              "department",
+              "location",
+              "allLocations",
+              "commitment",
+              "level"
+            ]
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "descriptionHtml": {
+                "type": "string"
+              },
+              "lists": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["text", "content"]
+                }
+              },
+              "closing": {
+                "type": "string"
+              },
+              "closingHtml": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "descriptionHtml",
+              "lists",
+              "closing",
+              "closingHtml"
+            ]
+          },
+          "country": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "type": "string",
+            "enum": ["published"]
+          },
+          "distributionChannels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["internal", "public"]
+            }
+          },
+          "reqCode": {
+            "type": "string"
+          },
+          "requisitionCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "salaryDescription": {
+            "type": "string"
+          },
+          "salaryDescriptionHtml": {
+            "type": "string"
+          },
+          "salaryRange": {
+            "type": "object",
+            "properties": {
+              "max": {
+                "type": "number"
+              },
+              "min": {
+                "type": "number"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "interval": {
+                "type": "string",
+                "enum": ["per-year-salary"]
+              }
+            },
+            "required": ["max", "min", "currency", "interval"]
+          },
+          "urls": {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "string",
+                "format": "uri"
+              },
+              "show": {
+                "type": "string",
+                "format": "uri"
+              },
+              "apply": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["list", "show", "apply"]
+          },
+          "workplaceType": {
+            "type": "string",
+            "enum": ["remote"]
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "createdAt",
+          "updatedAt",
+          "user",
+          "owner",
+          "hiringManager",
+          "confidentiality",
+          "categories",
+          "content",
+          "country",
+          "tags",
+          "state",
+          "distributionChannels",
+          "reqCode",
+          "requisitionCodes",
+          "salaryDescription",
+          "salaryDescriptionHtml",
+          "salaryRange",
+          "urls",
+          "workplaceType"
+        ],
+        "additionalProperties": {}
+      }
+    }
+  }
+}
