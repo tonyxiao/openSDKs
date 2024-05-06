@@ -116,6 +116,31 @@ const leverOpportunitySchema = z
   })
   .openapi({ref: 'opportunity'})
 
+const locationSchema = z.object({
+  name: z.string(),
+})
+
+const leverContactSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    headline: z.string(),
+    isAnonymized: z.boolean(),
+    location: locationSchema,
+    emails: z.array(z.string().email()),
+    phones: z.array(phoneSchema),
+  })
+  .openapi({ref: 'contact'})
+
+const tagSchema = z.object({
+  text: z.string(),
+  count: z.number(),
+})
+
+const leverTagSchema = z.object({
+  data: z.array(tagSchema),
+})
+
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Lever API', version: '1.0.0'},
@@ -375,6 +400,23 @@ export const oas: OpenAPISpec = createDocument({
         }),
         response: z.object({
           data: z.array(leverOpportunitySchema),
+        }),
+      }),
+    },
+    '/contacts/{id}': {
+      get: jsonOperation('getContacts', {
+        path: z.object({
+          id: z.string().describe('The ID of the contact to retrieve'),
+        }),
+        response: z.object({
+          data: leverContactSchema,
+        }),
+      }),
+    },
+    '/tags': {
+      get: jsonOperation('getTags', {
+        response: z.object({
+          data: z.array(leverTagSchema),
         }),
       }),
     },
