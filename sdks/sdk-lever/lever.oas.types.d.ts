@@ -7,6 +7,21 @@ export interface paths {
   '/postings/{id}': {
     get: operations['getPosting']
   }
+  '/postings': {
+    get: operations['getPostings']
+  }
+  '/opportunities/{id}': {
+    get: operations['getOpportunity']
+  }
+  '/opportunities': {
+    get: operations['getOpportunities']
+  }
+  '/contacts/{id}': {
+    get: operations['getContacts']
+  }
+  '/tags': {
+    get: operations['getTags']
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -69,6 +84,71 @@ export interface components {
       workplaceType: 'remote'
       [key: string]: unknown
     }
+    opportunity: {
+      id: string
+      name: string
+      headline: string
+      contact: string
+      emails: string[]
+      phones: {
+        value: string
+      }[]
+      confidentiality: string
+      location: string
+      links: string[]
+      createdAt: number
+      updatedAt: number
+      lastInteractionAt: number
+      lastAdvancedAt: number
+      snoozedUntil: number | null
+      archivedAt: number | null
+      archiveReason: string | null
+      stage: string
+      stageChanges: {
+        toStageId: string
+        toStageIndex: number
+        userId: string
+        updatedAt: number
+      }[]
+      owner: string
+      tags: string[]
+      sources: string[]
+      origin: string
+      sourcedBy: string
+      applications: string[]
+      resume?: null
+      followers: string[]
+      urls: {
+        /** Format: uri */
+        list: string
+        /** Format: uri */
+        show: string
+      }
+      dataProtection: {
+        store: {
+          allowed: boolean
+          expiresAt: number | null
+        }
+        contact: {
+          allowed: boolean
+          expiresAt: number | null
+        }
+      }
+      isAnonymized: boolean
+    }
+    contact: {
+      id: string
+      name: string
+      headline: string
+      isAnonymized: boolean
+      location: {
+        name: string
+      }
+      emails: string[]
+      phones: {
+        value: string
+      }[]
+    }
   }
   responses: never
   parameters: never
@@ -97,7 +177,192 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': components['schemas']['posting']
+          'application/json': {
+            data: components['schemas']['posting']
+          }
+        }
+      }
+    }
+  }
+  getPostings: {
+    parameters: {
+      query?: {
+        /** @description Include posting content or followers in list results */
+        include?: 'content' | 'followers'
+        /** @description Expand user IDs into full objects in response */
+        expand?: 'user' | 'owner' | 'hiringManager' | 'followers'
+        /** @description Filter postings by state. Valid states are published, internal, closed, draft, pending and rejected. */
+        state?: string
+        /** @description Filter published postings by whether they appear on the public job site, internal job site, or both. To retrieve all published postings, you must specify both public and internal */
+        distributionChannel?: string
+        /** @description Filter postings by confidentiality. If unspecified, defaults to non-confidential. To get both confidential and non-confidential postings you must specify all. Learn more about confidential data in the API. */
+        confidentiality?: string
+        /** @description Posting results can be grouped by one of four categories: location, team, department, and commitment. */
+        group?: string
+        /** @description Filter postings by team name (e.g. Engineering, Sales, Marketing). Since tags are case-sensitive, Sales will not match sales. Multiple teams can be specified and results will include a union of result sets (i.e. postings for either team). If your company uses departments, the same team name may occur across multiple departments. */
+        team?: string
+        /** @description Filter postings by department name. Since tags are case-sensitive, Legal will not match legal. Multiple departments can be specified and results will include a union of result sets (i.e. postings for either department). */
+        department?: string
+        /** @description Filter postings by location. Tags are case-sensitive, San Francisco will not match san francisco. Multiple locations can be specified and results will include a union of result sets (i.e. postings for either location). */
+        location?: string
+        /** @description Filter postings by work type (e.g. full-time, internship). Since tags are case-sensitive, Full-time will not match full-time. Multiple work types can be specified and results will include a union of result sets (i.e. postings of either work type). */
+        committment?: string
+        /** @description Deprecated but currently maintained for backward compatibility. Filter postings by level (e.g. junior, senior, manager). Since tags are case-sensitive, Manager will not match manager. Multiple levels can be specified and results will include a union of result sets (i.e. postings of either level). */
+        level?: string
+        /** @description Filter postings by tag. Tags are case-sensitive, so Engineering will not match engineering. Multiple tags can be specified and results will include a union of result sets (i.e. postings that have either tag). To specify multiple tags, include the tag parameter multiple times (e.g ?tag=engineering&tag=product) */
+        tag?: string
+        /** @description Filter postings by the timestamp they were last updated. If only updated_at_start is specified, all postings updated from that timestamp (inclusive) to the present will be included. If only updated_at_end is specified, all postings updated before that timestamp (inclusive) are included. Both the updated_at_start and updated_at_end can be specified simultaneously, and results will be all postings updated within the provided timestamps (inclusive) will be returned. */
+        updated_at_start?: number
+        /** @description Filter postings by the timestamp they were last updated. If only updated_at_start is specified, all postings updated from that timestamp (inclusive) to the present will be included. If only updated_at_end is specified, all postings updated before that timestamp (inclusive) are included. Both the updated_at_start and updated_at_end can be specified simultaneously, and results will be all postings updated within the provided timestamps (inclusive) will be returned. */
+        updated_at_end?: number
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: components['schemas']['posting'][]
+          }
+        }
+      }
+    }
+  }
+  getOpportunity: {
+    parameters: {
+      path: {
+        /** @description The ID of the opportunity to retrieve */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: components['schemas']['opportunity']
+          }
+        }
+      }
+    }
+  }
+  getOpportunities: {
+    parameters: {
+      query?: {
+        /** @description Include Opportunity followers in list results */
+        include?: 'followers'
+        /** @description Expand application, stage, contact, or user IDs into full objects in response */
+        expand?:
+          | 'applications'
+          | 'stage'
+          | 'owner'
+          | 'followers'
+          | 'sourcedBy'
+          | 'contact'
+        /** @description Filter Opportunities by tag (case sensitive). Results will include Opportunities that contain the specified tag. Multiple tags can be specified and results will include a union of result sets (i.e. Opportunities that have either tag). */
+        tag?: string
+        /** @description Filter Opportunities by an email address. Results will include Opportunities for Contacts that contain the canonicalized email address. */
+        email?: string
+        /** @description Filter Opportunities by origin. Results will include Opportunities that contain the specified origin. Multiple origins can be specified and results will include a union of result sets (i.e. Opportunities from either origin). */
+        origin?: string
+        /** @description Filter Opportunities by source. Results will include Opportunities that contain the specified source tag. Multiple sources can be specified and results will include a union of result sets (i.e. Opportunities from either source). */
+        source?: string
+        /** @description Filter opportunities by confidentiality. If unspecified, defaults to non-confidential. To get both confidential and non-confidential opportunities you must specify all. Learn more about confidential data in the API. */
+        confidentiality?: string
+        /** @description Filter Opportunities by current stage. Results will include Opportunities that are currently in the specified stage. Multiple stages can be specified and results will include a union of result sets (i.e. Opportunities that are in either stage). */
+        stage_id?: string
+        /** @description Filter Opportunities by posting. Results will include Opportunities that are applied to the specified posting. Multiple postings can be specified and results will include a union of result sets (i.e. Opportunities that are applied to either posting). */
+        posting_id?: string
+        /** @description Filter Opportunities by postings for which they have been archived. Results will include opportunities for candidates that applied to the specified posting and then the application was archived. Multiple postings can be specified and results will include a union of result sets (i.e. Opportunities that were applied to either posting). */
+        archived_posting_id?: string
+        /** @description Filter Opportunities by the timestamp they were created. If only created_at_start is specified, all Opportunities created from that timestamp (inclusive) to the present will be included. If only created_at_end is specified, all Opportunities created before that timestamp (inclusive) are included. */
+        created_at_start?: number
+        /** @description Filter Opportunities by the timestamp they were created. If only created_at_start is specified, all Opportunities created from that timestamp (inclusive) to the present will be included. If only created_at_end is specified, all Opportunities created before that timestamp (inclusive) are included. */
+        created_at_end?: number
+        /** @description Filter Opportunities by the timestamp they were last updated. If only updated_at_start is specified, all Opportunities updated from that timestamp (inclusive) to the present will be included. If only updated_at_end is specified, all Opportunities updated before that timestamp (inclusive) are included. */
+        updated_at_start?: number
+        /** @description Filter Opportunities by the timestamp they were last updated. If only updated_at_start is specified, all Opportunities updated from that timestamp (inclusive) to the present will be included. If only updated_at_end is specified, all Opportunities updated before that timestamp (inclusive) are included. */
+        updated_at_end?: number
+        /** @description Filter Opportunities by the timestamp they were advanced to their current stage. If only advanced_at_start is specified, all Opportunities advanced from that timestamp (inclusive) to the present will be included. If only advanced_at_end is specified, all Opportunities advanced before that timestamp (inclusive) are included. */
+        advanced_at_start?: number
+        /** @description Filter Opportunities by the timestamp they were advanced to their current stage. If only advanced_at_start is specified, all Opportunities advanced from that timestamp (inclusive) to the present will be included. If only advanced_at_end is specified, all Opportunities advanced before that timestamp (inclusive) are included. */
+        advanced_at_end?: number
+        /** @description Filter Opportunities by the timestamp they were archived. If only archived_at_start is specified, all Opportunities archived from that timestamp (inclusive) to the present will be included. If only archived_at_end is specified, all Opportunities archived before that timestamp (inclusive) are included. */
+        archived_at_start?: number
+        /** @description Filter Opportunities by the timestamp they were archived. If only archived_at_start is specified, all Opportunities archived from that timestamp (inclusive) to the present will be included. If only archived_at_end is specified, all Opportunities archived before that timestamp (inclusive) are included. */
+        archived_at_end?: number
+        /** @description Filter Opportunities by archive status. If unspecified, results include both archived and unarchived Opportunities. If true, results only include archived Opportunities. If false, results only include active Opportunities. */
+        archived?: boolean
+        /** @description Filter Opportunities by archive reason. Results will include Opportunities that have been archived with the specified reason. Multiple archive reasons can be specified and results will include a union of result sets (i.e. Opportunities that have been archived for either reason). */
+        archive_reason_id?: string
+        /** @description Filter Opportunities by snoozed status. If unspecified, results include both snoozed and unsnoozed Opportunities. If true, results only include snoozed Opportunities. If false, results only include unsnoozed Opportunities. */
+        snoozed?: boolean
+        /** @description Filter Opportunities by contact. Results will include the Opportunities that match the specified contact. Multiple contacts can be specified and results will include a union of result sets (i.e. Opportunities that match each of the contacts). */
+        contact_id?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: components['schemas']['opportunity'][]
+          }
+        }
+      }
+    }
+  }
+  getContacts: {
+    parameters: {
+      path: {
+        /** @description The ID of the contact to retrieve */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: components['schemas']['contact']
+          }
+        }
+      }
+    }
+  }
+  getTags: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: {
+              data: {
+                text: string
+                count: number
+              }[]
+            }[]
+          }
         }
       }
     }
