@@ -308,6 +308,25 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  sdks/sdk-lever:
+    dependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+    devDependencies:
+      '@opensdks/util-zod':
+        specifier: workspace:*
+        version: link:../../packages/util-zod
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+
   sdks/sdk-nango:
     devDependencies:
       '@opensdks/runtime':
