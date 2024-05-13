@@ -549,16 +549,7 @@
                           "data": {
                             "type": "array",
                             "items": {
-                              "type": "object",
-                              "properties": {
-                                "text": {
-                                  "type": "string"
-                                },
-                                "count": {
-                                  "type": "number"
-                                }
-                              },
-                              "required": ["text", "count"]
+                              "$ref": "#/components/schemas/tag"
                             }
                           }
                         },
@@ -1040,6 +1031,18 @@
           "emails",
           "phones"
         ]
+      },
+      "tag": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": ["text", "count"]
       }
     }
   }

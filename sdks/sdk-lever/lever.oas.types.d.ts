@@ -149,6 +149,10 @@ export interface components {
         value: string
       }[]
     }
+    tag: {
+      text: string
+      count: number
+    }
   }
   responses: never
   parameters: never
@@ -357,10 +361,7 @@ export interface operations {
         content: {
           'application/json': {
             data: {
-              data: {
-                text: string
-                count: number
-              }[]
+              data: components['schemas']['tag'][]
             }[]
           }
         }
