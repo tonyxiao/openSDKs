@@ -132,10 +132,12 @@ const leverContactSchema = z
   })
   .openapi({ref: 'contact'})
 
-const tagSchema = z.object({
-  text: z.string(),
-  count: z.number(),
-})
+const tagSchema = z
+  .object({
+    text: z.string(),
+    count: z.number(),
+  })
+  .openapi({ref: 'tag'})
 
 const leverTagSchema = z.object({
   data: z.array(tagSchema),
