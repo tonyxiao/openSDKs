@@ -143,6 +143,33 @@ const leverTagSchema = z.object({
   data: z.array(tagSchema),
 })
 
+const fieldSchema = z.object({
+  text: z.string(),
+  identifier: z.string(),
+  value: z.union([z.string(), z.number()]),
+})
+
+const documentSchema = z
+  .object({
+    fileName: z.string(),
+    uploadedAt: z.number(),
+    downloadUrl: z.string().url(),
+  })
+  .nullable()
+
+const offerSchema = z
+  .object({
+    id: z.string().uuid(),
+    createdAt: z.number(),
+    status: z.enum(['signed', 'draft']),
+    creator: z.string().uuid(),
+    fields: z.array(fieldSchema),
+    sentDocument: documentSchema,
+    signedDocument: documentSchema,
+  })
+  .catchall(z.unknown())
+  .openapi({ref: 'offer'})
+
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Lever API', version: '1.0.0'},
@@ -254,6 +281,18 @@ export const oas: OpenAPISpec = createDocument({
         }),
         response: z.object({
           data: leverOpportunitySchema,
+        }),
+      }),
+    },
+    '/opportunities/{id}/offers': {
+      get: jsonOperation('getOffers', {
+        path: z.object({
+          id: z
+            .string()
+            .describe('The ID of the opportunity to retrieve offers for'),
+        }),
+        response: z.object({
+          data: offerSchema,
         }),
       }),
     },

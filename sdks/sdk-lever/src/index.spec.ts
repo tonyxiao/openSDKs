@@ -6,67 +6,60 @@ import leverSdkDef from './index.js'
 const apiKey = process.env['LEVER_API_KEY']!
 const maybeTest = apiKey ? test : test.skip
 
-maybeTest('get postings from lever', async () => {
-  const lever = initSDK(leverSdkDef, {
-    headers: {
-      authorization: `Bearer ${apiKey}`,
+const lever = initSDK(
+  {
+    ...leverSdkDef,
+    oasMeta: {
+      ...leverSdkDef.oasMeta,
+      servers: [{url: 'https://api.sandbox.lever.co/v1'}], // Used for sandbox account.
     },
-  })
-
-  const res = await lever.GET('/postings/{id}', {
-    params: {
-      path: {
-        id: 'test',
+  },
+  {
+    auth: {
+      basic: {
+        username: apiKey,
       },
     },
-  })
+  },
+)
+
+maybeTest('get postings from lever', async () => {
+  const res = await lever.GET('/postings')
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
 })
 
 maybeTest('get opportunities from lever', async () => {
-  const lever = initSDK(leverSdkDef, {
-    headers: {
-      authorization: `Bearer ${apiKey}`,
-    },
-  })
+  const res = await lever.GET('/opportunities')
 
-  const res = await lever.GET('/opportunities/{id}', {
-    params: {
-      path: {
-        id: 'test',
-      },
-    },
-  })
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
 })
 
-maybeTest('get contact from lever', async () => {
-  const lever = initSDK(leverSdkDef, {
-    headers: {
-      authorization: `Bearer ${apiKey}`,
-    },
-  })
-
-  const res = await lever.GET('/contacts/{id}', {
+maybeTest('get offers for an opportunity lever', async () => {
+  const res = await lever.GET('/opportunities', {
     params: {
-      path: {
-        id: 'test',
+      query: {
+        expand: 'contact',
       },
     },
   })
+
+  const res2 = await lever.GET('/opportunities/{id}/offers', {
+    params: {
+      path: {
+        id: res.data?.data[0]!.id,
+      },
+    },
+  })
+
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
+  expect(res2.response?.status).toEqual(200)
+  expect(res2.data).not.toBeUndefined()
 })
 
 maybeTest('get tags from lever', async () => {
-  const lever = initSDK(leverSdkDef, {
-    headers: {
-      authorization: `Bearer ${apiKey}`,
-    },
-  })
-
   const res = await lever.GET('/tags')
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()

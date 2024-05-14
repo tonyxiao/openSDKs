@@ -248,6 +248,45 @@
         }
       }
     },
+    "/opportunities/{id}/offers": {
+      "get": {
+        "operationId": "getOffers",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The ID of the opportunity to retrieve offers for",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the opportunity to retrieve offers for"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/offer"
+                    }
+                  },
+                  "required": ["data"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/opportunities": {
       "get": {
         "operationId": "getOpportunities",
@@ -977,6 +1016,93 @@
           "dataProtection",
           "isAnonymized"
         ]
+      },
+      "offer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["signed", "draft"]
+          },
+          "creator": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "identifier": {
+                  "type": "string"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                }
+              },
+              "required": ["text", "identifier", "value"]
+            }
+          },
+          "sentDocument": {
+            "type": ["object", "null"],
+            "properties": {
+              "fileName": {
+                "type": "string"
+              },
+              "uploadedAt": {
+                "type": "number"
+              },
+              "downloadUrl": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["fileName", "uploadedAt", "downloadUrl"]
+          },
+          "signedDocument": {
+            "type": ["object", "null"],
+            "properties": {
+              "fileName": {
+                "type": "string"
+              },
+              "uploadedAt": {
+                "type": "number"
+              },
+              "downloadUrl": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["fileName", "uploadedAt", "downloadUrl"]
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "status",
+          "creator",
+          "fields",
+          "sentDocument",
+          "signedDocument"
+        ],
+        "additionalProperties": {}
       },
       "contact": {
         "type": "object",

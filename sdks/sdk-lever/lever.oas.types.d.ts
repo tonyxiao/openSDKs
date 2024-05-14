@@ -13,6 +13,9 @@ export interface paths {
   '/opportunities/{id}': {
     get: operations['getOpportunity']
   }
+  '/opportunities/{id}/offers': {
+    get: operations['getOffers']
+  }
   '/opportunities': {
     get: operations['getOpportunities']
   }
@@ -136,6 +139,33 @@ export interface components {
       }
       isAnonymized: boolean
     }
+    offer: {
+      /** Format: uuid */
+      id: string
+      createdAt: number
+      /** @enum {string} */
+      status: 'signed' | 'draft'
+      /** Format: uuid */
+      creator: string
+      fields: {
+        text: string
+        identifier: string
+        value: string | number
+      }[]
+      sentDocument: {
+        fileName: string
+        uploadedAt: number
+        /** Format: uri */
+        downloadUrl: string
+      } | null
+      signedDocument: {
+        fileName: string
+        uploadedAt: number
+        /** Format: uri */
+        downloadUrl: string
+      } | null
+      [key: string]: unknown
+    }
     contact: {
       id: string
       name: string
@@ -253,6 +283,28 @@ export interface operations {
         content: {
           'application/json': {
             data: components['schemas']['opportunity']
+          }
+        }
+      }
+    }
+  }
+  getOffers: {
+    parameters: {
+      path: {
+        /** @description The ID of the opportunity to retrieve offers for */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: components['schemas']['offer']
           }
         }
       }
