@@ -1,5 +1,6 @@
-import {OpenAPISpec} from '@opensdks/runtime'
-import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
+import { OpenAPISpec } from '@opensdks/runtime';
+import { createDocument, jsonOperation, z } from '@opensdks/util-zod';
+
 
 const leverPosting = z
   .object({
@@ -271,6 +272,7 @@ export const oas: OpenAPISpec = createDocument({
         }),
         response: z.object({
           data: z.array(leverPosting),
+          hasNext: z.boolean().optional(),
         }),
       }),
     },
@@ -441,6 +443,7 @@ export const oas: OpenAPISpec = createDocument({
         }),
         response: z.object({
           data: z.array(leverOpportunitySchema),
+          hasNext: z.boolean().optional(),
         }),
       }),
     },
@@ -458,6 +461,7 @@ export const oas: OpenAPISpec = createDocument({
       get: jsonOperation('getTags', {
         response: z.object({
           data: z.array(leverTagSchema),
+          hasNext: z.boolean().optional(),
         }),
       }),
     },
