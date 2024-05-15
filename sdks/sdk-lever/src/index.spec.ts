@@ -1,17 +1,7 @@
-;
-
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jest/no-standalone-expect */
 import { initSDK } from '@opensdks/runtime';
 import leverSdkDef from './index.js';
-
-
-;
-
-
-
-
-
 
 const apiKey = process.env['LEVER_API_KEY']!
 const maybeTest = apiKey ? test : test.skip
