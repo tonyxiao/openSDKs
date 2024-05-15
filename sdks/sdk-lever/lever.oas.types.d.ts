@@ -261,6 +261,7 @@ export interface operations {
         content: {
           'application/json': {
             data: components['schemas']['posting'][]
+            hasNext?: boolean
           }
         }
       }
@@ -375,6 +376,7 @@ export interface operations {
         content: {
           'application/json': {
             data: components['schemas']['opportunity'][]
+            hasNext?: boolean
           }
         }
       }
@@ -415,6 +417,7 @@ export interface operations {
             data: {
               data: components['schemas']['tag'][]
             }[]
+            hasNext?: boolean
           }
         }
       }

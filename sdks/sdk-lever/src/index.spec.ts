@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jest/no-standalone-expect */
-import {initSDK} from '@opensdks/runtime'
-import leverSdkDef from './index.js'
+import { initSDK } from '@opensdks/runtime';
+import leverSdkDef from './index.js';
 
 const apiKey = process.env['LEVER_API_KEY']!
 const maybeTest = apiKey ? test : test.skip
@@ -27,13 +27,14 @@ maybeTest('get postings from lever', async () => {
   const res = await lever.GET('/postings')
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
+  expect(res.data.hasNext).toBeDefined()
 })
 
 maybeTest('get opportunities from lever', async () => {
   const res = await lever.GET('/opportunities')
-
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
+  expect(res.data.hasNext).toBeDefined()
 })
 
 maybeTest('get offers for an opportunity lever', async () => {
@@ -63,4 +64,5 @@ maybeTest('get tags from lever', async () => {
   const res = await lever.GET('/tags')
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
+  expect(res.data.hasNext).toBeDefined()
 })

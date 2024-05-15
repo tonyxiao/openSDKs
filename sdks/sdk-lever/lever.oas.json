@@ -199,6 +199,9 @@
                       "items": {
                         "$ref": "#/components/schemas/posting"
                       }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
                     }
                   },
                   "required": ["data"]
@@ -516,6 +519,9 @@
                       "items": {
                         "$ref": "#/components/schemas/opportunity"
                       }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
                     }
                   },
                   "required": ["data"]
@@ -594,6 +600,9 @@
                         },
                         "required": ["data"]
                       }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
                     }
                   },
                   "required": ["data"]
