@@ -32,7 +32,6 @@ maybeTest('get postings from lever', async () => {
 
 maybeTest('get opportunities from lever', async () => {
   const res = await lever.GET('/opportunities')
-  console.log('TEST', res.data)
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
   expect(res.data.hasNext).toBeDefined()
@@ -63,7 +62,6 @@ maybeTest('get offers for an opportunity lever', async () => {
 
 maybeTest('get tags from lever', async () => {
   const res = await lever.GET('/tags')
-  console.log(res.data)
   expect(res.response?.status).toEqual(200)
   expect(res.data).not.toBeUndefined()
   expect(res.data.hasNext).toBeDefined()
