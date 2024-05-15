@@ -642,7 +642,7 @@
           },
           "confidentiality": {
             "type": "string",
-            "enum": ["non-confidential"]
+            "enum": ["non-confidential", "confidential"]
           },
           "categories": {
             "type": "object",

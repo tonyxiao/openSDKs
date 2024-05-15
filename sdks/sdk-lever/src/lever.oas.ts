@@ -11,7 +11,7 @@ const leverPosting = z
     user: z.string(),
     owner: z.string(),
     hiringManager: z.string(),
-    confidentiality: z.enum(['non-confidential']),
+    confidentiality: z.enum(['non-confidential', 'confidential']),
     categories: z.object({
       team: z.string(),
       department: z.string(),

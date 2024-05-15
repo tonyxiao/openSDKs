@@ -40,7 +40,7 @@ export interface components {
       owner: string
       hiringManager: string
       /** @enum {string} */
-      confidentiality: 'non-confidential'
+      confidentiality: 'non-confidential' | 'confidential'
       categories: {
         team: string
         department: string
