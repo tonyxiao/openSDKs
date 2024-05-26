@@ -1246,6 +1246,147 @@
         }
       }
     },
+    "/connector/{name}/integrations": {
+      "get": {
+        "operationId": "listConnectorIntegrations",
+        "tags": ["Connectors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {"type": "string"},
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next_cursor": {"type": ["string", "null"]},
+                    "has_next_page": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {"$ref": "#/components/schemas/core.integration"}
+                    }
+                  },
+                  "required": ["has_next_page", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/configured_integrations": {
+      "get": {
+        "operationId": "listConfiguredIntegrations",
+        "tags": ["Connectors"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}},
+          {"in": "query", "name": "query", "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next_cursor": {"type": ["string", "null"]},
+                    "has_next_page": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/core.configured_integration"
+                      }
+                    }
+                  },
+                  "required": ["has_next_page", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/core/pipeline": {
       "get": {
         "operationId": "listPipelines",
@@ -5805,7 +5946,8 @@
   },
   "components": {
     "securitySchemes": {
-      "apikey": {"type": "apiKey", "name": "x-apikey", "in": "header"}
+      "apikey": {"type": "apiKey", "name": "x-apikey", "in": "header"},
+      "resourceId": {"type": "apiKey", "name": "x-resource-id", "in": "header"}
     },
     "schemas": {
       "webhooks.sync.completed": {
@@ -6031,6 +6173,40 @@
         "required": ["createdAt", "updatedAt", "id", "connectorName", "orgId"]
       },
       "Link": {"type": "string", "enum": ["banking"]},
+      "core.integration": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "updated_at": {
+            "type": "string",
+            "description": "ISO8601 date string"
+          },
+          "raw_data": {"type": "object", "additionalProperties": {}},
+          "name": {"type": "string"},
+          "logo_url": {"type": ["string", "null"]},
+          "login_url": {"type": ["string", "null"]},
+          "categories": {
+            "type": ["array", "null"],
+            "items": {
+              "type": "string",
+              "enum": ["accounting", "banking", "hris"]
+            }
+          },
+          "connector_name": {"type": "string"}
+        },
+        "required": ["id", "name", "connector_name"]
+      },
+      "core.configured_integration": {
+        "allOf": [{"$ref": "#/components/schemas/core.integration"}],
+        "type": "object",
+        "properties": {
+          "connector_config_id": {
+            "type": "string",
+            "description": "Must start with 'ccfg_'"
+          }
+        },
+        "required": ["connector_config_id"]
+      },
       "Pipeline": {
         "type": "object",
         "properties": {
@@ -6911,5 +7087,5 @@
       }
     }
   },
-  "security": [{"apikey": []}]
+  "security": [{"apikey": [], "resourceId": []}]
 }

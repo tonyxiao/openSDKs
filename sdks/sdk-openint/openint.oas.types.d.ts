@@ -3,6 +3,9 @@
  * Do not make direct changes to the file.
  */
 
+/** WithRequired type helpers */
+type WithRequired<T, K extends keyof T> = T & {[P in K]-?: T[P]}
+
 /** OneOf type helpers */
 type Without<T, U> = {[P in Exclude<keyof T, keyof U>]?: never}
 type XOR<T, U> = T | U extends object
@@ -72,6 +75,12 @@ export interface paths {
   }
   '/connector/{name}/schemas': {
     get: operations['getConnectorSchemas']
+  }
+  '/connector/{name}/integrations': {
+    get: operations['listConnectorIntegrations']
+  }
+  '/configured_integrations': {
+    get: operations['listConfiguredIntegrations']
   }
   '/core/pipeline': {
     get: operations['listPipelines']
@@ -444,6 +453,26 @@ export interface components {
     }
     /** @enum {string} */
     Link: 'banking'
+    'core.integration': {
+      id: string
+      /** @description ISO8601 date string */
+      updated_at?: string
+      raw_data?: {
+        [key: string]: unknown
+      }
+      name: string
+      logo_url?: string | null
+      login_url?: string | null
+      categories?: ('accounting' | 'banking' | 'hris')[] | null
+      connector_name: string
+    }
+    'core.configured_integration': WithRequired<
+      {
+        /** @description Must start with 'ccfg_' */
+        connector_config_id: string
+      } & components['schemas']['core.integration'],
+      'connector_config_id'
+    >
     Pipeline: {
       createdAt: string
       updatedAt: string
@@ -1783,6 +1812,88 @@ export interface operations {
       200: {
         content: {
           'application/json': unknown
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  listConnectorIntegrations: {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+      }
+      path: {
+        name: string
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            next_cursor?: string | null
+            has_next_page: boolean
+            items: components['schemas']['core.integration'][]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  listConfiguredIntegrations: {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+        query?: string
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            next_cursor?: string | null
+            has_next_page: boolean
+            items: components['schemas']['core.configured_integration'][]
+          }
         }
       }
       /** @description Invalid input data */
