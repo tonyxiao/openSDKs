@@ -13,6 +13,14 @@ export type OpenIntSDKTypes = SDKTypes<
       authorization?: `Bearer ${string}`
       /** For passthrough and resource specific api */
       'x-resource-id'?: string
+      /** Alternative ways to pass the resource id, works in case there is a single connector */
+      'x-resource-connector-name'?: string
+      'x-resource-connector-config-id'?: string
+      /**
+       * Implied (and thus noop) in end user authentication.
+       * Typically used together with x-connector-name for admin level auth
+       */
+      'x-resource-end-user-id'?: string
       [k: string]: string | undefined
     }
   }
