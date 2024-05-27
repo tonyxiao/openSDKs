@@ -190,6 +190,18 @@ export const oas: OpenAPISpec = createDocument({
     '/postings': {
       get: jsonOperation('getPostings', {
         query: z.object({
+          limit: z
+            .number()
+            .optional()
+            .describe(
+              'A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.',
+            ),
+          offset: z
+            .string()
+            .optional()
+            .describe(
+              'An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.',
+            ),
           include: z
             .enum(['content', 'followers'])
             .optional()
@@ -274,6 +286,7 @@ export const oas: OpenAPISpec = createDocument({
         response: z.object({
           data: z.array(leverPosting),
           hasNext: z.boolean().optional(),
+          next: z.string().optional(),
         }),
       }),
     },
@@ -302,6 +315,18 @@ export const oas: OpenAPISpec = createDocument({
     '/opportunities': {
       get: jsonOperation('getOpportunities', {
         query: z.object({
+          limit: z
+            .number()
+            .optional()
+            .describe(
+              'A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.',
+            ),
+          offset: z
+            .string()
+            .optional()
+            .describe(
+              'An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.',
+            ),
           include: z
             .enum(['followers'])
             .optional()
@@ -445,6 +470,7 @@ export const oas: OpenAPISpec = createDocument({
         response: z.object({
           data: z.array(leverOpportunitySchema),
           hasNext: z.boolean().optional(),
+          next: z.string().optional(),
         }),
       }),
     },
@@ -460,9 +486,24 @@ export const oas: OpenAPISpec = createDocument({
     },
     '/tags': {
       get: jsonOperation('getTags', {
+        query: z.object({
+          limit: z
+            .number()
+            .optional()
+            .describe(
+              'A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.',
+            ),
+          offset: z
+            .string()
+            .optional()
+            .describe(
+              'An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.',
+            ),
+        }),
         response: z.object({
           data: z.array(tagSchema),
           hasNext: z.boolean().optional(),
+          next: z.string().optional(),
         }),
       }),
     },

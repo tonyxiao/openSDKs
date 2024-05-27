@@ -38,6 +38,21 @@ maybeTest('get opportunities from lever', async () => {
   expect(res.data.hasNext).toBeDefined()
 })
 
+maybeTest('get paginated opportunities from lever', async () => {
+  const res = await lever.GET('/opportunities', {
+    params: {
+      query: {
+        limit: 2,
+      },
+    },
+  })
+
+  expect(res.response?.status).toEqual(200)
+  expect(res.data).not.toBeUndefined()
+  expect(res.data.hasNext).toBeDefined()
+  expect(res.data.next).toBeDefined()
+})
+
 maybeTest('get offers for an opportunity lever', async () => {
   const res = await lever.GET('/opportunities', {
     params: {

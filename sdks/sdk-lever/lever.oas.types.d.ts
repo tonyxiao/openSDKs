@@ -221,6 +221,10 @@ export interface operations {
   getPostings: {
     parameters: {
       query?: {
+        /** @description A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used. */
+        limit?: number
+        /** @description An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request. */
+        offset?: string
         /** @description Include posting content or followers in list results */
         include?: 'content' | 'followers'
         /** @description Expand user IDs into full objects in response */
@@ -262,6 +266,7 @@ export interface operations {
           'application/json': {
             data: components['schemas']['posting'][]
             hasNext?: boolean
+            next?: string
           }
         }
       }
@@ -314,6 +319,10 @@ export interface operations {
   getOpportunities: {
     parameters: {
       query?: {
+        /** @description A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used. */
+        limit?: number
+        /** @description An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request. */
+        offset?: string
         /** @description Include Opportunity followers in list results */
         include?: 'followers'
         /** @description Expand application, stage, contact, or user IDs into full objects in response */
@@ -377,6 +386,7 @@ export interface operations {
           'application/json': {
             data: components['schemas']['opportunity'][]
             hasNext?: boolean
+            next?: string
           }
         }
       }
@@ -405,6 +415,14 @@ export interface operations {
     }
   }
   getTags: {
+    parameters: {
+      query?: {
+        /** @description A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used. */
+        limit?: number
+        /** @description An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request. */
+        offset?: string
+      }
+    }
     requestBody?: {
       content: {
         'application/json': unknown
@@ -416,6 +434,7 @@ export interface operations {
           'application/json': {
             data: components['schemas']['tag'][]
             hasNext?: boolean
+            next?: string
           }
         }
       }

@@ -60,6 +60,24 @@
         "parameters": [
           {
             "in": "query",
+            "name": "limit",
+            "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.",
+            "schema": {
+              "type": "number",
+              "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used."
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.",
+            "schema": {
+              "type": "string",
+              "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request."
+            }
+          },
+          {
+            "in": "query",
             "name": "include",
             "description": "Include posting content or followers in list results",
             "schema": {
@@ -207,6 +225,9 @@
                     },
                     "hasNext": {
                       "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
                     }
                   },
                   "required": ["data"]
@@ -299,6 +320,24 @@
       "get": {
         "operationId": "getOpportunities",
         "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.",
+            "schema": {
+              "type": "number",
+              "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used."
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.",
+            "schema": {
+              "type": "string",
+              "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request."
+            }
+          },
           {
             "in": "query",
             "name": "include",
@@ -527,6 +566,9 @@
                     },
                     "hasNext": {
                       "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
                     }
                   },
                   "required": ["data"]
@@ -579,6 +621,26 @@
     "/tags": {
       "get": {
         "operationId": "getTags",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used.",
+            "schema": {
+              "type": "number",
+              "description": "A limit on the number of objects to be returned. The limit can range between 1 and 100 items. If no limit is specified, the default for that endpoint is used."
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request.",
+            "schema": {
+              "type": "string",
+              "description": "An offset token specifying the next page of results to return. A paginated list response will include a next attribute that includes an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will fetch the first page of results. You can only pass in an offset that was returned to you via a previously paginated request."
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {}
@@ -599,6 +661,9 @@
                     },
                     "hasNext": {
                       "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
                     }
                   },
                   "required": ["data"]
