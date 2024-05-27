@@ -43,3 +43,15 @@ export function applyLinks(
   // Every request is actually a BetterRequest :)
   return link(req as BetterRequest, (op) => applyLinks(op, rest))
 }
+
+/** Compose multiple links into a single link */
+export function composeLinks(...links: Link[]): Link {
+  return (req, next) => applyLinks(req, [...links, next])
+}
+
+/* Turn multiple links into a single request handler - a link with no "next" param */
+export function composeLinksToHandler(
+  ...links: Link[]
+): (req: Request) => Promise<Response> {
+  return (req) => applyLinks(req, links)
+}
