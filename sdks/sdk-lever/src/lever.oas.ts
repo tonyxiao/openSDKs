@@ -139,10 +139,6 @@ const tagSchema = z
   })
   .openapi({ref: 'tag'})
 
-const leverTagSchema = z.object({
-  data: z.array(tagSchema),
-})
-
 const fieldSchema = z.object({
   text: z.string(),
   identifier: z.string(),
@@ -465,7 +461,7 @@ export const oas: OpenAPISpec = createDocument({
     '/tags': {
       get: jsonOperation('getTags', {
         response: z.object({
-          data: z.array(leverTagSchema),
+          data: z.array(tagSchema),
           hasNext: z.boolean().optional(),
         }),
       }),
