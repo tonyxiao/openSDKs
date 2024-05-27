@@ -1,6 +1,5 @@
-import { OpenAPISpec } from '@opensdks/runtime';
-import { createDocument, jsonOperation, z } from '@opensdks/util-zod';
-
+import {OpenAPISpec} from '@opensdks/runtime'
+import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
 const leverPosting = z
   .object({
@@ -174,7 +173,13 @@ const offerSchema = z
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Lever API', version: '1.0.0'},
-  servers: [{url: 'https://api.lever.co/v1'}],
+  servers: [
+    {url: 'https://api.lever.co/v1', description: 'production'},
+    {
+      url: 'https://api.sandbox.lever.co/v1',
+      description: 'sandbox',
+    },
+  ],
   paths: {
     '/postings/{id}': {
       get: jsonOperation('getPosting', {

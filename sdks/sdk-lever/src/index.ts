@@ -24,13 +24,14 @@ export type LeverSDKTypes = SDKTypes<
       authorization: `Bearer ${string}`
       [k: string]: string | undefined
     }
+    envName: 'sandbox' | 'production'
   }
 >
 
 export const leverSdkDef = {
   types: {} as LeverSDKTypes,
   oasMeta: leverOasMeta,
-  createClient(ctx, {...opts}) {
+  createClient(ctx, {envName, ...opts}) {
     const headers = new Headers(opts['headers'] as HeadersInit)
     if (
       opts['auth'] &&
@@ -45,7 +46,11 @@ export const leverSdkDef = {
         )}`,
       )
     }
-    return ctx.createClient({...opts, headers})
+    return ctx.createClient({
+      ...opts,
+      headers,
+      baseUrl: leverOasMeta.servers.find((s) => s.description === envName)?.url,
+    })
   },
 } satisfies SdkDefinition<LeverSDKTypes>
 
