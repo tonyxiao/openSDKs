@@ -414,9 +414,7 @@ export interface operations {
       200: {
         content: {
           'application/json': {
-            data: {
-              data: components['schemas']['tag'][]
-            }[]
+            data: components['schemas']['tag'][]
             hasNext?: boolean
           }
         }

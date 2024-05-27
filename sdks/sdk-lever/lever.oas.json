@@ -594,16 +594,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "array",
-                            "items": {
-                              "$ref": "#/components/schemas/tag"
-                            }
-                          }
-                        },
-                        "required": ["data"]
+                        "$ref": "#/components/schemas/tag"
                       }
                     },
                     "hasNext": {
