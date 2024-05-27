@@ -6,7 +6,12 @@
   },
   "servers": [
     {
-      "url": "https://api.lever.co/v1"
+      "url": "https://api.lever.co/v1",
+      "description": "production"
+    },
+    {
+      "url": "https://api.sandbox.lever.co/v1",
+      "description": "sandbox"
     }
   ],
   "paths": {
