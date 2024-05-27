@@ -2,6 +2,7 @@ import type {Link} from '../link.js'
 
 // codegen:start {extension: {ts: 'js'}, preset: barrel, include: "./{*.{ts,tsx},*/index.{ts,tsx}}", exclude: "*.{spec,test,fixture,d}.{ts,tsx}"}
 export * from './axiosLink.js'
+export * from './corsLink.js'
 export * from './oauthLink.js'
 // codegen:end
 
