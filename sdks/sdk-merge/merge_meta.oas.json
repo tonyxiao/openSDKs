@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://api.merge.dev"
+      "url": "https://api.merge.dev/api"
     }
   ],
   "security": [
@@ -18,7 +18,7 @@
     }
   ],
   "paths": {
-    "/api/integrations/": {
+    "/integrations/": {
       "get": {
         "operationId": "Request All Merge Integrations",
         "requestBody": {
@@ -42,7 +42,7 @@
         }
       }
     },
-    "/api/organizations/integrations": {
+    "/organizations/integrations": {
       "get": {
         "operationId": "Request My Organization's Enabled Integrations",
         "requestBody": {
@@ -86,7 +86,7 @@
         }
       }
     },
-    "/api/account-token/{public_token}": {
+    "/account-token/{public_token}": {
       "get": {
         "operationId": "Request Account Token",
         "parameters": [
@@ -129,7 +129,7 @@
         }
       }
     },
-    "/api/create-link-token": {
+    "/create-link-token": {
       "post": {
         "operationId": "Create Link Token",
         "requestBody": {

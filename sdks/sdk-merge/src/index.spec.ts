@@ -10,7 +10,7 @@ maybeTest('list organization integrations', async () => {
     headers: {authorization: `Bearer ${apiKey}`},
   })
 
-  const res = await merge.meta.GET('/api/organizations/integrations', {})
+  const res = await merge.meta.GET('/organizations/integrations', {})
 
   expect(res.data).toBeTruthy()
 })
@@ -18,7 +18,7 @@ maybeTest('list organization integrations', async () => {
 maybeTest('list integrations', async () => {
   const merge = initMergeSDK({headers: {}})
 
-  const res = await merge.meta.GET('/api/integrations/', {})
+  const res = await merge.meta.GET('/integrations/', {})
 
   expect(res.data).toBeTruthy()
 })

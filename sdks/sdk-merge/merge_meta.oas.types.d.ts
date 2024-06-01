@@ -4,16 +4,16 @@
  */
 
 export interface paths {
-  '/api/integrations/': {
+  '/integrations/': {
     get: operations['Request All Merge Integrations']
   }
-  '/api/organizations/integrations': {
+  '/organizations/integrations': {
     get: operations["Request My Organization's Enabled Integrations"]
   }
-  '/api/account-token/{public_token}': {
+  '/account-token/{public_token}': {
     get: operations['Request Account Token']
   }
-  '/api/create-link-token': {
+  '/create-link-token': {
     post: operations['Create Link Token']
   }
 }
