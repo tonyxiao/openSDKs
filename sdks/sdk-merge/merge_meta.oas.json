@@ -1,0 +1,120 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Merge API",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.merge.dev"
+    }
+  ],
+  "security": [
+    {
+      "apikey": []
+    },
+    {
+      "x_account_token": []
+    }
+  ],
+  "paths": {
+    "/api/integrations/": {
+      "get": {
+        "operationId": "Request All Merge Integrations",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/integration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/organizations/integrations": {
+      "get": {
+        "operationId": "Request My Organization's Enabled Integrations",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/integration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "x_account_token": {
+        "type": "apiKey",
+        "name": "X-Account-Token",
+        "in": "header"
+      },
+      "apikey": {
+        "type": "oauth2",
+        "name": "authorization",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "integration": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "square_image": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "slug",
+          "image",
+          "square_image",
+          "color",
+          "categories"
+        ]
+      }
+    }
+  }
+}

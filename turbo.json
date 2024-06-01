@@ -9,6 +9,7 @@
       "cache": false,
       "outputs": ["*.oas.d.ts"]
     },
+    "generate:index": {},
     "clean": {"cache": false},
     "build": {
       "cache": false,
