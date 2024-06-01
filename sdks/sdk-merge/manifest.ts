@@ -3,20 +3,12 @@ import {dirname, join as pathJoin} from 'node:path'
 import * as url from 'node:url'
 import {snakeCase} from 'change-case'
 import {generateMultiFileFromOas, getText} from '@opensdks/cli'
-import {oas} from './src/merge_meta.oas.js'
+import {category, oas} from './src/merge_meta.oas.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const APIS = [
-  'hris',
-  'ats',
-  'accounting',
-  'ticketing',
-  'crm',
-  'mktg',
-  'filestorage',
-] as const
+const APIS = category.options
 
 const sdkName = 'merge'
 

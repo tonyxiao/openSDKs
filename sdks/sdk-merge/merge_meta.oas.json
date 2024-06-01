@@ -55,10 +55,141 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/integration"
+                  "type": "object",
+                  "properties": {
+                    "next": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "previous": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/integration"
+                      }
+                    }
+                  },
+                  "required": [
+                    "results"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account-token/{public_token}": {
+      "get": {
+        "operationId": "Request Account Token",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "public_token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "account_token": {
+                      "type": "string"
+                    },
+                    "integration": {
+                      "$ref": "#/components/schemas/integration"
+                    }
+                  },
+                  "required": [
+                    "account_token",
+                    "integration"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-link-token": {
+      "post": {
+        "operationId": "Create Link Token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "end_user_origin_id": {
+                    "type": "string"
+                  },
+                  "end_user_organization_name": {
+                    "type": "string"
+                  },
+                  "end_user_email_address": {
+                    "type": "string"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/category"
+                    }
+                  },
+                  "integration": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   }
+                },
+                "required": [
+                  "end_user_origin_id",
+                  "end_user_organization_name",
+                  "end_user_email_address",
+                  "categories"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "link_token": {
+                      "type": "string"
+                    },
+                    "integration_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "link_token"
+                  ]
                 }
               }
             }
@@ -102,7 +233,7 @@
           "categories": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/category"
             }
           }
         },
@@ -113,6 +244,18 @@
           "square_image",
           "color",
           "categories"
+        ]
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "hris",
+          "ats",
+          "accounting",
+          "ticketing",
+          "crm",
+          "mktg",
+          "filestorage"
         ]
       }
     }

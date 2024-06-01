@@ -10,6 +10,12 @@ export interface paths {
   '/api/organizations/integrations': {
     get: operations["Request My Organization's Enabled Integrations"]
   }
+  '/api/account-token/{public_token}': {
+    get: operations['Request Account Token']
+  }
+  '/api/create-link-token': {
+    post: operations['Create Link Token']
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -22,8 +28,17 @@ export interface components {
       image: string
       square_image: string
       color: string
-      categories: string[]
+      categories: components['schemas']['category'][]
     }
+    /** @enum {string} */
+    category:
+      | 'hris'
+      | 'ats'
+      | 'accounting'
+      | 'ticketing'
+      | 'crm'
+      | 'mktg'
+      | 'filestorage'
   }
   responses: never
   parameters: never
@@ -60,7 +75,56 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': components['schemas']['integration'][]
+          'application/json': {
+            next?: string | null
+            previous?: string | null
+            results: components['schemas']['integration'][]
+          }
+        }
+      }
+    }
+  }
+  'Request Account Token': {
+    parameters: {
+      path: {
+        public_token: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            account_token: string
+            integration: components['schemas']['integration']
+          }
+        }
+      }
+    }
+  }
+  'Create Link Token': {
+    requestBody?: {
+      content: {
+        'application/json': {
+          end_user_origin_id: string
+          end_user_organization_name: string
+          end_user_email_address: string
+          categories: components['schemas']['category'][]
+          integration?: string | null
+        }
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            link_token: string
+            integration_name?: string | null
+          }
         }
       }
     }
