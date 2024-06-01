@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type {ClientOptions} from '@opensdks/runtime'
 import {initSDK, type SdkDefinition, type SDKTypes} from '@opensdks/runtime'
 import type greenhouseTypes from '../greenhouse.oas.types.js'
@@ -13,15 +12,8 @@ export type GreenhouseSDKTypes = SDKTypes<
      * Greenhouse API key becomes the username here with password always kept as
      * an empty string
      */
-    auth: {
-      basic: {
-        username: `${string}`
-        password?: ''
-      }
-    }
-    headers?: {
-      [k: string]: string | undefined
-    }
+    auth: {basic: {username: `${string}`; password?: ''}}
+    headers?: {[k: string]: string | undefined}
   }
 >
 

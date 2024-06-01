@@ -13,6 +13,10 @@ export type StripeSDKTypes = SDKTypes<
     headers: {
       /** either Bearer $apiKey or Basic with apiKey as username */
       authorization: `Bearer ${string}` | `Basic ${string}`
+      /** https://docs.stripe.com/api/versioning `2024-04-10` */
+      'stripe-version'?: string
+      /** https://docs.stripe.com/api/connected-accounts e.g. `acct_1032D82eZvKYlo2C` */
+      'stripe-account'?: string
       [k: string]: string | undefined
     }
   }
