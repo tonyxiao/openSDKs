@@ -109,4 +109,4 @@ export default function initMergeSDK(opts: MergeSDKTypes['options']) {
   return initSDK(mergeSdkDef, opts)
 }
 
-export type SupaglueSDK = ReturnType<typeof initMergeSDK>
+export type MergeSDK = ReturnType<typeof initMergeSDK>

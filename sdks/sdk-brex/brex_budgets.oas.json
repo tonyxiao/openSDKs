@@ -1,0 +1,1405 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Budgets API",
+    "description": "\nThe budgets API lets you manage your Brex budgets.\n",
+    "contact": {
+      "name": "Admin",
+      "url": "https://brex.com",
+      "email": "developer-access@brex.com"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://platform.brexapis.com",
+      "description": "Production"
+    },
+    {
+      "url": "https://platform.staging.brexapps.com",
+      "description": "Staging (Note: This is not a sandbox. It will not work with customer tokens.)"
+    }
+  ],
+  "security": [
+    {
+      "OAuth2": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Budgets",
+      "description": "Endpoints for budgets data."
+    },
+    {
+      "name": "Budget Programs",
+      "description": "Endpoints for budgets programs data."
+    }
+  ],
+  "paths": {
+    "/v1/budget_programs": {
+      "get": {
+        "tags": [
+          "Budget Programs"
+        ],
+        "summary": "\nList Budget Programs\n",
+        "description": "\nLists Budget Programs belonging to this account\n",
+        "operationId": "listBudgetPrograms",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "listBudgetPrograms 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_BudgetProgram_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets.readonly",
+              "budgets"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Budget Programs"
+        ],
+        "summary": "\nCreate Budget Program\n",
+        "description": "\nCreates a Budget Program.\nIf your account does not have access to budget program features, a 403 response status will be returned.\nIf this is the case and you want to gain access to this endpoint, please contact Brex support.\n",
+        "operationId": "createBudgetProgram",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBudgetProgramRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "createBudgetProgram 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetProgram"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/budget_programs/{id}": {
+      "get": {
+        "tags": [
+          "Budget Programs"
+        ],
+        "summary": "\nGet Budget Program\n",
+        "description": "\nRetrieves a Budget Program by ID\n",
+        "operationId": "getBudgetProgramById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "getBudgetProgramById 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetProgram"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets.readonly",
+              "budgets"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Budget Programs"
+        ],
+        "summary": "\nUpdate Budget Program\n",
+        "description": "\nUpdates a Budget Program.\nThis endpoint requires budget management. If your account does not have access to budget management features, a 403 response status will be returned. \nIf this is the case and you want to gain access to this endpoint, please contact Brex support.\n",
+        "operationId": "updateBudgetProgram",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBudgetProgramRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "updateBudgetProgram 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetProgram"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Budget Programs"
+        ],
+        "summary": "\nDelete Budget Program\n",
+        "description": "\nDelete a Budget Program by ID.\nThis endpoint requires budget management. If your account does not have access to budget management features, a 403 response status will be returned. \nIf this is the case and you want to gain access to this endpoint, please contact Brex support.\n",
+        "operationId": "deleteBudgetProgram",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deleteBudgetProgram 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetProgram"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/budgets": {
+      "get": {
+        "tags": [
+          "Budgets"
+        ],
+        "summary": "\nList Budgets\n",
+        "description": "\nLists Budgets belonging to this account\n",
+        "operationId": "listBudgets",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "listBudgets 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_Budget_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets.readonly",
+              "budgets"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Budgets"
+        ],
+        "summary": "\nCreate Budget\n",
+        "description": "\nCreates a Budget.\nThis endpoint requires budget management. If your account does not have access to budget management features, a 403 response status will be returned. \nIf this is the case and you want to gain access to this endpoint, please contact Brex support.\n",
+        "operationId": "createBudget",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBudgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "createBudget 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Budget"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/budgets/{id}": {
+      "get": {
+        "tags": [
+          "Budgets"
+        ],
+        "summary": "\nGet Budget\n",
+        "description": "\nRetrieves a Budget by ID\n",
+        "operationId": "getBudgetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "getBudgetById 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Budget"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets.readonly",
+              "budgets"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Budgets"
+        ],
+        "summary": "\nUpdate Budget\n",
+        "description": "\nUpdates a Budget.\nThis endpoint requires budget management. If your account does not have access to budget management features, a 403 response status will be returned. \nIf this is the case and you want to gain access to this endpoint, please contact Brex support.\n",
+        "operationId": "updateBudget",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBudgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "updateBudget 200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Budget"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/budgets/{id}/archive": {
+      "post": {
+        "tags": [
+          "Budgets"
+        ],
+        "summary": "\nArchive a budget\n",
+        "description": "\nArchives a budget, making it unusable for future expenses and removing it from the UI\n",
+        "operationId": "archiveBudget",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "archiveBudget 200 response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "budgets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Budget": {
+        "required": [
+          "budget_status",
+          "period_type",
+          "spend_type"
+        ],
+        "type": "object",
+        "properties": {
+          "budget_id": {
+            "type": "string",
+            "description": "\nUnique ID for the Budget.\n"
+          },
+          "account_id": {
+            "type": "string",
+            "description": "\nThe Brex account this Budget belongs to.\n"
+          },
+          "creator_user_id": {
+            "type": "string",
+            "description": "\nThe ID of the user who originally created this budget.\n",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n",
+            "nullable": true
+          },
+          "parent_budget_id": {
+            "type": "string",
+            "description": "\nID of parent Budget.\n",
+            "nullable": true
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "items": {
+              "type": "string"
+            }
+          },
+          "member_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the members of the Budget.\n",
+            "items": {
+              "type": "string"
+            }
+          },
+          "period_type": {
+            "$ref": "#/components/schemas/PeriodType"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "budget_status": {
+            "$ref": "#/components/schemas/BudgetStatus"
+          },
+          "limit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LimitType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "spend_type": {
+            "$ref": "#/components/schemas/SpendType"
+          },
+          "current_period_balance": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BudgetPeriodBalance"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          }
+        }
+      },
+      "BudgetBlueprint": {
+        "required": [
+          "id",
+          "limit_type",
+          "period_type",
+          "spend_type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n",
+            "nullable": true
+          },
+          "parent_budget_id": {
+            "type": "string",
+            "description": "\nID of parent Budget.\n"
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "items": {
+              "type": "string"
+            }
+          },
+          "period_type": {
+            "$ref": "#/components/schemas/PeriodType"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "limit_type": {
+            "$ref": "#/components/schemas/LimitType"
+          },
+          "spend_type": {
+            "$ref": "#/components/schemas/SpendType"
+          }
+        },
+        "description": "\nBlueprint for provisioning Budgets for a Budget Program.\n"
+      },
+      "BudgetPeriodBalance": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "balance": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          }
+        },
+        "description": "\nCurrent Budget period balance.\n"
+      },
+      "BudgetProgram": {
+        "required": [
+          "budget_blueprints",
+          "budget_program_status",
+          "created_at",
+          "id",
+          "name",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "budget_blueprints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BudgetBlueprint"
+            }
+          },
+          "existing_budget_ids": {
+            "type": "array",
+            "description": "\nIDs for existing budgets associated with this Budget Program.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "employee_filter": {
+            "$ref": "#/components/schemas/EmployeeFilter"
+          },
+          "budget_program_status": {
+            "$ref": "#/components/schemas/BudgetProgramStatus"
+          },
+          "creator_user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "description": "\nBudget Program used to create budgets for eligible users.\n"
+      },
+      "BudgetProgramStatus": {
+        "type": "string",
+        "enum": [
+          "BUDGET_PROGRAM_STATUS_ACTIVE",
+          "BUDGET_PROGRAM_STATUS_INACTIVE",
+          "BUDGET_PROGRAM_STATUS_DELETED"
+        ]
+      },
+      "BudgetStatus": {
+        "type": "string",
+        "description": "\nStatus of the Budget e.g. APPROVED.\n",
+        "enum": [
+          "APPROVED",
+          "EXPIRED",
+          "TERMINATED",
+          "DELETED"
+        ]
+      },
+      "BudgetLimitVisibilityType": {
+        "type": "string",
+        "description": "\nDetermines if budget members are allowed to view the budget limit.\n",
+        "enum": [
+          "SHARED",
+          "PRIVATE"
+        ]
+      },
+      "CreateBudgetBlueprintRequest": {
+        "required": [
+          "limit",
+          "limit_type",
+          "limit_visibility",
+          "period_type",
+          "spend_type"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n"
+          },
+          "parent_budget_id": {
+            "type": "string",
+            "description": "\nID of parent Budget.\n"
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "period_type": {
+            "$ref": "#/components/schemas/PeriodType"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "limit_type": {
+            "$ref": "#/components/schemas/LimitType"
+          },
+          "spend_type": {
+            "$ref": "#/components/schemas/SpendType"
+          },
+          "limit_visibility": {
+            "$ref": "#/components/schemas/BudgetLimitVisibilityType"
+          }
+        },
+        "description": "\nBlueprint for provisioning Budgets for a Budget Program.\n"
+      },
+      "CreateBudgetProgramRequest": {
+        "required": [
+          "budget_blueprints",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "existing_budget_ids": {
+            "type": "array",
+            "description": "\nIDs for existing budgets associated with this Budget Program.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "budget_blueprints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateBudgetBlueprintRequest"
+            }
+          },
+          "employee_filter": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmployeeFilter"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "description": "\nBudget Program used to create budgets for eligible users.\n"
+      },
+      "CreateBudgetRequest": {
+        "required": [
+          "parent_budget_id",
+          "limit",
+          "limit_type",
+          "limit_visibility",
+          "period_type",
+          "spend_type"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n"
+          },
+          "parent_budget_id": {
+            "type": "string",
+            "description": "\nID of parent Budget.\n"
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "member_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the members of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "period_type": {
+            "$ref": "#/components/schemas/PeriodType"
+          },
+          "limit": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "limit_type": {
+            "$ref": "#/components/schemas/LimitType"
+          },
+          "spend_type": {
+            "$ref": "#/components/schemas/SpendType"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit_visibility": {
+            "$ref": "#/components/schemas/BudgetLimitVisibilityType"
+          }
+        }
+      },
+      "EmployeeFilter": {
+        "type": "object",
+        "properties": {
+          "employment_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmploymentStatus"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "employment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmploymentType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          }
+        },
+        "description": "\nA filter used to determine if a user adheres to a Budget Program.\n"
+      },
+      "EmploymentStatus": {
+        "type": "string",
+        "description": "\nA filter used to determine if a user adheres to a Budget Program.\n",
+        "enum": [
+          "EMPLOYMENT_STATUS_ACTIVE",
+          "EMPLOYMENT_STATUS_INACTIVE",
+          "EMPLOYMENT_STATUS_PENDING"
+        ]
+      },
+      "EmploymentType": {
+        "type": "string",
+        "description": "\nWhat kind of employment the employee has.\n",
+        "enum": [
+          "EMPLOYMENT_TYPE_FULL_TIME",
+          "EMPLOYMENT_TYPE_PART_TIME",
+          "EMPLOYMENT_TYPE_CONTRACTOR",
+          "EMPLOYMENT_TYPE_INTERN",
+          "EMPLOYMENT_TYPE_FREELANCE"
+        ]
+      },
+      "LimitType": {
+        "type": "string",
+        "description": "\nWhether the Budget limit blocks spend.\n",
+        "enum": [
+          "HARD",
+          "SOFT"
+        ]
+      },
+      "Money": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "description": "The amount of money, in the smallest denomination of the currency indicated by currency. For example, when currency is USD, amount is in cents.",
+            "format": "int64"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The type of currency, in ISO 4217 format. Default to USD if not specified",
+            "nullable": true
+          }
+        },
+        "description": "\nMoney fields can be signed or unsigned. Fields are signed (an unsigned value will be interpreted as positive). The amount of money will be represented in the smallest denomination\nof the currency indicated. For example, USD 7.00 will be represented in cents with an amount of 700.\n"
+      },
+      "Page_BudgetProgram_": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BudgetProgram"
+            }
+          }
+        }
+      },
+      "Page_Budget_": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Budget"
+            }
+          }
+        }
+      },
+      "PeriodType": {
+        "type": "string",
+        "description": "\nPeriod type of the Budget e.g. MONTHLY.\n",
+        "enum": [
+          "WEEKLY",
+          "MONTHLY",
+          "QUARTERLY",
+          "YEARLY",
+          "ONE_TIME"
+        ]
+      },
+      "SpendType": {
+        "type": "string",
+        "description": "\nWhether this Budget only can be spent from by cards provisioned by this Budget. \n",
+        "enum": [
+          "BUDGET_PROVISIONED_CARDS_ONLY",
+          "NON_BUDGET_PROVISIONED_CARDS_ALLOWED"
+        ]
+      },
+      "UpdateBudgetBlueprintRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "\nID of budget blueprint to update, omit if adding new budget blueprint to budget program.\n",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n",
+            "nullable": true
+          },
+          "parent_budget_id": {
+            "type": "string",
+            "description": "\nID of parent Budget.\n",
+            "nullable": true
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "period_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PeriodType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "limit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LimitType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "spend_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          }
+        },
+        "description": "\nBlueprint for provisioning Budgets for a Budget Program.\n"
+      },
+      "UpdateBudgetProgramRequest": {
+        "type": "object",
+        "properties": {
+          "existing_budget_ids": {
+            "type": "array",
+            "description": "\nIDs for existing budgets associated with this Budget Program.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "budget_blueprints": {
+            "type": "array",
+            "description": "\nThe Blueprints to update the budget program with. Blueprints without an ID are treated as new blueprints to be created.\nBlueprints that exist currently on the Budget Program, but are missing from the input, will be deleted.\n",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UpdateBudgetBlueprintRequest"
+            }
+          },
+          "employee_filter": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmployeeFilter"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "description": "\nBudget Program used to create budgets for eligible users.\n"
+      },
+      "UpdateBudgetRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "\nName for the Budget.\n",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "\nDescription of what the Budget is used for.\n",
+            "nullable": true
+          },
+          "owner_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the owners of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "member_user_ids": {
+            "type": "array",
+            "description": "\nUser IDs of the members of the Budget.\n",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "limit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LimitType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "spend_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should start counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "\nThe UTC date when the Budget should stop counting.\n",
+            "format": "date",
+            "nullable": true
+          },
+          "limit_visibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BudgetLimitVisibilityType"
+              },
+              {
+                "nullable": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "description": "OAuth2 security scheme",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://accounts-api.brex.com/oauth2/default/v1/authorize",
+            "tokenUrl": "https://accounts-api.brex.com/oauth2/default/v1/token",
+            "scopes": {
+              "openid": "openid",
+              "offline_access": "offline access",
+              "budgets": "View and manage budgets data",
+              "budgets.readonly": "View budgets data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-explorer-enabled": false
+}
