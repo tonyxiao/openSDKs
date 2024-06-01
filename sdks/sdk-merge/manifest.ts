@@ -3,7 +3,7 @@ import {dirname, join as pathJoin} from 'node:path'
 import * as url from 'node:url'
 import {snakeCase} from 'change-case'
 import {generateMultiFileFromOas, getText} from '@opensdks/cli'
-import {category, oas} from './src/merge_meta.oas.js'
+import {category, oas} from './src/merge.oas.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -27,7 +27,7 @@ export async function download() {
 
 export async function generate() {
   await fs.writeFile(
-    pathJoin(__dirname, 'merge_meta.oas.json'),
+    pathJoin(__dirname, 'merge.oas.json'),
     JSON.stringify(oas, null, 2),
   )
   return generateTypes()
@@ -56,6 +56,8 @@ export async function generateTypes() {
   )
 }
 
+// TODO: Modify this to acccount for the fact that sometimes we have a root api
+// with nesting inside...
 export async function generateIndex() {
   const fileNames = await fs.readdir(__dirname)
   const oasNames = fileNames
