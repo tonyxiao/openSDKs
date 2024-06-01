@@ -66,6 +66,7 @@ const zNangoProviderId = z
     'jira',
     'keap',
     'lever',
+    'lever-sandbox',
     'linear',
     'linkedin',
     'linkhut',
@@ -178,7 +179,9 @@ export const zConnection = zConnectionShort
     provider_config_key: z.string(),
     credentials: z.object({
       type: zAuthMode,
-      access_token: z.string(),
+      /** For API key auth... */
+      api_key: z.string().nullish(),
+      access_token: z.string().optional(),
       refresh_token: z.string().optional(),
       expires_at: z.string().datetime(),
       raw: z.object({
@@ -192,7 +195,13 @@ export const zConnection = zConnectionShort
         scope: z.string().optional(),
       }),
     }),
-    connection_config: z.record(z.unknown()),
+    connection_config: z
+      .object({
+        portalId: z.number().nullish(),
+        instance_url: z.string().nullish(),
+      })
+      .catchall(z.unknown())
+      .nullish(),
     metadata: z.record(z.unknown()).nullable(),
     credentials_iv: z.string(),
     credentials_tag: z.string(),
@@ -233,7 +242,7 @@ export const zUpsertIntegration = zIntegration
 
 export type UpsertIntegration = z.infer<typeof zUpsertIntegration>
 
-export const oas: OpenAPISpec = createDocument({
+export const oas = createDocument({
   openapi: '3.1.0',
   info: {title: 'Nango API', version: '0.0.0'},
   servers: [{url: 'https://api.nango.dev'}],
@@ -297,7 +306,7 @@ export const oas: OpenAPISpec = createDocument({
       }),
     },
   },
-})
+}) as OpenAPISpec
 
 export default oas
 
