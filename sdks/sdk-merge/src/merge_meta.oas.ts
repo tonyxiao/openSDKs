@@ -28,7 +28,7 @@ export const integration = z
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Merge API', version: '0.0.0'},
-  servers: [{url: 'https://api.merge.dev'}],
+  servers: [{url: 'https://api.merge.dev/api'}],
   security: [{apikey: []}, {x_account_token: []}],
   components: {
     securitySchemes: {
@@ -37,12 +37,12 @@ export const oas: OpenAPISpec = createDocument({
     },
   },
   paths: {
-    '/api/integrations/': {
+    '/integrations/': {
       get: jsonOperation('Request All Merge Integrations', {
         response: z.array(integration),
       }),
     },
-    '/api/organizations/integrations': {
+    '/organizations/integrations': {
       get: jsonOperation("Request My Organization's Enabled Integrations", {
         response: z.object({
           next: z.string().nullish(),
@@ -51,13 +51,13 @@ export const oas: OpenAPISpec = createDocument({
         }),
       }),
     },
-    '/api/account-token/{public_token}': {
+    '/account-token/{public_token}': {
       get: jsonOperation('Request Account Token', {
         path: z.object({public_token: z.string()}),
         response: z.object({account_token: z.string(), integration}),
       }),
     },
-    '/api/create-link-token': {
+    '/create-link-token': {
       post: jsonOperation('Create Link Token', {
         body: z.object({
           /** Unique ID for your end user */ end_user_origin_id: z.string(),

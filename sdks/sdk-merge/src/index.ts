@@ -49,6 +49,7 @@ export type MergeSDKTypes = SDKTypes<
     headers: {
       /** The /api/integrations endpoint does not require authentication */
       authorization?: `Bearer ${string}`
+      /** Individual methods often require this themselves. so may not be necessary at the client create level */
       'x-account-token'?: string
       [k: string]: string | undefined
     }
@@ -105,8 +106,10 @@ export const mergeSdkDef = {
   },
 } satisfies SdkDefinition<MergeSDKTypes>
 
-export default function initMergeSDK(opts: MergeSDKTypes['options']) {
+export function initMergeSDK(opts: MergeSDKTypes['options']) {
   return initSDK(mergeSdkDef, opts)
 }
 
 export type MergeSDK = ReturnType<typeof initMergeSDK>
+
+export default initMergeSDK
