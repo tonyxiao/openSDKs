@@ -7,14 +7,17 @@ import {
 import type stripeTypes from '../stripe.oas.types.js'
 import {default as stripeOasMeta} from './stripe.oas.meta.js'
 
+/** https://docs.stripe.com/api/versioning e.g. `2024-04-10` */
+export type StripeVersion =
+  stripeTypes['operations']['PostWebhookEndpoints']['requestBody']['content']['application/x-www-form-urlencoded']['api_version']
+
 export type StripeSDKTypes = SDKTypes<
   stripeTypes,
   Omit<ClientOptions, 'headers'> & {
     headers: {
       /** either Bearer $apiKey or Basic with apiKey as username */
       authorization: `Bearer ${string}` | `Basic ${string}`
-      /** https://docs.stripe.com/api/versioning `2024-04-10` */
-      'stripe-version'?: string
+      'stripe-version'?: StripeVersion
       /** https://docs.stripe.com/api/connected-accounts e.g. `acct_1032D82eZvKYlo2C` */
       'stripe-account'?: string
       [k: string]: string | undefined

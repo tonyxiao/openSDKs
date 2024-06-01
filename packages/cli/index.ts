@@ -130,7 +130,9 @@ export async function getText(input: string) {
   try {
     const url = new URL(input)
     const res = await fetch(url)
-
+    if (res.status >= 400) {
+      throw new Error(`Failed to fetch ${input}, got status ${res.status}`)
+    }
     return await res.text()
   } catch (err) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
