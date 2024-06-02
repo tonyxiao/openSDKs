@@ -2,6 +2,9 @@ import type {ManifestInfo} from '@opensdks/cli'
 import {parseDownloadableOasListFromReadmeIo} from '@opensdks/cli'
 
 export default {
+  vercel: {
+    download: 'https://openapi.vercel.sh/',
+  },
   onebrick: {
     download: () =>
       parseDownloadableOasListFromReadmeIo('https://docs.onebrick.io/', {
