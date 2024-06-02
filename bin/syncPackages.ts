@@ -48,8 +48,8 @@ export const listCorePackages = () =>
   listPackagesInDir(pathJoin(__dirname, '../packages'))
 
 // Templates
-const packageJsonTemplate: PackageJson = {
-  version: '0.0.14',
+export const packageJsonTemplate: PackageJson = {
+  // version: '0.0.14',
   type: 'module',
   main: './cjs/index.js', // backward compat for node 10
   module: './esm/index.js', // backward compat for those that do not support "exports"
@@ -113,10 +113,13 @@ const packageJsonTemplate: PackageJson = {
   },
   devDependencies: {
     concurrently: '^8.2.2',
+    // Should these be here?
+    '@opensdks/runtime': 'workspace:*',
+    'openapi-typescript': '6.7.1',
   },
 }
 
-const tsConfigTemplate: TsConfigJson = {
+export const tsConfigTemplate: TsConfigJson = {
   extends: '../../tsconfig.base.json',
   compilerOptions: {
     // outDir: './dist',

@@ -9,7 +9,7 @@ import R from 'remeda'
 import yaml from 'yaml'
 import type {HTTPMethod, oas30, OpenAPISpec} from '@opensdks/runtime'
 
-async function prettyFormat(content: string) {
+export async function prettyFormat(content: string) {
   // Temp workaround for the fact that prettier doesn't always work in client environments easily
   // TODO: Make me a global flag rather than env var
   if (process.env['NO_PRETTY']) {
@@ -64,7 +64,11 @@ ${opts.exportDefault ? 'export default oasTypes' : ''}
 
 export function generateSDKDef(
   name: string,
-  opts: {importOasTypes?: boolean; importOasMeta?: boolean} = {},
+  opts: {
+    importOasTypes?: boolean
+    importOasMeta?: boolean
+    headersTemplate?: string
+  } = {},
 ) {
   const upperName = name.slice(0, 1).toUpperCase() + name.slice(1)
   const imports = {
@@ -78,7 +82,13 @@ import {initSDK} from '@opensdks/runtime'
 ${opts.importOasTypes ? imports.oasTypes : ''}
 ${opts.importOasMeta ? imports.oasMeta : ''}
 
-export type ${kSDKTypes} = SDKTypes<oasTypes, ClientOptions>
+export type ${kSDKTypes} = SDKTypes<oasTypes, 
+${
+  opts.headersTemplate
+    ? `Omit<ClientOptions, 'headers'> & ${opts.headersTemplate}`
+    : 'ClientOptions'
+}
+>
 
 export const ${name}SdkDef = {
   types: {} as ${kSDKTypes},
