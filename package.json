@@ -14,7 +14,7 @@
     "test::debug": "NODE_OPTIONS=--experimental-vm-modules node --inspect-brk $(pnpm bin)/jest --runInBand --watch",
     "commitlint": "commitlint --edit",
     "prepare": "husky install",
-    "sync-manifests": "npx tsx ./packages/cli/syncManifests.ts ./ ./manifests/index.js",
+    "sync-manifests": "npx tsx ./packages/cli/syncManifests.ts ./ ./master-manifest.js",
     "publish-packages": "turbo run build --filter '!website' && pnpm -r publish",
     "prettier:pkgjson": "pnpm prettier --write ./sdks/*/package.json ./packages/*/package.json"
   },
