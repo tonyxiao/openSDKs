@@ -2,6 +2,12 @@ import type {ManifestInfo} from '@opensdks/cli'
 import {parseDownloadableOasListFromReadmeIo} from '@opensdks/cli'
 
 export default {
+  notion: {
+    download: () =>
+      parseDownloadableOasListFromReadmeIo('https://developers.notion.com/', {
+        name: 'notion',
+      }),
+  },
   mercury: {
     download: () =>
       parseDownloadableOasListFromReadmeIo('https://docs.mercury.com/', {

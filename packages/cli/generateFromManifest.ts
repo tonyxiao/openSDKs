@@ -64,6 +64,11 @@ export async function syncManifest(baseDir: string, m: Manifest) {
           ? await m.download?.()
           : []
 
+    // If there is only a single oas, we can name it the same as the package
+    if (downloads.length === 1 && downloads[0]) {
+      downloads[0].name = m.name
+    }
+
     await Promise.all(
       downloads.map(async (d) => {
         const oasText = await downloadOas(d).catch((e) => {
@@ -232,12 +237,17 @@ export async function parseDownloadableOasListFromReadmeIo(
 ) {
   const readmeUrl = _readmeUrl.replace(/\/$/, '')
   const html = await getText(`${readmeUrl}/openapi`)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const ret = new XMLParser({ignoreAttributes: false}).parse(html)
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
+  const divs: any[] = Array.isArray(ret.div) ? ret.div : [ret.div]
+
   // This applies to all openapi hosted on readme.com
-  const oapis = (ret.div as any[]).map(
+  const oapis = divs.map(
     (ele) =>
       ({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         name: `${opts.name}_${snakeCase(ele.a['#text'])}`,
         url: `${readmeUrl}${ele.a['@_href']}`,
         // TODO: some of the OAS does not exist from readme...
