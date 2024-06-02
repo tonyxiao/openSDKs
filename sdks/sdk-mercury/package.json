@@ -1,6 +1,6 @@
 {
-  "name": "@opensdks/cli",
-  "version": "0.0.21",
+  "name": "@opensdks/sdk-mercury",
+  "version": "0.0.0",
   "type": "module",
   "exports": {
     ".": {
@@ -19,7 +19,6 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/index.d.ts",
-  "bin": "./bin.js",
   "files": [
     "types",
     "esm",
@@ -40,18 +39,10 @@
     "clean": "rm -rf ./esm ./cjs ./types",
     "version": "pnpm version"
   },
-  "dependencies": {
-    "change-case": "^5.4.4",
-    "fast-xml-parser": "^4.4.0",
-    "openapi-typescript": "^6.7.3",
-    "prettier": "^3.1.0",
-    "remeda": "^1.31.0",
-    "yaml": "^2.3.4"
-  },
   "devDependencies": {
     "@opensdks/runtime": "workspace:*",
     "concurrently": "^8.2.2",
-    "tsx": "^4.6.2"
+    "openapi-typescript": "6.7.1"
   },
   "publishConfig": {
     "access": "public"

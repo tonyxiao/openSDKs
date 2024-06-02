@@ -64,10 +64,14 @@ ${opts.exportDefault ? 'export default oasTypes' : ''}
 
 export function generateSDKDef(
   name: string,
-  opts: {
+  {
+    oasNames: _oasNames,
+    ...opts
+  }: {
     importOasTypes?: boolean
     importOasMeta?: boolean
     headersTemplate?: string
+    oasNames?: string[]
   } = {},
 ) {
   const upperName = name.slice(0, 1).toUpperCase() + name.slice(1)
@@ -76,13 +80,56 @@ export function generateSDKDef(
     oasMeta: `import {oasMeta} from './${name}.oas.meta.js'`,
   }
   const kSDKTypes = `${upperName}SDKTypes`
+  const oasNames = _oasNames?.map((oasName) =>
+    oasName.replace(`${name}_`, '').replace('.oas.json', ''),
+  )
+
+  const multiImports = oasNames
+    ? `
+  ${oasNames
+    .map((n) => `import type Oas_${n} from '../${name}_${n}.oas.types.js'`)
+    .join('\n')}
+
+${oasNames
+  .map((n) => `import {default as oas_${n}} from './${name}_${n}.oas.meta.js'`)
+  .join('\n')}
+
+export type {
+  ${oasNames.map((oasName) => `Oas_${oasName}`).join(',\n  ')},
+}
+
+export {
+  ${oasNames.map((oasName) => `oas_${oasName}`).join(',\n  ')},
+}`
+    : ''
+  const createClient = oasNames
+    ? `createClient(ctx, options) {
+    ${oasNames
+      .map(
+        (n) => `const ${n} = ctx.createClient<Oas_${n}['paths']>({
+        ...options,
+        baseUrl: options.baseUrl ?? oas_${n}.servers[0]?.url,
+      })`,
+      )
+      .join('\n')}
+    
+      return {
+        ${oasNames.join(',\n')}
+      }
+    }`
+    : ''
+  // TODO: Figure out how to run organize imports also on the final result..
   return `
-import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type {ClientOptions, SdkDefinition, SDKTypes, OpenAPITypes} from '@opensdks/runtime'
 import {initSDK} from '@opensdks/runtime'
 ${opts.importOasTypes ? imports.oasTypes : ''}
 ${opts.importOasMeta ? imports.oasMeta : ''}
 
-export type ${kSDKTypes} = SDKTypes<oasTypes, 
+${multiImports}
+
+export type ${kSDKTypes} = SDKTypes<${
+    opts.importOasTypes ? 'oasTypes' : 'OpenAPITypes'
+  }, 
 ${
   opts.headersTemplate
     ? `Omit<ClientOptions, 'headers'> & ${opts.headersTemplate}`
@@ -92,7 +139,8 @@ ${
 
 export const ${name}SdkDef = {
   types: {} as ${kSDKTypes},
-  oasMeta,
+  ${opts.importOasMeta ? 'oasMeta,' : 'defaultOptions: {},'}
+  ${createClient}
 } satisfies SdkDefinition<${kSDKTypes}>
 
 export function init${upperName}SDK(opts: ${kSDKTypes}['options']) {

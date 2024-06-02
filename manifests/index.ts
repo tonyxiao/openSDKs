@@ -1,24 +1,20 @@
-export type DownloadableOpenAPI = {
-  name: string
-  url: string
-  type?: 'redoc' | 'readme'
-  /** Infer this from the url later... */
-  format?: 'json' | 'yaml'
-}
-
-export interface ManifestInfo {
-  /**
-   * Package version, parseable by [`node-semver`](https://github.com/npm/node-semver).
-   * @temporary This should be automatically managed by the tooling
-   */
-  version?: string
-  download?: string | (() => Promise<DownloadableOpenAPI[]>)
-  generate?: () => Promise<void>
-
-  headersTemplate?: string
-}
+import type {ManifestInfo} from '@opensdks/cli'
+import {parseDownloadableOasListFromReadmeIo} from '@opensdks/cli'
 
 export default {
+  mercury: {
+    download: () =>
+      parseDownloadableOasListFromReadmeIo('https://docs.mercury.com/', {
+        name: 'mercury',
+      }).then((items) =>
+        items.map((item) => ({
+          ...item,
+          name: item.name
+            .replace('mercury_api_', '')
+            .replace('o_auth2', 'oauth2'),
+        })),
+      ),
+  },
   yodlee: {
     download:
       'https://raw.githubusercontent.com/Yodlee/OpenAPI/main/swagger.yaml',

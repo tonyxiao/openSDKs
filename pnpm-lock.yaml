@@ -23,6 +23,9 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
+      '@opensdks/cli':
+        specifier: workspace:*
+        version: link:packages/cli
       '@tsconfig/strictest':
         specifier: ^2.0.2
         version: 2.0.2
@@ -128,6 +131,12 @@ importers:
 
   packages/cli:
     dependencies:
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
+      fast-xml-parser:
+        specifier: ^4.4.0
+        version: 4.4.0
       openapi-typescript:
         specifier: ^6.7.3
         version: 6.7.3
@@ -392,6 +401,18 @@ importers:
       prettier:
         specifier: ^3.1.0
         version: 3.1.0
+
+  sdks/sdk-mercury:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
 
   sdks/sdk-merge:
     devDependencies:
@@ -4402,7 +4423,6 @@ packages:
 
   /change-case@5.4.4:
     resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
-    dev: true
 
   /char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
@@ -5898,7 +5918,6 @@ packages:
     hasBin: true
     dependencies:
       strnum: 1.0.5
-    dev: true
 
   /fastq@1.15.0:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
@@ -10255,7 +10274,6 @@ packages:
 
   /strnum@1.0.5:
     resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
-    dev: true
 
   /styled-jsx@5.1.1(@babel/core@7.23.5)(react@18.2.0):
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}

@@ -1,6 +1,7 @@
 export type DownloadableOpenAPI = {
   name: string
   url: string
+  /** TODO: Remove me, wrong level of abstraction */
   type?: 'redoc' | 'readme'
   /** Infer this from the url later... */
   format?: 'json' | 'yaml'
