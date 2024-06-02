@@ -286,6 +286,18 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  sdks/sdk-dropbox:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
   sdks/sdk-finch:
     devDependencies:
       '@opensdks/runtime':
@@ -317,6 +329,18 @@ importers:
         version: 3.1.0
 
   sdks/sdk-gong:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
+  sdks/sdk-google:
     devDependencies:
       '@opensdks/runtime':
         specifier: workspace:*

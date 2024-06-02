@@ -6,6 +6,12 @@ import {
 } from '@opensdks/cli'
 
 export default {
+  dropbox: {
+    download:
+      // [Dropbox itself](https://www.dropbox.com/developers/documentation/http/documentation) does not provider OpenAPI spec, but there is a community one
+      // https://gist.github.com/levibostian/86248f2dfdb7601ec378bb77b0d45e34#file-foo-yaml
+      'https://gist.githubusercontent.com/levibostian/86248f2dfdb7601ec378bb77b0d45e34/raw/142e78a76b2d0193e99f9b388ca83c23d154d45d/foo.yaml',
+  },
   google: {
     download: async () => {
       // TODO: This doesn't work yet as data is not in OpenAPI format...
