@@ -1,8 +1,7 @@
 import {join as pathJoin} from 'node:path'
 import {syncManifests} from './generateFromManifest.js'
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-if (import.meta.url.endsWith(process.argv[1]!)) {
+async function main() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const baseDir = pathJoin(process.cwd(), process.argv[2]!)
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -18,3 +17,4 @@ if (import.meta.url.endsWith(process.argv[1]!)) {
 
   process.exit(0)
 }
+void main()

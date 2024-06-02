@@ -16,7 +16,7 @@
     "bin/syncPackages.ts",
     "example-cjs/index.mts",
     "example-cjs/index.jjs"
-  ],
+, "packages/cli/syncManifests.ts"  ],
   "exclude": [
     "**/types",
     "**/esm",
