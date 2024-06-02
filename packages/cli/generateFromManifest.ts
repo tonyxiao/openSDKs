@@ -102,7 +102,7 @@ export async function syncManifest(baseDir: string, m: Manifest) {
       await convertYamlToJson(basePath)
       console.log(`[${m.name}] convertSwagger2ToOpenAPI`)
       await convertSwagger2ToOpenAPI(basePath)
-      console.log(`[${m.name}] generateTypes`)
+      console.log(`[${m.name}] generateMetaAndDts`)
       await generateMetaAndDts(basePath)
 
       console.log(`[${m.name}] generateIndex`)
@@ -144,11 +144,9 @@ export async function convertSwagger2ToOpenAPI(dir: string) {
   await Promise.all(
     oasFilenames.map(async (oasName) => {
       const text = await fs.readFile(pathJoin(dir, oasName), 'utf8')
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const json = parseJsonOrYaml(text) as Parameters<typeof convertObj>[0]
 
-      if (json.swagger) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      if (!('openapi' in json) || json.swagger) {
         const {openapi} = await convertObj(json, {})
         await fs.writeFile(
           pathJoin(dir, oasName),
@@ -161,8 +159,8 @@ export async function convertSwagger2ToOpenAPI(dir: string) {
 
 export async function generateMetaAndDts(dir: string) {
   const fileNames = await fs.readdir(dir)
-  await fs.mkdir(pathJoin(dir, 'src'), {recursive: true})
   const oasFilenames = fileNames.filter((p) => p.endsWith('.oas.json'))
+  await fs.mkdir(pathJoin(dir, 'src'), {recursive: true})
 
   await Promise.all(
     oasFilenames.map(async (oasName) => {

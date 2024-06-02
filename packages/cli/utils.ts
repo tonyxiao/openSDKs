@@ -248,3 +248,5 @@ export function getEndpoints(oas: OpenAPISpec) {
 function isOperation(op: unknown): op is oas30.OperationObject {
   return op != null && typeof op === 'object' && 'responses' in op
 }
+
+export {snakeCase} from 'change-case'
