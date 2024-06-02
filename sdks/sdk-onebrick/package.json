@@ -1,0 +1,50 @@
+{
+  "name": "@opensdks/sdk-onebrick",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./*.oas.types": "./*.oas.types.js",
+    "./*.oas.json": "./*.oas.json",
+    "./*": {
+      "types": "./types/*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./cjs/*.js"
+    }
+  },
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "types",
+    "esm",
+    "cjs",
+    "src",
+    "*.ts",
+    "*.d.ts",
+    "*.oas.json",
+    "!**/*.spec.ts",
+    "!*.orig.oas.json"
+  ],
+  "scripts": {
+    "build": "concurrently npm:build:*",
+    "build:cjs": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs",
+    "build:cjs-pkgjson": "mkdir -p ./cjs && echo '{\"type\": \"commonjs\"}' > ./cjs/package.json",
+    "build:esm": "tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm",
+    "build:types": "tsc -p ./tsconfig.build.json --emitDeclarationOnly --outDir ./types",
+    "clean": "rm -rf ./esm ./cjs ./types",
+    "version": "pnpm version"
+  },
+  "devDependencies": {
+    "@opensdks/runtime": "workspace:*",
+    "concurrently": "^8.2.2",
+    "openapi-typescript": "6.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

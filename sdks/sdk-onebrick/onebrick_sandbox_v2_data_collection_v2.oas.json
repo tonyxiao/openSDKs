@@ -1,0 +1,1 @@
+{"openapi":"3.1.0","info":{"title":"Sandbox v2 data collection","version":"2"},"servers":[{"url":"https://sandbox.onebrick.io/v2/data"}],"components":{"securitySchemes":{"sec0":{"type":"oauth2","flows":{}}}},"security":[{"sec0":[]}],"paths":{},"x-readme":{"headers":[],"explorer-enabled":true,"proxy-enabled":true},"x-readme-fauxas":true}

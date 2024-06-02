@@ -72,7 +72,7 @@ export async function syncManifest(baseDir: string, m: Manifest) {
     await Promise.all(
       downloads.map(async (d) => {
         const oasText = await downloadOas(d).catch((e) => {
-          console.warn(`Failed to download ${d.url}, skipping... ${e}`)
+          console.warn(`Failed to download ${d.name}, skipping... ${e}`)
           return null
         })
         if (!oasText) {

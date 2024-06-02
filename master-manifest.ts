@@ -2,6 +2,12 @@ import type {ManifestInfo} from '@opensdks/cli'
 import {parseDownloadableOasListFromReadmeIo} from '@opensdks/cli'
 
 export default {
+  onebrick: {
+    download: () =>
+      parseDownloadableOasListFromReadmeIo('https://docs.onebrick.io/', {
+        name: 'onebrick',
+      }),
+  },
   notion: {
     download: () =>
       parseDownloadableOasListFromReadmeIo('https://developers.notion.com/', {
