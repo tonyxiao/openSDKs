@@ -3,6 +3,8 @@ import * as fs from 'node:fs/promises'
 import {parseArgs} from 'node:util'
 import prettier from 'prettier'
 
+/** @deprecated. Should use manifest format */
+
 async function readStreamToString(/** @type {NodeJS.ReadableStream} */ stream) {
   const chunks = []
   for await (const chunk of stream) {

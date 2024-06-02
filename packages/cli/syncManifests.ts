@@ -1,6 +1,5 @@
 import * as fs from 'node:fs/promises'
-import {dirname, join as pathJoin} from 'node:path'
-import * as url from 'node:url'
+import {join as pathJoin} from 'node:path'
 import {convertObj} from 'swagger2openapi'
 import {
   generateMultiFileFromOas,
@@ -10,34 +9,27 @@ import {
   parseJsonOrYaml,
   prettyFormat,
 } from '@opensdks/cli'
-import type {DownloadableOpenAPI, ManifestInfo} from '../manifests/index.js'
-import manifestMap from '../manifests/index.js'
+import type {DownloadableOpenAPI, ManifestInfo} from './manifest-def.js'
 import {
   packageJsonTemplate,
   prettyWrite,
   tsConfigTemplate,
-} from './syncPackages.js'
+} from './templates.js'
 
-const __filename = url.fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+export type Manifest = ManifestInfo & {name: string}
 
-export const manifests = Object.entries(manifestMap).map(
-  ([name, manifest]) => ({
-    ...(manifest as ManifestInfo),
-    name,
-  }),
-)
-
-export type Manifest = (typeof manifests)[number]
-
-export async function syncManifests() {
-  await Promise.all(manifests.map(syncManifest))
+export async function syncManifests(
+  baseDir: string,
+  manifestMap: Record<string, ManifestInfo>,
+) {
+  const ms = Object.entries(manifestMap).map(([name, m]) => ({...m, name}))
+  await Promise.all(ms.map((m) => syncManifest(baseDir, m)))
 }
 
 // TODO: Move most of these functionality into opensdks/cli
 
-export async function syncManifest(m: Manifest) {
-  const basePath = pathJoin(__dirname, `../sdks/sdk-${m.name}`)
+export async function syncManifest(baseDir: string, m: Manifest) {
+  const basePath = pathJoin(baseDir, `../sdks/sdk-${m.name}`)
 
   async function setupPackage() {
     await fs.mkdir(basePath, {recursive: true})
@@ -222,5 +214,12 @@ export default syncManifests
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 if (import.meta.url.endsWith(process.argv[1]!)) {
-  void syncManifests()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const baseDir = pathJoin(process.cwd(), process.argv[2]!)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const manifestDir = pathJoin(baseDir, process.argv[3]!)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+  const manifestMap = await import(manifestDir).then((m) => m.default ?? m)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  void syncManifests(baseDir, manifestMap)
 }
