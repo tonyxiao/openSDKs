@@ -57,10 +57,10 @@ export interface paths {
         401: components['responses']['401']
       }
     }
-    /** Update One objects */
-    put: operations['updateOneObject']
     /** Delete One object */
     delete: operations['deleteOneObject']
+    /** Update One objects */
+    patch: operations['updateOneObject']
   }
   '/fields': {
     /** Find Many fields */
@@ -111,10 +111,10 @@ export interface paths {
         401: components['responses']['401']
       }
     }
-    /** Update One fields */
-    put: operations['updateOneField']
     /** Delete One field */
     delete: operations['deleteOneField']
+    /** Update One fields */
+    patch: operations['updateOneField']
   }
   '/relations': {
     /** Find Many relations */
@@ -165,10 +165,10 @@ export interface paths {
         401: components['responses']['401']
       }
     }
-    /** Update One relations */
-    put: operations['updateOneRelation']
     /** Delete One relation */
     delete: operations['deleteOneRelation']
+    /** Update One relations */
+    patch: operations['updateOneRelation']
   }
 }
 
@@ -176,6 +176,10 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
+    /**
+     * @description An object
+     * @example {}
+     */
     Object: {
       dataSourceId?: string
       nameSingular?: string
@@ -198,6 +202,17 @@ export interface components {
         }
       }
     }
+    /**
+     * @description A list of objects
+     * @example [
+     *   {}
+     * ]
+     */
+    Objects: components['schemas']['Object'][]
+    /**
+     * @description A field
+     * @example {}
+     */
     Field: {
       type?: string
       name?: string
@@ -237,6 +252,17 @@ export interface components {
       defaultValue?: Record<string, never>
       options?: Record<string, never>
     }
+    /**
+     * @description A list of fields
+     * @example [
+     *   {}
+     * ]
+     */
+    Fields: components['schemas']['Field'][]
+    /**
+     * @description A relation
+     * @example {}
+     */
     Relation: {
       relationType?: string
       fromObjectMetadata?: {
@@ -258,12 +284,21 @@ export interface components {
       fromFieldMetadataId?: string
       toFieldMetadataId?: string
     }
+    /**
+     * @description A list of relations
+     * @example [
+     *   {}
+     * ]
+     */
+    Relations: components['schemas']['Relation'][]
   }
   responses: {
-    /** @description Invalid request */
+    /** @description Bad Request */
     400: {
       content: {
         'application/json': {
+          statusCode?: number
+          message?: string
           error?: string
         }
       }
@@ -272,6 +307,8 @@ export interface components {
     401: {
       content: {
         'application/json': {
+          statusCode?: number
+          message?: string
           error?: string
         }
       }
@@ -361,7 +398,32 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              object?: components['schemas']['Object']
+              createOneObject?: components['schemas']['Object']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One object */
+  deleteOneObject: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              deleteOneObject?: {
+                /** Format: uuid */
+                id?: string
+              }
             }
           }
         }
@@ -389,32 +451,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              object?: components['schemas']['Object']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One object */
-  deleteOneObject: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              object?: {
-                /** Format: uuid */
-                id?: string
-              }
+              updateOneObject?: components['schemas']['Object']
             }
           }
         }
@@ -437,7 +474,32 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              field?: components['schemas']['Field']
+              createOneField?: components['schemas']['Field']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One field */
+  deleteOneField: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              deleteOneField?: {
+                /** Format: uuid */
+                id?: string
+              }
             }
           }
         }
@@ -465,32 +527,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              field?: components['schemas']['Field']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One field */
-  deleteOneField: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              field?: {
-                /** Format: uuid */
-                id?: string
-              }
+              updateOneField?: components['schemas']['Field']
             }
           }
         }
@@ -513,7 +550,32 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              relation?: components['schemas']['Relation']
+              createOneRelation?: components['schemas']['Relation']
+            }
+          }
+        }
+      }
+      400: components['responses']['400']
+      401: components['responses']['401']
+    }
+  }
+  /** Delete One relation */
+  deleteOneRelation: {
+    parameters: {
+      path: {
+        id: components['parameters']['idPath']
+      }
+    }
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          'application/json': {
+            data?: {
+              deleteOneRelation?: {
+                /** Format: uuid */
+                id?: string
+              }
             }
           }
         }
@@ -541,32 +603,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              relation?: components['schemas']['Relation']
-            }
-          }
-        }
-      }
-      400: components['responses']['400']
-      401: components['responses']['401']
-    }
-  }
-  /** Delete One relation */
-  deleteOneRelation: {
-    parameters: {
-      path: {
-        id: components['parameters']['idPath']
-      }
-    }
-    responses: {
-      /** @description Successful operation */
-      200: {
-        content: {
-          'application/json': {
-            data?: {
-              relation?: {
-                /** Format: uuid */
-                id?: string
-              }
+              updateOneRelation?: components['schemas']['Relation']
             }
           }
         }

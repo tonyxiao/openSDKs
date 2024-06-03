@@ -10,7 +10,7 @@ export const oasMeta = {
       name: 'AGPL-3.0',
       url: 'https://github.com/twentyhq/twenty?tab=AGPL-3.0-1-ov-file#readme',
     },
-    version: '0.2.0',
+    version: 'v0.1',
   },
   servers: [
     {
