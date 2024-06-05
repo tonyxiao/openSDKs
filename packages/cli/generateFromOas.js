@@ -21,26 +21,29 @@ if (!filename) {
 }
 const ret = await generateMultiFileFromOas(filename)
 
+const outName = path.basename(filename, path.extname(filename))
+/* Known Issue for Twenty OpenAPI Spec to replace keys with company
+    Remove condition once solved on twenty
+*/
+const types =
+  outName.trim() === 'twenty_core.oas'
+    ? ret.types
+        .replaceAll('createCompany', 'company')
+        .replaceAll('updateCompany', 'company')
+        .replaceAll('deleteCompany', 'company')
+    : ret.types
+
 if (options.debug) {
   console.log(ret.meta)
-  console.log(ret.types)
+  console.log(types)
 } else {
-  const outName = path.basename(filename, path.extname(filename))
   // TODO: Get rid of this hard coding...
   fs.writeFileSync(
     (options['meta-dir'] ?? 'src/') + outName + '.meta.ts',
     ret.meta,
   )
-  /* Known Issue for Twenty OpenAPI Spec to replace keys with company
-     Remove condition once solved on twenty
-  */
   fs.writeFileSync(
     (options['types-dir'] ?? '') + outName + '.types.d.ts',
-    outName.trim() === 'twenty_core.oas'
-      ? ret.types
-          .replaceAll('createCompany', 'company')
-          .replaceAll('updateCompany', 'company')
-          .replaceAll('deleteCompany', 'company')
-      : ret.types,
+    types,
   )
 }
