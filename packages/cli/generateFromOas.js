@@ -31,8 +31,16 @@ if (options.debug) {
     (options['meta-dir'] ?? 'src/') + outName + '.meta.ts',
     ret.meta,
   )
+  /* Known Issue for Twenty OpenAPI Spec to replace keys with company
+     Remove condition once solved on twenty
+  */
   fs.writeFileSync(
     (options['types-dir'] ?? '') + outName + '.types.d.ts',
-    ret.types,
+    outName.trim() === 'twenty_core.oas'
+      ? ret.types
+          .replaceAll('createCompany', 'company')
+          .replaceAll('updateCompany', 'company')
+          .replaceAll('deleteCompany', 'company')
+      : ret.types,
   )
 }
