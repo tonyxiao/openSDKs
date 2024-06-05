@@ -5016,7 +5016,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              createCompany?: components['schemas']['Company']
+              company?: components['schemas']['Company']
             }
           }
         }
@@ -5094,7 +5094,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              deleteCompany?: {
+              company?: {
                 /** Format: uuid */
                 id?: string
               }
@@ -5128,7 +5128,7 @@ export interface operations {
         content: {
           'application/json': {
             data?: {
-              updateCompany?: components['schemas']['Company']
+              company?: components['schemas']['Company']
             }
           }
         }
