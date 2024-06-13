@@ -8,6 +8,7 @@ import {
   type Link,
 } from '@opensdks/fetch-links'
 import {HTTPError} from './HTTPError.js'
+import {flattenNestedObject, FlattenOptions} from './utils.js'
 
 type _ClientOptions = NonNullable<Parameters<typeof _createClient>[0]>
 
@@ -99,3 +100,18 @@ export const formDataBodySerializer: BodySerializer<unknown> = (body) => {
   }
   return fd
 }
+
+export const createFormUrlEncodedBodySerializer =
+  (options?: FlattenOptions): BodySerializer<unknown> =>
+  (body) => {
+    const flattened = flattenNestedObject(body ?? {}, options)
+    return (
+      Object.entries(flattened)
+        // We leave the key as is so we don't need to encode accessors like []
+        .map(([key, value]) => `${key}=${encodeURIComponent(`${value}`)}`)
+        .join('&')
+    )
+    // Cannot use URLSearchParams because it encodes [] to %5B%5D in the key name which is unexpected
+    // const data = new URLSearchParams(flattened)
+    // return data.toString()
+  }

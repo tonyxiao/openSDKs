@@ -8,7 +8,36 @@ jest.setTimeout(70 * 15 * 1000) // In case of cold start
 const apiKey = process.env['STRIPE_APIKEY']!
 const maybeTest = apiKey ? test : test.skip
 
+const stripe = initStripeSDK({headers: {authorization: `Bearer ${apiKey}`}})
+
 maybeTest('get account', async () => {
-  const stripe = initStripeSDK({headers: {authorization: `Bearer ${apiKey}`}})
   expect(await stripe.GET('/v1/account').then((r) => r.data)).toBeTruthy()
+})
+
+maybeTest('create connected account', async () => {
+  expect(
+    await stripe
+      .POST('/v1/accounts', {
+        body: {
+          controller: {
+            stripe_dashboard: {
+              type: 'none',
+            },
+            fees: {
+              payer: 'application',
+            },
+            losses: {
+              payments: 'application',
+            },
+            requirement_collection: 'application',
+          },
+          capabilities: {
+            transfers: {requested: true},
+            card_payments: {requested: true},
+          },
+          country: 'US',
+        },
+      })
+      .then((r) => r.data),
+  ).toBeTruthy()
 })

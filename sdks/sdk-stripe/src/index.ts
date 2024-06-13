@@ -1,4 +1,5 @@
 import {
+  createFormUrlEncodedBodySerializer,
   initSDK,
   type ClientOptions,
   type SdkDefinition,
@@ -28,6 +29,18 @@ export type StripeSDKTypes = SDKTypes<
 export const stripeSdkDef = {
   types: {} as StripeSDKTypes,
   oasMeta: stripeOasMeta,
+  createClient(ctx, options) {
+    return ctx.createClient({
+      bodySerializer: createFormUrlEncodedBodySerializer({
+        keypathStyle: 'bracket',
+      }),
+      ...options,
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        ...options.headers,
+      },
+    })
+  },
 } satisfies SdkDefinition<StripeSDKTypes>
 
 export function initStripeSDK(opts: StripeSDKTypes['options']) {
