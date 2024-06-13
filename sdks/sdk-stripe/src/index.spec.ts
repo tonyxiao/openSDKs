@@ -14,30 +14,36 @@ maybeTest('get account', async () => {
   expect(await stripe.GET('/v1/account').then((r) => r.data)).toBeTruthy()
 })
 
-maybeTest('create connected account', async () => {
-  expect(
-    await stripe
-      .POST('/v1/accounts', {
-        body: {
-          controller: {
-            stripe_dashboard: {
-              type: 'none',
-            },
-            fees: {
-              payer: 'application',
-            },
-            losses: {
-              payments: 'application',
-            },
-            requirement_collection: 'application',
+maybeTest('create and delete connected account', async () => {
+  const connectedAccount = await stripe
+    .POST('/v1/accounts', {
+      body: {
+        controller: {
+          stripe_dashboard: {
+            type: 'none',
           },
-          capabilities: {
-            transfers: {requested: true},
-            card_payments: {requested: true},
+          fees: {
+            payer: 'application',
           },
-          country: 'US',
+          losses: {
+            payments: 'application',
+          },
+          requirement_collection: 'application',
         },
-      })
-      .then((r) => r.data),
-  ).toBeTruthy()
+        capabilities: {
+          transfers: {requested: true},
+          card_payments: {requested: true},
+        },
+        country: 'US',
+      },
+    })
+    .then((r) => r.data)
+  expect(connectedAccount).toBeTruthy()
+
+  const deletedConnectedAccount = await stripe
+    .DELETE('/v1/accounts/{account}', {
+      params: {path: {account: connectedAccount.id}},
+    })
+    .then((r) => r.data)
+  expect(deletedConnectedAccount.id).toEqual(connectedAccount.id)
 })
