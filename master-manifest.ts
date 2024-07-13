@@ -109,4 +109,35 @@ export default {
       }
       `,
   },
+  clerk: {
+    download: async () => {
+      const htmlText = await fetch(
+        'https://clerk.com/docs/reference/backend-api',
+      ).then((r) => r.text())
+      // Some crazy redoc stuff. Seriously can they make this any harder...
+      const jsPath = htmlText.match(/"([a-zA-Z0-9\/-]+redocly-state.+?)"/)?.[1]
+      if (!jsPath) {
+        throw new Error('Error finding openapi spec for Clerk')
+      }
+      const jsUrl = `https://clerk.com${jsPath}`
+      const jsText = await fetch(jsUrl).then((r) => r.text())
+      const jsonText = jsText.match(/JSON.parse\((["'].+["'])\);?/)?.[1]
+      try {
+        // Doubly nested json... crazy stuff
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-argument
+        const jsonState = JSON.parse(JSON.parse(jsonText!))
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        const oas = jsonState.definition.data
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (!oas.openapi) {
+          throw new Error('Missing openapi field in Clerk OpenAPI spec')
+        }
+        return [
+          {name: 'clerk', type: 'raw', data: JSON.stringify(oas, null, 2)},
+        ]
+      } catch (err) {
+        throw err
+      }
+    },
+  },
 } satisfies Record<string, ManifestInfo>

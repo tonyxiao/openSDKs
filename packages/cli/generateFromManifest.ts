@@ -84,10 +84,10 @@ export async function syncManifest(baseDir: string, m: Manifest) {
             json: 'json',
             yaml: 'yaml',
             yml: 'yaml',
-          }[d.url.split('.').pop()?.toLowerCase() ?? ''] ??
+          }[d.url?.split('.').pop()?.toLowerCase() ?? ''] ??
           'json'
 
-        console.log(`[${m.name}] Downloading ${d.url} ${format}`)
+        console.log(`[${m.name}] Downloading ${d.url ?? d.type} ${format}`)
         const oasPath = pathJoin(basePath, `${d.name}.oas.${format}`)
         await fs.writeFile(oasPath, oasText)
       }),
@@ -210,6 +210,9 @@ export async function generateIndex(
 }
 
 export async function downloadOas(ds: DownloadableOpenAPI) {
+  if (ds.type === 'raw') {
+    return ds.data
+  }
   if (ds.type === 'redoc') {
     return downloadRedocOas(ds.url)
   }

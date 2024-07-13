@@ -119,8 +119,11 @@ export {
     }`
     : ''
   // TODO: Figure out how to run organize imports also on the final result..
+  // Seems more scalable than trying to remove unused imports manually.
   return `
-import type {ClientOptions, SdkDefinition, SDKTypes, OpenAPITypes} from '@opensdks/runtime'
+import type {ClientOptions, SdkDefinition, SDKTypes${
+    opts.importOasTypes ? '' : ', OpenAPITypes'
+  }} from '@opensdks/runtime'
 import {initSDK} from '@opensdks/runtime'
 ${opts.importOasTypes ? imports.oasTypes : ''}
 ${opts.importOasMeta ? imports.oasMeta : ''}

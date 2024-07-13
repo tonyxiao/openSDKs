@@ -1,11 +1,20 @@
-export type DownloadableOpenAPI = {
-  name: string
-  url: string
-  /** TODO: Remove me, wrong level of abstraction */
-  type?: 'redoc' | 'readme'
-  /** Infer this from the url later... */
-  format?: 'json' | 'yaml'
-}
+export type DownloadableOpenAPI =
+  | {
+      name: string
+      url: string
+      data?: undefined
+      /** TODO: Remove me, wrong level of abstraction */
+      type?: 'redoc' | 'readme'
+      /** Infer this from the url later... */
+      format?: 'json' | 'yaml'
+    }
+  | {
+      name: string
+      data: string
+      type: 'raw'
+      url?: undefined
+      format?: 'json' | 'yaml'
+    }
 
 export interface ManifestInfo {
   /**
