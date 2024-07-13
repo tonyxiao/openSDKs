@@ -1,22 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Chargepoint",
+    "title": "Chargepoint SSO",
     "version": "0.0.0"
   },
   "servers": [
     {
-      "url": "https://sso.chargepoint.com/api/v1",
-      "description": "SSO"
-    },
-    {
-      "url": "https://na.chargepoint.com",
-      "description": "NA"
-    }
-  ],
-  "security": [
-    {
-      "cookie": []
+      "url": "https://sso.chargepoint.com/api/v1"
     }
   ],
   "paths": {
@@ -57,21 +47,24 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "redirect_url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token",
+                    "redirect_url"
+                  ]
                 }
               }
             }
           }
         }
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "cookie": {
-        "type": "apiKey",
-        "name": "Cookie",
-        "in": "header"
       }
     }
   }

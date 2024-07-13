@@ -3,16 +3,42 @@
  * For bugs & feature requests, please open an issue on the [GitHub](https://github.com/tonyxiao/openSDKs)
  */
 
-import type {ClientOptions, SdkDefinition, SDKTypes} from '@opensdks/runtime'
+import type {
+  ClientOptions,
+  OpenAPITypes,
+  SdkDefinition,
+  SDKTypes,
+} from '@opensdks/runtime'
 import {initSDK} from '@opensdks/runtime'
-import type {oasTypes} from '../chargepoint.oas.types.js'
-import {oasMeta} from './chargepoint.oas.meta.js'
+import type Oas_na from '../chargepoint_na.oas.types.js'
+import type Oas_sso from '../chargepoint_sso.oas.types.js'
+import {default as oas_na} from './chargepoint_na.oas.meta.js'
+import {default as oas_sso} from './chargepoint_sso.oas.meta.js'
 
-export type ChargepointSDKTypes = SDKTypes<oasTypes, ClientOptions>
+export type {Oas_na, Oas_sso}
+
+export {oas_na, oas_sso}
+
+export type ChargepointSDKTypes = SDKTypes<OpenAPITypes, ClientOptions>
 
 export const chargepointSdkDef = {
   types: {} as ChargepointSDKTypes,
-  oasMeta,
+  defaultOptions: {},
+  createClient(ctx, options) {
+    const na = ctx.createClient<Oas_na['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_na.servers[0]?.url,
+    })
+    const sso = ctx.createClient<Oas_sso['paths']>({
+      ...options,
+      baseUrl: options.baseUrl ?? oas_sso.servers[0]?.url,
+    })
+
+    return {
+      na,
+      sso,
+    }
+  },
 } satisfies SdkDefinition<ChargepointSDKTypes>
 
 export function initChargepointSDK(opts: ChargepointSDKTypes['options']) {

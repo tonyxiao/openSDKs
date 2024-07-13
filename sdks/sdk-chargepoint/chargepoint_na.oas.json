@@ -1,0 +1,210 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Chargepoint North America",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://na.chargepoint.com/"
+    }
+  ],
+  "security": [
+    {
+      "cookie": []
+    }
+  ],
+  "paths": {
+    "/index.php/community/getRegionQueues": {
+      "post": {
+        "operationId": "getRegionQueues",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "object",
+                          "properties": {
+                            "regions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "regionId": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "neLat": {
+                                    "type": "string"
+                                  },
+                                  "neLng": {
+                                    "type": "string"
+                                  },
+                                  "swLat": {
+                                    "type": "string"
+                                  },
+                                  "swLng": {
+                                    "type": "string"
+                                  },
+                                  "includeDcFast": {
+                                    "type": "string"
+                                  },
+                                  "isDynamic": {
+                                    "type": "string"
+                                  },
+                                  "regionUntilTime": {
+                                    "type": "string"
+                                  },
+                                  "queueUntilTime": {
+                                    "type": "null"
+                                  },
+                                  "isActive": {
+                                    "type": "string"
+                                  },
+                                  "regionStatus": {
+                                    "type": "object",
+                                    "properties": {
+                                      "status": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "status"
+                                    ]
+                                  },
+                                  "schedulerData": {
+                                    "type": "array",
+                                    "items": {}
+                                  },
+                                  "portQueue": {
+                                    "type": "array",
+                                    "items": {}
+                                  },
+                                  "stationNum": {
+                                    "type": "number"
+                                  },
+                                  "responsePending": {
+                                    "type": "object",
+                                    "properties": {
+                                      "deviceDetailId": {
+                                        "type": "string"
+                                      },
+                                      "deviceId": {
+                                        "type": "string"
+                                      },
+                                      "state": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "deviceDetailId",
+                                      "deviceId",
+                                      "state"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "regionId",
+                                  "name",
+                                  "neLat",
+                                  "neLng",
+                                  "swLat",
+                                  "swLng",
+                                  "includeDcFast",
+                                  "isDynamic",
+                                  "regionUntilTime",
+                                  "queueUntilTime",
+                                  "isActive",
+                                  "regionStatus",
+                                  "schedulerData",
+                                  "portQueue",
+                                  "stationNum",
+                                  "responsePending"
+                                ]
+                              }
+                            },
+                            "stationStatus": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "mode": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "regions",
+                            "stationStatus",
+                            "mode"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "message"
+                      ]
+                    },
+                    "stationStatus": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "response",
+                    "stationStatus"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/index.php/community/activateRegion": {
+      "post": {
+        "operationId": "activateRegion",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookie": {
+        "type": "apiKey",
+        "name": "Cookie",
+        "in": "header"
+      }
+    }
+  }
+}

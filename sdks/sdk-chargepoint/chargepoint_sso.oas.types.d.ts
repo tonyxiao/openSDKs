@@ -11,14 +11,7 @@ export interface paths {
 
 export type webhooks = Record<string, never>
 
-export interface components {
-  schemas: never
-  responses: never
-  parameters: never
-  requestBodies: never
-  headers: never
-  pathItems: never
-}
+export type components = Record<string, never>
 
 export type $defs = Record<string, never>
 
@@ -41,7 +34,10 @@ export interface operations {
     responses: {
       200: {
         content: {
-          'application/json': null
+          'application/json': {
+            token: string
+            redirect_url: string
+          }
         }
       }
     }

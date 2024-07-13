@@ -142,8 +142,20 @@ export default {
   },
   chargepoint: {
     download: () =>
-      import('./manifests/chargepoint.oas.js').then(({oas}) => [
-        {name: 'chargepoint', type: 'raw', data: JSON.stringify(oas, null, 2)},
-      ]),
+      import('./manifests/chargepoint.oas.js').then(
+        ({naOas: na, ssoOas: sso}) => [
+          // a bit annoying names has to be fully formed like this...
+          {
+            name: 'chargepoint_na',
+            type: 'raw',
+            data: JSON.stringify(na, null, 2),
+          },
+          {
+            name: 'chargepoint_sso',
+            type: 'raw',
+            data: JSON.stringify(sso, null, 2),
+          },
+        ],
+      ),
   },
 } satisfies Record<string, ManifestInfo>
