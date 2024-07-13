@@ -59,6 +59,31 @@ export interface paths {
      */
     post: operations['get-pay-statement']
   }
+  '/employer/pay-groups': {
+    /**
+     * Get All Pay Groups
+     * @description Read company pay groups and frequencies
+     */
+    get: operations['get-all-pay-groups']
+    parameters: {
+      query?: {
+        individual_id?: string
+        pay_frequencies?: string[]
+      }
+    }
+  }
+  '/employer/pay-groups/{pay_group_id}': {
+    /**
+     * Get Pay Group
+     * @description Read information from a single pay group
+     */
+    get: operations['get-pay-group']
+    parameters: {
+      path: {
+        pay_group_id: string
+      }
+    }
+  }
   '/employer/benefits': {
     /**
      * Get All Deductions
@@ -356,14 +381,14 @@ export interface components {
         | {
             data?: string
             /** @enum {string} */
-            type?: 'work' | 'personal'
+            type?: 'work' | 'personal' | null
           }[]
         | null
       phone_numbers?:
         | ({
             data?: string
             /** @enum {string} */
-            type?: 'work' | 'personal'
+            type?: 'work' | 'personal' | null
           } | null)[]
         | null
       /**
@@ -595,6 +620,16 @@ export interface components {
     }
     CreateAccessTokenResponse: {
       access_token: string
+      /** @description The Finch uuid of the account used to connect this company. */
+      account_id: string
+      client_type: components['schemas']['ClientType']
+      /** @description The Finch uuid of the company associated with the `access_token`. */
+      company_id: string
+      connection_type: components['schemas']['ConnectionType']
+      /** @description An array of the authorized products associated with the `access_token`. */
+      products: string[]
+      /** @description The payroll provider associated with the `access_token`. */
+      provider_id: string
     }
     /** AutomatedAsyncJob */
     AutomatedAsyncJob: {
@@ -758,7 +793,7 @@ export interface components {
             | {
                 data?: string
                 /** @enum {string} */
-                type?: 'work' | 'personal'
+                type?: 'work' | 'personal' | null
               }[]
             | null
           phone_numbers?:
@@ -843,6 +878,7 @@ export interface components {
           } | null
           start_date?: components['schemas']['Date']
           end_date?: components['schemas']['Date']
+          latest_rehire_date?: components['schemas']['Date']
           /** @description `true` if the individual an an active employee or contractor at the company. */
           is_active?: boolean | null
           /** @description Worker's compensation classification code for this employee */
@@ -994,6 +1030,40 @@ export interface components {
         }
       }[]
     }
+    GetAllPayGroupsResponse: {
+      /**
+       * Format: uuid
+       * @description Finch id (uuidv4) for the pay group
+       */
+      id?: string
+      /** @description Name of the pay group */
+      name?: string
+      /** @description List of pay frequencies associated with this pay group */
+      pay_frequencies?: components['schemas']['PayFrequency'][]
+    }[]
+    GetPayGroupResponse: {
+      /**
+       * Format: uuid
+       * @description Finch id (uuidv4) for the pay group
+       */
+      id?: string
+      /** @description Name of the pay group */
+      name?: string
+      /** @description List of pay frequencies associated with this pay group */
+      pay_frequencies?: components['schemas']['PayFrequency'][]
+      individual_ids?: string[]
+    }
+    /** @enum {string} */
+    PayFrequency:
+      | 'annually'
+      | 'semi_annually'
+      | 'quarterly'
+      | 'monthly'
+      | 'semi_monthly'
+      | 'bi_weekly'
+      | 'weekly'
+      | 'daily'
+      | 'other'
     GetProvidersResponse: {
       /** @description The id of the payroll provider used in Connect. */
       id?: string
@@ -1011,6 +1081,8 @@ export interface components {
       primary_color?: string
       /** @description [DEPRECATED] Whether the Finch integration with this provider uses the Assisted Connect Flow by default. This field is now deprecated. Please check for a `type` of `assisted` in the `authentication_methods` field instead. */
       manual?: boolean
+      /** @description `true` if the integration is in a beta state, `false` otherwise */
+      beta?: boolean
       /** @description The list of authentication methods supported by the provider. */
       authentication_methods?: components['schemas']['AuthenticationMethod'][]
     }[]
@@ -1029,7 +1101,7 @@ export interface components {
           status?: components['schemas']['ConnectionStatus']
           message?: string
         }
-      }
+      }[]
       /** @description An array of the authorized products associated with the `access_token`. */
       products?: string[]
       /** @description The account username used for login associated with the `access_token`. */
@@ -1057,15 +1129,15 @@ export interface components {
       /** @description The list of frequencies supported by the provider for this benefit */
       frequencies?: components['schemas']['BenefitFrequency'][]
       /** @description Supported deduction types. An empty array indicates deductions are not supported. */
-      employee_deduction?: ('fixed' | 'percent')[] | null
+      employee_deduction?: ('fixed' | 'percent' | null)[] | null
       /** @description Supported contribution types. An empty array indicates contributions are not supported. */
-      company_contribution?: ('fixed' | 'percent')[] | null
+      company_contribution?: ('fixed' | 'percent' | null)[] | null
       /** @description Whether the provider supports an annual maximum for this benefit. */
       annual_maximum?: boolean | null
       /** @description Whether the provider supports catch up for this benefit. This field will only be true for retirement benefits. */
       catch_up?: boolean | null
       /** @description Whether the provider supports HSA contribution limits. Empty if this feature is not supported for the benefit. This array only has values for HSA benefits. */
-      hsa_contribution_limit?: ('individual' | 'family')[] | null
+      hsa_contribution_limit?: ('individual' | 'family' | null)[] | null
     }[]
     UpdateCompanyBenefitResponse: {
       benefit_id?: string
@@ -1196,6 +1268,11 @@ export interface components {
       | 'custom_pre_tax'
       | null
     /**
+     * BenefitDescription
+     * @description Name of the benefit as it appears in the provider and pay statements. Recommend limiting this to <30 characters due to limitations in specific providers (e.g. Justworks).
+     */
+    BenefitDescription: string
+    /**
      * BenefitFrequency
      * @enum {string|null}
      */
@@ -1216,15 +1293,15 @@ export interface components {
       /** @description The list of frequencies supported by the provider for this benefit */
       frequencies?: components['schemas']['BenefitFrequency'][]
       /** @description Supported deduction types. An empty array indicates deductions are not supported. */
-      employee_deduction?: ('fixed' | 'percent')[] | null
+      employee_deduction?: ('fixed' | 'percent' | null)[] | null
       /** @description Supported contribution types. An empty array indicates contributions are not supported. */
-      company_contribution?: ('fixed' | 'percent')[] | null
+      company_contribution?: ('fixed' | 'percent' | null)[] | null
       /** @description Whether the provider supports an annual maximum for this benefit. */
       annual_maximum?: boolean | null
       /** @description Whether the provider supports catch up for this benefit. This field will only be true for retirement benefits. */
       catch_up?: boolean | null
       /** @description Whether the provider supports HSA contribution limits. Empty if this feature is not supported for the benefit. This array only has values for HSA benefits. */
-      hsa_contribution_limit?: ('individual' | 'family')[] | null
+      hsa_contribution_limit?: ('individual' | 'family' | null)[] | null
     }
     /**
      * ClientType
@@ -1234,9 +1311,9 @@ export interface components {
     ClientType: 'production' | 'development' | 'sandbox'
     /**
      * ConnectionType
-     * @description The type of the connection associated with the token.<br>
-     * `provider` - connection to an external provider<br>
-     * `finch` - finch-generated data.
+     * @description The type of the connection associated with the token.
+     * - `provider` - connection to an external provider
+     * - `finch` - finch-generated data.
      * @enum {string}
      */
     ConnectionType: 'provider' | 'finch'
@@ -1246,8 +1323,6 @@ export interface components {
       type?: components['schemas']['BenefitType']
       description?: string | null
       frequency?: components['schemas']['BenefitFrequency']
-      company_contribution?: components['schemas']['BenefitContribution']
-      employee_deduction?: components['schemas']['BenefitContribution']
     }
     /** IndividualBenefits */
     IndividualBenefits: {
@@ -1493,11 +1568,10 @@ export interface components {
       }
     }
     /**
-     * @description - `supported`: This operation is supported by both the provider and Finch <br>
-     * - `not_supported_by_finch`: This operation is not supported by Finch but supported by the provider <br>
-     * - `not_supported_by_provider`: This operation is not supported by the provider, so Finch cannot support <br>
+     * @description - `supported`: This operation is supported by both the provider and Finch
+     * - `not_supported_by_finch`: This operation is not supported by Finch but supported by the provider
+     * - `not_supported_by_provider`: This operation is not supported by the provider, so Finch cannot support
      * - `client_access_only`: This behavior is supported by the provider, but only available to the client and not to Finch
-     *
      * @enum {string}
      */
     OperationSupport:
@@ -1723,6 +1797,45 @@ export interface operations {
     }
   }
   /**
+   * Get All Pay Groups
+   * @description Read company pay groups and frequencies
+   */
+  'get-all-pay-groups': {
+    parameters: {
+      query?: {
+        individual_id?: string
+        pay_frequencies?: string[]
+      }
+    }
+    responses: {
+      /** @description Company pay groups */
+      200: {
+        content: {
+          'application/json': components['schemas']['GetAllPayGroupsResponse']
+        }
+      }
+    }
+  }
+  /**
+   * Get Pay Group
+   * @description Read information from a single pay group
+   */
+  'get-pay-group': {
+    parameters: {
+      path: {
+        pay_group_id: string
+      }
+    }
+    responses: {
+      /** @description Pay group data */
+      200: {
+        content: {
+          'application/json': components['schemas']['GetPayGroupResponse']
+        }
+      }
+    }
+  }
+  /**
    * Get All Deductions
    * @description List all company-wide deductions and contributions.
    */
@@ -1750,7 +1863,7 @@ export interface operations {
       content: {
         'application/json': {
           type?: components['schemas']['BenefitType']
-          description?: string
+          description?: components['schemas']['BenefitDescription']
           frequency?: components['schemas']['BenefitFrequency']
         }
       }
@@ -2027,7 +2140,13 @@ export interface operations {
       }
     }
     responses: {
-      /** @description Multi-Status (WebDAV) */
+      /** @description Success for all individuals. Unenrolled all individuals from the benefit. */
+      200: {
+        content: {
+          'application/json': components['schemas']['UnenrollIndividualBenefitResponse']
+        }
+      }
+      /** @description Multi-Status. Some individuals may not have succeeded. See body for details. */
       207: {
         content: {
           'application/json': components['schemas']['UnenrollIndividualBenefitResponse']
@@ -2054,7 +2173,10 @@ export interface operations {
     requestBody?: {
       content: {
         'application/json': {
-          /** @example <your_client_id> */
+          /**
+           * Format: uuid
+           * @example 6d28c315-5eaa-4071-8ea5-f030eb45edbc
+           */
           client_id: string
           /** @example <your_client_secret> */
           client_secret: string
@@ -2403,7 +2525,7 @@ export interface operations {
           provider_id: string
           authentication_type?: components['schemas']['AuthenticationType']
           products?: string[]
-          /** @description Optional: the size of the employer to be created with this connection. Defaults to 20 */
+          /** @description Optional: the size of the employer to be created with this connection. Defaults to 20. Note that if this is higher than 100, historical payroll data will not be generated, and instead only one pay period will be created. */
           employee_size?: number
         }
       }

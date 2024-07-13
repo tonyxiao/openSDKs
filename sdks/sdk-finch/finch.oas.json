@@ -222,6 +222,7 @@
                             },
                             "start_date": "2017-06-30",
                             "end_date": null,
+                            "latest_rehire_date": null,
                             "is_active": true,
                             "class_code": "8810",
                             "location": {
@@ -458,6 +459,96 @@
         }
       }
     },
+    "/employer/pay-groups": {
+      "parameters": [
+        {
+          "schema": {"type": "string", "format": "uuid"},
+          "name": "individual_id",
+          "in": "query",
+          "required": false
+        },
+        {
+          "schema": {"type": "array", "items": {"type": "string"}},
+          "name": "pay_frequencies",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "get": {
+        "description": "Read company pay groups and frequencies",
+        "summary": "Get All Pay Groups",
+        "operationId": "get-all-pay-groups",
+        "tags": ["Payroll"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Company pay groups",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "responses": [
+                        {
+                          "id": "5d0b10a1-a09a-430f-81f1-20be735dc5e9",
+                          "name": "Monthly",
+                          "pay_frequencies": ["monthly"]
+                        },
+                        {
+                          "id": "9349eed4-4064-4641-ba8e-9e1ad7e1d014",
+                          "name": "Weekly",
+                          "pay_frequencies": ["weekly"]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllPayGroupsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employer/pay-groups/{pay_group_id}": {
+      "parameters": [
+        {
+          "schema": {"type": "string"},
+          "name": "pay_group_id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "description": "Read information from a single pay group",
+        "summary": "Get Pay Group",
+        "operationId": "get-pay-group",
+        "tags": ["Payroll"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Pay group data",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "id": "5d0b10a1-a09a-430f-81f1-20be735dc5e9",
+                      "name": "Monthly",
+                      "pay_frequencies": ["monthly"],
+                      "individual_ids": ["be7b048c-a6f3-4194-a017-2f537d4f3565"]
+                    }
+                  }
+                },
+                "schema": {"$ref": "#/components/schemas/GetPayGroupResponse"}
+              }
+            }
+          }
+        }
+      }
+    },
     "/employer/benefits": {
       "get": {
         "summary": "Get All Deductions",
@@ -503,7 +594,9 @@
                 "type": "object",
                 "properties": {
                   "type": {"$ref": "#/components/schemas/BenefitType"},
-                  "description": {"type": "string"},
+                  "description": {
+                    "$ref": "#/components/schemas/BenefitDescription"
+                  },
                   "frequency": {"$ref": "#/components/schemas/BenefitFrequency"}
                 }
               }
@@ -1152,8 +1245,8 @@
           }
         },
         "responses": {
-          "207": {
-            "description": "Multi-Status (WebDAV)",
+          "200": {
+            "description": "Success for all individuals. Unenrolled all individuals from the benefit.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1170,6 +1263,49 @@
                           "finch_code": "unenrolled_individual_benefit",
                           "message": "Unenrolled individual from benefit"
                         }
+                      },
+                      {
+                        "individual_id": "e63c21ab-7cde-49d8-b6d6-ce208e84bf09",
+                        "code": 200,
+                        "body": {
+                          "name": "success",
+                          "finch_code": "unenrolled_individual_benefit",
+                          "message": "Unenrolled individual from benefit"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "207": {
+            "description": "Multi-Status. Some individuals may not have succeeded. See body for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnenrollIndividualBenefitResponse"
+                },
+                "examples": {
+                  "Multi Status": {
+                    "value": [
+                      {
+                        "individual_id": "7fc9fb3a-2a62-47c1-9a5a-c9146483b58e",
+                        "code": 200,
+                        "body": {
+                          "name": "success",
+                          "finch_code": "unenrolled_individual_benefit",
+                          "message": "Unenrolled individual from benefit"
+                        }
+                      },
+                      {
+                        "individual_id": "e63c21ab-7cde-49d8-b6d6-ce208e84bf09",
+                        "code": 404,
+                        "body": {
+                          "name": "not_found_error",
+                          "finch_code": "individual_not_found",
+                          "message": "Individual not found"
+                        }
                       }
                     ]
                   }
@@ -1181,7 +1317,17 @@
             "description": "Benefit Not Found",
             "content": {
               "application/json": {
-                "schema": {"$ref": "#/components/schemas/Error"}
+                "schema": {"$ref": "#/components/schemas/Error"},
+                "examples": {
+                  "Not Found": {
+                    "value": {
+                      "code": 404,
+                      "name": "not_found_error",
+                      "finch_code": "benefit_not_found",
+                      "message": "Benefit not found"
+                    }
+                  }
+                }
               }
             }
           }
@@ -1205,7 +1351,8 @@
                 "properties": {
                   "client_id": {
                     "type": "string",
-                    "example": "<your_client_id>"
+                    "format": "uuid",
+                    "example": "6d28c315-5eaa-4071-8ea5-f030eb45edbc"
                   },
                   "client_secret": {
                     "type": "string",
@@ -1233,7 +1380,17 @@
                   "$ref": "#/components/schemas/CreateAccessTokenResponse"
                 },
                 "examples": {
-                  "Success": {"value": {"access_token": "<your_access_token>"}}
+                  "Success": {
+                    "value": {
+                      "access_token": "7e965183-9332-423c-9259-3edafb332ad2",
+                      "account_id": "ac3a2af9-ce03-46c4-9142-81abe789c64d",
+                      "client_type": "production",
+                      "company_id": "4ab15e51-11ad-49f4-acae-f343b7794375",
+                      "connection_type": "provider",
+                      "products": ["directory", "employment", "individual"],
+                      "provider_id": "gusto"
+                    }
+                  }
                 }
               }
             }
@@ -1246,6 +1403,7 @@
         "summary": "Providers",
         "operationId": "get-providers",
         "description": "Return details on all available payroll and HR systems.",
+        "security": [],
         "parameters": [],
         "tags": ["Management"],
         "responses": {
@@ -2152,7 +2310,7 @@
                   "products": {"type": "array", "items": {"type": "string"}},
                   "employee_size": {
                     "type": "integer",
-                    "description": "Optional: the size of the employer to be created with this connection. Defaults to 20   "
+                    "description": "Optional: the size of the employer to be created with this connection. Defaults to 20. Note that if this is higher than 100, historical payroll data will not be generated, and instead only one pay period will be created."
                   }
                 },
                 "required": ["provider_id"]
@@ -2706,14 +2864,20 @@
                   "sole_proprietor",
                   "non_profit",
                   "partnership",
-                  "cooperative"
+                  "cooperative",
+                  null
                 ],
                 "nullable": true
               },
               "subtype": {
                 "type": "string",
                 "description": "The tax payer subtype of the company.",
-                "enum": ["s_corporation", "c_corporation", "b_corporation"],
+                "enum": [
+                  "s_corporation",
+                  "c_corporation",
+                  "b_corporation",
+                  null
+                ],
                 "nullable": true
               }
             }
@@ -2792,7 +2956,7 @@
                 "account_type": {
                   "type": "string",
                   "description": "The type of bank account.",
-                  "enum": ["checking", "savings"],
+                  "enum": ["checking", "savings", null],
                   "nullable": true
                 },
                 "account_number": {
@@ -2852,7 +3016,7 @@
               "type": "object",
               "properties": {
                 "data": {"type": "string"},
-                "type": {"type": "string", "enum": ["work", "personal"]}
+                "type": {"type": "string", "enum": ["work", "personal", null]}
               }
             }
           },
@@ -2866,7 +3030,7 @@
                 "data": {"type": "string", "nullable": false},
                 "type": {
                   "type": "string",
-                  "enum": ["work", "personal"],
+                  "enum": ["work", "personal", null],
                   "nullable": false
                 }
               }
@@ -2875,7 +3039,7 @@
           "gender": {
             "type": "string",
             "description": "The gender of the individual.",
-            "enum": ["female", "male", "other", "decline_to_specify"],
+            "enum": ["female", "male", "other", "decline_to_specify", null],
             "nullable": true
           },
           "ethnicity": {
@@ -2888,7 +3052,8 @@
               "american_indian_or_alaska_native",
               "hispanic_or_latino",
               "two_or_more_races",
-              "decline_to_specify"
+              "decline_to_specify",
+              null
             ],
             "description": "The EEOC-defined ethnicity of the individual.",
             "nullable": true
@@ -2978,7 +3143,7 @@
               "type": {
                 "type": "string",
                 "description": "The main employment type of the individual.",
-                "enum": ["employee", "contractor"],
+                "enum": ["employee", "contractor", null],
                 "nullable": true
               },
               "subtype": {
@@ -2990,7 +3155,8 @@
                   "part_time",
                   "temp",
                   "seasonal",
-                  "individual_contractor"
+                  "individual_contractor",
+                  null
                 ],
                 "nullable": true
               }
@@ -3330,8 +3496,37 @@
       },
       "CreateAccessTokenResponse": {
         "type": "object",
-        "properties": {"access_token": {"type": "string"}},
-        "required": ["access_token"]
+        "properties": {
+          "access_token": {"type": "string"},
+          "account_id": {
+            "type": "string",
+            "description": "The Finch uuid of the account used to connect this company."
+          },
+          "client_type": {"$ref": "#/components/schemas/ClientType"},
+          "company_id": {
+            "type": "string",
+            "description": "The Finch uuid of the company associated with the `access_token`."
+          },
+          "connection_type": {"$ref": "#/components/schemas/ConnectionType"},
+          "products": {
+            "type": "array",
+            "description": "An array of the authorized products associated with the `access_token`.",
+            "items": {"type": "string"}
+          },
+          "provider_id": {
+            "type": "string",
+            "description": "The payroll provider associated with the `access_token`."
+          }
+        },
+        "required": [
+          "access_token",
+          "account_id",
+          "client_type",
+          "company_id",
+          "connection_type",
+          "products",
+          "provider_id"
+        ]
       },
       "AutomatedAsyncJob": {
         "title": "AutomatedAsyncJob",
@@ -3454,14 +3649,20 @@
                   "sole_proprietor",
                   "non_profit",
                   "partnership",
-                  "cooperative"
+                  "cooperative",
+                  null
                 ],
                 "nullable": true
               },
               "subtype": {
                 "type": "string",
                 "description": "The tax payer subtype of the company.",
-                "enum": ["s_corporation", "c_corporation", "b_corporation"],
+                "enum": [
+                  "s_corporation",
+                  "c_corporation",
+                  "b_corporation",
+                  null
+                ],
                 "nullable": true
               }
             }
@@ -3540,7 +3741,7 @@
                 "account_type": {
                   "type": "string",
                   "description": "The type of bank account.",
-                  "enum": ["checking", "savings"],
+                  "enum": ["checking", "savings", null],
                   "nullable": true
                 },
                 "account_number": {
@@ -3662,7 +3863,7 @@
                           "data": {"type": "string"},
                           "type": {
                             "type": "string",
-                            "enum": ["work", "personal"]
+                            "enum": ["work", "personal", null]
                           }
                         }
                       }
@@ -3681,7 +3882,7 @@
                           },
                           "type": {
                             "type": "string",
-                            "enum": ["work", "personal"],
+                            "enum": ["work", "personal", null],
                             "nullable": true
                           }
                         }
@@ -3690,7 +3891,13 @@
                     "gender": {
                       "type": "string",
                       "description": "The gender of the individual.",
-                      "enum": ["female", "male", "other", "decline_to_specify"],
+                      "enum": [
+                        "female",
+                        "male",
+                        "other",
+                        "decline_to_specify",
+                        null
+                      ],
                       "nullable": true
                     },
                     "ethnicity": {
@@ -3704,7 +3911,8 @@
                         "american_indian_or_alaska_native",
                         "hispanic_or_latino",
                         "two_or_more_races",
-                        "decline_to_specify"
+                        "decline_to_specify",
+                        null
                       ],
                       "nullable": true
                     },
@@ -3801,7 +4009,7 @@
                         "type": {
                           "type": "string",
                           "description": "The main employment type of the individual.",
-                          "enum": ["employee", "contractor"],
+                          "enum": ["employee", "contractor", null],
                           "nullable": true
                         },
                         "subtype": {
@@ -3813,7 +4021,8 @@
                             "part_time",
                             "temp",
                             "seasonal",
-                            "individual_contractor"
+                            "individual_contractor",
+                            null
                           ],
                           "nullable": true
                         }
@@ -3821,6 +4030,7 @@
                     },
                     "start_date": {"$ref": "#/components/schemas/Date"},
                     "end_date": {"$ref": "#/components/schemas/Date"},
+                    "latest_rehire_date": {"$ref": "#/components/schemas/Date"},
                     "is_active": {
                       "type": "boolean",
                       "description": "`true` if the individual an an active employee or contractor at the company.",
@@ -3929,14 +4139,15 @@
             "enum": [
               "regular_payroll",
               "off_cycle_payroll",
-              "one_time_payment"
+              "one_time_payment",
+              null
             ],
             "nullable": true
           },
           "payment_method": {
             "type": "string",
             "description": "The payment method.",
-            "enum": ["check", "direct_deposit"],
+            "enum": ["check", "direct_deposit", null],
             "nullable": true
           },
           "total_hours": {
@@ -3970,7 +4181,8 @@
                     "commission",
                     "tips",
                     "1099",
-                    "other"
+                    "other",
+                    null
                   ],
                   "nullable": true
                 },
@@ -4008,7 +4220,7 @@
                 "type": {
                   "type": "string",
                   "description": "The type of taxes.",
-                  "enum": ["state", "federal", "local", "fica"],
+                  "enum": ["state", "federal", "local", "fica", null],
                   "nullable": true
                 },
                 "name": {
@@ -4120,6 +4332,63 @@
           }
         }
       },
+      "GetAllPayGroupsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Finch id (uuidv4) for the pay group"
+            },
+            "name": {"type": "string", "description": "Name of the pay group"},
+            "pay_frequencies": {
+              "type": "array",
+              "description": "List of pay frequencies associated with this pay group",
+              "items": {"$ref": "#/components/schemas/PayFrequency"}
+            }
+          }
+        }
+      },
+      "GetPayGroupResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Finch id (uuidv4) for the pay group"
+          },
+          "name": {"type": "string", "description": "Name of the pay group"},
+          "pay_frequencies": {
+            "type": "array",
+            "description": "List of pay frequencies associated with this pay group",
+            "items": {"$ref": "#/components/schemas/PayFrequency"}
+          },
+          "individual_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Finch id (uuidv4) for an individual assigned to this pay group"
+            }
+          }
+        }
+      },
+      "PayFrequency": {
+        "type": "string",
+        "enum": [
+          "annually",
+          "semi_annually",
+          "quarterly",
+          "monthly",
+          "semi_monthly",
+          "bi_weekly",
+          "weekly",
+          "daily",
+          "other"
+        ]
+      },
       "GetProvidersResponse": {
         "type": "array",
         "items": {
@@ -4158,6 +4427,10 @@
               "type": "boolean",
               "description": "[DEPRECATED] Whether the Finch integration with this provider uses the Assisted Connect Flow by default. This field is now deprecated. Please check for a `type` of `assisted` in the `authentication_methods` field instead."
             },
+            "beta": {
+              "type": "boolean",
+              "description": "`true` if the integration is in a beta state, `false` otherwise"
+            },
             "authentication_methods": {
               "type": "array",
               "description": "The list of authentication methods supported by the provider.",
@@ -4184,14 +4457,17 @@
             "description": "The Finch uuid of the account used to connect this company."
           },
           "authentication_methods": {
-            "type": "object",
-            "properties": {
-              "type": {"type": "string"},
-              "connection_status": {
-                "type": "object",
-                "properties": {
-                  "status": {"$ref": "#/components/schemas/ConnectionStatus"},
-                  "message": {"type": "string"}
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {"type": "string"},
+                "connection_status": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"$ref": "#/components/schemas/ConnectionStatus"},
+                    "message": {"type": "string"}
+                  }
                 }
               }
             }
@@ -4255,13 +4531,13 @@
               "type": "array",
               "description": "Supported deduction types. An empty array indicates deductions are not supported.",
               "nullable": true,
-              "items": {"type": "string", "enum": ["fixed", "percent"]}
+              "items": {"type": "string", "enum": ["fixed", "percent", null]}
             },
             "company_contribution": {
               "type": "array",
               "description": "Supported contribution types. An empty array indicates contributions are not supported.",
               "nullable": true,
-              "items": {"type": "string", "enum": ["fixed", "percent"]}
+              "items": {"type": "string", "enum": ["fixed", "percent", null]}
             },
             "annual_maximum": {
               "type": "boolean",
@@ -4277,7 +4553,10 @@
               "description": "Whether the provider supports HSA contribution limits. Empty if this feature is not supported for the benefit. This array only has values for HSA benefits.",
               "type": "array",
               "nullable": true,
-              "items": {"type": "string", "enum": ["individual", "family"]}
+              "items": {
+                "type": "string",
+                "enum": ["individual", "family", null]
+              }
             }
           }
         }
@@ -4422,7 +4701,8 @@
               "weekly",
               "daily",
               "hourly",
-              "fixed"
+              "fixed",
+              null
             ],
             "nullable": true
           },
@@ -4475,7 +4755,7 @@
       "Date": {
         "type": "string",
         "title": "Date",
-        "pattern": "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))",
+        "pattern": "(\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))",
         "nullable": true
       },
       "BenefitType": {
@@ -4500,16 +4780,23 @@
           "simple",
           "commuter",
           "custom_post_tax",
-          "custom_pre_tax"
+          "custom_pre_tax",
+          null
         ],
         "description": "Type of benefit.",
         "x-tags": ["Models"],
         "nullable": true
       },
+      "BenefitDescription": {
+        "type": "string",
+        "title": "BenefitDescription",
+        "description": "Name of the benefit as it appears in the provider and pay statements. Recommend limiting this to <30 characters due to limitations in specific providers (e.g. Justworks).",
+        "x-tags": ["Models"]
+      },
       "BenefitFrequency": {
         "type": "string",
         "title": "BenefitFrequency",
-        "enum": ["one_time", "every_paycheck", "monthly"],
+        "enum": ["one_time", "every_paycheck", "monthly", null],
         "x-tags": ["Models"],
         "nullable": true
       },
@@ -4522,7 +4809,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["fixed", "percent"],
+            "enum": ["fixed", "percent", null],
             "description": "Contribution type.",
             "nullable": true
           },
@@ -4547,13 +4834,13 @@
             "type": "array",
             "description": "Supported deduction types. An empty array indicates deductions are not supported.",
             "nullable": true,
-            "items": {"type": "string", "enum": ["fixed", "percent"]}
+            "items": {"type": "string", "enum": ["fixed", "percent", null]}
           },
           "company_contribution": {
             "type": "array",
             "description": "Supported contribution types. An empty array indicates contributions are not supported.",
             "nullable": true,
-            "items": {"type": "string", "enum": ["fixed", "percent"]}
+            "items": {"type": "string", "enum": ["fixed", "percent", null]}
           },
           "annual_maximum": {
             "type": "boolean",
@@ -4569,7 +4856,7 @@
             "description": "Whether the provider supports HSA contribution limits. Empty if this feature is not supported for the benefit. This array only has values for HSA benefits.",
             "type": "array",
             "nullable": true,
-            "items": {"type": "string", "enum": ["individual", "family"]}
+            "items": {"type": "string", "enum": ["individual", "family", null]}
           }
         }
       },
@@ -4583,7 +4870,7 @@
         "type": "string",
         "title": "ConnectionType",
         "enum": ["provider", "finch"],
-        "description": "The type of the connection associated with the token.<br>\n`provider` - connection to an external provider<br>\n`finch` - finch-generated data."
+        "description": "The type of the connection associated with the token.\n- `provider` - connection to an external provider\n- `finch` - finch-generated data."
       },
       "CompanyBenefit": {
         "title": "CompanyBenefit",
@@ -4592,13 +4879,7 @@
           "benefit_id": {"type": "string"},
           "type": {"$ref": "#/components/schemas/BenefitType"},
           "description": {"type": "string", "nullable": true},
-          "frequency": {"$ref": "#/components/schemas/BenefitFrequency"},
-          "company_contribution": {
-            "$ref": "#/components/schemas/BenefitContribution"
-          },
-          "employee_deduction": {
-            "$ref": "#/components/schemas/BenefitContribution"
-          }
+          "frequency": {"$ref": "#/components/schemas/BenefitFrequency"}
         }
       },
       "IndividualBenefits": {
@@ -4631,7 +4912,7 @@
                 },
                 "hsa_contribution_limit": {
                   "type": "string",
-                  "enum": ["individual", "family"],
+                  "enum": ["individual", "family", null],
                   "description": "Type for HSA contribution limit if the benefit is a HSA.",
                   "nullable": true
                 }
@@ -5013,7 +5294,7 @@
           "not_supported_by_provider",
           "client_access_only"
         ],
-        "description": "- `supported`: This operation is supported by both the provider and Finch <br>\n- `not_supported_by_finch`: This operation is not supported by Finch but supported by the provider <br>\n- `not_supported_by_provider`: This operation is not supported by the provider, so Finch cannot support <br>\n- `client_access_only`: This behavior is supported by the provider, but only available to the client and not to Finch\n"
+        "description": "- `supported`: This operation is supported by both the provider and Finch\n- `not_supported_by_finch`: This operation is not supported by Finch but supported by the provider\n- `not_supported_by_provider`: This operation is not supported by the provider, so Finch cannot support\n- `client_access_only`: This behavior is supported by the provider, but only available to the client and not to Finch"
       },
       "OperationSupportMatrix": {
         "type": "object",
