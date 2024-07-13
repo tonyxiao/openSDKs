@@ -140,4 +140,10 @@ export default {
       }
     },
   },
+  chargepoint: {
+    download: () =>
+      import('./manifests/chargepoint.oas.js').then(({oas}) => [
+        {name: 'chargepoint', type: 'raw', data: JSON.stringify(oas, null, 2)},
+      ]),
+  },
 } satisfies Record<string, ManifestInfo>

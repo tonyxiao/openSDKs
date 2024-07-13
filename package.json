@@ -29,6 +29,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@jest/globals": "^29.7.0",
     "@opensdks/cli": "workspace:*",
+    "@opensdks/util-zod": "workspace:*",
     "@tsconfig/strictest": "^2.0.2",
     "@types/jest": "^29.5.10",
     "@types/node": "^20.10.2",

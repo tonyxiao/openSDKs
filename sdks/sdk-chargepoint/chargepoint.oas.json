@@ -1,0 +1,78 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Chargepoint",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sso.chargepoint.com/api/v1",
+      "description": "SSO"
+    },
+    {
+      "url": "https://na.chargepoint.com",
+      "description": "NA"
+    }
+  ],
+  "security": [
+    {
+      "cookie": []
+    }
+  ],
+  "paths": {
+    "/user/login": {
+      "post": {
+        "operationId": "userLogin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "timezone": {
+                    "type": "string",
+                    "example": "America/Los_Angeles"
+                  },
+                  "timezone_offset": {
+                    "type": "number",
+                    "example": 420
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookie": {
+        "type": "apiKey",
+        "name": "Cookie",
+        "in": "header"
+      }
+    }
+  }
+}
