@@ -26,6 +26,9 @@ importers:
       '@opensdks/cli':
         specifier: workspace:*
         version: link:packages/cli
+      '@opensdks/util-zod':
+        specifier: workspace:*
+        version: link:packages/util-zod
       '@tsconfig/strictest':
         specifier: ^2.0.2
         version: 2.0.2
@@ -274,7 +277,31 @@ importers:
         specifier: 6.7.1
         version: 6.7.1
 
+  sdks/sdk-chargepoint:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
   sdks/sdk-clerk:
+    devDependencies:
+      '@opensdks/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      openapi-typescript:
+        specifier: 6.7.1
+        version: 6.7.1
+
+  sdks/sdk-coda:
     devDependencies:
       '@opensdks/runtime':
         specifier: workspace:*

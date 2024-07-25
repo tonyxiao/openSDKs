@@ -89,7 +89,10 @@ export async function syncManifest(baseDir: string, m: Manifest) {
 
         console.log(`[${m.name}] Downloading ${d.url ?? d.type} ${format}`)
         const oasPath = pathJoin(basePath, `${d.name}.oas.${format}`)
-        await fs.writeFile(oasPath, oasText)
+        await fs.writeFile(
+          oasPath,
+          await prettyFormat(oasText, {parser: 'json'}),
+        )
       }),
     )
   }

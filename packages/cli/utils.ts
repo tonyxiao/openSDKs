@@ -9,7 +9,10 @@ import R from 'remeda'
 import yaml from 'yaml'
 import type {HTTPMethod, oas30, OpenAPISpec} from '@opensdks/runtime'
 
-export async function prettyFormat(content: string) {
+export async function prettyFormat(
+  content: string,
+  opts?: {parser?: 'typescript' | 'json'},
+) {
   // Temp workaround for the fact that prettier doesn't always work in client environments easily
   // TODO: Make me a global flag rather than env var
   if (process.env['NO_PRETTY']) {
@@ -17,7 +20,7 @@ export async function prettyFormat(content: string) {
   }
   return prettier.format(content, {
     ...(await import('./prettier.config.js')).default,
-    parser: 'typescript',
+    parser: opts?.parser ?? 'typescript',
   })
 }
 
