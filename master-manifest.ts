@@ -6,6 +6,9 @@ import {
 } from '@opensdks/cli'
 
 export default {
+  coda: {
+    download: 'https://coda.io/apis/v1/openapi.json',
+  },
   dropbox: {
     download:
       // [Dropbox itself](https://www.dropbox.com/developers/documentation/http/documentation) does not provider OpenAPI spec, but there is a community one
