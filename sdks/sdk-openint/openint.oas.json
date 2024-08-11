@@ -67,7 +67,7 @@
                   },
                   "validityInSeconds": {
                     "type": "number",
-                    "default": 3600,
+                    "default": 2592000,
                     "description": "How long the magic link will be valid for (in seconds) before it expires"
                   }
                 }
@@ -127,7 +127,7 @@
                   },
                   "validityInSeconds": {
                     "type": "number",
-                    "default": 3600,
+                    "default": 2592000,
                     "description": "How long the magic link will be valid for (in seconds) before it expires"
                   },
                   "displayName": {
@@ -2207,7 +2207,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/contact": {
+    "/unified/sales-engagement/contact": {
       "get": {
         "operationId": "salesEngagement-listContacts",
         "parameters": [
@@ -2267,7 +2267,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/sequence": {
+    "/unified/sales-engagement/sequence": {
       "get": {
         "operationId": "salesEngagement-listSequences",
         "parameters": [
@@ -2327,7 +2327,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/sequence_state": {
+    "/unified/sales-engagement/sequence_state": {
       "get": {
         "operationId": "salesEngagement-listSequenceStates",
         "parameters": [
@@ -2462,7 +2462,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/user": {
+    "/unified/sales-engagement/user": {
       "get": {
         "operationId": "salesEngagement-listUsers",
         "parameters": [
@@ -2522,7 +2522,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/account": {
+    "/unified/sales-engagement/account": {
       "get": {
         "operationId": "salesEngagement-listAccounts",
         "parameters": [
@@ -2582,7 +2582,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/mailbox": {
+    "/unified/sales-engagement/mailbox": {
       "get": {
         "operationId": "salesEngagement-listMailboxes",
         "parameters": [
@@ -2642,7 +2642,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/account/_upsert": {
+    "/unified/sales-engagement/account/_upsert": {
       "post": {
         "operationId": "salesEngagement-upsertAccount",
         "requestBody": {
@@ -2735,7 +2735,7 @@
         }
       }
     },
-    "/verticals/sales-engagement/contact/_upsert": {
+    "/unified/sales-engagement/contact/_upsert": {
       "post": {
         "operationId": "salesEngagement-upsertContact",
         "requestBody": {
@@ -2894,7 +2894,7 @@
         }
       }
     },
-    "/verticals/crm/{entity}/_count": {
+    "/unified/crm/{entity}/_count": {
       "get": {
         "operationId": "crm-countEntity",
         "parameters": [
@@ -2947,7 +2947,7 @@
         }
       }
     },
-    "/verticals/crm/account": {
+    "/unified/crm/account": {
       "get": {
         "operationId": "crm-listAccounts",
         "parameters": [
@@ -3063,7 +3063,7 @@
         }
       }
     },
-    "/verticals/crm/account/{id}": {
+    "/unified/crm/account/{id}": {
       "get": {
         "operationId": "crm-getAccount",
         "parameters": [
@@ -3186,7 +3186,7 @@
         }
       }
     },
-    "/verticals/crm/account/_batch_read": {
+    "/unified/crm/account/_batch_read": {
       "post": {
         "operationId": "crm-batchReadAccounts",
         "requestBody": {
@@ -3237,7 +3237,7 @@
         }
       }
     },
-    "/verticals/crm/account/_upsert": {
+    "/unified/crm/account/_upsert": {
       "post": {
         "operationId": "crm-upsertAccount",
         "requestBody": {
@@ -3306,7 +3306,7 @@
         }
       }
     },
-    "/verticals/crm/contact": {
+    "/unified/crm/contact": {
       "get": {
         "operationId": "crm-listContacts",
         "parameters": [
@@ -3422,7 +3422,7 @@
         }
       }
     },
-    "/verticals/crm/contact/{id}": {
+    "/unified/crm/contact/{id}": {
       "get": {
         "operationId": "crm-getContact",
         "parameters": [
@@ -3545,7 +3545,7 @@
         }
       }
     },
-    "/verticals/crm/contact/_batch_read": {
+    "/unified/crm/contact/_batch_read": {
       "post": {
         "operationId": "crm-batchReadContacts",
         "requestBody": {
@@ -3596,7 +3596,7 @@
         }
       }
     },
-    "/verticals/crm/contact/_upsert": {
+    "/unified/crm/contact/_upsert": {
       "post": {
         "operationId": "crm-upsertContact",
         "requestBody": {
@@ -3665,7 +3665,7 @@
         }
       }
     },
-    "/verticals/crm/lead": {
+    "/unified/crm/lead": {
       "get": {
         "operationId": "crm-listLeads",
         "parameters": [
@@ -3730,7 +3730,7 @@
         }
       }
     },
-    "/verticals/crm/lead/{id}": {
+    "/unified/crm/lead/{id}": {
       "get": {
         "operationId": "crm-getLead",
         "parameters": [
@@ -3786,7 +3786,7 @@
         }
       }
     },
-    "/verticals/crm/opportunity": {
+    "/unified/crm/opportunity": {
       "get": {
         "operationId": "crm-listOpportunities",
         "parameters": [
@@ -3851,7 +3851,7 @@
         }
       }
     },
-    "/verticals/crm/opportunity/{id}": {
+    "/unified/crm/opportunity/{id}": {
       "get": {
         "operationId": "crm-getOpportunity",
         "parameters": [
@@ -3907,7 +3907,7 @@
         }
       }
     },
-    "/verticals/crm/user": {
+    "/unified/crm/user": {
       "get": {
         "operationId": "crm-listUsers",
         "parameters": [
@@ -3972,7 +3972,7 @@
         }
       }
     },
-    "/verticals/crm/user/{id}": {
+    "/unified/crm/user/{id}": {
       "get": {
         "operationId": "crm-getUser",
         "parameters": [
@@ -4028,7 +4028,7 @@
         }
       }
     },
-    "/verticals/crm/custom_objects/{object_name}": {
+    "/unified/crm/custom_objects/{object_name}": {
       "get": {
         "operationId": "crm-listCustomObjectRecords",
         "parameters": [
@@ -4158,7 +4158,7 @@
         }
       }
     },
-    "/verticals/crm/metadata/objects": {
+    "/unified/crm/metadata/objects": {
       "get": {
         "operationId": "crm-metadataListObjects",
         "parameters": [
@@ -4278,7 +4278,7 @@
         }
       }
     },
-    "/verticals/crm/metadata/objects/{object_name}/properties": {
+    "/unified/crm/metadata/objects/{object_name}/properties": {
       "get": {
         "operationId": "crm-metadataListObjectProperties",
         "parameters": [
@@ -4330,7 +4330,7 @@
         }
       }
     },
-    "/verticals/crm/metadata/associations": {
+    "/unified/crm/metadata/associations": {
       "post": {
         "operationId": "crm-metadataCreateAssociation",
         "requestBody": {
@@ -4400,7 +4400,7 @@
         }
       }
     },
-    "/verticals/banking/account": {
+    "/unified/banking/account": {
       "get": {
         "operationId": "banking-listAccounts",
         "parameters": [
@@ -4465,7 +4465,7 @@
         }
       }
     },
-    "/verticals/banking/merchant": {
+    "/unified/banking/merchant": {
       "get": {
         "operationId": "banking-listMerchants",
         "parameters": [
@@ -4530,7 +4530,7 @@
         }
       }
     },
-    "/verticals/banking/category": {
+    "/unified/banking/category": {
       "get": {
         "operationId": "banking-listCategories",
         "parameters": [
@@ -4595,7 +4595,7 @@
         }
       }
     },
-    "/verticals/banking/transaction": {
+    "/unified/banking/transaction": {
       "get": {
         "operationId": "banking-listTransactions",
         "parameters": [
@@ -4662,7 +4662,7 @@
         }
       }
     },
-    "/verticals/accounting/account": {
+    "/unified/accounting/account": {
       "get": {
         "operationId": "accounting-listAccounts",
         "parameters": [
@@ -4736,7 +4736,7 @@
         }
       }
     },
-    "/verticals/accounting/expense": {
+    "/unified/accounting/expense": {
       "get": {
         "operationId": "accounting-listExpenses",
         "parameters": [
@@ -4815,7 +4815,7 @@
         }
       }
     },
-    "/verticals/accounting/vendor": {
+    "/unified/accounting/vendor": {
       "get": {
         "operationId": "accounting-listVendors",
         "parameters": [
@@ -4888,7 +4888,7 @@
         }
       }
     },
-    "/verticals/pta/account": {
+    "/unified/pta/account": {
       "get": {
         "operationId": "pta-listAccounts",
         "parameters": [
@@ -4953,7 +4953,7 @@
         }
       }
     },
-    "/verticals/pta/transaction": {
+    "/unified/pta/transaction": {
       "get": {
         "operationId": "pta-listTransactions",
         "parameters": [
@@ -5018,7 +5018,7 @@
         }
       }
     },
-    "/verticals/pta/commodity": {
+    "/unified/pta/commodity": {
       "get": {
         "operationId": "pta-listCommodities",
         "parameters": [
@@ -5083,7 +5083,7 @@
         }
       }
     },
-    "/verticals/ats/job": {
+    "/unified/ats/job": {
       "get": {
         "operationId": "ats-listJobs",
         "parameters": [
@@ -5124,51 +5124,39 @@
                             "items": {
                               "type": "object",
                               "properties": {
-                                "id": {"type": "string"},
+                                "id": {"type": ["string", "null"]},
                                 "created_at": {"type": ["string", "null"]},
                                 "modified_at": {"type": ["string", "null"]},
-                                "name": {"type": "string"},
+                                "name": {"type": ["string", "null"]},
                                 "parent_id": {"type": ["string", "null"]},
                                 "parent_department_external_id": {
                                   "type": ["string", "null"]
                                 },
                                 "child_ids": {
-                                  "type": "array",
+                                  "type": ["array", "null"],
                                   "items": {"type": ["string", "null"]}
                                 },
                                 "child_department_external_ids": {
-                                  "type": "array",
+                                  "type": ["array", "null"],
                                   "items": {"type": ["string", "null"]}
                                 },
                                 "raw_data": {
                                   "type": "object",
                                   "additionalProperties": {}
                                 }
-                              },
-                              "required": [
-                                "id",
-                                "name",
-                                "child_ids",
-                                "child_department_external_ids"
-                              ]
+                              }
                             }
                           },
                           "offices": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {
                               "type": "object",
                               "additionalProperties": {}
                             }
                           },
-                          "hiring_managers": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            }
-                          },
+                          "hiring_managers": {},
                           "recruiters": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {
                               "type": "object",
                               "additionalProperties": {}
@@ -5185,10 +5173,7 @@
                           "modified_at",
                           "name",
                           "confidential",
-                          "departments",
-                          "offices",
-                          "hiring_managers",
-                          "recruiters"
+                          "departments"
                         ]
                       }
                     }
@@ -5227,7 +5212,7 @@
         }
       }
     },
-    "/verticals/ats/offer": {
+    "/unified/ats/offer": {
       "get": {
         "operationId": "ats-listOffers",
         "parameters": [
@@ -5261,26 +5246,17 @@
                           "id": {"type": "string"},
                           "created_at": {"type": "string"},
                           "modified_at": {"type": "string"},
-                          "application": {"type": "string"},
-                          "closed_at": {"type": "string"},
-                          "sent_at": {"type": "string"},
-                          "start_date": {"type": "string"},
-                          "status": {"type": "string"},
+                          "application": {"type": ["string", "null"]},
+                          "closed_at": {"type": ["string", "null"]},
+                          "sent_at": {"type": ["string", "null"]},
+                          "start_date": {"type": ["string", "null"]},
+                          "status": {"type": ["string", "null"]},
                           "raw_data": {
                             "type": "object",
                             "additionalProperties": {}
                           }
                         },
-                        "required": [
-                          "id",
-                          "created_at",
-                          "modified_at",
-                          "application",
-                          "closed_at",
-                          "sent_at",
-                          "start_date",
-                          "status"
-                        ]
+                        "required": ["id", "created_at", "modified_at"]
                       }
                     }
                   },
@@ -5318,7 +5294,7 @@
         }
       }
     },
-    "/verticals/ats/candidate": {
+    "/unified/ats/candidate": {
       "get": {
         "operationId": "ats-listCandidates",
         "parameters": [
@@ -5350,72 +5326,49 @@
                         "type": "object",
                         "properties": {
                           "id": {"type": "string"},
-                          "created_at": {"type": "string"},
-                          "modified_at": {"type": "string"},
-                          "first_name": {"type": "string"},
-                          "last_name": {"type": "string"},
+                          "created_at": {"type": ["string", "null"]},
+                          "modified_at": {"type": ["string", "null"]},
+                          "name": {"type": ["string", "null"]},
+                          "first_name": {"type": ["string", "null"]},
+                          "last_name": {"type": ["string", "null"]},
                           "company": {"type": ["string", "null"]},
                           "title": {"type": ["string", "null"]},
-                          "last_interaction_at": {"type": "string"},
-                          "is_private": {"type": "boolean"},
-                          "can_email": {"type": "boolean"},
-                          "locations": {"type": "array", "items": {}},
+                          "last_interaction_at": {"type": ["string", "null"]},
+                          "is_private": {"type": ["boolean", "null"]},
+                          "can_email": {"type": ["boolean", "null"]},
+                          "locations": {"type": ["array", "null"], "items": {}},
                           "phone_numbers": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {
                               "type": "object",
-                              "properties": {
-                                "value": {"type": ["string", "null"]},
-                                "phone_number_type": {
-                                  "type": ["string", "null"]
-                                }
-                              }
+                              "additionalProperties": {}
                             }
                           },
                           "email_addresses": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {
                               "type": "object",
-                              "properties": {
-                                "value": {
-                                  "type": ["string", "null"],
-                                  "format": "email"
-                                },
-                                "email_address_type": {
-                                  "type": ["string", "null"]
-                                }
-                              }
+                              "additionalProperties": {}
                             }
                           },
                           "tags": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {"type": "string"}
                           },
-                          "applications": {"type": "array", "items": {}},
-                          "attachments": {"type": "array", "items": {}},
+                          "applications": {
+                            "type": ["array", "null"],
+                            "items": {}
+                          },
+                          "attachments": {
+                            "type": ["array", "null"],
+                            "items": {}
+                          },
                           "raw_data": {
                             "type": "object",
                             "additionalProperties": {}
                           }
                         },
-                        "required": [
-                          "id",
-                          "created_at",
-                          "modified_at",
-                          "first_name",
-                          "last_name",
-                          "company",
-                          "title",
-                          "last_interaction_at",
-                          "is_private",
-                          "can_email",
-                          "locations",
-                          "phone_numbers",
-                          "email_addresses",
-                          "tags",
-                          "applications",
-                          "attachments"
-                        ]
+                        "required": ["id"]
                       }
                     }
                   },
@@ -5453,7 +5406,7 @@
         }
       }
     },
-    "/verticals/ats/department": {
+    "/unified/ats/department": {
       "get": {
         "operationId": "ats-listDepartments",
         "parameters": [
@@ -5484,33 +5437,27 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "id": {"type": "string"},
+                          "id": {"type": ["string", "null"]},
                           "created_at": {"type": ["string", "null"]},
                           "modified_at": {"type": ["string", "null"]},
-                          "name": {"type": "string"},
+                          "name": {"type": ["string", "null"]},
                           "parent_id": {"type": ["string", "null"]},
                           "parent_department_external_id": {
                             "type": ["string", "null"]
                           },
                           "child_ids": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {"type": ["string", "null"]}
                           },
                           "child_department_external_ids": {
-                            "type": "array",
+                            "type": ["array", "null"],
                             "items": {"type": ["string", "null"]}
                           },
                           "raw_data": {
                             "type": "object",
                             "additionalProperties": {}
                           }
-                        },
-                        "required": [
-                          "id",
-                          "name",
-                          "child_ids",
-                          "child_department_external_ids"
-                        ]
+                        }
                       }
                     }
                   },
@@ -5548,7 +5495,82 @@
         }
       }
     },
-    "/verticals/etl/read/{stream}": {
+    "/unified/hris/individual": {
+      "get": {
+        "operationId": "hris-listIndividual",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next_cursor": {"type": ["string", "null"]},
+                    "has_next_page": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "raw_data": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          }
+                        },
+                        "required": ["id"]
+                      }
+                    }
+                  },
+                  "required": ["has_next_page", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unified/etl/read/{stream}": {
       "get": {
         "operationId": "etl-readStream",
         "parameters": [
@@ -5621,7 +5643,7 @@
         }
       }
     },
-    "/verticals/etl/discover": {
+    "/unified/etl/discover": {
       "get": {
         "operationId": "etl-discover",
         "responses": {
@@ -5673,7 +5695,7 @@
         }
       }
     },
-    "/verticals/etl/read": {
+    "/unified/etl/read": {
       "post": {
         "operationId": "etl-read",
         "requestBody": {
@@ -5808,7 +5830,7 @@
         }
       }
     },
-    "/verticals/etl/write": {
+    "/unified/etl/write": {
       "post": {
         "operationId": "etl-write",
         "requestBody": {

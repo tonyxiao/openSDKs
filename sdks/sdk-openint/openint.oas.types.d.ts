@@ -123,147 +123,150 @@ export interface paths {
     get: operations['mgmt-getConnectionSyncConfig']
     put: operations['mgmt-upsertConnectionSyncConfig']
   }
-  '/verticals/sales-engagement/contact': {
+  '/unified/sales-engagement/contact': {
     get: operations['salesEngagement-listContacts']
   }
-  '/verticals/sales-engagement/sequence': {
+  '/unified/sales-engagement/sequence': {
     get: operations['salesEngagement-listSequences']
   }
-  '/verticals/sales-engagement/sequence_state': {
+  '/unified/sales-engagement/sequence_state': {
     get: operations['salesEngagement-listSequenceStates']
     post: operations['salesEngagement-insertSequenceState']
   }
-  '/verticals/sales-engagement/user': {
+  '/unified/sales-engagement/user': {
     get: operations['salesEngagement-listUsers']
   }
-  '/verticals/sales-engagement/account': {
+  '/unified/sales-engagement/account': {
     get: operations['salesEngagement-listAccounts']
   }
-  '/verticals/sales-engagement/mailbox': {
+  '/unified/sales-engagement/mailbox': {
     get: operations['salesEngagement-listMailboxes']
   }
-  '/verticals/sales-engagement/account/_upsert': {
+  '/unified/sales-engagement/account/_upsert': {
     post: operations['salesEngagement-upsertAccount']
   }
-  '/verticals/sales-engagement/contact/_upsert': {
+  '/unified/sales-engagement/contact/_upsert': {
     post: operations['salesEngagement-upsertContact']
   }
-  '/verticals/crm/{entity}/_count': {
+  '/unified/crm/{entity}/_count': {
     get: operations['crm-countEntity']
   }
-  '/verticals/crm/account': {
+  '/unified/crm/account': {
     get: operations['crm-listAccounts']
     post: operations['crm-createAccount']
   }
-  '/verticals/crm/account/{id}': {
+  '/unified/crm/account/{id}': {
     get: operations['crm-getAccount']
     patch: operations['crm-updateAccount']
   }
-  '/verticals/crm/account/_batch_read': {
+  '/unified/crm/account/_batch_read': {
     post: operations['crm-batchReadAccounts']
   }
-  '/verticals/crm/account/_upsert': {
+  '/unified/crm/account/_upsert': {
     post: operations['crm-upsertAccount']
   }
-  '/verticals/crm/contact': {
+  '/unified/crm/contact': {
     get: operations['crm-listContacts']
     post: operations['crm-createContact']
   }
-  '/verticals/crm/contact/{id}': {
+  '/unified/crm/contact/{id}': {
     get: operations['crm-getContact']
     patch: operations['crm-updateContact']
   }
-  '/verticals/crm/contact/_batch_read': {
+  '/unified/crm/contact/_batch_read': {
     post: operations['crm-batchReadContacts']
   }
-  '/verticals/crm/contact/_upsert': {
+  '/unified/crm/contact/_upsert': {
     post: operations['crm-upsertContact']
   }
-  '/verticals/crm/lead': {
+  '/unified/crm/lead': {
     get: operations['crm-listLeads']
   }
-  '/verticals/crm/lead/{id}': {
+  '/unified/crm/lead/{id}': {
     get: operations['crm-getLead']
   }
-  '/verticals/crm/opportunity': {
+  '/unified/crm/opportunity': {
     get: operations['crm-listOpportunities']
   }
-  '/verticals/crm/opportunity/{id}': {
+  '/unified/crm/opportunity/{id}': {
     get: operations['crm-getOpportunity']
   }
-  '/verticals/crm/user': {
+  '/unified/crm/user': {
     get: operations['crm-listUsers']
   }
-  '/verticals/crm/user/{id}': {
+  '/unified/crm/user/{id}': {
     get: operations['crm-getUser']
   }
-  '/verticals/crm/custom_objects/{object_name}': {
+  '/unified/crm/custom_objects/{object_name}': {
     get: operations['crm-listCustomObjectRecords']
     post: operations['crm-createCustomObjectRecord']
   }
-  '/verticals/crm/metadata/objects': {
+  '/unified/crm/metadata/objects': {
     get: operations['crm-metadataListObjects']
     /** @description Create custom object schema */
     post: operations['crm-metadataCreateObject']
   }
-  '/verticals/crm/metadata/objects/{object_name}/properties': {
+  '/unified/crm/metadata/objects/{object_name}/properties': {
     get: operations['crm-metadataListObjectProperties']
   }
-  '/verticals/crm/metadata/associations': {
+  '/unified/crm/metadata/associations': {
     post: operations['crm-metadataCreateAssociation']
   }
-  '/verticals/banking/account': {
+  '/unified/banking/account': {
     get: operations['banking-listAccounts']
   }
-  '/verticals/banking/merchant': {
+  '/unified/banking/merchant': {
     get: operations['banking-listMerchants']
   }
-  '/verticals/banking/category': {
+  '/unified/banking/category': {
     get: operations['banking-listCategories']
   }
-  '/verticals/banking/transaction': {
+  '/unified/banking/transaction': {
     get: operations['banking-listTransactions']
   }
-  '/verticals/accounting/account': {
+  '/unified/accounting/account': {
     get: operations['accounting-listAccounts']
   }
-  '/verticals/accounting/expense': {
+  '/unified/accounting/expense': {
     get: operations['accounting-listExpenses']
   }
-  '/verticals/accounting/vendor': {
+  '/unified/accounting/vendor': {
     get: operations['accounting-listVendors']
   }
-  '/verticals/pta/account': {
+  '/unified/pta/account': {
     get: operations['pta-listAccounts']
   }
-  '/verticals/pta/transaction': {
+  '/unified/pta/transaction': {
     get: operations['pta-listTransactions']
   }
-  '/verticals/pta/commodity': {
+  '/unified/pta/commodity': {
     get: operations['pta-listCommodities']
   }
-  '/verticals/ats/job': {
+  '/unified/ats/job': {
     get: operations['ats-listJobs']
   }
-  '/verticals/ats/offer': {
+  '/unified/ats/offer': {
     get: operations['ats-listOffers']
   }
-  '/verticals/ats/candidate': {
+  '/unified/ats/candidate': {
     get: operations['ats-listCandidates']
   }
-  '/verticals/ats/department': {
+  '/unified/ats/department': {
     get: operations['ats-listDepartments']
   }
-  '/verticals/etl/read/{stream}': {
+  '/unified/hris/individual': {
+    get: operations['hris-listIndividual']
+  }
+  '/unified/etl/read/{stream}': {
     get: operations['etl-readStream']
   }
-  '/verticals/etl/discover': {
+  '/unified/etl/discover': {
     get: operations['etl-discover']
   }
-  '/verticals/etl/read': {
+  '/unified/etl/read': {
     post: operations['etl-read']
   }
-  '/verticals/etl/write': {
+  '/unified/etl/write': {
     post: operations['etl-write']
   }
 }
@@ -1047,7 +1050,7 @@ export interface operations {
           endUserId?: string
           /**
            * @description How long the magic link will be valid for (in seconds) before it expires
-           * @default 3600
+           * @default 2592000
            */
           validityInSeconds?: number
         }
@@ -1084,7 +1087,7 @@ export interface operations {
           endUserId?: string
           /**
            * @description How long the magic link will be valid for (in seconds) before it expires
-           * @default 3600
+           * @default 2592000
            */
           validityInSeconds?: number
           /** @description What to call user by */
@@ -4199,27 +4202,29 @@ export interface operations {
               name: string
               confidential: boolean
               departments: {
-                id: string
+                id?: string | null
                 created_at?: string | null
                 modified_at?: string | null
-                name: string
+                name?: string | null
                 parent_id?: string | null
                 parent_department_external_id?: string | null
-                child_ids: (string | null)[]
-                child_department_external_ids: (string | null)[]
+                child_ids?: (string | null)[] | null
+                child_department_external_ids?: (string | null)[] | null
                 raw_data?: {
                   [key: string]: unknown
                 }
               }[]
-              offices: {
-                [key: string]: unknown
-              }[]
-              hiring_managers: {
-                [key: string]: unknown
-              }[]
-              recruiters: {
-                [key: string]: unknown
-              }[]
+              offices?:
+                | {
+                    [key: string]: unknown
+                  }[]
+                | null
+              hiring_managers?: unknown
+              recruiters?:
+                | {
+                    [key: string]: unknown
+                  }[]
+                | null
               raw_data?: {
                 [key: string]: unknown
               }
@@ -4266,11 +4271,11 @@ export interface operations {
               id: string
               created_at: string
               modified_at: string
-              application: string
-              closed_at: string
-              sent_at: string
-              start_date: string
-              status: string
+              application?: string | null
+              closed_at?: string | null
+              sent_at?: string | null
+              start_date?: string | null
+              status?: string | null
               raw_data?: {
                 [key: string]: unknown
               }
@@ -4315,28 +4320,30 @@ export interface operations {
             has_next_page: boolean
             items: {
               id: string
-              created_at: string
-              modified_at: string
-              first_name: string
-              last_name: string
-              company: string | null
-              title: string | null
-              last_interaction_at: string
-              is_private: boolean
-              can_email: boolean
-              locations: unknown[]
-              phone_numbers: {
-                value?: string | null
-                phone_number_type?: string | null
-              }[]
-              email_addresses: {
-                /** Format: email */
-                value?: string | null
-                email_address_type?: string | null
-              }[]
-              tags: string[]
-              applications: unknown[]
-              attachments: unknown[]
+              created_at?: string | null
+              modified_at?: string | null
+              name?: string | null
+              first_name?: string | null
+              last_name?: string | null
+              company?: string | null
+              title?: string | null
+              last_interaction_at?: string | null
+              is_private?: boolean | null
+              can_email?: boolean | null
+              locations?: unknown[] | null
+              phone_numbers?:
+                | {
+                    [key: string]: unknown
+                  }[]
+                | null
+              email_addresses?:
+                | {
+                    [key: string]: unknown
+                  }[]
+                | null
+              tags?: string[] | null
+              applications?: unknown[] | null
+              attachments?: unknown[] | null
               raw_data?: {
                 [key: string]: unknown
               }
@@ -4380,14 +4387,58 @@ export interface operations {
             next_cursor?: string | null
             has_next_page: boolean
             items: {
-              id: string
+              id?: string | null
               created_at?: string | null
               modified_at?: string | null
-              name: string
+              name?: string | null
               parent_id?: string | null
               parent_department_external_id?: string | null
-              child_ids: (string | null)[]
-              child_department_external_ids: (string | null)[]
+              child_ids?: (string | null)[] | null
+              child_department_external_ids?: (string | null)[] | null
+              raw_data?: {
+                [key: string]: unknown
+              }
+            }[]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'hris-listIndividual': {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            next_cursor?: string | null
+            has_next_page: boolean
+            items: {
+              id: string
               raw_data?: {
                 [key: string]: unknown
               }
