@@ -611,6 +611,64 @@
         }
       }
     },
+    "/core/resource/{id}/_check": {
+      "post": {
+        "operationId": "checkResource",
+        "tags": ["Core"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "Must start with 'reso_'"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "skipCache": {"type": ["boolean", "null"]},
+                  "import": {"type": ["boolean", "null"]},
+                  "updateWebhook": {"type": ["boolean", "null"]},
+                  "sandboxSimulateUpdate": {"type": ["boolean", "null"]},
+                  "sandboxSimulateDisconnect": {"type": ["boolean", "null"]}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {"application/json": {"schema": {}}}
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/core/resource/{id}/_sync": {
       "post": {
         "operationId": "syncResource",
@@ -3907,6 +3965,122 @@
         }
       }
     },
+    "/unified/crm/note": {
+      "get": {
+        "operationId": "crm-listNotes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next_cursor": {"type": ["string", "null"]},
+                    "has_next_page": {"type": "boolean"},
+                    "items": {
+                      "type": "array",
+                      "items": {"$ref": "#/components/schemas/crm.note"}
+                    }
+                  },
+                  "required": ["has_next_page", "items"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "crm-createNote",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record": {"$ref": "#/components/schemas/crm.note_input"}
+                },
+                "required": ["record"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "record": {"$ref": "#/components/schemas/crm.note"}
+                  },
+                  "required": ["record"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/unified/crm/user": {
       "get": {
         "operationId": "crm-listUsers",
@@ -6917,6 +7091,33 @@
       "crm.opportunity_status": {
         "type": "string",
         "enum": ["OPEN", "WON", "LOST"]
+      },
+      "crm.note": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "updated_at": {
+            "type": "string",
+            "description": "ISO8601 date string"
+          },
+          "raw_data": {"type": "object", "additionalProperties": {}},
+          "content": {"type": ["string", "null"]}
+        },
+        "required": ["id", "updated_at"]
+      },
+      "crm.note_input": {
+        "type": "object",
+        "properties": {
+          "content": {"type": ["string", "null"]},
+          "passthrough_fields": {
+            "type": ["object", "null"],
+            "additionalProperties": {}
+          },
+          "account_id": {
+            "type": "string",
+            "description": "The ID of the company to associate the note to."
+          }
+        }
       },
       "crm.user": {
         "type": "object",

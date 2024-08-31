@@ -48,6 +48,9 @@ export interface paths {
     delete: operations['deleteResource']
     patch: operations['updateResource']
   }
+  '/core/resource/{id}/_check': {
+    post: operations['checkResource']
+  }
   '/core/resource/{id}/_sync': {
     post: operations['syncResource']
   }
@@ -190,6 +193,10 @@ export interface paths {
   }
   '/unified/crm/opportunity/{id}': {
     get: operations['crm-getOpportunity']
+  }
+  '/unified/crm/note': {
+    get: operations['crm-listNotes']
+    post: operations['crm-createNote']
   }
   '/unified/crm/user': {
     get: operations['crm-listUsers']
@@ -854,6 +861,23 @@ export interface components {
     }
     /** @enum {string} */
     'crm.opportunity_status': 'OPEN' | 'WON' | 'LOST'
+    'crm.note': {
+      id: string
+      /** @description ISO8601 date string */
+      updated_at: string
+      raw_data?: {
+        [key: string]: unknown
+      }
+      content?: string | null
+    }
+    'crm.note_input': {
+      content?: string | null
+      passthrough_fields?: {
+        [key: string]: unknown
+      } | null
+      /** @description The ID of the company to associate the note to. */
+      account_id?: string
+    }
     'crm.user': {
       id: string
       /** @description ISO8601 date string */
@@ -1405,6 +1429,44 @@ export interface operations {
       404: {
         content: {
           'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  checkResource: {
+    parameters: {
+      path: {
+        id: string
+      }
+    }
+    requestBody: {
+      content: {
+        'application/json': {
+          skipCache?: boolean | null
+          import?: boolean | null
+          updateWebhook?: boolean | null
+          sandboxSimulateUpdate?: boolean | null
+          sandboxSimulateDisconnect?: boolean | null
+        }
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': unknown
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
         }
       }
       /** @description Internal server error */
@@ -3471,6 +3533,76 @@ export interface operations {
       404: {
         content: {
           'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'crm-listNotes': {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            next_cursor?: string | null
+            has_next_page: boolean
+            items: components['schemas']['crm.note'][]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'crm-createNote': {
+    requestBody: {
+      content: {
+        'application/json': {
+          record: components['schemas']['crm.note_input']
+        }
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            record: components['schemas']['crm.note']
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
         }
       }
       /** @description Internal server error */
