@@ -16,11 +16,11 @@ jobs:
         with:
           node-version: 20 # TODO: Can we get this from "engine" field in package.json?
 
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 8 # Ideally we should get this from engine field too...
+          version: 9.6.0 # Ideally we should get this from engine field too...
           run_install: false
 
       - name: Get pnpm store directory

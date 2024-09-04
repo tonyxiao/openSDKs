@@ -22,6 +22,7 @@
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"
   },
+  "packageManager": "pnpm@9.6.0",
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
