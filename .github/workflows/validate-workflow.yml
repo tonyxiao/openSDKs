@@ -20,7 +20,7 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 9.6.0 # Ideally we should get this from engine field too...
+          version: 9.9.0 # Ideally we should get this from engine field too...
           run_install: false
 
       - name: Get pnpm store directory
