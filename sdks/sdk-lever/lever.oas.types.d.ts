@@ -25,6 +25,12 @@ export interface paths {
   '/tags': {
     get: operations['getTags']
   }
+  '/stages': {
+    get: operations['listStages']
+  }
+  '/archive_reasons': {
+    get: operations['listArchiveReasons']
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -87,6 +93,26 @@ export interface components {
       workplaceType: 'remote'
       [key: string]: unknown
     }
+    /**
+     * @description
+     * "Candidates" are individuals who have been added to your Lever account as potential fits for your open job positions. "Opportunities" represent each of an individual’s unique candidacies or journeys through your pipeline for a given job position, meaning a single Candidate can be associated with multiple Opportunities. A “Contact” is a unique individual who may or may not have multiple candidacies or Opportunities.
+     *
+     * Candidates enter your pipeline for a new Opportunity by:
+     *
+     * Applying to a posting on your jobs site,
+     * Being added by an external recruiting agency,
+     * Being referred by an employee,
+     * Being manually added by a Lever user, or
+     * Being sourced from an online profile.
+     * Each Opportunity can have their own notes, feedback, interview schedules, and additional forms. An opportunity may be “confidential” if it is moving through your pipeline for a job posting that has been created as confidential. Opportunities exit your pipeline by being archived for one of two reasons: (1) The candidate was rejected for the opportunity, or (2) The candidate was hired for the opportunity.
+     *
+     * A "Contact" is an object that our application uses internally to identify an individual person and their personal or contact information, even though they may have multiple opportunities. From this API, the "Contact" is exposed via the contact field, which returns the unique ID for a Contact across your account. Contact information will be shared and consistent across an individual person's opportunities, and will continue to be aggregated onto individual opportunities in the responses to all GET and POST requests to /opportunities.
+     *
+     * @see https://hire.sandbox.lever.co/developer/documentation#opportunities
+     *
+     *
+     * WARNING: The Candidates (/candidates) endpoints were deprecated as of 2020. Though they are maintained for backwards compatibility, going forward please see Opportunities endpoints to find the contacts for each job opportunity.
+     */
     opportunity: {
       id: string
       name: string
@@ -144,7 +170,15 @@ export interface components {
       id: string
       createdAt: number
       /** @enum {string} */
-      status: 'signed' | 'draft'
+      status:
+        | 'draft'
+        | 'approval-sent'
+        | 'approved'
+        | 'sent'
+        | 'sent-manually'
+        | 'opened'
+        | 'denied'
+        | 'signed'
       /** Format: uuid */
       creator: string
       fields: {
@@ -433,6 +467,52 @@ export interface operations {
         content: {
           'application/json': {
             data: components['schemas']['tag'][]
+            hasNext?: boolean
+            next?: string
+          }
+        }
+      }
+    }
+  }
+  listStages: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: {
+              id: string
+              text: string
+            }[]
+            hasNext?: boolean
+            next?: string
+          }
+        }
+      }
+    }
+  }
+  listArchiveReasons: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            data: {
+              id: string
+              text: string
+              /** @enum {string} */
+              status: 'active' | 'inactive'
+              /** @enum {string} */
+              type: 'non-hired' | 'hired'
+            }[]
             hasNext?: boolean
             next?: string
           }

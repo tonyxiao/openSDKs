@@ -1,7 +1,7 @@
 import {OpenAPISpec} from '@opensdks/runtime'
 import {createDocument, jsonOperation, z} from '@opensdks/util-zod'
 
-const leverPosting = z
+const posting = z
   .object({
     id: z.string(),
     text: z.string(),
@@ -82,7 +82,7 @@ const urlsSchema = z.object({
   show: z.string().url(),
 })
 
-const leverOpportunitySchema = z
+const opportunity = z
   .object({
     id: z.string(),
     name: z.string(),
@@ -114,13 +114,35 @@ const leverOpportunitySchema = z
     dataProtection: dataProtectionSchema,
     isAnonymized: z.boolean(),
   })
-  .openapi({ref: 'opportunity'})
+  .openapi({
+    ref: 'opportunity',
+
+    description: `
+"Candidates" are individuals who have been added to your Lever account as potential fits for your open job positions. "Opportunities" represent each of an individual’s unique candidacies or journeys through your pipeline for a given job position, meaning a single Candidate can be associated with multiple Opportunities. A “Contact” is a unique individual who may or may not have multiple candidacies or Opportunities.
+
+Candidates enter your pipeline for a new Opportunity by:
+
+Applying to a posting on your jobs site,
+Being added by an external recruiting agency,
+Being referred by an employee,
+Being manually added by a Lever user, or
+Being sourced from an online profile.
+Each Opportunity can have their own notes, feedback, interview schedules, and additional forms. An opportunity may be “confidential” if it is moving through your pipeline for a job posting that has been created as confidential. Opportunities exit your pipeline by being archived for one of two reasons: (1) The candidate was rejected for the opportunity, or (2) The candidate was hired for the opportunity.
+
+A "Contact" is an object that our application uses internally to identify an individual person and their personal or contact information, even though they may have multiple opportunities. From this API, the "Contact" is exposed via the contact field, which returns the unique ID for a Contact across your account. Contact information will be shared and consistent across an individual person's opportunities, and will continue to be aggregated onto individual opportunities in the responses to all GET and POST requests to /opportunities.
+
+@see https://hire.sandbox.lever.co/developer/documentation#opportunities
+
+
+WARNING: The Candidates (/candidates) endpoints were deprecated as of 2020. Though they are maintained for backwards compatibility, going forward please see Opportunities endpoints to find the contacts for each job opportunity.
+    `,
+  })
 
 const locationSchema = z.object({
   name: z.string(),
 })
 
-const leverContactSchema = z
+const contact = z
   .object({
     id: z.string(),
     name: z.string(),
@@ -153,11 +175,20 @@ const documentSchema = z
   })
   .nullable()
 
-const offerSchema = z
+const offer = z
   .object({
     id: z.string().uuid(),
     createdAt: z.number(),
-    status: z.enum(['signed', 'draft']),
+    status: z.enum([
+      'draft', // the offer is still under construction
+      'approval-sent', // the offer needs approval
+      'approved', // the offer has been approved
+      'sent', // the offer has been sent through Lever
+      'sent-manually', //  the offer has been sent to the candidate outside of Lever
+      'opened', // the candidate has opened the offer
+      'denied', // the candidate denied the offer
+      'signed', // the candidate signed the offer
+    ]),
     creator: z.string().uuid(),
     fields: z.array(fieldSchema),
     sentDocument: documentSchema,
@@ -165,6 +196,125 @@ const offerSchema = z
   })
   .catchall(z.unknown())
   .openapi({ref: 'offer'})
+
+/**
+   * There are some stages that are common to all Lever accounts, and some that are customizable
+   * Notably hired is not a stage. 
+   * {
+  "data": [
+    {
+      "id": "lead-new",
+      "text": "New lead"
+    },
+    {
+      "id": "lead-reached-out",
+      "text": "Reached out"
+    },
+    {
+      "id": "lead-responded",
+      "text": "Responded"
+    },
+    {
+      "id": "applicant-new",
+      "text": "New applicant"
+    },
+    {
+      "id": "7100254d-2655-4b2a-9677-27b1bd5980fb",
+      "text": "Tes stage"
+    },
+    {
+      "id": "b7c29827-5a7b-454e-9b2d-1a18dcbebfd3",
+      "text": "Phone screen"
+    },
+    {
+      "id": "d09b0083-b7d4-4f86-8d90-d1532e53a3bb",
+      "text": "On-site interview"
+    },
+    {
+      "id": "c7212f5a-8e5f-481b-9170-258f9447aa32",
+      "text": "Reference check"
+    },
+    {
+      "id": "offer",
+      "text": "Offer"
+    }
+  ],
+  "hasNext": false
+}
+   */
+
+const stage = z.object({
+  id: z.string().openapi({
+    examples: [
+      'lead-new',
+      'lead-reached-out',
+      'lead-responded',
+      'applicant-new',
+      'offer',
+      '<string>',
+    ],
+  }),
+  text: z.string(),
+})
+
+/**
+ * {
+  "data": [
+    {
+      "id": "ceb5f9e3-a160-4a29-b8ff-06acba7c549e",
+      "text": "Underqualified",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "0d56befe-481c-4bfd-8be9-f1280d41b8a6",
+      "text": "Unresponsive",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "2b956ecc-bb2a-4026-ae44-8fe1a225ad4f",
+      "text": "Timing",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "ff94b0db-34c8-458d-808b-3b5c99cd7cdf",
+      "text": "Withdrew",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "73ea2610-057a-4576-92ab-551de1835189",
+      "text": "Offer declined",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "05f95c6f-67a8-45c6-b4bc-b07cb4c2cd28",
+      "text": "Position closed",
+      "status": "active",
+      "type": "non-hired"
+    },
+    {
+      "id": "ddc474e6-67bd-480e-9513-4a9720fa9599",
+      "text": "Hired",
+      "status": "active",
+      "type": "hired"
+    }
+  ],
+  "hasNext": false
+
+  @see https://hire.sandbox.lever.co/settings/archive-reasons
+
+  There can only be a single hired archive reason, and it cannot be de-activated. https://share.cleanshot.com/M8MMSL0S
+ */
+const archiveReason = z.object({
+  id: z.string(),
+  text: z.string(),
+  status: z.enum(['active', 'inactive']),
+  type: z.enum(['non-hired', 'hired']),
+})
 
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
@@ -183,7 +333,7 @@ export const oas: OpenAPISpec = createDocument({
           id: z.string().describe('The ID of the posting to retrieve'),
         }),
         response: z.object({
-          data: leverPosting,
+          data: posting,
         }),
       }),
     },
@@ -284,7 +434,7 @@ export const oas: OpenAPISpec = createDocument({
             ),
         }),
         response: z.object({
-          data: z.array(leverPosting),
+          data: z.array(posting),
           hasNext: z.boolean().optional(),
           next: z.string().optional(),
         }),
@@ -296,7 +446,7 @@ export const oas: OpenAPISpec = createDocument({
           id: z.string().describe('The ID of the opportunity to retrieve'),
         }),
         response: z.object({
-          data: leverOpportunitySchema,
+          data: opportunity,
         }),
       }),
     },
@@ -308,7 +458,7 @@ export const oas: OpenAPISpec = createDocument({
             .describe('The ID of the opportunity to retrieve offers for'),
         }),
         response: z.object({
-          data: offerSchema,
+          data: offer,
         }),
       }),
     },
@@ -468,7 +618,7 @@ export const oas: OpenAPISpec = createDocument({
             ),
         }),
         response: z.object({
-          data: z.array(leverOpportunitySchema),
+          data: z.array(opportunity),
           hasNext: z.boolean().optional(),
           next: z.string().optional(),
         }),
@@ -480,7 +630,7 @@ export const oas: OpenAPISpec = createDocument({
           id: z.string().describe('The ID of the contact to retrieve'),
         }),
         response: z.object({
-          data: leverContactSchema,
+          data: contact,
         }),
       }),
     },
@@ -502,6 +652,24 @@ export const oas: OpenAPISpec = createDocument({
         }),
         response: z.object({
           data: z.array(tagSchema),
+          hasNext: z.boolean().optional(),
+          next: z.string().optional(),
+        }),
+      }),
+    },
+    '/stages': {
+      get: jsonOperation('listStages', {
+        response: z.object({
+          data: z.array(stage),
+          hasNext: z.boolean().optional(),
+          next: z.string().optional(),
+        }),
+      }),
+    },
+    '/archive_reasons': {
+      get: jsonOperation('listArchiveReasons', {
+        response: z.object({
+          data: z.array(archiveReason),
           hasNext: z.boolean().optional(),
           next: z.string().optional(),
         }),

@@ -673,6 +673,112 @@
           }
         }
       }
+    },
+    "/stages": {
+      "get": {
+        "operationId": "listStages",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "examples": [
+                              "lead-new",
+                              "lead-reached-out",
+                              "lead-responded",
+                              "applicant-new",
+                              "offer",
+                              "<string>"
+                            ]
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["id", "text"]
+                      }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/archive_reasons": {
+      "get": {
+        "operationId": "listArchiveReasons",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": ["active", "inactive"]
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": ["non-hired", "hired"]
+                          }
+                        },
+                        "required": ["id", "text", "status", "type"]
+                      }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1085,7 +1191,8 @@
           "urls",
           "dataProtection",
           "isAnonymized"
-        ]
+        ],
+        "description": "\n\"Candidates\" are individuals who have been added to your Lever account as potential fits for your open job positions. \"Opportunities\" represent each of an individual’s unique candidacies or journeys through your pipeline for a given job position, meaning a single Candidate can be associated with multiple Opportunities. A “Contact” is a unique individual who may or may not have multiple candidacies or Opportunities.\n\nCandidates enter your pipeline for a new Opportunity by:\n\nApplying to a posting on your jobs site,\nBeing added by an external recruiting agency,\nBeing referred by an employee,\nBeing manually added by a Lever user, or\nBeing sourced from an online profile.\nEach Opportunity can have their own notes, feedback, interview schedules, and additional forms. An opportunity may be “confidential” if it is moving through your pipeline for a job posting that has been created as confidential. Opportunities exit your pipeline by being archived for one of two reasons: (1) The candidate was rejected for the opportunity, or (2) The candidate was hired for the opportunity.\n\nA \"Contact\" is an object that our application uses internally to identify an individual person and their personal or contact information, even though they may have multiple opportunities. From this API, the \"Contact\" is exposed via the contact field, which returns the unique ID for a Contact across your account. Contact information will be shared and consistent across an individual person's opportunities, and will continue to be aggregated onto individual opportunities in the responses to all GET and POST requests to /opportunities.\n\n@see https://hire.sandbox.lever.co/developer/documentation#opportunities\n\n\nWARNING: The Candidates (/candidates) endpoints were deprecated as of 2020. Though they are maintained for backwards compatibility, going forward please see Opportunities endpoints to find the contacts for each job opportunity.\n    "
       },
       "offer": {
         "type": "object",
@@ -1099,7 +1206,16 @@
           },
           "status": {
             "type": "string",
-            "enum": ["signed", "draft"]
+            "enum": [
+              "draft",
+              "approval-sent",
+              "approved",
+              "sent",
+              "sent-manually",
+              "opened",
+              "denied",
+              "signed"
+            ]
           },
           "creator": {
             "type": "string",

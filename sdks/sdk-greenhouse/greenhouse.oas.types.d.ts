@@ -157,6 +157,10 @@ export interface components {
         [key: string]: components['schemas']['keyedCustomFields']
       }
     }
+    /**
+     * @description
+     *     In Greenhouse Recruiting, a candidate is someone who applied for the job and is in the hiring pipeline. A prospect is someone who has not applied for a job but who you want to consider for future opportunities.
+     */
     candidate: {
       id: number
       first_name: string
