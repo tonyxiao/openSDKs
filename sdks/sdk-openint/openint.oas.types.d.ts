@@ -215,6 +215,7 @@ export interface paths {
   }
   '/unified/crm/metadata/objects/{object_name}/properties': {
     get: operations['crm-metadataListObjectProperties']
+    post: operations['crm-metadataCreateObjectProperty']
   }
   '/unified/crm/metadata/associations': {
     post: operations['crm-metadataCreateAssociation']
@@ -1018,6 +1019,88 @@ export interface components {
       merchant_name?: string | null
       account_id?: string | null
       account_name?: string | null
+    }
+    /** @description An (open) role */
+    'ats.job': {
+      id: string
+      created_at: string
+      modified_at: string
+      name: string
+      confidential: boolean
+      departments: components['schemas']['ats.department'][]
+      offices?:
+        | {
+            [key: string]: unknown
+          }[]
+        | null
+      hiring_managers?: unknown
+      recruiters?:
+        | {
+            [key: string]: unknown
+          }[]
+        | null
+      raw_data?: {
+        [key: string]: unknown
+      }
+    }
+    /** @description A department in an organization */
+    'ats.department': {
+      id?: string | null
+      created_at?: string | null
+      modified_at?: string | null
+      name?: string | null
+      parent_id?: string | null
+      parent_department_external_id?: string | null
+      child_ids?: (string | null)[] | null
+      child_department_external_ids?: (string | null)[] | null
+      raw_data?: {
+        [key: string]: unknown
+      }
+    }
+    /** @description An offer to a candidate */
+    'ats.offer': {
+      id: string
+      created_at: string
+      modified_at: string
+      application?: string | null
+      closed_at?: string | null
+      sent_at?: string | null
+      start_date?: string | null
+      status?: string | null
+      raw_data?: {
+        [key: string]: unknown
+      }
+    }
+    /** @description A candidate for a job */
+    'ats.candidate': {
+      id: string
+      created_at?: string | null
+      modified_at?: string | null
+      name?: string | null
+      first_name?: string | null
+      last_name?: string | null
+      company?: string | null
+      title?: string | null
+      last_interaction_at?: string | null
+      is_private?: boolean | null
+      can_email?: boolean | null
+      locations?: unknown[] | null
+      phone_numbers?:
+        | {
+            [key: string]: unknown
+          }[]
+        | null
+      email_addresses?:
+        | {
+            [key: string]: unknown
+          }[]
+        | null
+      tags?: string[] | null
+      applications?: unknown[] | null
+      attachments?: unknown[] | null
+      raw_data?: {
+        [key: string]: unknown
+      }
     }
   }
   responses: never
@@ -3872,6 +3955,61 @@ export interface operations {
       }
     }
   }
+  'crm-metadataCreateObjectProperty': {
+    parameters: {
+      path: {
+        object_name: string
+      }
+    }
+    requestBody: {
+      content: {
+        'application/json': {
+          /**
+           * @description The machine name of the property as it appears in the third-party Provider
+           * @example FirstName
+           */
+          id: string
+          /**
+           * @description The human-readable name of the property as provided by the third-party Provider.
+           * @example First Name
+           */
+          label: string
+          /**
+           * @description The type of the property as provided by the third-party Provider. These types are not unified by Supaglue. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.
+           * @example string
+           */
+          type?: string
+          /**
+           * @description The raw details of the property as provided by the third-party Provider, if available.
+           * @example {}
+           */
+          raw_details?: {
+            [key: string]: unknown
+          }
+        }
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': components['schemas']['crm.meta.property']
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
   'crm-metadataCreateAssociation': {
     requestBody: {
       content: {
@@ -4327,40 +4465,7 @@ export interface operations {
           'application/json': {
             next_cursor?: string | null
             has_next_page: boolean
-            items: {
-              id: string
-              created_at: string
-              modified_at: string
-              name: string
-              confidential: boolean
-              departments: {
-                id?: string | null
-                created_at?: string | null
-                modified_at?: string | null
-                name?: string | null
-                parent_id?: string | null
-                parent_department_external_id?: string | null
-                child_ids?: (string | null)[] | null
-                child_department_external_ids?: (string | null)[] | null
-                raw_data?: {
-                  [key: string]: unknown
-                }
-              }[]
-              offices?:
-                | {
-                    [key: string]: unknown
-                  }[]
-                | null
-              hiring_managers?: unknown
-              recruiters?:
-                | {
-                    [key: string]: unknown
-                  }[]
-                | null
-              raw_data?: {
-                [key: string]: unknown
-              }
-            }[]
+            items: components['schemas']['ats.job'][]
           }
         }
       }
@@ -4399,19 +4504,7 @@ export interface operations {
           'application/json': {
             next_cursor?: string | null
             has_next_page: boolean
-            items: {
-              id: string
-              created_at: string
-              modified_at: string
-              application?: string | null
-              closed_at?: string | null
-              sent_at?: string | null
-              start_date?: string | null
-              status?: string | null
-              raw_data?: {
-                [key: string]: unknown
-              }
-            }[]
+            items: components['schemas']['ats.offer'][]
           }
         }
       }
@@ -4450,36 +4543,7 @@ export interface operations {
           'application/json': {
             next_cursor?: string | null
             has_next_page: boolean
-            items: {
-              id: string
-              created_at?: string | null
-              modified_at?: string | null
-              name?: string | null
-              first_name?: string | null
-              last_name?: string | null
-              company?: string | null
-              title?: string | null
-              last_interaction_at?: string | null
-              is_private?: boolean | null
-              can_email?: boolean | null
-              locations?: unknown[] | null
-              phone_numbers?:
-                | {
-                    [key: string]: unknown
-                  }[]
-                | null
-              email_addresses?:
-                | {
-                    [key: string]: unknown
-                  }[]
-                | null
-              tags?: string[] | null
-              applications?: unknown[] | null
-              attachments?: unknown[] | null
-              raw_data?: {
-                [key: string]: unknown
-              }
-            }[]
+            items: components['schemas']['ats.candidate'][]
           }
         }
       }
@@ -4518,19 +4582,7 @@ export interface operations {
           'application/json': {
             next_cursor?: string | null
             has_next_page: boolean
-            items: {
-              id?: string | null
-              created_at?: string | null
-              modified_at?: string | null
-              name?: string | null
-              parent_id?: string | null
-              parent_department_external_id?: string | null
-              child_ids?: (string | null)[] | null
-              child_department_external_ids?: (string | null)[] | null
-              raw_data?: {
-                [key: string]: unknown
-              }
-            }[]
+            items: components['schemas']['ats.department'][]
           }
         }
       }

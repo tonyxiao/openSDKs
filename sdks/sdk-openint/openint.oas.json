@@ -4502,6 +4502,79 @@
             }
           }
         }
+      },
+      "post": {
+        "operationId": "crm-metadataCreateObjectProperty",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "object_name",
+            "schema": {"type": "string"},
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The machine name of the property as it appears in the third-party Provider",
+                    "example": "FirstName"
+                  },
+                  "label": {
+                    "type": "string",
+                    "description": "The human-readable name of the property as provided by the third-party Provider.",
+                    "example": "First Name"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The type of the property as provided by the third-party Provider. These types are not unified by Supaglue. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.",
+                    "example": "string"
+                  },
+                  "raw_details": {
+                    "type": "object",
+                    "additionalProperties": {},
+                    "description": "The raw details of the property as provided by the third-party Provider, if available.",
+                    "example": {}
+                  }
+                },
+                "required": ["id", "label"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/crm.meta.property"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/unified/crm/metadata/associations": {
@@ -5285,71 +5358,7 @@
                     "has_next_page": {"type": "boolean"},
                     "items": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {"type": "string"},
-                          "created_at": {"type": "string"},
-                          "modified_at": {"type": "string"},
-                          "name": {"type": "string"},
-                          "confidential": {"type": "boolean"},
-                          "departments": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {"type": ["string", "null"]},
-                                "created_at": {"type": ["string", "null"]},
-                                "modified_at": {"type": ["string", "null"]},
-                                "name": {"type": ["string", "null"]},
-                                "parent_id": {"type": ["string", "null"]},
-                                "parent_department_external_id": {
-                                  "type": ["string", "null"]
-                                },
-                                "child_ids": {
-                                  "type": ["array", "null"],
-                                  "items": {"type": ["string", "null"]}
-                                },
-                                "child_department_external_ids": {
-                                  "type": ["array", "null"],
-                                  "items": {"type": ["string", "null"]}
-                                },
-                                "raw_data": {
-                                  "type": "object",
-                                  "additionalProperties": {}
-                                }
-                              }
-                            }
-                          },
-                          "offices": {
-                            "type": ["array", "null"],
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            }
-                          },
-                          "hiring_managers": {},
-                          "recruiters": {
-                            "type": ["array", "null"],
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            }
-                          },
-                          "raw_data": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "created_at",
-                          "modified_at",
-                          "name",
-                          "confidential",
-                          "departments"
-                        ]
-                      }
+                      "items": {"$ref": "#/components/schemas/ats.job"}
                     }
                   },
                   "required": ["has_next_page", "items"]
@@ -5414,24 +5423,7 @@
                     "has_next_page": {"type": "boolean"},
                     "items": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {"type": "string"},
-                          "created_at": {"type": "string"},
-                          "modified_at": {"type": "string"},
-                          "application": {"type": ["string", "null"]},
-                          "closed_at": {"type": ["string", "null"]},
-                          "sent_at": {"type": ["string", "null"]},
-                          "start_date": {"type": ["string", "null"]},
-                          "status": {"type": ["string", "null"]},
-                          "raw_data": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          }
-                        },
-                        "required": ["id", "created_at", "modified_at"]
-                      }
+                      "items": {"$ref": "#/components/schemas/ats.offer"}
                     }
                   },
                   "required": ["has_next_page", "items"]
@@ -5496,54 +5488,7 @@
                     "has_next_page": {"type": "boolean"},
                     "items": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {"type": "string"},
-                          "created_at": {"type": ["string", "null"]},
-                          "modified_at": {"type": ["string", "null"]},
-                          "name": {"type": ["string", "null"]},
-                          "first_name": {"type": ["string", "null"]},
-                          "last_name": {"type": ["string", "null"]},
-                          "company": {"type": ["string", "null"]},
-                          "title": {"type": ["string", "null"]},
-                          "last_interaction_at": {"type": ["string", "null"]},
-                          "is_private": {"type": ["boolean", "null"]},
-                          "can_email": {"type": ["boolean", "null"]},
-                          "locations": {"type": ["array", "null"], "items": {}},
-                          "phone_numbers": {
-                            "type": ["array", "null"],
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            }
-                          },
-                          "email_addresses": {
-                            "type": ["array", "null"],
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            }
-                          },
-                          "tags": {
-                            "type": ["array", "null"],
-                            "items": {"type": "string"}
-                          },
-                          "applications": {
-                            "type": ["array", "null"],
-                            "items": {}
-                          },
-                          "attachments": {
-                            "type": ["array", "null"],
-                            "items": {}
-                          },
-                          "raw_data": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          }
-                        },
-                        "required": ["id"]
-                      }
+                      "items": {"$ref": "#/components/schemas/ats.candidate"}
                     }
                   },
                   "required": ["has_next_page", "items"]
@@ -5608,31 +5553,7 @@
                     "has_next_page": {"type": "boolean"},
                     "items": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {"type": ["string", "null"]},
-                          "created_at": {"type": ["string", "null"]},
-                          "modified_at": {"type": ["string", "null"]},
-                          "name": {"type": ["string", "null"]},
-                          "parent_id": {"type": ["string", "null"]},
-                          "parent_department_external_id": {
-                            "type": ["string", "null"]
-                          },
-                          "child_ids": {
-                            "type": ["array", "null"],
-                            "items": {"type": ["string", "null"]}
-                          },
-                          "child_department_external_ids": {
-                            "type": ["array", "null"],
-                            "items": {"type": ["string", "null"]}
-                          },
-                          "raw_data": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          }
-                        }
-                      }
+                      "items": {"$ref": "#/components/schemas/ats.department"}
                     }
                   },
                   "required": ["has_next_page", "items"]
@@ -7307,6 +7228,107 @@
           "account_name": {"type": ["string", "null"]}
         },
         "required": ["id", "date", "amount", "currency"]
+      },
+      "ats.job": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "created_at": {"type": "string"},
+          "modified_at": {"type": "string"},
+          "name": {"type": "string"},
+          "confidential": {"type": "boolean"},
+          "departments": {
+            "type": "array",
+            "items": {"$ref": "#/components/schemas/ats.department"}
+          },
+          "offices": {
+            "type": ["array", "null"],
+            "items": {"type": "object", "additionalProperties": {}}
+          },
+          "hiring_managers": {},
+          "recruiters": {
+            "type": ["array", "null"],
+            "items": {"type": "object", "additionalProperties": {}}
+          },
+          "raw_data": {"type": "object", "additionalProperties": {}}
+        },
+        "required": [
+          "id",
+          "created_at",
+          "modified_at",
+          "name",
+          "confidential",
+          "departments"
+        ],
+        "description": "An (open) role"
+      },
+      "ats.department": {
+        "type": "object",
+        "properties": {
+          "id": {"type": ["string", "null"]},
+          "created_at": {"type": ["string", "null"]},
+          "modified_at": {"type": ["string", "null"]},
+          "name": {"type": ["string", "null"]},
+          "parent_id": {"type": ["string", "null"]},
+          "parent_department_external_id": {"type": ["string", "null"]},
+          "child_ids": {
+            "type": ["array", "null"],
+            "items": {"type": ["string", "null"]}
+          },
+          "child_department_external_ids": {
+            "type": ["array", "null"],
+            "items": {"type": ["string", "null"]}
+          },
+          "raw_data": {"type": "object", "additionalProperties": {}}
+        },
+        "description": "A department in an organization"
+      },
+      "ats.offer": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "created_at": {"type": "string"},
+          "modified_at": {"type": "string"},
+          "application": {"type": ["string", "null"]},
+          "closed_at": {"type": ["string", "null"]},
+          "sent_at": {"type": ["string", "null"]},
+          "start_date": {"type": ["string", "null"]},
+          "status": {"type": ["string", "null"]},
+          "raw_data": {"type": "object", "additionalProperties": {}}
+        },
+        "required": ["id", "created_at", "modified_at"],
+        "description": "An offer to a candidate"
+      },
+      "ats.candidate": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "created_at": {"type": ["string", "null"]},
+          "modified_at": {"type": ["string", "null"]},
+          "name": {"type": ["string", "null"]},
+          "first_name": {"type": ["string", "null"]},
+          "last_name": {"type": ["string", "null"]},
+          "company": {"type": ["string", "null"]},
+          "title": {"type": ["string", "null"]},
+          "last_interaction_at": {"type": ["string", "null"]},
+          "is_private": {"type": ["boolean", "null"]},
+          "can_email": {"type": ["boolean", "null"]},
+          "locations": {"type": ["array", "null"], "items": {}},
+          "phone_numbers": {
+            "type": ["array", "null"],
+            "items": {"type": "object", "additionalProperties": {}}
+          },
+          "email_addresses": {
+            "type": ["array", "null"],
+            "items": {"type": "object", "additionalProperties": {}}
+          },
+          "tags": {"type": ["array", "null"], "items": {"type": "string"}},
+          "applications": {"type": ["array", "null"], "items": {}},
+          "attachments": {"type": ["array", "null"], "items": {}},
+          "raw_data": {"type": "object", "additionalProperties": {}}
+        },
+        "required": ["id"],
+        "description": "A candidate for a job"
       }
     }
   },
