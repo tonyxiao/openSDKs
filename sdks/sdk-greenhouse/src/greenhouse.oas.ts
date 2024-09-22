@@ -255,7 +255,7 @@ const greenhouseJob = z
       .describe(
         'If this job was copied from another job, this field contains the id of the source job.',
       ),
-    departments: z.array(greenhouseDepartment),
+    departments: z.array(z.union([greenhouseDepartment, z.null()])),
     offices: z.array(greenhouseOffice),
     openings: z.array(greenhouseOpening),
     custom_fields: z.record(z.string(), z.any()),
