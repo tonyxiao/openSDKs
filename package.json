@@ -15,14 +15,14 @@
     "commitlint": "commitlint --edit",
     "prepare": "husky install",
     "sync-manifests": "npx tsx ./packages/cli/syncManifests.ts ./ ./master-manifest.js",
-    "publish-packages": "turbo run build --filter '!website' && pnpm -r publish",
+    "build-all": "turbo run build --filter '!website'",
+    "publish-no-git-checks": "pnpm -r publish --no-git-checks",
     "prettier:pkgjson": "pnpm prettier --write ./sdks/*/package.json ./packages/*/package.json"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,yml,yaml}": "prettier --write",
     "**/*.{js,ts,tsx}": "eslint --ext .js,.ts,.tsx --cache --fix"
   },
-  "packageManager": "pnpm@9.9.0",
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
@@ -65,5 +65,6 @@
     "type-fest": "^4.8.3",
     "typescript": "^5.3.2",
     "yaml": "^2.3.4"
-  }
+  },
+  "packageManager": "pnpm@9.9.0"
 }

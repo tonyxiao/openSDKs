@@ -477,7 +477,14 @@
           "departments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/department"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/department"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
           "offices": {

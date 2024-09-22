@@ -5,7 +5,7 @@
       "outputs": ["*.oas.json", "*.oas.yaml"]
     },
     "generate": {
-      "//dependsOn": ["download"],
+      "dependsOn": ["download"],
       "cache": false,
       "outputs": ["*.oas.d.ts"]
     },
@@ -19,6 +19,7 @@
     "debug": {"cache": false},
     "//#typecheck": {},
     "//#lint": {},
-    "//#test": {}
+    "//#test": {},
+    "//#publish-no-git-checks": {}
   }
 }

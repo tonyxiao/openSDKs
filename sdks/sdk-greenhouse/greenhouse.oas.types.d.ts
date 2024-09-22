@@ -64,7 +64,7 @@ export interface components {
       is_template: boolean | null
       /** @description If this job was copied from another job, this field contains the id of the source job. */
       copied_from_id: number
-      departments: components['schemas']['department'][]
+      departments: (components['schemas']['department'] | null)[]
       offices: components['schemas']['office'][]
       openings: components['schemas']['opening'][]
       custom_fields: {
