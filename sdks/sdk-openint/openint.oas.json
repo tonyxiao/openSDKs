@@ -578,7 +578,28 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": {"$ref": "#/components/schemas/Resource"}
+                "schema": {
+                  "allOf": [{"$ref": "#/components/schemas/Resource"}],
+                  "type": "object",
+                  "properties": {
+                    "connector_config": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Must start with 'ccfg_'"
+                        },
+                        "orgId": {
+                          "type": "string",
+                          "description": "Must start with 'org_'"
+                        },
+                        "connectorName": {"type": "string"}
+                      },
+                      "required": ["id", "orgId", "connectorName"]
+                    }
+                  },
+                  "required": ["connector_config"]
+                }
               }
             }
           },
@@ -829,6 +850,11 @@
                     },
                     "required": ["source_id"],
                     "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "title": "Disabled",
+                    "description": "When disabled it will not be used for connection portal. Essentially a reversible soft-delete"
                   }
                 },
                 "required": ["orgId"]
@@ -892,7 +918,11 @@
                     "description": "\n  JSON object can can be used to associate arbitrary metadata to\n  avoid needing a separate 1-1 table just for simple key values in your application.\n  During updates this object will be shallowly merged\n"
                   },
                   "displayName": {"type": ["string", "null"]},
-                  "disabled": {"type": "boolean"}
+                  "disabled": {
+                    "type": "boolean",
+                    "title": "Disabled",
+                    "description": "When disabled it will not be used for connection portal. Essentially a reversible soft-delete"
+                  }
                 }
               }
             }
@@ -1037,6 +1067,7 @@
     "/core/connector_config_info": {
       "get": {
         "operationId": "listConnectorConfigInfos",
+        "description": "For end user authentication and list a limited set of non private data",
         "tags": ["Core"],
         "parameters": [
           {
@@ -1079,13 +1110,40 @@
                       "displayName": {"type": ["string", "null"]},
                       "connectorName": {"type": "string"},
                       "isSource": {"type": "boolean"},
-                      "isDestination": {"type": "boolean"}
+                      "isDestination": {"type": "boolean"},
+                      "verticals": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "banking",
+                            "accounting",
+                            "crm",
+                            "sales-engagement",
+                            "engagement",
+                            "commerce",
+                            "expense-management",
+                            "enrichment",
+                            "database",
+                            "flat-files-and-spreadsheets",
+                            "file-storage",
+                            "streaming",
+                            "personal-finance",
+                            "other",
+                            "hris",
+                            "payroll",
+                            "calendar",
+                            "ats"
+                          ]
+                        }
+                      }
                     },
                     "required": [
                       "id",
                       "connectorName",
                       "isSource",
-                      "isDestination"
+                      "isDestination",
+                      "verticals"
                     ]
                   }
                 }
@@ -1325,7 +1383,12 @@
             "name": "cursor",
             "schema": {"type": ["string", "null"]}
           },
-          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}},
+          {
+            "in": "query",
+            "name": "search_text",
+            "schema": {"type": ["string", "null"]}
+          }
         ],
         "responses": {
           "200": {
@@ -1392,7 +1455,12 @@
             "schema": {"type": ["string", "null"]}
           },
           {"in": "query", "name": "page_size", "schema": {"type": "number"}},
-          {"in": "query", "name": "query", "schema": {"type": "string"}}
+          {"in": "query", "name": "search_text", "schema": {"type": "string"}},
+          {
+            "in": "query",
+            "name": "connector_config_ids",
+            "schema": {"type": "array", "items": {"type": "string"}}
+          }
         ],
         "responses": {
           "200": {
@@ -1779,6 +1847,50 @@
         }
       }
     },
+    "/core/sync_run": {
+      "get": {
+        "operationId": "listSyncRuns",
+        "tags": ["Core"],
+        "parameters": [
+          {"in": "query", "name": "limit", "schema": {"type": "number"}},
+          {"in": "query", "name": "offset", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {"schema": {"type": "array", "items": {}}}
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/viewer": {
       "get": {
         "operationId": "getViewer",
@@ -1805,6 +1917,63 @@
         }
       }
     },
+    "/viewer/organization": {
+      "get": {
+        "operationId": "getCurrentOrganization",
+        "summary": "Get current organization of viewer accessing the API",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Must start with 'org_'"
+                    },
+                    "slug": {"type": ["string", "null"]},
+                    "publicMetadata": {
+                      "type": "object",
+                      "properties": {
+                        "database_url": {
+                          "type": "string",
+                          "title": "PostgreSQL Database URL",
+                          "description": "This is where data from resources are synced to by default",
+                          "example": "postgres://username:password@host:port/database"
+                        },
+                        "synced_data_schema": {
+                          "type": "string",
+                          "title": "Synced Data Schema",
+                          "description": "Postgres schema to pipe data synced from end user resources into. Defaults to \"synced\" if missing."
+                        },
+                        "webhook_url": {
+                          "type": "string",
+                          "title": "Webhook URL",
+                          "description": "Events like sync.completed and connection.created can be sent to url of your choosing"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["id", "publicMetadata"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/openapi.json": {
       "get": {
         "operationId": "public-getOpenapiDocument",
@@ -1812,445 +1981,6 @@
           "200": {
             "description": "Successful response",
             "content": {"application/json": {"schema": {}}}
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customers": {
-      "get": {
-        "operationId": "mgmt-listCustomers",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {"$ref": "#/components/schemas/customer"}
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customers/{id}": {
-      "get": {
-        "operationId": "mgmt-getCustomer",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {"type": "string"},
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/customer"}
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customers/{customer_id}": {
-      "put": {
-        "operationId": "mgmt-upsertCustomer",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "customer_id",
-            "schema": {"type": "string"},
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {"type": ["string", "null"]},
-                  "email": {
-                    "type": ["string", "null"],
-                    "description": "Email, but not validated as data from Supaglue has invalid emails for now"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/customer"}
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customers/{customer_id}/connections": {
-      "get": {
-        "operationId": "mgmt-listConnections",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "customer_id",
-            "schema": {"type": "string"},
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {"$ref": "#/components/schemas/connection"}
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customers/{customer_id}/connections/{provider_name}": {
-      "get": {
-        "operationId": "mgmt-getConnection",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "customer_id",
-            "schema": {"type": "string"},
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "provider_name",
-            "schema": {"type": "string"},
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/connection"}
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "mgmt-deleteConnection",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "customer_id",
-            "schema": {"type": "string"},
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "provider_name",
-            "schema": {"type": "string"},
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {"application/json": {"schema": {}}}
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sync_configs": {
-      "get": {
-        "operationId": "mgmt-listSyncConfigs",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {"$ref": "#/components/schemas/sync_config"}
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/connection_sync_configs": {
-      "get": {
-        "operationId": "mgmt-getConnectionSyncConfig",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/connection_sync_config"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "mgmt-upsertConnectionSyncConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "destination_config": {
-                    "type": ["object", "null"],
-                    "properties": {
-                      "type": {"type": "string"},
-                      "schema": {"type": ["string", "null"]}
-                    },
-                    "required": ["type"]
-                  },
-                  "unified_objects": {
-                    "type": ["array", "null"],
-                    "items": {
-                      "type": "object",
-                      "properties": {"object": {"type": "string"}},
-                      "required": ["object"]
-                    }
-                  },
-                  "standard_objects": {
-                    "type": ["array", "null"],
-                    "items": {
-                      "type": "object",
-                      "properties": {"object": {"type": "string"}},
-                      "required": ["object"]
-                    }
-                  },
-                  "custom_objects": {
-                    "type": ["array", "null"],
-                    "items": {
-                      "type": "object",
-                      "properties": {"object": {"type": "string"}},
-                      "required": ["object"]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/connection_sync_config"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input data",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
-              }
-            }
           },
           "500": {
             "description": "Internal server error",
@@ -4532,7 +4262,7 @@
                   },
                   "type": {
                     "type": "string",
-                    "description": "The type of the property as provided by the third-party Provider. These types are not unified by Supaglue. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.",
+                    "description": "The type of the property as provided by the third-party Provider. These types are not unified by OpenInt. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.",
                     "example": "string"
                   },
                   "raw_details": {
@@ -6245,7 +5975,11 @@
           "config": {"type": ["object", "null"], "additionalProperties": {}},
           "orgId": {"type": "string", "description": "Must start with 'org_'"},
           "displayName": {"type": ["string", "null"]},
-          "disabled": {"type": "boolean"},
+          "disabled": {
+            "type": "boolean",
+            "title": "Disabled",
+            "description": "When disabled it will not be used for connection portal. Essentially a reversible soft-delete"
+          },
           "defaultPipeOut": {
             "type": ["object", "null"],
             "properties": {
@@ -6302,11 +6036,30 @@
           "name": {"type": "string"},
           "logo_url": {"type": ["string", "null"]},
           "login_url": {"type": ["string", "null"]},
-          "categories": {
+          "verticals": {
             "type": ["array", "null"],
             "items": {
               "type": "string",
-              "enum": ["accounting", "banking", "hris"]
+              "enum": [
+                "banking",
+                "accounting",
+                "crm",
+                "sales-engagement",
+                "engagement",
+                "commerce",
+                "expense-management",
+                "enrichment",
+                "database",
+                "flat-files-and-spreadsheets",
+                "file-storage",
+                "streaming",
+                "personal-finance",
+                "other",
+                "hris",
+                "payroll",
+                "calendar",
+                "ats"
+              ]
             }
           },
           "connector_name": {"type": "string"}
@@ -6423,80 +6176,6 @@
             "required": ["role"]
           }
         ]
-      },
-      "customer": {
-        "type": "object",
-        "properties": {
-          "customer_id": {"type": "string"},
-          "name": {"type": ["string", "null"]},
-          "email": {
-            "type": ["string", "null"],
-            "description": "Email, but not validated as data from Supaglue has invalid emails for now"
-          }
-        },
-        "required": ["customer_id"]
-      },
-      "connection": {
-        "type": "object",
-        "properties": {
-          "id": {"type": "string"},
-          "customer_id": {"type": "string"},
-          "provider_name": {"type": "string"}
-        },
-        "required": ["id", "customer_id", "provider_name"]
-      },
-      "sync_config": {
-        "allOf": [
-          {"$ref": "#/components/schemas/connection_sync_config"},
-          {
-            "type": "object",
-            "properties": {
-              "provider_name": {"type": "string"},
-              "auto_start_on_connection": {
-                "type": ["boolean", "null"],
-                "description": "If true, the sync will start automatically when the connection is created."
-              }
-            },
-            "required": ["provider_name"]
-          }
-        ]
-      },
-      "connection_sync_config": {
-        "type": "object",
-        "properties": {
-          "destination_config": {
-            "type": ["object", "null"],
-            "properties": {
-              "type": {"type": "string"},
-              "schema": {"type": ["string", "null"]}
-            },
-            "required": ["type"]
-          },
-          "unified_objects": {
-            "type": ["array", "null"],
-            "items": {
-              "type": "object",
-              "properties": {"object": {"type": "string"}},
-              "required": ["object"]
-            }
-          },
-          "standard_objects": {
-            "type": ["array", "null"],
-            "items": {
-              "type": "object",
-              "properties": {"object": {"type": "string"}},
-              "required": ["object"]
-            }
-          },
-          "custom_objects": {
-            "type": ["array", "null"],
-            "items": {
-              "type": "object",
-              "properties": {"object": {"type": "string"}},
-              "required": ["object"]
-            }
-          }
-        }
       },
       "sales-engagement.contact": {
         "type": "object",
@@ -7100,7 +6779,7 @@
           },
           "group_name": {
             "type": "string",
-            "description": "Only applicable for Hubspot. If specified, Supaglue will attempt to attach the field to this group if it exists, or create it if it doesn't.",
+            "description": "Only applicable for Hubspot. If specified, OpenInt will attempt to attach the field to this group if it exists, or create it if it doesn't.",
             "example": "my group"
           },
           "type": {"$ref": "#/components/schemas/crm.meta.property_type"},
@@ -7166,7 +6845,7 @@
           },
           "type": {
             "type": "string",
-            "description": "The type of the property as provided by the third-party Provider. These types are not unified by Supaglue. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.",
+            "description": "The type of the property as provided by the third-party Provider. These types are not unified by OpenInt. For Intercom, this is string, integer, boolean, or object. For Outreach, this is integer, boolean, number, array, or string.",
             "example": "string"
           },
           "raw_details": {
