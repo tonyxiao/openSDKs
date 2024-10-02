@@ -90,7 +90,7 @@ export const packageJsonTemplate: PackageJson = {
     'build:cjs':
       'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --module CommonJS --moduleResolution Node10 --outDir ./cjs',
     'build:cjs-pkgjson':
-      'mkdir -p ./cjs && echo \'{"type": "commonjs"}\' > ./cjs/package.json',
+      'mkdir -p ./cjs && echo \'{"type": "commonjs"}\' | tee ./cjs/package.json ./types/package.json',
     'build:esm':
       'tsc -p ./tsconfig.build.json --declaration false --declarationMap false --outDir ./esm',
     'build:types':
