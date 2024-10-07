@@ -559,6 +559,16 @@ export const oas: OpenAPISpec = createDocument({
         response: reportPayloadSchema,
       }),
     },
+    '/reports/BalanceSheet': {
+      get: jsonOperation('getBalanceSheet', {
+        response: reportPayloadSchema,
+      }),
+    },
+    '/reports/ProfitAndLoss': {
+      get: jsonOperation('getProfitAndLoss', {
+        response: reportPayloadSchema,
+      }),
+    },
     '/cdc': {
       get: jsonOperation('cdc', {
         query: z.object({

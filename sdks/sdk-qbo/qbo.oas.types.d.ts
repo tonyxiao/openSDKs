@@ -55,6 +55,12 @@ export interface paths {
   '/reports/TransactionList': {
     get: operations['getTransactionList']
   }
+  '/reports/BalanceSheet': {
+    get: operations['getBalanceSheet']
+  }
+  '/reports/ProfitAndLoss': {
+    get: operations['getProfitAndLoss']
+  }
   '/cdc': {
     get: operations['cdc']
   }
@@ -872,10 +878,39 @@ export interface operations {
       }
     }
   }
+  getBalanceSheet: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
+  getProfitAndLoss: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
   cdc: {
     parameters: {
       query: {
         changedSince: string
+        /** @description Comma separated list of entity names */
         entities: string
       }
     }

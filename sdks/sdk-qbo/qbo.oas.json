@@ -672,6 +672,48 @@
         }
       }
     },
+    "/reports/BalanceSheet": {
+      "get": {
+        "operationId": "getBalanceSheet",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Report"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/ProfitAndLoss": {
+      "get": {
+        "operationId": "getProfitAndLoss",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Report"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cdc": {
       "get": {
         "operationId": "cdc",
@@ -687,6 +729,7 @@
           {
             "in": "query",
             "name": "entities",
+            "description": "Comma separated list of entity names",
             "schema": {
               "type": "string",
               "description": "Comma separated list of entity names"
