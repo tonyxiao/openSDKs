@@ -21,6 +21,8 @@ export const entityNameSchema = z
     'Customer',
     'Item',
     'CompanyInfo',
+    'BalanceSheet',
+    'ProfitAndLoss',
   ])
   .openapi({ref: 'EntityName'})
 export type EntityName = z.infer<typeof entityNameSchema>
@@ -104,21 +106,85 @@ export const reportPayloadSchema = z
         }),
       ),
     }),
-    Rows: z.array(
-      z.object({
-        Row: z.array(
-          z.object({
-            ColData: z.array(
+    Rows: z.object({
+      Row: z.array(
+        z.object({
+          Header: z
+            .object({
+              ColData: z.array(
+                z.object({
+                  value: z.string(),
+                }),
+              ),
+            })
+            .optional(),
+          ColData: z
+            .array(
               z.object({
                 value: z.string(),
                 id: z.string().optional(),
               }),
-            ),
-            type: z.string(),
-          }),
-        ),
-      }),
-    ),
+            )
+            .optional(),
+          type: z.string(),
+          group: z.string().optional(),
+          Summary: z
+            .object({
+              ColData: z.array(
+                z.object({
+                  value: z.string(),
+                }),
+              ),
+            })
+            .optional(),
+          Rows: z
+            .object({
+              Row: z.array(
+                z.object({
+                  Header: z
+                    .object({
+                      ColData: z.array(
+                        z.object({
+                          value: z.string(),
+                        }),
+                      ),
+                    })
+                    .optional(),
+                  ColData: z
+                    .array(
+                      z.object({
+                        value: z.string(),
+                        id: z.string().optional(),
+                      }),
+                    )
+                    .optional(),
+                  type: z.string(),
+                  group: z.string().optional(),
+                  Summary: z
+                    .object({
+                      ColData: z.array(
+                        z.object({
+                          value: z.string(),
+                        }),
+                      ),
+                    })
+                    .optional(),
+                  Rows: z
+                    .object({
+                      Row: z.array(
+                        z.object({
+                          // Further nesting can be added here if needed
+                        }),
+                      ),
+                    })
+                    .optional(),
+                }),
+              ),
+            })
+            .optional(),
+        }),
+      ),
+    }),
   })
   .openapi({ref: 'Report'})
 
@@ -470,6 +536,8 @@ const entitySchemaByName = {
   Transfer: z.unknown(),
   Customer: z.unknown(),
   Item: z.unknown(),
+  BalanceSheet: z.unknown(),
+  ProfitAndLoss: z.unknown(),
 } satisfies Record<EntityName, z.ZodTypeAny>
 
 export const queryResponseSchema = z
