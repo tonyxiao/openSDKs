@@ -536,6 +536,8 @@ const entitySchemaByName = {
   Transfer: z.unknown(),
   Customer: z.unknown(),
   Item: z.unknown(),
+  BalanceSheet: z.unknown(),
+  ProfitAndLoss: z.unknown(),
 } satisfies Record<EntityName, z.ZodTypeAny>
 
 export const queryResponseSchema = z
