@@ -46,6 +46,12 @@ export interface paths {
   '/companyinfo/{id}': {
     get: operations['getCompanyInfo']
   }
+  '/balancesheet/{id}': {
+    get: operations['getBalanceSheet']
+  }
+  '/profitandloss/{id}': {
+    get: operations['getProfitAndLoss']
+  }
   '/query': {
     get: operations['query']
   }
@@ -86,6 +92,8 @@ export interface components {
       | 'Customer'
       | 'Item'
       | 'CompanyInfo'
+      | 'BalanceSheet'
+      | 'ProfitAndLoss'
     Account: {
       Id: string
       domain: string
@@ -454,6 +462,8 @@ export interface components {
       Transfer?: unknown[]
       Customer?: unknown[]
       Item?: unknown[]
+      BalanceSheet?: unknown[]
+      ProfitAndLoss?: unknown[]
       maxResults: number
       startPosition: number
       totalCount?: number
@@ -479,13 +489,47 @@ export interface components {
       }
       Rows: {
         Row: {
-          ColData: {
+          Header?: {
+            ColData: {
+              value: string
+            }[]
+          }
+          ColData?: {
             value: string
             id?: string
           }[]
           type: string
+          group?: string
+          Summary?: {
+            ColData: {
+              value: string
+            }[]
+          }
+          Rows?: {
+            Row: {
+              Header?: {
+                ColData: {
+                  value: string
+                }[]
+              }
+              ColData?: {
+                value: string
+                id?: string
+              }[]
+              type: string
+              group?: string
+              Summary?: {
+                ColData: {
+                  value: string
+                }[]
+              }
+              Rows?: {
+                Row: Record<string, never>[]
+              }
+            }[]
+          }
         }[]
-      }[]
+      }
     }
     CDCPayload: {
       CDCResponse: {
@@ -828,6 +872,34 @@ export interface operations {
       }
     }
   }
+  getBalanceSheet: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
+  getProfitAndLoss: {
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
   query: {
     parameters: {
       query: {
@@ -865,34 +937,6 @@ export interface operations {
     }
   }
   getTransactionList: {
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': components['schemas']['Report']
-        }
-      }
-    }
-  }
-  getBalanceSheet: {
-    requestBody?: {
-      content: {
-        'application/json': unknown
-      }
-    }
-    responses: {
-      200: {
-        content: {
-          'application/json': components['schemas']['Report']
-        }
-      }
-    }
-  }
-  getProfitAndLoss: {
     requestBody?: {
       content: {
         'application/json': unknown

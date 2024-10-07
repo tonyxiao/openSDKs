@@ -592,6 +592,84 @@
         }
       }
     },
+    "/balancesheet/{id}": {
+      "get": {
+        "operationId": "getBalanceSheet",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BalanceSheet": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profitandloss/{id}": {
+      "get": {
+        "operationId": "getProfitAndLoss",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProfitAndLoss": {},
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["time"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/query": {
       "get": {
         "operationId": "query",
@@ -781,7 +859,9 @@
           "Vendor",
           "Customer",
           "Item",
-          "CompanyInfo"
+          "CompanyInfo",
+          "BalanceSheet",
+          "ProfitAndLoss"
         ]
       },
       "Account": {
@@ -2126,6 +2206,14 @@
             "type": "array",
             "items": {}
           },
+          "BalanceSheet": {
+            "type": "array",
+            "items": {}
+          },
+          "ProfitAndLoss": {
+            "type": "array",
+            "items": {}
+          },
           "maxResults": {
             "type": "number"
           },
@@ -2210,40 +2298,161 @@
             "required": ["Column"]
           },
           "Rows": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "Row": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "ColData": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "value": {
-                              "type": "string"
+            "type": "object",
+            "properties": {
+              "Row": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Header": {
+                      "type": "object",
+                      "properties": {
+                        "ColData": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
                             },
-                            "id": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["value"]
+                            "required": ["value"]
+                          }
                         }
                       },
-                      "type": {
-                        "type": "string"
+                      "required": ["ColData"]
+                    },
+                    "ColData": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["value"]
                       }
                     },
-                    "required": ["ColData", "type"]
-                  }
+                    "type": {
+                      "type": "string"
+                    },
+                    "group": {
+                      "type": "string"
+                    },
+                    "Summary": {
+                      "type": "object",
+                      "properties": {
+                        "ColData": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["value"]
+                          }
+                        }
+                      },
+                      "required": ["ColData"]
+                    },
+                    "Rows": {
+                      "type": "object",
+                      "properties": {
+                        "Row": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Header": {
+                                "type": "object",
+                                "properties": {
+                                  "ColData": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["value"]
+                                    }
+                                  }
+                                },
+                                "required": ["ColData"]
+                              },
+                              "ColData": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": ["value"]
+                                }
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "group": {
+                                "type": "string"
+                              },
+                              "Summary": {
+                                "type": "object",
+                                "properties": {
+                                  "ColData": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["value"]
+                                    }
+                                  }
+                                },
+                                "required": ["ColData"]
+                              },
+                              "Rows": {
+                                "type": "object",
+                                "properties": {
+                                  "Row": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  }
+                                },
+                                "required": ["Row"]
+                              }
+                            },
+                            "required": ["type"]
+                          }
+                        }
+                      },
+                      "required": ["Row"]
+                    }
+                  },
+                  "required": ["type"]
                 }
-              },
-              "required": ["Row"]
-            }
+              }
+            },
+            "required": ["Row"]
           }
         },
         "required": ["Header", "Columns", "Rows"]
