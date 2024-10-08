@@ -226,6 +226,12 @@ export interface paths {
   '/unified/accounting/vendor': {
     get: operations['accounting-listVendors']
   }
+  '/unified/accounting/balance-sheet': {
+    get: operations['accounting-getBalanceSheet']
+  }
+  '/unified/accounting/profit-and-loss': {
+    get: operations['accounting-getProfitAndLoss']
+  }
   '/unified/pta/account': {
     get: operations['pta-listAccounts']
   }
@@ -432,8 +438,8 @@ export interface components {
         } | null
         /** @description Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization. */
         links?: components['schemas']['Link'][] | null
-        /** @description Must start with 'reso_' */
-        destination_id: string
+        /** @description Defaults to the org-wide postgres */
+        destination_id?: string
       } | null
       /** @description Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL */
       defaultPipeIn?: {
@@ -452,7 +458,7 @@ export interface components {
       metadata?: unknown
     }
     /** @enum {string} */
-    Link: 'banking'
+    Link: 'banking' | 'prefix_connector_name' | 'single_table' | 'ats'
     'core.integration': {
       id: string
       /** @description ISO8601 date string */
@@ -1633,8 +1639,8 @@ export interface operations {
             } | null
             /** @description Array of transformations that the data gets piped through on the way out. Typically used for things like unification / normalization. */
             links?: components['schemas']['Link'][] | null
-            /** @description Must start with 'reso_' */
-            destination_id: string
+            /** @description Defaults to the org-wide postgres */
+            destination_id?: string
           } | null
           /** @description Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL */
           defaultPipeIn?: {
@@ -4122,6 +4128,106 @@ export interface operations {
               name: string
               url: string
             }[]
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'accounting-getBalanceSheet': {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            /** Format: date */
+            startPeriod: string
+            /** Format: date */
+            endPeriod: string
+            currency: string
+            accountingStandard: string
+            totalCurrentAssets: number | null
+            totalFixedAssets: number | null
+            totalAssets: number | null
+            totalCurrentLiabilities: number | null
+            totalLongTermLiabilities: number | null
+            totalLiabilities: number | null
+            openingBalanceEquity: number | null
+            netIncome: number | null
+            totalEquity: number | null
+            totalLiabilitiesAndEquity: number | null
+          }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'accounting-getProfitAndLoss': {
+    parameters: {
+      query?: {
+        sync_mode?: 'full' | 'incremental'
+        cursor?: string | null
+        page_size?: number
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            reportName: string
+            /** Format: date */
+            startPeriod: string
+            /** Format: date */
+            endPeriod: string
+            currency: string
+            accountingStandard: string
+            totalIncome: number | null
+            grossProfit: number | null
+            totalExpenses: number | null
+            netOperatingIncome: number | null
+            netIncome: number | null
           }
         }
       }

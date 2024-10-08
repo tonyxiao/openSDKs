@@ -829,10 +829,9 @@
                       },
                       "destination_id": {
                         "type": "string",
-                        "description": "Must start with 'reso_'"
+                        "description": "Defaults to the org-wide postgres"
                       }
                     },
-                    "required": ["destination_id"],
                     "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
                   },
                   "defaultPipeIn": {
@@ -4865,6 +4864,174 @@
         }
       }
     },
+    "/unified/accounting/balance-sheet": {
+      "get": {
+        "operationId": "accounting-getBalanceSheet",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "startPeriod": {"type": "string", "format": "date"},
+                    "endPeriod": {"type": "string", "format": "date"},
+                    "currency": {"type": "string"},
+                    "accountingStandard": {"type": "string"},
+                    "totalCurrentAssets": {"type": ["number", "null"]},
+                    "totalFixedAssets": {"type": ["number", "null"]},
+                    "totalAssets": {"type": ["number", "null"]},
+                    "totalCurrentLiabilities": {"type": ["number", "null"]},
+                    "totalLongTermLiabilities": {"type": ["number", "null"]},
+                    "totalLiabilities": {"type": ["number", "null"]},
+                    "openingBalanceEquity": {"type": ["number", "null"]},
+                    "netIncome": {"type": ["number", "null"]},
+                    "totalEquity": {"type": ["number", "null"]},
+                    "totalLiabilitiesAndEquity": {"type": ["number", "null"]}
+                  },
+                  "required": [
+                    "startPeriod",
+                    "endPeriod",
+                    "currency",
+                    "accountingStandard",
+                    "totalCurrentAssets",
+                    "totalFixedAssets",
+                    "totalAssets",
+                    "totalCurrentLiabilities",
+                    "totalLongTermLiabilities",
+                    "totalLiabilities",
+                    "openingBalanceEquity",
+                    "netIncome",
+                    "totalEquity",
+                    "totalLiabilitiesAndEquity"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unified/accounting/profit-and-loss": {
+      "get": {
+        "operationId": "accounting-getProfitAndLoss",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sync_mode",
+            "schema": {"type": "string", "enum": ["full", "incremental"]}
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {"type": ["string", "null"]}
+          },
+          {"in": "query", "name": "page_size", "schema": {"type": "number"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportName": {"type": "string"},
+                    "startPeriod": {"type": "string", "format": "date"},
+                    "endPeriod": {"type": "string", "format": "date"},
+                    "currency": {"type": "string"},
+                    "accountingStandard": {"type": "string"},
+                    "totalIncome": {"type": ["number", "null"]},
+                    "grossProfit": {"type": ["number", "null"]},
+                    "totalExpenses": {"type": ["number", "null"]},
+                    "netOperatingIncome": {"type": ["number", "null"]},
+                    "netIncome": {"type": ["number", "null"]}
+                  },
+                  "required": [
+                    "reportName",
+                    "startPeriod",
+                    "endPeriod",
+                    "currency",
+                    "accountingStandard",
+                    "totalIncome",
+                    "grossProfit",
+                    "totalExpenses",
+                    "netOperatingIncome",
+                    "netIncome"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/error.NOT_FOUND"}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/unified/pta/account": {
       "get": {
         "operationId": "pta-listAccounts",
@@ -5994,10 +6161,9 @@
               },
               "destination_id": {
                 "type": "string",
-                "description": "Must start with 'reso_'"
+                "description": "Defaults to the org-wide postgres"
               }
             },
-            "required": ["destination_id"],
             "description": "Automatically sync data from any resources associated with this config to the destination resource, which is typically a Postgres database. Think ETL"
           },
           "defaultPipeIn": {
@@ -6023,7 +6189,10 @@
         },
         "required": ["createdAt", "updatedAt", "id", "connectorName", "orgId"]
       },
-      "Link": {"type": "string", "enum": ["banking"]},
+      "Link": {
+        "type": "string",
+        "enum": ["banking", "prefix_connector_name", "single_table", "ats"]
+      },
       "core.integration": {
         "type": "object",
         "properties": {
