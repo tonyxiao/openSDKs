@@ -22,10 +22,7 @@
     "x-apiClientRegistration": {
       "url": "https://console.developers.google.com"
     },
-    "x-apisguru-categories": [
-      "analytics",
-      "media"
-    ],
+    "x-apisguru-categories": ["analytics", "media"],
     "x-logo": {
       "url": "https://api.apis.guru/v2/cache/logo/https_www.google.com_images_branding_googlelogo_2x_googlelogo_color_272x92dp.png"
     },
@@ -136,36 +133,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -176,25 +157,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "about"
-        ]
+        "tags": ["about"]
       },
       "parameters": [
         {
@@ -264,17 +235,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           }
         ],
-        "tags": [
-          "apps"
-        ]
+        "tags": ["apps"]
       },
       "parameters": [
         {
@@ -329,44 +294,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -377,17 +322,11 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "apps"
-        ]
+        "tags": ["apps"]
       },
       "parameters": [
         {
@@ -554,44 +493,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -602,25 +521,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "changes"
-        ]
+        "tags": ["changes"]
       },
       "parameters": [
         {
@@ -698,44 +607,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -746,25 +635,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "changes"
-        ]
+        "tags": ["changes"]
       },
       "parameters": [
         {
@@ -963,44 +842,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -1011,25 +870,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "changes"
-        ]
+        "tags": ["changes"]
       }
     },
     "/changes/{changeId}": {
@@ -1093,44 +942,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -1141,25 +970,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "changes"
-        ]
+        "tags": ["changes"]
       },
       "parameters": [
         {
@@ -1228,44 +1047,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -1276,25 +1075,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "channels"
-        ]
+        "tags": ["channels"]
       }
     },
     "/drives": {
@@ -1351,25 +1140,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       },
       "parameters": [
         {
@@ -1431,17 +1210,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       }
     },
     "/drives/{driveId}": {
@@ -1482,17 +1255,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       },
       "get": {
         "description": "Gets a shared drive's metadata by ID.",
@@ -1530,25 +1297,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       },
       "parameters": [
         {
@@ -1618,17 +1375,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       }
     },
     "/drives/{driveId}/hide": {
@@ -1683,17 +1434,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       }
     },
     "/drives/{driveId}/unhide": {
@@ -1748,17 +1493,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "drives"
-        ]
+        "tags": ["drives"]
       }
     },
     "/files": {
@@ -1779,10 +1518,7 @@
             "in": "query",
             "name": "corpus",
             "schema": {
-              "enum": [
-                "DEFAULT",
-                "DOMAIN"
-              ],
+              "enum": ["DEFAULT", "DOMAIN"],
               "type": "string"
             }
           },
@@ -1856,10 +1592,7 @@
             "in": "query",
             "name": "projection",
             "schema": {
-              "enum": [
-                "BASIC",
-                "FULL"
-              ],
+              "enum": ["BASIC", "FULL"],
               "type": "string"
             }
           },
@@ -1918,44 +1651,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -1966,25 +1679,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -2114,10 +1817,7 @@
             "in": "query",
             "name": "visibility",
             "schema": {
-              "enum": [
-                "DEFAULT",
-                "PRIVATE"
-              ],
+              "enum": ["DEFAULT", "PRIVATE"],
               "type": "string"
             }
           }
@@ -2145,41 +1845,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/generateIds": {
@@ -2228,33 +1910,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -2309,17 +1977,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -2391,33 +2053,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "get": {
         "description": "Gets a file's metadata or content by ID.",
@@ -2461,10 +2109,7 @@
             "in": "query",
             "name": "projection",
             "schema": {
-              "enum": [
-                "BASIC",
-                "FULL"
-              ],
+              "enum": ["BASIC", "FULL"],
               "type": "string"
             }
           },
@@ -2515,36 +2160,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -2555,25 +2184,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -2787,57 +2406,31 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.scripts"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.scripts"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.scripts"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.scripts"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "put": {
         "description": "Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as modifiedDate. This method supports patch semantics.",
@@ -3028,57 +2621,31 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.scripts"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.scripts"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.scripts"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.scripts"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/comments": {
@@ -3144,33 +2711,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       },
       "parameters": [
         {
@@ -3232,25 +2785,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       }
     },
     "/files/{fileId}/comments/{commentId}": {
@@ -3284,25 +2827,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       },
       "get": {
         "description": "Gets a comment by ID.",
@@ -3349,33 +2882,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       },
       "parameters": [
         {
@@ -3446,25 +2965,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       },
       "put": {
         "description": "Updates an existing comment.",
@@ -3512,25 +3021,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "comments"
-        ]
+        "tags": ["comments"]
       }
     },
     "/files/{fileId}/comments/{commentId}/replies": {
@@ -3597,33 +3096,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       },
       "parameters": [
         {
@@ -3694,25 +3179,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       }
     },
     "/files/{fileId}/comments/{commentId}/replies/{replyId}": {
@@ -3755,25 +3230,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       },
       "get": {
         "description": "Gets a reply.",
@@ -3829,33 +3294,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       },
       "parameters": [
         {
@@ -3935,25 +3386,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       },
       "put": {
         "description": "Updates an existing reply.",
@@ -4010,25 +3451,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "replies"
-        ]
+        "tags": ["replies"]
       }
     },
     "/files/{fileId}/copy": {
@@ -4161,10 +3592,7 @@
             "in": "query",
             "name": "visibility",
             "schema": {
-              "enum": [
-                "DEFAULT",
-                "PRIVATE"
-              ],
+              "enum": ["DEFAULT", "PRIVATE"],
               "type": "string"
             }
           }
@@ -4192,49 +3620,27 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/export": {
@@ -4268,33 +3674,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -4367,28 +3759,16 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -4399,17 +3779,11 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       },
       "parameters": [
         {
@@ -4496,33 +3870,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/parents": {
@@ -4554,36 +3914,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -4594,25 +3938,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "parents"
-        ]
+        "tags": ["parents"]
       },
       "parameters": [
         {
@@ -4698,33 +4032,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "parents"
-        ]
+        "tags": ["parents"]
       }
     },
     "/files/{fileId}/parents/{parentId}": {
@@ -4766,25 +4086,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "parents"
-        ]
+        "tags": ["parents"]
       },
       "get": {
         "description": "Gets a specific parent reference.",
@@ -4823,36 +4133,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -4863,25 +4157,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "parents"
-        ]
+        "tags": ["parents"]
       },
       "parameters": [
         {
@@ -4986,28 +4270,16 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -5018,25 +4290,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       },
       "parameters": [
         {
@@ -5154,25 +4416,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       }
     },
     "/files/{fileId}/permissions/{permissionId}": {
@@ -5230,25 +4482,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       },
       "get": {
         "description": "Gets a permission by ID.",
@@ -5311,28 +4553,16 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -5343,25 +4573,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       },
       "parameters": [
         {
@@ -5472,25 +4692,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       },
       "put": {
         "description": "Updates a permission.",
@@ -5578,25 +4788,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       }
     },
     "/files/{fileId}/properties": {
@@ -5628,36 +4828,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -5668,25 +4852,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       },
       "parameters": [
         {
@@ -5748,41 +4922,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       }
     },
     "/files/{fileId}/properties/{propertyKey}": {
@@ -5824,41 +4980,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       },
       "get": {
         "description": "Gets a property by its key.",
@@ -5905,36 +5043,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -5945,25 +5067,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       },
       "parameters": [
         {
@@ -6042,41 +5154,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       },
       "put": {
         "description": "Updates a property.",
@@ -6132,41 +5226,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "properties"
-        ]
+        "tags": ["properties"]
       }
     },
     "/files/{fileId}/revisions": {
@@ -6216,36 +5292,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -6256,25 +5316,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "revisions"
-        ]
+        "tags": ["revisions"]
       },
       "parameters": [
         {
@@ -6331,33 +5381,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "revisions"
-        ]
+        "tags": ["revisions"]
       },
       "get": {
         "description": "Gets a specific revision.",
@@ -6396,36 +5432,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -6436,25 +5456,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "revisions"
-        ]
+        "tags": ["revisions"]
       },
       "parameters": [
         {
@@ -6525,33 +5535,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "revisions"
-        ]
+        "tags": ["revisions"]
       },
       "put": {
         "description": "Updates a revision.",
@@ -6599,33 +5595,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "revisions"
-        ]
+        "tags": ["revisions"]
       }
     },
     "/files/{fileId}/touch": {
@@ -6712,49 +5694,27 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/trash": {
@@ -6841,41 +5801,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/untrash": {
@@ -6962,41 +5904,23 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{fileId}/watch": {
@@ -7065,10 +5989,7 @@
             "in": "query",
             "name": "projection",
             "schema": {
-              "enum": [
-                "BASIC",
-                "FULL"
-              ],
+              "enum": ["BASIC", "FULL"],
               "type": "string"
             }
           },
@@ -7128,36 +6049,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -7168,25 +6073,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "files"
-        ]
+        "tags": ["files"]
       }
     },
     "/files/{folderId}/children": {
@@ -7251,36 +6146,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -7291,25 +6170,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "children"
-        ]
+        "tags": ["children"]
       },
       "parameters": [
         {
@@ -7395,33 +6264,19 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "children"
-        ]
+        "tags": ["children"]
       }
     },
     "/files/{folderId}/children/{childId}": {
@@ -7463,25 +6318,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           }
         ],
-        "tags": [
-          "children"
-        ]
+        "tags": ["children"]
       },
       "get": {
         "description": "Gets a specific child reference.",
@@ -7520,36 +6365,20 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -7560,25 +6389,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "children"
-        ]
+        "tags": ["children"]
       },
       "parameters": [
         {
@@ -7633,44 +6452,24 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.appdata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.appdata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.apps.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.apps.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.apps.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.file"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.file"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.file"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.metadata"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
             "Oauth2": [
@@ -7681,25 +6480,15 @@
             ]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.photos.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "permissions"
-        ]
+        "tags": ["permissions"]
       },
       "parameters": [
         {
@@ -7779,25 +6568,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "teamdrives"
-        ]
+        "tags": ["teamdrives"]
       },
       "parameters": [
         {
@@ -7859,17 +6638,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "teamdrives"
-        ]
+        "tags": ["teamdrives"]
       }
     },
     "/teamdrives/{teamDriveId}": {
@@ -7894,17 +6667,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "teamdrives"
-        ]
+        "tags": ["teamdrives"]
       },
       "get": {
         "description": "Deprecated use drives.get instead.",
@@ -7942,25 +6709,15 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           },
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive.readonly"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]
           }
         ],
-        "tags": [
-          "teamdrives"
-        ]
+        "tags": ["teamdrives"]
       },
       "parameters": [
         {
@@ -8030,17 +6787,11 @@
         },
         "security": [
           {
-            "Oauth2": [
-              "https://www.googleapis.com/auth/drive"
-            ],
-            "Oauth2c": [
-              "https://www.googleapis.com/auth/drive"
-            ]
+            "Oauth2": ["https://www.googleapis.com/auth/drive"],
+            "Oauth2c": ["https://www.googleapis.com/auth/drive"]
           }
         ],
-        "tags": [
-          "teamdrives"
-        ]
+        "tags": ["teamdrives"]
       }
     }
   },
@@ -8051,9 +6802,7 @@
         "in": "query",
         "name": "alt",
         "schema": {
-          "enum": [
-            "json"
-          ],
+          "enum": ["json"],
           "type": "string"
         }
       },

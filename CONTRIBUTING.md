@@ -58,3 +58,11 @@ By following these steps, you can seamlessly create and integrate new SDK adapte
 ---
 
 Feel free to specify any particular aspects you'd like to be included or expanded upon in this README.
+
+## Random useful commands
+
+```bash
+pnpm sync-manifests google
+turbo run build  --filter sdk-google
+pnpm -r publish --no-git-checks
+```
