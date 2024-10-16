@@ -359,6 +359,23 @@ export const oas: OpenAPISpec = createDocument({
         response: z.array(greenhouseJob),
       }),
     },
+    '/v1/jobs/{id}/openings': {
+      get: jsonOperation('getJobOpenings', {
+        path: z.object({
+          id: z.string().describe('The ID of the job to retrieve openings for'),
+        }),
+        query: z.object({
+          status: z
+            .string()
+            .optional()
+            .describe(
+              'Filter openings by status. Can be "open", "closed", or "all". Defaults to "open".',
+            )
+            .default('open'),
+        }),
+        response: z.array(greenhouseOpening),
+      }),
+    },
     '/v1/offers/{id}': {
       get: jsonOperation('getOffer', {
         path: z.object({
