@@ -210,6 +210,52 @@
         }
       }
     },
+    "/v1/jobs/{id}/openings": {
+      "get": {
+        "operationId": "getJobOpenings",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The ID of the job to retrieve openings for",
+            "schema": {
+              "type": "string",
+              "description": "The ID of the job to retrieve openings for"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "Filter openings by status. Can be \"open\", \"closed\", or \"all\". Defaults to \"open\".",
+            "schema": {
+              "type": "string",
+              "description": "Filter openings by status. Can be \"open\", \"closed\", or \"all\". Defaults to \"open\".",
+              "default": "open"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/opening"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/offers/{id}": {
       "get": {
         "operationId": "getOffer",

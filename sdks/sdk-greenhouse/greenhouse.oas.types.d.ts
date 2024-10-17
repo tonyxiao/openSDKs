@@ -16,6 +16,9 @@ export interface paths {
   '/v1/jobs': {
     get: operations['getJobs']
   }
+  '/v1/jobs/{id}/openings': {
+    get: operations['getJobOpenings']
+  }
   '/v1/offers/{id}': {
     get: operations['getOffer']
   }
@@ -385,6 +388,30 @@ export interface operations {
       200: {
         content: {
           'application/json': components['schemas']['job'][]
+        }
+      }
+    }
+  }
+  getJobOpenings: {
+    parameters: {
+      query?: {
+        /** @description Filter openings by status. Can be "open", "closed", or "all". Defaults to "open". */
+        status?: string
+      }
+      path: {
+        /** @description The ID of the job to retrieve openings for */
+        id: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['opening'][]
         }
       }
     }
