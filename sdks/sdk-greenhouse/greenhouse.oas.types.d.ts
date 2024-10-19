@@ -397,6 +397,10 @@ export interface operations {
       query?: {
         /** @description Filter openings by status. Can be "open", "closed", or "all". Defaults to "open". */
         status?: string
+        /** @description Return up to this number of objects per response. Must be an integer between 1 and 50. Defaults to 50. */
+        per_page?: number
+        /** @description A cursor for use in pagination. Returns the n-th chunk of per_page objects. */
+        page?: number
       }
       path: {
         /** @description The ID of the job to retrieve openings for */

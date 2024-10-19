@@ -233,6 +233,27 @@
               "description": "Filter openings by status. Can be \"open\", \"closed\", or \"all\". Defaults to \"open\".",
               "default": "open"
             }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "description": "Return up to this number of objects per response. Must be an integer between 1 and 50. Defaults to 50.",
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 50,
+              "description": "Return up to this number of objects per response. Must be an integer between 1 and 50. Defaults to 50.",
+              "default": 50
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "A cursor for use in pagination. Returns the n-th chunk of per_page objects.",
+            "schema": {
+              "type": "number",
+              "description": "A cursor for use in pagination. Returns the n-th chunk of per_page objects."
+            }
           }
         ],
         "requestBody": {
