@@ -372,6 +372,21 @@ export const oas: OpenAPISpec = createDocument({
               'Filter openings by status. Can be "open", "closed", or "all". Defaults to "open".',
             )
             .default('open'),
+          per_page: z
+            .number()
+            .min(1)
+            .max(50)
+            .optional()
+            .describe(
+              'Return up to this number of objects per response. Must be an integer between 1 and 50. Defaults to 50.',
+            )
+            .default(50),
+          page: z
+            .number()
+            .optional()
+            .describe(
+              'A cursor for use in pagination. Returns the n-th chunk of per_page objects.',
+            ),
         }),
         response: z.array(greenhouseOpening),
       }),
