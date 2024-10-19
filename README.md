@@ -455,10 +455,13 @@ On the other hand OpenSDKs is most valuable when you are working with multiple 3
 
 0. Ensure you have built the CLI by running `cd packages/cli && pnpm install && pnpm run build`
 1. Make any changes to the `src` folder of the package, usually in the `src/{name}.oas.ts` file
-2. Run `turbo run generate --filter {package-name i.e. sdk-qbo}` to build the package
-3. Ensure that your changes made it to the auto generated files in the package top level folder (i.e. `{name}.oas.types.d.ts` & `{name}.oas.json`)
-4. Make sure you have bumped the version in `package.json` of the package you are releasing
-5. Run `pnpm run release` to release the package from the directory of the package
+2. Run `turbo run download --filter {package-name i.e. sdk-qbo}` to download the package
+3. Run `turbo run generate --filter {package-name i.e. sdk-qbo}` to generate the package
+4. Run `turbo run build --filter {package-name i.e. sdk-qbo}` to build the package
+5. Ensure that your changes made it to the auto generated files in the package top level folder (i.e. `{name}.oas.types.d.ts` & `{name}.oas.json`)
+6. Make sure you have bumped the version in `package.json` of the package you are releasing
+7. Run `pnpm -r publish --no-git-checks` to release the package from the directory of the package
+8. Push your changes to the repository
 
 ## Community
 
