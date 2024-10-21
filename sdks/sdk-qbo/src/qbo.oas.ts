@@ -713,6 +713,21 @@ export const oas: OpenAPISpec = createDocument({
         response: cdcPayloadSchema,
       }),
     },
+    '/reports/AccountList': {
+      get: jsonOperation('getAccountList', {
+        response: reportPayloadSchema,
+        query: commonReportQueryParams.extend({
+          account_type: z.string().optional(),
+          start_moddate: z.string().optional(),
+          moddate_macro: z.string().optional(),
+          end_moddate: z.string().optional(),
+          account_status: z.string().optional(),
+          createdate_macro: z.string().optional(),
+          columns: z.string().optional(),
+          sort_by: z.string().optional(),
+        }),
+      }),
+    },
   },
 })
 
