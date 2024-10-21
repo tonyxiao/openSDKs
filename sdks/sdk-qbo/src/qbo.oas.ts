@@ -572,6 +572,20 @@ export const queryPayloadSchema = z.object({
   time: z.string(),
 })
 
+// Define common query parameters
+const commonReportQueryParams = z.object({
+  start_date: z.string().optional(),
+  end_date: z.string().optional(),
+  customer: z.string().optional(),
+  accounting_method: z.string().optional(),
+  date_macro: z.string().optional(),
+  adjusted_gain_loss: z.string().optional(),
+  class: z.string().optional(),
+  sort_order: z.string().optional(),
+  department: z.string().optional(),
+  vendor: z.string().optional(),
+})
+
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Quickbooks API', version: '0.0.0'},
@@ -630,11 +644,24 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/BalanceSheet': {
       get: jsonOperation('getBalanceSheet', {
         response: reportPayloadSchema,
+        query: commonReportQueryParams.extend({
+          qzurl: z.string().optional(),
+          item: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+        }),
       }),
     },
     '/reports/ProfitAndLoss': {
       get: jsonOperation('getProfitAndLoss', {
         response: reportPayloadSchema,
+        query: commonReportQueryParams.extend({
+          account: z.string().optional(),
+          sort_by: z.string().optional(),
+          payment_method: z.string().optional(),
+          employee: z.string().optional(),
+          account_type: z.string().optional(),
+          columns: z.string().optional(),
+        }),
       }),
     },
     '/cdc': {
