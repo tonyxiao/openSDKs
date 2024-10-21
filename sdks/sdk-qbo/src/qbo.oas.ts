@@ -572,18 +572,14 @@ export const queryPayloadSchema = z.object({
   time: z.string(),
 })
 
-// Define common query parameters
-const commonReportQueryParams = z.object({
+// Define base query parameters common to most reports
+const baseReportQueryParams = z.object({
   start_date: z.string().optional(),
   end_date: z.string().optional(),
-  customer: z.string().optional(),
-  accounting_method: z.string().optional(),
-  date_macro: z.string().optional(),
-  adjusted_gain_loss: z.string().optional(),
-  class: z.string().optional(),
   sort_order: z.string().optional(),
+  customer: z.string().optional(),
   department: z.string().optional(),
-  vendor: z.string().optional(),
+  date_macro: z.string().optional(),
 })
 
 export const oas: OpenAPISpec = createDocument({
@@ -639,8 +635,7 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/TransactionList': {
       get: jsonOperation('getTransactionList', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
-          date_macro: z.string().optional(),
+        query: baseReportQueryParams.extend({
           payment_method: z.string().optional(),
           duedate_macro: z.string().optional(),
           arpaid: z.string().optional(),
@@ -672,7 +667,7 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/BalanceSheet': {
       get: jsonOperation('getBalanceSheet', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
+        query: baseReportQueryParams.extend({
           qzurl: z.string().optional(),
           item: z.string().optional(),
           summarize_column_by: z.string().optional(),
@@ -682,7 +677,7 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/ProfitAndLoss': {
       get: jsonOperation('getProfitAndLoss', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
+        query: baseReportQueryParams.extend({
           account: z.string().optional(),
           sort_by: z.string().optional(),
           payment_method: z.string().optional(),
@@ -695,11 +690,9 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/Cashflow': {
       get: jsonOperation('getCashFlow', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
-          customer: z.string().optional(),
+        query: baseReportQueryParams.extend({
           vendor: z.string().optional(),
           item: z.string().optional(),
-          sort_order: z.string().optional(),
           summarize_column_by: z.string().optional(),
         }),
       }),
@@ -716,7 +709,7 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/AccountList': {
       get: jsonOperation('getAccountList', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
+        query: baseReportQueryParams.extend({
           account_type: z.string().optional(),
           start_moddate: z.string().optional(),
           moddate_macro: z.string().optional(),
@@ -731,12 +724,23 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/CustomerBalance': {
       get: jsonOperation('getCustomerBalance', {
         response: reportPayloadSchema,
-        query: commonReportQueryParams.extend({
+        query: baseReportQueryParams.extend({
           accounting_method: z.string().optional(),
-          date_macro: z.string().optional(),
           arpaid: z.string().optional(),
           report_date: z.string().optional(),
           summarize_column_by: z.string().optional(),
+        }),
+      }),
+    },
+    '/reports/CustomerIncome': {
+      get: jsonOperation('getCustomerIncome', {
+        response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          term: z.string().optional(),
+          accounting_method: z.string().optional(),
+          class: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+          vendor: z.string().optional(),
         }),
       }),
     },
