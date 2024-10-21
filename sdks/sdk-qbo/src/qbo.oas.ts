@@ -687,7 +687,7 @@ export const oas: OpenAPISpec = createDocument({
         }),
       }),
     },
-    '/reports/Cashflow': {
+    '/reports/CashFlow': {
       get: jsonOperation('getCashFlow', {
         response: reportPayloadSchema,
         query: baseReportQueryParams.extend({
