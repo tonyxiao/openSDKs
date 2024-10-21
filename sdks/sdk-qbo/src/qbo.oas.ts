@@ -572,6 +572,16 @@ export const queryPayloadSchema = z.object({
   time: z.string(),
 })
 
+// Define base query parameters common to most reports
+const baseReportQueryParams = z.object({
+  start_date: z.string().optional(),
+  end_date: z.string().optional(),
+  sort_order: z.string().optional(),
+  customer: z.string().optional(),
+  department: z.string().optional(),
+  date_macro: z.string().optional(),
+})
+
 export const oas: OpenAPISpec = createDocument({
   openapi: '3.1.0',
   info: {title: 'Quickbooks API', version: '0.0.0'},
@@ -625,16 +635,66 @@ export const oas: OpenAPISpec = createDocument({
     '/reports/TransactionList': {
       get: jsonOperation('getTransactionList', {
         response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          payment_method: z.string().optional(),
+          duedate_macro: z.string().optional(),
+          arpaid: z.string().optional(),
+          bothamount: z.string().optional(),
+          transaction_type: z.string().optional(),
+          docnum: z.string().optional(),
+          start_moddate: z.string().optional(),
+          source_account_type: z.string().optional(),
+          group_by: z.string().optional(),
+          start_duedate: z.string().optional(),
+          columns: z.string().optional(),
+          end_duedate: z.string().optional(),
+          memo: z.string().optional(),
+          appaid: z.string().optional(),
+          moddate_macro: z.string().optional(),
+          printed: z.string().optional(),
+          createdate_macro: z.string().optional(),
+          cleared: z.string().optional(),
+          qzurl: z.string().optional(),
+          term: z.string().optional(),
+          end_createdate: z.string().optional(),
+          name: z.string().optional(),
+          sort_by: z.string().optional(),
+          start_createdate: z.string().optional(),
+          end_moddate: z.string().optional(),
+        }),
       }),
     },
     '/reports/BalanceSheet': {
       get: jsonOperation('getBalanceSheet', {
         response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          qzurl: z.string().optional(),
+          item: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+        }),
       }),
     },
     '/reports/ProfitAndLoss': {
       get: jsonOperation('getProfitAndLoss', {
         response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          account: z.string().optional(),
+          sort_by: z.string().optional(),
+          payment_method: z.string().optional(),
+          employee: z.string().optional(),
+          account_type: z.string().optional(),
+          columns: z.string().optional(),
+        }),
+      }),
+    },
+    '/reports/Cashflow': {
+      get: jsonOperation('getCashFlow', {
+        response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          vendor: z.string().optional(),
+          item: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+        }),
       }),
     },
     '/cdc': {
@@ -644,6 +704,44 @@ export const oas: OpenAPISpec = createDocument({
           entities: z.string().describe('Comma separated list of entity names'),
         }),
         response: cdcPayloadSchema,
+      }),
+    },
+    '/reports/AccountList': {
+      get: jsonOperation('getAccountList', {
+        response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          account_type: z.string().optional(),
+          start_moddate: z.string().optional(),
+          moddate_macro: z.string().optional(),
+          end_moddate: z.string().optional(),
+          account_status: z.string().optional(),
+          createdate_macro: z.string().optional(),
+          columns: z.string().optional(),
+          sort_by: z.string().optional(),
+        }),
+      }),
+    },
+    '/reports/CustomerBalance': {
+      get: jsonOperation('getCustomerBalance', {
+        response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          accounting_method: z.string().optional(),
+          arpaid: z.string().optional(),
+          report_date: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+        }),
+      }),
+    },
+    '/reports/CustomerIncome': {
+      get: jsonOperation('getCustomerIncome', {
+        response: reportPayloadSchema,
+        query: baseReportQueryParams.extend({
+          term: z.string().optional(),
+          accounting_method: z.string().optional(),
+          class: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+          vendor: z.string().optional(),
+        }),
       }),
     },
   },

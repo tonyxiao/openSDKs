@@ -67,8 +67,20 @@ export interface paths {
   '/reports/ProfitAndLoss': {
     get: operations['getProfitAndLoss']
   }
+  '/reports/Cashflow': {
+    get: operations['getCashFlow']
+  }
   '/cdc': {
     get: operations['cdc']
+  }
+  '/reports/AccountList': {
+    get: operations['getAccountList']
+  }
+  '/reports/CustomerBalance': {
+    get: operations['getCustomerBalance']
+  }
+  '/reports/CustomerIncome': {
+    get: operations['getCustomerIncome']
   }
 }
 
@@ -873,6 +885,19 @@ export interface operations {
     }
   }
   getBalanceSheet: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        qzurl?: string
+        item?: string
+        summarize_column_by?: string
+      }
+    }
     requestBody?: {
       content: {
         'application/json': unknown
@@ -887,6 +912,22 @@ export interface operations {
     }
   }
   getProfitAndLoss: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        account?: string
+        sort_by?: string
+        payment_method?: string
+        employee?: string
+        account_type?: string
+        columns?: string
+      }
+    }
     requestBody?: {
       content: {
         'application/json': unknown
@@ -937,6 +978,68 @@ export interface operations {
     }
   }
   getTransactionList: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        payment_method?: string
+        duedate_macro?: string
+        arpaid?: string
+        bothamount?: string
+        transaction_type?: string
+        docnum?: string
+        start_moddate?: string
+        source_account_type?: string
+        group_by?: string
+        start_duedate?: string
+        columns?: string
+        end_duedate?: string
+        memo?: string
+        appaid?: string
+        moddate_macro?: string
+        printed?: string
+        createdate_macro?: string
+        cleared?: string
+        qzurl?: string
+        term?: string
+        end_createdate?: string
+        name?: string
+        sort_by?: string
+        start_createdate?: string
+        end_moddate?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
+  getCashFlow: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        vendor?: string
+        item?: string
+        summarize_column_by?: string
+      }
+    }
     requestBody?: {
       content: {
         'application/json': unknown
@@ -967,6 +1070,95 @@ export interface operations {
       200: {
         content: {
           'application/json': components['schemas']['CDCPayload']
+        }
+      }
+    }
+  }
+  getAccountList: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        account_type?: string
+        start_moddate?: string
+        moddate_macro?: string
+        end_moddate?: string
+        account_status?: string
+        createdate_macro?: string
+        columns?: string
+        sort_by?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
+  getCustomerBalance: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        accounting_method?: string
+        arpaid?: string
+        report_date?: string
+        summarize_column_by?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
+        }
+      }
+    }
+  }
+  getCustomerIncome: {
+    parameters: {
+      query?: {
+        start_date?: string
+        end_date?: string
+        sort_order?: string
+        customer?: string
+        department?: string
+        date_macro?: string
+        term?: string
+        accounting_method?: string
+        class?: string
+        summarize_column_by?: string
+        vendor?: string
+      }
+    }
+    requestBody?: {
+      content: {
+        'application/json': unknown
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['Report']
         }
       }
     }
