@@ -67,7 +67,7 @@ export interface paths {
   '/reports/ProfitAndLoss': {
     get: operations['getProfitAndLoss']
   }
-  '/reports/Cashflow': {
+  '/reports/CashFlow': {
     get: operations['getCashFlow']
   }
   '/cdc': {
