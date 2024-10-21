@@ -728,6 +728,18 @@ export const oas: OpenAPISpec = createDocument({
         }),
       }),
     },
+    '/reports/CustomerBalance': {
+      get: jsonOperation('getCustomerBalance', {
+        response: reportPayloadSchema,
+        query: commonReportQueryParams.extend({
+          accounting_method: z.string().optional(),
+          date_macro: z.string().optional(),
+          arpaid: z.string().optional(),
+          report_date: z.string().optional(),
+          summarize_column_by: z.string().optional(),
+        }),
+      }),
+    },
   },
 })
 
