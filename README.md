@@ -457,6 +457,16 @@ On the other hand OpenSDKs is most valuable when you are working with multiple 3
 1. Make any changes to the `src` folder of the package, usually in the `src/{name}.oas.ts` file
 2. Run `turbo run download --filter {package-name i.e. sdk-qbo}` to download the package
 3. Run `turbo run generate --filter {package-name i.e. sdk-qbo}` to generate the package
+
+Or use this single command
+
+```
+SDK=sdk-qbo && \
+turbo run download --filter $SDK && \
+turbo run generate --filter $SDK && \
+turbo run build --filter $SDK
+```
+
 4. Run `turbo run build --filter {package-name i.e. sdk-qbo}` to build the package
 5. Ensure that your changes made it to the auto generated files in the package top level folder (i.e. `{name}.oas.types.d.ts` & `{name}.oas.json`)
 6. Make sure you have bumped the version in `package.json` of the package you are releasing
