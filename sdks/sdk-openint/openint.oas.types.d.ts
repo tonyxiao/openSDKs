@@ -244,6 +244,12 @@ export interface paths {
   '/unified/accounting/customer-income': {
     get: operations['accounting-getCustomerIncome']
   }
+  '/unified/accounting/bank-accounts': {
+    get: operations['accounting-getBankAccounts']
+  }
+  '/unified/accounting/payment-receipt': {
+    get: operations['accounting-getPaymentReceipts']
+  }
   '/unified/pta/account': {
     get: operations['pta-listAccounts']
   }
@@ -4487,6 +4493,83 @@ export interface operations {
             totalExpenses: number
             netIncome: number
           }
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'accounting-getBankAccounts': {
+    parameters: {
+      query: {
+        customer: string
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': {
+            updated: string
+            name: string
+            accountNumber: string
+            default: boolean
+            created: string
+            inputType: string
+            phone: string
+            accountType: string
+            routingNumber: string
+            id: string
+          }[]
+        }
+      }
+      /** @description Invalid input data */
+      400: {
+        content: {
+          'application/json': components['schemas']['error.BAD_REQUEST']
+        }
+      }
+      /** @description Not found */
+      404: {
+        content: {
+          'application/json': components['schemas']['error.NOT_FOUND']
+        }
+      }
+      /** @description Internal server error */
+      500: {
+        content: {
+          'application/json': components['schemas']['error.INTERNAL_SERVER_ERROR']
+        }
+      }
+    }
+  }
+  'accounting-getPaymentReceipts': {
+    parameters: {
+      query: {
+        customer_transaction_id: string
+      }
+    }
+    responses: {
+      /** @description Successful response */
+      200: {
+        content: {
+          'application/json': unknown
         }
       }
       /** @description Invalid input data */
