@@ -344,7 +344,9 @@ export interface operations {
       200: {
         content: {
           'application/json': {
-            data: components['schemas']['offer']
+            data: components['schemas']['offer'][]
+            hasNext?: boolean
+            next?: string
           }
         }
       }

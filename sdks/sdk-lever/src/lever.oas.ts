@@ -458,7 +458,9 @@ export const oas: OpenAPISpec = createDocument({
             .describe('The ID of the opportunity to retrieve offers for'),
         }),
         response: z.object({
-          data: offer,
+          data: z.array(offer),
+          hasNext: z.boolean().optional(),
+          next: z.string().optional(),
         }),
       }),
     },
