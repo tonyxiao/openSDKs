@@ -305,7 +305,16 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/offer"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/offer"
+                      }
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "next": {
+                      "type": "string"
                     }
                   },
                   "required": ["data"]
